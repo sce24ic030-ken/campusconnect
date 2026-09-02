@@ -1,0 +1,46 @@
+const chatForm = document.getElementById("chat-form");
+const chatText = document.getElementById("chat-text");
+const messages = document.getElementById("messages");
+const quickQuestion = document.getElementById("quick-question");
+const quickSend = document.getElementById("quick-send");
+
+function addMessage(text, type) {
+  const message = document.createElement("div");
+  message.className = `message ${type}-message`;
+  message.textContent = text;
+  messages.appendChild(message);
+  messages.scrollTop = messages.scrollHeight;
+}
+
+function sendMessage(text) {
+  const cleanText = text.trim();
+  if (!cleanText) return;
+
+  addMessage(cleanText, "user");
+
+  setTimeout(() => {
+    addMessage(
+      "I am currently using demo data. When the backend is connected, I will provide your personalised college information. 🤖",
+      "bot"
+    );
+  }, 500);
+}
+
+chatForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  sendMessage(chatText.value);
+  chatText.value = "";
+});
+
+quickSend.addEventListener("click", () => {
+  sendMessage(quickQuestion.value);
+  quickQuestion.value = "";
+  chatText.focus();
+});
+
+document.querySelectorAll(".nav-link").forEach((link) => {
+  link.addEventListener("click", () => {
+    document.querySelectorAll(".nav-link").forEach((item) => item.classList.remove("active"));
+    link.classList.add("active");
+  });
+});
