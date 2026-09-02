@@ -1,0 +1,34 @@
+@media (max-width: 1320px) {
+  .app-layout { grid-template-columns: 210px minmax(540px, 1fr); }
+  .chat-panel { display: none; }
+}
+
+@media (max-width: 980px) {
+  .app-layout { grid-template-columns: 78px 1fr; }
+  .sidebar { padding: 18px 10px; }
+  .brand { justify-content: center; margin: 0 0 25px; }
+  .brand > span:last-child, .nav-link:not(.active)::after, .nav-link { font-size: 0; }
+  .nav-link { justify-content: center; padding: 12px; }
+  .nav-link i { width: auto; font-size: 17px; }
+  .help-card { display: none; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .bottom-grid { grid-template-columns: 1fr 1fr; }
+  .timetable-panel { grid-column: 1 / -1; }
+}
+
+@media (max-width: 680px) {
+  .app-layout { display: block; }
+  .sidebar { display: none; }
+  .content { padding: 0 14px 22px; }
+  .topbar { height: 62px; }
+  .menu-toggle { display: block; }
+  .search-box { width: 100%; }
+  .student-mini { display: none; }
+  .welcome { align-items: flex-start; gap: 12px; }
+  .welcome h1 { font-size: 20px; }
+  .gradient-button { padding: 10px; font-size: 0; }
+  .gradient-button i { font-size: 14px; }
+  .stats-grid, .top-grid, .bottom-grid { grid-template-columns: 1fr; }
+  .timetable-panel { grid-column: auto; }
+  .insight-content { min-height: 115px; }
+}
