@@ -1,0 +1,2017 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CampusConnect - Student Profile</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: 'Poppins', sans-serif;
+
+            background:
+                radial-gradient(circle at 10% 10%, rgba(145, 67, 255, .20), transparent 25%),
+                radial-gradient(circle at 90% 90%, rgba(240, 58, 171, .16), transparent 25%),
+                #f7f5fb;
+
+            color: #29243b;
+        }
+
+
+        /* ==============================
+           SIDEBAR
+        ============================== */
+
+        .sidebar {
+            position: fixed;
+
+            left: 0;
+            top: 0;
+
+            width: 240px;
+            height: 100vh;
+
+            padding: 25px 17px;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #271344,
+                    #421568,
+                    #591c7e
+                );
+
+            color: white;
+
+            box-shadow: 5px 0 25px rgba(48, 20, 75, .15);
+
+            z-index: 100;
+        }
+
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+
+            padding: 8px 10px;
+
+            margin-bottom: 35px;
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 13px;
+
+            background: rgba(255,255,255,.14);
+
+            font-size: 21px;
+        }
+
+        .logo-text {
+            font-size: 17px;
+            font-weight: 700;
+        }
+
+        .logo-text span {
+            color: #f2a2ff;
+        }
+
+
+        .menu-title {
+            padding: 0 12px;
+
+            margin-bottom: 10px;
+
+            color: #bda9d0;
+
+            font-size: 9px;
+            font-weight: 600;
+
+            letter-spacing: 1px;
+        }
+
+
+        .nav-menu {
+            display: flex;
+            flex-direction: column;
+
+            gap: 6px;
+        }
+
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+
+            gap: 12px;
+
+            width: 100%;
+
+            padding: 11px 13px;
+
+            border: none;
+
+            border-radius: 11px;
+
+            background: transparent;
+
+            color: #d9cbe4;
+
+            font-family: inherit;
+
+            font-size: 10px;
+
+            text-align: left;
+
+            cursor: pointer;
+
+            transition: .25s;
+        }
+
+        .nav-item:hover {
+            background: rgba(255,255,255,.10);
+
+            color: white;
+
+            transform: translateX(3px);
+        }
+
+        .nav-item.active {
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(166,76,234,.55),
+                    rgba(224,66,170,.35)
+                );
+
+            color: white;
+
+            box-shadow:
+                0 8px 20px rgba(0,0,0,.10);
+        }
+
+        .nav-icon {
+            width: 20px;
+
+            text-align: center;
+
+            font-size: 14px;
+        }
+
+
+        .sidebar-bottom {
+            position: absolute;
+
+            bottom: 25px;
+            left: 17px;
+            right: 17px;
+        }
+
+
+        .logout {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            width: 100%;
+
+            padding: 11px 13px;
+
+            border: none;
+
+            border-radius: 11px;
+
+            background: rgba(255,255,255,.08);
+
+            color: #eadff1;
+
+            font-family: inherit;
+
+            font-size: 10px;
+
+            cursor: pointer;
+
+            transition: .25s;
+        }
+
+        .logout:hover {
+            background: rgba(255,255,255,.15);
+        }
+
+
+        /* ==============================
+           MAIN
+        ============================== */
+
+        .main {
+            margin-left: 240px;
+
+            min-height: 100vh;
+
+            padding: 28px 35px;
+        }
+
+
+        /* Header */
+
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            margin-bottom: 25px;
+        }
+
+
+        .page-title h1 {
+            font-size: 25px;
+
+            color: #282238;
+        }
+
+        .page-title p {
+            margin-top: 4px;
+
+            color: #918b9c;
+
+            font-size: 10px;
+        }
+
+
+        .top-actions {
+            display: flex;
+            align-items: center;
+
+            gap: 12px;
+        }
+
+
+        .notification {
+            width: 39px;
+            height: 39px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border: 1px solid #ebe7f0;
+
+            border-radius: 11px;
+
+            background: white;
+
+            font-size: 16px;
+
+            cursor: pointer;
+
+            box-shadow: 0 4px 15px rgba(40,20,60,.05);
+        }
+
+
+        .mini-profile {
+            display: flex;
+            align-items: center;
+
+            gap: 9px;
+
+            padding: 5px 10px 5px 5px;
+
+            border-radius: 30px;
+
+            background: white;
+
+            box-shadow: 0 4px 15px rgba(40,20,60,.05);
+        }
+
+
+        .mini-avatar {
+            width: 32px;
+            height: 32px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background:
+                linear-gradient(135deg,#7a43db,#e34aa9);
+
+            color: white;
+
+            font-size: 13px;
+        }
+
+
+        .mini-name {
+            color: #40394d;
+
+            font-size: 9px;
+
+            font-weight: 600;
+        }
+
+
+        /* ==============================
+           PROFILE HERO
+        ============================== */
+
+        .profile-hero {
+            position: relative;
+
+            padding: 30px;
+
+            margin-bottom: 20px;
+
+            border-radius: 22px;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    120deg,
+                    #6e38ca,
+                    #9e43c7,
+                    #dd4caa
+                );
+
+            color: white;
+
+            box-shadow:
+                0 15px 35px rgba(110,56,202,.22);
+        }
+
+
+        .profile-hero::before {
+            content: "";
+
+            position: absolute;
+
+            width: 280px;
+            height: 280px;
+
+            right: -80px;
+            top: -130px;
+
+            border: 1px solid rgba(255,255,255,.15);
+
+            border-radius: 50%;
+        }
+
+
+        .profile-hero::after {
+            content: "";
+
+            position: absolute;
+
+            width: 190px;
+            height: 190px;
+
+            right: 120px;
+            bottom: -130px;
+
+            border: 1px solid rgba(255,255,255,.12);
+
+            border-radius: 50%;
+        }
+
+
+        .hero-content {
+            position: relative;
+
+            z-index: 2;
+
+            display: flex;
+            align-items: center;
+
+            gap: 22px;
+        }
+
+
+        .profile-avatar {
+            width: 88px;
+            height: 88px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            flex-shrink: 0;
+
+            border: 4px solid rgba(255,255,255,.40);
+
+            border-radius: 50%;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f6b2ff,
+                    #bc61e9
+                );
+
+            font-size: 34px;
+
+            box-shadow:
+                0 10px 25px rgba(0,0,0,.18);
+        }
+
+
+        .hero-text h2 {
+            font-size: 23px;
+
+            margin-bottom: 5px;
+        }
+
+        .hero-text p {
+            color: #f2e8fa;
+
+            font-size: 10px;
+        }
+
+
+        .student-badge {
+            display: inline-block;
+
+            margin-top: 10px;
+
+            padding: 5px 10px;
+
+            border-radius: 20px;
+
+            background: rgba(255,255,255,.15);
+
+            font-size: 9px;
+        }
+
+
+        .edit-btn {
+            margin-left: auto;
+
+            padding: 10px 18px;
+
+            border: 1px solid rgba(255,255,255,.30);
+
+            border-radius: 10px;
+
+            background: rgba(255,255,255,.14);
+
+            color: white;
+
+            font-family: inherit;
+
+            font-size: 10px;
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition: .25s;
+        }
+
+        .edit-btn:hover {
+            background: rgba(255,255,255,.24);
+
+            transform: translateY(-2px);
+        }
+
+
+        /* ==============================
+           CONTENT GRID
+        ============================== */
+
+        .content-grid {
+            display: grid;
+
+            grid-template-columns: 1.5fr 1fr;
+
+            gap: 20px;
+        }
+
+
+        .card {
+            padding: 22px;
+
+            border: 1px solid #ece8f1;
+
+            border-radius: 18px;
+
+            background: white;
+
+            box-shadow:
+                0 8px 25px rgba(45,25,70,.05);
+
+            animation: cardAppear .5s ease;
+        }
+
+
+        @keyframes cardAppear {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+
+        .card-title {
+            display: flex;
+            align-items: center;
+
+            gap: 9px;
+
+            margin-bottom: 20px;
+
+            color: #30293e;
+
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+
+        .title-icon {
+            width: 31px;
+            height: 31px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 9px;
+
+            background: #f2e8ff;
+
+            font-size: 15px;
+        }
+
+
+        /* ==============================
+           INFORMATION
+        ============================== */
+
+        .info-list {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 14px;
+        }
+
+
+        .info-item {
+            padding: 13px;
+
+            border-radius: 12px;
+
+            background: #faf9fc;
+
+            border: 1px solid #f0edf3;
+        }
+
+
+        .info-label {
+            margin-bottom: 5px;
+
+            color: #9b96a4;
+
+            font-size: 8px;
+
+            font-weight: 600;
+
+            text-transform: uppercase;
+
+            letter-spacing: .5px;
+        }
+
+
+        .info-value {
+            color: #40394c;
+
+            font-size: 10px;
+
+            font-weight: 600;
+        }
+
+
+        /* ==============================
+           ACADEMIC CARD
+        ============================== */
+
+        .academic-item {
+            display: flex;
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 13px 0;
+
+            border-bottom: 1px solid #f0edf3;
+        }
+
+        .academic-item:last-child {
+            border-bottom: none;
+        }
+
+
+        .academic-left {
+            display: flex;
+            align-items: center;
+
+            gap: 10px;
+        }
+
+
+        .academic-icon {
+            width: 35px;
+            height: 35px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 10px;
+
+            background: #f5ecff;
+
+            font-size: 15px;
+        }
+
+
+        .academic-name {
+            color: #4b4555;
+
+            font-size: 9px;
+
+            font-weight: 600;
+        }
+
+        .academic-description {
+            color: #a09ba6;
+
+            font-size: 8px;
+
+            margin-top: 2px;
+        }
+
+
+        .academic-value {
+            color: #713bd0;
+
+            font-size: 11px;
+
+            font-weight: 700;
+        }
+
+
+        /* ==============================
+           QUICK ACTIONS
+        ============================== */
+
+        .quick-actions {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 10px;
+        }
+
+
+        .quick-btn {
+            padding: 13px;
+
+            border: 1px solid #eee9f3;
+
+            border-radius: 12px;
+
+            background: #faf9fc;
+
+            color: #514b5b;
+
+            font-family: inherit;
+
+            font-size: 9px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition: .25s;
+        }
+
+        .quick-btn:hover {
+            background: #f4ebff;
+
+            border-color: #d9baff;
+
+            color: #7037c9;
+
+            transform: translateY(-2px);
+        }
+
+
+        /* ==============================
+           MODAL
+        ============================== */
+
+        .modal {
+            display: none;
+
+            position: fixed;
+
+            inset: 0;
+
+            background: rgba(26,15,39,.55);
+
+            backdrop-filter: blur(5px);
+
+            align-items: center;
+            justify-content: center;
+
+            z-index: 500;
+
+            padding: 20px;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+
+        .modal-box {
+            width: 100%;
+            max-width: 500px;
+
+            padding: 28px;
+
+            border-radius: 20px;
+
+            background: white;
+
+            box-shadow:
+                0 25px 70px rgba(0,0,0,.25);
+
+            animation: modalIn .3s ease;
+        }
+
+
+        @keyframes modalIn {
+            from {
+                opacity: 0;
+                transform: scale(.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            margin-bottom: 20px;
+        }
+
+
+        .modal-header h3 {
+            font-size: 17px;
+        }
+
+
+        .close-modal {
+            border: none;
+
+            background: #f3eff7;
+
+            width: 30px;
+            height: 30px;
+
+            border-radius: 50%;
+
+            cursor: pointer;
+        }
+
+
+        .edit-grid {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 14px;
+        }
+
+
+        .edit-group.full {
+            grid-column: 1 / -1;
+        }
+
+
+        .edit-group label {
+            display: block;
+
+            margin-bottom: 6px;
+
+            color: #625b6d;
+
+            font-size: 9px;
+
+            font-weight: 600;
+        }
+
+
+        .edit-group input,
+        .edit-group select {
+            width: 100%;
+
+            height: 40px;
+
+            padding: 0 12px;
+
+            border: 1px solid #e6e1eb;
+
+            border-radius: 9px;
+
+            outline: none;
+
+            font-family: inherit;
+
+            font-size: 9px;
+
+            background: #faf9fc;
+        }
+
+
+        .edit-group input:focus,
+        .edit-group select:focus {
+            border-color: #9348d9;
+        }
+
+
+        .save-btn {
+            width: 100%;
+
+            height: 42px;
+
+            margin-top: 20px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            background:
+                linear-gradient(
+                    100deg,
+                    #713bd8,
+                    #a83ec8,
+                    #df439d
+                );
+
+            color: white;
+
+            font-family: inherit;
+
+            font-size: 10px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+        }
+
+
+        /* ==============================
+           RESPONSIVE
+        ============================== */
+
+        @media(max-width: 950px) {
+
+            .sidebar {
+                width: 205px;
+            }
+
+            .main {
+                margin-left: 205px;
+
+                padding: 25px;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+
+        @media(max-width: 700px) {
+
+            .sidebar {
+                position: relative;
+
+                width: 100%;
+                height: auto;
+
+                padding: 15px;
+            }
+
+            .nav-menu {
+                flex-direction: row;
+
+                overflow-x: auto;
+            }
+
+            .nav-item {
+                min-width: max-content;
+            }
+
+            .sidebar-bottom {
+                display: none;
+            }
+
+            .main {
+                margin-left: 0;
+
+                padding: 20px;
+            }
+
+            .logo {
+                margin-bottom: 15px;
+            }
+
+            .menu-title {
+                display: none;
+            }
+
+            .hero-content {
+                flex-wrap: wrap;
+            }
+
+            .edit-btn {
+                margin-left: 0;
+            }
+        }
+
+
+        @media(max-width: 520px) {
+
+            .topbar {
+                align-items: flex-start;
+            }
+
+            .mini-name {
+                display: none;
+            }
+
+            .profile-hero {
+                padding: 22px;
+            }
+
+            .profile-avatar {
+                width: 70px;
+                height: 70px;
+
+                font-size: 28px;
+            }
+
+            .hero-text h2 {
+                font-size: 18px;
+            }
+
+            .info-list {
+                grid-template-columns: 1fr;
+            }
+
+            .edit-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .edit-group.full {
+                grid-column: auto;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- ==========================================
+         SIDEBAR
+    =========================================== -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                🎓
+            </div>
+
+            <div class="logo-text">
+                Campus<span>Connect</span>
+            </div>
+
+        </div>
+
+
+        <div class="menu-title">
+            STUDENT PORTAL
+        </div>
+
+
+        <nav class="nav-menu">
+
+            <button class="nav-item" onclick="goTo('../dashboard.html')">
+                <span class="nav-icon">🏠</span>
+                Dashboard
+            </button>
+
+            <button class="nav-item active">
+                <span class="nav-icon">👤</span>
+                My Profile
+            </button>
+
+            <button class="nav-item" onclick="goTo('academics.html')">
+                <span class="nav-icon">📚</span>
+                Academics
+            </button>
+
+            <button class="nav-item" onclick="goTo('timetable.html')">
+                <span class="nav-icon">🗓️</span>
+                Timetable
+            </button>
+
+            <button class="nav-item" onclick="goTo('attendance.html')">
+                <span class="nav-icon">📊</span>
+                Attendance
+            </button>
+
+            <button class="nav-item" onclick="goTo('events.html')">
+                <span class="nav-icon">🎫</span>
+                Events
+            </button>
+
+            <button class="nav-item" onclick="goTo('placement.html')">
+                <span class="nav-icon">💼</span>
+                Placement
+            </button>
+
+            <button class="nav-item" onclick="goTo('notifications.html')">
+                <span class="nav-icon">🔔</span>
+                Notifications
+            </button>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <button
+                class="logout"
+                onclick="goTo('../index.html')"
+            >
+                🚪
+                Logout
+            </button>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- ==========================================
+         MAIN CONTENT
+    =========================================== -->
+
+    <main class="main">
+
+
+        <!-- Header -->
+
+        <header class="topbar">
+
+            <div class="page-title">
+
+                <h1>
+                    My Profile
+                </h1>
+
+                <p>
+                    Manage your student information
+                </p>
+
+            </div>
+
+
+            <div class="top-actions">
+
+                <button
+                    class="notification"
+                    onclick="goTo('notifications.html')"
+                >
+                    🔔
+                </button>
+
+
+                <div class="mini-profile">
+
+                    <div class="mini-avatar">
+                        👤
+                    </div>
+
+                    <div class="mini-name">
+                        Student
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- ==========================================
+             PROFILE HERO
+        =========================================== -->
+
+        <section class="profile-hero">
+
+            <div class="hero-content">
+
+                <div class="profile-avatar">
+                    👤
+                </div>
+
+
+                <div class="hero-text">
+
+                    <h2 id="displayName">
+                        Student Name
+                    </h2>
+
+                    <p id="displayCourse">
+                        Course • Department
+                    </p>
+
+                    <span class="student-badge" id="displayId">
+                        Student ID: STU0001
+                    </span>
+
+                </div>
+
+
+                <button
+                    class="edit-btn"
+                    onclick="openEditModal()"
+                >
+                    ✏️ Edit Profile
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==========================================
+             CONTENT
+        =========================================== -->
+
+        <div class="content-grid">
+
+
+            <!-- Personal Information -->
+
+            <section class="card">
+
+                <div class="card-title">
+
+                    <div class="title-icon">
+                        👤
+                    </div>
+
+                    Personal Information
+
+                </div>
+
+
+                <div class="info-list">
+
+
+                    <div class="info-item">
+
+                        <div class="info-label">
+                            Full Name
+                        </div>
+
+                        <div
+                            class="info-value"
+                            id="nameInfo"
+                        >
+                            Student Name
+                        </div>
+
+                    </div>
+
+
+                    <div class="info-item">
+
+                        <div class="info-label">
+                            Student ID
+                        </div>
+
+                        <div
+                            class="info-value"
+                            id="idInfo"
+                        >
+                            STU0001
+                        </div>
+
+                    </div>
+
+
+                    <div class="info-item">
+
+                        <div class="info-label">
+                            College Email
+                        </div>
+
+                        <div
+                            class="info-value"
+                            id="emailInfo"
+                        >
+                            student@college.edu
+                        </div>
+
+                    </div>
+
+
+                    <div class="info-item">
+
+                        <div class="info-label">
+                            Phone Number
+                        </div>
+
+                        <div
+                            class="info-value"
+                            id="phoneInfo"
+                        >
+                            +91 XXXXX XXXXX
+                        </div>
+
+                    </div>
+
+
+                    <div class="info-item">
+
+                        <div class="info-label">
+                            Course / Program
+                        </div>
+
+                        <div
+                            class="info-value"
+                            id="courseInfo"
+                        >
+                            BCA
+                        </div>
+
+                    </div>
+
+
+                    <div class="info-item">
+
+                        <div class="info-label">
+                            Department
+                        </div>
+
+                        <div
+                            class="info-value"
+                            id="departmentInfo"
+                        >
+                            Computer Applications
+                        </div>
+
+                    </div>
+
+
+                    <div class="info-item">
+
+                        <div class="info-label">
+                            Academic Year
+                        </div>
+
+                        <div
+                            class="info-value"
+                            id="yearInfo"
+                        >
+                            2nd Year
+                        </div>
+
+                    </div>
+
+
+                    <div class="info-item">
+
+                        <div class="info-label">
+                            Semester
+                        </div>
+
+                        <div
+                            class="info-value"
+                            id="semesterInfo"
+                        >
+                            Semester 4
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- Academic Information -->
+
+            <section class="card">
+
+                <div class="card-title">
+
+                    <div class="title-icon">
+                        🎓
+                    </div>
+
+                    Academic Overview
+
+                </div>
+
+
+                <div class="academic-item">
+
+                    <div class="academic-left">
+
+                        <div class="academic-icon">
+                            📚
+                        </div>
+
+                        <div>
+
+                            <div class="academic-name">
+                                Current Course
+                            </div>
+
+                            <div class="academic-description">
+                                Program
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div
+                        class="academic-value"
+                        id="courseAcademic"
+                    >
+                        BCA
+                    </div>
+
+                </div>
+
+
+                <div class="academic-item">
+
+                    <div class="academic-left">
+
+                        <div class="academic-icon">
+                            📅
+                        </div>
+
+                        <div>
+
+                            <div class="academic-name">
+                                Current Year
+                            </div>
+
+                            <div class="academic-description">
+                                Academic year
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div
+                        class="academic-value"
+                        id="yearAcademic"
+                    >
+                        2nd
+                    </div>
+
+                </div>
+
+
+                <div class="academic-item">
+
+                    <div class="academic-left">
+
+                        <div class="academic-icon">
+                            📝
+                        </div>
+
+                        <div>
+
+                            <div class="academic-name">
+                                Semester
+                            </div>
+
+                            <div class="academic-description">
+                                Current semester
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div
+                        class="academic-value"
+                        id="semesterAcademic"
+                    >
+                        4
+                    </div>
+
+                </div>
+
+
+                <div class="academic-item">
+
+                    <div class="academic-left">
+
+                        <div class="academic-icon">
+                            🏫
+                        </div>
+
+                        <div>
+
+                            <div class="academic-name">
+                                Department
+                            </div>
+
+                            <div class="academic-description">
+                                Academic department
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div
+                        class="academic-value"
+                        id="departmentAcademic"
+                    >
+                        CA
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- Quick Actions -->
+
+            <section class="card">
+
+                <div class="card-title">
+
+                    <div class="title-icon">
+                        ⚡
+                    </div>
+
+                    Quick Actions
+
+                </div>
+
+
+                <div class="quick-actions">
+
+                    <button
+                        class="quick-btn"
+                        onclick="goTo('timetable.html')"
+                    >
+                        🗓️ Timetable
+                    </button>
+
+                    <button
+                        class="quick-btn"
+                        onclick="goTo('attendance.html')"
+                    >
+                        📊 Attendance
+                    </button>
+
+                    <button
+                        class="quick-btn"
+                        onclick="goTo('academics.html')"
+                    >
+                        📚 Academics
+                    </button>
+
+                    <button
+                        class="quick-btn"
+                        onclick="goTo('events.html')"
+                    >
+                        🎫 Events
+                    </button>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- Account Status -->
+
+            <section class="card">
+
+                <div class="card-title">
+
+                    <div class="title-icon">
+                        🛡️
+                    </div>
+
+                    Account Status
+
+                </div>
+
+
+                <div class="academic-item">
+
+                    <div class="academic-left">
+
+                        <div class="academic-icon">
+                            ✅
+                        </div>
+
+                        <div>
+
+                            <div class="academic-name">
+                                Account
+                            </div>
+
+                            <div class="academic-description">
+                                Student account status
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="academic-value">
+                        Active
+                    </div>
+
+                </div>
+
+
+                <div class="academic-item">
+
+                    <div class="academic-left">
+
+                        <div class="academic-icon">
+                            🔒
+                        </div>
+
+                        <div>
+
+                            <div class="academic-name">
+                                Security
+                            </div>
+
+                            <div class="academic-description">
+                                Account protection
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="academic-value">
+                        Secure
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+
+    <!-- ==========================================
+         EDIT PROFILE MODAL
+    =========================================== -->
+
+    <div
+        class="modal"
+        id="editModal"
+    >
+
+        <div class="modal-box">
+
+            <div class="modal-header">
+
+                <h3>
+                    Edit Profile
+                </h3>
+
+                <button
+                    class="close-modal"
+                    onclick="closeEditModal()"
+                >
+                    ✕
+                </button>
+
+            </div>
+
+
+            <div class="edit-grid">
+
+
+                <div class="edit-group full">
+
+                    <label>
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="editName"
+                        placeholder="Enter your name"
+                    >
+
+                </div>
+
+
+                <div class="edit-group">
+
+                    <label>
+                        Student ID
+                    </label>
+
+                    <input
+                        type="text"
+                        id="editId"
+                        placeholder="Student ID"
+                    >
+
+                </div>
+
+
+                <div class="edit-group">
+
+                    <label>
+                        College Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="editEmail"
+                        placeholder="College email"
+                    >
+
+                </div>
+
+
+                <div class="edit-group">
+
+                    <label>
+                        Phone
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="editPhone"
+                        placeholder="Phone number"
+                    >
+
+                </div>
+
+
+                <div class="edit-group">
+
+                    <label>
+                        Course
+                    </label>
+
+                    <select id="editCourse">
+
+                        <option value="BCA">BCA</option>
+                        <option value="BBA">BBA</option>
+                        <option value="B.Com">B.Com</option>
+                        <option value="B.Sc">B.Sc</option>
+                        <option value="MCA">MCA</option>
+                        <option value="MBA">MBA</option>
+                        <option value="M.Com">M.Com</option>
+                        <option value="Other">Other</option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="edit-group">
+
+                    <label>
+                        Department
+                    </label>
+
+                    <input
+                        type="text"
+                        id="editDepartment"
+                        placeholder="Department"
+                    >
+
+                </div>
+
+
+                <div class="edit-group">
+
+                    <label>
+                        Year
+                    </label>
+
+                    <select id="editYear">
+
+                        <option value="1st Year">
+                            1st Year
+                        </option>
+
+                        <option value="2nd Year">
+                            2nd Year
+                        </option>
+
+                        <option value="3rd Year">
+                            3rd Year
+                        </option>
+
+                        <option value="4th Year">
+                            4th Year
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="edit-group">
+
+                    <label>
+                        Semester
+                    </label>
+
+                    <select id="editSemester">
+
+                        <option value="Semester 1">Semester 1</option>
+                        <option value="Semester 2">Semester 2</option>
+                        <option value="Semester 3">Semester 3</option>
+                        <option value="Semester 4">Semester 4</option>
+                        <option value="Semester 5">Semester 5</option>
+                        <option value="Semester 6">Semester 6</option>
+                        <option value="Semester 7">Semester 7</option>
+                        <option value="Semester 8">Semester 8</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="save-btn"
+                onclick="saveProfile()"
+            >
+                Save Profile
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+<script>
+
+    /* ==========================================
+       PAGE NAVIGATION
+    =========================================== */
+
+    function goTo(page) {
+
+        window.location.href = page;
+
+    }
+
+
+    /* ==========================================
+       EDIT MODAL
+    =========================================== */
+
+    function openEditModal() {
+
+        document.getElementById("editName").value =
+            document.getElementById("nameInfo").textContent;
+
+        document.getElementById("editId").value =
+            document.getElementById("idInfo").textContent;
+
+        document.getElementById("editEmail").value =
+            document.getElementById("emailInfo").textContent;
+
+        document.getElementById("editPhone").value =
+            document.getElementById("phoneInfo").textContent;
+
+        document.getElementById("editCourse").value =
+            document.getElementById("courseInfo").textContent;
+
+        document.getElementById("editDepartment").value =
+            document.getElementById("departmentInfo").textContent;
+
+        document.getElementById("editYear").value =
+            document.getElementById("yearInfo").textContent;
+
+        document.getElementById("editSemester").value =
+            document.getElementById("semesterInfo").textContent;
+
+
+        document
+            .getElementById("editModal")
+            .classList.add("show");
+
+    }
+
+
+    function closeEditModal() {
+
+        document
+            .getElementById("editModal")
+            .classList.remove("show");
+
+    }
+
+
+    /* ==========================================
+       SAVE PROFILE - FRONTEND DEMO
+    =========================================== */
+
+    function saveProfile() {
+
+        const name =
+            document.getElementById("editName").value.trim();
+
+        const id =
+            document.getElementById("editId").value.trim();
+
+        const email =
+            document.getElementById("editEmail").value.trim();
+
+        const phone =
+            document.getElementById("editPhone").value.trim();
+
+        const course =
+            document.getElementById("editCourse").value;
+
+        const department =
+            document.getElementById("editDepartment").value.trim();
+
+        const year =
+            document.getElementById("editYear").value;
+
+        const semester =
+            document.getElementById("editSemester").value;
+
+
+        if (!name || !id || !email) {
+
+            alert(
+                "Please fill in the required information."
+            );
+
+            return;
+
+        }
+
+
+        /* Update profile display */
+
+        document.getElementById("displayName").textContent =
+            name;
+
+        document.getElementById("displayCourse").textContent =
+            course + " • " + department;
+
+        document.getElementById("displayId").textContent =
+            "Student ID: " + id;
+
+
+        document.getElementById("nameInfo").textContent =
+            name;
+
+        document.getElementById("idInfo").textContent =
+            id;
+
+        document.getElementById("emailInfo").textContent =
+            email;
+
+        document.getElementById("phoneInfo").textContent =
+            phone;
+
+        document.getElementById("courseInfo").textContent =
+            course;
+
+        document.getElementById("departmentInfo").textContent =
+            department;
+
+        document.getElementById("yearInfo").textContent =
+            year;
+
+        document.getElementById("semesterInfo").textContent =
+            semester;
+
+
+        /* Academic overview */
+
+        document.getElementById("courseAcademic").textContent =
+            course;
+
+        document.getElementById("yearAcademic").textContent =
+            year.replace(" Year", "");
+
+        document.getElementById("semesterAcademic").textContent =
+            semester.replace("Semester ", "");
+
+        document.getElementById("departmentAcademic").textContent =
+            department;
+
+
+        closeEditModal();
+
+
+        alert(
+            "Profile updated successfully!"
+        );
+
+    }
+
+
+    /* ==========================================
+       CLOSE MODAL WHEN CLICKING OUTSIDE
+    =========================================== */
+
+    document
+        .getElementById("editModal")
+        .addEventListener(
+            "click",
+            function(event) {
+
+                if (event.target === this) {
+
+                    closeEditModal();
+
+                }
+
+            }
+        );
+
+</script>
+
+</body>
+</html>
