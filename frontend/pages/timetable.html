@@ -1,0 +1,1331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CampusConnect - Timetable</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: 'Poppins', sans-serif;
+            background:
+                radial-gradient(circle at 10% 10%, rgba(145,67,255,.16), transparent 25%),
+                radial-gradient(circle at 90% 90%, rgba(240,58,171,.13), transparent 25%),
+                #f7f5fb;
+            color: #2d273b;
+        }
+
+        /* ================= SIDEBAR ================= */
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 240px;
+            height: 100vh;
+            padding: 25px 17px;
+            background: linear-gradient(180deg,#271344,#421568,#591c7e);
+            color: white;
+            box-shadow: 5px 0 25px rgba(48,20,75,.15);
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            padding: 8px 10px;
+            margin-bottom: 35px;
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 13px;
+            background: rgba(255,255,255,.14);
+            font-size: 21px;
+        }
+
+        .logo-text {
+            font-size: 17px;
+            font-weight: 700;
+        }
+
+        .logo-text span {
+            color: #f2a2ff;
+        }
+
+        .menu-title {
+            padding: 0 12px;
+            margin-bottom: 10px;
+            color: #bda9d0;
+            font-size: 9px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .nav-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+            padding: 11px 13px;
+            border: none;
+            border-radius: 11px;
+            background: transparent;
+            color: #d9cbe4;
+            font-family: inherit;
+            font-size: 10px;
+            text-align: left;
+            cursor: pointer;
+            transition: .25s;
+        }
+
+        .nav-item:hover {
+            background: rgba(255,255,255,.10);
+            color: white;
+            transform: translateX(3px);
+        }
+
+        .nav-item.active {
+            background: linear-gradient(
+                90deg,
+                rgba(166,76,234,.55),
+                rgba(224,66,170,.35)
+            );
+            color: white;
+        }
+
+        .nav-icon {
+            width: 20px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .sidebar-bottom {
+            position: absolute;
+            bottom: 25px;
+            left: 17px;
+            right: 17px;
+        }
+
+        .logout {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            padding: 11px 13px;
+            border: none;
+            border-radius: 11px;
+            background: rgba(255,255,255,.08);
+            color: #eadff1;
+            font-family: inherit;
+            font-size: 10px;
+            cursor: pointer;
+        }
+
+        /* ================= MAIN ================= */
+
+        .main {
+            margin-left: 240px;
+            min-height: 100vh;
+            padding: 28px 35px;
+        }
+
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 25px;
+        }
+
+        .page-title h1 {
+            font-size: 25px;
+            color: #282238;
+        }
+
+        .page-title p {
+            margin-top: 4px;
+            color: #918b9c;
+            font-size: 10px;
+        }
+
+        .top-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .notification {
+            width: 39px;
+            height: 39px;
+            border: 1px solid #ebe7f0;
+            border-radius: 11px;
+            background: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .mini-profile {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            padding: 5px 10px 5px 5px;
+            border-radius: 30px;
+            background: white;
+            box-shadow: 0 4px 15px rgba(40,20,60,.05);
+        }
+
+        .mini-avatar {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: linear-gradient(135deg,#7a43db,#e34aa9);
+            color: white;
+            font-size: 13px;
+        }
+
+        .mini-name {
+            color: #40394d;
+            font-size: 9px;
+            font-weight: 600;
+        }
+
+        /* ================= SUMMARY ================= */
+
+        .summary {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .summary-card {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 18px;
+            background: white;
+            border: 1px solid #ece8f1;
+            border-radius: 17px;
+            box-shadow: 0 7px 22px rgba(45,25,70,.05);
+        }
+
+        .summary-icon {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 13px;
+            background: #f1e7ff;
+            font-size: 20px;
+        }
+
+        .summary-card h3 {
+            font-size: 17px;
+            color: #40364e;
+        }
+
+        .summary-card p {
+            font-size: 8px;
+            color: #9993a2;
+            margin-top: 2px;
+        }
+
+        /* ================= DAY BUTTONS ================= */
+
+        .days-card {
+            padding: 18px;
+            margin-bottom: 20px;
+            background: white;
+            border: 1px solid #ece8f1;
+            border-radius: 18px;
+            box-shadow: 0 7px 22px rgba(45,25,70,.05);
+        }
+
+        .days {
+            display: grid;
+            grid-template-columns: repeat(6,1fr);
+            gap: 9px;
+        }
+
+        .day-btn {
+            padding: 12px 8px;
+            border: 1px solid #ebe6f1;
+            border-radius: 12px;
+            background: #faf9fc;
+            color: #6c6576;
+            font-family: inherit;
+            font-size: 9px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: .25s;
+        }
+
+        .day-btn:hover {
+            transform: translateY(-2px);
+            border-color: #caa5ed;
+            color: #7337ce;
+        }
+
+        .day-btn.active {
+            background: linear-gradient(110deg,#743bd8,#ad40c8,#dc439f);
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 8px 18px rgba(117,58,210,.22);
+        }
+
+        /* ================= TIMETABLE ================= */
+
+        .schedule-card {
+            padding: 22px;
+            background: white;
+            border: 1px solid #ece8f1;
+            border-radius: 18px;
+            box-shadow: 0 7px 22px rgba(45,25,70,.05);
+        }
+
+        .schedule-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+        }
+
+        .schedule-header h2 {
+            font-size: 15px;
+        }
+
+        .selected-day {
+            padding: 7px 12px;
+            border-radius: 20px;
+            background: #f3eaff;
+            color: #7638cf;
+            font-size: 8px;
+            font-weight: 600;
+        }
+
+        .schedule {
+            display: grid;
+            gap: 10px;
+        }
+
+        .class-row {
+            display: grid;
+            grid-template-columns: 95px 1fr;
+            min-height: 76px;
+            border: 1px solid #eeeaf3;
+            border-radius: 13px;
+            overflow: hidden;
+            transition: .25s;
+        }
+
+        .class-row:hover {
+            transform: translateX(3px);
+            box-shadow: 0 8px 20px rgba(60,30,90,.07);
+        }
+
+        .time {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: #faf7ff;
+            border-right: 1px solid #eeeaf3;
+        }
+
+        .time strong {
+            font-size: 9px;
+            color: #594c68;
+        }
+
+        .time span {
+            margin-top: 4px;
+            font-size: 7px;
+            color: #a29baa;
+        }
+
+        .subject {
+            position: relative;
+            padding: 13px 17px;
+            background: white;
+        }
+
+        .subject h3 {
+            font-size: 11px;
+            color: #3e3749;
+        }
+
+        .subject p {
+            margin-top: 5px;
+            color: #98919f;
+            font-size: 8px;
+        }
+
+        .subject-details {
+            display: flex;
+            gap: 12px;
+            margin-top: 6px;
+        }
+
+        .detail {
+            color: #817989;
+            font-size: 7px;
+        }
+
+        .tag {
+            position: absolute;
+            right: 15px;
+            top: 14px;
+            padding: 5px 8px;
+            border-radius: 15px;
+            background: #f3eaff;
+            color: #7538ce;
+            font-size: 7px;
+            font-weight: 600;
+        }
+
+        /* Subject accents */
+
+        .class-row:nth-child(1) .subject {
+            border-left: 4px solid #8750dc;
+        }
+
+        .class-row:nth-child(2) .subject {
+            border-left: 4px solid #e34ba7;
+        }
+
+        .class-row:nth-child(3) .subject {
+            border-left: 4px solid #3f9bd9;
+        }
+
+        .class-row:nth-child(4) .subject {
+            border-left: 4px solid #54b87d;
+        }
+
+        .class-row:nth-child(5) .subject {
+            border-left: 4px solid #e99b42;
+        }
+
+        /* ================= EMPTY ================= */
+
+        .empty {
+            display: none;
+            padding: 45px 20px;
+            text-align: center;
+        }
+
+        .empty-icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .empty h3 {
+            font-size: 14px;
+        }
+
+        .empty p {
+            margin-top: 5px;
+            font-size: 9px;
+            color: #9993a2;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media(max-width: 900px) {
+
+            .sidebar {
+                width: 205px;
+            }
+
+            .main {
+                margin-left: 205px;
+                padding: 25px;
+            }
+
+            .summary {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media(max-width: 700px) {
+
+            .sidebar {
+                position: relative;
+                width: 100%;
+                height: auto;
+                padding: 15px;
+            }
+
+            .nav-menu {
+                flex-direction: row;
+                overflow-x: auto;
+            }
+
+            .nav-item {
+                min-width: max-content;
+            }
+
+            .menu-title,
+            .sidebar-bottom {
+                display: none;
+            }
+
+            .main {
+                margin-left: 0;
+                padding: 20px;
+            }
+
+            .days {
+                grid-template-columns: repeat(3,1fr);
+            }
+
+            .summary {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media(max-width: 500px) {
+
+            .topbar {
+                align-items: flex-start;
+            }
+
+            .mini-name {
+                display: none;
+            }
+
+            .class-row {
+                grid-template-columns: 75px 1fr;
+            }
+
+            .tag {
+                position: static;
+                display: inline-block;
+                margin-top: 7px;
+            }
+
+            .days {
+                grid-template-columns: repeat(2,1fr);
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+<!-- ================= SIDEBAR ================= -->
+
+<aside class="sidebar">
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            🎓
+        </div>
+
+        <div class="logo-text">
+            Campus<span>Connect</span>
+        </div>
+
+    </div>
+
+
+    <div class="menu-title">
+        STUDENT PORTAL
+    </div>
+
+
+    <nav class="nav-menu">
+
+        <button class="nav-item" onclick="goTo('../dashboard.html')">
+            <span class="nav-icon">🏠</span>
+            Dashboard
+        </button>
+
+        <button class="nav-item" onclick="goTo('profile.html')">
+            <span class="nav-icon">👤</span>
+            My Profile
+        </button>
+
+        <button class="nav-item" onclick="goTo('academics.html')">
+            <span class="nav-icon">📚</span>
+            Academics
+        </button>
+
+        <button class="nav-item active">
+            <span class="nav-icon">🗓️</span>
+            Timetable
+        </button>
+
+        <button class="nav-item" onclick="goTo('attendance.html')">
+            <span class="nav-icon">📊</span>
+            Attendance
+        </button>
+
+        <button class="nav-item" onclick="goTo('events.html')">
+            <span class="nav-icon">🎫</span>
+            Events
+        </button>
+
+        <button class="nav-item" onclick="goTo('placement.html')">
+            <span class="nav-icon">💼</span>
+            Placement
+        </button>
+
+        <button class="nav-item" onclick="goTo('notifications.html')">
+            <span class="nav-icon">🔔</span>
+            Notifications
+        </button>
+
+    </nav>
+
+
+    <div class="sidebar-bottom">
+
+        <button
+            class="logout"
+            onclick="goTo('../index.html')"
+        >
+            🚪 Logout
+        </button>
+
+    </div>
+
+</aside>
+
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="main">
+
+
+    <!-- Header -->
+
+    <header class="topbar">
+
+        <div class="page-title">
+
+            <h1>
+                Class Timetable
+            </h1>
+
+            <p>
+                View your weekly class schedule
+            </p>
+
+        </div>
+
+
+        <div class="top-actions">
+
+            <button
+                class="notification"
+                onclick="goTo('notifications.html')"
+            >
+                🔔
+            </button>
+
+
+            <div class="mini-profile">
+
+                <div class="mini-avatar">
+                    👤
+                </div>
+
+                <div class="mini-name">
+                    Student
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- ================= SUMMARY ================= -->
+
+    <section class="summary">
+
+        <div class="summary-card">
+
+            <div class="summary-icon">
+                📚
+            </div>
+
+            <div>
+                <h3 id="classCount">5</h3>
+                <p>Classes Today</p>
+            </div>
+
+        </div>
+
+
+        <div class="summary-card">
+
+            <div class="summary-icon">
+                ⏰
+            </div>
+
+            <div>
+                <h3>09:00 AM</h3>
+                <p>First Class</p>
+            </div>
+
+        </div>
+
+
+        <div class="summary-card">
+
+            <div class="summary-icon">
+                🏫
+            </div>
+
+            <div>
+                <h3>6 Days</h3>
+                <p>Weekly Schedule</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= DAY SELECTOR ================= -->
+
+    <section class="days-card">
+
+        <div class="days">
+
+            <button
+                class="day-btn active"
+                onclick="showDay('Monday', this)"
+            >
+                Monday
+            </button>
+
+            <button
+                class="day-btn"
+                onclick="showDay('Tuesday', this)"
+            >
+                Tuesday
+            </button>
+
+            <button
+                class="day-btn"
+                onclick="showDay('Wednesday', this)"
+            >
+                Wednesday
+            </button>
+
+            <button
+                class="day-btn"
+                onclick="showDay('Thursday', this)"
+            >
+                Thursday
+            </button>
+
+            <button
+                class="day-btn"
+                onclick="showDay('Friday', this)"
+            >
+                Friday
+            </button>
+
+            <button
+                class="day-btn"
+                onclick="showDay('Saturday', this)"
+            >
+                Saturday
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= SCHEDULE ================= -->
+
+    <section class="schedule-card">
+
+        <div class="schedule-header">
+
+            <h2>
+                <span id="dayTitle">
+                    Monday
+                </span>
+                Schedule
+            </h2>
+
+            <div
+                class="selected-day"
+                id="selectedDay"
+            >
+                MONDAY
+            </div>
+
+        </div>
+
+
+        <div
+            class="schedule"
+            id="schedule"
+        >
+
+
+            <!-- Class 1 -->
+
+            <div class="class-row">
+
+                <div class="time">
+
+                    <strong>
+                        09:00 AM
+                    </strong>
+
+                    <span>
+                        10:00 AM
+                    </span>
+
+                </div>
+
+
+                <div class="subject">
+
+                    <h3>
+                        Data Structures
+                    </h3>
+
+                    <p>
+                        Dr. Anitha Kumar
+                    </p>
+
+                    <div class="subject-details">
+
+                        <span class="detail">
+                            📍 Room 204
+                        </span>
+
+                        <span class="detail">
+                            👩‍🏫 Lecture
+                        </span>
+
+                    </div>
+
+                    <span class="tag">
+                        Core
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Class 2 -->
+
+            <div class="class-row">
+
+                <div class="time">
+
+                    <strong>
+                        10:00 AM
+                    </strong>
+
+                    <span>
+                        11:00 AM
+                    </span>
+
+                </div>
+
+
+                <div class="subject">
+
+                    <h3>
+                        Database Management
+                    </h3>
+
+                    <p>
+                        Prof. Priya Sharma
+                    </p>
+
+                    <div class="subject-details">
+
+                        <span class="detail">
+                            📍 Lab 2
+                        </span>
+
+                        <span class="detail">
+                            💻 Practical
+                        </span>
+
+                    </div>
+
+                    <span class="tag">
+                        Lab
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Class 3 -->
+
+            <div class="class-row">
+
+                <div class="time">
+
+                    <strong>
+                        11:15 AM
+                    </strong>
+
+                    <span>
+                        12:15 PM
+                    </span>
+
+                </div>
+
+
+                <div class="subject">
+
+                    <h3>
+                        Web Development
+                    </h3>
+
+                    <p>
+                        Prof. Rahul Kumar
+                    </p>
+
+                    <div class="subject-details">
+
+                        <span class="detail">
+                            📍 Lab 1
+                        </span>
+
+                        <span class="detail">
+                            💻 Practical
+                        </span>
+
+                    </div>
+
+                    <span class="tag">
+                        Practical
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Class 4 -->
+
+            <div class="class-row">
+
+                <div class="time">
+
+                    <strong>
+                        01:15 PM
+                    </strong>
+
+                    <span>
+                        02:15 PM
+                    </span>
+
+                </div>
+
+
+                <div class="subject">
+
+                    <h3>
+                        Computer Networks
+                    </h3>
+
+                    <p>
+                        Dr. Suresh Babu
+                    </p>
+
+                    <div class="subject-details">
+
+                        <span class="detail">
+                            📍 Room 301
+                        </span>
+
+                        <span class="detail">
+                            👨‍🏫 Lecture
+                        </span>
+
+                    </div>
+
+                    <span class="tag">
+                        Core
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Class 5 -->
+
+            <div class="class-row">
+
+                <div class="time">
+
+                    <strong>
+                        02:30 PM
+                    </strong>
+
+                    <span>
+                        03:30 PM
+                    </span>
+
+                </div>
+
+
+                <div class="subject">
+
+                    <h3>
+                        Soft Skills
+                    </h3>
+
+                    <p>
+                        Ms. Kavitha Rao
+                    </p>
+
+                    <div class="subject-details">
+
+                        <span class="detail">
+                            📍 Room 105
+                        </span>
+
+                        <span class="detail">
+                            👥 Activity
+                        </span>
+
+                    </div>
+
+                    <span class="tag">
+                        Skill
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- Empty message -->
+
+        <div
+            class="empty"
+            id="emptyMessage"
+        >
+
+            <div class="empty-icon">
+                🎉
+            </div>
+
+            <h3>
+                No classes scheduled
+            </h3>
+
+            <p>
+                Enjoy your day! There are no classes for this day.
+            </p>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+
+<script>
+
+    /* =========================================
+       NAVIGATION
+    ========================================= */
+
+    function goTo(page) {
+        window.location.href = page;
+    }
+
+
+    /* =========================================
+       DAY DATA
+       FRONTEND DEMO ONLY
+    ========================================= */
+
+    const timetable = {
+
+        Monday: [
+            ["09:00 AM","10:00 AM","Data Structures","Dr. Anitha Kumar","Room 204","Lecture","Core"],
+            ["10:00 AM","11:00 AM","Database Management","Prof. Priya Sharma","Lab 2","Practical","Lab"],
+            ["11:15 AM","12:15 PM","Web Development","Prof. Rahul Kumar","Lab 1","Practical","Practical"],
+            ["01:15 PM","02:15 PM","Computer Networks","Dr. Suresh Babu","Room 301","Lecture","Core"],
+            ["02:30 PM","03:30 PM","Soft Skills","Ms. Kavitha Rao","Room 105","Activity","Skill"]
+        ],
+
+        Tuesday: [
+            ["09:00 AM","10:00 AM","Operating Systems","Dr. Meena Rao","Room 202","Lecture","Core"],
+            ["10:00 AM","11:00 AM","Web Development","Prof. Rahul Kumar","Lab 1","Practical","Lab"],
+            ["11:15 AM","12:15 PM","Database Management","Prof. Priya Sharma","Room 204","Lecture","Core"],
+            ["01:15 PM","02:15 PM","Mathematics","Dr. Arjun Kumar","Room 106","Lecture","Core"],
+            ["02:30 PM","03:30 PM","English Communication","Ms. Kavitha Rao","Room 105","Activity","Skill"]
+        ],
+
+        Wednesday: [
+            ["09:00 AM","10:00 AM","Computer Networks","Dr. Suresh Babu","Room 301","Lecture","Core"],
+            ["10:00 AM","11:00 AM","Data Structures","Dr. Anitha Kumar","Room 204","Lecture","Core"],
+            ["11:15 AM","12:15 PM","Operating Systems","Dr. Meena Rao","Room 202","Lecture","Core"],
+            ["01:15 PM","02:15 PM","Database Lab","Prof. Priya Sharma","Lab 2","Practical","Lab"],
+            ["02:30 PM","03:30 PM","Sports / Activity","Campus Ground","Ground","Activity","Activity"]
+        ],
+
+        Thursday: [
+            ["09:00 AM","10:00 AM","Database Management","Prof. Priya Sharma","Room 204","Lecture","Core"],
+            ["10:00 AM","11:00 AM","Computer Networks","Dr. Suresh Babu","Room 301","Lecture","Core"],
+            ["11:15 AM","12:15 PM","Web Development","Prof. Rahul Kumar","Lab 1","Practical","Lab"],
+            ["01:15 PM","02:15 PM","Data Structures","Dr. Anitha Kumar","Room 204","Lecture","Core"],
+            ["02:30 PM","03:30 PM","Soft Skills","Ms. Kavitha Rao","Room 105","Activity","Skill"]
+        ],
+
+        Friday: [
+            ["09:00 AM","10:00 AM","Operating Systems","Dr. Meena Rao","Room 202","Lecture","Core"],
+            ["10:00 AM","11:00 AM","Mathematics","Dr. Arjun Kumar","Room 106","Lecture","Core"],
+            ["11:15 AM","12:15 PM","Data Structures","Dr. Anitha Kumar","Room 204","Lecture","Core"],
+            ["01:15 PM","02:15 PM","Web Development Lab","Prof. Rahul Kumar","Lab 1","Practical","Lab"],
+            ["02:30 PM","03:30 PM","Library Hour","Central Library","Library","Study","Study"]
+        ],
+
+        Saturday: [
+            ["09:00 AM","10:00 AM","Project Work","Project Guide","Lab 3","Project","Project"],
+            ["10:00 AM","11:00 AM","Project Work","Project Guide","Lab 3","Project","Project"],
+            ["11:15 AM","12:15 PM","Placement Training","Placement Cell","Seminar Hall","Training","Career"],
+            ["01:15 PM","02:15 PM","Club Activity","Student Clubs","Activity Hall","Activity","Club"]
+        ]
+
+    };
+
+
+    /* =========================================
+       SHOW SELECTED DAY
+    ========================================= */
+
+    function showDay(day, button) {
+
+        /* Remove active */
+
+        document
+            .querySelectorAll(".day-btn")
+            .forEach(function(btn) {
+
+                btn.classList.remove("active");
+
+            });
+
+
+        /* Add active */
+
+        button.classList.add("active");
+
+
+        /* Update title */
+
+        document.getElementById("dayTitle").textContent = day;
+
+        document.getElementById("selectedDay").textContent =
+            day.toUpperCase();
+
+
+        /* Get classes */
+
+        const classes = timetable[day] || [];
+
+        const schedule =
+            document.getElementById("schedule");
+
+        const empty =
+            document.getElementById("emptyMessage");
+
+
+        schedule.innerHTML = "";
+
+
+        /* No classes */
+
+        if (classes.length === 0) {
+
+            schedule.style.display = "none";
+
+            empty.style.display = "block";
+
+            document.getElementById("classCount").textContent = "0";
+
+            return;
+        }
+
+
+        empty.style.display = "none";
+
+        schedule.style.display = "grid";
+
+
+        /* Update count */
+
+        document.getElementById("classCount").textContent =
+            classes.length;
+
+
+        /* Create classes */
+
+        classes.forEach(function(item) {
+
+            const row =
+                document.createElement("div");
+
+            row.className = "class-row";
+
+
+            row.innerHTML = `
+
+                <div class="time">
+
+                    <strong>
+                        ${item[0]}
+                    </strong>
+
+                    <span>
+                        ${item[1]}
+                    </span>
+
+                </div>
+
+
+                <div class="subject">
+
+                    <h3>
+                        ${item[2]}
+                    </h3>
+
+                    <p>
+                        ${item[3]}
+                    </p>
+
+                    <div class="subject-details">
+
+                        <span class="detail">
+                            📍 ${item[4]}
+                        </span>
+
+                        <span class="detail">
+                            👩‍🏫 ${item[5]}
+                        </span>
+
+                    </div>
+
+                    <span class="tag">
+                        ${item[6]}
+                    </span>
+
+                </div>
+
+            `;
+
+
+            schedule.appendChild(row);
+
+        });
+
+    }
+
+
+    /* =========================================
+       AUTOMATIC CURRENT DAY
+       FRONTEND ONLY
+    ========================================= */
+
+    const today =
+        new Date().getDay();
+
+
+    const dayNames = [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+    ];
+
+
+    const currentDay =
+        dayNames[today];
+
+
+    if (timetable[currentDay]) {
+
+        const buttons =
+            document.querySelectorAll(".day-btn");
+
+        buttons.forEach(function(button) {
+
+            if (
+                button.textContent.trim() === currentDay
+            ) {
+
+                showDay(currentDay, button);
+
+            }
+
+        });
+
+    }
+
+</script>
+
+</body>
+</html>
