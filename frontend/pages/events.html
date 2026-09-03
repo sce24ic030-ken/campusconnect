@@ -1,0 +1,1565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CampusConnect - Events</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:
+        radial-gradient(circle at 10% 10%,rgba(145,67,255,.14),transparent 25%),
+        radial-gradient(circle at 90% 90%,rgba(240,58,171,.12),transparent 25%),
+        #f7f5fb;
+    color:#2d273b;
+}
+
+/* ================= SIDEBAR ================= */
+
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    width:240px;
+    height:100vh;
+    padding:25px 17px;
+    background:linear-gradient(180deg,#271344,#421568,#591c7e);
+    color:white;
+    box-shadow:5px 0 25px rgba(48,20,75,.15);
+    z-index:100;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:11px;
+    padding:8px 10px;
+    margin-bottom:35px;
+}
+
+.logo-icon{
+    width:42px;
+    height:42px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:13px;
+    background:rgba(255,255,255,.14);
+    font-size:21px;
+}
+
+.logo-text{
+    font-size:17px;
+    font-weight:700;
+}
+
+.logo-text span{
+    color:#f2a2ff;
+}
+
+.menu-title{
+    padding:0 12px;
+    margin-bottom:10px;
+    color:#bda9d0;
+    font-size:9px;
+    letter-spacing:1px;
+}
+
+.nav-menu{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+}
+
+.nav-item{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    width:100%;
+    padding:11px 13px;
+    border:none;
+    border-radius:11px;
+    background:transparent;
+    color:#d9cbe4;
+    font-family:inherit;
+    font-size:10px;
+    text-align:left;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.nav-item:hover{
+    background:rgba(255,255,255,.10);
+    color:white;
+    transform:translateX(3px);
+}
+
+.nav-item.active{
+    background:linear-gradient(
+        90deg,
+        rgba(166,76,234,.55),
+        rgba(224,66,170,.35)
+    );
+    color:white;
+}
+
+.nav-icon{
+    width:20px;
+    text-align:center;
+    font-size:14px;
+}
+
+.sidebar-bottom{
+    position:absolute;
+    bottom:25px;
+    left:17px;
+    right:17px;
+}
+
+.logout{
+    width:100%;
+    padding:11px 13px;
+    border:none;
+    border-radius:11px;
+    background:rgba(255,255,255,.08);
+    color:#eadff1;
+    font-family:inherit;
+    font-size:10px;
+    text-align:left;
+    cursor:pointer;
+}
+
+/* ================= MAIN ================= */
+
+.main{
+    margin-left:240px;
+    min-height:100vh;
+    padding:28px 35px;
+}
+
+.topbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:25px;
+}
+
+.page-title h1{
+    font-size:25px;
+}
+
+.page-title p{
+    margin-top:4px;
+    color:#918b9c;
+    font-size:10px;
+}
+
+.top-actions{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.notification{
+    width:39px;
+    height:39px;
+    border:1px solid #ebe7f0;
+    border-radius:11px;
+    background:white;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.mini-profile{
+    display:flex;
+    align-items:center;
+    gap:9px;
+    padding:5px 10px 5px 5px;
+    border-radius:30px;
+    background:white;
+}
+
+.mini-avatar{
+    width:32px;
+    height:32px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:50%;
+    background:linear-gradient(135deg,#7a43db,#e34aa9);
+    color:white;
+}
+
+.mini-name{
+    font-size:9px;
+    font-weight:600;
+}
+
+/* ================= FEATURED EVENT ================= */
+
+.featured{
+    position:relative;
+    overflow:hidden;
+    min-height:230px;
+    padding:30px;
+    border-radius:22px;
+    color:white;
+    background:
+        linear-gradient(
+            110deg,
+            rgba(77,32,154,.97),
+            rgba(142,53,191,.95),
+            rgba(214,61,157,.94)
+        );
+    box-shadow:0 15px 35px rgba(100,45,180,.20);
+    margin-bottom:22px;
+}
+
+.featured:before{
+    content:"";
+    position:absolute;
+    width:230px;
+    height:230px;
+    right:-70px;
+    top:-90px;
+    border-radius:50%;
+    background:rgba(255,255,255,.09);
+}
+
+.featured:after{
+    content:"🎉";
+    position:absolute;
+    right:50px;
+    bottom:20px;
+    font-size:90px;
+    opacity:.12;
+}
+
+.featured-content{
+    position:relative;
+    z-index:2;
+    max-width:650px;
+}
+
+.featured-label{
+    display:inline-block;
+    padding:6px 11px;
+    border-radius:20px;
+    background:rgba(255,255,255,.16);
+    font-size:8px;
+    margin-bottom:13px;
+}
+
+.featured h2{
+    font-size:22px;
+}
+
+.featured p{
+    margin-top:7px;
+    font-size:9px;
+    line-height:1.6;
+    opacity:.88;
+}
+
+.featured-info{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:17px;
+}
+
+.featured-info span{
+    padding:7px 11px;
+    border-radius:20px;
+    background:rgba(255,255,255,.14);
+    font-size:7px;
+}
+
+.featured-btn{
+    margin-top:17px;
+    padding:9px 15px;
+    border:none;
+    border-radius:10px;
+    background:white;
+    color:#7036bd;
+    font-family:inherit;
+    font-size:8px;
+    font-weight:700;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.featured-btn:hover{
+    transform:translateY(-3px);
+}
+
+/* ================= FILTER ================= */
+
+.filter-bar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+    margin-bottom:18px;
+}
+
+.filters{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+}
+
+.filter{
+    padding:8px 13px;
+    border:1px solid #e7e1ee;
+    border-radius:20px;
+    background:white;
+    color:#82788d;
+    font-family:inherit;
+    font-size:8px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.filter:hover{
+    transform:translateY(-2px);
+}
+
+.filter.active{
+    background:#7037c5;
+    color:white;
+    border-color:#7037c5;
+}
+
+.search{
+    width:180px;
+    padding:9px 12px;
+    border:1px solid #e8e3ed;
+    border-radius:10px;
+    outline:none;
+    font-family:inherit;
+    font-size:8px;
+    background:white;
+}
+
+/* ================= EVENT GRID ================= */
+
+.event-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+}
+
+.event-card{
+    overflow:hidden;
+    background:white;
+    border:1px solid #ece8f1;
+    border-radius:18px;
+    box-shadow:0 7px 22px rgba(45,25,70,.05);
+    transition:.3s;
+}
+
+.event-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 15px 30px rgba(60,30,90,.10);
+}
+
+.event-top{
+    position:relative;
+    height:115px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(135deg,#eee4ff,#f8e5f4);
+    font-size:46px;
+}
+
+.event-date{
+    position:absolute;
+    left:12px;
+    top:12px;
+    width:42px;
+    height:46px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    border-radius:10px;
+    background:white;
+    box-shadow:0 4px 12px rgba(40,20,60,.10);
+}
+
+.event-date strong{
+    color:#6e37c0;
+    font-size:15px;
+}
+
+.event-date span{
+    color:#9b91a4;
+    font-size:6px;
+}
+
+.event-body{
+    padding:16px;
+}
+
+.event-category{
+    color:#8243ca;
+    font-size:7px;
+    font-weight:600;
+    text-transform:uppercase;
+}
+
+.event-body h3{
+    margin-top:5px;
+    font-size:11px;
+    color:#433a4d;
+}
+
+.event-body p{
+    margin-top:5px;
+    color:#958d9d;
+    font-size:7px;
+    line-height:1.5;
+}
+
+.event-meta{
+    display:flex;
+    flex-wrap:wrap;
+    gap:5px;
+    margin-top:11px;
+}
+
+.event-meta span{
+    padding:5px 7px;
+    border-radius:9px;
+    background:#f8f5fa;
+    color:#847a8d;
+    font-size:6px;
+}
+
+.register-btn{
+    width:100%;
+    margin-top:12px;
+    padding:8px;
+    border:none;
+    border-radius:9px;
+    background:#f0e6fc;
+    color:#7037c4;
+    font-family:inherit;
+    font-size:7px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.register-btn:hover{
+    background:#7037c4;
+    color:white;
+}
+
+/* ================= LOWER CONTENT ================= */
+
+.lower-grid{
+    display:grid;
+    grid-template-columns:1.2fr .8fr;
+    gap:18px;
+    margin-top:20px;
+}
+
+.card{
+    padding:21px;
+    background:white;
+    border:1px solid #ece8f1;
+    border-radius:18px;
+    box-shadow:0 7px 22px rgba(45,25,70,.05);
+}
+
+.card-title{
+    display:flex;
+    align-items:center;
+    gap:9px;
+    margin-bottom:18px;
+    font-size:13px;
+    font-weight:700;
+}
+
+.title-icon{
+    width:31px;
+    height:31px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:9px;
+    background:#f0e5ff;
+}
+
+/* TIMELINE */
+
+.timeline{
+    position:relative;
+    padding-left:28px;
+}
+
+.timeline:before{
+    content:"";
+    position:absolute;
+    left:7px;
+    top:5px;
+    bottom:5px;
+    width:2px;
+    background:#e9ddf5;
+}
+
+.timeline-item{
+    position:relative;
+    margin-bottom:17px;
+}
+
+.timeline-item:last-child{
+    margin-bottom:0;
+}
+
+.timeline-dot{
+    position:absolute;
+    left:-27px;
+    top:2px;
+    width:15px;
+    height:15px;
+    border-radius:50%;
+    background:#8242d1;
+    border:4px solid #eee4fa;
+}
+
+.timeline-item h3{
+    font-size:9px;
+}
+
+.timeline-item p{
+    margin-top:4px;
+    color:#958d9d;
+    font-size:7px;
+}
+
+.timeline-date{
+    margin-top:4px;
+    color:#7540c0;
+    font-size:7px;
+    font-weight:600;
+}
+
+/* CLUBS */
+
+.club{
+    display:flex;
+    align-items:center;
+    gap:11px;
+    padding:11px;
+    margin-bottom:9px;
+    border-radius:11px;
+    background:#faf9fc;
+    transition:.2s;
+}
+
+.club:hover{
+    transform:translateX(4px);
+}
+
+.club-icon{
+    width:37px;
+    height:37px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:11px;
+    background:#f0e5ff;
+    font-size:18px;
+}
+
+.club h3{
+    font-size:8px;
+}
+
+.club p{
+    margin-top:3px;
+    color:#968d9e;
+    font-size:6px;
+}
+
+/* EMPTY */
+
+.no-events{
+    display:none;
+    padding:35px;
+    text-align:center;
+    color:#968d9e;
+    font-size:9px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1100px){
+
+    .sidebar{
+        width:205px;
+    }
+
+    .main{
+        margin-left:205px;
+        padding:25px;
+    }
+
+    .event-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .lower-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:700px){
+
+    .sidebar{
+        position:relative;
+        width:100%;
+        height:auto;
+        padding:15px;
+    }
+
+    .nav-menu{
+        flex-direction:row;
+        overflow-x:auto;
+    }
+
+    .nav-item{
+        min-width:max-content;
+    }
+
+    .menu-title,
+    .sidebar-bottom{
+        display:none;
+    }
+
+    .main{
+        margin-left:0;
+        padding:20px;
+    }
+
+    .event-grid{
+        grid-template-columns:1fr;
+    }
+
+    .filter-bar{
+        align-items:flex-start;
+        flex-direction:column;
+    }
+
+    .search{
+        width:100%;
+    }
+}
+
+@media(max-width:500px){
+
+    .mini-name{
+        display:none;
+    }
+
+    .featured{
+        padding:22px;
+    }
+
+    .featured h2{
+        font-size:18px;
+    }
+
+    .featured:after{
+        display:none;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ================= SIDEBAR ================= -->
+
+<aside class="sidebar">
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            🎓
+        </div>
+
+        <div class="logo-text">
+            Campus<span>Connect</span>
+        </div>
+
+    </div>
+
+    <div class="menu-title">
+        STUDENT PORTAL
+    </div>
+
+    <nav class="nav-menu">
+
+        <button class="nav-item"
+                onclick="goTo('../dashboard.html')">
+            <span class="nav-icon">🏠</span>
+            Dashboard
+        </button>
+
+        <button class="nav-item"
+                onclick="goTo('profile.html')">
+            <span class="nav-icon">👤</span>
+            My Profile
+        </button>
+
+        <button class="nav-item"
+                onclick="goTo('academics.html')">
+            <span class="nav-icon">📚</span>
+            Academics
+        </button>
+
+        <button class="nav-item"
+                onclick="goTo('timetable.html')">
+            <span class="nav-icon">🗓️</span>
+            Timetable
+        </button>
+
+        <button class="nav-item"
+                onclick="goTo('attendance.html')">
+            <span class="nav-icon">📊</span>
+            Attendance
+        </button>
+
+        <button class="nav-item"
+                onclick="goTo('exams.html')">
+            <span class="nav-icon">📝</span>
+            Exams
+        </button>
+
+        <button class="nav-item"
+                onclick="goTo('results.html')">
+            <span class="nav-icon">🏆</span>
+            Results
+        </button>
+
+        <button class="nav-item active">
+            <span class="nav-icon">🎫</span>
+            Events
+        </button>
+
+        <button class="nav-item"
+                onclick="goTo('placement.html')">
+            <span class="nav-icon">💼</span>
+            Placement
+        </button>
+
+        <button class="nav-item"
+                onclick="goTo('notifications.html')">
+            <span class="nav-icon">🔔</span>
+            Notifications
+        </button>
+
+    </nav>
+
+    <div class="sidebar-bottom">
+
+        <button class="logout"
+                onclick="goTo('../index.html')">
+            🚪 Logout
+        </button>
+
+    </div>
+
+</aside>
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="main">
+
+    <header class="topbar">
+
+        <div class="page-title">
+
+            <h1>
+                Campus Events
+            </h1>
+
+            <p>
+                Discover what's happening around your campus
+            </p>
+
+        </div>
+
+        <div class="top-actions">
+
+            <button class="notification"
+                    onclick="goTo('notifications.html')">
+                🔔
+            </button>
+
+            <div class="mini-profile">
+
+                <div class="mini-avatar">
+                    👤
+                </div>
+
+                <div class="mini-name">
+                    Student
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= FEATURED EVENT ================= -->
+
+    <section class="featured">
+
+        <div class="featured-content">
+
+            <div class="featured-label">
+                ⭐ FEATURED CAMPUS EVENT
+            </div>
+
+            <h2>
+                Campus Innovation Fest 2026
+            </h2>
+
+            <p>
+                A three-day celebration of technology, creativity,
+                entrepreneurship and student talent. Build, showcase
+                and connect with the campus community.
+            </p>
+
+            <div class="featured-info">
+
+                <span>
+                    📅 18 October 2026
+                </span>
+
+                <span>
+                    📍 Main Auditorium
+                </span>
+
+                <span>
+                    👥 500+ Students
+                </span>
+
+            </div>
+
+            <button class="featured-btn"
+                    onclick="registerEvent('Campus Innovation Fest 2026')">
+
+                ✨ Register Now
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FILTER ================= -->
+
+    <div class="filter-bar">
+
+        <div class="filters">
+
+            <button class="filter active"
+                    onclick="filterEvents('all',this)">
+                All
+            </button>
+
+            <button class="filter"
+                    onclick="filterEvents('academic',this)">
+                📚 Academic
+            </button>
+
+            <button class="filter"
+                    onclick="filterEvents('cultural',this)">
+                🎭 Cultural
+            </button>
+
+            <button class="filter"
+                    onclick="filterEvents('sports',this)">
+                ⚽ Sports
+            </button>
+
+            <button class="filter"
+                    onclick="filterEvents('technical',this)">
+                💻 Technical
+            </button>
+
+        </div>
+
+        <input
+            class="search"
+            type="text"
+            id="eventSearch"
+            placeholder="🔎 Search events..."
+            onkeyup="searchEvents()"
+        >
+
+    </div>
+
+
+    <!-- ================= EVENTS ================= -->
+
+    <section class="event-grid" id="eventGrid">
+
+
+        <!-- EVENT 1 -->
+
+        <article class="event-card"
+                 data-category="technical"
+                 data-name="Campus Innovation Fest">
+
+            <div class="event-top">
+
+                💻
+
+                <div class="event-date">
+
+                    <strong>18</strong>
+                    <span>OCT</span>
+
+                </div>
+
+            </div>
+
+            <div class="event-body">
+
+                <div class="event-category">
+                    Technical
+                </div>
+
+                <h3>
+                    Campus Innovation Fest
+                </h3>
+
+                <p>
+                    Technology showcase featuring projects,
+                    prototypes and innovation challenges.
+                </p>
+
+                <div class="event-meta">
+
+                    <span>⏰ 10:00 AM</span>
+                    <span>📍 Auditorium</span>
+
+                </div>
+
+                <button class="register-btn"
+                        onclick="registerEvent('Campus Innovation Fest')">
+                    Register
+                </button>
+
+            </div>
+
+        </article>
+
+
+        <!-- EVENT 2 -->
+
+        <article class="event-card"
+                 data-category="cultural"
+                 data-name="Cultural Fiesta">
+
+            <div class="event-top">
+
+                🎭
+
+                <div class="event-date">
+
+                    <strong>22</strong>
+                    <span>OCT</span>
+
+                </div>
+
+            </div>
+
+            <div class="event-body">
+
+                <div class="event-category">
+                    Cultural
+                </div>
+
+                <h3>
+                    Cultural Fiesta
+                </h3>
+
+                <p>
+                    Music, dance, drama and performances
+                    celebrating student creativity.
+                </p>
+
+                <div class="event-meta">
+
+                    <span>⏰ 4:00 PM</span>
+                    <span>📍 Open Stage</span>
+
+                </div>
+
+                <button class="register-btn"
+                        onclick="registerEvent('Cultural Fiesta')">
+                    Register
+                </button>
+
+            </div>
+
+        </article>
+
+
+        <!-- EVENT 3 -->
+
+        <article class="event-card"
+                 data-category="sports"
+                 data-name="Inter College Sports Meet">
+
+            <div class="event-top">
+
+                🏆
+
+                <div class="event-date">
+
+                    <strong>25</strong>
+                    <span>OCT</span>
+
+                </div>
+
+            </div>
+
+            <div class="event-body">
+
+                <div class="event-category">
+                    Sports
+                </div>
+
+                <h3>
+                    Inter-College Sports Meet
+                </h3>
+
+                <p>
+                    Compete across football, cricket, volleyball
+                    and athletics.
+                </p>
+
+                <div class="event-meta">
+
+                    <span>⏰ 8:00 AM</span>
+                    <span>📍 College Ground</span>
+
+                </div>
+
+                <button class="register-btn"
+                        onclick="registerEvent('Inter-College Sports Meet')">
+                    Register
+                </button>
+
+            </div>
+
+        </article>
+
+
+        <!-- EVENT 4 -->
+
+        <article class="event-card"
+                 data-category="academic"
+                 data-name="Career Development Workshop">
+
+            <div class="event-top">
+
+                🎓
+
+                <div class="event-date">
+
+                    <strong>29</strong>
+                    <span>OCT</span>
+
+                </div>
+
+            </div>
+
+            <div class="event-body">
+
+                <div class="event-category">
+                    Academic
+                </div>
+
+                <h3>
+                    Career Development Workshop
+                </h3>
+
+                <p>
+                    Learn interview skills, resume building
+                    and career planning.
+                </p>
+
+                <div class="event-meta">
+
+                    <span>⏰ 11:00 AM</span>
+                    <span>📍 Seminar Hall</span>
+
+                </div>
+
+                <button class="register-btn"
+                        onclick="registerEvent('Career Development Workshop')">
+                    Register
+                </button>
+
+            </div>
+
+        </article>
+
+
+        <!-- EVENT 5 -->
+
+        <article class="event-card"
+                 data-category="technical"
+                 data-name="Code Sprint">
+
+            <div class="event-top">
+
+                👨‍💻
+
+                <div class="event-date">
+
+                    <strong>02</strong>
+                    <span>NOV</span>
+
+                </div>
+
+            </div>
+
+            <div class="event-body">
+
+                <div class="event-category">
+                    Technical
+                </div>
+
+                <h3>
+                    24-Hour Code Sprint
+                </h3>
+
+                <p>
+                    Team up with developers and solve real-world
+                    programming challenges.
+                </p>
+
+                <div class="event-meta">
+
+                    <span>⏰ 9:00 AM</span>
+                    <span>📍 Innovation Lab</span>
+
+                </div>
+
+                <button class="register-btn"
+                        onclick="registerEvent('24-Hour Code Sprint')">
+                    Register
+                </button>
+
+            </div>
+
+        </article>
+
+
+        <!-- EVENT 6 -->
+
+        <article class="event-card"
+                 data-category="cultural"
+                 data-name="Photography Walk">
+
+            <div class="event-top">
+
+                📸
+
+                <div class="event-date">
+
+                    <strong>06</strong>
+                    <span>NOV</span>
+
+                </div>
+
+            </div>
+
+            <div class="event-body">
+
+                <div class="event-category">
+                    Cultural
+                </div>
+
+                <h3>
+                    Campus Photography Walk
+                </h3>
+
+                <p>
+                    Explore the campus and capture its most
+                    memorable moments.
+                </p>
+
+                <div class="event-meta">
+
+                    <span>⏰ 3:30 PM</span>
+                    <span>📍 Library Gate</span>
+
+                </div>
+
+                <button class="register-btn"
+                        onclick="registerEvent('Campus Photography Walk')">
+                    Register
+                </button>
+
+            </div>
+
+        </article>
+
+    </section>
+
+
+    <div class="no-events" id="noEvents">
+        🔎 No events found.
+    </div>
+
+
+    <!-- ================= LOWER SECTION ================= -->
+
+    <div class="lower-grid">
+
+
+        <!-- TIMELINE -->
+
+        <section class="card">
+
+            <div class="card-title">
+
+                <div class="title-icon">
+                    🗓️
+                </div>
+
+                Event Timeline
+
+            </div>
+
+
+            <div class="timeline">
+
+                <div class="timeline-item">
+
+                    <div class="timeline-dot"></div>
+
+                    <h3>
+                        Campus Innovation Fest
+                    </h3>
+
+                    <p>
+                        Technology projects and innovation showcase
+                    </p>
+
+                    <div class="timeline-date">
+                        18 October • 10:00 AM
+                    </div>
+
+                </div>
+
+
+                <div class="timeline-item">
+
+                    <div class="timeline-dot"></div>
+
+                    <h3>
+                        Cultural Fiesta
+                    </h3>
+
+                    <p>
+                        Music, dance and cultural performances
+                    </p>
+
+                    <div class="timeline-date">
+                        22 October • 4:00 PM
+                    </div>
+
+                </div>
+
+
+                <div class="timeline-item">
+
+                    <div class="timeline-dot"></div>
+
+                    <h3>
+                        Sports Meet
+                    </h3>
+
+                    <p>
+                        Inter-college sports competitions
+                    </p>
+
+                    <div class="timeline-date">
+                        25 October • 8:00 AM
+                    </div>
+
+                </div>
+
+
+                <div class="timeline-item">
+
+                    <div class="timeline-dot"></div>
+
+                    <h3>
+                        Career Workshop
+                    </h3>
+
+                    <p>
+                        Resume and interview preparation
+                    </p>
+
+                    <div class="timeline-date">
+                        29 October • 11:00 AM
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CLUBS -->
+
+        <section class="card">
+
+            <div class="card-title">
+
+                <div class="title-icon">
+                    🌟
+                </div>
+
+                Student Communities
+
+            </div>
+
+
+            <div class="club">
+
+                <div class="club-icon">
+                    💻
+                </div>
+
+                <div>
+
+                    <h3>
+                        Coding Club
+                    </h3>
+
+                    <p>
+                        Programming & technology
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="club">
+
+                <div class="club-icon">
+                    🎨
+                </div>
+
+                <div>
+
+                    <h3>
+                        Creative Club
+                    </h3>
+
+                    <p>
+                        Art & design activities
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="club">
+
+                <div class="club-icon">
+                    ⚽
+                </div>
+
+                <div>
+
+                    <h3>
+                        Sports Club
+                    </h3>
+
+                    <p>
+                        Fitness & athletics
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="club">
+
+                <div class="club-icon">
+                    📸
+                </div>
+
+                <div>
+
+                    <h3>
+                        Photography Club
+                    </h3>
+
+                    <p>
+                        Photography & media
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>
+
+
+<script>
+
+/* ================= NAVIGATION ================= */
+
+function goTo(page){
+
+    window.location.href = page;
+
+}
+
+
+/* ================= REGISTER ================= */
+
+function registerEvent(eventName){
+
+    alert(
+        "🎉 Registration Successful!\n\n" +
+        eventName +
+        "\n\nYour registration has been saved for this frontend demo."
+    );
+
+}
+
+
+/* ================= FILTER ================= */
+
+function filterEvents(category,button){
+
+    document
+        .querySelectorAll(".filter")
+        .forEach(function(item){
+
+            item.classList.remove("active");
+
+        });
+
+    button.classList.add("active");
+
+    const events =
+        document.querySelectorAll(".event-card");
+
+    let visible = 0;
+
+    events.forEach(function(event){
+
+        if(
+            category === "all" ||
+            event.dataset.category === category
+        ){
+
+            event.style.display = "block";
+            visible++;
+
+        }
+        else{
+
+            event.style.display = "none";
+
+        }
+
+    });
+
+    document.getElementById("noEvents").style.display =
+        visible === 0 ? "block" : "none";
+
+}
+
+
+/* ================= SEARCH ================= */
+
+function searchEvents(){
+
+    const search =
+        document
+        .getElementById("eventSearch")
+        .value
+        .toLowerCase()
+        .trim();
+
+    const events =
+        document.querySelectorAll(".event-card");
+
+    let visible = 0;
+
+    events.forEach(function(event){
+
+        const name =
+            event.dataset.name.toLowerCase();
+
+        if(name.includes(search)){
+
+            event.style.display = "block";
+            visible++;
+
+        }
+        else{
+
+            event.style.display = "none";
+
+        }
+
+    });
+
+    document.getElementById("noEvents").style.display =
+        visible === 0 ? "block" : "none";
+
+}
+
+</script>
+
+</body>
+</html>

@@ -4,143 +4,1184 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>AI College Companion - Login</title>
+    <title>CampusConnect - Login</title>
 
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/login.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: 'Poppins', sans-serif;
+            background:
+                radial-gradient(circle at 15% 20%, rgba(181, 76, 255, 0.25), transparent 25%),
+                radial-gradient(circle at 85% 80%, rgba(255, 54, 165, 0.20), transparent 25%),
+                linear-gradient(135deg, #161129, #30145a, #571d82);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 25px;
+            overflow: hidden;
+        }
+
+
+        /* Floating background circles */
+
+        .circle {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(2px);
+            opacity: .35;
+            pointer-events: none;
+        }
+
+        .circle.one {
+            width: 220px;
+            height: 220px;
+            background: #9c3cff;
+            top: -90px;
+            left: -70px;
+            animation: floatOne 7s ease-in-out infinite;
+        }
+
+        .circle.two {
+            width: 280px;
+            height: 280px;
+            background: #ed3b9f;
+            right: -120px;
+            bottom: -120px;
+            animation: floatTwo 8s ease-in-out infinite;
+        }
+
+        .circle.three {
+            width: 100px;
+            height: 100px;
+            background: #7047ff;
+            right: 18%;
+            top: 12%;
+            animation: floatThree 6s ease-in-out infinite;
+        }
+
+        @keyframes floatOne {
+            0%,100% {
+                transform: translate(0,0);
+            }
+            50% {
+                transform: translate(25px,20px);
+            }
+        }
+
+        @keyframes floatTwo {
+            0%,100% {
+                transform: translate(0,0);
+            }
+            50% {
+                transform: translate(-30px,-25px);
+            }
+        }
+
+        @keyframes floatThree {
+            0%,100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(25px);
+            }
+        }
+
+
+        /* Main container */
+
+        .login-wrapper {
+            width: 100%;
+            max-width: 950px;
+            min-height: 580px;
+
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+
+            background: rgba(255,255,255,.10);
+            border: 1px solid rgba(255,255,255,.20);
+            border-radius: 30px;
+
+            overflow: hidden;
+
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+
+            box-shadow:
+                0 30px 80px rgba(0,0,0,.35);
+
+            animation: appear .7s ease;
+        }
+
+        @keyframes appear {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(.97);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+
+        /* Left side */
+
+        .welcome-panel {
+            position: relative;
+
+            padding: 55px 45px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(113,61,220,.85),
+                    rgba(168,47,190,.70)
+                );
+        }
+
+        .welcome-panel::before {
+            content: "";
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            border: 1px solid rgba(255,255,255,.15);
+            border-radius: 50%;
+            right: -100px;
+            top: -80px;
+        }
+
+        .welcome-panel::after {
+            content: "";
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            border: 1px solid rgba(255,255,255,.12);
+            border-radius: 50%;
+            left: -80px;
+            bottom: -70px;
+        }
+
+
+        /* Logo */
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+
+            margin-bottom: 50px;
+
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 15px;
+
+            background: rgba(255,255,255,.18);
+
+            font-size: 24px;
+
+            box-shadow:
+                0 8px 25px rgba(0,0,0,.15);
+        }
+
+        .logo-name {
+            font-size: 21px;
+            font-weight: 700;
+        }
+
+        .logo-name span {
+            color: #f0baff;
+        }
+
+
+        /* Welcome content */
+
+        .welcome-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .welcome-content .tag {
+            display: inline-block;
+
+            padding: 7px 13px;
+
+            border-radius: 20px;
+
+            background: rgba(255,255,255,.13);
+
+            color: #eadfff;
+
+            font-size: 10px;
+            font-weight: 600;
+
+            letter-spacing: 1px;
+
+            margin-bottom: 17px;
+        }
+
+        .welcome-content h1 {
+            font-size: 36px;
+            line-height: 1.2;
+
+            margin-bottom: 17px;
+        }
+
+        .welcome-content h1 span {
+            color: #f2a6ff;
+        }
+
+        .welcome-content p {
+            max-width: 370px;
+
+            color: #e8ddf7;
+
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+
+        /* Features */
+
+        .features {
+            margin-top: 32px;
+
+            display: grid;
+            gap: 13px;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            color: #f4ecff;
+
+            font-size: 11px;
+        }
+
+        .feature-icon {
+            width: 31px;
+            height: 31px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 10px;
+
+            background: rgba(255,255,255,.13);
+
+            font-size: 15px;
+        }
+
+
+        /* Right side */
+
+        .login-panel {
+            background: rgba(255,255,255,.97);
+
+            padding: 55px 50px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .login-title {
+            margin-bottom: 7px;
+
+            color: #29253b;
+
+            font-size: 27px;
+            font-weight: 700;
+        }
+
+        .login-subtitle {
+            margin-bottom: 30px;
+
+            color: #9995a4;
+
+            font-size: 11px;
+        }
+
+
+        /* Form */
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+
+            margin-bottom: 7px;
+
+            color: #504b5b;
+
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-icon {
+            position: absolute;
+
+            left: 14px;
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            color: #9993a7;
+
+            font-size: 15px;
+
+            pointer-events: none;
+        }
+
+        .form-input {
+            width: 100%;
+
+            height: 48px;
+
+            padding: 0 45px;
+
+            border: 1px solid #e6e2ec;
+
+            border-radius: 13px;
+
+            outline: none;
+
+            background: #faf9fc;
+
+            color: #302b3e;
+
+            font-family: inherit;
+            font-size: 12px;
+
+            transition: .25s;
+        }
+
+        .form-input:focus {
+            border-color: #9a55e8;
+
+            background: white;
+
+            box-shadow:
+                0 0 0 4px rgba(143,70,220,.08);
+        }
+
+        .form-input::placeholder {
+            color: #aaa6b2;
+        }
+
+
+        /* Password eye */
+
+        .password-toggle {
+            position: absolute;
+
+            right: 13px;
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            border: none;
+
+            background: transparent;
+
+            color: #9993a7;
+
+            font-size: 15px;
+
+            cursor: pointer;
+        }
+
+
+        /* Options */
+
+        .form-options {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            margin: 4px 0 22px;
+        }
+
+        .remember {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+
+            color: #77727f;
+
+            font-size: 10px;
+        }
+
+        .remember input {
+            accent-color: #813fe0;
+        }
+
+        .forgot {
+            border: none;
+
+            background: transparent;
+
+            color: #7d3ed5;
+
+            font-family: inherit;
+            font-size: 10px;
+            font-weight: 600;
+
+            cursor: pointer;
+        }
+
+
+        /* Login button */
+
+        .login-btn {
+            width: 100%;
+            height: 49px;
+
+            border-radius: 13px;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    100deg,
+                    #703bd9,
+                    #a83bca,
+                    #e63b9d
+                );
+
+            font-size: 12px;
+            font-weight: 600;
+
+            box-shadow:
+                0 10px 25px rgba(124,55,212,.27);
+
+            transition: .25s;
+
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-btn::before {
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+            left: -100%;
+
+            width: 100%;
+            height: 100%;
+
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255,255,255,.25),
+                transparent
+            );
+
+            transition: .5s;
+        }
+
+        .login-btn:hover::before {
+            left: 100%;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 14px 30px rgba(124,55,212,.35);
+        }
+
+        .login-btn:active {
+            transform: translateY(0);
+        }
+
+
+        /* Divider */
+
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            margin: 24px 0;
+
+            color: #b1acb8;
+
+            font-size: 9px;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: "";
+
+            flex: 1;
+
+            height: 1px;
+
+            background: #e9e6ed;
+        }
+
+
+        /* Register */
+
+        .register-text {
+            text-align: center;
+
+            color: #85808d;
+
+            font-size: 10px;
+        }
+
+        .register-btn {
+            border: none;
+
+            background: transparent;
+
+            color: #813ed8;
+
+            font-family: inherit;
+
+            font-size: 10px;
+            font-weight: 700;
+
+            cursor: pointer;
+        }
+
+        .register-btn:hover {
+            text-decoration: underline;
+        }
+
+
+        /* Security */
+
+        .security {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+
+            margin-top: 23px;
+
+            color: #aaa5b1;
+
+            font-size: 9px;
+        }
+
+
+        /* Error */
+
+        .error-message {
+            display: none;
+
+            margin-bottom: 15px;
+
+            padding: 10px 12px;
+
+            border-radius: 10px;
+
+            background: #fff0f3;
+
+            color: #c63d63;
+
+            font-size: 10px;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+
+        /* Loading */
+
+        .spinner {
+            display: none;
+
+            width: 15px;
+            height: 15px;
+
+            margin:auto;
+
+            border: 2px solid rgba(255,255,255,.4);
+            border-top-color: white;
+
+            border-radius: 50%;
+
+            animation: spin .7s linear infinite;
+        }
+
+        .login-btn.loading .button-text {
+            display: none;
+        }
+
+        .login-btn.loading .spinner {
+            display: block;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+
+        /* Responsive */
+
+        @media(max-width: 800px) {
+
+            body {
+                padding: 15px;
+                overflow-y: auto;
+            }
+
+            .login-wrapper {
+                grid-template-columns: 1fr;
+
+                max-width: 520px;
+            }
+
+            .welcome-panel {
+                padding: 35px;
+            }
+
+            .welcome-content h1 {
+                font-size: 28px;
+            }
+
+            .logo {
+                margin-bottom: 30px;
+            }
+
+            .features {
+                display: none;
+            }
+
+            .login-panel {
+                padding: 35px;
+            }
+        }
+
+
+        @media(max-width: 450px) {
+
+            .welcome-panel,
+            .login-panel {
+                padding: 27px 22px;
+            }
+
+            .login-wrapper {
+                border-radius: 22px;
+            }
+
+            .welcome-content h1 {
+                font-size: 25px;
+            }
+
+            .login-title {
+                font-size: 23px;
+            }
+        }
+
+    </style>
 </head>
+
 
 <body>
 
-    <div class="login-container">
+    <!-- Background decoration -->
 
-        <!-- Left Section -->
-        <div class="login-left">
+    <div class="circle one"></div>
+    <div class="circle two"></div>
+    <div class="circle three"></div>
+
+
+    <div class="login-wrapper">
+
+
+        <!-- =================================================
+             LEFT / WELCOME SECTION
+        ================================================== -->
+
+        <section class="welcome-panel">
 
             <div class="logo">
-                🎓
-            </div>
 
-            <h1>AI College<br>Companion</h1>
-
-            <p>
-                Your intelligent college assistant for
-                academics, career, campus services and more.
-            </p>
-
-            <div class="features">
-
-                <div class="feature">
-                    🤖
-                    <span>AI College Assistant</span>
+                <div class="logo-icon">
+                    🎓
                 </div>
 
-                <div class="feature">
-                    📚
-                    <span>Academic Support</span>
-                </div>
-
-                <div class="feature">
-                    💼
-                    <span>Placement Assistance</span>
-                </div>
-
-                <div class="feature">
-                    🔔
-                    <span>Smart Notifications</span>
+                <div class="logo-name">
+                    Campus<span>Connect</span>
                 </div>
 
             </div>
 
-        </div>
 
+            <div class="welcome-content">
 
-        <!-- Right Section -->
-        <div class="login-right">
+                <span class="tag">
+                    SMART COLLEGE ASSISTANT
+                </span>
 
-            <div class="login-box">
+                <h1>
+                    Welcome to<br>
+                    <span>CampusConnect</span>
+                </h1>
 
-                <h2>Welcome Back 👋</h2>
-
-                <p class="subtitle">
-                    Login to your college companion
+                <p>
+                    Your intelligent college companion for
+                    managing academics, attendance, timetable,
+                    assignments, campus services and more.
                 </p>
 
 
-                <form id="loginForm">
+                <div class="features">
 
-                    <div class="form-group">
+                    <div class="feature">
 
-                        <label>Email / Student ID</label>
+                        <div class="feature-icon">
+                            🤖
+                        </div>
+
+                        <span>
+                            AI-powered college assistance
+                        </span>
+
+                    </div>
+
+
+                    <div class="feature">
+
+                        <div class="feature-icon">
+                            📚
+                        </div>
+
+                        <span>
+                            Manage your academic life easily
+                        </span>
+
+                    </div>
+
+
+                    <div class="feature">
+
+                        <div class="feature-icon">
+                            🔔
+                        </div>
+
+                        <span>
+                            Smart reminders and notifications
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             RIGHT / LOGIN SECTION
+        ================================================== -->
+
+        <section class="login-panel">
+
+            <h2 class="login-title">
+                Student Login
+            </h2>
+
+            <p class="login-subtitle">
+                Sign in to continue to your dashboard
+            </p>
+
+
+            <!-- Error -->
+
+            <div
+                class="error-message"
+                id="errorMessage"
+            >
+                Please enter your email and password.
+            </div>
+
+
+            <!-- Login form -->
+
+            <form id="loginForm">
+
+
+                <!-- Email -->
+
+                <div class="form-group">
+
+                    <label for="email">
+                        College Email
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <span class="input-icon">
+                            ✉
+                        </span>
 
                         <input
-                            type="text"
+                            type="email"
                             id="email"
-                            placeholder="Enter your email or student ID"
+                            class="form-input"
+                            placeholder="Enter your college email"
+                            autocomplete="email"
                             required
                         >
 
                     </div>
 
+                </div>
 
-                    <div class="form-group">
 
-                        <label>Password</label>
+
+                <!-- Password -->
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <span class="input-icon">
+                            🔒
+                        </span>
 
                         <input
                             type="password"
                             id="password"
+                            class="form-input"
                             placeholder="Enter your password"
+                            autocomplete="current-password"
                             required
                         >
 
-                    </div>
-
-
-                    <div class="login-options">
-
-                        <label>
-                            <input type="checkbox">
-                            Remember me
-                        </label>
-
-                        <a href="#">
-                            Forgot Password?
-                        </a>
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            id="passwordToggle"
+                            aria-label="Show password"
+                        >
+                            👁
+                        </button>
 
                     </div>
 
-
-                    <button type="submit" class="login-btn">
-                        Login
-                    </button>
-
-                </form>
-
-
-                <div class="divider">
-                    <span>OR</span>
                 </div>
 
 
-                <p class="register-text">
 
-                    Don't have an account?
+                <!-- Options -->
 
-                    <a href="register.html">
-                        Create Account
-                    </a>
+                <div class="form-options">
 
-                </p>
+                    <label class="remember">
+
+                        <input
+                            type="checkbox"
+                            id="remember"
+                        >
+
+                        Remember me
+
+                    </label>
+
+
+                    <button
+                        type="button"
+                        class="forgot"
+                        id="forgotPassword"
+                    >
+                        Forgot Password?
+                    </button>
+
+                </div>
+
+
+
+                <!-- Login -->
+
+                <button
+                    type="submit"
+                    class="login-btn"
+                    id="loginBtn"
+                >
+
+                    <span class="button-text">
+                        Login to Dashboard →
+                    </span>
+
+                    <span class="spinner"></span>
+
+                </button>
+
+            </form>
+
+
+
+            <!-- Divider -->
+
+            <div class="divider">
+                OR
+            </div>
+
+
+
+            <!-- Registration -->
+
+            <div class="register-text">
+
+                Don't have an account?
+
+                <button
+                    class="register-btn"
+                    id="registerBtn"
+                    type="button"
+                >
+                    Create Account
+                </button>
 
             </div>
 
-        </div>
+
+
+            <!-- Security -->
+
+            <div class="security">
+
+                🔒
+
+                Secure student portal
+
+            </div>
+
+        </section>
 
     </div>
 
 
-    <script src="js/login.js"></script>
+
+<script>
+
+/* =========================================================
+   ELEMENTS
+========================================================= */
+
+const loginForm =
+    document.getElementById("loginForm");
+
+const email =
+    document.getElementById("email");
+
+const password =
+    document.getElementById("password");
+
+const passwordToggle =
+    document.getElementById("passwordToggle");
+
+const loginBtn =
+    document.getElementById("loginBtn");
+
+const errorMessage =
+    document.getElementById("errorMessage");
+
+const forgotPassword =
+    document.getElementById("forgotPassword");
+
+const registerBtn =
+    document.getElementById("registerBtn");
+
+
+
+/* =========================================================
+   SHOW / HIDE PASSWORD
+========================================================= */
+
+passwordToggle.addEventListener(
+    "click",
+    function() {
+
+        if(password.type === "password") {
+
+            password.type = "text";
+
+            passwordToggle.textContent = "🙈";
+
+        } else {
+
+            password.type = "password";
+
+            passwordToggle.textContent = "👁";
+
+        }
+
+    }
+);
+
+
+
+/* =========================================================
+   LOGIN FRONTEND DEMO
+========================================================= */
+
+loginForm.addEventListener(
+    "submit",
+    function(event) {
+
+        event.preventDefault();
+
+        errorMessage.classList.remove("show");
+
+
+        if(
+            email.value.trim() === "" ||
+            password.value.trim() === ""
+        ) {
+
+            errorMessage.textContent =
+                "Please enter your email and password.";
+
+            errorMessage.classList.add("show");
+
+            return;
+        }
+
+
+        /* Loading animation */
+
+        loginBtn.classList.add("loading");
+
+        loginBtn.disabled = true;
+
+
+        /*
+            FRONTEND ONLY
+
+            There is no backend authentication yet.
+
+            For demonstration, after clicking Login,
+            the user is taken to dashboard.html.
+        */
+
+        setTimeout(function() {
+
+            window.location.href = "dashboard.html";
+
+        }, 900);
+
+    }
+);
+
+
+
+/* =========================================================
+   FORGOT PASSWORD
+========================================================= */
+
+forgotPassword.addEventListener(
+    "click",
+    function() {
+
+        alert(
+            "Password reset will be connected to the backend later."
+        );
+
+    }
+);
+
+
+
+/* =========================================================
+   REGISTER
+========================================================= */
+
+registerBtn.addEventListener(
+    "click",
+    function() {
+
+        alert(
+            "Registration page will be added next."
+        );
+
+    }
+);
+
+
+
+/* =========================================================
+   REMOVE ERROR WHILE TYPING
+========================================================= */
+
+email.addEventListener(
+    "input",
+    function() {
+
+        errorMessage.classList.remove("show");
+
+    }
+);
+
+
+password.addEventListener(
+    "input",
+    function() {
+
+        errorMessage.classList.remove("show");
+
+    }
+);
+
+</script>
 
 </body>
 </html>
