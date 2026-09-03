@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CampusConnect - Student Registration</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: 'Poppins', sans-serif;
+
+            background:
+                radial-gradient(circle at 10% 15%, rgba(180, 75, 255, .25), transparent 25%),
+                radial-gradient(circle at 90% 85%, rgba(255, 50, 170, .22), transparent 25%),
+                linear-gradient(135deg, #17122b, #35155e, #591c80);
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 25px;
+
+            overflow-y: auto;
+        }
+
+
+        /* Background circles */
+
+        .circle {
+            position: fixed;
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: .35;
+        }
+
+        .circle-one {
+            width: 220px;
+            height: 220px;
+            background: #9b42ff;
+            top: -90px;
+            left: -70px;
+            animation: floatOne 7s infinite ease-in-out;
+        }
+
+        .circle-two {
+            width: 280px;
+            height: 280px;
+            background: #ed3c9f;
+            right: -120px;
+            bottom: -120px;
+            animation: floatTwo 8s infinite ease-in-out;
+        }
+
+        @keyframes floatOne {
+            0%, 100% {
+                transform: translate(0, 0);
+            }
+
+            50% {
+                transform: translate(25px, 20px);
+            }
+        }
+
+        @keyframes floatTwo {
+            0%, 100% {
+                transform: translate(0, 0);
+            }
+
+            50% {
+                transform: translate(-25px, -25px);
+            }
+        }
+
+
+        /* Main card */
+
+        .register-container {
+            width: 100%;
+            max-width: 1050px;
+
+            display: grid;
+            grid-template-columns: 38% 62%;
+
+            background: rgba(255,255,255,.10);
+
+            border: 1px solid rgba(255,255,255,.20);
+
+            border-radius: 30px;
+
+            overflow: hidden;
+
+            backdrop-filter: blur(20px);
+
+            box-shadow:
+                0 30px 80px rgba(0,0,0,.35);
+
+            animation: appear .7s ease;
+        }
+
+        @keyframes appear {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(.97);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+
+        /* Left section */
+
+        .info-section {
+            padding: 50px 40px;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(112, 59, 216, .88),
+                    rgba(169, 47, 190, .72)
+                );
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+
+        /* Logo */
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            margin-bottom: 45px;
+        }
+
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            background: rgba(255,255,255,.18);
+
+            border-radius: 15px;
+
+            font-size: 23px;
+        }
+
+        .logo-name {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .logo-name span {
+            color: #f2a8ff;
+        }
+
+
+        /* Left content */
+
+        .info-section h1 {
+            font-size: 32px;
+            line-height: 1.25;
+
+            margin-bottom: 17px;
+        }
+
+        .info-section h1 span {
+            color: #f1a4ff;
+        }
+
+        .info-section p {
+            color: #e8dcf6;
+
+            font-size: 12px;
+
+            line-height: 1.8;
+        }
+
+
+        /* Benefits */
+
+        .benefits {
+            margin-top: 30px;
+
+            display: grid;
+
+            gap: 14px;
+        }
+
+        .benefit {
+            display: flex;
+            align-items: center;
+
+            gap: 12px;
+
+            font-size: 10px;
+
+            color: #f5edff;
+        }
+
+        .benefit-icon {
+            width: 32px;
+            height: 32px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: rgba(255,255,255,.13);
+
+            border-radius: 10px;
+
+            font-size: 15px;
+        }
+
+
+        /* Right form */
+
+        .form-section {
+            padding: 45px 50px;
+
+            background: rgba(255,255,255,.97);
+        }
+
+        .form-title {
+            color: #29253a;
+
+            font-size: 26px;
+
+            font-weight: 700;
+
+            margin-bottom: 5px;
+        }
+
+        .form-subtitle {
+            color: #9994a4;
+
+            font-size: 10px;
+
+            margin-bottom: 25px;
+        }
+
+
+        /* Form grid */
+
+        .form-grid {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 3px;
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+
+        /* Labels */
+
+        label {
+            display: block;
+
+            color: #514c5c;
+
+            font-size: 10px;
+
+            font-weight: 600;
+
+            margin-bottom: 6px;
+        }
+
+
+        /* Inputs */
+
+        .input-box {
+            position: relative;
+        }
+
+        .input-icon {
+            position: absolute;
+
+            left: 13px;
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            color: #9993a6;
+
+            font-size: 14px;
+
+            pointer-events: none;
+        }
+
+        input,
+        select {
+            width: 100%;
+
+            height: 44px;
+
+            padding: 0 13px 0 40px;
+
+            border: 1px solid #e5e1ea;
+
+            border-radius: 11px;
+
+            outline: none;
+
+            background: #faf9fc;
+
+            color: #302b3c;
+
+            font-family: inherit;
+
+            font-size: 10px;
+
+            transition: .25s;
+        }
+
+        select {
+            cursor: pointer;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: #9852df;
+
+            background: white;
+
+            box-shadow:
+                0 0 0 4px rgba(145,70,220,.08);
+        }
+
+        input::placeholder {
+            color: #aaa5b1;
+        }
+
+
+        /* Password */
+
+        .password-toggle {
+            position: absolute;
+
+            right: 12px;
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            border: none;
+
+            background: transparent;
+
+            cursor: pointer;
+
+            font-size: 14px;
+
+            color: #9993a6;
+        }
+
+
+        /* Terms */
+
+        .terms {
+            display: flex;
+            align-items: center;
+
+            gap: 8px;
+
+            margin-top: 18px;
+
+            color: #817c89;
+
+            font-size: 9px;
+        }
+
+        .terms input {
+            width: auto;
+            height: auto;
+
+            accent-color: #813fda;
+        }
+
+        .terms a {
+            color: #7b3bd0;
+
+            text-decoration: none;
+
+            font-weight: 600;
+        }
+
+
+        /* Register button */
+
+        .register-button {
+            width: 100%;
+
+            height: 47px;
+
+            margin-top: 18px;
+
+            border: none;
+
+            border-radius: 12px;
+
+            background:
+                linear-gradient(
+                    100deg,
+                    #703bd9,
+                    #a83bca,
+                    #e63b9d
+                );
+
+            color: white;
+
+            font-family: inherit;
+
+            font-size: 11px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 10px 25px rgba(124,55,212,.27);
+
+            transition: .25s;
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+        .register-button::before {
+            content: "";
+
+            position: absolute;
+
+            left: -100%;
+            top: 0;
+
+            width: 100%;
+            height: 100%;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(255,255,255,.25),
+                    transparent
+                );
+
+            transition: .5s;
+        }
+
+        .register-button:hover::before {
+            left: 100%;
+        }
+
+        .register-button:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 15px 30px rgba(124,55,212,.35);
+        }
+
+
+        /* Login link */
+
+        .login-link {
+            text-align: center;
+
+            margin-top: 18px;
+
+            color: #88838f;
+
+            font-size: 9px;
+        }
+
+        .login-link button {
+            border: none;
+
+            background: transparent;
+
+            color: #7d3ed5;
+
+            font-family: inherit;
+
+            font-size: 9px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+        }
+
+        .login-link button:hover {
+            text-decoration: underline;
+        }
+
+
+        /* Message */
+
+        .message {
+            display: none;
+
+            padding: 9px 12px;
+
+            margin-bottom: 15px;
+
+            border-radius: 9px;
+
+            font-size: 9px;
+        }
+
+        .message.error {
+            background: #fff0f3;
+            color: #c33b60;
+        }
+
+        .message.success {
+            background: #edfff5;
+            color: #248454;
+        }
+
+        .message.show {
+            display: block;
+        }
+
+
+        /* Responsive */
+
+        @media(max-width: 850px) {
+
+            .register-container {
+                grid-template-columns: 1fr;
+
+                max-width: 600px;
+            }
+
+            .info-section {
+                padding: 35px;
+            }
+
+            .benefits {
+                display: none;
+            }
+
+            .logo {
+                margin-bottom: 25px;
+            }
+
+            .form-section {
+                padding: 35px;
+            }
+        }
+
+
+        @media(max-width: 550px) {
+
+            body {
+                padding: 12px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .full-width {
+                grid-column: auto;
+            }
+
+            .info-section,
+            .form-section {
+                padding: 27px 22px;
+            }
+
+            .info-section h1 {
+                font-size: 25px;
+            }
+
+            .form-title {
+                font-size: 23px;
+            }
+
+            .register-container {
+                border-radius: 22px;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+    <!-- Background decoration -->
+
+    <div class="circle circle-one"></div>
+    <div class="circle circle-two"></div>
+
+
+    <div class="register-container">
+
+
+        <!-- ==========================================
+             LEFT INFORMATION SECTION
+        =========================================== -->
+
+        <section class="info-section">
+
+            <div class="logo">
+
+                <div class="logo-icon">
+                    🎓
+                </div>
+
+                <div class="logo-name">
+                    Campus<span>Connect</span>
+                </div>
+
+            </div>
+
+
+            <h1>
+                Join your<br>
+                <span>Campus Community</span>
+            </h1>
+
+
+            <p>
+                Create your student account and access
+                academic services, campus facilities,
+                AI assistance, events, reminders and
+                much more from one smart platform.
+            </p>
+
+
+            <div class="benefits">
+
+                <div class="benefit">
+
+                    <div class="benefit-icon">
+                        🤖
+                    </div>
+
+                    <span>
+                        AI-powered college assistant
+                    </span>
+
+                </div>
+
+
+                <div class="benefit">
+
+                    <div class="benefit-icon">
+                        📊
+                    </div>
+
+                    <span>
+                        Track attendance and academics
+                    </span>
+
+                </div>
+
+
+                <div class="benefit">
+
+                    <div class="benefit-icon">
+                        🗓️
+                    </div>
+
+                    <span>
+                        Manage timetable and study plans
+                    </span>
+
+                </div>
+
+
+                <div class="benefit">
+
+                    <div class="benefit-icon">
+                        🔔
+                    </div>
+
+                    <span>
+                        Receive important campus updates
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==========================================
+             REGISTRATION FORM
+        =========================================== -->
+
+        <section class="form-section">
+
+            <h2 class="form-title">
+                Create Student Account
+            </h2>
+
+            <p class="form-subtitle">
+                Register once to access CampusConnect
+            </p>
+
+
+            <div
+                id="message"
+                class="message"
+            ></div>
+
+
+            <form id="registerForm">
+
+                <div class="form-grid">
+
+
+                    <!-- Full Name -->
+
+                    <div class="form-group full-width">
+
+                        <label for="studentName">
+                            Full Name
+                        </label>
+
+                        <div class="input-box">
+
+                            <span class="input-icon">
+                                👤
+                            </span>
+
+                            <input
+                                type="text"
+                                id="studentName"
+                                placeholder="Enter your full name"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Student ID -->
+
+                    <div class="form-group">
+
+                        <label for="studentId">
+                            Student ID / Roll Number
+                        </label>
+
+                        <div class="input-box">
+
+                            <span class="input-icon">
+                                🪪
+                            </span>
+
+                            <input
+                                type="text"
+                                id="studentId"
+                                placeholder="Enter student ID"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Email -->
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            College Email
+                        </label>
+
+                        <div class="input-box">
+
+                            <span class="input-icon">
+                                ✉️
+                            </span>
+
+                            <input
+                                type="email"
+                                id="email"
+                                placeholder="student@college.edu"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Phone -->
+
+                    <div class="form-group">
+
+                        <label for="phone">
+                            Phone Number
+                        </label>
+
+                        <div class="input-box">
+
+                            <span class="input-icon">
+                                📱
+                            </span>
+
+                            <input
+                                type="tel"
+                                id="phone"
+                                placeholder="Enter phone number"
+                                maxlength="10"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Course -->
+
+                    <div class="form-group">
+
+                        <label for="course">
+                            Course / Program
+                        </label>
+
+                        <div class="input-box">
+
+                            <span class="input-icon">
+                                🎓
+                            </span>
+
+                            <select id="course" required>
+
+                                <option value="">
+                                    Select course
+                                </option>
+
+                                <option value="BCA">
+                                    BCA
+                                </option>
+
+                                <option value="BBA">
+                                    BBA
+                                </option>
+
+                                <option value="B.Com">
+                                    B.Com
+                                </option>
+
+                                <option value="B.Sc">
+                                    B.Sc
+                                </option>
+
+                                <option value="MCA">
+                                    MCA
+                                </option>
+
+                                <option value="MBA">
+                                    MBA
+                                </option>
+
+                                <option value="M.Com">
+                                    M.Com
+                                </option>
+
+                                <option value="Other">
+                                    Other
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Department -->
+
+                    <div class="form-group">
+
+                        <label for="department">
+                            Department
+                        </label>
+
+                        <div class="input-box">
+
+                            <span class="input-icon">
+                                🏢
+                            </span>
+
+                            <input
+                                type="text"
+                                id="department"
+                                placeholder="Enter department"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Year -->
+
+                    <div class="form-group">
+
+                        <label for="year">
+                            Year
+                        </label>
+
+                        <div class="input-box">
+
+                            <span class="input-icon">
+                                📅
+                            </span>
+
+                            <select id="year" required>
+
+                                <option value="">
+                                    Select year
+                                </option>
+
+                                <option value="1">
+                                    1st Year
+                                </option>
+
+                                <option value="2">
+                                    2nd Year
+                                </option>
+
+                                <option value="3">
+                                    3rd Year
+                                </option>
+
+                                <option value="4">
+                                    4th Year
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Semester -->
+
+                    <div class="form-group">
+
+                        <label for="semester">
+                            Semester
+                        </label>
+
+                        <div class="input-box">
+
+                            <span class="input-icon">
+                                📚
+                            </span>
+
+                            <select id="semester" required>
+
+                                <option value="">
+                                    Select semester
+                                </option>
+
+                                <option value="1">
+                                    Semester 1
+                                </option>
+
+                                <option value="2">
+                                    Semester 2
+                                </option>
+
+                                <option value="3">
+                                    Semester 3
+                                </option>
+
+                                <option value="4">
+                                    Semester 4
+                                </option>
+
+                                <option value="5">
+                                    Semester 5
+                                </option>
+
+                                <option value="6">
+                                    Semester 6
+                                </option>
+
+                                <option value="7">
+                                    Semester 7
+                                </option>
+
+                                <option value="8">
+                                    Semester 8
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Password -->
+
+                    <div class="form-group">
+
+                        <label for="password">
+                            Password
+                        </label>
+
+                        <div class="input-box">
+
+                            <span class="input-icon">
+                                🔒
+                            </span>
+
+                            <input
+                                type="password"
+                                id="password"
+                                placeholder="Create password"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                class="password-toggle"
+                                id="passwordToggle"
+                            >
+                                👁
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Confirm Password -->
+
+                    <div class="form-group">
+
+                        <label for="confirmPassword">
+                            Confirm Password
+                        </label>
+
+                        <div class="input-box">
+
+                            <span class="input-icon">
+                                🔐
+                            </span>
+
+                            <input
+                                type="password"
+                                id="confirmPassword"
+                                placeholder="Confirm password"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Terms -->
+
+                <label class="terms">
+
+                    <input
+                        type="checkbox"
+                        id="terms"
+                        required
+                    >
+
+                    <span>
+                        I agree to the
+                        <a href="#" onclick="return false;">
+                            CampusConnect Terms & Conditions
+                        </a>
+                    </span>
+
+                </label>
+
+
+
+                <!-- Register -->
+
+                <button
+                    type="submit"
+                    class="register-button"
+                >
+                    Create Student Account →
+                </button>
+
+            </form>
+
+
+
+            <!-- Login -->
+
+            <div class="login-link">
+
+                Already have an account?
+
+                <button
+                    type="button"
+                    id="loginButton"
+                >
+                    Login here
+                </button>
+
+            </div>
+
+        </section>
+
+    </div>
+
+
+
+<script>
+
+    /* ==============================================
+       ELEMENTS
+    ============================================== */
+
+    const form =
+        document.getElementById("registerForm");
+
+    const message =
+        document.getElementById("message");
+
+    const password =
+        document.getElementById("password");
+
+    const confirmPassword =
+        document.getElementById("confirmPassword");
+
+    const passwordToggle =
+        document.getElementById("passwordToggle");
+
+    const loginButton =
+        document.getElementById("loginButton");
+
+
+    /* ==============================================
+       SHOW / HIDE PASSWORD
+    ============================================== */
+
+    passwordToggle.addEventListener(
+        "click",
+        function() {
+
+            if (password.type === "password") {
+
+                password.type = "text";
+
+                passwordToggle.textContent = "🙈";
+
+            } else {
+
+                password.type = "password";
+
+                passwordToggle.textContent = "👁";
+
+            }
+
+        }
+    );
+
+
+    /* ==============================================
+       REGISTRATION FRONTEND DEMO
+    ============================================== */
+
+    form.addEventListener(
+        "submit",
+        function(event) {
+
+            event.preventDefault();
+
+
+            message.className = "message";
+
+
+            /* Password validation */
+
+            if (password.value.length < 6) {
+
+                message.textContent =
+                    "Password must contain at least 6 characters.";
+
+                message.classList.add("error", "show");
+
+                return;
+            }
+
+
+            /* Confirm password */
+
+            if (
+                password.value !==
+                confirmPassword.value
+            ) {
+
+                message.textContent =
+                    "Passwords do not match.";
+
+                message.classList.add("error", "show");
+
+                return;
+            }
+
+
+            /* Phone validation */
+
+            const phone =
+                document.getElementById("phone").value.trim();
+
+            if (!/^[0-9]{10}$/.test(phone)) {
+
+                message.textContent =
+                    "Please enter a valid 10-digit phone number.";
+
+                message.classList.add("error", "show");
+
+                return;
+            }
+
+
+            /* Success */
+
+            message.textContent =
+                "Registration successful! Redirecting to login...";
+
+            message.classList.add(
+                "success",
+                "show"
+            );
+
+
+            /*
+                FRONTEND ONLY
+
+                Later this will be replaced with
+                backend/database registration.
+            */
+
+            setTimeout(function() {
+
+                window.location.href = "index.html";
+
+            }, 1500);
+
+        }
+    );
+
+
+    /* ==============================================
+       LOGIN BUTTON
+    ============================================== */
+
+    loginButton.addEventListener(
+        "click",
+        function() {
+
+            window.location.href = "index.html";
+
+        }
+    );
+
+</script>
+
+</body>
+</html>
