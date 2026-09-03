@@ -1,749 +1,1447 @@
-<<<<<<< HEAD
-=======
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI College Companion Dashboard</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<title>CampusConnect Dashboard</title>
 
-  <style>
-    :root {
-      --blue: #3974ef;
-      --purple: #7750e6;
-      --green: #25ad65;
-      --orange: #ef9a19;
-      --pink: #df4e82;
-      --ink: #19223c;
-      --muted: #737d95;
-      --border: #e6eaf3;
-      --page: #f7f9ff;
+<!-- Google Font -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- Font Awesome Icons -->
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#f5f7ff;
+    color:#222;
+    overflow-x:hidden;
+}
+
+/* =========================
+   ANIMATED BACKGROUND
+========================= */
+
+body::before{
+    content:"";
+    position:fixed;
+    width:400px;
+    height:400px;
+    background:rgba(108,99,255,.13);
+    border-radius:50%;
+    filter:blur(80px);
+    top:-150px;
+    left:-150px;
+    z-index:-1;
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    width:350px;
+    height:350px;
+    background:rgba(255,80,150,.10);
+    border-radius:50%;
+    filter:blur(80px);
+    bottom:-120px;
+    right:-100px;
+    z-index:-1;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    width:250px;
+    height:100vh;
+    background:linear-gradient(180deg,#15152f,#25245a,#3b2e78);
+    color:white;
+    padding:25px 18px;
+    z-index:1000;
+    box-shadow:5px 0 30px rgba(0,0,0,.12);
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:35px;
+    padding:0 10px;
+}
+
+.logo-icon{
+    width:45px;
+    height:45px;
+    border-radius:14px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#7c5cff,#ff4fa3);
+    box-shadow:0 0 25px rgba(124,92,255,.6);
+    font-size:21px;
+}
+
+.logo h2{
+    font-size:20px;
+    font-weight:700;
+}
+
+.nav-item{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding:14px 16px;
+    margin:7px 0;
+    border-radius:13px;
+    color:#dcdcf5;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.nav-item i{
+    width:22px;
+    font-size:17px;
+}
+
+.nav-item:hover,
+.nav-item.active{
+    background:linear-gradient(90deg,#6c5ce7,#9b59ff);
+    color:white;
+    transform:translateX(5px);
+    box-shadow:0 8px 25px rgba(108,92,231,.35);
+}
+
+/* =========================
+   MAIN
+========================= */
+
+.main{
+    margin-left:250px;
+    padding:25px 35px 50px;
+}
+
+/* =========================
+   TOPBAR
+========================= */
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+}
+
+.search{
+    width:350px;
+    background:white;
+    border-radius:15px;
+    padding:12px 18px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    box-shadow:0 8px 30px rgba(40,40,90,.07);
+}
+
+.search input{
+    border:0;
+    outline:0;
+    width:100%;
+    font-family:inherit;
+    font-size:14px;
+}
+
+.profile{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.notification{
+    width:43px;
+    height:43px;
+    border-radius:13px;
+    background:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    position:relative;
+    box-shadow:0 8px 25px rgba(40,40,90,.08);
+}
+
+.notification::after{
+    content:"";
+    width:8px;
+    height:8px;
+    background:#ff4f7b;
+    border-radius:50%;
+    position:absolute;
+    top:8px;
+    right:9px;
+}
+
+.avatar{
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#6c5ce7,#ff4fa3);
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:700;
+}
+
+/* =========================
+   WELCOME
+========================= */
+
+.welcome{
+    background:linear-gradient(135deg,#6457e9,#8f4de8,#e44f9c);
+    border-radius:25px;
+    padding:35px;
+    color:white;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    overflow:hidden;
+    position:relative;
+    box-shadow:0 20px 45px rgba(105,83,220,.3);
+    animation:slideUp .7s ease;
+}
+
+.welcome::before{
+    content:"";
+    position:absolute;
+    width:250px;
+    height:250px;
+    border:45px solid rgba(255,255,255,.08);
+    border-radius:50%;
+    right:100px;
+    top:-100px;
+}
+
+.welcome::after{
+    content:"";
+    position:absolute;
+    width:180px;
+    height:180px;
+    border:30px solid rgba(255,255,255,.07);
+    border-radius:50%;
+    right:-30px;
+    bottom:-80px;
+}
+
+.welcome h1{
+    font-size:30px;
+    margin-bottom:8px;
+}
+
+.welcome p{
+    opacity:.9;
+    font-size:14px;
+}
+
+.welcome-art{
+    font-size:90px;
+    opacity:.9;
+    animation:float 3s ease-in-out infinite;
+    margin-right:50px;
+}
+
+/* =========================
+   SECTION
+========================= */
+
+.section-title{
+    margin:35px 0 18px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.section-title h2{
+    font-size:21px;
+}
+
+.section-title span{
+    color:#777;
+    font-size:13px;
+}
+
+/* =========================
+   CARDS
+========================= */
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+}
+
+.card{
+    background:white;
+    padding:23px;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(38,40,80,.07);
+    transition:.35s;
+    position:relative;
+    overflow:hidden;
+    cursor:pointer;
+    animation:fadeIn .7s ease;
+}
+
+.card:hover{
+    transform:translateY(-9px);
+    box-shadow:0 20px 40px rgba(40,40,90,.15);
+}
+
+.card::after{
+    content:"";
+    position:absolute;
+    width:90px;
+    height:90px;
+    border-radius:50%;
+    right:-35px;
+    top:-35px;
+    opacity:.12;
+}
+
+.card.blue::after{background:#3498db;}
+.card.pink::after{background:#ff4f91;}
+.card.green::after{background:#18b77a;}
+.card.orange::after{background:#ff9f43;}
+
+.card-icon{
+    width:52px;
+    height:52px;
+    border-radius:16px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+    margin-bottom:17px;
+}
+
+.blue .card-icon{
+    color:#2788dc;
+    background:#e7f3ff;
+}
+
+.pink .card-icon{
+    color:#f13e82;
+    background:#ffe9f1;
+}
+
+.green .card-icon{
+    color:#12a76e;
+    background:#e4fff4;
+}
+
+.orange .card-icon{
+    color:#ee8c22;
+    background:#fff2df;
+}
+
+.card h3{
+    font-size:27px;
+    margin-bottom:3px;
+}
+
+.card p{
+    color:#888;
+    font-size:13px;
+}
+
+.progress{
+    height:7px;
+    background:#eee;
+    border-radius:20px;
+    margin-top:16px;
+    overflow:hidden;
+}
+
+.progress span{
+    display:block;
+    height:100%;
+    border-radius:20px;
+    animation:progress 1.5s ease;
+}
+
+.blue .progress span{width:75%;background:#3498db;}
+.pink .progress span{width:60%;background:#ff4f91;}
+.green .progress span{width:85%;background:#18b77a;}
+.orange .progress span{width:70%;background:#ff9f43;}
+
+/* =========================
+   TIMETABLE
+========================= */
+
+.timetable{
+    background:white;
+    border-radius:22px;
+    padding:22px;
+    box-shadow:0 10px 35px rgba(40,40,90,.07);
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:separate;
+    border-spacing:7px;
+    min-width:750px;
+}
+
+th{
+    padding:13px;
+    background:#f1efff;
+    color:#5549b7;
+    border-radius:10px;
+    font-size:13px;
+}
+
+td{
+    padding:15px 10px;
+    text-align:center;
+    border-radius:12px;
+    font-size:12px;
+    font-weight:500;
+    transition:.25s;
+}
+
+td:hover{
+    transform:scale(1.04);
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+.time{
+    background:#f5f5f7;
+    color:#666;
+}
+
+.subject1{background:#e5f1ff;color:#2176c7;}
+.subject2{background:#ffe8f0;color:#dc3971;}
+.subject3{background:#e5fff3;color:#139768;}
+.subject4{background:#fff1dd;color:#db831e;}
+.subject5{background:#eee9ff;color:#6852ca;}
+.break{background:#f4f4f4;color:#999;}
+
+/* =========================
+   CAMPUS
+========================= */
+
+.campus-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.campus-card{
+    height:230px;
+    border-radius:22px;
+    overflow:hidden;
+    position:relative;
+    cursor:pointer;
+    box-shadow:0 10px 30px rgba(0,0,0,.1);
+}
+
+.campus-card img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:.6s;
+}
+
+.campus-card:hover img{
+    transform:scale(1.1);
+}
+
+.campus-overlay{
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:0;
+    padding:25px 20px 18px;
+    color:white;
+    background:linear-gradient(transparent,rgba(0,0,0,.85));
+}
+
+.campus-overlay h3{
+    font-size:19px;
+}
+
+.campus-overlay p{
+    font-size:12px;
+    opacity:.85;
+}
+
+/* =========================
+   QUICK ACTIONS
+========================= */
+
+.actions{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+}
+
+.action{
+    background:white;
+    border-radius:18px;
+    padding:20px;
+    text-align:center;
+    box-shadow:0 8px 25px rgba(30,30,80,.07);
+    cursor:pointer;
+    transition:.3s;
+}
+
+.action:hover{
+    transform:translateY(-6px);
+    box-shadow:0 15px 30px rgba(70,50,160,.15);
+}
+
+.action i{
+    font-size:28px;
+    margin-bottom:10px;
+    display:block;
+}
+
+.action:nth-child(1) i{color:#6c5ce7;}
+.action:nth-child(2) i{color:#ff4f91;}
+.action:nth-child(3) i{color:#18b77a;}
+.action:nth-child(4) i{color:#ff9f43;}
+
+.action span{
+    font-size:13px;
+    font-weight:600;
+}
+
+/* =========================
+   GLOW BUTTON
+========================= */
+
+.glow-btn{
+    border:none;
+    outline:none;
+    padding:13px 22px;
+    border-radius:30px;
+    background:linear-gradient(90deg,#6c5ce7,#ff4f9a);
+    color:white;
+    font-family:inherit;
+    font-weight:600;
+    cursor:pointer;
+    box-shadow:0 0 10px rgba(108,92,231,.5),
+               0 0 25px rgba(255,79,154,.3);
+    transition:.3s;
+}
+
+.glow-btn:hover{
+    transform:translateY(-3px) scale(1.03);
+    box-shadow:0 0 15px rgba(108,92,231,.8),
+               0 0 40px rgba(255,79,154,.5);
+}
+
+/* =========================
+   WELCOME POPUP
+========================= */
+
+.popup{
+    position:fixed;
+    inset:0;
+    background:rgba(16,15,40,.7);
+    backdrop-filter:blur(8px);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:5000;
+    animation:popupBg .4s ease;
+}
+
+.popup-box{
+    width:450px;
+    max-width:90%;
+    background:white;
+    border-radius:30px;
+    padding:40px 30px;
+    text-align:center;
+    position:relative;
+    box-shadow:0 30px 80px rgba(0,0,0,.3);
+    animation:popupIn .6s cubic-bezier(.17,.67,.3,1.3);
+}
+
+.popup-icon{
+    width:85px;
+    height:85px;
+    margin:-80px auto 20px;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
+    font-size:35px;
+    background:linear-gradient(135deg,#6c5ce7,#ff4f9a);
+    box-shadow:0 10px 35px rgba(108,92,231,.5);
+    animation:bounce 2s infinite;
+}
+
+.popup-box h2{
+    font-size:28px;
+    margin-bottom:8px;
+    background:linear-gradient(90deg,#5c4ed4,#e64191);
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+.popup-box p{
+    color:#777;
+    font-size:14px;
+    margin-bottom:25px;
+}
+
+.close-popup{
+    cursor:pointer;
+}
+
+/* =========================
+   TOAST
+========================= */
+
+.toast{
+    position:fixed;
+    bottom:25px;
+    right:25px;
+    background:#22203d;
+    color:white;
+    padding:15px 22px;
+    border-radius:15px;
+    transform:translateY(100px);
+    opacity:0;
+    transition:.4s;
+    z-index:6000;
+    box-shadow:0 10px 30px rgba(0,0,0,.2);
+}
+
+.toast.show{
+    transform:translateY(0);
+    opacity:1;
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes popupIn{
+    from{
+        opacity:0;
+        transform:scale(.5) translateY(80px);
+    }
+    to{
+        opacity:1;
+        transform:scale(1) translateY(0);
+    }
+}
+
+@keyframes popupBg{
+    from{opacity:0;}
+    to{opacity:1;}
+}
+
+@keyframes float{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-15px);}
+}
+
+@keyframes bounce{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-8px);}
+}
+
+@keyframes slideUp{
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes progress{
+    from{width:0;}
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:1100px){
+
+    .cards{
+        grid-template-columns:repeat(2,1fr);
     }
 
-    * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      color: var(--ink);
-      background: var(--page);
-      font-family: "Nunito", Arial, sans-serif;
+    .actions{
+        grid-template-columns:repeat(2,1fr);
     }
 
-    .app {
-      display: grid;
-      grid-template-columns: 220px minmax(620px, 1fr) 350px;
-      min-height: 100vh;
+    .campus-grid{
+        grid-template-columns:1fr 1fr;
+    }
+}
+
+@media(max-width:750px){
+
+    .sidebar{
+        width:70px;
+        padding:20px 10px;
     }
 
-    /* Sidebar */
-    .sidebar {
-      position: sticky;
-      top: 0;
-      height: 100vh;
-      padding: 18px 12px;
-      overflow-y: auto;
-      color: white;
-      background: linear-gradient(165deg, #101a3d, #15366e 60%, #261d57);
+    .logo h2,
+    .nav-item span{
+        display:none;
     }
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin: 0 9px 25px;
-      font-size: 18px;
-      font-weight: 900;
-      letter-spacing: .4px;
+    .logo{
+        justify-content:center;
     }
 
-    .brand-icon {
-      display: grid;
-      width: 42px;
-      height: 42px;
-      place-items: center;
-      border: 2px solid #c8dbff;
-      border-radius: 13px;
-      color: #dbe8ff;
-      background: linear-gradient(135deg, #3266c6, #7f5ae9);
+    .nav-item{
+        justify-content:center;
+        padding:15px;
     }
 
-    .brand small {
-      display: block;
-      margin-top: 2px;
-      color: #b9c8e9;
-      font-size: 9px;
-      letter-spacing: 2px;
+    .main{
+        margin-left:70px;
+        padding:20px;
     }
 
-    .nav-link {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin: 4px 0;
-      padding: 10px 11px;
-      border-radius: 10px;
-      color: #e8efff;
-      font-size: 14px;
-      font-weight: 800;
-      text-decoration: none;
-      transition: .2s;
+    .topbar{
+        gap:10px;
     }
 
-    .nav-link i { width: 17px; color: #9cc2ff; }
-    .nav-link:hover, .nav-link.active {
-      color: white;
-      background: linear-gradient(100deg, #3976ee, #714de2);
-      box-shadow: 0 7px 16px rgba(29, 71, 188, .35);
+    .search{
+        width:100%;
     }
 
-    .nav-link.active i { color: white; }
-
-    /* Center content */
-    .main { padding: 0 22px 25px; }
-
-    .topbar {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      height: 72px;
+    .welcome{
+        padding:25px;
     }
 
-    .menu-icon {
-      color: var(--ink);
-      border: 0;
-      background: transparent;
-      font-size: 20px;
+    .welcome-art{
+        display:none;
     }
 
-    .search-box {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      width: min(340px, 52%);
-      padding: 10px 13px;
-      border-radius: 10px;
-      color: #8891a6;
-      background: #eef1f8;
+    .cards{
+        grid-template-columns:1fr;
     }
 
-    .search-box input {
-      width: 100%;
-      border: 0;
-      outline: 0;
-      color: var(--ink);
-      background: transparent;
+    .campus-grid{
+        grid-template-columns:1fr;
     }
 
-    .top-profile {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      margin-left: auto;
+    .actions{
+        grid-template-columns:1fr 1fr;
     }
+}
 
-    .bell { position: relative; font-size: 18px; }
-
-    .badge {
-      position: absolute;
-      top: -8px;
-      right: -9px;
-      display: grid;
-      width: 16px;
-      height: 16px;
-      place-items: center;
-      border-radius: 50%;
-      color: white;
-      background: #e74d5d;
-      font-size: 9px;
-      font-weight: 900;
-    }
-
-    .avatar {
-      display: grid;
-      width: 39px;
-      height: 39px;
-      place-items: center;
-      border-radius: 50%;
-      color: white;
-      background: linear-gradient(135deg, #ef8ab4, #5d68df);
-      font-size: 12px;
-      font-weight: 900;
-    }
-
-    .profile-name strong, .profile-name small { display: block; }
-    .profile-name strong { font-size: 12px; }
-    .profile-name small { color: var(--muted); font-size: 10px; }
-
-    .welcome h1 { margin: 5px 0; font-size: 24px; }
-    .welcome p { margin: 0 0 18px; color: var(--muted); }
-
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 13px;
-    }
-
-    .stat-card, .panel, .ask-card {
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      background: white;
-      box-shadow: 0 8px 20px rgba(47, 59, 113, .07);
-    }
-
-    .stat-card {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      min-height: 106px;
-      padding: 15px;
-    }
-
-    .stat-card:nth-child(1) { background: linear-gradient(135deg, #eaf4ff, white); }
-    .stat-card:nth-child(2) { background: linear-gradient(135deg, #ecfff3, white); }
-    .stat-card:nth-child(3) { background: linear-gradient(135deg, #fff5e6, white); }
-    .stat-card:nth-child(4) { background: linear-gradient(135deg, #f5edff, white); }
-
-    .stat-icon {
-      display: grid;
-      flex: 0 0 42px;
-      width: 42px;
-      height: 42px;
-      place-items: center;
-      border-radius: 13px;
-      font-size: 18px;
-    }
-
-    .stat-card:nth-child(1) .stat-icon { color: #3974ef; background: #d9eaff; }
-    .stat-card:nth-child(2) .stat-icon { color: #27aa66; background: #d9f9e5; }
-    .stat-card:nth-child(3) .stat-icon { color: #e39417; background: #ffebc8; }
-    .stat-card:nth-child(4) .stat-icon { color: #7b4bda; background: #ebddff; }
-
-    .stat-card strong, .stat-card span, .stat-card small { display: block; }
-    .stat-card strong { font-size: 19px; }
-    .stat-card span { margin-top: 2px; font-size: 11px; font-weight: 900; }
-    .stat-card small { margin-top: 4px; color: var(--muted); font-size: 9px; }
-
-    .top-grid {
-      display: grid;
-      grid-template-columns: 1fr 1.25fr;
-      gap: 13px;
-      margin-top: 14px;
-    }
-
-    .panel { padding: 15px; }
-
-    .panel-title {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-      margin-bottom: 12px;
-    }
-
-    .panel-title h2 {
-      margin: 0;
-      font-size: 15px;
-    }
-
-    .panel-title a {
-      color: var(--blue);
-      font-size: 11px;
-      font-weight: 900;
-      text-decoration: none;
-    }
-
-    .class-row {
-      display: grid;
-      grid-template-columns: 70px 1fr 62px;
-      padding: 9px 0;
-      border-bottom: 1px solid #eff1f6;
-      font-size: 11px;
-    }
-
-    .class-row:last-child { border-bottom: 0; }
-    .class-row time { color: #4c5878; font-weight: 900; }
-    .class-row span { color: var(--muted); text-align: right; }
-
-    .insight {
-      overflow: hidden;
-      background: linear-gradient(135deg, #f5efff, #eaf7ff);
-    }
-
-    .insight-content {
-      display: flex;
-      align-items: center;
-      min-height: 125px;
-    }
-
-    .insight ul {
-      z-index: 1;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-      font-size: 11px;
-      line-height: 2.6;
-      font-weight: 700;
-    }
-
-    .robot {
-      margin-left: auto;
-      padding-right: 3px;
-      font-size: 82px;
-      filter: drop-shadow(0 10px 8px rgba(76, 69, 183, .18));
-    }
-
-    .ask-card {
-      display: flex;
-      align-items: center;
-      gap: 11px;
-      margin-top: 14px;
-      padding: 12px 15px;
-      background: linear-gradient(100deg, white, #f2f4ff);
-    }
-
-    .ask-robot {
-      display: grid;
-      width: 44px;
-      height: 44px;
-      place-items: center;
-      border-radius: 12px;
-      background: #e4ebff;
-      font-size: 27px;
-    }
-
-    .ask-content { flex: 1; }
-    .ask-content strong { display: block; margin-bottom: 5px; font-size: 12px; }
-
-    .ask-input {
-      display: flex;
-      overflow: hidden;
-      border-radius: 9px;
-      background: #edf0f8;
-    }
-
-    .ask-input input {
-      flex: 1;
-      min-width: 0;
-      padding: 10px;
-      border: 0;
-      outline: 0;
-      background: transparent;
-      font-size: 11px;
-    }
-
-    .send-button {
-      width: 42px;
-      color: white;
-      border: 0;
-      background: linear-gradient(135deg, #4377ee, #8251e6);
-      cursor: pointer;
-    }
-
-    .bottom-grid {
-      display: grid;
-      grid-template-columns: 1.25fr 1fr 1fr;
-      gap: 13px;
-      margin-top: 14px;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 9px;
-      text-align: center;
-    }
-
-    th, td { padding: 8px 3px; border: 1px solid #e6eaf2; }
-    th { background: #eff5ff; }
-
-    .attendance-info {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .circle {
-      display: grid;
-      flex: 0 0 95px;
-      width: 95px;
-      height: 95px;
-      place-items: center;
-      border: 10px solid #2eb56d;
-      border-radius: 50%;
-      color: #19223c;
-      font-size: 21px;
-      font-weight: 900;
-    }
-
-    .attendance-info p {
-      margin: 9px 0;
-      color: #5e6981;
-      font-size: 10px;
-      font-weight: 700;
-    }
-
-    .attendance-info b { float: right; margin-left: 6px; color: var(--ink); }
-
-    .progress-row {
-      display: grid;
-      grid-template-columns: 1.2fr 1fr 28px;
-      gap: 6px;
-      align-items: center;
-      margin-top: 10px;
-      font-size: 9px;
-      font-weight: 800;
-    }
-
-    .progress {
-      height: 7px;
-      overflow: hidden;
-      border-radius: 9px;
-      background: #ecf0f5;
-    }
-
-    .progress b {
-      display: block;
-      height: 100%;
-      border-radius: inherit;
-      background: linear-gradient(90deg, #2eb46b, #6ed989);
-    }
-
-    .lost-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: 8px;
-      padding: 7px;
-      border-radius: 9px;
-      background: #f8f9fd;
-      font-size: 10px;
-    }
-
-    .lost-item strong, .lost-item small { display: block; }
-    .lost-item small { margin-top: 2px; color: var(--muted); }
-
-    /* AI chat */
-    .chat-column {
-      padding: 5px 12px 12px 0;
-      background: var(--page);
-    }
-
-    .chat-box {
-      display: flex;
-      flex-direction: column;
-      height: calc(100vh - 17px);
-      overflow: hidden;
-      border: 1px solid var(--border);
-      border-radius: 17px;
-      background: white;
-      box-shadow: 0 8px 20px rgba(47, 59, 113, .07);
-    }
-
-    .chat-header {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      padding: 14px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .chat-header .robot-small { font-size: 35px; }
-    .chat-header h2 { margin: 0; font-size: 16px; }
-    .chat-header small { color: var(--green); font-weight: 800; }
-
-    .chat-close {
-      margin-left: auto;
-      border: 0;
-      background: transparent;
-      color: var(--ink);
-      font-size: 17px;
-    }
-
-    .messages {
-      display: flex;
-      flex: 1;
-      flex-direction: column;
-      gap: 11px;
-      padding: 14px;
-      overflow-y: auto;
-    }
-
-    .message {
-      max-width: 85%;
-      padding: 10px 11px;
-      border-radius: 11px;
-      font-size: 11px;
-      line-height: 1.5;
-    }
-
-    .bot-message {
-      align-self: flex-start;
-      border: 1px solid #e1e6f0;
-      border-top-left-radius: 2px;
-      background: #f8f9fd;
-    }
-
-    .user-message {
-      align-self: flex-end;
-      border-bottom-right-radius: 2px;
-      color: white;
-      background: linear-gradient(135deg, #4177ee, #8753e9);
-    }
-
-    .chat-form {
-      display: flex;
-      gap: 7px;
-      padding: 10px;
-      border-top: 1px solid var(--border);
-    }
-
-    .chat-form input {
-      flex: 1;
-      min-width: 0;
-      padding: 10px;
-      border: 1px solid #e0e5ef;
-      border-radius: 9px;
-      outline: 0;
-      font-size: 11px;
-    }
-
-    .chat-form button {
-      width: 39px;
-      border: 0;
-      border-radius: 9px;
-      color: white;
-      background: linear-gradient(135deg, #4177ee, #8753e9);
-      cursor: pointer;
-    }
-
-    @media (max-width: 1280px) {
-      .app { grid-template-columns: 210px 1fr; }
-      .chat-column { display: none; }
-    }
-
-    @media (max-width: 960px) {
-      .stats { grid-template-columns: repeat(2, 1fr); }
-      .bottom-grid { grid-template-columns: 1fr 1fr; }
-      .bottom-grid .panel:first-child { grid-column: 1 / -1; }
-    }
-
-    @media (max-width: 680px) {
-      .app { display: block; }
-      .sidebar { display: none; }
-      .main { padding: 0 13px 20px; }
-      .topbar { height: 62px; }
-      .search-box { width: 75%; }
-      .profile-name { display: none; }
-      .stats, .top-grid, .bottom-grid { grid-template-columns: 1fr; }
-      .bottom-grid .panel:first-child { grid-column: auto; }
-      .robot { font-size: 62px; }
-    }
-  </style>
+</style>
 </head>
 
 <body>
-  <div class="app">
-    <aside class="sidebar">
-      <div class="brand">
-        <span class="brand-icon"><i class="fa-solid fa-shield-halved"></i></span>
-        <span>COLLEGE AI<small>ASSISTANT</small></span>
-      </div>
 
-      <a class="nav-link active" href="#"><i class="fa-solid fa-house"></i>Dashboard</a>
-      <a class="nav-link" href="#"><i class="fa-solid fa-robot"></i>AI Assistant</a>
-      <a class="nav-link" href="#"><i class="fa-solid fa-book-open"></i>Academics</a>
-      <a class="nav-link" href="#"><i class="fa-solid fa-chart-column"></i>Attendance</a>
-      <a class="nav-link" href="#"><i class="fa-solid fa-calendar-days"></i>Timetable</a>
-      <a class="nav-link" href="#"><i class="fa-solid fa-file-pen"></i>Exams</a>
-      <a class="nav-link" href="#"><i class="fa-solid fa-trophy"></i>Results</a>
-      <a class="nav-link" href="#"><i class="fa-solid fa-briefcase"></i>Placement</a>
-      <a class="nav-link" href="#"><i class="fa-solid fa-users"></i>Faculty</a>
-      <a class="nav-link" href="#"><i class="fa-solid fa-party-horn"></i>Events</a>
-      <a class="nav-link" href="#"><i class="fa-solid fa-bell"></i>Notifications</a>
-      <a class="nav-link" href="#"><i class="fa-solid fa-magnifying-glass"></i>Lost & Found</a>
-      <a class="nav-link" href="#"><i class="fa-solid fa-gear"></i>Settings</a>
-    </aside>
+<!-- =========================
+     SIDEBAR
+========================= -->
 
-    <main class="main">
-      <header class="topbar">
-        <button class="menu-icon"><i class="fa-solid fa-bars"></i></button>
+<aside class="sidebar">
 
-        <label class="search-box">
-          <i class="fa-solid fa-magnifying-glass"></i>
-          <input type="search" placeholder="Search anything...">
-        </label>
-
-        <div class="top-profile">
-          <div class="bell"><i class="fa-regular fa-bell"></i><span class="badge">3</span></div>
-          <div class="avatar">PN</div>
-          <div class="profile-name"><strong>Priya N</strong><small>BCA Student</small></div>
+    <div class="logo">
+        <div class="logo-icon">
+            <i class="fa-solid fa-graduation-cap"></i>
         </div>
-      </header>
+        <h2>CampusConnect</h2>
+    </div>
 
-      <section class="welcome">
-        <h1>Good Evening, Priya! 👋</h1>
-        <p>Here’s your college activity for today.</p>
-      </section>
+    <div class="nav-item active" onclick="showToast('Dashboard opened')">
+        <i class="fa-solid fa-house"></i>
+        <span>Dashboard</span>
+    </div>
 
-      <section class="stats">
-        <article class="stat-card">
-          <div class="stat-icon"><i class="fa-solid fa-chart-pie"></i></div>
-          <div><strong>82%</strong><span>Attendance</span><small>This Month</small></div>
-        </article>
+    <div class="nav-item" onclick="showToast('My Courses selected')">
+        <i class="fa-solid fa-book-open"></i>
+        <span>My Courses</span>
+    </div>
 
-        <article class="stat-card">
-          <div class="stat-icon"><i class="fa-solid fa-calendar-check"></i></div>
-          <div><strong>4</strong><span>Classes</span><small>Today</small></div>
-        </article>
+    <div class="nav-item" onclick="showToast('Timetable selected')">
+        <i class="fa-solid fa-calendar-days"></i>
+        <span>Timetable</span>
+    </div>
 
-        <article class="stat-card">
-          <div class="stat-icon"><i class="fa-solid fa-file-pen"></i></div>
-          <div><strong>5 Days</strong><span>To Next Exam</span><small>DBMS</small></div>
-        </article>
+    <div class="nav-item" onclick="showToast('Assignments selected')">
+        <i class="fa-solid fa-file-lines"></i>
+        <span>Assignments</span>
+    </div>
 
-        <article class="stat-card">
-          <div class="stat-icon"><i class="fa-solid fa-briefcase"></i></div>
-          <div><strong>78%</strong><span>Placement</span><small>Readiness</small></div>
-        </article>
-      </section>
+    <div class="nav-item" onclick="showToast('Attendance selected')">
+        <i class="fa-solid fa-chart-pie"></i>
+        <span>Attendance</span>
+    </div>
 
-      <section class="top-grid">
-        <article class="panel">
-          <div class="panel-title"><h2>🗓️ Today's Classes</h2><a href="#">View Timetable →</a></div>
-          <div class="class-row"><time>09:00 AM</time><b>Data Structures</b><span>Room 204</span></div>
-          <div class="class-row"><time>11:00 AM</time><b>Operating Systems</b><span>Lab 2</span></div>
-          <div class="class-row"><time>02:00 PM</time><b>Artificial Intelligence</b><span>Lab 1</span></div>
-          <div class="class-row"><time>04:00 PM</time><b>DBMS</b><span>Room 301</span></div>
-        </article>
+    <div class="nav-item" onclick="showToast('Campus selected')">
+        <i class="fa-solid fa-building-columns"></i>
+        <span>Campus</span>
+    </div>
 
-        <article class="panel insight">
-          <div class="panel-title"><h2>🤖 AI Insights</h2><a href="#">● Live</a></div>
-          <div class="insight-content">
-            <ul>
-              <li>⚠️ Your attendance is close to 75%.</li>
-              <li>📚 Your DBMS exam is in 5 days.</li>
-              <li>💼 Try today’s placement aptitude test.</li>
-            </ul>
-            <div class="robot">🤖</div>
-          </div>
-        </article>
-      </section>
+    <div class="nav-item" onclick="showToast('Settings opened')">
+        <i class="fa-solid fa-gear"></i>
+        <span>Settings</span>
+    </div>
 
-      <section class="ask-card">
-        <div class="ask-robot">🤖</div>
-        <div class="ask-content">
-          <strong>Ask College AI</strong>
-          <div class="ask-input">
-            <input id="quick-question" placeholder="Ask anything about your college...">
-            <button class="send-button" id="quick-send"><i class="fa-solid fa-paper-plane"></i></button>
-          </div>
+</aside>
+
+
+<!-- =========================
+     MAIN
+========================= -->
+
+<main class="main">
+
+    <!-- TOP BAR -->
+
+    <div class="topbar">
+
+        <div class="search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" placeholder="Search anything...">
         </div>
-      </section>
 
-      <section class="bottom-grid">
-        <article class="panel">
-          <div class="panel-title"><h2>📅 Timetable</h2><a href="#">This Week</a></div>
-          <table>
-            <tr><th>Time</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th></tr>
-            <tr><th>09:00</th><td>DS</td><td>OS</td><td>AI</td><td>DS</td><td>OS</td></tr>
-            <tr><th>10:00</th><td>DBMS</td><td>AI</td><td>DS</td><td>DBMS</td><td>AI</td></tr>
-            <tr><th>11:00</th><td>OS</td><td>DS</td><td>DBMS</td><td>OS</td><td>DS</td></tr>
-            <tr><th>02:00</th><td>AI Lab</td><td>DS Lab</td><td>OS Lab</td><td>AI Lab</td><td>DBMS Lab</td></tr>
-            <tr><th>04:00</th><td>Mentor</td><td>-</td><td>Mentor</td><td>-</td><td>Mentor</td></tr>
-          </table>
-        </article>
+        <div class="profile">
 
-        <article class="panel">
-          <div class="panel-title"><h2>✅ Attendance</h2><a href="#">This Month</a></div>
-          <div class="attendance-info">
-            <div class="circle">82%</div>
-            <div>
-              <p>🟢 Present Days <b>41</b></p>
-              <p>🟡 Total Days <b>50</b></p>
-              <p>🔴 Absent Days <b>9</b></p>
+            <div class="notification"
+                 onclick="showToast('You have 3 new notifications')">
+                <i class="fa-regular fa-bell"></i>
             </div>
-          </div>
 
-          <div class="progress-row"><span>Data Structures</span><div class="progress"><b style="width:85%"></b></div><span>85%</span></div>
-          <div class="progress-row"><span>Operating Systems</span><div class="progress"><b style="width:80%"></b></div><span>80%</span></div>
-          <div class="progress-row"><span>DBMS</span><div class="progress"><b style="width:78%; background:#edae33"></b></div><span>78%</span></div>
-        </article>
+            <div class="avatar" id="avatar">
+                PB
+            </div>
 
-        <article class="panel">
-          <div class="panel-title"><h2>🔎 Lost & Found</h2><a href="#">Explore →</a></div>
-          <div class="lost-item">🎒 <div><strong>Black Backpack</strong><small>Near Library • Lost</small></div></div>
-          <div class="lost-item">💧 <div><strong>Water Bottle</strong><small>Block B • Found</small></div></div>
-          <div class="lost-item">🪪 <div><strong>ID Card</strong><small>Auditorium • Lost</small></div></div>
-          <div class="lost-item">🎧 <div><strong>Earphones</strong><small>Ground • Found</small></div></div>
-        </article>
-      </section>
-    </main>
-
-    <aside class="chat-column">
-      <section class="chat-box">
-        <header class="chat-header">
-          <span class="robot-small">🤖</span>
-          <div><h2>AI Assistant</h2><small>● Online</small></div>
-          <button class="chat-close"><i class="fa-solid fa-xmark"></i></button>
-        </header>
-
-        <div class="messages" id="messages">
-          <div class="message user-message">Tell me about my attendance.</div>
-          <div class="message bot-message">📊 Here is your attendance summary:<br>• Overall Attendance: <b>82%</b><br>• This Month: 82%<br>• Required: 75%</div>
-          <div class="message user-message">When is my next exam?</div>
-          <div class="message bot-message">📝 Your next exam is <b>DBMS - in 5 days</b>.<br>Date: 24 May 2025</div>
-          <div class="message user-message">Show today's timetable.</div>
-          <div class="message bot-message">🗓️ 09:00 AM - Data Structures<br>11:00 AM - Operating Systems<br>02:00 PM - AI Lab</div>
         </div>
 
-        <form class="chat-form" id="chat-form">
-          <input id="chat-text" placeholder="Type your message...">
-          <button><i class="fa-solid fa-paper-plane"></i></button>
-        </form>
-      </section>
-    </aside>
-  </div>
+    </div>
 
-  <script>
-    const chatForm = document.getElementById("chat-form");
-    const chatText = document.getElementById("chat-text");
-    const messages = document.getElementById("messages");
 
-    function addMessage(text, type) {
-      const item = document.createElement("div");
-      item.className = "message " + type + "-message";
-      item.textContent = text;
-      messages.appendChild(item);
-      messages.scrollTop = messages.scrollHeight;
+    <!-- WELCOME -->
+
+    <section class="welcome">
+
+        <div>
+            <h1>Welcome back, <span id="welcomeName">Priya</span> 👋</h1>
+
+            <p>
+                Ready to make today productive?
+                Here's what's happening on your campus.
+            </p>
+
+            <br>
+
+            <button class="glow-btn"
+                    onclick="showToast('Have a great day! 🚀')">
+                Explore Dashboard
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </div>
+
+        <div class="welcome-art">
+            🎓
+        </div>
+
+    </section>
+
+
+    <!-- STATISTICS -->
+
+    <div class="section-title">
+        <h2>Today's Overview</h2>
+        <span>Updated just now</span>
+    </div>
+
+    <section class="cards">
+
+        <div class="card blue">
+            <div class="card-icon">
+                <i class="fa-solid fa-book"></i>
+            </div>
+
+            <h3>08</h3>
+            <p>Active Courses</p>
+
+            <div class="progress">
+                <span></span>
+            </div>
+        </div>
+
+
+        <div class="card pink">
+            <div class="card-icon">
+                <i class="fa-solid fa-list-check"></i>
+            </div>
+
+            <h3>05</h3>
+            <p>Pending Assignments</p>
+
+            <div class="progress">
+                <span></span>
+            </div>
+        </div>
+
+
+        <div class="card green">
+            <div class="card-icon">
+                <i class="fa-solid fa-user-check"></i>
+            </div>
+
+            <h3>92%</h3>
+            <p>Attendance</p>
+
+            <div class="progress">
+                <span></span>
+            </div>
+        </div>
+
+
+        <div class="card orange">
+            <div class="card-icon">
+                <i class="fa-solid fa-award"></i>
+            </div>
+
+            <h3>8.6</h3>
+            <p>Current CGPA</p>
+
+            <div class="progress">
+                <span></span>
+            </div>
+        </div>
+
+    </section>
+
+
+    <!-- TIMETABLE -->
+
+    <div class="section-title">
+        <h2>📅 Today's Timetable</h2>
+
+        <button class="glow-btn"
+                onclick="showToast('Full timetable opened')">
+            View Full
+        </button>
+    </div>
+
+
+    <section class="timetable">
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>Time</th>
+                    <th>Monday</th>
+                    <th>Tuesday</th>
+                    <th>Wednesday</th>
+                    <th>Thursday</th>
+                    <th>Friday</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tr>
+
+                    <td class="time">
+                        9:00 - 10:00
+                    </td>
+
+                    <td class="subject1">
+                        <i class="fa-solid fa-code"></i><br>
+                        Web Technology
+                    </td>
+
+                    <td class="subject2">
+                        <i class="fa-solid fa-database"></i><br>
+                        DBMS
+                    </td>
+
+                    <td class="subject3">
+                        <i class="fa-solid fa-network-wired"></i><br>
+                        Networking
+                    </td>
+
+                    <td class="subject4">
+                        <i class="fa-solid fa-laptop-code"></i><br>
+                        Programming
+                    </td>
+
+                    <td class="subject5">
+                        <i class="fa-solid fa-brain"></i><br>
+                        AI & ML
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td class="time">
+                        10:00 - 11:00
+                    </td>
+
+                    <td class="subject3">
+                        Mathematics
+                    </td>
+
+                    <td class="subject4">
+                        Programming
+                    </td>
+
+                    <td class="subject1">
+                        Web Technology
+                    </td>
+
+                    <td class="subject5">
+                        AI & ML
+                    </td>
+
+                    <td class="subject2">
+                        DBMS
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td class="time">
+                        11:00 - 11:30
+                    </td>
+
+                    <td colspan="5" class="break">
+                        ☕ BREAK TIME
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td class="time">
+                        11:30 - 12:30
+                    </td>
+
+                    <td class="subject5">
+                        AI & ML
+                    </td>
+
+                    <td class="subject1">
+                        Web Technology
+                    </td>
+
+                    <td class="subject4">
+                        Programming
+                    </td>
+
+                    <td class="subject3">
+                        Networking
+                    </td>
+
+                    <td class="subject1">
+                        Web Technology
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td class="time">
+                        12:30 - 1:30
+                    </td>
+
+                    <td class="subject2">
+                        DBMS
+                    </td>
+
+                    <td class="subject3">
+                        Networking
+                    </td>
+
+                    <td class="subject5">
+                        AI & ML
+                    </td>
+
+                    <td class="subject1">
+                        Web Technology
+                    </td>
+
+                    <td class="subject4">
+                        Programming
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </section>
+
+
+    <!-- QUICK ACTIONS -->
+
+    <div class="section-title">
+        <h2>⚡ Quick Actions</h2>
+    </div>
+
+    <section class="actions">
+
+        <div class="action"
+             onclick="showToast('Opening assignments...')">
+            <i class="fa-solid fa-file-circle-check"></i>
+            <span>Submit Assignment</span>
+        </div>
+
+        <div class="action"
+             onclick="showToast('Opening attendance...')">
+            <i class="fa-solid fa-chart-simple"></i>
+            <span>Check Attendance</span>
+        </div>
+
+        <div class="action"
+             onclick="showToast('Opening library...')">
+            <i class="fa-solid fa-book-bookmark"></i>
+            <span>Library</span>
+        </div>
+
+        <div class="action"
+             onclick="showToast('Opening notices...')">
+            <i class="fa-solid fa-bullhorn"></i>
+            <span>Campus Notices</span>
+        </div>
+
+    </section>
+
+
+    <!-- CAMPUS -->
+
+    <div class="section-title">
+        <h2>🏫 Explore Campus</h2>
+        <span>Discover your campus</span>
+    </div>
+
+
+    <section class="campus-grid">
+
+        <div class="campus-card"
+             onclick="showToast('Library selected')">
+
+            <img
+            src="https://images.unsplash.com/photo-1568667256549-094345857637?auto=format&fit=crop&w=1000&q=80"
+            alt="College Library">
+
+            <div class="campus-overlay">
+                <h3>📚 Central Library</h3>
+                <p>Books • Digital Resources • Study Spaces</p>
+            </div>
+
+        </div>
+
+
+        <div class="campus-card"
+             onclick="showToast('Campus ground selected')">
+
+            <img
+            src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=1000&q=80"
+            alt="Campus Ground">
+
+            <div class="campus-overlay">
+                <h3>⚽ Campus Ground</h3>
+                <p>Sports • Events • Student Activities</p>
+            </div>
+
+        </div>
+
+
+        <div class="campus-card"
+             onclick="showToast('Computer lab selected')">
+
+            <img
+            src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1000&q=80"
+            alt="Computer Laboratory">
+
+            <div class="campus-overlay">
+                <h3>💻 Computer Lab</h3>
+                <p>Programming • Projects • Practical Sessions</p>
+            </div>
+
+        </div>
+
+
+        <div class="campus-card"
+             onclick="showToast('Classroom selected')">
+
+            <img
+            src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=1000&q=80"
+            alt="College Classroom">
+
+            <div class="campus-overlay">
+                <h3>🎓 Smart Classroom</h3>
+                <p>Interactive Learning • Presentations</p>
+            </div>
+
+        </div>
+
+
+        <div class="campus-card"
+             onclick="showToast('Student area selected')">
+
+            <img
+            src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1000&q=80"
+            alt="University Campus">
+
+            <div class="campus-overlay">
+                <h3>🌳 Student Campus</h3>
+                <p>Relax • Meet Friends • Campus Life</p>
+            </div>
+
+        </div>
+
+
+        <div class="campus-card"
+             onclick="showToast('Innovation lab selected')">
+
+            <img
+            src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1000&q=80"
+            alt="Technology Lab">
+
+            <div class="campus-overlay">
+                <h3>🔬 Innovation Lab</h3>
+                <p>Research • Technology • Innovation</p>
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- =========================
+     WELCOME POPUP
+========================= -->
+
+<div class="popup" id="welcomePopup">
+
+    <div class="popup-box">
+
+        <div class="popup-icon">
+            <i class="fa-solid fa-graduation-cap"></i>
+        </div>
+
+        <h2>
+            Welcome, <span id="popupName">Priya</span>! 🎉
+        </h2>
+
+        <p>
+            We're happy to see you again.
+            Your campus journey starts here!
+        </p>
+
+        <button class="glow-btn close-popup"
+                onclick="closePopup()">
+            Let's Go 🚀
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     TOAST
+========================= -->
+
+<div class="toast" id="toast">
+    <i class="fa-solid fa-circle-check"></i>
+    <span id="toastText">Done!</span>
+</div>
+
+
+<script>
+
+/* =====================================
+   USER NAME
+   =====================================
+
+   Change this name or connect it to
+   your login system/localStorage.
+*/
+
+let userName = localStorage.getItem("username") || "Priya";
+
+document.getElementById("welcomeName").textContent = userName;
+document.getElementById("popupName").textContent = userName;
+
+
+/* =====================================
+   AVATAR INITIALS
+===================================== */
+
+function getInitials(name){
+
+    let words = name.trim().split(" ");
+
+    if(words.length === 1){
+        return words[0].substring(0,2).toUpperCase();
     }
 
-    function sendMessage(text) {
-      if (!text.trim()) return;
+    return (
+        words[0][0] +
+        words[words.length - 1][0]
+    ).toUpperCase();
+}
 
-      addMessage(text, "user");
+document.getElementById("avatar").textContent =
+    getInitials(userName);
 
-      setTimeout(() => {
-        addMessage("I am using dashboard demo data now. Database and real AI answers will be connected later. 🤖", "bot");
-      }, 500);
+
+/* =====================================
+   POPUP
+===================================== */
+
+function closePopup(){
+
+    const popup =
+        document.getElementById("welcomePopup");
+
+    popup.style.opacity = "0";
+
+    setTimeout(function(){
+
+        popup.style.display = "none";
+
+    },400);
+}
+
+
+/* =====================================
+   AUTO CLOSE POPUP
+===================================== */
+
+setTimeout(function(){
+
+    closePopup();
+
+},7000);
+
+
+/* =====================================
+   TOAST MESSAGE
+===================================== */
+
+let toastTimer;
+
+function showToast(message){
+
+    const toast =
+        document.getElementById("toast");
+
+    const text =
+        document.getElementById("toastText");
+
+    text.textContent = message;
+
+    toast.classList.add("show");
+
+    clearTimeout(toastTimer);
+
+    toastTimer = setTimeout(function(){
+
+        toast.classList.remove("show");
+
+    },2500);
+}
+
+
+/* =====================================
+   SEARCH
+===================================== */
+
+const searchInput =
+    document.querySelector(".search input");
+
+searchInput.addEventListener("keyup", function(){
+
+    if(this.value.length > 0){
+
+        showToast(
+            "Searching for: " + this.value
+        );
+
     }
 
-    chatForm.addEventListener("submit", function (event) {
-      event.preventDefault();
-      sendMessage(chatText.value);
-      chatText.value = "";
-    });
+});
 
-    document.getElementById("quick-send").addEventListener("click", function () {
-      const question = document.getElementById("quick-question");
-      sendMessage(question.value);
-      question.value = "";
-    });
-  </script>
+
+/* =====================================
+   ESCAPE KEY CLOSE POPUP
+===================================== */
+
+document.addEventListener("keydown", function(e){
+
+    if(e.key === "Escape"){
+
+        closePopup();
+
+    }
+
+});
+
+</script>
+
 </body>
 </html>
->>>>>>> 6f3d7bf0342972f54d8be04ee74aed6ebc24f38f
+```
