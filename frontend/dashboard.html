@@ -1,1447 +1,397 @@
-```html
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>CampusConnect Dashboard</title>
+```
+<title>CampusConnect | Student Dashboard</title>
 
-<!-- Google Font -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-<!-- Font Awesome Icons -->
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+>
 
-<style>
+<link rel="stylesheet" href="style.css">
+```
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-html{
-    scroll-behavior:smooth;
-}
-
-body{
-    font-family:'Poppins',sans-serif;
-    background:#f5f7ff;
-    color:#222;
-    overflow-x:hidden;
-}
-
-/* =========================
-   ANIMATED BACKGROUND
-========================= */
-
-body::before{
-    content:"";
-    position:fixed;
-    width:400px;
-    height:400px;
-    background:rgba(108,99,255,.13);
-    border-radius:50%;
-    filter:blur(80px);
-    top:-150px;
-    left:-150px;
-    z-index:-1;
-}
-
-body::after{
-    content:"";
-    position:fixed;
-    width:350px;
-    height:350px;
-    background:rgba(255,80,150,.10);
-    border-radius:50%;
-    filter:blur(80px);
-    bottom:-120px;
-    right:-100px;
-    z-index:-1;
-}
-
-/* =========================
-   SIDEBAR
-========================= */
-
-.sidebar{
-    position:fixed;
-    left:0;
-    top:0;
-    width:250px;
-    height:100vh;
-    background:linear-gradient(180deg,#15152f,#25245a,#3b2e78);
-    color:white;
-    padding:25px 18px;
-    z-index:1000;
-    box-shadow:5px 0 30px rgba(0,0,0,.12);
-}
-
-.logo{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    margin-bottom:35px;
-    padding:0 10px;
-}
-
-.logo-icon{
-    width:45px;
-    height:45px;
-    border-radius:14px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:linear-gradient(135deg,#7c5cff,#ff4fa3);
-    box-shadow:0 0 25px rgba(124,92,255,.6);
-    font-size:21px;
-}
-
-.logo h2{
-    font-size:20px;
-    font-weight:700;
-}
-
-.nav-item{
-    display:flex;
-    align-items:center;
-    gap:14px;
-    padding:14px 16px;
-    margin:7px 0;
-    border-radius:13px;
-    color:#dcdcf5;
-    cursor:pointer;
-    transition:.3s;
-}
-
-.nav-item i{
-    width:22px;
-    font-size:17px;
-}
-
-.nav-item:hover,
-.nav-item.active{
-    background:linear-gradient(90deg,#6c5ce7,#9b59ff);
-    color:white;
-    transform:translateX(5px);
-    box-shadow:0 8px 25px rgba(108,92,231,.35);
-}
-
-/* =========================
-   MAIN
-========================= */
-
-.main{
-    margin-left:250px;
-    padding:25px 35px 50px;
-}
-
-/* =========================
-   TOPBAR
-========================= */
-
-.topbar{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:30px;
-}
-
-.search{
-    width:350px;
-    background:white;
-    border-radius:15px;
-    padding:12px 18px;
-    display:flex;
-    align-items:center;
-    gap:12px;
-    box-shadow:0 8px 30px rgba(40,40,90,.07);
-}
-
-.search input{
-    border:0;
-    outline:0;
-    width:100%;
-    font-family:inherit;
-    font-size:14px;
-}
-
-.profile{
-    display:flex;
-    align-items:center;
-    gap:12px;
-}
-
-.notification{
-    width:43px;
-    height:43px;
-    border-radius:13px;
-    background:white;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    cursor:pointer;
-    position:relative;
-    box-shadow:0 8px 25px rgba(40,40,90,.08);
-}
-
-.notification::after{
-    content:"";
-    width:8px;
-    height:8px;
-    background:#ff4f7b;
-    border-radius:50%;
-    position:absolute;
-    top:8px;
-    right:9px;
-}
-
-.avatar{
-    width:45px;
-    height:45px;
-    border-radius:50%;
-    background:linear-gradient(135deg,#6c5ce7,#ff4fa3);
-    color:white;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-weight:700;
-}
-
-/* =========================
-   WELCOME
-========================= */
-
-.welcome{
-    background:linear-gradient(135deg,#6457e9,#8f4de8,#e44f9c);
-    border-radius:25px;
-    padding:35px;
-    color:white;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    overflow:hidden;
-    position:relative;
-    box-shadow:0 20px 45px rgba(105,83,220,.3);
-    animation:slideUp .7s ease;
-}
-
-.welcome::before{
-    content:"";
-    position:absolute;
-    width:250px;
-    height:250px;
-    border:45px solid rgba(255,255,255,.08);
-    border-radius:50%;
-    right:100px;
-    top:-100px;
-}
-
-.welcome::after{
-    content:"";
-    position:absolute;
-    width:180px;
-    height:180px;
-    border:30px solid rgba(255,255,255,.07);
-    border-radius:50%;
-    right:-30px;
-    bottom:-80px;
-}
-
-.welcome h1{
-    font-size:30px;
-    margin-bottom:8px;
-}
-
-.welcome p{
-    opacity:.9;
-    font-size:14px;
-}
-
-.welcome-art{
-    font-size:90px;
-    opacity:.9;
-    animation:float 3s ease-in-out infinite;
-    margin-right:50px;
-}
-
-/* =========================
-   SECTION
-========================= */
-
-.section-title{
-    margin:35px 0 18px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-
-.section-title h2{
-    font-size:21px;
-}
-
-.section-title span{
-    color:#777;
-    font-size:13px;
-}
-
-/* =========================
-   CARDS
-========================= */
-
-.cards{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:20px;
-}
-
-.card{
-    background:white;
-    padding:23px;
-    border-radius:20px;
-    box-shadow:0 10px 30px rgba(38,40,80,.07);
-    transition:.35s;
-    position:relative;
-    overflow:hidden;
-    cursor:pointer;
-    animation:fadeIn .7s ease;
-}
-
-.card:hover{
-    transform:translateY(-9px);
-    box-shadow:0 20px 40px rgba(40,40,90,.15);
-}
-
-.card::after{
-    content:"";
-    position:absolute;
-    width:90px;
-    height:90px;
-    border-radius:50%;
-    right:-35px;
-    top:-35px;
-    opacity:.12;
-}
-
-.card.blue::after{background:#3498db;}
-.card.pink::after{background:#ff4f91;}
-.card.green::after{background:#18b77a;}
-.card.orange::after{background:#ff9f43;}
-
-.card-icon{
-    width:52px;
-    height:52px;
-    border-radius:16px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:22px;
-    margin-bottom:17px;
-}
-
-.blue .card-icon{
-    color:#2788dc;
-    background:#e7f3ff;
-}
-
-.pink .card-icon{
-    color:#f13e82;
-    background:#ffe9f1;
-}
-
-.green .card-icon{
-    color:#12a76e;
-    background:#e4fff4;
-}
-
-.orange .card-icon{
-    color:#ee8c22;
-    background:#fff2df;
-}
-
-.card h3{
-    font-size:27px;
-    margin-bottom:3px;
-}
-
-.card p{
-    color:#888;
-    font-size:13px;
-}
-
-.progress{
-    height:7px;
-    background:#eee;
-    border-radius:20px;
-    margin-top:16px;
-    overflow:hidden;
-}
-
-.progress span{
-    display:block;
-    height:100%;
-    border-radius:20px;
-    animation:progress 1.5s ease;
-}
-
-.blue .progress span{width:75%;background:#3498db;}
-.pink .progress span{width:60%;background:#ff4f91;}
-.green .progress span{width:85%;background:#18b77a;}
-.orange .progress span{width:70%;background:#ff9f43;}
-
-/* =========================
-   TIMETABLE
-========================= */
-
-.timetable{
-    background:white;
-    border-radius:22px;
-    padding:22px;
-    box-shadow:0 10px 35px rgba(40,40,90,.07);
-    overflow-x:auto;
-}
-
-table{
-    width:100%;
-    border-collapse:separate;
-    border-spacing:7px;
-    min-width:750px;
-}
-
-th{
-    padding:13px;
-    background:#f1efff;
-    color:#5549b7;
-    border-radius:10px;
-    font-size:13px;
-}
-
-td{
-    padding:15px 10px;
-    text-align:center;
-    border-radius:12px;
-    font-size:12px;
-    font-weight:500;
-    transition:.25s;
-}
-
-td:hover{
-    transform:scale(1.04);
-    box-shadow:0 5px 15px rgba(0,0,0,.1);
-}
-
-.time{
-    background:#f5f5f7;
-    color:#666;
-}
-
-.subject1{background:#e5f1ff;color:#2176c7;}
-.subject2{background:#ffe8f0;color:#dc3971;}
-.subject3{background:#e5fff3;color:#139768;}
-.subject4{background:#fff1dd;color:#db831e;}
-.subject5{background:#eee9ff;color:#6852ca;}
-.break{background:#f4f4f4;color:#999;}
-
-/* =========================
-   CAMPUS
-========================= */
-
-.campus-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:20px;
-}
-
-.campus-card{
-    height:230px;
-    border-radius:22px;
-    overflow:hidden;
-    position:relative;
-    cursor:pointer;
-    box-shadow:0 10px 30px rgba(0,0,0,.1);
-}
-
-.campus-card img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    transition:.6s;
-}
-
-.campus-card:hover img{
-    transform:scale(1.1);
-}
-
-.campus-overlay{
-    position:absolute;
-    left:0;
-    right:0;
-    bottom:0;
-    padding:25px 20px 18px;
-    color:white;
-    background:linear-gradient(transparent,rgba(0,0,0,.85));
-}
-
-.campus-overlay h3{
-    font-size:19px;
-}
-
-.campus-overlay p{
-    font-size:12px;
-    opacity:.85;
-}
-
-/* =========================
-   QUICK ACTIONS
-========================= */
-
-.actions{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:18px;
-}
-
-.action{
-    background:white;
-    border-radius:18px;
-    padding:20px;
-    text-align:center;
-    box-shadow:0 8px 25px rgba(30,30,80,.07);
-    cursor:pointer;
-    transition:.3s;
-}
-
-.action:hover{
-    transform:translateY(-6px);
-    box-shadow:0 15px 30px rgba(70,50,160,.15);
-}
-
-.action i{
-    font-size:28px;
-    margin-bottom:10px;
-    display:block;
-}
-
-.action:nth-child(1) i{color:#6c5ce7;}
-.action:nth-child(2) i{color:#ff4f91;}
-.action:nth-child(3) i{color:#18b77a;}
-.action:nth-child(4) i{color:#ff9f43;}
-
-.action span{
-    font-size:13px;
-    font-weight:600;
-}
-
-/* =========================
-   GLOW BUTTON
-========================= */
-
-.glow-btn{
-    border:none;
-    outline:none;
-    padding:13px 22px;
-    border-radius:30px;
-    background:linear-gradient(90deg,#6c5ce7,#ff4f9a);
-    color:white;
-    font-family:inherit;
-    font-weight:600;
-    cursor:pointer;
-    box-shadow:0 0 10px rgba(108,92,231,.5),
-               0 0 25px rgba(255,79,154,.3);
-    transition:.3s;
-}
-
-.glow-btn:hover{
-    transform:translateY(-3px) scale(1.03);
-    box-shadow:0 0 15px rgba(108,92,231,.8),
-               0 0 40px rgba(255,79,154,.5);
-}
-
-/* =========================
-   WELCOME POPUP
-========================= */
-
-.popup{
-    position:fixed;
-    inset:0;
-    background:rgba(16,15,40,.7);
-    backdrop-filter:blur(8px);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    z-index:5000;
-    animation:popupBg .4s ease;
-}
-
-.popup-box{
-    width:450px;
-    max-width:90%;
-    background:white;
-    border-radius:30px;
-    padding:40px 30px;
-    text-align:center;
-    position:relative;
-    box-shadow:0 30px 80px rgba(0,0,0,.3);
-    animation:popupIn .6s cubic-bezier(.17,.67,.3,1.3);
-}
-
-.popup-icon{
-    width:85px;
-    height:85px;
-    margin:-80px auto 20px;
-    border-radius:50%;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    color:white;
-    font-size:35px;
-    background:linear-gradient(135deg,#6c5ce7,#ff4f9a);
-    box-shadow:0 10px 35px rgba(108,92,231,.5);
-    animation:bounce 2s infinite;
-}
-
-.popup-box h2{
-    font-size:28px;
-    margin-bottom:8px;
-    background:linear-gradient(90deg,#5c4ed4,#e64191);
-    -webkit-background-clip:text;
-    color:transparent;
-}
-
-.popup-box p{
-    color:#777;
-    font-size:14px;
-    margin-bottom:25px;
-}
-
-.close-popup{
-    cursor:pointer;
-}
-
-/* =========================
-   TOAST
-========================= */
-
-.toast{
-    position:fixed;
-    bottom:25px;
-    right:25px;
-    background:#22203d;
-    color:white;
-    padding:15px 22px;
-    border-radius:15px;
-    transform:translateY(100px);
-    opacity:0;
-    transition:.4s;
-    z-index:6000;
-    box-shadow:0 10px 30px rgba(0,0,0,.2);
-}
-
-.toast.show{
-    transform:translateY(0);
-    opacity:1;
-}
-
-/* =========================
-   ANIMATIONS
-========================= */
-
-@keyframes popupIn{
-    from{
-        opacity:0;
-        transform:scale(.5) translateY(80px);
-    }
-    to{
-        opacity:1;
-        transform:scale(1) translateY(0);
-    }
-}
-
-@keyframes popupBg{
-    from{opacity:0;}
-    to{opacity:1;}
-}
-
-@keyframes float{
-    0%,100%{transform:translateY(0);}
-    50%{transform:translateY(-15px);}
-}
-
-@keyframes bounce{
-    0%,100%{transform:translateY(0);}
-    50%{transform:translateY(-8px);}
-}
-
-@keyframes slideUp{
-    from{
-        opacity:0;
-        transform:translateY(30px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-@keyframes fadeIn{
-    from{
-        opacity:0;
-        transform:translateY(20px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-@keyframes progress{
-    from{width:0;}
-}
-
-/* =========================
-   MOBILE
-========================= */
-
-@media(max-width:1100px){
-
-    .cards{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .actions{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .campus-grid{
-        grid-template-columns:1fr 1fr;
-    }
-}
-
-@media(max-width:750px){
-
-    .sidebar{
-        width:70px;
-        padding:20px 10px;
-    }
-
-    .logo h2,
-    .nav-item span{
-        display:none;
-    }
-
-    .logo{
-        justify-content:center;
-    }
-
-    .nav-item{
-        justify-content:center;
-        padding:15px;
-    }
-
-    .main{
-        margin-left:70px;
-        padding:20px;
-    }
-
-    .topbar{
-        gap:10px;
-    }
-
-    .search{
-        width:100%;
-    }
-
-    .welcome{
-        padding:25px;
-    }
-
-    .welcome-art{
-        display:none;
-    }
-
-    .cards{
-        grid-template-columns:1fr;
-    }
-
-    .campus-grid{
-        grid-template-columns:1fr;
-    }
-
-    .actions{
-        grid-template-columns:1fr 1fr;
-    }
-}
-
-</style>
 </head>
 
 <body>
 
-<!-- =========================
-     SIDEBAR
-========================= -->
+```
+<!-- ==================================================
+     MAIN APPLICATION
+     ================================================== -->
 
-<aside class="sidebar">
-
-    <div class="logo">
-        <div class="logo-icon">
-            <i class="fa-solid fa-graduation-cap"></i>
-        </div>
-        <h2>CampusConnect</h2>
-    </div>
-
-    <div class="nav-item active" onclick="showToast('Dashboard opened')">
-        <i class="fa-solid fa-house"></i>
-        <span>Dashboard</span>
-    </div>
-
-    <div class="nav-item" onclick="showToast('My Courses selected')">
-        <i class="fa-solid fa-book-open"></i>
-        <span>My Courses</span>
-    </div>
-
-    <div class="nav-item" onclick="showToast('Timetable selected')">
-        <i class="fa-solid fa-calendar-days"></i>
-        <span>Timetable</span>
-    </div>
-
-    <div class="nav-item" onclick="showToast('Assignments selected')">
-        <i class="fa-solid fa-file-lines"></i>
-        <span>Assignments</span>
-    </div>
-
-    <div class="nav-item" onclick="showToast('Attendance selected')">
-        <i class="fa-solid fa-chart-pie"></i>
-        <span>Attendance</span>
-    </div>
-
-    <div class="nav-item" onclick="showToast('Campus selected')">
-        <i class="fa-solid fa-building-columns"></i>
-        <span>Campus</span>
-    </div>
-
-    <div class="nav-item" onclick="showToast('Settings opened')">
-        <i class="fa-solid fa-gear"></i>
-        <span>Settings</span>
-    </div>
-
-</aside>
+<div class="app">
 
 
-<!-- =========================
-     MAIN
-========================= -->
+    <!-- ==================================================
+         SIDEBAR
+         ================================================== -->
 
-<main class="main">
+    <aside class="sidebar">
 
-    <!-- TOP BAR -->
+        <!-- LOGO -->
 
-    <div class="topbar">
+        <div class="brand">
 
-        <div class="search">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" placeholder="Search anything...">
-        </div>
-
-        <div class="profile">
-
-            <div class="notification"
-                 onclick="showToast('You have 3 new notifications')">
-                <i class="fa-regular fa-bell"></i>
+            <div class="brand-logo">
+                🎓
             </div>
 
-            <div class="avatar" id="avatar">
+            <div class="brand-name">
+                Campus<span>Connect</span>
+            </div>
+
+        </div>
+
+
+        <!-- STUDENT PROFILE -->
+
+        <div class="student-mini">
+
+            <div class="student-avatar">
                 PB
             </div>
 
+            <div>
+
+                <strong>
+                    Priya Bhavani
+                </strong>
+
+                <small>
+                    BCA Student
+                </small>
+
+            </div>
+
         </div>
 
-    </div>
 
+        <!-- NAVIGATION -->
 
-    <!-- WELCOME -->
+        <nav class="sidebar-nav">
 
-    <section class="welcome">
+            <button
+                class="nav-item active"
+                data-page="dashboard"
+                type="button"
+            >
 
-        <div>
-            <h1>Welcome back, <span id="welcomeName">Priya</span> 👋</h1>
+                <span class="nav-icon">
+                    ⌂
+                </span>
 
-            <p>
-                Ready to make today productive?
-                Here's what's happening on your campus.
-            </p>
+                <span>
+                    Dashboard
+                </span>
 
-            <br>
-
-            <button class="glow-btn"
-                    onclick="showToast('Have a great day! 🚀')">
-                Explore Dashboard
-                <i class="fa-solid fa-arrow-right"></i>
             </button>
+
+
+            <button
+                class="nav-item"
+                data-page="courses"
+                type="button"
+            >
+
+                <span class="nav-icon">
+                    ▣
+                </span>
+
+                <span>
+                    My Courses
+                </span>
+
+            </button>
+
+
+            <button
+                class="nav-item"
+                data-page="timetable"
+                type="button"
+            >
+
+                <span class="nav-icon">
+                    ▦
+                </span>
+
+                <span>
+                    Timetable
+                </span>
+
+            </button>
+
+
+            <button
+                class="nav-item"
+                data-page="assignments"
+                type="button"
+            >
+
+                <span class="nav-icon">
+                    📝
+                </span>
+
+                <span>
+                    Assignments
+                </span>
+
+            </button>
+
+
+            <button
+                class="nav-item"
+                data-page="attendance"
+                type="button"
+            >
+
+                <span class="nav-icon">
+                    ◔
+                </span>
+
+                <span>
+                    Attendance
+                </span>
+
+            </button>
+
+
+            <button
+                class="nav-item"
+                data-page="campus"
+                type="button"
+            >
+
+                <span class="nav-icon">
+                    🏫
+                </span>
+
+                <span>
+                    Campus
+                </span>
+
+            </button>
+
+
+            <button
+                class="nav-item"
+                data-page="settings"
+                type="button"
+            >
+
+                <span class="nav-icon">
+                    ⚙
+                </span>
+
+                <span>
+                    Settings
+                </span>
+
+            </button>
+
+        </nav>
+
+
+        <!-- LOGOUT -->
+
+        <div class="sidebar-bottom">
+
+            <button
+                class="logout-btn"
+                id="logoutBtn"
+                type="button"
+            >
+
+                <span>
+                    ↪
+                </span>
+
+                <span>
+                    Logout
+                </span>
+
+            </button>
+
         </div>
 
-        <div class="welcome-art">
-            🎓
-        </div>
-
-    </section>
+    </aside>
 
 
-    <!-- STATISTICS -->
 
-    <div class="section-title">
-        <h2>Today's Overview</h2>
-        <span>Updated just now</span>
-    </div>
+    <!-- ==================================================
+         MAIN CONTENT
+         ================================================== -->
 
-    <section class="cards">
+    <main class="main">
 
-        <div class="card blue">
-            <div class="card-icon">
-                <i class="fa-solid fa-book"></i>
+
+        <!-- ==================================================
+             TOP BAR
+             ================================================== -->
+
+        <header class="topbar">
+
+
+            <!-- PAGE TITLE -->
+
+            <div class="page-heading">
+
+                <div class="small-heading">
+                    STUDENT PORTAL
+                </div>
+
+                <h1 id="pageTitle">
+                    Dashboard
+                </h1>
+
             </div>
 
-            <h3>08</h3>
-            <p>Active Courses</p>
 
-            <div class="progress">
-                <span></span>
+            <!-- TOP RIGHT -->
+
+            <div class="topbar-actions">
+
+
+                <!-- LIVE CLOCK -->
+
+                <div
+                    class="digital-clock"
+                    id="clock"
+                >
+                    00:00:00
+                </div>
+
+
+                <!-- NOTIFICATION -->
+
+                <button
+                    class="notification-btn"
+                    id="notificationBtn"
+                    type="button"
+                    aria-label="Notifications"
+                >
+
+                    🔔
+
+                    <span class="notification-dot"></span>
+
+                </button>
+
+
+                <!-- PROFILE -->
+
+                <button
+                    class="profile-btn"
+                    id="profileBtn"
+                    type="button"
+                >
+
+                    <div class="profile-avatar">
+                        PB
+                    </div>
+
+                    <span>
+                        Priya Bhavani
+                    </span>
+
+                    <span class="arrow">
+                        ▾
+                    </span>
+
+                </button>
+
             </div>
-        </div>
+
+        </header>
 
 
-        <div class="card pink">
-            <div class="card-icon">
-                <i class="fa-solid fa-list-check"></i>
-            </div>
 
-            <h3>05</h3>
-            <p>Pending Assignments</p>
+        <!-- ==================================================
+             DYNAMIC PAGE CONTENT
+             ================================================== -->
 
-            <div class="progress">
-                <span></span>
-            </div>
-        </div>
+        <section
+            id="content"
+            aria-live="polite"
+        >
 
-
-        <div class="card green">
-            <div class="card-icon">
-                <i class="fa-solid fa-user-check"></i>
-            </div>
-
-            <h3>92%</h3>
-            <p>Attendance</p>
-
-            <div class="progress">
-                <span></span>
-            </div>
-        </div>
+        </section>
 
 
-        <div class="card orange">
-            <div class="card-icon">
-                <i class="fa-solid fa-award"></i>
-            </div>
+    </main>
 
-            <h3>8.6</h3>
-            <p>Current CGPA</p>
-
-            <div class="progress">
-                <span></span>
-            </div>
-        </div>
-
-    </section>
+</div>
 
 
-    <!-- TIMETABLE -->
 
-    <div class="section-title">
-        <h2>📅 Today's Timetable</h2>
+<!-- ==================================================
+     MODAL
+     ================================================== -->
 
-        <button class="glow-btn"
-                onclick="showToast('Full timetable opened')">
-            View Full
+<div
+    class="modal hidden"
+    id="modal"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Information"
+>
+
+    <div class="modal-box">
+
+
+        <!-- CLOSE BUTTON -->
+
+        <button
+            class="modal-close"
+            id="modalClose"
+            type="button"
+            aria-label="Close"
+        >
+            ×
         </button>
-    </div>
 
 
-    <section class="timetable">
+        <!-- DYNAMIC MODAL CONTENT -->
 
-        <table>
-
-            <thead>
-
-                <tr>
-                    <th>Time</th>
-                    <th>Monday</th>
-                    <th>Tuesday</th>
-                    <th>Wednesday</th>
-                    <th>Thursday</th>
-                    <th>Friday</th>
-                </tr>
-
-            </thead>
-
-            <tbody>
-
-                <tr>
-
-                    <td class="time">
-                        9:00 - 10:00
-                    </td>
-
-                    <td class="subject1">
-                        <i class="fa-solid fa-code"></i><br>
-                        Web Technology
-                    </td>
-
-                    <td class="subject2">
-                        <i class="fa-solid fa-database"></i><br>
-                        DBMS
-                    </td>
-
-                    <td class="subject3">
-                        <i class="fa-solid fa-network-wired"></i><br>
-                        Networking
-                    </td>
-
-                    <td class="subject4">
-                        <i class="fa-solid fa-laptop-code"></i><br>
-                        Programming
-                    </td>
-
-                    <td class="subject5">
-                        <i class="fa-solid fa-brain"></i><br>
-                        AI & ML
-                    </td>
-
-                </tr>
-
-
-                <tr>
-
-                    <td class="time">
-                        10:00 - 11:00
-                    </td>
-
-                    <td class="subject3">
-                        Mathematics
-                    </td>
-
-                    <td class="subject4">
-                        Programming
-                    </td>
-
-                    <td class="subject1">
-                        Web Technology
-                    </td>
-
-                    <td class="subject5">
-                        AI & ML
-                    </td>
-
-                    <td class="subject2">
-                        DBMS
-                    </td>
-
-                </tr>
-
-
-                <tr>
-
-                    <td class="time">
-                        11:00 - 11:30
-                    </td>
-
-                    <td colspan="5" class="break">
-                        ☕ BREAK TIME
-                    </td>
-
-                </tr>
-
-
-                <tr>
-
-                    <td class="time">
-                        11:30 - 12:30
-                    </td>
-
-                    <td class="subject5">
-                        AI & ML
-                    </td>
-
-                    <td class="subject1">
-                        Web Technology
-                    </td>
-
-                    <td class="subject4">
-                        Programming
-                    </td>
-
-                    <td class="subject3">
-                        Networking
-                    </td>
-
-                    <td class="subject1">
-                        Web Technology
-                    </td>
-
-                </tr>
-
-
-                <tr>
-
-                    <td class="time">
-                        12:30 - 1:30
-                    </td>
-
-                    <td class="subject2">
-                        DBMS
-                    </td>
-
-                    <td class="subject3">
-                        Networking
-                    </td>
-
-                    <td class="subject5">
-                        AI & ML
-                    </td>
-
-                    <td class="subject1">
-                        Web Technology
-                    </td>
-
-                    <td class="subject4">
-                        Programming
-                    </td>
-
-                </tr>
-
-            </tbody>
-
-        </table>
-
-    </section>
-
-
-    <!-- QUICK ACTIONS -->
-
-    <div class="section-title">
-        <h2>⚡ Quick Actions</h2>
-    </div>
-
-    <section class="actions">
-
-        <div class="action"
-             onclick="showToast('Opening assignments...')">
-            <i class="fa-solid fa-file-circle-check"></i>
-            <span>Submit Assignment</span>
-        </div>
-
-        <div class="action"
-             onclick="showToast('Opening attendance...')">
-            <i class="fa-solid fa-chart-simple"></i>
-            <span>Check Attendance</span>
-        </div>
-
-        <div class="action"
-             onclick="showToast('Opening library...')">
-            <i class="fa-solid fa-book-bookmark"></i>
-            <span>Library</span>
-        </div>
-
-        <div class="action"
-             onclick="showToast('Opening notices...')">
-            <i class="fa-solid fa-bullhorn"></i>
-            <span>Campus Notices</span>
-        </div>
-
-    </section>
-
-
-    <!-- CAMPUS -->
-
-    <div class="section-title">
-        <h2>🏫 Explore Campus</h2>
-        <span>Discover your campus</span>
-    </div>
-
-
-    <section class="campus-grid">
-
-        <div class="campus-card"
-             onclick="showToast('Library selected')">
-
-            <img
-            src="https://images.unsplash.com/photo-1568667256549-094345857637?auto=format&fit=crop&w=1000&q=80"
-            alt="College Library">
-
-            <div class="campus-overlay">
-                <h3>📚 Central Library</h3>
-                <p>Books • Digital Resources • Study Spaces</p>
-            </div>
+        <div id="modalContent">
 
         </div>
-
-
-        <div class="campus-card"
-             onclick="showToast('Campus ground selected')">
-
-            <img
-            src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=1000&q=80"
-            alt="Campus Ground">
-
-            <div class="campus-overlay">
-                <h3>⚽ Campus Ground</h3>
-                <p>Sports • Events • Student Activities</p>
-            </div>
-
-        </div>
-
-
-        <div class="campus-card"
-             onclick="showToast('Computer lab selected')">
-
-            <img
-            src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1000&q=80"
-            alt="Computer Laboratory">
-
-            <div class="campus-overlay">
-                <h3>💻 Computer Lab</h3>
-                <p>Programming • Projects • Practical Sessions</p>
-            </div>
-
-        </div>
-
-
-        <div class="campus-card"
-             onclick="showToast('Classroom selected')">
-
-            <img
-            src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=1000&q=80"
-            alt="College Classroom">
-
-            <div class="campus-overlay">
-                <h3>🎓 Smart Classroom</h3>
-                <p>Interactive Learning • Presentations</p>
-            </div>
-
-        </div>
-
-
-        <div class="campus-card"
-             onclick="showToast('Student area selected')">
-
-            <img
-            src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1000&q=80"
-            alt="University Campus">
-
-            <div class="campus-overlay">
-                <h3>🌳 Student Campus</h3>
-                <p>Relax • Meet Friends • Campus Life</p>
-            </div>
-
-        </div>
-
-
-        <div class="campus-card"
-             onclick="showToast('Innovation lab selected')">
-
-            <img
-            src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1000&q=80"
-            alt="Technology Lab">
-
-            <div class="campus-overlay">
-                <h3>🔬 Innovation Lab</h3>
-                <p>Research • Technology • Innovation</p>
-            </div>
-
-        </div>
-
-    </section>
-
-</main>
-
-
-<!-- =========================
-     WELCOME POPUP
-========================= -->
-
-<div class="popup" id="welcomePopup">
-
-    <div class="popup-box">
-
-        <div class="popup-icon">
-            <i class="fa-solid fa-graduation-cap"></i>
-        </div>
-
-        <h2>
-            Welcome, <span id="popupName">Priya</span>! 🎉
-        </h2>
-
-        <p>
-            We're happy to see you again.
-            Your campus journey starts here!
-        </p>
-
-        <button class="glow-btn close-popup"
-                onclick="closePopup()">
-            Let's Go 🚀
-        </button>
 
     </div>
 
 </div>
 
 
-<!-- =========================
-     TOAST
-========================= -->
 
-<div class="toast" id="toast">
-    <i class="fa-solid fa-circle-check"></i>
-    <span id="toastText">Done!</span>
+<!-- ==================================================
+     TOAST MESSAGE
+     ================================================== -->
+
+<div
+    class="toast"
+    id="toast"
+    role="status"
+    aria-live="polite"
+>
+    Successfully completed
 </div>
 
 
-<script>
 
-/* =====================================
-   USER NAME
-   =====================================
+<!-- ==================================================
+     JAVASCRIPT
+     ================================================== -->
 
-   Change this name or connect it to
-   your login system/localStorage.
-*/
-
-let userName = localStorage.getItem("username") || "Priya";
-
-document.getElementById("welcomeName").textContent = userName;
-document.getElementById("popupName").textContent = userName;
-
-
-/* =====================================
-   AVATAR INITIALS
-===================================== */
-
-function getInitials(name){
-
-    let words = name.trim().split(" ");
-
-    if(words.length === 1){
-        return words[0].substring(0,2).toUpperCase();
-    }
-
-    return (
-        words[0][0] +
-        words[words.length - 1][0]
-    ).toUpperCase();
-}
-
-document.getElementById("avatar").textContent =
-    getInitials(userName);
-
-
-/* =====================================
-   POPUP
-===================================== */
-
-function closePopup(){
-
-    const popup =
-        document.getElementById("welcomePopup");
-
-    popup.style.opacity = "0";
-
-    setTimeout(function(){
-
-        popup.style.display = "none";
-
-    },400);
-}
-
-
-/* =====================================
-   AUTO CLOSE POPUP
-===================================== */
-
-setTimeout(function(){
-
-    closePopup();
-
-},7000);
-
-
-/* =====================================
-   TOAST MESSAGE
-===================================== */
-
-let toastTimer;
-
-function showToast(message){
-
-    const toast =
-        document.getElementById("toast");
-
-    const text =
-        document.getElementById("toastText");
-
-    text.textContent = message;
-
-    toast.classList.add("show");
-
-    clearTimeout(toastTimer);
-
-    toastTimer = setTimeout(function(){
-
-        toast.classList.remove("show");
-
-    },2500);
-}
-
-
-/* =====================================
-   SEARCH
-===================================== */
-
-const searchInput =
-    document.querySelector(".search input");
-
-searchInput.addEventListener("keyup", function(){
-
-    if(this.value.length > 0){
-
-        showToast(
-            "Searching for: " + this.value
-        );
-
-    }
-
-});
-
-
-/* =====================================
-   ESCAPE KEY CLOSE POPUP
-===================================== */
-
-document.addEventListener("keydown", function(e){
-
-    if(e.key === "Escape"){
-
-        closePopup();
-
-    }
-
-});
-
-</script>
+<script src="script.js"></script>
+```
 
 </body>
 </html>
-```
