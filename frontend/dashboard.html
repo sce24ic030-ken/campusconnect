@@ -2769,47 +2769,24 @@ showToast("Light mode enabled");
    LOGOUT
 ========================================================= */
 
+
 document
 .getElementById("logoutBtn")
-.addEventListener(
-"click",
-()=>{
+.addEventListener("click", function () {
 
-if(confirm("Do you want to logout?")){
+    if (confirm("Do you want to logout?")) {
 
-showToast("Logged out successfully");
+        localStorage.removeItem("loggedIn");
+        localStorage.removeItem("studentName");
+        localStorage.removeItem("username");
 
-}
+        window.location.href = "index.html";
+    }
 
-}
-);
-
-
-
-/* =========================================================
-   ESCAPE
-========================================================= */
-
-document.addEventListener(
-"keydown",
-event=>{
-
-if(event.key==="Escape"){
-    closeModal();
-}
-
-}
-);
-
-
-
-/* =========================================================
-   START
-========================================================= */
-
-openPage("dashboard");
+});
 
 </script>
+<script src="js/dashboard.js"></script>
 
 </body>
 </html>
