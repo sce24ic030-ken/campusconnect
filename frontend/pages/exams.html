@@ -1,1610 +1,361 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>CampusConnect - Exams</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-<style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-body{
-    min-height:100vh;
-    font-family:'Poppins',sans-serif;
-    background:
-        radial-gradient(circle at 10% 10%,rgba(145,67,255,.16),transparent 25%),
-        radial-gradient(circle at 90% 90%,rgba(240,58,171,.13),transparent 25%),
-        #f7f5fb;
-    color:#2d273b;
-}
-
-/* ================= SIDEBAR ================= */
-
-.sidebar{
-    position:fixed;
-    left:0;
-    top:0;
-    width:240px;
-    height:100vh;
-    padding:25px 17px;
-    background:linear-gradient(180deg,#271344,#421568,#591c7e);
-    color:white;
-    box-shadow:5px 0 25px rgba(48,20,75,.15);
-    z-index:100;
-}
-
-.logo{
-    display:flex;
-    align-items:center;
-    gap:11px;
-    padding:8px 10px;
-    margin-bottom:35px;
-}
-
-.logo-icon{
-    width:42px;
-    height:42px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    border-radius:13px;
-    background:rgba(255,255,255,.14);
-    font-size:21px;
-}
-
-.logo-text{
-    font-size:17px;
-    font-weight:700;
-}
-
-.logo-text span{
-    color:#f2a2ff;
-}
-
-.menu-title{
-    padding:0 12px;
-    margin-bottom:10px;
-    color:#bda9d0;
-    font-size:9px;
-    font-weight:600;
-    letter-spacing:1px;
-}
-
-.nav-menu{
-    display:flex;
-    flex-direction:column;
-    gap:6px;
-}
-
-.nav-item{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    width:100%;
-    padding:11px 13px;
-    border:none;
-    border-radius:11px;
-    background:transparent;
-    color:#d9cbe4;
-    font-family:inherit;
-    font-size:10px;
-    text-align:left;
-    cursor:pointer;
-    transition:.25s;
-}
-
-.nav-item:hover{
-    background:rgba(255,255,255,.10);
-    color:white;
-    transform:translateX(3px);
-}
-
-.nav-item.active{
-    background:linear-gradient(
-        90deg,
-        rgba(166,76,234,.55),
-        rgba(224,66,170,.35)
-    );
-    color:white;
-}
-
-.nav-icon{
-    width:20px;
-    text-align:center;
-    font-size:14px;
-}
-
-.sidebar-bottom{
-    position:absolute;
-    bottom:25px;
-    left:17px;
-    right:17px;
-}
-
-.logout{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    width:100%;
-    padding:11px 13px;
-    border:none;
-    border-radius:11px;
-    background:rgba(255,255,255,.08);
-    color:#eadff1;
-    font-family:inherit;
-    font-size:10px;
-    cursor:pointer;
-}
-
-/* ================= MAIN ================= */
-
-.main{
-    margin-left:240px;
-    min-height:100vh;
-    padding:28px 35px;
-}
-
-.topbar{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    margin-bottom:25px;
-}
-
-.page-title h1{
-    font-size:25px;
-    color:#282238;
-}
-
-.page-title p{
-    margin-top:4px;
-    color:#918b9c;
-    font-size:10px;
-}
-
-.top-actions{
-    display:flex;
-    align-items:center;
-    gap:12px;
-}
-
-.notification{
-    width:39px;
-    height:39px;
-    border:1px solid #ebe7f0;
-    border-radius:11px;
-    background:white;
-    font-size:16px;
-    cursor:pointer;
-}
-
-.mini-profile{
-    display:flex;
-    align-items:center;
-    gap:9px;
-    padding:5px 10px 5px 5px;
-    border-radius:30px;
-    background:white;
-    box-shadow:0 4px 15px rgba(40,20,60,.05);
-}
-
-.mini-avatar{
-    width:32px;
-    height:32px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    border-radius:50%;
-    background:linear-gradient(135deg,#7a43db,#e34aa9);
-    color:white;
-    font-size:13px;
-}
-
-.mini-name{
-    color:#40394d;
-    font-size:9px;
-    font-weight:600;
-}
-
-/* ================= EXAM BANNER ================= */
-
-.exam-banner{
-    position:relative;
-    overflow:hidden;
-    padding:25px;
-    margin-bottom:20px;
-    border-radius:20px;
-    background:linear-gradient(110deg,#6735c4,#9c3fc9,#d642a0);
-    color:white;
-    box-shadow:0 12px 30px rgba(105,50,190,.20);
-}
-
-.exam-banner::after{
-    content:"📝";
-    position:absolute;
-    right:35px;
-    top:5px;
-    font-size:100px;
-    opacity:.10;
-    transform:rotate(-10deg);
-}
-
-.exam-banner h2{
-    font-size:20px;
-}
-
-.exam-banner p{
-    margin-top:5px;
-    font-size:9px;
-    opacity:.86;
-}
-
-.exam-info{
-    display:flex;
-    flex-wrap:wrap;
-    gap:10px;
-    margin-top:17px;
-}
-
-.info-pill{
-    padding:7px 11px;
-    border-radius:20px;
-    background:rgba(255,255,255,.15);
-    border:1px solid rgba(255,255,255,.12);
-    font-size:8px;
-}
-
-/* ================= STATS ================= */
-
-.stats{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:15px;
-    margin-bottom:20px;
-}
-
-.stat-card{
-    padding:18px;
-    background:white;
-    border:1px solid #ece8f1;
-    border-radius:17px;
-    box-shadow:0 7px 22px rgba(45,25,70,.05);
-    transition:.25s;
-}
-
-.stat-card:hover{
-    transform:translateY(-4px);
-}
-
-.stat-top{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-}
-
-.stat-icon{
-    width:42px;
-    height:42px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    border-radius:13px;
-    background:#f2e8ff;
-    font-size:19px;
-}
-
-.stat-value{
-    font-size:20px;
-    font-weight:700;
-    color:#43394f;
-}
-
-.stat-card p{
-    margin-top:9px;
-    color:#98919f;
-    font-size:8px;
-}
-
-/* ================= CONTENT ================= */
-
-.content-grid{
-    display:grid;
-    grid-template-columns:1.6fr 1fr;
-    gap:20px;
-}
-
-.card{
-    padding:22px;
-    background:white;
-    border:1px solid #ece8f1;
-    border-radius:18px;
-    box-shadow:0 7px 22px rgba(45,25,70,.05);
-}
-
-.card-title{
-    display:flex;
-    align-items:center;
-    gap:9px;
-    margin-bottom:18px;
-    color:#30293e;
-    font-size:14px;
-    font-weight:700;
-}
-
-.title-icon{
-    width:31px;
-    height:31px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    border-radius:9px;
-    background:#f2e8ff;
-    font-size:15px;
-}
-
-/* ================= EXAM LIST ================= */
-
-.exam-list{
-    display:flex;
-    flex-direction:column;
-    gap:12px;
-}
-
-.exam-item{
-    display:grid;
-    grid-template-columns:55px 1fr auto;
-    align-items:center;
-    gap:13px;
-    padding:14px;
-    border:1px solid #eeeaf3;
-    border-radius:14px;
-    background:#fcfbfd;
-    transition:.25s;
-}
-
-.exam-item:hover{
-    transform:translateX(4px);
-    box-shadow:0 8px 18px rgba(50,25,70,.07);
-    border-color:#dac5f2;
-}
-
-.exam-date{
-    width:50px;
-    height:54px;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    border-radius:12px;
-    background:#f1e7ff;
-    color:#7139c8;
-}
-
-.exam-date strong{
-    font-size:17px;
-    line-height:1;
-}
-
-.exam-date span{
-    margin-top:4px;
-    font-size:7px;
-    font-weight:600;
-}
-
-.exam-details h3{
-    font-size:10px;
-    color:#443b4e;
-}
-
-.exam-details p{
-    margin-top:4px;
-    color:#98919f;
-    font-size:7px;
-}
-
-.exam-meta{
-    display:flex;
-    gap:8px;
-    margin-top:7px;
-}
-
-.meta{
-    padding:4px 7px;
-    border-radius:10px;
-    background:#f6f1fa;
-    color:#827989;
-    font-size:6px;
-}
-
-.exam-status{
-    padding:6px 9px;
-    border-radius:15px;
-    font-size:7px;
-    font-weight:600;
-}
-
-.upcoming{
-    background:#fff1d9;
-    color:#c47b1f;
-}
-
-.scheduled{
-    background:#e8f8ef;
-    color:#3a9b63;
-}
-
-/* ================= COUNTDOWN ================= */
-
-.countdown-card{
-    text-align:center;
-}
-
-.countdown-title{
-    color:#817888;
-    font-size:8px;
-}
-
-.countdown{
-    display:flex;
-    justify-content:center;
-    gap:8px;
-    margin:20px 0;
-}
-
-.time-box{
-    min-width:55px;
-    padding:11px 7px;
-    border-radius:11px;
-    background:#f8f4fc;
-    border:1px solid #eee8f4;
-}
-
-.time-box strong{
-    display:block;
-    font-size:18px;
-    color:#6935bd;
-}
-
-.time-box span{
-    font-size:6px;
-    color:#99919f;
-}
-
-.next-exam{
-    padding:13px;
-    border-radius:12px;
-    background:#f5efff;
-    border:1px solid #e8d9fa;
-}
-
-.next-exam h3{
-    color:#6935bd;
-    font-size:10px;
-}
-
-.next-exam p{
-    margin-top:5px;
-    color:#82758e;
-    font-size:7px;
-}
-
-/* ================= EXAM HALL ================= */
-
-.hall{
-    margin-top:20px;
-}
-
-.hall-item{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    padding:11px;
-    margin-bottom:8px;
-    border-radius:10px;
-    background:#faf9fc;
-}
-
-.hall-icon{
-    width:31px;
-    height:31px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    border-radius:9px;
-    background:#f0e6ff;
-    font-size:14px;
-}
-
-.hall-text h4{
-    font-size:8px;
-    color:#554c60;
-}
-
-.hall-text p{
-    margin-top:3px;
-    color:#9b94a1;
-    font-size:6px;
-}
-
-/* ================= INSTRUCTIONS ================= */
-
-.instructions{
-    margin-top:20px;
-}
-
-.instruction-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:12px;
-}
-
-.instruction{
-    padding:16px;
-    border-radius:13px;
-    background:#fcfbfd;
-    border:1px solid #eeeaf3;
-}
-
-.instruction-icon{
-    font-size:20px;
-}
-
-.instruction h3{
-    margin-top:8px;
-    font-size:9px;
-    color:#4b4354;
-}
-
-.instruction p{
-    margin-top:4px;
-    color:#99919f;
-    font-size:7px;
-    line-height:1.5;
-}
-
-/* ================= RESPONSIVE ================= */
-
-@media(max-width:1100px){
-
-    .sidebar{
-        width:205px;
-    }
-
-    .main{
-        margin-left:205px;
-        padding:25px;
-    }
-
-    .stats{
-        grid-template-columns:1fr 1fr;
-    }
-
-    .content-grid{
-        grid-template-columns:1fr;
-    }
-}
-
-@media(max-width:700px){
-
-    .sidebar{
-        position:relative;
-        width:100%;
-        height:auto;
-        padding:15px;
-    }
-
-    .nav-menu{
-        flex-direction:row;
-        overflow-x:auto;
-    }
-
-    .nav-item{
-        min-width:max-content;
-    }
-
-    .menu-title,
-    .sidebar-bottom{
-        display:none;
-    }
-
-    .main{
-        margin-left:0;
-        padding:20px;
-    }
-
-    .instruction-grid{
-        grid-template-columns:1fr;
-    }
-}
-
-@media(max-width:500px){
-
-    .stats{
-        grid-template-columns:1fr;
-    }
-
-    .mini-name{
-        display:none;
-    }
-
-    .exam-banner::after{
-        display:none;
-    }
-
-    .exam-item{
-        grid-template-columns:50px 1fr;
-    }
-
-    .exam-status{
-        grid-column:2;
-        width:max-content;
-    }
-
-    .countdown{
-        gap:5px;
-    }
-
-    .time-box{
-        min-width:48px;
-    }
-}
-
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Examinations - CampusConnect</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f6ff;
+            color: #222;
+        }
+
+        /* HEADER */
+        .header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 35px 55px;
+        }
+
+        .header h1 {
+            font-size: 38px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 18px;
+        }
+
+        /* MAIN */
+        .container {
+            max-width: 1250px;
+            margin: auto;
+            padding: 40px;
+        }
+
+        .title {
+            font-size: 30px;
+            margin-bottom: 25px;
+        }
+
+        /* EXAM GRID */
+        #examContainer {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        /* EXAM CARD */
+        .exam-card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            border-left: 6px solid #667eea;
+            transition: 0.3s;
+        }
+
+        .exam-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .exam-icon {
+            width: 65px;
+            height: 65px;
+            min-width: 65px;
+            border-radius: 18px;
+            background: #eef0ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+        }
+
+        .exam-info {
+            flex: 1;
+        }
+
+        .exam-info h3 {
+            color: #333;
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        .exam-info p {
+            color: #666;
+            font-size: 14px;
+            margin: 7px 0;
+        }
+
+        .exam-status {
+            background: #ffe8f1;
+            color: #e83e8c;
+            padding: 8px 13px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        /* LOADING */
+        .loading {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            color: #666;
+            grid-column: 1 / -1;
+            font-size: 18px;
+        }
+
+        /* ERROR */
+        .error {
+            background: #fff0f0;
+            color: #d63031;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            grid-column: 1 / -1;
+        }
+
+        /* INSTRUCTIONS */
+        .instructions {
+            margin-top: 40px;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        .instructions h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+
+        .instructions p {
+            color: #555;
+            margin: 12px 0;
+            font-size: 16px;
+        }
+
+        /* MOBILE */
+        @media (max-width: 800px) {
+
+            #examContainer {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            .header {
+                padding: 25px;
+            }
+
+            .exam-card {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-<!-- ================= SIDEBAR ================= -->
-
-<aside class="sidebar">
-
-    <div class="logo">
-
-        <div class="logo-icon">
-            🎓
-        </div>
-
-        <div class="logo-text">
-            Campus<span>Connect</span>
-        </div>
-
-    </div>
-
-    <div class="menu-title">
-        STUDENT PORTAL
-    </div>
-
-    <nav class="nav-menu">
-
-        <button class="nav-item"
-                onclick="goTo('../dashboard.html')">
-            <span class="nav-icon">🏠</span>
-            Dashboard
-        </button>
-
-        <button class="nav-item"
-                onclick="goTo('profile.html')">
-            <span class="nav-icon">👤</span>
-            My Profile
-        </button>
-
-        <button class="nav-item"
-                onclick="goTo('academics.html')">
-            <span class="nav-icon">📚</span>
-            Academics
-        </button>
-
-        <button class="nav-item"
-                onclick="goTo('timetable.html')">
-            <span class="nav-icon">🗓️</span>
-            Timetable
-        </button>
-
-        <button class="nav-item"
-                onclick="goTo('attendance.html')">
-            <span class="nav-icon">📊</span>
-            Attendance
-        </button>
-
-        <button class="nav-item active">
-            <span class="nav-icon">📝</span>
-            Exams
-        </button>
-
-        <button class="nav-item"
-                onclick="goTo('results.html')">
-            <span class="nav-icon">🏆</span>
-            Results
-        </button>
-
-        <button class="nav-item"
-                onclick="goTo('events.html')">
-            <span class="nav-icon">🎫</span>
-            Events
-        </button>
-
-        <button class="nav-item"
-                onclick="goTo('placement.html')">
-            <span class="nav-icon">💼</span>
-            Placement
-        </button>
-
-        <button class="nav-item"
-                onclick="goTo('notifications.html')">
-            <span class="nav-icon">🔔</span>
-            Notifications
-        </button>
-
-    </nav>
-
-    <div class="sidebar-bottom">
-
-        <button class="logout"
-                onclick="goTo('../index.html')">
-            🚪 Logout
-        </button>
-
-    </div>
-
-</aside>
-
-
-<!-- ================= MAIN ================= -->
-
-<main class="main">
-
     <!-- HEADER -->
 
-    <header class="topbar">
+    <div class="header">
 
-        <div class="page-title">
-
-            <h1>
-                Exams
-            </h1>
-
-            <p>
-                View your upcoming examinations and schedule
-            </p>
-
-        </div>
-
-        <div class="top-actions">
-
-            <button class="notification"
-                    onclick="goTo('notifications.html')">
-                🔔
-            </button>
-
-            <div class="mini-profile">
-
-                <div class="mini-avatar">
-                    👤
-                </div>
-
-                <div class="mini-name">
-                    Student
-                </div>
-
-            </div>
-
-        </div>
-
-    </header>
-
-
-    <!-- ================= BANNER ================= -->
-
-    <section class="exam-banner">
-
-        <h2>
-            Semester IV Examination
-        </h2>
+        <h1>📚 Examinations</h1>
 
         <p>
-            BCA • End Semester Examination • Academic Year 2026
+            Your complete examination schedule
         </p>
-
-        <div class="exam-info">
-
-            <div class="info-pill">
-                🎓 BCA
-            </div>
-
-            <div class="info-pill">
-                📖 Semester 4
-            </div>
-
-            <div class="info-pill">
-                📝 6 Subjects
-            </div>
-
-            <div class="info-pill">
-                📅 End Semester
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- ================= STATS ================= -->
-
-    <section class="stats">
-
-        <div class="stat-card">
-
-            <div class="stat-top">
-
-                <div class="stat-icon">
-                    📝
-                </div>
-
-                <div class="stat-value">
-                    6
-                </div>
-
-            </div>
-
-            <p>
-                Total Exams
-            </p>
-
-        </div>
-
-
-        <div class="stat-card">
-
-            <div class="stat-top">
-
-                <div class="stat-icon">
-                    📅
-                </div>
-
-                <div class="stat-value">
-                    15
-                </div>
-
-            </div>
-
-            <p>
-                Exam Days
-            </p>
-
-        </div>
-
-
-        <div class="stat-card">
-
-            <div class="stat-top">
-
-                <div class="stat-icon">
-                    🏫
-                </div>
-
-                <div class="stat-value">
-                    A-204
-                </div>
-
-            </div>
-
-            <p>
-                Main Exam Hall
-            </p>
-
-        </div>
-
-
-        <div class="stat-card">
-
-            <div class="stat-top">
-
-                <div class="stat-icon">
-                    ⏰
-                </div>
-
-                <div class="stat-value">
-                    45
-                </div>
-
-            </div>
-
-            <p>
-                Days Remaining
-            </p>
-
-        </div>
-
-    </section>
-
-
-    <!-- ================= CONTENT ================= -->
-
-    <div class="content-grid">
-
-
-        <!-- EXAM SCHEDULE -->
-
-        <section class="card">
-
-            <div class="card-title">
-
-                <div class="title-icon">
-                    📅
-                </div>
-
-                Examination Schedule
-
-            </div>
-
-
-            <div class="exam-list">
-
-
-                <div class="exam-item">
-
-                    <div class="exam-date">
-
-                        <strong>
-                            12
-                        </strong>
-
-                        <span>
-                            OCT
-                        </span>
-
-                    </div>
-
-                    <div class="exam-details">
-
-                        <h3>
-                            Data Structures
-                        </h3>
-
-                        <p>
-                            Core Subject • Written Examination
-                        </p>
-
-                        <div class="exam-meta">
-
-                            <span class="meta">
-                                🕘 9:30 AM
-                            </span>
-
-                            <span class="meta">
-                                ⏱️ 3 Hours
-                            </span>
-
-                            <span class="meta">
-                                📚 100 Marks
-                            </span>
-
-                        </div>
-
-                    </div>
-
-                    <div class="exam-status upcoming">
-                        Upcoming
-                    </div>
-
-                </div>
-
-
-                <div class="exam-item">
-
-                    <div class="exam-date">
-
-                        <strong>
-                            15
-                        </strong>
-
-                        <span>
-                            OCT
-                        </span>
-
-                    </div>
-
-                    <div class="exam-details">
-
-                        <h3>
-                            Database Management
-                        </h3>
-
-                        <p>
-                            Core Subject • Written Examination
-                        </p>
-
-                        <div class="exam-meta">
-
-                            <span class="meta">
-                                🕘 9:30 AM
-                            </span>
-
-                            <span class="meta">
-                                ⏱️ 3 Hours
-                            </span>
-
-                            <span class="meta">
-                                📚 100 Marks
-                            </span>
-
-                        </div>
-
-                    </div>
-
-                    <div class="exam-status upcoming">
-                        Upcoming
-                    </div>
-
-                </div>
-
-
-                <div class="exam-item">
-
-                    <div class="exam-date">
-
-                        <strong>
-                            18
-                        </strong>
-
-                        <span>
-                            OCT
-                        </span>
-
-                    </div>
-
-                    <div class="exam-details">
-
-                        <h3>
-                            Web Development
-                        </h3>
-
-                        <p>
-                            Practical & Written Examination
-                        </p>
-
-                        <div class="exam-meta">
-
-                            <span class="meta">
-                                🕘 9:30 AM
-                            </span>
-
-                            <span class="meta">
-                                ⏱️ 3 Hours
-                            </span>
-
-                            <span class="meta">
-                                📚 100 Marks
-                            </span>
-
-                        </div>
-
-                    </div>
-
-                    <div class="exam-status upcoming">
-                        Upcoming
-                    </div>
-
-                </div>
-
-
-                <div class="exam-item">
-
-                    <div class="exam-date">
-
-                        <strong>
-                            21
-                        </strong>
-
-                        <span>
-                            OCT
-                        </span>
-
-                    </div>
-
-                    <div class="exam-details">
-
-                        <h3>
-                            Computer Networks
-                        </h3>
-
-                        <p>
-                            Core Subject • Written Examination
-                        </p>
-
-                        <div class="exam-meta">
-
-                            <span class="meta">
-                                🕘 9:30 AM
-                            </span>
-
-                            <span class="meta">
-                                ⏱️ 3 Hours
-                            </span>
-
-                            <span class="meta">
-                                📚 100 Marks
-                            </span>
-
-                        </div>
-
-                    </div>
-
-                    <div class="exam-status upcoming">
-                        Upcoming
-                    </div>
-
-                </div>
-
-
-                <div class="exam-item">
-
-                    <div class="exam-date">
-
-                        <strong>
-                            24
-                        </strong>
-
-                        <span>
-                            OCT
-                        </span>
-
-                    </div>
-
-                    <div class="exam-details">
-
-                        <h3>
-                            Operating Systems
-                        </h3>
-
-                        <p>
-                            Core Subject • Written Examination
-                        </p>
-
-                        <div class="exam-meta">
-
-                            <span class="meta">
-                                🕘 9:30 AM
-                            </span>
-
-                            <span class="meta">
-                                ⏱️ 3 Hours
-                            </span>
-
-                            <span class="meta">
-                                📚 100 Marks
-                            </span>
-
-                        </div>
-
-                    </div>
-
-                    <div class="exam-status upcoming">
-                        Upcoming
-                    </div>
-
-                </div>
-
-
-                <div class="exam-item">
-
-                    <div class="exam-date">
-
-                        <strong>
-                            27
-                        </strong>
-
-                        <span>
-                            OCT
-                        </span>
-
-                    </div>
-
-                    <div class="exam-details">
-
-                        <h3>
-                            Soft Skills
-                        </h3>
-
-                        <p>
-                            Skill Development • Written Examination
-                        </p>
-
-                        <div class="exam-meta">
-
-                            <span class="meta">
-                                🕘 9:30 AM
-                            </span>
-
-                            <span class="meta">
-                                ⏱️ 2 Hours
-                            </span>
-
-                            <span class="meta">
-                                📚 50 Marks
-                            </span>
-
-                        </div>
-
-                    </div>
-
-                    <div class="exam-status upcoming">
-                        Upcoming
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- RIGHT SIDE -->
-
-        <section class="card countdown-card">
-
-            <div class="card-title">
-
-                <div class="title-icon">
-                    ⏳
-                </div>
-
-                Next Examination
-
-            </div>
-
-
-            <p class="countdown-title">
-                Countdown to Data Structures
-            </p>
-
-
-            <div class="countdown">
-
-                <div class="time-box">
-
-                    <strong id="days">
-                        00
-                    </strong>
-
-                    <span>
-                        DAYS
-                    </span>
-
-                </div>
-
-                <div class="time-box">
-
-                    <strong id="hours">
-                        00
-                    </strong>
-
-                    <span>
-                        HOURS
-                    </span>
-
-                </div>
-
-                <div class="time-box">
-
-                    <strong id="minutes">
-                        00
-                    </strong>
-
-                    <span>
-                        MINUTES
-                    </span>
-
-                </div>
-
-                <div class="time-box">
-
-                    <strong id="seconds">
-                        00
-                    </strong>
-
-                    <span>
-                        SECONDS
-                    </span>
-
-                </div>
-
-            </div>
-
-
-            <div class="next-exam">
-
-                <h3>
-                    💻 Data Structures
-                </h3>
-
-                <p>
-                    October 12 • 9:30 AM • Hall A-204
-                </p>
-
-            </div>
-
-
-            <!-- EXAM HALL -->
-
-            <div class="hall">
-
-                <div class="card-title">
-
-                    <div class="title-icon">
-                        🏫
-                    </div>
-
-                    Exam Centre
-
-                </div>
-
-
-                <div class="hall-item">
-
-                    <div class="hall-icon">
-                        🏫
-                    </div>
-
-                    <div class="hall-text">
-
-                        <h4>
-                            Main Examination Hall
-                        </h4>
-
-                        <p>
-                            Block A • First Floor
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <div class="hall-item">
-
-                    <div class="hall-icon">
-                        🪑
-                    </div>
-
-                    <div class="hall-text">
-
-                        <h4>
-                            Room Number
-                        </h4>
-
-                        <p>
-                            A-204
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <div class="hall-item">
-
-                    <div class="hall-icon">
-                            🪪
-                    </div>
-
-                    <div class="hall-text">
-
-                        <h4>
-                            Seat Number
-                        </h4>
-
-                        <p>
-                            Will be updated by administration
-                        </p>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
 
     </div>
 
 
-    <!-- ================= INSTRUCTIONS ================= -->
+    <!-- MAIN -->
 
-    <section class="card instructions">
+    <div class="container">
 
-        <div class="card-title">
-
-            <div class="title-icon">
-                📌
-            </div>
-
-            Examination Instructions
-
-        </div>
+        <h2 class="title">
+            📝 Upcoming Examinations
+        </h2>
 
 
-        <div class="instruction-grid">
+        <!-- EXAMS APPEAR HERE -->
 
+        <div id="examContainer">
 
-            <div class="instruction">
-
-                <div class="instruction-icon">
-                    🪪
-                </div>
-
-                <h3>
-                    Carry Student ID
-                </h3>
-
-                <p>
-                    Bring your valid college ID card
-                    to every examination.
-                </p>
-
-            </div>
-
-
-            <div class="instruction">
-
-                <div class="instruction-icon">
-                    ⏰
-                </div>
-
-                <h3>
-                    Arrive Early
-                </h3>
-
-                <p>
-                    Reach the examination hall at least
-                    30 minutes before the exam.
-                </p>
-
-            </div>
-
-
-            <div class="instruction">
-
-                <div class="instruction-icon">
-                    ✏️
-                </div>
-
-                <h3>
-                    Required Materials
-                </h3>
-
-                <p>
-                    Carry permitted stationery and other
-                    required examination materials.
-                </p>
-
+            <div class="loading">
+                Loading examination schedule...
             </div>
 
         </div>
 
-    </section>
 
-</main>
+        <!-- INSTRUCTIONS -->
 
+        <div class="instructions">
 
-<script>
+            <h2>
+                📌 Exam Instructions
+            </h2>
 
-/* ================= NAVIGATION ================= */
+            <p>
+                • Carry your college ID card to the examination hall.
+            </p>
 
-function goTo(page){
+            <p>
+                • Reach the examination centre at least 15 minutes before the exam.
+            </p>
 
-    window.location.href = page;
+            <p>
+                • Carry the required stationery items.
+            </p>
 
-}
+            <p>
+                • Mobile phones and electronic devices are not permitted inside the examination hall.
+            </p>
 
+            <p>
+                • Check your examination date, time and venue carefully.
+            </p>
 
-/* ================= COUNTDOWN ================= */
+        </div>
 
-/*
-    FRONTEND DEMO DATE
-
-    Your friend can later replace this
-    with the actual examination date
-    received from the backend.
-*/
-
-const examDate =
-    new Date("2026-10-12T09:30:00").getTime();
-
-
-function updateCountdown(){
-
-    const now =
-        new Date().getTime();
-
-    const distance =
-        examDate - now;
+    </div>
 
 
-    if(distance <= 0){
+    <!-- BACKEND CONNECTION -->
 
-        document.getElementById("days").textContent = "00";
-        document.getElementById("hours").textContent = "00";
-        document.getElementById("minutes").textContent = "00";
-        document.getElementById("seconds").textContent = "00";
+    <script>
 
-        return;
+        document.addEventListener("DOMContentLoaded", function () {
 
-    }
+            const examContainer =
+                document.getElementById("examContainer");
 
 
-    const days =
-        Math.floor(
-            distance /
-            (1000 * 60 * 60 * 24)
-        );
+            fetch("http://127.0.0.1:5000/api/exams/")
+
+                .then(function (response) {
+
+                    if (!response.ok) {
+                        throw new Error(
+                            "Server returned " + response.status
+                        );
+                    }
+
+                    return response.json();
+
+                })
+
+                .then(function (exams) {
+
+                    console.log("Exams received:", exams);
 
 
-    const hours =
-        Math.floor(
-            (distance %
-            (1000 * 60 * 60 * 24)) /
-            (1000 * 60 * 60)
-        );
+                    if (!exams || exams.length === 0) {
+
+                        examContainer.innerHTML = `
+                            <div class="error">
+                                No examinations available.
+                            </div>
+                        `;
+
+                        return;
+                    }
 
 
-    const minutes =
-        Math.floor(
-            (distance %
-            (1000 * 60 * 60)) /
-            (1000 * 60)
-        );
+                    examContainer.innerHTML = exams.map(function (exam) {
+
+                        return `
+
+                            <div class="exam-card">
+
+                                <div class="exam-icon">
+                                    📝
+                                </div>
+
+                                <div class="exam-info">
+
+                                    <h3>
+                                        ${exam.subject}
+                                    </h3>
+
+                                    <p>
+                                        📅 ${exam.date}
+                                    </p>
+
+                                    <p>
+                                        ⏰ ${exam.time}
+                                    </p>
+
+                                    <p>
+                                        📍 ${exam.venue}
+                                    </p>
+
+                                </div>
+
+                                <div class="exam-status">
+                                    Upcoming
+                                </div>
+
+                            </div>
+
+                        `;
+
+                    }).join("");
+
+                })
 
 
-    const seconds =
-        Math.floor(
-            (distance %
-            (1000 * 60)) /
-            1000
-        );
+                .catch(function (error) {
+
+                    console.error(
+                        "Exam loading error:",
+                        error
+                    );
 
 
-    document.getElementById("days")
-        .textContent =
-        String(days).padStart(2,"0");
+                    examContainer.innerHTML = `
 
+                        <div class="error">
 
-    document.getElementById("hours")
-        .textContent =
-        String(hours).padStart(2,"0");
+                            ❌ Unable to load examinations.
 
+                            <br><br>
 
-    document.getElementById("minutes")
-        .textContent =
-        String(minutes).padStart(2,"0");
+                            Please make sure the Flask backend
+                            is running on port 5000.
 
+                        </div>
 
-    document.getElementById("seconds")
-        .textContent =
-        String(seconds).padStart(2,"0");
+                    `;
 
-}
+                });
 
+        });
 
-updateCountdown();
-
-setInterval(
-    updateCountdown,
-    1000
-);
-
-</script>
+    </script>
 
 </body>
+
 </html>
