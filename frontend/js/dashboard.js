@@ -1,47 +1,70 @@
-// ==========================================
-// CampusConnect - Dashboard Connection
-// ==========================================
-
 document.addEventListener("DOMContentLoaded", function () {
 
-    // Get logged-in student information
-    const studentData = localStorage.getItem("student");
-
-    if (!studentData) {
-        console.log("No logged-in student found.");
-        return;
-    }
-
     try {
-        const student = JSON.parse(studentData);
 
-        console.log("Logged-in student:", student);
+        const nameElements =
+            document.querySelectorAll(
+                "#studentName, #username, .student-name, .user-name"
+            );
 
-        // Student name
-        const studentName = student.name || "Student";
+        let studentName =
+            localStorage.getItem("studentName") ||
+            localStorage.getItem("username");
 
-        // Make the name available to the dashboard
-        localStorage.setItem("student_name", studentName);
+        const studentData =
+            localStorage.getItem("student");
 
-        // Find common dashboard name elements
-        const nameElements = document.querySelectorAll(
-            "#studentName, #userName, .student-name, .user-name"
-        );
+        if (studentData) {
+
+            try {
+
+                const student =
+                    JSON.parse(studentData);
+
+                if (student && student.name) {
+                    studentName = student.name;
+                }
+
+            } catch (error) {
+
+                console.log(
+                    "Student data could not be read."
+                );
+
+            }
+
+        }
+
+        if (!studentName) {
+            studentName = "Student";
+        }
 
         nameElements.forEach(function (element) {
+
             element.textContent = studentName;
+
         });
 
+
         // Update welcome heading if it exists
-        const welcomeElements = document.querySelectorAll(
-            ".welcome-name, #welcomeName"
-        );
+        const welcomeElements =
+            document.querySelectorAll(
+                ".welcome-name, #welcomeName"
+            );
 
         welcomeElements.forEach(function (element) {
+
             element.textContent = studentName;
+
         });
 
     } catch (error) {
-        console.error("Error reading student information:", error);
+
+        console.error(
+            "Error reading student information:",
+            error
+        );
+
     }
+
 });
