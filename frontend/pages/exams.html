@@ -20,7 +20,61 @@
             color: #222;
         }
 
+        /* SIDEBAR */
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 240px;
+            height: 100vh;
+            background: linear-gradient(180deg,#172554,#312e81,#4c1d95);
+            color: white;
+            padding: 20px 15px;
+            overflow-y: auto;
+            z-index: 1000;
+        }
+
+        .sidebar h2 {
+            font-size: 22px;
+            font-weight: bold;
+            padding: 7px 15px 28px;
+            border-bottom: 1px solid rgba(255,255,255,0.18);
+            margin-bottom: 15px;
+        }
+
+        .nav-item {
+            height: 48px;
+            display: flex;
+            align-items: center;
+            padding: 0 18px;
+            margin: 2px 0;
+            border-radius: 11px;
+            cursor: pointer;
+            font-size: 15px;
+            color: #e5e7eb;
+            transition: 0.2s;
+        }
+
+        .nav-item:hover {
+            background: rgba(255,255,255,0.12);
+        }
+
+        .nav-item.active {
+            background: linear-gradient(90deg,#22c1dc,#8b5cf6);
+            color: white;
+            font-weight: bold;
+        }
+
+        /* MAIN */
+
+        .main {
+            margin-left: 240px;
+            min-height: 100vh;
+        }
+
         /* HEADER */
+
         .header {
             background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
@@ -36,7 +90,8 @@
             font-size: 18px;
         }
 
-        /* MAIN */
+        /* CONTAINER */
+
         .container {
             max-width: 1250px;
             margin: auto;
@@ -49,6 +104,7 @@
         }
 
         /* EXAM GRID */
+
         #examContainer {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -56,6 +112,7 @@
         }
 
         /* EXAM CARD */
+
         .exam-card {
             background: white;
             border-radius: 20px;
@@ -112,6 +169,7 @@
         }
 
         /* LOADING */
+
         .loading {
             background: white;
             padding: 40px;
@@ -123,6 +181,7 @@
         }
 
         /* ERROR */
+
         .error {
             background: #fff0f0;
             color: #d63031;
@@ -133,6 +192,7 @@
         }
 
         /* INSTRUCTIONS */
+
         .instructions {
             margin-top: 40px;
             background: white;
@@ -153,7 +213,16 @@
         }
 
         /* MOBILE */
+
         @media (max-width: 800px) {
+
+            .sidebar {
+                width: 210px;
+            }
+
+            .main {
+                margin-left: 210px;
+            }
 
             #examContainer {
                 grid-template-columns: 1fr;
@@ -172,75 +241,220 @@
                 align-items: flex-start;
             }
         }
+
+        @media (max-width: 600px) {
+
+            .sidebar {
+                position: relative;
+                width: 100%;
+                height: auto;
+            }
+
+            .main {
+                margin-left: 0;
+            }
+        }
     </style>
 </head>
 
 <body>
 
-    <!-- HEADER -->
+    <!-- SIDEBAR -->
 
-    <div class="header">
+    <aside class="sidebar">
 
-        <h1>📚 Examinations</h1>
+        <h2>CampusConnect</h2>
 
-        <p>
-            Your complete examination schedule
-        </p>
+        <div class="nav-item" onclick="go('dashboard')">
+            🏠&nbsp;&nbsp; Dashboard
+        </div>
 
-    </div>
+        <div class="nav-item" onclick="go('courses')">
+            📚&nbsp;&nbsp; My Courses
+        </div>
+
+        <div class="nav-item" onclick="go('timetable')">
+            🗓️&nbsp;&nbsp; Timetable
+        </div>
+
+        <div class="nav-item" onclick="go('assignments')">
+            📝&nbsp;&nbsp; Assignments
+        </div>
+
+        <div class="nav-item" onclick="go('attendance')">
+            📊&nbsp;&nbsp; Attendance
+        </div>
+
+        <div class="nav-item" onclick="go('academics')">
+            🎓&nbsp;&nbsp; Academics
+        </div>
+
+        <div class="nav-item" onclick="go('faculty')">
+            👨‍🏫&nbsp;&nbsp; Faculty
+        </div>
+
+        <div class="nav-item" onclick="go('placement')">
+            💼&nbsp;&nbsp; Placement
+        </div>
+
+        <div class="nav-item" onclick="go('results')">
+            📈&nbsp;&nbsp; Results
+        </div>
+
+        <div class="nav-item" onclick="go('documents')">
+            📄&nbsp;&nbsp; Documents
+        </div>
+
+        <div class="nav-item" onclick="go('complaints')">
+            ⚠️&nbsp;&nbsp; Complaints
+        </div>
+
+        <div class="nav-item" onclick="go('feedback')">
+            💬&nbsp;&nbsp; Feedback
+        </div>
+
+        <div class="nav-item" onclick="go('lost-found')">
+            🔍&nbsp;&nbsp; Lost & Found
+        </div>
+
+        <div class="nav-item" onclick="go('campus')">
+            🏫&nbsp;&nbsp; Campus
+        </div>
+
+        <div class="nav-item" onclick="go('events')">
+            🎉&nbsp;&nbsp; Events
+        </div>
+
+        <!-- ACTIVE -->
+
+        <div class="nav-item active" onclick="go('exams')">
+            📖&nbsp;&nbsp; Exams
+        </div>
+
+        <div class="nav-item" onclick="go('notifications')">
+            🔔&nbsp;&nbsp; Notifications
+        </div>
+
+        <div class="nav-item" onclick="go('profile')">
+            👤&nbsp;&nbsp; Profile
+        </div>
+
+        <div class="nav-item" onclick="go('settings')">
+            ⚙️&nbsp;&nbsp; Settings
+        </div>
+
+    </aside>
 
 
     <!-- MAIN -->
 
-    <div class="container">
+    <div class="main">
 
-        <h2 class="title">
-            📝 Upcoming Examinations
-        </h2>
+        <!-- HEADER -->
+
+        <div class="header">
+
+            <h1>📚 Examinations</h1>
+
+            <p>
+                Your complete examination schedule
+            </p>
+
+        </div>
 
 
-        <!-- EXAMS APPEAR HERE -->
+        <!-- MAIN -->
 
-        <div id="examContainer">
+        <div class="container">
 
-            <div class="loading">
-                Loading examination schedule...
+            <h2 class="title">
+                📝 Upcoming Examinations
+            </h2>
+
+
+            <!-- EXAMS APPEAR HERE -->
+
+            <div id="examContainer">
+
+                <div class="loading">
+                    Loading examination schedule...
+                </div>
+
+            </div>
+
+
+            <!-- INSTRUCTIONS -->
+
+            <div class="instructions">
+
+                <h2>
+                    📌 Exam Instructions
+                </h2>
+
+                <p>
+                    • Carry your college ID card to the examination hall.
+                </p>
+
+                <p>
+                    • Reach the examination centre at least 15 minutes before the exam.
+                </p>
+
+                <p>
+                    • Carry the required stationery items.
+                </p>
+
+                <p>
+                    • Mobile phones and electronic devices are not permitted inside the examination hall.
+                </p>
+
+                <p>
+                    • Check your examination date, time and venue carefully.
+                </p>
+
             </div>
 
         </div>
 
-
-        <!-- INSTRUCTIONS -->
-
-        <div class="instructions">
-
-            <h2>
-                📌 Exam Instructions
-            </h2>
-
-            <p>
-                • Carry your college ID card to the examination hall.
-            </p>
-
-            <p>
-                • Reach the examination centre at least 15 minutes before the exam.
-            </p>
-
-            <p>
-                • Carry the required stationery items.
-            </p>
-
-            <p>
-                • Mobile phones and electronic devices are not permitted inside the examination hall.
-            </p>
-
-            <p>
-                • Check your examination date, time and venue carefully.
-            </p>
-
-        </div>
-
     </div>
+
+
+    <!-- NAVIGATION -->
+
+    <script>
+
+        const pages = {
+
+            dashboard: "../dashboard.html",
+            courses: "../dashboard.html",
+            timetable: "timetable.html",
+            assignments: "../dashboard.html",
+            attendance: "attendance.html",
+            academics: "academics.html",
+            faculty: "faculty.html",
+            placement: "placement.html",
+            results: "results.html",
+            documents: "documents.html",
+            complaints: "complaints.html",
+            feedback: "feedback.html",
+            "lost-found": "lost-found.html",
+            campus: "campus.html",
+            events: "events.html",
+            exams: "exams.html",
+            notifications: "notifications.html",
+            profile: "profile.html",
+            settings: "settings.html"
+
+        };
+
+        function go(page) {
+
+            if (pages[page]) {
+                window.location.href = pages[page];
+            }
+
+        }
+
+    </script>
 
 
     <!-- BACKEND CONNECTION -->
