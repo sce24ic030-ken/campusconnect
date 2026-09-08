@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CampusConnect | Faculty</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#f4f7fb;
+    color:#172033;
+}
+
+/* ================= SIDEBAR ================= */
+
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    width:250px;
+    height:100vh;
+    background:linear-gradient(180deg,#172554,#312e81,#4c1d95);
+    color:white;
+    padding:22px 15px;
+    overflow-y:auto;
+    z-index:1000;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:4px 10px 22px;
+    border-bottom:1px solid rgba(255,255,255,.2);
+    margin-bottom:18px;
+}
+
+.logo-icon{
+    width:46px;
+    height:46px;
+    border-radius:12px;
+    background:linear-gradient(135deg,#38bdf8,#818cf8);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:25px;
+}
+
+.logo h2{
+    font-size:19px;
+    margin-bottom:3px;
+}
+
+.logo p{
+    font-size:12px;
+    color:#cbd5e1;
+}
+
+.nav-item{
+    width:100%;
+    border:none;
+    background:transparent;
+    color:#e2e8f0;
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding:13px 14px;
+    margin:4px 0;
+    border-radius:11px;
+    cursor:pointer;
+    font-size:14px;
+    text-align:left;
+}
+
+.nav-item:hover{
+    background:rgba(255,255,255,.12);
+    color:white;
+}
+
+.nav-item.active{
+    background:linear-gradient(90deg,#22d3ee,#8b5cf6);
+    color:white;
+    font-weight:bold;
+}
+
+.nav-icon{
+    width:25px;
+    text-align:center;
+    font-size:17px;
+}
+
+/* ================= MAIN ================= */
+
+.main{
+    margin-left:250px;
+    min-height:100vh;
+}
+
+/* ================= TOPBAR ================= */
+
+.topbar{
+    height:75px;
+    background:white;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 30px;
+    border-bottom:1px solid #e5e7eb;
+}
+
+.top-title h1{
+    font-size:23px;
+    color:#172033;
+}
+
+.top-title p{
+    font-size:12px;
+    color:#64748b;
+    margin-top:5px;
+}
+
+.top-right{
+    display:flex;
+    align-items:center;
+    gap:18px;
+}
+
+.clock{
+    color:#64748b;
+    font-size:13px;
+}
+
+.notification{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    background:#f1f5f9;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    border:none;
+    cursor:pointer;
+}
+
+.notification::after{
+    content:"";
+    width:7px;
+    height:7px;
+    background:#ef4444;
+    border-radius:50%;
+    position:absolute;
+    top:7px;
+    right:8px;
+}
+
+.profile-circle{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#0ea5e9,#6366f1);
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:bold;
+}
+
+.user-info{
+    line-height:1.3;
+}
+
+.user-info strong{
+    font-size:13px;
+}
+
+.user-info span{
+    display:block;
+    font-size:11px;
+    color:#64748b;
+}
+
+/* ================= CONTENT ================= */
+
+.content{
+    padding:30px;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+    background:linear-gradient(110deg,#172554,#3730a3,#6d28d9);
+    color:white;
+    border-radius:24px;
+    padding:32px;
+    min-height:185px;
+    position:relative;
+    overflow:hidden;
+    box-shadow:0 12px 30px rgba(37,45,100,.15);
+    margin-bottom:28px;
+}
+
+.hero::before{
+    content:"";
+    position:absolute;
+    width:190px;
+    height:190px;
+    border-radius:50%;
+    background:rgba(255,255,255,.08);
+    right:-30px;
+    top:-70px;
+}
+
+.hero::after{
+    content:"👨‍🏫";
+    position:absolute;
+    right:90px;
+    bottom:10px;
+    font-size:85px;
+    opacity:.10;
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+}
+
+.hero h2{
+    font-size:31px;
+    margin-bottom:12px;
+}
+
+.hero p{
+    font-size:14px;
+    color:#e0e7ff;
+}
+
+.date-badge{
+    display:inline-block;
+    margin-top:22px;
+    padding:9px 15px;
+    background:rgba(255,255,255,.14);
+    border-radius:20px;
+    font-size:12px;
+}
+
+/* ================= SECTION ================= */
+
+.section-header{
+    margin-bottom:20px;
+}
+
+.section-header h2{
+    font-size:21px;
+}
+
+.section-header p{
+    color:#64748b;
+    font-size:12px;
+    margin-top:5px;
+}
+
+/* ================= FACULTY GRID ================= */
+
+.faculty-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+}
+
+.faculty-card{
+    background:white;
+    border:1px solid #e2e8f0;
+    border-radius:20px;
+    padding:23px;
+    display:flex;
+    align-items:center;
+    gap:18px;
+    transition:.25s;
+}
+
+.faculty-card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 12px 25px rgba(30,41,59,.10);
+}
+
+.faculty-photo{
+    width:70px;
+    height:70px;
+    border-radius:17px;
+    background:#eef2ff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:32px;
+    flex-shrink:0;
+}
+
+.faculty-info{
+    flex:1;
+}
+
+.faculty-info h3{
+    font-size:17px;
+    margin-bottom:7px;
+}
+
+.department{
+    color:#4f46e5;
+    font-size:13px;
+    font-weight:bold;
+    margin-bottom:5px;
+}
+
+.designation{
+    color:#64748b;
+    font-size:12px;
+    margin-bottom:5px;
+}
+
+.email{
+    color:#64748b;
+    font-size:11px;
+}
+
+/* ================= MOBILE ================= */
+
+.menu-btn{
+    display:none;
+    border:none;
+    background:#eef2ff;
+    padding:8px 11px;
+    border-radius:8px;
+    cursor:pointer;
+    margin-right:10px;
+}
+
+@media(max-width:1000px){
+
+    .faculty-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media(max-width:700px){
+
+    .sidebar{
+        transform:translateX(-100%);
+        transition:.3s;
+    }
+
+    .sidebar.open{
+        transform:translateX(0);
+    }
+
+    .main{
+        margin-left:0;
+    }
+
+    .menu-btn{
+        display:block;
+    }
+
+    .topbar{
+        padding:0 15px;
+    }
+
+    .clock,
+    .user-info{
+        display:none;
+    }
+
+    .content{
+        padding:18px;
+    }
+
+    .hero{
+        padding:25px;
+    }
+
+    .hero h2{
+        font-size:25px;
+    }
+
+    .faculty-grid{
+        grid-template-columns:1fr;
+    }
+
+    .faculty-card{
+        padding:18px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ================= SIDEBAR ================= -->
+
+<aside class="sidebar" id="sidebar">
+
+    <div class="logo">
+
+        <div class="logo-icon">🎓</div>
+
+        <div>
+            <h2>CampusConnect</h2>
+            <p>AI College Companion</p>
+        </div>
+
+    </div>
+
+
+    <button class="nav-item" onclick="go('dashboard')">
+        <span class="nav-icon">🏠</span>
+        Dashboard
+    </button>
+
+    <button class="nav-item" onclick="go('courses')">
+        <span class="nav-icon">📚</span>
+        My Courses
+    </button>
+
+    <button class="nav-item" onclick="go('timetable')">
+        <span class="nav-icon">🗓️</span>
+        Timetable
+    </button>
+
+    <button class="nav-item" onclick="go('assignments')">
+        <span class="nav-icon">📝</span>
+        Assignments
+    </button>
+
+    <button class="nav-item" onclick="go('attendance')">
+        <span class="nav-icon">📊</span>
+        Attendance
+    </button>
+
+    <button class="nav-item" onclick="go('academics')">
+        <span class="nav-icon">🎓</span>
+        Academics
+    </button>
+
+    <button class="nav-item active">
+        <span class="nav-icon">👨‍🏫</span>
+        Faculty
+    </button>
+
+    <button class="nav-item" onclick="go('placement')">
+        <span class="nav-icon">💼</span>
+        Placement
+    </button>
+
+    <button class="nav-item" onclick="go('results')">
+        <span class="nav-icon">🏆</span>
+        Results
+    </button>
+
+    <button class="nav-item" onclick="go('documents')">
+        <span class="nav-icon">📄</span>
+        Documents
+    </button>
+
+    <button class="nav-item" onclick="go('complaints')">
+        <span class="nav-icon">📢</span>
+        Complaints
+    </button>
+
+    <button class="nav-item" onclick="go('feedback')">
+        <span class="nav-icon">💬</span>
+        Feedback
+    </button>
+
+    <button class="nav-item" onclick="go('lost-found')">
+        <span class="nav-icon">🔎</span>
+        Lost & Found
+    </button>
+
+    <button class="nav-item" onclick="go('campus')">
+        <span class="nav-icon">🏫</span>
+        Campus
+    </button>
+
+    <button class="nav-item" onclick="go('events')">
+        <span class="nav-icon">🎉</span>
+        Events
+    </button>
+
+    <button class="nav-item" onclick="go('exams')">
+        <span class="nav-icon">📝</span>
+        Exams
+    </button>
+
+    <button class="nav-item" onclick="go('notifications')">
+        <span class="nav-icon">🔔</span>
+        Notifications
+    </button>
+
+    <button class="nav-item" onclick="go('profile')">
+        <span class="nav-icon">👤</span>
+        Profile
+    </button>
+
+    <button class="nav-item" onclick="go('settings')">
+        <span class="nav-icon">⚙️</span>
+        Settings
+    </button>
+
+</aside>
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="main">
+
+    <header class="topbar">
+
+        <div style="display:flex;align-items:center;">
+
+            <button class="menu-btn" onclick="toggleSidebar()">
+                ☰
+            </button>
+
+            <div class="top-title">
+
+                <h1>Faculty</h1>
+
+                <p>
+                    CampusConnect Student Portal
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="top-right">
+
+            <span class="clock" id="clock"></span>
+
+            <button class="notification"
+                    onclick="go('notifications')">
+                🔔
+            </button>
+
+            <div class="profile-circle">
+                P
+            </div>
+
+            <div class="user-info">
+
+                <strong id="studentName">
+                    Student
+                </strong>
+
+                <span>
+                    Student Portal
+                </span>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <section class="content">
+
+        <!-- ================= HERO ================= -->
+
+        <div class="hero">
+
+            <div class="hero-content">
+
+                <h2>👨‍🏫 Faculty Directory</h2>
+
+                <p>
+                    Find faculty members and view their department
+                    and contact information.
+                </p>
+
+                <div class="date-badge" id="todayDate">
+                    Tuesday, 8 September 2026
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= FACULTY ================= -->
+
+        <div class="section-header">
+
+            <h2>👨‍🏫 Faculty Members</h2>
+
+            <p>
+                College faculty and department information
+            </p>
+
+        </div>
+
+
+        <div class="faculty-grid">
+
+
+            <div class="faculty-card">
+
+                <div class="faculty-photo">
+                    👨‍🏫
+                </div>
+
+                <div class="faculty-info">
+
+                    <h3>
+                        Dr. Rajesh Kumar
+                    </h3>
+
+                    <div class="department">
+                        Computer Science
+                    </div>
+
+                    <div class="designation">
+                        Professor & Head of Department
+                    </div>
+
+                    <div class="email">
+                        rajesh@campusconnect.edu
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="faculty-card">
+
+                <div class="faculty-photo">
+                    👩‍🏫
+                </div>
+
+                <div class="faculty-info">
+
+                    <h3>
+                        Dr. Priya Sharma
+                    </h3>
+
+                    <div class="department">
+                        Computer Applications
+                    </div>
+
+                    <div class="designation">
+                        Associate Professor
+                    </div>
+
+                    <div class="email">
+                        priya@campusconnect.edu
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="faculty-card">
+
+                <div class="faculty-photo">
+                    👨‍🏫
+                </div>
+
+                <div class="faculty-info">
+
+                    <h3>
+                        Prof. Arjun Rao
+                    </h3>
+
+                    <div class="department">
+                        Information Technology
+                    </div>
+
+                    <div class="designation">
+                        Assistant Professor
+                    </div>
+
+                    <div class="email">
+                        arjun@campusconnect.edu
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="faculty-card">
+
+                <div class="faculty-photo">
+                    👩‍🏫
+                </div>
+
+                <div class="faculty-info">
+
+                    <h3>
+                        Prof. Ananya Singh
+                    </h3>
+
+                    <div class="department">
+                        Data Science
+                    </div>
+
+                    <div class="designation">
+                        Assistant Professor
+                    </div>
+
+                    <div class="email">
+                        ananya@campusconnect.edu
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="faculty-card">
+
+                <div class="faculty-photo">
+                    👨‍🏫
+                </div>
+
+                <div class="faculty-info">
+
+                    <h3>
+                        Dr. Vikram Patel
+                    </h3>
+
+                    <div class="department">
+                        Management
+                    </div>
+
+                    <div class="designation">
+                        Professor
+                    </div>
+
+                    <div class="email">
+                        vikram@campusconnect.edu
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="faculty-card">
+
+                <div class="faculty-photo">
+                    👩‍🏫
+                </div>
+
+                <div class="faculty-info">
+
+                    <h3>
+                        Prof. Sneha Reddy
+                    </h3>
+
+                    <div class="department">
+                        Mathematics
+                    </div>
+
+                    <div class="designation">
+                        Assistant Professor
+                    </div>
+
+                    <div class="email">
+                        sneha@campusconnect.edu
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<script>
+
+/* ================= NAVIGATION ================= */
+
+function go(page){
+
+    const pages = {
+
+        dashboard: "../dashboard.html",
+
+        courses: "../dashboard.html",
+
+        timetable: "timetable.html",
+
+        assignments: "../dashboard.html",
+
+        attendance: "attendance.html",
+
+        academics: "academics.html",
+
+        faculty: "faculty.html",
+
+        placement: "placement.html",
+
+        results: "results.html",
+
+        documents: "documents.html",
+
+        complaints: "complaints.html",
+
+        feedback: "feedback.html",
+
+        "lost-found": "lost-found.html",
+
+        campus: "campus.html",
+
+        events: "events.html",
+
+        exams: "exams.html",
+
+        notifications: "notifications.html",
+
+        profile: "profile.html",
+
+        settings: "settings.html"
+
+    };
+
+    if(pages[page]){
+        window.location.href = pages[page];
+    }
+
+}
+
+
+/* ================= CLOCK ================= */
+
+function updateClock(){
+
+    const now = new Date();
+
+    document.getElementById("clock").textContent =
+        now.toLocaleTimeString("en-IN");
+
+}
+
+setInterval(updateClock,1000);
+
+updateClock();
+
+
+/* ================= DATE ================= */
+
+function updateDate(){
+
+    const now = new Date();
+
+    document.getElementById("todayDate").textContent =
+        now.toLocaleDateString("en-IN",{
+            weekday:"long",
+            day:"numeric",
+            month:"long",
+            year:"numeric"
+        });
+
+}
+
+updateDate();
+
+
+/* ================= STUDENT NAME ================= */
+
+try{
+
+    const student =
+        JSON.parse(localStorage.getItem("student"));
+
+    if(student){
+
+        const name =
+            student.name ||
+            student.username ||
+            student.fullName;
+
+        if(name){
+
+            document.getElementById("studentName").textContent =
+                name;
+
+        }
+
+    }
+
+}catch(error){
+
+    console.log("Student information not available.");
+
+}
+
+
+/* ================= MOBILE SIDEBAR ================= */
+
+function toggleSidebar(){
+
+    document
+        .getElementById("sidebar")
+        .classList.toggle("open");
+
+}
+
+</script>
+
+</body>
+</html>
