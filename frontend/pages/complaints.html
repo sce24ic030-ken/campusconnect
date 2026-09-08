@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CampusConnect | Complaints</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Poppins", sans-serif;
+            background: #f5f7fb;
+            color: #20243a;
+            min-height: 100vh;
+        }
+
+        /* =========================
+           SIDEBAR
+        ========================= */
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 250px;
+            height: 100vh;
+            background: linear-gradient(180deg,#172554,#312e81,#4c1d95);
+            color: white;
+            padding: 22px 15px;
+            overflow-y: auto;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .nav-item {
+            width: 100%;
+            border: none;
+            background: transparent;
+            color: #e0e7ff;
+            padding: 12px 14px;
+            margin: 3px 0;
+            border-radius: 10px;
+            text-align: left;
+            font-family: inherit;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: .2s;
+        }
+
+        .nav-item:hover {
+            background: rgba(255,255,255,.12);
+            color: white;
+        }
+
+        .nav-item.active {
+            background: linear-gradient(90deg,#22d3ee,#8b5cf6);
+            color: white;
+            font-weight: 600;
+        }
+
+        .nav-icon {
+            width: 24px;
+            text-align: center;
+            font-size: 17px;
+        }
+
+        /* =========================
+           MAIN
+        ========================= */
+
+        .main {
+            margin-left: 250px;
+            min-height: 100vh;
+        }
+
+        /* =========================
+           TOP BAR
+        ========================= */
+
+        .topbar {
+            height: 75px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 35px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            color: white;
+        }
+
+        .brand h2 {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .brand span {
+            color: #667eea;
+        }
+
+        .back-btn {
+            border: none;
+            background: #eef1ff;
+            color: #667eea;
+            padding: 11px 20px;
+            border-radius: 12px;
+            font-family: inherit;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .back-btn:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        /* =========================
+           CONTENT
+        ========================= */
+
+        .container {
+            max-width: 1150px;
+            margin: auto;
+            padding: 35px;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .page-header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 25px;
+            padding: 35px;
+            margin-bottom: 30px;
+        }
+
+        .page-header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .page-header p {
+            font-size: 14px;
+            line-height: 1.7;
+            opacity: 0.92;
+        }
+
+        /* =========================
+           CONTENT GRID
+        ========================= */
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 22px;
+            padding: 28px;
+            box-shadow: 0 8px 28px rgba(0,0,0,0.06);
+        }
+
+        .card h2 {
+            font-size: 21px;
+            margin-bottom: 7px;
+        }
+
+        .card-subtitle {
+            color: #777;
+            font-size: 12px;
+            margin-bottom: 22px;
+        }
+
+        /* =========================
+           FORM
+        ========================= */
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 7px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            border: 1px solid #e1e4ef;
+            border-radius: 11px;
+            padding: 12px 13px;
+            font-family: inherit;
+            font-size: 13px;
+            outline: none;
+            background: #fafbfe;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #667eea;
+            background: white;
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            border: none;
+            padding: 13px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            font-family: inherit;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102,126,234,0.25);
+        }
+
+        /* =========================
+           COMPLAINT TYPES
+        ========================= */
+
+        .complaint-types {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        .type-card {
+            padding: 17px;
+            border-radius: 15px;
+            background: #f7f8fc;
+            text-align: center;
+        }
+
+        .type-icon {
+            font-size: 28px;
+            margin-bottom: 7px;
+        }
+
+        .type-card h3 {
+            font-size: 13px;
+            margin-bottom: 4px;
+        }
+
+        .type-card p {
+            color: #777;
+            font-size: 10px;
+        }
+
+        /* =========================
+           INFO
+        ========================= */
+
+        .info-box {
+            background: #eef1ff;
+            border-radius: 15px;
+            padding: 18px;
+            margin-bottom: 18px;
+        }
+
+        .info-box h3 {
+            font-size: 14px;
+            margin-bottom: 7px;
+            color: #667eea;
+        }
+
+        .info-box p {
+            font-size: 12px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .steps {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .step {
+            display: flex;
+            gap: 13px;
+            align-items: flex-start;
+        }
+
+        .step-number {
+            width: 32px;
+            height: 32px;
+            border-radius: 10px;
+            background: #eef1ff;
+            color: #667eea;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 12px;
+            flex-shrink: 0;
+        }
+
+        .step h3 {
+            font-size: 13px;
+            margin-bottom: 3px;
+        }
+
+        .step p {
+            font-size: 11px;
+            color: #777;
+            line-height: 1.5;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            text-align: center;
+            padding: 30px 0 15px;
+            color: #888;
+            font-size: 11px;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            .topbar {
+                padding: 0 18px;
+            }
+
+        }
+
+        @media (max-width: 700px) {
+
+            .sidebar {
+                width: 220px;
+            }
+
+            .main {
+                margin-left: 220px;
+            }
+
+        }
+
+        @media (max-width: 500px) {
+
+            .sidebar {
+                position: relative;
+                width: 100%;
+                height: auto;
+            }
+
+            .main {
+                margin-left: 0;
+            }
+
+            .complaint-types {
+                grid-template-columns: 1fr;
+            }
+
+            .page-header h1 {
+                font-size: 25px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            🎓 CampusConnect
+        </div>
+
+
+        <button class="nav-item" onclick="go('dashboard')">
+            <span class="nav-icon">🏠</span>
+            Dashboard
+        </button>
+
+
+        <button class="nav-item" onclick="go('courses')">
+            <span class="nav-icon">📚</span>
+            My Courses
+        </button>
+
+
+        <button class="nav-item" onclick="go('timetable')">
+            <span class="nav-icon">🗓️</span>
+            Timetable
+        </button>
+
+
+        <button class="nav-item" onclick="go('assignments')">
+            <span class="nav-icon">📝</span>
+            Assignments
+        </button>
+
+
+        <button class="nav-item" onclick="go('attendance')">
+            <span class="nav-icon">📊</span>
+            Attendance
+        </button>
+
+
+        <button class="nav-item" onclick="go('academics')">
+            <span class="nav-icon">🎓</span>
+            Academics
+        </button>
+
+
+        <button class="nav-item" onclick="go('faculty')">
+            <span class="nav-icon">👨‍🏫</span>
+            Faculty
+        </button>
+
+
+        <button class="nav-item" onclick="go('placement')">
+            <span class="nav-icon">💼</span>
+            Placement
+        </button>
+
+
+        <button class="nav-item" onclick="go('results')">
+            <span class="nav-icon">📈</span>
+            Results
+        </button>
+
+
+        <button class="nav-item" onclick="go('documents')">
+            <span class="nav-icon">📄</span>
+            Documents
+        </button>
+
+
+        <button class="nav-item active" onclick="go('complaints')">
+            <span class="nav-icon">📢</span>
+            Complaints
+        </button>
+
+
+        <button class="nav-item" onclick="go('feedback')">
+            <span class="nav-icon">💬</span>
+            Feedback
+        </button>
+
+
+        <button class="nav-item" onclick="go('lost-found')">
+            <span class="nav-icon">🔎</span>
+            Lost & Found
+        </button>
+
+
+        <button class="nav-item" onclick="go('campus')">
+            <span class="nav-icon">🏫</span>
+            Campus
+        </button>
+
+
+        <button class="nav-item" onclick="go('events')">
+            <span class="nav-icon">🎉</span>
+            Events
+        </button>
+
+
+        <button class="nav-item" onclick="go('exams')">
+            <span class="nav-icon">📋</span>
+            Exams
+        </button>
+
+
+        <button class="nav-item" onclick="go('notifications')">
+            <span class="nav-icon">🔔</span>
+            Notifications
+        </button>
+
+
+        <button class="nav-item" onclick="go('profile')">
+            <span class="nav-icon">👤</span>
+            Profile
+        </button>
+
+
+        <button class="nav-item" onclick="go('settings')">
+            <span class="nav-icon">⚙️</span>
+            Settings
+        </button>
+
+    </aside>
+
+
+    <!-- MAIN -->
+
+    <div class="main">
+
+
+        <!-- TOP BAR -->
+
+        <header class="topbar">
+
+            <div class="brand">
+
+                <div class="brand-icon">
+                    📝
+                </div>
+
+                <h2>
+                    Campus<span>Connect</span>
+                </h2>
+
+            </div>
+
+
+            <button
+                class="back-btn"
+                onclick="go('dashboard')"
+            >
+                ← Dashboard
+            </button>
+
+        </header>
+
+
+        <!-- CONTENT -->
+
+        <main class="container">
+
+
+            <!-- PAGE HEADER -->
+
+            <section class="page-header">
+
+                <h1>Submit a Complaint</h1>
+
+                <p>
+                    CampusConnect provides a simple and secure way for students
+                    to report campus-related issues and concerns.
+                    Submit your complaint and the concerned department
+                    can review it.
+                </p>
+
+            </section>
+
+
+            <!-- CONTENT -->
+
+            <div class="content-grid">
+
+
+                <!-- COMPLAINT FORM -->
+
+                <section class="card">
+
+                    <h2>📝 Complaint Form</h2>
+
+                    <p class="card-subtitle">
+                        Please provide the details of your complaint.
+                    </p>
+
+
+                    <form id="complaintForm">
+
+
+                        <div class="form-group">
+
+                            <label for="complaintType">
+                                Complaint Type
+                            </label>
+
+                            <select id="complaintType" required>
+
+                                <option value="">
+                                    Select complaint type
+                                </option>
+
+                                <option value="Academic">
+                                    Academic
+                                </option>
+
+                                <option value="Infrastructure">
+                                    Infrastructure
+                                </option>
+
+                                <option value="Hostel">
+                                    Hostel
+                                </option>
+
+                                <option value="Transport">
+                                    Transport
+                                </option>
+
+                                <option value="Library">
+                                    Library
+                                </option>
+
+                                <option value="Other">
+                                    Other
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="subject">
+                                Subject
+                            </label>
+
+                            <input
+                                type="text"
+                                id="subject"
+                                placeholder="Enter complaint subject"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="description">
+                                Description
+                            </label>
+
+                            <textarea
+                                id="description"
+                                placeholder="Describe your complaint in detail..."
+                                required
+                            ></textarea>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="location">
+                                Location
+                            </label>
+
+                            <input
+                                type="text"
+                                id="location"
+                                placeholder="Example: Block A, Library, Hostel..."
+                            >
+
+                        </div>
+
+
+                        <button
+                            type="submit"
+                            class="submit-btn"
+                        >
+                            Submit Complaint →
+                        </button>
+
+
+                    </form>
+
+                </section>
+
+
+                <!-- INFORMATION -->
+
+                <section class="card">
+
+                    <h2>ℹ️ Complaint Information</h2>
+
+                    <p class="card-subtitle">
+                        How the complaint process works.
+                    </p>
+
+
+                    <div class="info-box">
+
+                        <h3>🔒 Your complaint matters</h3>
+
+                        <p>
+                            Provide accurate information so the concerned
+                            department can understand and address the issue.
+                        </p>
+
+                    </div>
+
+
+                    <div class="steps">
+
+
+                        <div class="step">
+
+                            <div class="step-number">
+                                1
+                            </div>
+
+                            <div>
+
+                                <h3>Submit</h3>
+
+                                <p>
+                                    Fill in the complaint form and submit
+                                    your concern.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="step">
+
+                            <div class="step-number">
+                                2
+                            </div>
+
+                            <div>
+
+                                <h3>Review</h3>
+
+                                <p>
+                                    The complaint can be reviewed by the
+                                    concerned department.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="step">
+
+                            <div class="step-number">
+                                3
+                            </div>
+
+                            <div>
+
+                                <h3>Action</h3>
+
+                                <p>
+                                    Appropriate action can be taken
+                                    based on the complaint.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <h2 style="margin-top: 30px;">
+                        📌 Common Categories
+                    </h2>
+
+
+                    <div class="complaint-types">
+
+
+                        <div class="type-card">
+
+                            <div class="type-icon">
+                                🎓
+                            </div>
+
+                            <h3>Academic</h3>
+
+                            <p>
+                                Academic related issues
+                            </p>
+
+                        </div>
+
+
+                        <div class="type-card">
+
+                            <div class="type-icon">
+                                🏢
+                            </div>
+
+                            <h3>Infrastructure</h3>
+
+                            <p>
+                                Campus facilities
+                            </p>
+
+                        </div>
+
+
+                        <div class="type-card">
+
+                            <div class="type-icon">
+                                🏠
+                            </div>
+
+                            <h3>Hostel</h3>
+
+                            <p>
+                                Hostel related issues
+                            </p>
+
+                        </div>
+
+
+                        <div class="type-card">
+
+                            <div class="type-icon">
+                                📚
+                            </div>
+
+                            <h3>Library</h3>
+
+                            <p>
+                                Library related issues
+                            </p>
+
+                        </div>
+
+
+                    </div>
+
+                </section>
+
+
+            </div>
+
+
+            <footer>
+                CampusConnect • Student Complaint Center
+            </footer>
+
+
+        </main>
+
+    </div>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        const pages = {
+
+            dashboard: "../dashboard.html",
+
+            courses: "../dashboard.html",
+
+            timetable: "timetable.html",
+
+            assignments: "../dashboard.html",
+
+            attendance: "attendance.html",
+
+            academics: "academics.html",
+
+            faculty: "faculty.html",
+
+            placement: "placement.html",
+
+            results: "results.html",
+
+            documents: "documents.html",
+
+            complaints: "complaints.html",
+
+            feedback: "feedback.html",
+
+            "lost-found": "lost-found.html",
+
+            campus: "campus.html",
+
+            events: "events.html",
+
+            exams: "exams.html",
+
+            notifications: "notifications.html",
+
+            profile: "profile.html",
+
+            settings: "settings.html"
+
+        };
+
+
+        function go(page) {
+
+            if (pages[page]) {
+
+                window.location.href = pages[page];
+
+            }
+
+        }
+
+
+        document
+            .getElementById("complaintForm")
+            .addEventListener("submit", function(event) {
+
+                event.preventDefault();
+
+                const type =
+                    document.getElementById("complaintType").value;
+
+                const subject =
+                    document.getElementById("subject").value;
+
+                if (!type || !subject) {
+
+                    alert("Please fill in all required fields.");
+
+                    return;
+
+                }
+
+                alert(
+                    "Complaint submitted successfully!\n\n" +
+                    "Type: " + type + "\n" +
+                    "Subject: " + subject
+                );
+
+                this.reset();
+
+            });
+
+    </script>
+
+
+</body>
+
+</html>
