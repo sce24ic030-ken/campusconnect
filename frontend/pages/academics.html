@@ -4,607 +4,419 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>CampusConnect - Academics</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<title>CampusConnect | Academics</title>
 
 <style>
-
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
 }
 
 body{
+    background:#f4f7fb;
+    color:#1f2937;
     min-height:100vh;
-    font-family:'Poppins',sans-serif;
-    background:
-        radial-gradient(circle at 10% 10%,rgba(145,67,255,.16),transparent 25%),
-        radial-gradient(circle at 90% 90%,rgba(240,58,171,.13),transparent 25%),
-        #f7f5fb;
-    color:#2d273b;
 }
 
-/* ================= SIDEBAR ================= */
-
+/* SIDEBAR */
 .sidebar{
     position:fixed;
     left:0;
     top:0;
-    width:240px;
+    width:250px;
     height:100vh;
-    padding:25px 17px;
-    background:linear-gradient(180deg,#271344,#421568,#591c7e);
+    background:linear-gradient(180deg,#172554,#312e81,#4c1d95);
     color:white;
-    box-shadow:5px 0 25px rgba(48,20,75,.15);
-    z-index:100;
+    padding:25px 15px;
+    z-index:1000;
+    overflow-y:auto;
 }
 
 .logo{
     display:flex;
     align-items:center;
-    gap:11px;
-    padding:8px 10px;
-    margin-bottom:35px;
+    gap:12px;
+    padding:0 12px 25px;
+    border-bottom:1px solid rgba(255,255,255,.2);
+    margin-bottom:20px;
 }
 
 .logo-icon{
-    width:42px;
-    height:42px;
+    width:45px;
+    height:45px;
+    border-radius:14px;
+    background:linear-gradient(135deg,#38bdf8,#a78bfa);
     display:flex;
     align-items:center;
     justify-content:center;
-    border-radius:13px;
-    background:rgba(255,255,255,.14);
-    font-size:21px;
+    font-size:23px;
 }
 
-.logo-text{
-    font-size:17px;
-    font-weight:700;
+.logo h2{
+    font-size:20px;
 }
 
-.logo-text span{
-    color:#f2a2ff;
-}
-
-.menu-title{
-    padding:0 12px;
-    margin-bottom:10px;
-    color:#bda9d0;
-    font-size:9px;
-    font-weight:600;
-    letter-spacing:1px;
-}
-
-.nav-menu{
-    display:flex;
-    flex-direction:column;
-    gap:6px;
+.logo span{
+    display:block;
+    font-size:11px;
+    opacity:.7;
+    margin-top:3px;
 }
 
 .nav-item{
+    width:100%;
+    border:none;
+    background:transparent;
+    color:#dbeafe;
     display:flex;
     align-items:center;
-    gap:12px;
-    width:100%;
-    padding:11px 13px;
-    border:none;
-    border-radius:11px;
-    background:transparent;
-    color:#d9cbe4;
-    font-family:inherit;
-    font-size:10px;
-    text-align:left;
+    gap:13px;
+    padding:13px 15px;
+    margin:4px 0;
+    border-radius:12px;
     cursor:pointer;
+    font-size:14px;
+    text-align:left;
     transition:.25s;
 }
 
 .nav-item:hover{
-    background:rgba(255,255,255,.10);
+    background:rgba(255,255,255,.12);
+    transform:translateX(4px);
     color:white;
-    transform:translateX(3px);
 }
 
 .nav-item.active{
-    background:linear-gradient(
-        90deg,
-        rgba(166,76,234,.55),
-        rgba(224,66,170,.35)
-    );
+    background:linear-gradient(90deg,#38bdf8,#8b5cf6);
     color:white;
 }
 
 .nav-icon{
-    width:20px;
+    width:25px;
     text-align:center;
-    font-size:14px;
+    font-size:17px;
 }
 
-.sidebar-bottom{
-    position:absolute;
-    bottom:25px;
-    left:17px;
-    right:17px;
-}
-
-.logout{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    width:100%;
-    padding:11px 13px;
-    border:none;
-    border-radius:11px;
-    background:rgba(255,255,255,.08);
-    color:#eadff1;
-    font-family:inherit;
-    font-size:10px;
-    cursor:pointer;
-}
-
-/* ================= MAIN ================= */
-
+/* MAIN */
 .main{
-    margin-left:240px;
+    margin-left:250px;
     min-height:100vh;
-    padding:28px 35px;
 }
 
+/* TOPBAR */
 .topbar{
+    height:75px;
+    background:white;
     display:flex;
     align-items:center;
     justify-content:space-between;
-    margin-bottom:25px;
+    padding:0 30px;
+    border-bottom:1px solid #e5e7eb;
+    position:sticky;
+    top:0;
+    z-index:500;
 }
 
-.page-title h1{
-    font-size:25px;
-    color:#282238;
+.page-title{
+    font-size:21px;
+    font-weight:700;
 }
 
-.page-title p{
+.page-subtitle{
+    font-size:12px;
+    color:#6b7280;
     margin-top:4px;
-    color:#918b9c;
-    font-size:10px;
 }
 
-.top-actions{
+.top-right{
     display:flex;
     align-items:center;
-    gap:12px;
+    gap:20px;
 }
 
-.notification{
-    width:39px;
-    height:39px;
-    border:1px solid #ebe7f0;
-    border-radius:11px;
-    background:white;
-    font-size:16px;
-    cursor:pointer;
+.clock{
+    font-size:13px;
+    color:#64748b;
 }
 
-.mini-profile{
+.profile{
     display:flex;
     align-items:center;
-    gap:9px;
-    padding:5px 10px 5px 5px;
-    border-radius:30px;
-    background:white;
-    box-shadow:0 4px 15px rgba(40,20,60,.05);
+    gap:10px;
 }
 
-.mini-avatar{
-    width:32px;
-    height:32px;
+.profile-avatar{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#06b6d4,#6366f1);
+    color:white;
     display:flex;
     align-items:center;
     justify-content:center;
-    border-radius:50%;
-    background:linear-gradient(135deg,#7a43db,#e34aa9);
-    color:white;
+    font-weight:bold;
+}
+
+.profile-info strong{
+    display:block;
     font-size:13px;
 }
 
-.mini-name{
-    color:#40394d;
-    font-size:9px;
-    font-weight:600;
+.profile-info span{
+    font-size:11px;
+    color:#64748b;
 }
 
-/* ================= COURSE BANNER ================= */
+/* MOBILE MENU */
+.mobile-menu{
+    display:none;
+    border:none;
+    background:none;
+    font-size:22px;
+    cursor:pointer;
+}
 
-.course-banner{
-    position:relative;
-    overflow:hidden;
-    padding:25px;
-    margin-bottom:20px;
-    border-radius:20px;
-    background:linear-gradient(110deg,#6735c4,#9c3fc9,#d642a0);
+/* CONTENT */
+.content{
+    padding:30px;
+}
+
+/* HERO */
+.hero{
+    background:linear-gradient(120deg,#172554,#312e81,#6d28d9);
+    border-radius:24px;
+    padding:30px;
     color:white;
-    box-shadow:0 12px 30px rgba(105,50,190,.20);
+    margin-bottom:25px;
 }
 
-.course-banner::after{
-    content:"🎓";
-    position:absolute;
-    right:35px;
-    top:10px;
-    font-size:100px;
-    opacity:.10;
-    transform:rotate(-10deg);
+.hero h1{
+    font-size:28px;
+    margin-bottom:8px;
 }
 
-.course-banner h2{
-    font-size:20px;
+.hero p{
+    font-size:13px;
+    color:#dbeafe;
 }
 
-.course-banner p{
-    margin-top:5px;
-    font-size:9px;
-    opacity:.85;
-}
-
-.course-info{
-    display:flex;
-    gap:10px;
-    flex-wrap:wrap;
-    margin-top:17px;
-}
-
-.info-pill{
-    padding:7px 11px;
-    border-radius:20px;
-    background:rgba(255,255,255,.15);
-    border:1px solid rgba(255,255,255,.12);
-    font-size:8px;
-}
-
-/* ================= STATS ================= */
-
+/* STATS */
 .stats{
     display:grid;
     grid-template-columns:repeat(4,1fr);
-    gap:15px;
-    margin-bottom:20px;
+    gap:18px;
+    margin-bottom:25px;
 }
 
 .stat-card{
-    padding:18px;
     background:white;
-    border:1px solid #ece8f1;
-    border-radius:17px;
-    box-shadow:0 7px 22px rgba(45,25,70,.05);
-    transition:.25s;
-}
-
-.stat-card:hover{
-    transform:translateY(-4px);
-}
-
-.stat-top{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+    border:1px solid #e5e7eb;
+    border-radius:18px;
+    padding:22px;
 }
 
 .stat-icon{
     width:42px;
     height:42px;
+    border-radius:12px;
+    background:#eef2ff;
     display:flex;
     align-items:center;
     justify-content:center;
-    border-radius:13px;
-    background:#f2e8ff;
-    font-size:19px;
+    font-size:20px;
+    margin-bottom:15px;
 }
 
-.stat-value{
-    font-size:20px;
-    font-weight:700;
-    color:#43394f;
+.stat-card h3{
+    font-size:22px;
+    margin-bottom:5px;
 }
 
 .stat-card p{
-    margin-top:9px;
-    color:#98919f;
-    font-size:8px;
+    font-size:12px;
+    color:#64748b;
 }
 
-/* ================= CONTENT ================= */
-
+/* CONTENT GRID */
 .content-grid{
     display:grid;
-    grid-template-columns:1.55fr 1fr;
-    gap:20px;
+    grid-template-columns:1.5fr 1fr;
+    gap:22px;
 }
 
 .card{
-    padding:22px;
     background:white;
-    border:1px solid #ece8f1;
-    border-radius:18px;
-    box-shadow:0 7px 22px rgba(45,25,70,.05);
+    border:1px solid #e5e7eb;
+    border-radius:20px;
+    padding:23px;
+    margin-bottom:22px;
 }
 
-.card-title{
-    display:flex;
-    align-items:center;
-    gap:9px;
-    margin-bottom:18px;
-    color:#30293e;
-    font-size:14px;
-    font-weight:700;
+.card h2{
+    font-size:18px;
+    margin-bottom:20px;
 }
 
-.title-icon{
-    width:31px;
-    height:31px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    border-radius:9px;
-    background:#f2e8ff;
-    font-size:15px;
-}
-
-/* ================= SUBJECT CARDS ================= */
-
+/* SUBJECTS */
 .subject-list{
     display:grid;
     grid-template-columns:1fr 1fr;
-    gap:12px;
+    gap:14px;
 }
 
 .subject{
-    position:relative;
-    padding:16px;
-    border:1px solid #eeeaf3;
+    padding:17px;
+    background:#f8fafc;
     border-radius:14px;
-    background:#fcfbfd;
-    cursor:pointer;
-    transition:.25s;
+    border-left:4px solid #6366f1;
 }
 
 .subject:hover{
-    transform:translateY(-4px);
-    box-shadow:0 10px 20px rgba(50,25,70,.08);
-    border-color:#d9c1f3;
-}
-
-.subject-head{
-    display:flex;
-    align-items:center;
-    gap:10px;
-}
-
-.subject-icon{
-    width:39px;
-    height:39px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    border-radius:11px;
-    background:#f0e5ff;
-    font-size:18px;
+    background:#eef2ff;
 }
 
 .subject h3{
-    font-size:10px;
-    color:#443b4e;
+    font-size:14px;
+    margin-bottom:7px;
 }
 
-.subject small{
-    display:block;
-    margin-top:3px;
-    color:#99919f;
-    font-size:7px;
-}
-
-.subject-footer{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-top:13px;
+.subject p{
+    font-size:11px;
+    color:#64748b;
+    margin-bottom:10px;
 }
 
 .credit{
-    padding:5px 8px;
-    border-radius:15px;
-    background:#f0e6ff;
-    color:#7139c8;
-    font-size:7px;
-    font-weight:600;
+    display:inline-block;
+    background:#eef2ff;
+    color:#4f46e5;
+    padding:5px 9px;
+    border-radius:10px;
+    font-size:10px;
 }
 
-.faculty{
-    color:#89818e;
-    font-size:7px;
-}
-
-/* ================= PERFORMANCE ================= */
-
-.performance{
+/* PERFORMANCE */
+.performance-box{
     text-align:center;
 }
 
 .performance-circle{
-    width:145px;
-    height:145px;
-    margin:10px auto 18px;
+    width:150px;
+    height:150px;
+    margin:10px auto 22px;
     border-radius:50%;
+    background:conic-gradient(#6366f1 0deg 310deg,#e5e7eb 310deg 360deg);
     display:flex;
     align-items:center;
     justify-content:center;
-    background:
-        conic-gradient(
-            #8745db 0deg 320deg,
-            #eee8f3 320deg 360deg
-        );
-    position:relative;
 }
 
-.performance-circle::before{
-    content:"";
-    position:absolute;
+.performance-inner{
     width:112px;
     height:112px;
-    background:white;
     border-radius:50%;
+    background:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
 }
 
-.circle-text{
-    position:relative;
-    z-index:2;
-}
-
-.circle-text strong{
-    display:block;
-    color:#6333b4;
+.performance-inner strong{
     font-size:26px;
+    color:#4338ca;
 }
 
-.circle-text span{
-    color:#9992a0;
-    font-size:8px;
+.performance-inner span{
+    font-size:10px;
+    color:#64748b;
 }
 
 .performance-row{
     display:flex;
     justify-content:space-between;
-    padding:11px 12px;
+    padding:12px;
     margin-bottom:8px;
+    background:#f8fafc;
     border-radius:10px;
-    background:#faf9fc;
-    font-size:8px;
+    font-size:12px;
 }
 
 .performance-row strong{
-    color:#6133af;
+    color:#4f46e5;
 }
 
-/* ================= PROGRESS ================= */
-
-.progress-section{
-    margin-top:20px;
-}
-
+/* PROGRESS */
 .progress-item{
-    margin-bottom:16px;
+    margin-bottom:18px;
 }
 
 .progress-head{
     display:flex;
     justify-content:space-between;
-    margin-bottom:6px;
+    margin-bottom:7px;
 }
 
 .progress-head span{
-    font-size:8px;
-    color:#62596d;
+    font-size:12px;
 }
 
 .progress-head strong{
-    font-size:8px;
-    color:#7438ca;
+    font-size:12px;
+    color:#4f46e5;
 }
 
 .progress-bg{
-    height:7px;
-    overflow:hidden;
+    height:8px;
+    background:#e5e7eb;
     border-radius:10px;
-    background:#eeeaf2;
+    overflow:hidden;
 }
 
 .progress-bar{
     height:100%;
+    background:linear-gradient(90deg,#38bdf8,#6366f1);
     border-radius:10px;
-    background:linear-gradient(90deg,#7840d4,#c340bb);
 }
 
-/* ================= SEMESTER ================= */
-
-.semester-card{
-    margin-top:20px;
-}
-
+/* SEMESTER */
 .semester-grid{
     display:grid;
     grid-template-columns:repeat(6,1fr);
-    gap:9px;
+    gap:10px;
 }
 
 .semester{
-    padding:12px 5px;
+    padding:14px 5px;
     text-align:center;
-    border:1px solid #eeeaf3;
-    border-radius:11px;
-    background:#faf9fc;
+    background:#f8fafc;
+    border:1px solid #e5e7eb;
+    border-radius:12px;
     cursor:pointer;
-    transition:.2s;
-}
-
-.semester:hover{
-    border-color:#caa5ed;
 }
 
 .semester.active{
-    background:linear-gradient(135deg,#7a3fd5,#c540b5);
+    background:linear-gradient(135deg,#38bdf8,#6366f1);
     color:white;
-    border-color:transparent;
+    border:none;
 }
 
 .semester strong{
     display:block;
-    font-size:8px;
+    font-size:12px;
 }
 
 .semester span{
     display:block;
+    font-size:9px;
     margin-top:4px;
-    font-size:7px;
     opacity:.75;
 }
 
-/* ================= NOTICE ================= */
-
-.notice{
-    margin-top:18px;
-    padding:14px;
-    border-radius:12px;
-    background:#f5efff;
-    border:1px solid #e8d9fa;
-}
-
-.notice h3{
-    font-size:9px;
-    color:#6935bd;
-}
-
-.notice p{
-    margin-top:5px;
-    color:#82758e;
-    font-size:7px;
-    line-height:1.6;
-}
-
-/* ================= RESPONSIVE ================= */
-
+/* MOBILE */
 @media(max-width:1100px){
-
-    .sidebar{
-        width:205px;
-    }
-
-    .main{
-        margin-left:205px;
-        padding:25px;
-    }
 
     .stats{
         grid-template-columns:1fr 1fr;
@@ -618,29 +430,39 @@ body{
 @media(max-width:700px){
 
     .sidebar{
-        position:relative;
-        width:100%;
-        height:auto;
-        padding:15px;
+        width:220px;
+        transform:translateX(-100%);
+        transition:.3s;
     }
 
-    .nav-menu{
-        flex-direction:row;
-        overflow-x:auto;
-    }
-
-    .nav-item{
-        min-width:max-content;
-    }
-
-    .menu-title,
-    .sidebar-bottom{
-        display:none;
+    .sidebar.open{
+        transform:translateX(0);
     }
 
     .main{
         margin-left:0;
-        padding:20px;
+    }
+
+    .mobile-menu{
+        display:block;
+        margin-right:15px;
+    }
+
+    .topbar{
+        padding:0 15px;
+    }
+
+    .clock,
+    .profile-info{
+        display:none;
+    }
+
+    .content{
+        padding:15px;
+    }
+
+    .stats{
+        grid-template-columns:1fr;
     }
 
     .subject-list{
@@ -651,38 +473,13 @@ body{
         grid-template-columns:repeat(3,1fr);
     }
 }
-
-@media(max-width:500px){
-
-    .stats{
-        grid-template-columns:1fr;
-    }
-
-    .topbar{
-        align-items:flex-start;
-    }
-
-    .mini-name{
-        display:none;
-    }
-
-    .course-banner::after{
-        display:none;
-    }
-
-    .semester-grid{
-        grid-template-columns:repeat(2,1fr);
-    }
-}
-
 </style>
 </head>
 
 <body>
 
-<!-- ================= SIDEBAR ================= -->
-
-<aside class="sidebar">
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
 
     <div class="logo">
 
@@ -690,114 +487,158 @@ body{
             🎓
         </div>
 
-        <div class="logo-text">
-            Campus<span>Connect</span>
+        <div>
+            <h2>CampusConnect</h2>
+            <span>AI College Companion</span>
         </div>
 
     </div>
 
-    <div class="menu-title">
-        STUDENT PORTAL
-    </div>
+    <button class="nav-item" onclick="go('dashboard')">
+        <span class="nav-icon">🏠</span>
+        Dashboard
+    </button>
 
-    <nav class="nav-menu">
+    <button class="nav-item" onclick="go('courses')">
+        <span class="nav-icon">📚</span>
+        My Courses
+    </button>
 
-        <button class="nav-item"
-                onclick="goTo('../dashboard.html')">
-            <span class="nav-icon">🏠</span>
-            Dashboard
-        </button>
+    <button class="nav-item" onclick="go('timetable')">
+        <span class="nav-icon">🗓️</span>
+        Timetable
+    </button>
 
-        <button class="nav-item"
-                onclick="goTo('profile.html')">
-            <span class="nav-icon">👤</span>
-            My Profile
-        </button>
+    <button class="nav-item" onclick="go('assignments')">
+        <span class="nav-icon">📝</span>
+        Assignments
+    </button>
 
-        <button class="nav-item active">
-            <span class="nav-icon">📚</span>
-            Academics
-        </button>
+    <button class="nav-item" onclick="go('attendance')">
+        <span class="nav-icon">📊</span>
+        Attendance
+    </button>
 
-        <button class="nav-item"
-                onclick="goTo('timetable.html')">
-            <span class="nav-icon">🗓️</span>
-            Timetable
-        </button>
+    <button class="nav-item active">
+        <span class="nav-icon">🎓</span>
+        Academics
+    </button>
 
-        <button class="nav-item"
-                onclick="goTo('attendance.html')">
-            <span class="nav-icon">📊</span>
-            Attendance
-        </button>
+    <button class="nav-item" onclick="go('faculty')">
+        <span class="nav-icon">👩‍🏫</span>
+        Faculty
+    </button>
 
-        <button class="nav-item"
-                onclick="goTo('events.html')">
-            <span class="nav-icon">🎫</span>
-            Events
-        </button>
+    <button class="nav-item" onclick="go('placement')">
+        <span class="nav-icon">💼</span>
+        Placement
+    </button>
 
-        <button class="nav-item"
-                onclick="goTo('placement.html')">
-            <span class="nav-icon">💼</span>
-            Placement
-        </button>
+    <button class="nav-item" onclick="go('results')">
+        <span class="nav-icon">📈</span>
+        Results
+    </button>
 
-        <button class="nav-item"
-                onclick="goTo('notifications.html')">
-            <span class="nav-icon">🔔</span>
-            Notifications
-        </button>
+    <button class="nav-item" onclick="go('documents')">
+        <span class="nav-icon">📄</span>
+        Documents
+    </button>
 
-    </nav>
+    <button class="nav-item" onclick="go('complaints')">
+        <span class="nav-icon">📢</span>
+        Complaints
+    </button>
 
-    <div class="sidebar-bottom">
+    <button class="nav-item" onclick="go('feedback')">
+        <span class="nav-icon">💬</span>
+        Feedback
+    </button>
 
-        <button class="logout"
-                onclick="goTo('../index.html')">
-            🚪 Logout
-        </button>
+    <button class="nav-item" onclick="go('lost-found')">
+        <span class="nav-icon">🔎</span>
+        Lost & Found
+    </button>
 
-    </div>
+    <button class="nav-item" onclick="go('campus')">
+        <span class="nav-icon">🏫</span>
+        Campus
+    </button>
+
+    <button class="nav-item" onclick="go('events')">
+        <span class="nav-icon">🎉</span>
+        Events
+    </button>
+
+    <button class="nav-item" onclick="go('exams')">
+        <span class="nav-icon">📋</span>
+        Exams
+    </button>
+
+    <button class="nav-item" onclick="go('notifications')">
+        <span class="nav-icon">🔔</span>
+        Notifications
+    </button>
+
+    <button class="nav-item" onclick="go('profile')">
+        <span class="nav-icon">👤</span>
+        Profile
+    </button>
+
+    <button class="nav-item" onclick="go('settings')">
+        <span class="nav-icon">⚙️</span>
+        Settings
+    </button>
 
 </aside>
 
 
-<!-- ================= MAIN ================= -->
-
+<!-- MAIN -->
 <main class="main">
 
-    <!-- HEADER -->
-
+    <!-- TOPBAR -->
     <header class="topbar">
 
-        <div class="page-title">
+        <div style="display:flex;align-items:center;">
 
-            <h1>
-                Academics
-            </h1>
+            <button class="mobile-menu" onclick="toggleSidebar()">
+                ☰
+            </button>
 
-            <p>
-                Manage and track your academic performance
-            </p>
+            <div>
+
+                <div class="page-title">
+                    Academics
+                </div>
+
+                <div class="page-subtitle">
+                    Manage and track your academic performance
+                </div>
+
+            </div>
 
         </div>
 
-        <div class="top-actions">
 
-            <button class="notification"
-                    onclick="goTo('notifications.html')">
-                🔔
-            </button>
+        <div class="top-right">
 
-            <div class="mini-profile">
+            <div class="clock" id="clock"></div>
 
-                <div class="mini-avatar">
-                    👤
+            <div class="profile">
+
+                <div class="profile-avatar">
+                    P
                 </div>
 
-                <div class="mini-name">
-                    Student
+                <div class="profile-info">
+
+                    <strong id="studentName">
+                        Student
+                    </strong>
+
+                    <span>
+                        BCA Student
+                    </span>
+
                 </div>
 
             </div>
@@ -807,707 +648,505 @@ body{
     </header>
 
 
-    <!-- ================= COURSE ================= -->
+    <!-- CONTENT -->
+    <section class="content">
 
-    <section class="course-banner">
 
-        <h2>
-            Bachelor of Computer Applications
-        </h2>
+        <!-- HERO -->
+        <div class="hero">
 
-        <p>
-            Computer Applications • Current Academic Session
-        </p>
+            <h1>
+                🎓 Academic Overview
+            </h1>
 
-        <div class="course-info">
-
-            <div class="info-pill">
-                🎓 BCA
-            </div>
-
-            <div class="info-pill">
-                📖 Semester 4
-            </div>
-
-            <div class="info-pill">
-                📅 2026
-            </div>
-
-            <div class="info-pill">
-                👨‍🎓 Undergraduate
-            </div>
+            <p>
+                View your subjects, academic performance,
+                semester progress and credits.
+            </p>
 
         </div>
 
-    </section>
 
+        <!-- STATS -->
+        <section class="stats">
 
-    <!-- ================= STATS ================= -->
-
-    <section class="stats">
-
-        <div class="stat-card">
-
-            <div class="stat-top">
+            <div class="stat-card">
 
                 <div class="stat-icon">
                     📚
                 </div>
 
-                <div class="stat-value">
+                <h3>
                     6
-                </div>
+                </h3>
+
+                <p>
+                    Current Subjects
+                </p>
 
             </div>
 
-            <p>
-                Current Subjects
-            </p>
 
-        </div>
-
-
-        <div class="stat-card">
-
-            <div class="stat-top">
+            <div class="stat-card">
 
                 <div class="stat-icon">
                     ⭐
                 </div>
 
-                <div class="stat-value">
+                <h3>
                     8.6
-                </div>
+                </h3>
+
+                <p>
+                    Current CGPA
+                </p>
 
             </div>
 
-            <p>
-                Current CGPA
-            </p>
 
-        </div>
-
-
-        <div class="stat-card">
-
-            <div class="stat-top">
+            <div class="stat-card">
 
                 <div class="stat-icon">
                     🏆
                 </div>
 
-                <div class="stat-value">
+                <h3>
                     86%
-                </div>
+                </h3>
+
+                <p>
+                    Academic Performance
+                </p>
 
             </div>
 
-            <p>
-                Academic Performance
-            </p>
 
-        </div>
-
-
-        <div class="stat-card">
-
-            <div class="stat-top">
+            <div class="stat-card">
 
                 <div class="stat-icon">
                     🎯
                 </div>
 
-                <div class="stat-value">
-                    24
-                </div>
-
-            </div>
-
-            <p>
-                Credits This Semester
-            </p>
-
-        </div>
-
-    </section>
-
-
-    <!-- ================= CONTENT ================= -->
-
-    <div class="content-grid">
-
-
-        <!-- SUBJECTS -->
-
-        <section class="card">
-
-            <div class="card-title">
-
-                <div class="title-icon">
-                    📖
-                </div>
-
-                Current Subjects
-
-            </div>
-
-
-            <div class="subject-list">
-
-
-                <div class="subject"
-                     onclick="subjectMessage('Data Structures')">
-
-                    <div class="subject-head">
-
-                        <div class="subject-icon">
-                            💻
-                        </div>
-
-                        <div>
-
-                            <h3>
-                                Data Structures
-                            </h3>
-
-                            <small>
-                                Core Subject
-                            </small>
-
-                        </div>
-
-                    </div>
-
-                    <div class="subject-footer">
-
-                        <span class="credit">
-                            4 Credits
-                        </span>
-
-                        <span class="faculty">
-                            Dr. Anitha
-                        </span>
-
-                    </div>
-
-                </div>
-
-
-                <div class="subject"
-                     onclick="subjectMessage('Database Management')">
-
-                    <div class="subject-head">
-
-                        <div class="subject-icon">
-                            🗄️
-                        </div>
-
-                        <div>
-
-                            <h3>
-                                Database Management
-                            </h3>
-
-                            <small>
-                                Core Subject
-                            </small>
-
-                        </div>
-
-                    </div>
-
-                    <div class="subject-footer">
-
-                        <span class="credit">
-                            4 Credits
-                        </span>
-
-                        <span class="faculty">
-                            Prof. Priya
-                        </span>
-
-                    </div>
-
-                </div>
-
-
-                <div class="subject"
-                     onclick="subjectMessage('Web Development')">
-
-                    <div class="subject-head">
-
-                        <div class="subject-icon">
-                            🌐
-                        </div>
-
-                        <div>
-
-                            <h3>
-                                Web Development
-                            </h3>
-
-                            <small>
-                                Practical
-                            </small>
-
-                        </div>
-
-                    </div>
-
-                    <div class="subject-footer">
-
-                        <span class="credit">
-                            4 Credits
-                        </span>
-
-                        <span class="faculty">
-                            Prof. Rahul
-                        </span>
-
-                    </div>
-
-                </div>
-
-
-                <div class="subject"
-                     onclick="subjectMessage('Computer Networks')">
-
-                    <div class="subject-head">
-
-                        <div class="subject-icon">
-                            🔗
-                        </div>
-
-                        <div>
-
-                            <h3>
-                                Computer Networks
-                            </h3>
-
-                            <small>
-                                Core Subject
-                            </small>
-
-                        </div>
-
-                    </div>
-
-                    <div class="subject-footer">
-
-                        <span class="credit">
-                            4 Credits
-                        </span>
-
-                        <span class="faculty">
-                            Dr. Suresh
-                        </span>
-
-                    </div>
-
-                </div>
-
-
-                <div class="subject"
-                     onclick="subjectMessage('Operating Systems')">
-
-                    <div class="subject-head">
-
-                        <div class="subject-icon">
-                            ⚙️
-                        </div>
-
-                        <div>
-
-                            <h3>
-                                Operating Systems
-                            </h3>
-
-                            <small>
-                                Core Subject
-                            </small>
-
-                        </div>
-
-                    </div>
-
-                    <div class="subject-footer">
-
-                        <span class="credit">
-                            4 Credits
-                        </span>
-
-                        <span class="faculty">
-                            Dr. Meena
-                        </span>
-
-                    </div>
-
-                </div>
-
-
-                <div class="subject"
-                     onclick="subjectMessage('Soft Skills')">
-
-                    <div class="subject-head">
-
-                        <div class="subject-icon">
-                            🗣️
-                        </div>
-
-                        <div>
-
-                            <h3>
-                                Soft Skills
-                            </h3>
-
-                            <small>
-                                Skill Development
-                            </small>
-
-                        </div>
-
-                    </div>
-
-                    <div class="subject-footer">
-
-                        <span class="credit">
-                            4 Credits
-                        </span>
-
-                        <span class="faculty">
-                            Ms. Kavitha
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- PERFORMANCE -->
-
-        <section class="card performance">
-
-            <div class="card-title">
-
-                <div class="title-icon">
-                    📈
-                </div>
-
-                Academic Performance
-
-            </div>
-
-
-            <div class="performance-circle">
-
-                <div class="circle-text">
-
-                    <strong>
-                        86%
-                    </strong>
-
-                    <span>
-                        Performance
-                    </span>
-
-                </div>
-
-            </div>
-
-
-            <div class="performance-row">
-
-                <span>
-                    Assignments
-                </span>
-
-                <strong>
-                    90%
-                </strong>
-
-            </div>
-
-
-            <div class="performance-row">
-
-                <span>
-                    Internal Exams
-                </span>
-
-                <strong>
-                    84%
-                </strong>
-
-            </div>
-
-
-            <div class="performance-row">
-
-                <span>
-                    Attendance
-                </span>
-
-                <strong>
-                    88%
-                </strong>
-
-            </div>
-
-
-            <div class="performance-row">
-
-                <span>
-                    Practical Work
-                </span>
-
-                <strong>
-                    91%
-                </strong>
-
-            </div>
-
-
-            <div class="notice">
-
                 <h3>
-                    💡 Academic Tip
+                    24
                 </h3>
 
                 <p>
-                    Keep your attendance above the required
-                    percentage and submit assignments on time
-                    to maintain strong academic performance.
+                    Credits This Semester
                 </p>
 
             </div>
 
         </section>
 
-    </div>
+
+        <!-- CONTENT GRID -->
+        <div class="content-grid">
 
 
-    <!-- ================= PROGRESS ================= -->
+            <!-- SUBJECTS -->
+            <section class="card">
 
-    <section class="card progress-section">
+                <h2>
+                    📖 Current Subjects
+                </h2>
 
-        <div class="card-title">
 
-            <div class="title-icon">
-                🎯
-            </div>
+                <div class="subject-list">
 
-            Semester Progress
+                    <div class="subject">
+
+                        <h3>
+                            Data Structures
+                        </h3>
+
+                        <p>
+                            Core Subject • Dr. Anitha
+                        </p>
+
+                        <span class="credit">
+                            4 Credits
+                        </span>
+
+                    </div>
+
+
+                    <div class="subject">
+
+                        <h3>
+                            Database Management
+                        </h3>
+
+                        <p>
+                            Core Subject • Prof. Priya
+                        </p>
+
+                        <span class="credit">
+                            4 Credits
+                        </span>
+
+                    </div>
+
+
+                    <div class="subject">
+
+                        <h3>
+                            Web Development
+                        </h3>
+
+                        <p>
+                            Practical • Prof. Rahul
+                        </p>
+
+                        <span class="credit">
+                            4 Credits
+                        </span>
+
+                    </div>
+
+
+                    <div class="subject">
+
+                        <h3>
+                            Computer Networks
+                        </h3>
+
+                        <p>
+                            Core Subject • Dr. Suresh
+                        </p>
+
+                        <span class="credit">
+                            4 Credits
+                        </span>
+
+                    </div>
+
+
+                    <div class="subject">
+
+                        <h3>
+                            Operating Systems
+                        </h3>
+
+                        <p>
+                            Core Subject • Dr. Meena
+                        </p>
+
+                        <span class="credit">
+                            4 Credits
+                        </span>
+
+                    </div>
+
+
+                    <div class="subject">
+
+                        <h3>
+                            Soft Skills
+                        </h3>
+
+                        <p>
+                            Skill Development • Ms. Kavitha
+                        </p>
+
+                        <span class="credit">
+                            4 Credits
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- PERFORMANCE -->
+            <section class="card performance-box">
+
+                <h2>
+                    📈 Academic Performance
+                </h2>
+
+
+                <div class="performance-circle">
+
+                    <div class="performance-inner">
+
+                        <strong>
+                            86%
+                        </strong>
+
+                        <span>
+                            Performance
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="performance-row">
+
+                    <span>
+                        Assignments
+                    </span>
+
+                    <strong>
+                        90%
+                    </strong>
+
+                </div>
+
+
+                <div class="performance-row">
+
+                    <span>
+                        Internal Exams
+                    </span>
+
+                    <strong>
+                        84%
+                    </strong>
+
+                </div>
+
+
+                <div class="performance-row">
+
+                    <span>
+                        Attendance
+                    </span>
+
+                    <strong>
+                        88%
+                    </strong>
+
+                </div>
+
+
+                <div class="performance-row">
+
+                    <span>
+                        Practical Work
+                    </span>
+
+                    <strong>
+                        91%
+                    </strong>
+
+                </div>
+
+            </section>
 
         </div>
 
 
-        <div class="progress-item">
+        <!-- PROGRESS -->
+        <section class="card">
 
-            <div class="progress-head">
+            <h2>
+                🎯 Semester Progress
+            </h2>
 
-                <span>
-                    Data Structures
-                </span>
 
-                <strong>
-                    90%
-                </strong>
+            <div class="progress-item">
 
-            </div>
+                <div class="progress-head">
 
-            <div class="progress-bg">
+                    <span>
+                        Data Structures
+                    </span>
 
-                <div class="progress-bar"
-                     style="width:90%">
+                    <strong>
+                        90%
+                    </strong>
+
+                </div>
+
+                <div class="progress-bg">
+
+                    <div class="progress-bar"
+                         style="width:90%;">
+                    </div>
+
                 </div>
 
             </div>
 
-        </div>
 
+            <div class="progress-item">
 
-        <div class="progress-item">
+                <div class="progress-head">
 
-            <div class="progress-head">
+                    <span>
+                        Database Management
+                    </span>
 
-                <span>
-                    Database Management
-                </span>
+                    <strong>
+                        84%
+                    </strong>
 
-                <strong>
-                    84%
-                </strong>
+                </div>
 
-            </div>
+                <div class="progress-bg">
 
-            <div class="progress-bg">
+                    <div class="progress-bar"
+                         style="width:84%;">
+                    </div>
 
-                <div class="progress-bar"
-                     style="width:84%">
                 </div>
 
             </div>
 
-        </div>
 
+            <div class="progress-item">
 
-        <div class="progress-item">
+                <div class="progress-head">
 
-            <div class="progress-head">
+                    <span>
+                        Web Development
+                    </span>
 
-                <span>
-                    Web Development
-                </span>
+                    <strong>
+                        88%
+                    </strong>
 
-                <strong>
-                    88%
-                </strong>
+                </div>
 
-            </div>
+                <div class="progress-bg">
 
-            <div class="progress-bg">
+                    <div class="progress-bar"
+                         style="width:88%;">
+                    </div>
 
-                <div class="progress-bar"
-                     style="width:88%">
                 </div>
 
             </div>
 
-        </div>
 
+            <div class="progress-item">
 
-        <div class="progress-item">
+                <div class="progress-head">
 
-            <div class="progress-head">
+                    <span>
+                        Computer Networks
+                    </span>
 
-                <span>
-                    Computer Networks
-                </span>
+                    <strong>
+                        82%
+                    </strong>
 
-                <strong>
-                    82%
-                </strong>
+                </div>
 
-            </div>
+                <div class="progress-bg">
 
-            <div class="progress-bg">
+                    <div class="progress-bar"
+                         style="width:82%;">
+                    </div>
 
-                <div class="progress-bar"
-                     style="width:82%">
                 </div>
 
             </div>
 
-        </div>
-
-    </section>
+        </section>
 
 
-    <!-- ================= SEMESTER ================= -->
+        <!-- SEMESTER -->
+        <section class="card">
 
-    <section class="card semester-card">
-
-        <div class="card-title">
-
-            <div class="title-icon">
-                📅
-            </div>
-
-            Semester Selection
-
-        </div>
+            <h2>
+                📅 Semester Selection
+            </h2>
 
 
-        <div class="semester-grid">
+            <div class="semester-grid">
 
-            <div class="semester"
-                 onclick="selectSemester(this,'Semester 1')">
+                <div class="semester"
+                     onclick="selectSemester(this,'Semester 1')">
 
-                <strong>
-                    Sem 1
-                </strong>
+                    <strong>
+                        Sem 1
+                    </strong>
 
-                <span>
-                    Completed
-                </span>
+                    <span>
+                        Completed
+                    </span>
 
-            </div>
-
-
-            <div class="semester"
-                 onclick="selectSemester(this,'Semester 2')">
-
-                <strong>
-                    Sem 2
-                </strong>
-
-                <span>
-                    Completed
-                </span>
-
-            </div>
+                </div>
 
 
-            <div class="semester"
-                 onclick="selectSemester(this,'Semester 3')">
+                <div class="semester"
+                     onclick="selectSemester(this,'Semester 2')">
 
-                <strong>
-                    Sem 3
-                </strong>
+                    <strong>
+                        Sem 2
+                    </strong>
 
-                <span>
-                    Completed
-                </span>
+                    <span>
+                        Completed
+                    </span>
 
-            </div>
-
-
-            <div class="semester active"
-                 onclick="selectSemester(this,'Semester 4')">
-
-                <strong>
-                    Sem 4
-                </strong>
-
-                <span>
-                    Current
-                </span>
-
-            </div>
+                </div>
 
 
-            <div class="semester"
-                 onclick="selectSemester(this,'Semester 5')">
+                <div class="semester"
+                     onclick="selectSemester(this,'Semester 3')">
 
-                <strong>
-                    Sem 5
-                </strong>
+                    <strong>
+                        Sem 3
+                    </strong>
 
-                <span>
-                    Upcoming
-                </span>
+                    <span>
+                        Completed
+                    </span>
 
-            </div>
+                </div>
 
 
-            <div class="semester"
-                 onclick="selectSemester(this,'Semester 6')">
+                <div class="semester active"
+                     onclick="selectSemester(this,'Semester 4')">
 
-                <strong>
-                    Sem 6
-                </strong>
+                    <strong>
+                        Sem 4
+                    </strong>
 
-                <span>
-                    Upcoming
-                </span>
+                    <span>
+                        Current
+                    </span>
+
+                </div>
+
+
+                <div class="semester"
+                     onclick="selectSemester(this,'Semester 5')">
+
+                    <strong>
+                        Sem 5
+                    </strong>
+
+                    <span>
+                        Upcoming
+                    </span>
+
+                </div>
+
+
+                <div class="semester"
+                     onclick="selectSemester(this,'Semester 6')">
+
+                    <strong>
+                        Sem 6
+                    </strong>
+
+                    <span>
+                        Upcoming
+                    </span>
+
+                </div>
 
             </div>
 
-        </div>
+        </section>
 
     </section>
 
@@ -1516,28 +1155,109 @@ body{
 
 <script>
 
-/* ================= NAVIGATION ================= */
+/* SAME NAVIGATION METHOD AS TIMETABLE */
 
-function goTo(page){
+function go(page){
 
-    window.location.href = page;
+    const pages = {
+
+        dashboard: "../dashboard.html",
+
+        courses: "../dashboard.html",
+
+        timetable: "timetable.html",
+
+        assignments: "assignments.html",
+
+        attendance: "attendance.html",
+
+        academics: "academics.html",
+
+        faculty: "faculty.html",
+
+        placement: "placement.html",
+
+        results: "results.html",
+
+        documents: "documents.html",
+
+        complaints: "complaints.html",
+
+        feedback: "feedback.html",
+
+        "lost-found": "lost-found.html",
+
+        campus: "campus.html",
+
+        events: "events.html",
+
+        exams: "exams.html",
+
+        notifications: "notifications.html",
+
+        profile: "profile.html",
+
+        settings: "settings.html"
+
+    };
+
+
+    if(pages[page]){
+
+        window.location.href = pages[page];
+
+    }
 
 }
 
 
-/* ================= SUBJECT CLICK ================= */
+/* CLOCK */
 
-function subjectMessage(subject){
+function updateClock(){
 
-    alert(
-        subject +
-        "\n\nSubject details will be connected to the backend later."
-    );
+    const now = new Date();
+
+    document.getElementById("clock").textContent =
+        now.toLocaleTimeString("en-IN");
+
+}
+
+setInterval(updateClock,1000);
+
+updateClock();
+
+
+/* STUDENT NAME */
+
+try{
+
+    const student =
+        JSON.parse(localStorage.getItem("student"));
+
+    if(student){
+
+        const name =
+            student.name ||
+            student.username ||
+            student.fullName;
+
+        if(name){
+
+            document.getElementById("studentName")
+                .textContent = name;
+
+        }
+
+    }
+
+}catch(error){
+
+    console.log("Student information not available.");
 
 }
 
 
-/* ================= SEMESTER ================= */
+/* SEMESTER */
 
 function selectSemester(element,semester){
 
@@ -1553,39 +1273,23 @@ function selectSemester(element,semester){
 
     alert(
         semester +
-        " selected.\n\n" +
-        "Backend integration can load the actual subjects, marks and academic data later."
+        " selected."
     );
 
 }
 
 
-/* ================= ANIMATE PROGRESS ================= */
+/* MOBILE SIDEBAR */
 
-window.addEventListener("load",function(){
+function toggleSidebar(){
 
-    const bars =
-        document.querySelectorAll(".progress-bar");
+    document
+        .getElementById("sidebar")
+        .classList.toggle("open");
 
-    bars.forEach(function(bar){
-
-        const width = bar.style.width;
-
-        bar.style.width = "0";
-
-        setTimeout(function(){
-
-            bar.style.width = width;
-
-        },200);
-
-    });
-
-});
+}
 
 </script>
-<script src="../js/academics.js"></script>
-
 
 </body>
 </html>
