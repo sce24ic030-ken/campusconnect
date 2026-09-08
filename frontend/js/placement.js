@@ -95,3 +95,10 @@ document.addEventListener("keydown", function (event) {
     }
 
 });
+// ========================================
+// SHOW PLACEMENT MESSAGE
+// ========================================
+
+function showMessage(message) {
+    alert(message);
+}
