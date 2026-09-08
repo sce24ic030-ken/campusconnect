@@ -1,663 +1,635 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>CampusConnect - Attendance</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-    <style>
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            min-height: 100vh;
-            font-family: 'Poppins', sans-serif;
-            background:
-                radial-gradient(circle at 10% 10%, rgba(145,67,255,.16), transparent 25%),
-                radial-gradient(circle at 90% 90%, rgba(240,58,171,.13), transparent 25%),
-                #f7f5fb;
-            color: #2d273b;
-        }
-
-        /* ================= SIDEBAR ================= */
-
-        .sidebar {
-            position: fixed;
-            left: 0;
-            top: 0;
-            width: 240px;
-            height: 100vh;
-            padding: 25px 17px;
-            background: linear-gradient(180deg,#271344,#421568,#591c7e);
-            color: white;
-            box-shadow: 5px 0 25px rgba(48,20,75,.15);
-            z-index: 100;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 11px;
-            padding: 8px 10px;
-            margin-bottom: 35px;
-        }
-
-        .logo-icon {
-            width: 42px;
-            height: 42px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 13px;
-            background: rgba(255,255,255,.14);
-            font-size: 21px;
-        }
-
-        .logo-text {
-            font-size: 17px;
-            font-weight: 700;
-        }
-
-        .logo-text span {
-            color: #f2a2ff;
-        }
-
-        .menu-title {
-            padding: 0 12px;
-            margin-bottom: 10px;
-            color: #bda9d0;
-            font-size: 9px;
-            font-weight: 600;
-            letter-spacing: 1px;
-        }
-
-        .nav-menu {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .nav-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            width: 100%;
-            padding: 11px 13px;
-            border: none;
-            border-radius: 11px;
-            background: transparent;
-            color: #d9cbe4;
-            font-family: inherit;
-            font-size: 10px;
-            text-align: left;
-            cursor: pointer;
-            transition: .25s;
-        }
-
-        .nav-item:hover {
-            background: rgba(255,255,255,.10);
-            color: white;
-            transform: translateX(3px);
-        }
-
-        .nav-item.active {
-            background: linear-gradient(
-                90deg,
-                rgba(166,76,234,.55),
-                rgba(224,66,170,.35)
-            );
-            color: white;
-        }
-
-        .nav-icon {
-            width: 20px;
-            text-align: center;
-            font-size: 14px;
-        }
-
-        .sidebar-bottom {
-            position: absolute;
-            bottom: 25px;
-            left: 17px;
-            right: 17px;
-        }
-
-        .logout {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            width: 100%;
-            padding: 11px 13px;
-            border: none;
-            border-radius: 11px;
-            background: rgba(255,255,255,.08);
-            color: #eadff1;
-            font-family: inherit;
-            font-size: 10px;
-            cursor: pointer;
-        }
-
-        /* ================= MAIN ================= */
-
-        .main {
-            margin-left: 240px;
-            min-height: 100vh;
-            padding: 28px 35px;
-        }
-
-        .topbar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 25px;
-        }
-
-        .page-title h1 {
-            font-size: 25px;
-            color: #282238;
-        }
-
-        .page-title p {
-            margin-top: 4px;
-            color: #918b9c;
-            font-size: 10px;
-        }
-
-        .top-actions {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .notification {
-            width: 39px;
-            height: 39px;
-            border: 1px solid #ebe7f0;
-            border-radius: 11px;
-            background: white;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        .mini-profile {
-            display: flex;
-            align-items: center;
-            gap: 9px;
-            padding: 5px 10px 5px 5px;
-            border-radius: 30px;
-            background: white;
-            box-shadow: 0 4px 15px rgba(40,20,60,.05);
-        }
-
-        .mini-avatar {
-            width: 32px;
-            height: 32px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            background: linear-gradient(135deg,#7a43db,#e34aa9);
-            color: white;
-            font-size: 13px;
-        }
-
-        .mini-name {
-            color: #40394d;
-            font-size: 9px;
-            font-weight: 600;
-        }
-
-        /* ================= SUMMARY ================= */
-
-        .summary {
-            display: grid;
-            grid-template-columns: repeat(4,1fr);
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        .summary-card {
-            position: relative;
-            overflow: hidden;
-            padding: 18px;
-            background: white;
-            border: 1px solid #ece8f1;
-            border-radius: 17px;
-            box-shadow: 0 7px 22px rgba(45,25,70,.05);
-            transition: .25s;
-        }
-
-        .summary-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 13px 28px rgba(45,25,70,.09);
-        }
-
-        .summary-top {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .summary-icon {
-            width: 42px;
-            height: 42px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 13px;
-            background: #f1e7ff;
-            font-size: 19px;
-        }
-
-        .summary-number {
-            font-size: 21px;
-            font-weight: 700;
-            color: #40364e;
-        }
-
-        .summary-card p {
-            margin-top: 10px;
-            color: #98919f;
-            font-size: 8px;
-        }
-
-        .overall-card {
-            background: linear-gradient(
-                135deg,
-                #743bd8,
-                #aa40c7,
-                #dd439f
-            );
-            color: white;
-            border: none;
-        }
-
-        .overall-card .summary-number,
-        .overall-card p {
-            color: white;
-        }
-
-        .overall-card .summary-icon {
-            background: rgba(255,255,255,.16);
-        }
-
-        /* ================= CONTENT ================= */
-
-        .content-grid {
-            display: grid;
-            grid-template-columns: 1.65fr 1fr;
-            gap: 20px;
-        }
-
-        .card {
-            padding: 22px;
-            background: white;
-            border: 1px solid #ece8f1;
-            border-radius: 18px;
-            box-shadow: 0 7px 22px rgba(45,25,70,.05);
-        }
-
-        .card-title {
-            display: flex;
-            align-items: center;
-            gap: 9px;
-            margin-bottom: 20px;
-            color: #30293e;
-            font-size: 14px;
-            font-weight: 700;
-        }
-
-        .title-icon {
-            width: 31px;
-            height: 31px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 9px;
-            background: #f2e8ff;
-            font-size: 15px;
-        }
-
-        /* ================= SUBJECT ================= */
-
-        .subject-row {
-            padding: 15px 0;
-            border-bottom: 1px solid #f0edf3;
-        }
-
-        .subject-row:last-child {
-            border-bottom: none;
-        }
-
-        .subject-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 8px;
-        }
-
-        .subject-name {
-            display: flex;
-            align-items: center;
-            gap: 9px;
-        }
-
-        .subject-icon {
-            width: 33px;
-            height: 33px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 9px;
-            background: #f6efff;
-            font-size: 14px;
-        }
-
-        .subject-name h3 {
-            font-size: 10px;
-            color: #4b4355;
-        }
-
-        .subject-name p {
-            margin-top: 2px;
-            font-size: 7px;
-            color: #a19aa8;
-        }
-
-        .percentage {
-            font-size: 13px;
-            font-weight: 700;
-        }
-
-        .good {
-            color: #43a66c;
-        }
-
-        .warning {
-            color: #e89a38;
-        }
-
-        .danger {
-            color: #df5667;
-        }
-
-        .progress-bg {
-            height: 7px;
-            width: 100%;
-            overflow: hidden;
-            border-radius: 10px;
-            background: #eeeaf2;
-        }
-
-        .progress {
-            height: 100%;
-            border-radius: 10px;
-            transition: width 1s ease;
-        }
-
-        .good-bg {
-            background: #49b578;
-        }
-
-        .warning-bg {
-            background: #e9a044;
-        }
-
-        .danger-bg {
-            background: #df5968;
-        }
-
-        .subject-bottom {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 7px;
-            color: #9992a0;
-            font-size: 7px;
-        }
-
-        /* ================= RIGHT CARD ================= */
-
-        .circle-area {
-            display: flex;
-            justify-content: center;
-            margin: 5px 0 20px;
-        }
-
-        .circle {
-            position: relative;
-            width: 145px;
-            height: 145px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            background:
-                conic-gradient(
-                    #8a45dc 0deg 317deg,
-                    #eee8f3 317deg 360deg
-                );
-        }
-
-        .circle::before {
-            content: "";
-            position: absolute;
-            width: 112px;
-            height: 112px;
-            border-radius: 50%;
-            background: white;
-        }
-
-        .circle-content {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-        }
-
-        .circle-content strong {
-            display: block;
-            font-size: 25px;
-            color: #6333b4;
-        }
-
-        .circle-content span {
-            font-size: 8px;
-            color: #9992a0;
-        }
-
-        /* ================= LEGEND ================= */
-
-        .legend {
-            display: grid;
-            gap: 10px;
-        }
-
-        .legend-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px 12px;
-            border-radius: 10px;
-            background: #faf9fc;
-        }
-
-        .legend-left {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 8px;
-            color: #665e70;
-        }
-
-        .dot {
-            width: 9px;
-            height: 9px;
-            border-radius: 50%;
-        }
-
-        .dot-green {
-            background: #49b578;
-        }
-
-        .dot-orange {
-            background: #e9a044;
-        }
-
-        .dot-red {
-            background: #df5968;
-        }
-
-        .legend-value {
-            font-size: 8px;
-            font-weight: 700;
-            color: #4c4455;
-        }
-
-        /* ================= ATTENDANCE STATUS ================= */
-
-        .status-box {
-            margin-top: 20px;
-            padding: 15px;
-            border-radius: 12px;
-            background: #f5efff;
-            border: 1px solid #e8d9fa;
-        }
-
-        .status-box h3 {
-            color: #6935bd;
-            font-size: 10px;
-        }
-
-        .status-box p {
-            margin-top: 5px;
-            color: #82758e;
-            font-size: 8px;
-            line-height: 1.6;
-        }
-
-        /* ================= MONTHLY ================= */
-
-        .monthly {
-            margin-top: 20px;
-        }
-
-        .month-grid {
-            display: grid;
-            grid-template-columns: repeat(6,1fr);
-            gap: 8px;
-        }
-
-        .month {
-            padding: 11px 5px;
-            text-align: center;
-            border-radius: 10px;
-            background: #faf9fc;
-            border: 1px solid #eeeaf3;
-        }
-
-        .month strong {
-            display: block;
-            font-size: 8px;
-            color: #5b5365;
-        }
-
-        .month span {
-            display: block;
-            margin-top: 5px;
-            font-size: 8px;
-            font-weight: 700;
-            color: #713bd0;
-        }
-
-        /* ================= RESPONSIVE ================= */
-
-        @media(max-width:1100px) {
-
-            .sidebar {
-                width: 205px;
-            }
-
-            .main {
-                margin-left: 205px;
-                padding: 25px;
-            }
-
-            .summary {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .content-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media(max-width:700px) {
-
-            .sidebar {
-                position: relative;
-                width: 100%;
-                height: auto;
-                padding: 15px;
-            }
-
-            .nav-menu {
-                flex-direction: row;
-                overflow-x: auto;
-            }
-
-            .nav-item {
-                min-width: max-content;
-            }
-
-            .menu-title,
-            .sidebar-bottom {
-                display: none;
-            }
-
-            .main {
-                margin-left: 0;
-                padding: 20px;
-            }
-
-            .summary {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .month-grid {
-                grid-template-columns: repeat(3,1fr);
-            }
-        }
-
-        @media(max-width:500px) {
-
-            .summary {
-                grid-template-columns: 1fr;
-            }
-
-            .topbar {
-                align-items: flex-start;
-            }
-
-            .mini-name {
-                display: none;
-            }
-
-            .month-grid {
-                grid-template-columns: repeat(2,1fr);
-            }
-        }
-
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CampusConnect | Attendance</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    background:#f4f7fb;
+    color:#1f2937;
+    min-height:100vh;
+}
+
+/* ================= SIDEBAR ================= */
+
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    width:250px;
+    height:100vh;
+
+    background:linear-gradient(
+        180deg,
+        #172554,
+        #312e81,
+        #4c1d95
+    );
+
+    color:white;
+    padding:25px 15px;
+
+    z-index:1000;
+    overflow-y:auto;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    padding:0 12px 25px;
+
+    border-bottom:1px solid rgba(255,255,255,.2);
+
+    margin-bottom:20px;
+}
+
+.logo-icon{
+    width:45px;
+    height:45px;
+
+    border-radius:14px;
+
+    background:linear-gradient(
+        135deg,
+        #38bdf8,
+        #a78bfa
+    );
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:23px;
+}
+
+.logo h2{
+    font-size:20px;
+}
+
+.logo span{
+    display:block;
+
+    font-size:11px;
+    opacity:.7;
+
+    margin-top:3px;
+}
+
+.nav-item{
+    width:100%;
+
+    border:none;
+    background:transparent;
+
+    color:#dbeafe;
+
+    display:flex;
+    align-items:center;
+
+    gap:13px;
+
+    padding:13px 15px;
+
+    margin:4px 0;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    font-size:14px;
+
+    text-align:left;
+
+    transition:.25s;
+}
+
+.nav-item:hover{
+    background:rgba(255,255,255,.12);
+
+    transform:translateX(4px);
+
+    color:white;
+}
+
+.nav-item.active{
+    background:linear-gradient(
+        90deg,
+        #38bdf8,
+        #8b5cf6
+    );
+
+    color:white;
+}
+
+.nav-icon{
+    width:25px;
+
+    text-align:center;
+
+    font-size:17px;
+}
+
+/* ================= MAIN ================= */
+
+.main{
+    margin-left:250px;
+
+    min-height:100vh;
+}
+
+/* ================= TOPBAR ================= */
+
+.topbar{
+    height:75px;
+
+    background:white;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 30px;
+
+    border-bottom:1px solid #e5e7eb;
+
+    position:sticky;
+
+    top:0;
+
+    z-index:500;
+}
+
+.page-title{
+    font-size:21px;
+
+    font-weight:700;
+}
+
+.page-subtitle{
+    font-size:12px;
+
+    color:#6b7280;
+
+    margin-top:4px;
+}
+
+.top-right{
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+}
+
+.clock{
+    font-size:13px;
+
+    color:#64748b;
+}
+
+.notification{
+    width:40px;
+    height:40px;
+
+    border-radius:50%;
+
+    background:#f1f5f9;
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    cursor:pointer;
+
+    position:relative;
+}
+
+.notification-dot{
+    position:absolute;
+
+    width:8px;
+    height:8px;
+
+    border-radius:50%;
+
+    background:#ef4444;
+
+    right:8px;
+    top:7px;
+}
+
+.profile{
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    cursor:pointer;
+}
+
+.profile-avatar{
+    width:40px;
+    height:40px;
+
+    border-radius:50%;
+
+    background:linear-gradient(
+        135deg,
+        #06b6d4,
+        #6366f1
+    );
+
+    color:white;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    font-weight:bold;
+}
+
+.profile-info strong{
+    display:block;
+
+    font-size:13px;
+}
+
+.profile-info span{
+    font-size:11px;
+
+    color:#64748b;
+}
+
+/* ================= CONTENT ================= */
+
+.content{
+    padding:30px;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+    background:linear-gradient(
+        120deg,
+        #172554,
+        #312e81,
+        #6d28d9
+    );
+
+    border-radius:24px;
+
+    padding:32px;
+
+    color:white;
+
+    position:relative;
+
+    overflow:hidden;
+
+    margin-bottom:25px;
+
+    box-shadow:
+        0 15px 40px rgba(49,46,129,.2);
+}
+
+.hero:before{
+    content:"";
+
+    position:absolute;
+
+    width:300px;
+    height:300px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.08);
+
+    right:-80px;
+    top:-130px;
+}
+
+.hero:after{
+    content:"";
+
+    position:absolute;
+
+    width:180px;
+    height:180px;
+
+    border-radius:50%;
+
+    background:rgba(56,189,248,.12);
+
+    right:150px;
+    bottom:-100px;
+}
+
+.hero-content{
+    position:relative;
+
+    z-index:2;
+}
+
+.hero h1{
+    font-size:30px;
+
+    margin-bottom:10px;
+}
+
+.hero p{
+    color:#dbeafe;
+
+    font-size:14px;
+
+    max-width:650px;
+
+    line-height:1.6;
+}
+
+.hero-date{
+    display:inline-block;
+
+    margin-top:18px;
+
+    padding:9px 14px;
+
+    background:rgba(255,255,255,.12);
+
+    border-radius:20px;
+
+    font-size:12px;
+}
+
+/* ================= STATS ================= */
+
+.stats{
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:18px;
+
+    margin-bottom:25px;
+}
+
+.stat-card{
+    background:white;
+
+    border-radius:18px;
+
+    padding:22px;
+
+    border:1px solid #e5e7eb;
+
+    transition:.25s;
+}
+
+.stat-card:hover{
+    transform:translateY(-5px);
+
+    box-shadow:
+        0 12px 30px rgba(15,23,42,.1);
+}
+
+.stat-top{
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+}
+
+.stat-icon{
+    width:45px;
+    height:45px;
+
+    border-radius:13px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    font-size:20px;
+
+    background:#eef2ff;
+}
+
+.stat-card h3{
+    font-size:28px;
+
+    margin:15px 0 5px;
+}
+
+.stat-card p{
+    color:#64748b;
+
+    font-size:12px;
+}
+
+.green{
+    color:#16a34a;
+}
+
+.blue{
+    color:#2563eb;
+}
+
+.purple{
+    color:#7c3aed;
+}
+
+/* ================= CARD ================= */
+
+.card{
+    background:white;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:20px;
+
+    padding:23px;
+
+    margin-bottom:22px;
+}
+
+.card-header{
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:20px;
+}
+
+.card-header h2{
+    font-size:17px;
+}
+
+.card-header span{
+    font-size:12px;
+
+    color:#6366f1;
+}
+
+/* ================= TABLE ================= */
+
+.table-container{
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+
+    border-collapse:collapse;
+}
+
+thead{
+    background:#f8fafc;
+}
+
+th{
+    text-align:left;
+
+    padding:15px;
+
+    font-size:12px;
+
+    color:#64748b;
+
+    border-bottom:1px solid #e5e7eb;
+}
+
+td{
+    padding:16px 15px;
+
+    font-size:13px;
+
+    border-bottom:1px solid #e5e7eb;
+}
+
+tbody tr:hover{
+    background:#f8fafc;
+}
+
+.subject{
+    font-weight:600;
+}
+
+.badge{
+    display:inline-block;
+
+    padding:6px 12px;
+
+    border-radius:20px;
+
+    font-size:11px;
+
+    font-weight:600;
+}
+
+.good{
+    background:#dcfce7;
+
+    color:#15803d;
+}
+
+/* ================= PROGRESS ================= */
+
+.progress{
+    width:120px;
+
+    height:7px;
+
+    background:#e5e7eb;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    display:inline-block;
+
+    vertical-align:middle;
+
+    margin-right:8px;
+}
+
+.progress-bar{
+    height:100%;
+
+    border-radius:20px;
+
+    background:linear-gradient(
+        90deg,
+        #06b6d4,
+        #6366f1
+    );
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:900px){
+
+    .sidebar{
+        width:220px;
+    }
+
+    .main{
+        margin-left:220px;
+    }
+
+    .stats{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:650px){
+
+    .sidebar{
+        position:relative;
+
+        width:100%;
+
+        height:auto;
+    }
+
+    .main{
+        margin-left:0;
+    }
+
+    .topbar{
+        padding:0 15px;
+    }
+
+    .content{
+        padding:15px;
+    }
+
+    .profile-info,
+    .clock{
+        display:none;
+    }
+}
+
+</style>
 </head>
 
 
@@ -674,149 +646,265 @@
             🎓
         </div>
 
-        <div class="logo-text">
-            Campus<span>Connect</span>
+        <div>
+
+            <h2>CampusConnect</h2>
+
+            <span>
+                AI College Companion
+            </span>
+
         </div>
 
     </div>
 
 
-    <div class="menu-title">
-        STUDENT PORTAL
-    </div>
+    <button class="nav-item"
+        onclick="go('../dashboard.html')">
+
+        <span class="nav-icon">🏠</span>
+
+        Dashboard
+
+    </button>
 
 
-    <nav class="nav-menu">
+    <button class="nav-item"
+        onclick="go('../dashboard.html')">
 
-        <button
-            class="nav-item"
-            onclick="goTo('../dashboard.html')"
-        >
-            <span class="nav-icon">🏠</span>
-            Dashboard
-        </button>
+        <span class="nav-icon">📚</span>
 
+        My Courses
 
-        <button
-            class="nav-item"
-            onclick="goTo('profile.html')"
-        >
-            <span class="nav-icon">👤</span>
-            My Profile
-        </button>
+    </button>
 
 
-        <button
-            class="nav-item"
-            onclick="goTo('academics.html')"
-        >
-            <span class="nav-icon">📚</span>
-            Academics
-        </button>
+    <button class="nav-item"
+        onclick="go('timetable.html')">
+
+        <span class="nav-icon">🗓️</span>
+
+        Timetable
+
+    </button>
 
 
-        <button
-            class="nav-item"
-            onclick="goTo('timetable.html')"
-        >
-            <span class="nav-icon">🗓️</span>
-            Timetable
-        </button>
+    <button class="nav-item"
+        onclick="go('../dashboard.html')">
+
+        <span class="nav-icon">📝</span>
+
+        Assignments
+
+    </button>
 
 
-        <button class="nav-item active">
+    <button class="nav-item active">
 
-            <span class="nav-icon">📊</span>
+        <span class="nav-icon">📊</span>
 
-            Attendance
+        Attendance
 
-        </button>
-
-
-        <button
-            class="nav-item"
-            onclick="goTo('events.html')"
-        >
-            <span class="nav-icon">🎫</span>
-            Events
-        </button>
+    </button>
 
 
-        <button
-            class="nav-item"
-            onclick="goTo('placement.html')"
-        >
-            <span class="nav-icon">💼</span>
-            Placement
-        </button>
+    <button class="nav-item"
+        onclick="go('academics.html')">
+
+        <span class="nav-icon">🎓</span>
+
+        Academics
+
+    </button>
 
 
-        <button
-            class="nav-item"
-            onclick="goTo('notifications.html')"
-        >
-            <span class="nav-icon">🔔</span>
-            Notifications
-        </button>
+    <button class="nav-item"
+        onclick="go('faculty.html')">
 
-    </nav>
+        <span class="nav-icon">👩‍🏫</span>
+
+        Faculty
+
+    </button>
 
 
-    <div class="sidebar-bottom">
+    <button class="nav-item"
+        onclick="go('placement.html')">
 
-        <button
-            class="logout"
-            onclick="goTo('../index.html')"
-        >
-            🚪 Logout
-        </button>
+        <span class="nav-icon">💼</span>
 
-    </div>
+        Placement
+
+    </button>
+
+
+    <button class="nav-item"
+        onclick="go('results.html')">
+
+        <span class="nav-icon">📊</span>
+
+        Results
+
+    </button>
+
+
+    <button class="nav-item"
+        onclick="go('documents.html')">
+
+        <span class="nav-icon">📄</span>
+
+        Documents
+
+    </button>
+
+
+    <button class="nav-item"
+        onclick="go('complaints.html')">
+
+        <span class="nav-icon">📢</span>
+
+        Complaints
+
+    </button>
+
+
+    <button class="nav-item"
+        onclick="go('feedback.html')">
+
+        <span class="nav-icon">💬</span>
+
+        Feedback
+
+    </button>
+
+
+    <button class="nav-item"
+        onclick="go('lost-found.html')">
+
+        <span class="nav-icon">🔎</span>
+
+        Lost &amp; Found
+
+    </button>
+
+
+    <button class="nav-item"
+        onclick="go('campus.html')">
+
+        <span class="nav-icon">🏫</span>
+
+        Campus
+
+    </button>
+
+
+    <button class="nav-item"
+        onclick="go('events.html')">
+
+        <span class="nav-icon">🎉</span>
+
+        Events
+
+    </button>
+
+
+    <button class="nav-item"
+        onclick="go('exams.html')">
+
+        <span class="nav-icon">📝</span>
+
+        Exams
+
+    </button>
+
+
+    <button class="nav-item"
+        onclick="go('notifications.html')">
+
+        <span class="nav-icon">🔔</span>
+
+        Notifications
+
+    </button>
+
+
+    <button class="nav-item"
+        onclick="go('profile.html')">
+
+        <span class="nav-icon">👤</span>
+
+        Profile
+
+    </button>
+
+
+    <button class="nav-item"
+        onclick="go('settings.html')">
+
+        <span class="nav-icon">⚙️</span>
+
+        Settings
+
+    </button>
+
 
 </aside>
 
 
-
 <!-- ================= MAIN ================= -->
 
-<main class="main">
+<div class="main">
 
 
-    <!-- HEADER -->
+    <!-- TOPBAR -->
 
     <header class="topbar">
 
-        <div class="page-title">
+        <div>
 
-            <h1>
+            <div class="page-title">
                 Attendance
-            </h1>
+            </div>
 
-            <p>
-                Track your subject-wise attendance
-            </p>
+            <div class="page-subtitle">
+                CampusConnect Student Portal
+            </div>
 
         </div>
 
 
-        <div class="top-actions">
+        <div class="top-right">
 
-            <button
-                class="notification"
-                onclick="goTo('notifications.html')"
-            >
+            <div class="clock" id="clock">
+                Loading...
+            </div>
+
+
+            <div class="notification">
+
                 🔔
-            </button>
+
+                <div class="notification-dot"></div>
+
+            </div>
 
 
-            <div class="mini-profile">
+            <div class="profile">
 
-                <div class="mini-avatar">
-                    👤
+                <div class="profile-avatar">
+                    P
                 </div>
 
-                <div class="mini-name">
-                    Student
+                <div class="profile-info">
+
+                    <strong id="studentName">
+                        Student
+                    </strong>
+
+                    <span>
+                        BCA Student
+                    </span>
+
                 </div>
 
             </div>
@@ -826,504 +914,28 @@
     </header>
 
 
-
-    <!-- ================= SUMMARY ================= -->
-
-    <section class="summary">
-
-
-        <div class="summary-card overall-card">
-
-            <div class="summary-top">
-
-                <div class="summary-icon">
-                    📊
-                </div>
-
-                <div
-                    class="summary-number"
-                    id="overallPercentage"
-                >
-                    88%
-                </div>
-
-            </div>
-
-            <p>
-                Overall Attendance
-            </p>
-
-        </div>
-
-
-        <div class="summary-card">
-
-            <div class="summary-top">
-
-                <div class="summary-icon">
-                    ✅
-                </div>
-
-                <div
-                    class="summary-number"
-                    id="presentCount"
-                >
-                    132
-                </div>
-
-            </div>
-
-            <p>
-                Classes Present
-            </p>
-
-        </div>
-
-
-        <div class="summary-card">
-
-            <div class="summary-top">
-
-                <div class="summary-icon">
-                    ❌
-                </div>
-
-                <div
-                    class="summary-number"
-                    id="absentCount"
-                >
-                    18
-                </div>
-
-            </div>
-
-            <p>
-                Classes Absent
-            </p>
-
-        </div>
-
-
-        <div class="summary-card">
-
-            <div class="summary-top">
-
-                <div class="summary-icon">
-                    📅
-                </div>
-
-                <div
-                    class="summary-number"
-                    id="totalCount"
-                >
-                    150
-                </div>
-
-            </div>
-
-            <p>
-                Total Classes
-            </p>
-
-        </div>
-
-    </section>
-
-
-
     <!-- ================= CONTENT ================= -->
 
-    <div class="content-grid">
+    <main class="content">
 
 
-        <!-- SUBJECT ATTENDANCE -->
+        <!-- HERO -->
 
-        <section class="card">
+        <section class="hero">
 
-            <div class="card-title">
+            <div class="hero-content">
 
-                <div class="title-icon">
-                    📚
-                </div>
+                <h1>
+                    Attendance
+                </h1>
 
-                Subject-wise Attendance
+                <p>
+                    Monitor your subject-wise attendance
+                    and keep track of your academic progress.
+                </p>
 
-            </div>
-
-
-
-            <!-- DATA STRUCTURES -->
-
-            <div class="subject-row">
-
-                <div class="subject-header">
-
-                    <div class="subject-name">
-
-                        <div class="subject-icon">
-                            💻
-                        </div>
-
-                        <div>
-
-                            <h3>
-                                Data Structures
-                            </h3>
-
-                            <p>
-                                Core Subject
-                            </p>
-
-                        </div>
-
-                    </div>
-
-                    <div class="percentage good">
-                        92%
-                    </div>
-
-                </div>
-
-
-                <div class="progress-bg">
-
-                    <div
-                        class="progress good-bg"
-                        style="width:92%"
-                    ></div>
-
-                </div>
-
-
-                <div class="subject-bottom">
-
-                    <span>
-                        Present: 23
-                    </span>
-
-                    <span>
-                        Absent: 2
-                    </span>
-
-                    <span>
-                        Total: 25
-                    </span>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- DATABASE -->
-
-            <div class="subject-row">
-
-                <div class="subject-header">
-
-                    <div class="subject-name">
-
-                        <div class="subject-icon">
-                            🗄️
-                        </div>
-
-                        <div>
-
-                            <h3>
-                                Database Management
-                            </h3>
-
-                            <p>
-                                Core Subject
-                            </p>
-
-                        </div>
-
-                    </div>
-
-                    <div class="percentage good">
-                        88%
-                    </div>
-
-                </div>
-
-
-                <div class="progress-bg">
-
-                    <div
-                        class="progress good-bg"
-                        style="width:88%"
-                    ></div>
-
-                </div>
-
-
-                <div class="subject-bottom">
-
-                    <span>
-                        Present: 22
-                    </span>
-
-                    <span>
-                        Absent: 3
-                    </span>
-
-                    <span>
-                        Total: 25
-                    </span>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- WEB -->
-
-            <div class="subject-row">
-
-                <div class="subject-header">
-
-                    <div class="subject-name">
-
-                        <div class="subject-icon">
-                            🌐
-                        </div>
-
-                        <div>
-
-                            <h3>
-                                Web Development
-                            </h3>
-
-                            <p>
-                                Practical
-                            </p>
-
-                        </div>
-
-                    </div>
-
-                    <div class="percentage warning">
-                        78%
-                    </div>
-
-                </div>
-
-
-                <div class="progress-bg">
-
-                    <div
-                        class="progress warning-bg"
-                        style="width:78%"
-                    ></div>
-
-                </div>
-
-
-                <div class="subject-bottom">
-
-                    <span>
-                        Present: 18
-                    </span>
-
-                    <span>
-                        Absent: 5
-                    </span>
-
-                    <span>
-                        Total: 23
-                    </span>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- NETWORKS -->
-
-            <div class="subject-row">
-
-                <div class="subject-header">
-
-                    <div class="subject-name">
-
-                        <div class="subject-icon">
-                            🌐
-                        </div>
-
-                        <div>
-
-                            <h3>
-                                Computer Networks
-                            </h3>
-
-                            <p>
-                                Core Subject
-                            </p>
-
-                        </div>
-
-                    </div>
-
-                    <div class="percentage good">
-                        90%
-                    </div>
-
-                </div>
-
-
-                <div class="progress-bg">
-
-                    <div
-                        class="progress good-bg"
-                        style="width:90%"
-                    ></div>
-
-                </div>
-
-
-                <div class="subject-bottom">
-
-                    <span>
-                        Present: 18
-                    </span>
-
-                    <span>
-                        Absent: 2
-                    </span>
-
-                    <span>
-                        Total: 20
-                    </span>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- OPERATING SYSTEM -->
-
-            <div class="subject-row">
-
-                <div class="subject-header">
-
-                    <div class="subject-name">
-
-                        <div class="subject-icon">
-                            ⚙️
-                        </div>
-
-                        <div>
-
-                            <h3>
-                                Operating Systems
-                            </h3>
-
-                            <p>
-                                Core Subject
-                            </p>
-
-                        </div>
-
-                    </div>
-
-                    <div class="percentage danger">
-                        68%
-                    </div>
-
-                </div>
-
-
-                <div class="progress-bg">
-
-                    <div
-                        class="progress danger-bg"
-                        style="width:68%"
-                    ></div>
-
-                </div>
-
-
-                <div class="subject-bottom">
-
-                    <span>
-                        Present: 15
-                    </span>
-
-                    <span>
-                        Absent: 7
-                    </span>
-
-                    <span>
-                        Total: 22
-                    </span>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- SOFT SKILLS -->
-
-            <div class="subject-row">
-
-                <div class="subject-header">
-
-                    <div class="subject-name">
-
-                        <div class="subject-icon">
-                            🗣️
-                        </div>
-
-                        <div>
-
-                            <h3>
-                                Soft Skills
-                            </h3>
-
-                            <p>
-                                Skill Development
-                            </p>
-
-                        </div>
-
-                    </div>
-
-                    <div class="percentage good">
-                        91%
-                    </div>
-
-                </div>
-
-
-                <div class="progress-bg">
-
-                    <div
-                        class="progress good-bg"
-                        style="width:91%"
-                    ></div>
-
-                </div>
-
-
-                <div class="subject-bottom">
-
-                    <span>
-                        Present: 20
-                    </span>
-
-                    <span>
-                        Absent: 2
-                    </span>
-
-                    <span>
-                        Total: 22
-                    </span>
-
+                <div class="hero-date" id="today">
+                    Today
                 </div>
 
             </div>
@@ -1331,259 +943,490 @@
         </section>
 
 
+        <!-- ================= STATS ================= -->
 
-        <!-- OVERALL CARD -->
-
-        <section class="card">
-
-            <div class="card-title">
-
-                <div class="title-icon">
-                    🎯
-                </div>
-
-                Attendance Overview
-
-            </div>
+        <section class="stats">
 
 
-            <div class="circle-area">
+            <div class="stat-card">
 
-                <div class="circle">
+                <div class="stat-top">
 
-                    <div class="circle-content">
+                    <div>
+                        <p>Overall Attendance</p>
+                    </div>
 
-                        <strong>
-                            88%
-                        </strong>
-
-                        <span>
-                            Overall
-                        </span>
-
+                    <div class="stat-icon">
+                        📊
                     </div>
 
                 </div>
 
-            </div>
-
-
-
-            <div class="legend">
-
-
-                <div class="legend-item">
-
-                    <div class="legend-left">
-
-                        <div class="dot dot-green"></div>
-
-                        Good Attendance
-
-                    </div>
-
-                    <div class="legend-value">
-                        80%+
-                    </div>
-
-                </div>
-
-
-                <div class="legend-item">
-
-                    <div class="legend-left">
-
-                        <div class="dot dot-orange"></div>
-
-                        Need Attention
-
-                    </div>
-
-                    <div class="legend-value">
-                        75–79%
-                    </div>
-
-                </div>
-
-
-                <div class="legend-item">
-
-                    <div class="legend-left">
-
-                        <div class="dot dot-red"></div>
-
-                        Low Attendance
-
-                    </div>
-
-                    <div class="legend-value">
-                        Below 75%
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="status-box">
-
-                <h3>
-                    💡 Attendance Status
+                <h3 class="green">
+                    87%
                 </h3>
 
                 <p>
-                    Your overall attendance is currently above
-                    the recommended minimum. Keep attending
-                    classes regularly.
+                    Overall attendance percentage
                 </p>
 
             </div>
 
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <div>
+                        <p>Total Classes</p>
+                    </div>
+
+                    <div class="stat-icon">
+                        📚
+                    </div>
+
+                </div>
+
+                <h3 class="blue">
+                    120
+                </h3>
+
+                <p>
+                    Classes conducted
+                </p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <div>
+                        <p>Classes Attended</p>
+                    </div>
+
+                    <div class="stat-icon">
+                        ✅
+                    </div>
+
+                </div>
+
+                <h3 class="purple">
+                    104
+                </h3>
+
+                <p>
+                    Classes attended
+                </p>
+
+            </div>
+
+
         </section>
 
-    </div>
+
+        <!-- ================= ATTENDANCE TABLE ================= -->
+
+        <section class="card">
 
 
+            <div class="card-header">
 
-    <!-- ================= MONTHLY ================= -->
+                <h2>
+                    Subject-wise Attendance
+                </h2>
 
-    <section class="card monthly">
+                <span>
+                    Current Semester
+                </span>
 
-        <div class="card-title">
-
-            <div class="title-icon">
-                📅
             </div>
 
-            Monthly Attendance
 
-        </div>
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Subject
+                            </th>
+
+                            <th>
+                                Total Classes
+                            </th>
+
+                            <th>
+                                Attended
+                            </th>
+
+                            <th>
+                                Absent
+                            </th>
+
+                            <th>
+                                Attendance
+                            </th>
+
+                            <th>
+                                Status
+                            </th>
+
+                        </tr>
+
+                    </thead>
 
 
-        <div class="month-grid">
+                    <tbody>
 
-            <div class="month">
-                <strong>JUN</strong>
-                <span>91%</span>
+
+                        <tr>
+
+                            <td class="subject">
+                                Data Structures
+                            </td>
+
+                            <td>
+                                25
+                            </td>
+
+                            <td>
+                                23
+                            </td>
+
+                            <td>
+                                2
+                            </td>
+
+                            <td>
+
+                                <div class="progress">
+
+                                    <div
+                                        class="progress-bar"
+                                        style="width:92%">
+                                    </div>
+
+                                </div>
+
+                                <strong>
+                                    92%
+                                </strong>
+
+                            </td>
+
+                            <td>
+
+                                <span class="badge good">
+                                    Good
+                                </span>
+
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td class="subject">
+                                Database Management
+                            </td>
+
+                            <td>
+                                24
+                            </td>
+
+                            <td>
+                                21
+                            </td>
+
+                            <td>
+                                3
+                            </td>
+
+                            <td>
+
+                                <div class="progress">
+
+                                    <div
+                                        class="progress-bar"
+                                        style="width:88%">
+                                    </div>
+
+                                </div>
+
+                                <strong>
+                                    88%
+                                </strong>
+
+                            </td>
+
+                            <td>
+
+                                <span class="badge good">
+                                    Good
+                                </span>
+
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td class="subject">
+                                Computer Networks
+                            </td>
+
+                            <td>
+                                23
+                            </td>
+
+                            <td>
+                                19
+                            </td>
+
+                            <td>
+                                4
+                            </td>
+
+                            <td>
+
+                                <div class="progress">
+
+                                    <div
+                                        class="progress-bar"
+                                        style="width:83%">
+                                    </div>
+
+                                </div>
+
+                                <strong>
+                                    83%
+                                </strong>
+
+                            </td>
+
+                            <td>
+
+                                <span class="badge good">
+                                    Good
+                                </span>
+
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td class="subject">
+                                Web Development
+                            </td>
+
+                            <td>
+                                25
+                            </td>
+
+                            <td>
+                                22
+                            </td>
+
+                            <td>
+                                3
+                            </td>
+
+                            <td>
+
+                                <div class="progress">
+
+                                    <div
+                                        class="progress-bar"
+                                        style="width:88%">
+                                    </div>
+
+                                </div>
+
+                                <strong>
+                                    88%
+                                </strong>
+
+                            </td>
+
+                            <td>
+
+                                <span class="badge good">
+                                    Good
+                                </span>
+
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td class="subject">
+                                Software Engineering
+                            </td>
+
+                            <td>
+                                23
+                            </td>
+
+                            <td>
+                                19
+                            </td>
+
+                            <td>
+                                4
+                            </td>
+
+                            <td>
+
+                                <div class="progress">
+
+                                    <div
+                                        class="progress-bar"
+                                        style="width:83%">
+                                    </div>
+
+                                </div>
+
+                                <strong>
+                                    83%
+                                </strong>
+
+                            </td>
+
+                            <td>
+
+                                <span class="badge good">
+                                    Good
+                                </span>
+
+                            </td>
+
+                        </tr>
+
+
+                    </tbody>
+
+                </table>
+
             </div>
 
-            <div class="month">
-                <strong>JUL</strong>
-                <span>89%</span>
-            </div>
-
-            <div class="month">
-                <strong>AUG</strong>
-                <span>87%</span>
-            </div>
-
-            <div class="month">
-                <strong>SEP</strong>
-                <span>90%</span>
-            </div>
-
-            <div class="month">
-                <strong>OCT</strong>
-                <span>86%</span>
-            </div>
-
-            <div class="month">
-                <strong>NOV</strong>
-                <span>88%</span>
-            </div>
-
-        </div>
-
-    </section>
-
-</main>
+        </section>
 
 
+    </main>
+
+</div>
+
+
+<!-- ================= JAVASCRIPT ================= -->
 
 <script>
 
-    /* ==========================================
-       NAVIGATION
-    ========================================== */
 
-    function goTo(page) {
+/* PAGE NAVIGATION */
 
-        window.location.href = page;
+function go(page){
+
+    window.location.href = page;
+
+}
+
+
+/* CLOCK */
+
+function updateClock(){
+
+    const now = new Date();
+
+    let hours = now.getHours();
+
+    let minutes = String(
+        now.getMinutes()
+    ).padStart(2,"0");
+
+    let seconds = String(
+        now.getSeconds()
+    ).padStart(2,"0");
+
+    let ampm = hours >= 12 ? "PM" : "AM";
+
+    hours = hours % 12;
+
+    hours = hours || 12;
+
+    document.getElementById("clock").innerText =
+        `${hours}:${minutes}:${seconds} ${ampm}`;
+
+}
+
+setInterval(updateClock,1000);
+
+updateClock();
+
+
+/* DATE */
+
+const date = new Date();
+
+document.getElementById("today").innerText =
+    date.toLocaleDateString(
+        "en-IN",
+        {
+            weekday:"long",
+            day:"numeric",
+            month:"long",
+            year:"numeric"
+        }
+    );
+
+
+/* STUDENT NAME */
+
+try{
+
+    const student =
+        JSON.parse(
+            localStorage.getItem("student")
+        );
+
+    if(student){
+
+        const name =
+            student.name ||
+            student.username ||
+            student.fullName;
+
+        if(name){
+
+            document.getElementById(
+                "studentName"
+            ).innerText = name;
+
+        }
 
     }
 
+}catch(error){
 
-    /* ==========================================
-       FRONTEND DEMO DATA
-       Backend can replace this later.
-    ========================================== */
+    console.log(
+        "Student information not available."
+    );
 
-    const attendanceData = {
+}
 
-        overall: 88,
-
-        present: 132,
-
-        absent: 18,
-
-        total: 150
-
-    };
-
-
-    /* ==========================================
-       UPDATE SUMMARY
-    ========================================== */
-
-    document.getElementById("overallPercentage")
-        .textContent =
-        attendanceData.overall + "%";
-
-
-    document.getElementById("presentCount")
-        .textContent =
-        attendanceData.present;
-
-
-    document.getElementById("absentCount")
-        .textContent =
-        attendanceData.absent;
-
-
-    document.getElementById("totalCount")
-        .textContent =
-        attendanceData.total;
-
-
-    /* ==========================================
-       ANIMATE PROGRESS BARS
-    ========================================== */
-
-    window.addEventListener("load", function() {
-
-        const bars =
-            document.querySelectorAll(".progress");
-
-        bars.forEach(function(bar) {
-
-            const width =
-                bar.style.width;
-
-            bar.style.width = "0";
-
-            setTimeout(function() {
-
-                bar.style.width = width;
-
-            }, 200);
-
-        });
-
-    });
 
 </script>
-<script src="../js/attendance.js"></script>
-
 
 </body>
+
 </html>
