@@ -6,2787 +6,1803 @@
 
 <title>CampusConnect | Student Dashboard</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-
 <style>
-
-/* =========================================================
-   RESET
-========================================================= */
-
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
 }
 
 body{
-    font-family:'Poppins',sans-serif;
-    background:#f5f3ff;
-    color:#28243b;
-}
-
-button{
-    font-family:inherit;
-    border:0;
-    cursor:pointer;
-}
-
-
-/* =========================================================
-   MAIN APP
-========================================================= */
-
-.app{
+    background:#f4f7fb;
+    color:#1f2937;
     min-height:100vh;
-    display:flex;
 }
 
-
-/* =========================================================
-   SIDEBAR
-========================================================= */
+/* ================= SIDEBAR ================= */
 
 .sidebar{
     position:fixed;
     left:0;
     top:0;
-    bottom:0;
-
     width:250px;
-
-    padding:24px 16px;
-
+    height:100vh;
+    background:linear-gradient(180deg,#172554,#312e81,#4c1d95);
     color:white;
-
-    background:
-        radial-gradient(
-            circle at 80% 10%,
-            rgba(192,76,255,.35),
-            transparent 25%
-        ),
-        linear-gradient(
-            180deg,
-            #181330,
-            #291650,
-            #45218c
-        );
-
-    box-shadow:5px 0 30px rgba(40,20,80,.15);
-
-    z-index:100;
+    padding:25px 15px;
+    z-index:1000;
+    overflow-y:auto;
 }
 
-
-/* LOGO */
-
-.brand{
+.logo{
     display:flex;
     align-items:center;
-    gap:11px;
-
-    padding:5px 10px 25px;
+    gap:12px;
+    padding:0 12px 25px;
+    border-bottom:1px solid rgba(255,255,255,.2);
+    margin-bottom:20px;
 }
 
-.brand-logo{
-    width:42px;
-    height:42px;
-
+.logo-icon{
+    width:45px;
+    height:45px;
+    border-radius:14px;
+    background:linear-gradient(135deg,#38bdf8,#a78bfa);
     display:flex;
-    align-items:center;
     justify-content:center;
-
-    border-radius:13px;
-
-    font-size:22px;
-
-    background:linear-gradient(
-        135deg,
-        #9b3cff,
-        #ff3e9c
-    );
-
-    box-shadow:0 8px 25px rgba(185,55,255,.4);
-}
-
-.brand-name{
-    font-size:19px;
-    font-weight:700;
-}
-
-.brand-name span{
-    color:#d995ff;
-}
-
-
-/* STUDENT */
-
-.student-mini{
-    display:flex;
     align-items:center;
-    gap:11px;
-
-    padding:14px 10px;
-
-    margin-bottom:18px;
-
-    border-radius:15px;
-
-    background:rgba(255,255,255,.08);
+    font-size:23px;
+    box-shadow:0 0 20px rgba(56,189,248,.5);
 }
 
-.student-avatar{
-    width:40px;
-    height:40px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    border-radius:50%;
-
-    background:linear-gradient(
-        135deg,
-        #ff913d,
-        #e632a5
-    );
-
-    font-size:12px;
-    font-weight:700;
+.logo h2{
+    font-size:20px;
 }
 
-.student-mini strong{
+.logo span{
     display:block;
-    font-size:12px;
-}
-
-.student-mini small{
-    display:block;
-    margin-top:2px;
-    color:#bcb7d8;
-    font-size:10px;
-}
-
-
-/* NAVIGATION */
-
-.sidebar-nav{
-    display:flex;
-    flex-direction:column;
-    gap:7px;
+    font-size:11px;
+    opacity:.7;
+    margin-top:3px;
 }
 
 .nav-item{
     width:100%;
-
+    border:none;
+    background:transparent;
+    color:#dbeafe;
     display:flex;
     align-items:center;
-    gap:14px;
-
+    gap:13px;
     padding:13px 15px;
-
-    border-radius:13px;
-
-    color:#ddd8f0;
-
-    background:transparent;
-
+    margin:5px 0;
+    border-radius:12px;
+    cursor:pointer;
+    font-size:14px;
     text-align:left;
-
-    font-size:13px;
-
     transition:.25s;
 }
 
 .nav-item:hover{
+    background:rgba(255,255,255,.12);
+    transform:translateX(4px);
     color:white;
-    background:rgba(255,255,255,.08);
-    transform:translateX(3px);
 }
 
 .nav-item.active{
+    background:linear-gradient(90deg,#38bdf8,#8b5cf6);
     color:white;
-
-    background:
-        linear-gradient(
-            90deg,
-            #713de0,
-            #a434df
-        );
-
-    box-shadow:
-        0 9px 25px rgba(126,54,227,.35);
+    box-shadow:0 8px 25px rgba(59,130,246,.3);
 }
 
 .nav-icon{
-    width:22px;
+    width:25px;
     text-align:center;
     font-size:17px;
 }
 
-
-/* LOGOUT */
-
-.sidebar-bottom{
-    position:absolute;
-    left:16px;
-    right:16px;
-    bottom:20px;
-}
-
-.logout-btn{
-    width:100%;
-
-    padding:13px;
-
-    border-radius:12px;
-
-    color:#ddd8ef;
-
-    background:rgba(255,255,255,.08);
-
-    font-size:13px;
-
-    transition:.25s;
-}
-
-.logout-btn:hover{
-    background:rgba(255,70,130,.22);
-}
-
-
-/* =========================================================
-   MAIN AREA
-========================================================= */
+/* ================= MAIN ================= */
 
 .main{
-    width:calc(100% - 250px);
-
     margin-left:250px;
-
     min-height:100vh;
-
-    padding:27px 35px;
-
-    background:
-        radial-gradient(
-            circle at 90% 5%,
-            rgba(221,194,255,.5),
-            transparent 25%
-        ),
-        #f7f5ff;
 }
 
-
-/* =========================================================
-   TOP BAR
-========================================================= */
+/* ================= TOPBAR ================= */
 
 .topbar{
+    height:75px;
+    background:white;
     display:flex;
     align-items:center;
     justify-content:space-between;
-
-    margin-bottom:25px;
+    padding:0 30px;
+    border-bottom:1px solid #e5e7eb;
+    position:sticky;
+    top:0;
+    z-index:500;
 }
 
-.small-heading{
-    color:#8767c1;
-
-    font-size:10px;
+.page-title{
+    font-size:21px;
     font-weight:700;
-
-    letter-spacing:1.5px;
 }
 
-.page-heading h1{
-    margin-top:2px;
-
-    font-size:28px;
+.page-subtitle{
+    font-size:12px;
+    color:#6b7280;
+    margin-top:4px;
 }
 
-.topbar-actions{
+.top-right{
     display:flex;
     align-items:center;
-    gap:10px;
+    gap:20px;
 }
 
-
-/* CLOCK */
-
-.digital-clock{
-    padding:10px 14px;
-
-    border-radius:12px;
-
-    background:white;
-
-    color:#6c6878;
-
-    font-size:12px;
-
-    box-shadow:0 6px 22px rgba(60,40,100,.08);
+.clock{
+    font-size:13px;
+    color:#64748b;
 }
 
-
-/* NOTIFICATION */
-
-.notification-btn{
+.notification{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    background:#f1f5f9;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    cursor:pointer;
     position:relative;
-
-    width:43px;
-    height:43px;
-
-    border-radius:13px;
-
-    background:white;
-
-    font-size:17px;
-
-    box-shadow:0 6px 22px rgba(60,40,100,.08);
-
-    transition:.25s;
-}
-
-.notification-btn:hover{
-    transform:translateY(-2px);
 }
 
 .notification-dot{
     position:absolute;
-
-    top:8px;
-    right:8px;
-
-    width:7px;
-    height:7px;
-
+    width:8px;
+    height:8px;
     border-radius:50%;
-
-    background:#ff3d91;
-
-    animation:pulse 1.5s infinite;
+    background:#ef4444;
+    right:8px;
+    top:7px;
 }
 
-@keyframes pulse{
-
-    0%{
-        box-shadow:0 0 0 0 rgba(255,61,145,.5);
-    }
-
-    70%{
-        box-shadow:0 0 0 7px rgba(255,61,145,0);
-    }
-
-    100%{
-        box-shadow:0 0 0 0 rgba(255,61,145,0);
-    }
-
-}
-
-
-/* PROFILE */
-
-.profile-btn{
+.profile{
     display:flex;
     align-items:center;
-    gap:8px;
-
-    padding:5px 12px 5px 5px;
-
-    border-radius:13px;
-
-    background:white;
-
-    color:#413d4d;
-
-    font-size:12px;
-
-    box-shadow:0 6px 22px rgba(60,40,100,.08);
+    gap:10px;
+    cursor:pointer;
 }
 
 .profile-avatar{
-    width:35px;
-    height:35px;
-
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#06b6d4,#6366f1);
+    color:white;
     display:flex;
     align-items:center;
     justify-content:center;
-
-    border-radius:50%;
-
-    color:white;
-
-    background:linear-gradient(
-        135deg,
-        #ff913d,
-        #e632a5
-    );
-
-    font-size:11px;
-    font-weight:700;
+    font-weight:bold;
 }
 
-
-/* =========================================================
-   HERO
-========================================================= */
-
-.hero{
-    position:relative;
-
-    overflow:hidden;
-
-    padding:30px;
-
-    border-radius:24px;
-
-    color:white;
-
-    background:
-        radial-gradient(
-            circle at 95% 10%,
-            rgba(255,255,255,.16),
-            transparent 22%
-        ),
-        linear-gradient(
-            110deg,
-            #392078,
-            #6939d8 55%,
-            #ae3ac7
-        );
-
-    box-shadow:
-        0 17px 42px rgba(99,49,190,.25);
-}
-
-.hero h2{
-    position:relative;
-    z-index:2;
-
-    margin-bottom:7px;
-
-    font-size:25px;
-}
-
-.hero p{
-    position:relative;
-    z-index:2;
-
-    color:#eee7ff;
-
+.profile-info strong{
+    display:block;
     font-size:13px;
 }
 
-.hero-date{
-    position:relative;
-    z-index:2;
-
-    margin-top:17px;
-
-    color:#e9ddff;
-
+.profile-info span{
     font-size:11px;
+    color:#64748b;
 }
 
+/* ================= CONTENT ================= */
 
-/* =========================================================
-   STAT CARDS
-========================================================= */
+.content{
+    padding:30px;
+}
 
-.stats-grid{
+/* ================= HERO ================= */
+
+.hero{
+    background:linear-gradient(120deg,#172554,#312e81,#6d28d9);
+    border-radius:24px;
+    padding:32px;
+    color:white;
+    position:relative;
+    overflow:hidden;
+    margin-bottom:25px;
+    box-shadow:0 15px 40px rgba(49,46,129,.2);
+}
+
+.hero:before{
+    content:"";
+    position:absolute;
+    width:300px;
+    height:300px;
+    border-radius:50%;
+    background:rgba(255,255,255,.08);
+    right:-80px;
+    top:-130px;
+}
+
+.hero:after{
+    content:"";
+    position:absolute;
+    width:180px;
+    height:180px;
+    border-radius:50%;
+    background:rgba(56,189,248,.12);
+    right:150px;
+    bottom:-100px;
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+}
+
+.hero h1{
+    font-size:30px;
+    margin-bottom:10px;
+}
+
+.hero p{
+    color:#dbeafe;
+    font-size:14px;
+    max-width:650px;
+    line-height:1.6;
+}
+
+.hero-date{
+    display:inline-block;
+    margin-top:18px;
+    padding:9px 14px;
+    background:rgba(255,255,255,.12);
+    border-radius:20px;
+    font-size:12px;
+}
+
+/* ================= STATS ================= */
+
+.stats{
     display:grid;
-
-    grid-template-columns:
-        repeat(4,1fr);
-
-    gap:17px;
-
-    margin:21px 0;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+    margin-bottom:25px;
 }
 
 .stat-card{
-    display:flex;
-    align-items:center;
-
-    gap:14px;
-
-    padding:20px;
-
-    border-radius:19px;
-
     background:white;
-
-    box-shadow:
-        0 8px 27px rgba(62,42,100,.08);
-
+    border-radius:18px;
+    padding:22px;
+    border:1px solid #e5e7eb;
     transition:.25s;
 }
 
 .stat-card:hover{
     transform:translateY(-5px);
+    box-shadow:0 12px 30px rgba(15,23,42,.1);
+}
 
-    box-shadow:
-        0 16px 35px rgba(62,42,100,.14);
+.stat-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 }
 
 .stat-icon{
-    width:50px;
-    height:50px;
-
+    width:45px;
+    height:45px;
+    border-radius:13px;
     display:flex;
     align-items:center;
     justify-content:center;
-
-    border-radius:15px;
-
-    background:#eee9ff;
-
-    font-size:22px;
-}
-
-.stat-card:nth-child(2) .stat-icon{
-    background:#ffe7f0;
-}
-
-.stat-card:nth-child(3) .stat-icon{
-    background:#e1faef;
-}
-
-.stat-card:nth-child(4) .stat-icon{
-    background:#fff0dc;
+    font-size:20px;
+    background:#eef2ff;
 }
 
 .stat-card h3{
-    font-size:22px;
+    font-size:28px;
+    margin:15px 0 5px;
 }
 
 .stat-card p{
-    margin-top:3px;
-
-    color:#898591;
-
-    font-size:11px;
-}
-
-
-/* =========================================================
-   SECTION
-========================================================= */
-
-.section-head{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-
-    margin:26px 0 13px;
-}
-
-.section-head h2{
-    font-size:19px;
-}
-
-.section-subtitle{
-    color:#96929e;
-    font-size:11px;
-}
-
-
-/* BUTTON */
-
-.gradient-btn{
-    padding:9px 18px;
-
-    border-radius:22px;
-
-    color:white;
-
-    background:
-        linear-gradient(
-            90deg,
-            #713ee2,
-            #e737a6
-        );
-
-    font-size:11px;
-    font-weight:600;
-
-    box-shadow:
-        0 8px 22px rgba(120,53,220,.25);
-
-    transition:.25s;
-}
-
-.gradient-btn:hover{
-    transform:translateY(-2px);
-
-    box-shadow:
-        0 12px 27px rgba(120,53,220,.35);
-}
-
-
-/* =========================================================
-   TIMETABLE
-========================================================= */
-
-.table-container{
-    padding:13px;
-
-    border-radius:20px;
-
-    background:white;
-
-    overflow-x:auto;
-
-    box-shadow:
-        0 8px 27px rgba(62,42,100,.08);
-}
-
-.timetable{
-    width:100%;
-
-    border-collapse:separate;
-
-    border-spacing:6px;
-}
-
-.timetable th{
-    padding:12px 10px;
-
-    border-radius:10px;
-
-    background:#f0edff;
-
-    color:#624ba3;
-
-    font-size:10px;
-}
-
-.timetable td{
-    min-width:120px;
-
-    padding:13px 8px;
-
-    border-radius:11px;
-
-    text-align:center;
-
-    font-size:10px;
-    font-weight:600;
-
-    transition:.2s;
-}
-
-.timetable td:hover{
-    transform:scale(1.02);
-}
-
-.time-cell{
-    min-width:105px;
-
-    background:#f5f5f7 !important;
-
-    color:#76727e !important;
-}
-
-.subject-blue{
-    background:#e4f1ff;
-    color:#397caf;
-}
-
-.subject-pink{
-    background:#ffe4ef;
-    color:#c13876;
-}
-
-.subject-green{
-    background:#e2f9ed;
-    color:#26926a;
-}
-
-.subject-orange{
-    background:#fff0dc;
-    color:#bd7b21;
-}
-
-.subject-purple{
-    background:#eee8ff;
-    color:#704cae;
-}
-
-.break-cell{
-    background:#f2f2f3 !important;
-    color:#999 !important;
-}
-
-
-/* =========================================================
-   QUICK ACTIONS
-========================================================= */
-
-.quick-grid{
-    display:grid;
-
-    grid-template-columns:
-        repeat(4,1fr);
-
-    gap:17px;
-}
-
-.quick-card{
-    padding:23px 15px;
-
-    border-radius:18px;
-
-    background:white;
-
-    text-align:center;
-
-    box-shadow:
-        0 8px 27px rgba(62,42,100,.07);
-
-    transition:.25s;
-}
-
-.quick-card:hover{
-    transform:translateY(-6px);
-
-    box-shadow:
-        0 17px 35px rgba(62,42,100,.14);
-}
-
-.quick-icon{
-    margin-bottom:9px;
-
-    font-size:27px;
-}
-
-.quick-card strong{
+    color:#64748b;
     font-size:12px;
 }
 
+.green{
+    color:#16a34a;
+}
 
-/* =========================================================
-   CAMPUS
-========================================================= */
+.blue{
+    color:#2563eb;
+}
 
-.campus-grid{
+.orange{
+    color:#ea580c;
+}
+
+.purple{
+    color:#7c3aed;
+}
+
+/* ================= GRID ================= */
+
+.dashboard-grid{
     display:grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
-    gap:17px;
+    grid-template-columns:1.5fr 1fr;
+    gap:22px;
 }
 
-.campus-card{
-    position:relative;
-
-    height:175px;
-
-    overflow:hidden;
-
-    border-radius:19px;
-
-    background-size:cover;
-    background-position:center;
-
-    box-shadow:
-        0 8px 27px rgba(62,42,100,.1);
-
-    transition:.3s;
-}
-
-.campus-card:hover{
-    transform:translateY(-5px);
-}
-
-.campus-card::after{
-    content:"";
-
-    position:absolute;
-
-    inset:0;
-
-    background:
-        linear-gradient(
-            transparent 20%,
-            rgba(0,0,0,.78)
-        );
-}
-
-.campus-info{
-    position:absolute;
-
-    left:16px;
-    bottom:14px;
-
-    z-index:2;
-
-    color:white;
-}
-
-.campus-info strong{
-    display:block;
-
-    font-size:13px;
-}
-
-.campus-info small{
-    display:block;
-
-    margin-top:3px;
-
-    color:#ddd;
-
-    font-size:9px;
-}
-
-
-/* =========================================================
-   LIST CARDS
-========================================================= */
-
-.list-container{
-    display:grid;
-
-    gap:13px;
-}
-
-.list-card{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-
-    padding:18px 20px;
-
-    border-radius:16px;
-
+.card{
     background:white;
-
-    box-shadow:
-        0 6px 22px rgba(62,42,100,.07);
-
-    transition:.2s;
+    border:1px solid #e5e7eb;
+    border-radius:20px;
+    padding:23px;
+    margin-bottom:22px;
 }
 
-.list-card:hover{
-    transform:translateX(3px);
+.card-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
 }
 
-.list-card strong{
+.card-header h2{
+    font-size:17px;
+}
+
+.card-header span{
+    font-size:12px;
+    color:#6366f1;
+    cursor:pointer;
+}
+
+/* ================= TIMETABLE ================= */
+
+.schedule{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.schedule-item{
+    display:grid;
+    grid-template-columns:80px 1fr 80px;
+    align-items:center;
+    padding:14px;
+    border-radius:13px;
+    background:#f8fafc;
+    border-left:4px solid #6366f1;
+}
+
+.schedule-time{
+    font-size:12px;
+    color:#64748b;
+}
+
+.schedule-subject{
+    font-weight:600;
     font-size:13px;
 }
 
-.list-card small{
+.schedule-room{
+    font-size:11px;
+    color:#64748b;
+    text-align:right;
+}
+
+/* ================= QUICK ACTIONS ================= */
+
+.actions{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+}
+
+.action{
+    border:1px solid #e5e7eb;
+    background:#fff;
+    padding:17px;
+    border-radius:15px;
+    cursor:pointer;
+    transition:.25s;
+    text-align:left;
+}
+
+.action:hover{
+    transform:translateY(-3px);
+    border-color:#818cf8;
+    box-shadow:0 8px 20px rgba(99,102,241,.1);
+}
+
+.action-icon{
+    font-size:22px;
+    margin-bottom:10px;
+}
+
+.action strong{
     display:block;
+    font-size:13px;
+}
 
-    margin-top:4px;
-
-    color:#9995a1;
-
+.action small{
+    color:#64748b;
     font-size:10px;
 }
 
+/* ================= PROGRESS ================= */
 
-/* BADGES */
-
-.badge{
-    padding:6px 11px;
-
-    border-radius:20px;
-
-    background:#eee8ff;
-
-    color:#6b47aa;
-
-    font-size:10px;
-    font-weight:600;
+.progress-box{
+    margin-bottom:18px;
 }
 
-.badge.green{
-    background:#e2f9ed;
-    color:#268b67;
-}
-
-.badge.orange{
-    background:#fff0dc;
-    color:#ba7920;
-}
-
-.badge.pink{
-    background:#ffe4ef;
-    color:#bd376f;
-}
-
-
-/* =========================================================
-   PROGRESS
-========================================================= */
-
-.progress-container{
-    width:100%;
-}
-
-.progress-header{
+.progress-info{
     display:flex;
     justify-content:space-between;
+    font-size:12px;
+    margin-bottom:8px;
+}
 
-    font-size:11px;
+.progress{
+    width:100%;
+    height:8px;
+    background:#e5e7eb;
+    border-radius:20px;
+    overflow:hidden;
 }
 
 .progress-bar{
-    height:8px;
-
-    margin-top:8px;
-
-    overflow:hidden;
-
-    border-radius:20px;
-
-    background:#eeeeF2;
-}
-
-.progress-fill{
     height:100%;
-
     border-radius:20px;
-
-    background:
-        linear-gradient(
-            90deg,
-            #713fe2,
-            #e537a5
-        );
+    background:linear-gradient(90deg,#06b6d4,#6366f1);
 }
 
+/* ================= CAMPUS ================= */
 
-/* =========================================================
-   MODAL
-========================================================= */
-
-.modal{
-    position:fixed;
-
-    inset:0;
-
-    z-index:1000;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    padding:20px;
-
-    background:rgba(20,15,40,.65);
-
-    backdrop-filter:blur(6px);
+.campus-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
 }
 
-.modal.hidden{
+.campus-card{
+    min-height:160px;
+    border-radius:18px;
+    padding:22px;
+    color:white;
+    position:relative;
+    overflow:hidden;
+    background:linear-gradient(135deg,#0f766e,#0891b2);
+}
+
+.campus-card:nth-child(2){
+    background:linear-gradient(135deg,#7c3aed,#4f46e5);
+}
+
+.campus-card:nth-child(3){
+    background:linear-gradient(135deg,#c2410c,#ea580c);
+}
+
+.campus-card h3{
+    margin-bottom:8px;
+    font-size:17px;
+}
+
+.campus-card p{
+    font-size:11px;
+    color:#e0f2fe;
+    line-height:1.5;
+}
+
+.campus-card .big-icon{
+    position:absolute;
+    right:18px;
+    bottom:10px;
+    font-size:55px;
+    opacity:.2;
+}
+
+/* ================= PAGE AREA ================= */
+
+#pageContainer{
     display:none;
 }
 
-.modal-box{
-    position:relative;
-
-    width:min(520px,100%);
-
-    padding:30px;
-
-    border-radius:23px;
-
-    background:white;
-
-    box-shadow:
-        0 25px 80px rgba(0,0,0,.3);
-
-    animation:modalIn .25s ease;
+#dashboardContainer{
+    display:block;
 }
 
-@keyframes modalIn{
-
-    from{
-        opacity:0;
-        transform:translateY(20px) scale(.96);
-    }
-
-    to{
-        opacity:1;
-        transform:translateY(0) scale(1);
-    }
-
-}
-
-.modal-close{
-    position:absolute;
-
-    top:12px;
-    right:13px;
-
-    width:34px;
-    height:34px;
-
-    border-radius:50%;
-
-    background:#f0eff5;
-
-    color:#555;
-
-    font-size:22px;
-}
-
-.modal-box h2{
-    margin-bottom:17px;
-
-    font-size:21px;
-}
-
-.modal-box p{
-    margin:8px 0;
-
-    color:#666;
-
-    font-size:12px;
-}
-
-
-/* =========================================================
-   TOAST
-========================================================= */
+/* ================= TOAST ================= */
 
 .toast{
     position:fixed;
-
     right:25px;
     bottom:25px;
-
-    z-index:2000;
-
-    padding:13px 18px;
-
-    border-radius:13px;
-
+    background:#172554;
     color:white;
-
-    background:#25203b;
-
-    font-size:12px;
-
+    padding:15px 20px;
+    border-radius:12px;
+    box-shadow:0 10px 30px rgba(0,0,0,.2);
+    transform:translateY(120px);
     opacity:0;
-
-    transform:translateY(15px);
-
-    pointer-events:none;
-
     transition:.3s;
+    z-index:3000;
+    font-size:13px;
 }
 
 .toast.show{
-    opacity:1;
     transform:translateY(0);
+    opacity:1;
 }
 
+/* ================= MOBILE ================= */
 
-/* =========================================================
-   DARK MODE
-========================================================= */
-
-body.dark{
-    background:#12101d;
-    color:#f4f1ff;
+.mobile-menu{
+    display:none;
 }
 
-body.dark .main{
-    background:#12101d;
-}
+@media(max-width:1000px){
 
-body.dark .stat-card,
-body.dark .table-container,
-body.dark .quick-card,
-body.dark .list-card,
-body.dark .digital-clock,
-body.dark .notification-btn,
-body.dark .profile-btn{
-    background:#201d2e;
-    color:#f5f2ff;
-}
-
-body.dark .modal-box{
-    background:#201d2e;
-    color:white;
-}
-
-
-/* =========================================================
-   RESPONSIVE
-========================================================= */
-
-@media(max-width:1100px){
-
-    .sidebar{
-        width:80px;
+    .stats{
+        grid-template-columns:1fr 1fr;
     }
 
-    .brand-name,
-    .student-mini div:not(.student-avatar),
-    .nav-item span:not(.nav-icon),
-    .logout-btn span:last-child{
-        display:none;
-    }
-
-    .brand{
-        justify-content:center;
-    }
-
-    .student-mini{
-        justify-content:center;
-    }
-
-    .nav-item{
-        justify-content:center;
-    }
-
-    .main{
-        width:calc(100% - 80px);
-        margin-left:80px;
-    }
-
-    .stats-grid{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .quick-grid{
-        grid-template-columns:repeat(2,1fr);
-    }
-}
-
-
-@media(max-width:700px){
-
-    .main{
-        padding:20px 15px;
-    }
-
-    .topbar{
-        align-items:flex-start;
-    }
-
-    .digital-clock{
-        display:none;
-    }
-
-    .page-heading h1{
-        font-size:23px;
-    }
-
-    .hero{
-        padding:23px;
-    }
-
-    .stats-grid{
+    .dashboard-grid{
         grid-template-columns:1fr;
     }
 
-    .quick-grid{
+    .campus-grid{
         grid-template-columns:1fr 1fr;
+    }
+}
+
+@media(max-width:700px){
+
+    .sidebar{
+        width:220px;
+        transform:translateX(-100%);
+        transition:.3s;
+    }
+
+    .sidebar.open{
+        transform:translateX(0);
+    }
+
+    .main{
+        margin-left:0;
+    }
+
+    .mobile-menu{
+        display:block;
+        border:none;
+        background:none;
+        font-size:22px;
+        cursor:pointer;
+        margin-right:15px;
+    }
+
+    .topbar{
+        padding:0 15px;
+    }
+
+    .clock,
+    .profile-info{
+        display:none;
+    }
+
+    .content{
+        padding:15px;
+    }
+
+    .hero{
+        padding:24px;
+    }
+
+    .hero h1{
+        font-size:23px;
+    }
+
+    .stats{
+        grid-template-columns:1fr 1fr;
+        gap:10px;
+    }
+
+    .stat-card{
+        padding:15px;
+    }
+
+    .stat-card h3{
+        font-size:22px;
     }
 
     .campus-grid{
         grid-template-columns:1fr;
     }
-}
 
-
-@media(max-width:430px){
-
-    .sidebar{
-        width:65px;
+    .schedule-item{
+        grid-template-columns:65px 1fr;
     }
 
-    .main{
-        width:calc(100% - 65px);
-        margin-left:65px;
-        padding:15px 10px;
-    }
-
-    .quick-grid{
-        grid-template-columns:1fr;
+    .schedule-room{
+        display:none;
     }
 }
+
+ 
+.campus-card img {
+    width: 100%;
+    height: 210px;
+    object-fit: cover;
+    display: block;
+}
+
+.campus-card {
+    overflow: hidden;
+    border-radius: 22px;
+}
+
+.campus-card:hover img {
+    transform: scale(1.05);
+}
+
 
 </style>
 </head>
 
-
 <body>
 
-<div class="app">
+<!-- ================= SIDEBAR ================= -->
 
+<aside class="sidebar" id="sidebar">
 
-<!-- ======================================================
-     SIDEBAR
-====================================================== -->
-
-<aside class="sidebar">
-
-    <div class="brand">
-
-        <div class="brand-logo">
-            🎓
-        </div>
-
-        <div class="brand-name">
-            Campus<span>Connect</span>
-        </div>
-
-    </div>
-
-
-    <div class="student-mini">
-
-        <div class="student-avatar">
-            PB
-        </div>
-
+    <div class="logo">
+        <div class="logo-icon">🎓</div>
         <div>
-
-            <strong>
-                Priya Bhavani
-            </strong>
-
-            <small>
-                BCA Student
-            </small>
-
+            <h2>CampusConnect</h2>
+            <span>AI College Companion</span>
         </div>
-
     </div>
 
+    <button class="nav-item active" data-page="dashboard">
+        <span class="nav-icon">🏠</span>
+        Dashboard
+    </button>
 
-    <nav class="sidebar-nav">
+    <button class="nav-item" data-page="courses">
+        <span class="nav-icon">📚</span>
+        My Courses
+    </button>
 
-        <button class="nav-item active" data-page="dashboard">
-            <span class="nav-icon">⌂</span>
-            <span>Dashboard</span>
-        </button>
+    <button class="nav-item" data-page="timetable">
+        <span class="nav-icon">🗓️</span>
+        Timetable
+    </button>
 
-        <button class="nav-item" data-page="courses">
-            <span class="nav-icon">▣</span>
-            <span>My Courses</span>
-        </button>
+    <button class="nav-item" data-page="assignments">
+        <span class="nav-icon">📝</span>
+        Assignments
+    </button>
 
-        <button class="nav-item" data-page="timetable">
-            <span class="nav-icon">▦</span>
-            <span>Timetable</span>
-        </button>
+    <button class="nav-item" data-page="attendance">
+        <span class="nav-icon">📊</span>
+        Attendance
+    </button>
 
-        <button class="nav-item" data-page="assignments">
-            <span class="nav-icon">📝</span>
-            <span>Assignments</span>
-        </button>
+    <button class="nav-item" data-page="academics">
+        <span class="nav-icon">🎓</span>
+        Academics
+    </button>
 
-        <button class="nav-item" data-page="attendance">
-            <span class="nav-icon">◔</span>
-            <span>Attendance</span>
-        </button>
+    <button class="nav-item" data-page="campus">
+        <span class="nav-icon">🏫</span>
+        Campus
+    </button>
 
-        <button class="nav-item" data-page="campus">
-            <span class="nav-icon">🏫</span>
-            <span>Campus</span>
-        </button>
+    <button class="nav-item" data-page="events">
+        <span class="nav-icon">🎉</span>
+        Events
+    </button>
 
-        <button class="nav-item" data-page="settings">
-            <span class="nav-icon">⚙</span>
-            <span>Settings</span>
-        </button>
+    <button class="nav-item" data-page="exams">
+        <span class="nav-icon">📋</span>
+        Exams
+    </button>
 
-    </nav>
-
-
-    <div class="sidebar-bottom">
-
-        <button class="logout-btn" id="logoutBtn">
-            ↪ &nbsp; Logout
-        </button>
-
-    </div>
+    <button class="nav-item" data-page="settings">
+        <span class="nav-icon">⚙️</span>
+        Settings
+    </button>
 
 </aside>
 
 
-
-<!-- ======================================================
-     MAIN
-====================================================== -->
+<!-- ================= MAIN ================= -->
 
 <main class="main">
 
+    <!-- TOPBAR -->
 
-<header class="topbar">
+    <header class="topbar">
 
-    <div class="page-heading">
+        <div style="display:flex;align-items:center;">
 
-        <div class="small-heading">
-            STUDENT PORTAL
-        </div>
+            <button class="mobile-menu" onclick="toggleSidebar()">☰</button>
 
-        <h1 id="pageTitle">
-            Dashboard
-        </h1>
+            <div>
+                <div class="page-title" id="pageTitle">
+                    Student Dashboard
+                </div>
 
-    </div>
-
-
-    <div class="topbar-actions">
-
-        <div class="digital-clock" id="clock">
-            00:00:00
-        </div>
-
-
-        <button
-            class="notification-btn"
-            id="notificationBtn"
-        >
-            🔔
-            <span class="notification-dot"></span>
-        </button>
-
-
-        <button
-            class="profile-btn"
-            id="profileBtn"
-        >
-
-            <div class="profile-avatar">
-                PB
+                <div class="page-subtitle" id="pageSubtitle">
+                    Your complete college companion
+                </div>
             </div>
 
-            <span>
-                Priya Bhavani
-            </span>
+        </div>
 
-            <span>
-                ▾
-            </span>
+        <div class="top-right">
 
-        </button>
+            <div class="clock" id="clock">
+                Loading time...
+            </div>
+
+            <div class="notification" onclick="showToast('You have new notifications 🔔')">
+                🔔
+                <span class="notification-dot"></span>
+            </div>
+
+            <div class="profile" onclick="showToast('Profile opened 👤')">
+
+                <div class="profile-avatar">
+                    P
+                </div>
+
+                <div class="profile-info">
+                    <strong id="studentName">
+                        Student
+                    </strong>
+
+                    <span>
+                        BCA Student
+                    </span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- CONTENT -->
+
+    <section class="content">
+
+        <!-- DASHBOARD -->
+
+        <div id="dashboardContainer">
+
+            <!-- HERO -->
+
+            <div class="hero">
+
+                <div class="hero-content">
+
+                    <h1>
+                        Welcome back, <span id="welcomeName">Student</span>! 👋
+                    </h1>
+
+                    <p>
+                        Welcome to your CampusConnect student dashboard.
+                        Manage your academics, attendance, timetable,
+                        assignments and campus activities from one place.
+                    </p>
+
+                    <div class="hero-date" id="todayDate">
+                        📅 Loading date...
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- STATS -->
+
+            <div class="stats">
+
+                <div class="stat-card">
+
+                    <div class="stat-top">
+                        <span class="stat-icon blue">📚</span>
+                        <span class="blue">Academic</span>
+                    </div>
+
+                    <h3>8</h3>
+
+                    <p>Active Courses</p>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-top">
+                        <span class="stat-icon green">📊</span>
+                        <span class="green">Good</span>
+                    </div>
+
+                    <h3>86%</h3>
+
+                    <p>Overall Attendance</p>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-top">
+                        <span class="stat-icon orange">📝</span>
+                        <span class="orange">Pending</span>
+                    </div>
+
+                    <h3>4</h3>
+
+                    <p>Assignments</p>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-top">
+                        <span class="stat-icon purple">🏆</span>
+                        <span class="purple">CGPA</span>
+                    </div>
+
+                    <h3>8.7</h3>
+
+                    <p>Current Semester</p>
+
+                </div>
+
+            </div>
+
+
+            <!-- DASHBOARD GRID -->
+
+            <div class="dashboard-grid">
+
+                <div>
+
+                    <!-- TODAY'S SCHEDULE -->
+
+                    <div class="card">
+
+                        <div class="card-header">
+
+                            <h2>🗓️ Today's Schedule</h2>
+
+                            <span onclick="openPage('timetable')">
+                                View Timetable →
+                            </span>
+
+                        </div>
+
+
+                        <div class="schedule">
+
+                            <div class="schedule-item">
+
+                                <div class="schedule-time">
+                                    09:00 AM
+                                </div>
+
+                                <div>
+                                    <div class="schedule-subject">
+                                        Web Development
+                                    </div>
+
+                                    <small style="color:#64748b;">
+                                        BCA • Lecture
+                                    </small>
+                                </div>
+
+                                <div class="schedule-room">
+                                    Room 204
+                                </div>
+
+                            </div>
+
+
+                            <div class="schedule-item">
+
+                                <div class="schedule-time">
+                                    11:00 AM
+                                </div>
+
+                                <div>
+                                    <div class="schedule-subject">
+                                        Database Management
+                                    </div>
+
+                                    <small style="color:#64748b;">
+                                        BCA • Practical
+                                    </small>
+                                </div>
+
+                                <div class="schedule-room">
+                                    Lab 2
+                                </div>
+
+                            </div>
+
+
+                            <div class="schedule-item">
+
+                                <div class="schedule-time">
+                                    02:00 PM
+                                </div>
+
+                                <div>
+                                    <div class="schedule-subject">
+                                        Computer Networks
+                                    </div>
+
+                                    <small style="color:#64748b;">
+                                        BCA • Lecture
+                                    </small>
+                                </div>
+
+                                <div class="schedule-room">
+                                    Room 106
+                                </div>
+
+                            </div>
+
+
+                            <div class="schedule-item">
+
+                                <div class="schedule-time">
+                                    03:30 PM
+                                </div>
+
+                                <div>
+                                    <div class="schedule-subject">
+                                        Software Engineering
+                                    </div>
+
+                                    <small style="color:#64748b;">
+                                        BCA • Lecture
+                                    </small>
+                                </div>
+
+                                <div class="schedule-room">
+                                    Room 302
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ATTENDANCE -->
+
+                    <div class="card">
+
+                        <div class="card-header">
+
+                            <h2>📊 Attendance Overview</h2>
+
+                            <span onclick="openPage('attendance')">
+                                View Details →
+                            </span>
+
+                        </div>
+
+
+                        <div class="progress-box">
+
+                            <div class="progress-info">
+                                <span>Web Development</span>
+                                <strong>92%</strong>
+                            </div>
+
+                            <div class="progress">
+                                <div class="progress-bar" style="width:92%;"></div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="progress-box">
+
+                            <div class="progress-info">
+                                <span>Database Management</span>
+                                <strong>88%</strong>
+                            </div>
+
+                            <div class="progress">
+                                <div class="progress-bar" style="width:88%;"></div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="progress-box">
+
+                            <div class="progress-info">
+                                <span>Computer Networks</span>
+                                <strong>82%</strong>
+                            </div>
+
+                            <div class="progress">
+                                <div class="progress-bar" style="width:82%;"></div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="progress-box">
+
+                            <div class="progress-info">
+                                <span>Software Engineering</span>
+                                <strong>85%</strong>
+                            </div>
+
+                            <div class="progress">
+                                <div class="progress-bar" style="width:85%;"></div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- RIGHT COLUMN -->
+
+                <div>
+
+                    <!-- QUICK ACTIONS -->
+
+                    <div class="card">
+
+                        <div class="card-header">
+                            <h2>⚡ Quick Actions</h2>
+                        </div>
+
+                        <div class="actions">
+
+                            <div class="action" onclick="openPage('assignments')">
+
+                                <div class="action-icon">📝</div>
+
+                                <strong>Assignments</strong>
+
+                                <small>Check pending work</small>
+
+                            </div>
+
+
+                            <div class="action" onclick="openPage('exams')">
+
+                                <div class="action-icon">📋</div>
+
+                                <strong>Exams</strong>
+
+                                <small>View exam schedule</small>
+
+                            </div>
+
+
+                            <div class="action" onclick="openPage('events')">
+
+                                <div class="action-icon">🎉</div>
+
+                                <strong>Events</strong>
+
+                                <small>Explore campus events</small>
+
+                            </div>
+
+
+                            <div class="action" onclick="openPage('campus')">
+
+                                <div class="action-icon">🏫</div>
+
+                                <strong>Campus</strong>
+
+                                <small>Explore campus</small>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- UPCOMING -->
+
+                    <div class="card">
+
+                        <div class="card-header">
+
+                            <h2>⏰ Upcoming</h2>
+
+                        </div>
+
+
+                        <div style="display:flex;flex-direction:column;gap:14px;">
+
+                            <div style="padding:13px;background:#f8fafc;border-radius:12px;">
+
+                                <strong style="font-size:13px;">
+                                    Database Assignment
+                                </strong>
+
+                                <div style="font-size:11px;color:#ef4444;margin-top:5px;">
+                                    Due tomorrow
+                                </div>
+
+                            </div>
+
+
+                            <div style="padding:13px;background:#f8fafc;border-radius:12px;">
+
+                                <strong style="font-size:13px;">
+                                    Internal Examination
+                                </strong>
+
+                                <div style="font-size:11px;color:#64748b;margin-top:5px;">
+                                    15 September 2026
+                                </div>
+
+                            </div>
+
+
+                            <div style="padding:13px;background:#f8fafc;border-radius:12px;">
+
+                                <strong style="font-size:13px;">
+                                    Campus Tech Fest
+                                </strong>
+
+                                <div style="font-size:11px;color:#64748b;margin-top:5px;">
+                                    20 September 2026
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- CAMPUS -->
+
+            <div class="card">
+
+                <div class="card-header">
+
+                    <h2>🏫 Explore Your Campus</h2>
+
+                    <span onclick="openPage('campus')">
+                        Explore →
+                    </span>
+
+                </div>
+
+
+                <div class="campus-grid">
+
+    <!-- CENTRAL LIBRARY -->
+    <div class="campus-card">
+
+        <img
+            src="https://images.unsplash.com/photo-1568667256549-094345857637?auto=format&fit=crop&w=900&q=80"
+            alt="Central Library"
+        >
+
+        <div class="campus-info">
+
+            <div class="big-icon">📚</div>
+
+            <h3>Central Library</h3>
+
+            <p>
+                Explore books, digital resources,
+                journals and peaceful study spaces.
+            </p>
+
+            <button onclick="showToast('Central Library selected 📚')">
+                Explore Library →
+            </button>
+
+        </div>
 
     </div>
 
-</header>
+
+    <!-- COMPUTER LABS -->
+    <div class="campus-card">
+
+        <img
+            src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=900&q=80"
+            alt="Computer Labs"
+        >
+
+        <div class="campus-info">
+
+            <div class="big-icon">💻</div>
+
+            <h3>Computer Labs</h3>
+
+            <p>
+                Access modern computers and
+                technology facilities for practical sessions.
+            </p>
+
+            <button onclick="showToast('Computer Labs selected 💻')">
+                Explore Labs →
+            </button>
+
+        </div>
+
+    </div>
 
 
-<section id="content"></section>
+    <!-- SPORTS GROUND -->
+    <div class="campus-card">
 
+        <img
+            src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=900&q=80"
+            alt="Sports Ground"
+        >
+
+        <div class="campus-info">
+
+            <div class="big-icon">⚽</div>
+
+            <h3>Sports Ground</h3>
+
+            <p>
+                Stay active with sports, recreation
+                and exciting campus activities.
+            </p>
+
+            <button onclick="showToast('Sports Ground selected ⚽')">
+                Explore Ground →
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- CAFETERIA -->
+    <div class="campus-card">
+
+        <img
+            src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=900&q=80"
+            alt="Cafeteria"
+        >
+
+        <div class="campus-info">
+
+            <div class="big-icon">☕</div>
+
+            <h3>Cafeteria</h3>
+
+            <p>
+                Enjoy snacks, refreshments and
+                relaxing moments with your friends.
+            </p>
+
+            <button onclick="showToast('Cafeteria selected ☕')">
+                Explore Cafeteria →
+            </button>
+
+        </div>
+
+    </div>
+
+</div>==
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- OTHER INTERNAL PAGE AREA -->
+
+        <div id="pageContainer"></div>
+
+    </section>
 
 </main>
-
-</div>
-
-
-
-<!-- ======================================================
-     MODAL
-====================================================== -->
-
-<div class="modal hidden" id="modal">
-
-    <div class="modal-box">
-
-        <button class="modal-close" id="modalClose">
-            ×
-        </button>
-
-        <div id="modalContent"></div>
-
-    </div>
-
-</div>
-
 
 
 <!-- TOAST -->
 
 <div class="toast" id="toast">
-    Successfully completed
+    Welcome to CampusConnect
 </div>
 
+
+<!-- YOUR EXISTING JAVASCRIPT FILES - KEPT -->
+
+<script src="js/attendance.js"></script>
+<script src="js/assignments.js"></script>
+<script src="js/events.js"></script>
+<script src="js/dashboard.js"></script>
 
 
 <script>
 
-/* =========================================================
-   ELEMENTS
-========================================================= */
+/* =====================================================
+   CAMPUSCONNECT DASHBOARD NAVIGATION
+   ===================================================== */
 
-const content = document.getElementById("content");
-const pageTitle = document.getElementById("pageTitle");
-const clock = document.getElementById("clock");
+const pageTitles = {
 
-const modal = document.getElementById("modal");
-const modalContent = document.getElementById("modalContent");
-const modalClose = document.getElementById("modalClose");
+    dashboard: "Student Dashboard",
 
-const toast = document.getElementById("toast");
+    courses: "My Courses",
 
+    timetable: "Timetable",
 
+    assignments: "Assignments",
 
-/* =========================================================
-   DASHBOARD
-========================================================= */
+    attendance: "Attendance",
 
-function dashboardPage(){
+    academics: "Academics",
 
-return `
+    campus: "Campus",
 
-<div class="hero">
+    events: "Events",
 
-    <h2>
-        Welcome back, Priya! 👋
-    </h2>
+    exams: "Exams",
 
-    <p>
-        Stay organized, keep learning,
-        and make today productive.
-    </p>
-
-    <div class="hero-date" id="todayDate"></div>
-
-</div>
-
-
-<div class="stats-grid">
-
-
-<div class="stat-card">
-
-    <div class="stat-icon">
-        📚
-    </div>
-
-    <div>
-
-        <h3>6</h3>
-
-        <p>
-            Active Courses
-        </p>
-
-    </div>
-
-</div>
-
-
-<div class="stat-card">
-
-    <div class="stat-icon">
-        📝
-    </div>
-
-    <div>
-
-        <h3>4</h3>
-
-        <p>
-            Pending Assignments
-        </p>
-
-    </div>
-
-</div>
-
-
-<div class="stat-card">
-
-    <div class="stat-icon">
-        📈
-    </div>
-
-    <div>
-
-        <h3>87%</h3>
-
-        <p>
-            Attendance
-        </p>
-
-    </div>
-
-</div>
-
-
-<div class="stat-card">
-
-    <div class="stat-icon">
-        ⭐
-    </div>
-
-    <div>
-
-        <h3>8.7</h3>
-
-        <p>
-            Current CGPA
-        </p>
-
-    </div>
-
-</div>
-
-
-</div>
-
-
-${timetableHTML()}
-
-
-<div class="section-head">
-
-    <h2>
-        ⚡ Quick Actions
-    </h2>
-
-</div>
-
-
-<div class="quick-grid">
-
-
-<button
-    class="quick-card"
-    onclick="openPage('assignments')"
->
-
-    <div class="quick-icon">
-        📝
-    </div>
-
-    <strong>
-        Submit Assignment
-    </strong>
-
-</button>
-
-
-<button
-    class="quick-card"
-    onclick="openPage('attendance')"
->
-
-    <div class="quick-icon">
-        📊
-    </div>
-
-    <strong>
-        Check Attendance
-    </strong>
-
-</button>
-
-
-<button
-    class="quick-card"
-    onclick="openPage('campus')"
->
-
-    <div class="quick-icon">
-        📚
-    </div>
-
-    <strong>
-        Library
-    </strong>
-
-</button>
-
-
-<button
-    class="quick-card"
-    onclick="showToast('No new campus notices')"
->
-
-    <div class="quick-icon">
-        📣
-    </div>
-
-    <strong>
-        Campus Notices
-    </strong>
-
-</button>
-
-
-</div>
-
-
-<div class="section-head">
-
-    <h2>
-        🏫 Explore Campus
-    </h2>
-
-    <span class="section-subtitle">
-        Discover your campus
-    </span>
-
-</div>
-
-
-<div class="campus-grid">
-
-    ${campusHTML()}
-
-</div>
-
-`;
-
-}
-
-
-
-/* =========================================================
-   TIMETABLE
-========================================================= */
-
-function timetableHTML(){
-
-return `
-
-<div class="section-head">
-
-    <h2>
-        🗓️ Today's Timetable
-    </h2>
-
-    <button
-        class="gradient-btn"
-        onclick="showToast('Full timetable opened')"
-    >
-        View Full
-    </button>
-
-</div>
-
-
-<div class="table-container">
-
-<table class="timetable">
-
-<thead>
-
-<tr>
-
-<th>TIME</th>
-<th>MONDAY</th>
-<th>TUESDAY</th>
-<th>WEDNESDAY</th>
-<th>THURSDAY</th>
-<th>FRIDAY</th>
-
-</tr>
-
-</thead>
-
-
-<tbody>
-
-
-<tr>
-
-<td class="time-cell">
-9:00 – 10:00
-</td>
-
-<td class="subject-blue">
-💻<br>
-Web Technology
-</td>
-
-<td class="subject-pink">
-🗄️<br>
-DBMS
-</td>
-
-<td class="subject-green">
-🌐<br>
-Networking
-</td>
-
-<td class="subject-orange">
-💻<br>
-Programming
-</td>
-
-<td class="subject-purple">
-🤖<br>
-AI & ML
-</td>
-
-</tr>
-
-
-<tr>
-
-<td class="time-cell">
-10:00 – 11:00
-</td>
-
-<td class="subject-green">
-📐<br>
-Mathematics
-</td>
-
-<td class="subject-orange">
-💻<br>
-Programming
-</td>
-
-<td class="subject-blue">
-💻<br>
-Web Technology
-</td>
-
-<td class="subject-purple">
-🤖<br>
-AI & ML
-</td>
-
-<td class="subject-pink">
-🗄️<br>
-DBMS
-</td>
-
-</tr>
-
-
-<tr>
-
-<td class="time-cell">
-11:00 – 11:30
-</td>
-
-<td
-    colspan="5"
-    class="break-cell"
->
-☕ BREAK TIME
-</td>
-
-</tr>
-
-
-<tr>
-
-<td class="time-cell">
-11:30 – 12:30
-</td>
-
-<td class="subject-purple">
-🤖<br>
-AI & ML
-</td>
-
-<td class="subject-blue">
-💻<br>
-Web Technology
-</td>
-
-<td class="subject-orange">
-💻<br>
-Programming
-</td>
-
-<td class="subject-green">
-🌐<br>
-Networking
-</td>
-
-<td class="subject-blue">
-💻<br>
-Web Technology
-</td>
-
-</tr>
-
-
-<tr>
-
-<td class="time-cell">
-12:30 – 1:30
-</td>
-
-<td class="subject-pink">
-🗄️<br>
-DBMS
-</td>
-
-<td class="subject-green">
-🌐<br>
-Networking
-</td>
-
-<td class="subject-purple">
-🤖<br>
-AI & ML
-</td>
-
-<td class="subject-blue">
-💻<br>
-Web Technology
-</td>
-
-<td class="subject-orange">
-💻<br>
-Programming
-</td>
-
-</tr>
-
-
-</tbody>
-
-</table>
-
-</div>
-
-`;
-
-}
-
-
-
-/* =========================================================
-   CAMPUS
-========================================================= */
-
-function campusHTML(){
-
-return `
-
-<div
-class="campus-card"
-style="
-background-image:url('https://images.unsplash.com/photo-1568667256549-094345857637?auto=format&fit=crop&w=1000&q=85')
-"
->
-
-<div class="campus-info">
-
-<strong>
-📚 Central Library
-</strong>
-
-<small>
-Books, journals & study spaces
-</small>
-
-</div>
-
-</div>
-
-
-<div
-class="campus-card"
-style="
-background-image:url('https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=1000&q=85')
-"
->
-
-<div class="campus-info">
-
-<strong>
-🏟️ Sports Ground
-</strong>
-
-<small>
-Stay active and healthy
-</small>
-
-</div>
-
-</div>
-
-
-<div
-class="campus-card"
-style="
-background-image:url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1000&q=85')
-"
->
-
-<div class="campus-info">
-
-<strong>
-🏫 Learning Centre
-</strong>
-
-<small>
-Classes and collaboration
-</small>
-
-</div>
-
-</div>
-
-`;
-
-}
-
-
-
-/* =========================================================
-   COURSES
-========================================================= */
-
-function coursesPage(){
-
-const courses=[
-    ["Web Technology","Professor Sharma",92],
-    ["Database Management System","Professor Kumar",85],
-    ["Programming","Professor Rao",88],
-    ["Artificial Intelligence & ML","Professor Mehta",79],
-    ["Computer Networking","Professor Patel",90],
-    ["Mathematics","Professor Singh",94]
-];
-
-return `
-
-<div class="section-head">
-
-<h2>
-📚 My Courses
-</h2>
-
-</div>
-
-
-<div class="list-container">
-
-${courses.map(c=>`
-
-<div class="list-card">
-
-<div>
-
-<strong>
-${c[0]}
-</strong>
-
-<small>
-BCA • Semester VI • ${c[1]}
-</small>
-
-</div>
-
-<span class="badge">
-${c[2]}% Progress
-</span>
-
-</div>
-
-`).join("")}
-
-</div>
-
-`;
-
-}
-
-
-
-/* =========================================================
-   ASSIGNMENTS
-========================================================= */
-
-function assignmentsPage(){
-
-const assignments=[
-    ["Responsive Web Design","05 September 2026","Pending","pink"],
-    ["SQL Query Optimization","08 September 2026","Pending","pink"],
-    ["Python Mini Project","12 September 2026","Upcoming","orange"],
-    ["AI Research Report","15 September 2026","Upcoming","orange"],
-    ["Networking Lab Record","18 September 2026","Upcoming","green"]
-];
-
-return `
-
-<div class="section-head">
-
-<h2>
-📝 Assignments
-</h2>
-
-<button
-class="gradient-btn"
-onclick="showToast('New assignment form opened')"
->
-+ Add Assignment
-</button>
-
-</div>
-
-
-<div class="list-container">
-
-${assignments.map(a=>`
-
-<div class="list-card">
-
-<div>
-
-<strong>
-${a[0]}
-</strong>
-
-<small>
-Due: ${a[1]}
-</small>
-
-</div>
-
-<button
-class="badge ${a[3]}"
-onclick="assignmentAction('${a[0]}')"
->
-${a[2]}
-</button>
-
-</div>
-
-`).join("")}
-
-</div>
-
-`;
-
-}
-
-
-
-/* =========================================================
-   ATTENDANCE
-========================================================= */
-
-function attendancePage(){
-
-const subjects=[
-    ["Web Technology",92],
-    ["Database Management System",85],
-    ["Programming",88],
-    ["Artificial Intelligence & ML",79],
-    ["Computer Networking",90],
-    ["Mathematics",94]
-];
-
-return `
-
-<div class="section-head">
-
-<h2>
-📊 Attendance
-</h2>
-
-<span class="section-subtitle">
-Overall Attendance: 87%
-</span>
-
-</div>
-
-
-<div class="list-container">
-
-${subjects.map(s=>`
-
-<div class="list-card">
-
-<div class="progress-container">
-
-<div class="progress-header">
-
-<strong>
-${s[0]}
-</strong>
-
-<strong>
-${s[1]}%
-</strong>
-
-</div>
-
-<div class="progress-bar">
-
-<div
-class="progress-fill"
-style="width:${s[1]}%"
-></div>
-
-</div>
-
-</div>
-
-</div>
-
-`).join("")}
-
-</div>
-
-`;
-
-}
-
-
-
-/* =========================================================
-   CAMPUS PAGE
-========================================================= */
-
-function campusPage(){
-
-return `
-
-<div class="section-head">
-
-<h2>
-🏫 Explore Campus
-</h2>
-
-</div>
-
-
-<div class="campus-grid">
-
-${campusHTML()}
-
-</div>
-
-
-<div class="section-head">
-
-<h2>
-📍 Campus Facilities
-</h2>
-
-</div>
-
-
-<div class="list-container">
-
-
-<div class="list-card">
-
-<div>
-
-<strong>
-📚 Digital Library
-</strong>
-
-<small>
-Online books, journals and research material
-</small>
-
-</div>
-
-<span class="badge green">
-Open
-</span>
-
-</div>
-
-
-<div class="list-card">
-
-<div>
-
-<strong>
-🏥 Health Centre
-</strong>
-
-<small>
-Student health and emergency support
-</small>
-
-</div>
-
-<span class="badge green">
-Available
-</span>
-
-</div>
-
-
-<div class="list-card">
-
-<div>
-
-<strong>
-🍽️ Cafeteria
-</strong>
-
-<small>
-Food court and student refreshments
-</small>
-
-</div>
-
-<span class="badge orange">
-Open
-</span>
-
-</div>
-
-
-<div class="list-card">
-
-<div>
-
-<strong>
-💻 Computer Lab
-</strong>
-
-<small>
-Programming and practical laboratory
-</small>
-
-</div>
-
-<span class="badge green">
-Available
-</span>
-
-</div>
-
-
-</div>
-
-`;
-
-}
-
-
-
-/* =========================================================
-   SETTINGS
-========================================================= */
-
-function settingsPage(){
-
-return `
-
-<div class="section-head">
-
-<h2>
-⚙️ Settings
-</h2>
-
-</div>
-
-
-<div class="list-container">
-
-
-<div class="list-card">
-
-<div>
-
-<strong>
-🔔 Notifications
-</strong>
-
-<small>
-Receive campus updates and reminders
-</small>
-
-</div>
-
-<button
-class="gradient-btn"
-onclick="showToast('Notifications enabled')"
->
-Enabled
-</button>
-
-</div>
-
-
-<div class="list-card">
-
-<div>
-
-<strong>
-📧 Email Notifications
-</strong>
-
-<small>
-Receive important updates by email
-</small>
-
-</div>
-
-<button
-class="gradient-btn"
-onclick="showToast('Email notifications enabled')"
->
-Enabled
-</button>
-
-</div>
-
-
-<div class="list-card">
-
-<div>
-
-<strong>
-🌙 Dark Mode
-</strong>
-
-<small>
-Change dashboard appearance
-</small>
-
-</div>
-
-<button
-class="gradient-btn"
-onclick="toggleDarkMode()"
->
-Toggle
-</button>
-
-</div>
-
-
-<div class="list-card">
-
-<div>
-
-<strong>
-👤 Student Profile
-</strong>
-
-<small>
-Priya Bhavani • BCA • Semester VI
-</small>
-
-</div>
-
-<button
-class="gradient-btn"
-onclick="openProfile()"
->
-View
-</button>
-
-</div>
-
-
-</div>
-
-`;
-
-}
-
-
-
-/* =========================================================
-   PAGE LIST
-========================================================= */
-
-const pages={
-
-dashboard:dashboardPage,
-
-courses:coursesPage,
-
-timetable:timetableHTML,
-
-assignments:assignmentsPage,
-
-attendance:attendancePage,
-
-campus:campusPage,
-
-settings:settingsPage
+    settings: "Settings"
 
 };
 
 
+/* Pages which already have separate HTML files */
 
-/* =========================================================
+const externalPages = {
+
+    timetable: "pages/timetable.html",
+
+    attendance: "pages/attendance.html",
+
+    academics: "pages/academics.html",
+
+    campus: "pages/campus.html",
+
+    events: "pages/events.html",
+
+    exams: "pages/exams.html",
+
+    settings: "pages/settings.html"
+
+};
+
+
+/* =====================================================
    OPEN PAGE
-========================================================= */
+   ===================================================== */
 
 function openPage(page){
 
-document.querySelectorAll(".nav-item").forEach(item=>{
+    /* Dashboard */
 
-item.classList.remove("active");
+    if(page === "dashboard"){
 
-if(item.dataset.page===page){
-    item.classList.add("active");
-}
+        window.location.href = "dashboard.html";
 
-});
-
-
-const titles={
-
-dashboard:"Dashboard",
-courses:"My Courses",
-timetable:"Timetable",
-assignments:"Assignments",
-attendance:"Attendance",
-campus:"Campus",
-settings:"Settings"
-
-};
-
-
-pageTitle.textContent=titles[page];
-
-content.innerHTML=pages[page]();
-
-updateDate();
-
-window.scrollTo({
-    top:0,
-    behavior:"smooth"
-});
-
-}
-
-
-
-/* =========================================================
-   DATE
-========================================================= */
-
-function updateDate(){
-
-const element=document.getElementById("todayDate");
-
-if(!element)return;
-
-const now=new Date();
-
-element.textContent=
-now.toLocaleDateString(
-    "en-IN",
-    {
-        weekday:"long",
-        day:"numeric",
-        month:"long",
-        year:"numeric"
+        return;
     }
-);
+
+
+    /* Pages with separate HTML files */
+
+    if(externalPages[page]){
+
+        window.location.href = externalPages[page];
+
+        return;
+    }
+
+
+    /* Courses */
+
+    if(page === "courses"){
+
+        showCoursesPage();
+
+        return;
+    }
+
+
+    /* Assignments */
+
+    if(page === "assignments"){
+
+        showAssignmentsPage();
+
+        return;
+    }
 
 }
 
 
+/* =====================================================
+   ACTIVE SIDEBAR BUTTON
+   ===================================================== */
 
-/* =========================================================
+document.querySelectorAll(".nav-item").forEach(function(item){
+
+    item.addEventListener("click", function(){
+
+        const page = this.dataset.page;
+
+        document.querySelectorAll(".nav-item").forEach(function(nav){
+
+            nav.classList.remove("active");
+
+        });
+
+        this.classList.add("active");
+
+        if(pageTitles[page]){
+
+            document.getElementById("pageTitle").textContent =
+                pageTitles[page];
+
+        }
+
+        openPage(page);
+
+    });
+
+});
+
+
+/* =====================================================
+   COURSES PAGE
+   ===================================================== */
+
+function showCoursesPage(){
+
+    const dashboard =
+        document.getElementById("dashboardContainer");
+
+    const page =
+        document.getElementById("pageContainer");
+
+    dashboard.style.display = "none";
+
+    page.style.display = "block";
+
+    page.innerHTML = `
+
+        <div class="card">
+
+            <div class="card-header">
+
+                <h2>📚 My Courses</h2>
+
+                <span onclick="returnDashboard()">
+                    ← Dashboard
+                </span>
+
+            </div>
+
+            <div class="campus-grid">
+
+                <div class="campus-card">
+
+                    <h3>Web Development</h3>
+
+                    <p>
+                        HTML, CSS, JavaScript and modern web technologies.
+                    </p>
+
+                </div>
+
+                <div class="campus-card">
+
+                    <h3>Database Management</h3>
+
+                    <p>
+                        SQL, MySQL, database design and management.
+                    </p>
+
+                </div>
+
+                <div class="campus-card">
+
+                    <h3>Computer Networks</h3>
+
+                    <p>
+                        Networking concepts, protocols and security.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =====================================================
+   ASSIGNMENTS PAGE
+   ===================================================== */
+
+function showAssignmentsPage(){
+
+    const dashboard =
+        document.getElementById("dashboardContainer");
+
+    const page =
+        document.getElementById("pageContainer");
+
+    dashboard.style.display = "none";
+
+    page.style.display = "block";
+
+    page.innerHTML = `
+
+        <div class="card">
+
+            <div class="card-header">
+
+                <h2>📝 Assignments</h2>
+
+                <span onclick="returnDashboard()">
+                    ← Dashboard
+                </span>
+
+            </div>
+
+            <div style="display:flex;flex-direction:column;gap:15px;">
+
+                <div style="padding:20px;background:#f8fafc;border-radius:15px;">
+
+                    <strong>
+                        Database Management Assignment
+                    </strong>
+
+                    <p style="font-size:12px;color:#64748b;margin-top:7px;">
+                        Design and implement a student database.
+                    </p>
+
+                    <span style="
+                        display:inline-block;
+                        margin-top:10px;
+                        padding:6px 10px;
+                        background:#fee2e2;
+                        color:#dc2626;
+                        border-radius:8px;
+                        font-size:11px;
+                    ">
+                        Pending
+                    </span>
+
+                </div>
+
+
+                <div style="padding:20px;background:#f8fafc;border-radius:15px;">
+
+                    <strong>
+                        Web Development Project
+                    </strong>
+
+                    <p style="font-size:12px;color:#64748b;margin-top:7px;">
+                        Build a responsive college website.
+                    </p>
+
+                    <span style="
+                        display:inline-block;
+                        margin-top:10px;
+                        padding:6px 10px;
+                        background:#dcfce7;
+                        color:#16a34a;
+                        border-radius:8px;
+                        font-size:11px;
+                    ">
+                        In Progress
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =====================================================
+   RETURN TO DASHBOARD
+   ===================================================== */
+
+function returnDashboard(){
+
+    window.location.href = "dashboard.html";
+
+}
+
+
+/* =====================================================
+   TOAST
+   ===================================================== */
+
+function showToast(message){
+
+    const toast =
+        document.getElementById("toast");
+
+    toast.textContent = message;
+
+    toast.classList.add("show");
+
+    setTimeout(function(){
+
+        toast.classList.remove("show");
+
+    },3000);
+
+}
+
+
+/* =====================================================
    CLOCK
-========================================================= */
+   ===================================================== */
 
 function updateClock(){
 
-const now=new Date();
+    const now = new Date();
 
-clock.textContent=
-now.toLocaleTimeString(
-    "en-IN",
-    {
-        hour:"2-digit",
-        minute:"2-digit",
-        second:"2-digit"
-    }
-);
+    let hours = now.getHours();
+
+    let minutes = now.getMinutes();
+
+    let seconds = now.getSeconds();
+
+    const ampm = hours >= 12 ? "PM" : "AM";
+
+    hours = hours % 12;
+
+    hours = hours ? hours : 12;
+
+    minutes =
+        minutes < 10 ? "0" + minutes : minutes;
+
+    seconds =
+        seconds < 10 ? "0" + seconds : seconds;
+
+    document.getElementById("clock").textContent =
+        hours + ":" + minutes + ":" + seconds + " " + ampm;
 
 }
+
 
 setInterval(updateClock,1000);
 
 updateClock();
 
 
+/* =====================================================
+   DATE
+   ===================================================== */
 
-/* =========================================================
-   NAVIGATION
-========================================================= */
+function updateDate(){
 
-document.querySelectorAll(".nav-item").forEach(button=>{
+    const now = new Date();
 
-button.addEventListener("click",()=>{
+    const options = {
+        weekday:"long",
+        year:"numeric",
+        month:"long",
+        day:"numeric"
+    };
 
-openPage(button.dataset.page);
-
-});
-
-});
-
-
-
-/* =========================================================
-   MODAL
-========================================================= */
-
-function openModal(html){
-
-modalContent.innerHTML=html;
-
-modal.classList.remove("hidden");
+    document.getElementById("todayDate").textContent =
+        "📅 " + now.toLocaleDateString("en-IN",options);
 
 }
 
 
-function closeModal(){
-
-modal.classList.add("hidden");
-
-}
+updateDate();
 
 
-modalClose.addEventListener(
-    "click",
-    closeModal
-);
+/* =====================================================
+   STUDENT NAME
+   ===================================================== */
 
+function loadStudent(){
 
-modal.addEventListener(
-    "click",
-    event=>{
+    try{
 
-        if(event.target===modal){
-            closeModal();
+        const student =
+            JSON.parse(localStorage.getItem("student"));
+
+        if(student){
+
+            const name =
+                student.name ||
+                student.username ||
+                student.fullName;
+
+            if(name){
+
+                document.getElementById("studentName")
+                    .textContent = name;
+
+                document.getElementById("welcomeName")
+                    .textContent = name;
+
+            }
+
         }
 
-    }
-);
+    }catch(error){
 
+        console.log("Student information not available.");
 
-
-/* =========================================================
-   NOTIFICATIONS
-========================================================= */
-
-document
-.getElementById("notificationBtn")
-.addEventListener(
-"click",
-()=>{
-
-openModal(`
-
-<h2>
-🔔 Notifications
-</h2>
-
-<p>
-👋 Welcome back to CampusConnect!
-</p>
-
-<p>
-📚 Your next class is
-<strong>
-Web Technology
-</strong>.
-</p>
-
-<p>
-📝 You have
-<strong>
-4 pending assignments
-</strong>.
-</p>
-
-<p>
-📊 Your current attendance is
-<strong>
-87%
-</strong>.
-</p>
-
-`);
-
-}
-);
-
-
-
-/* =========================================================
-   PROFILE
-========================================================= */
-
-document
-.getElementById("profileBtn")
-.addEventListener(
-"click",
-openProfile
-);
-
-
-function openProfile(){
-
-openModal(`
-
-<h2>
-👤 Student Profile
-</h2>
-
-<p>
-<strong>
-Priya Bhavani
-</strong>
-</p>
-
-<p>
-Course:
-<strong>
-BCA
-</strong>
-</p>
-
-<p>
-Semester:
-<strong>
-VI
-</strong>
-</p>
-
-<p>
-Student ID:
-<strong>
-BCA2026
-</strong>
-</p>
-
-<p>
-Current CGPA:
-<strong>
-8.7
-</strong>
-</p>
-
-<br>
-
-<button
-class="gradient-btn"
-onclick="showToast('Profile saved successfully');closeModal()"
->
-Save Profile
-</button>
-
-`);
-
-}
-
-
-
-/* =========================================================
-   ASSIGNMENT
-========================================================= */
-
-function assignmentAction(name){
-
-openModal(`
-
-<h2>
-📝 ${name}
-</h2>
-
-<p>
-You can submit your assignment
-from this section.
-</p>
-
-<br>
-
-<button
-class="gradient-btn"
-onclick="showToast('Assignment submission started');closeModal()"
->
-Submit Assignment
-</button>
-
-`);
-
-}
-
-
-
-/* =========================================================
-   TOAST
-========================================================= */
-
-let toastTimer;
-
-function showToast(message){
-
-toast.textContent=message;
-
-toast.classList.add("show");
-
-clearTimeout(toastTimer);
-
-toastTimer=setTimeout(()=>{
-
-toast.classList.remove("show");
-
-},2300);
-
-}
-
-
-
-/* =========================================================
-   DARK MODE
-========================================================= */
-
-function toggleDarkMode(){
-
-document.body.classList.toggle("dark");
-
-if(document.body.classList.contains("dark")){
-
-showToast("Dark mode enabled");
-
-}else{
-
-showToast("Light mode enabled");
-
-}
-
-}
-
-
-
-/* =========================================================
-   LOGOUT
-========================================================= */
-
-
-document
-.getElementById("logoutBtn")
-.addEventListener("click", function () {
-
-    if (confirm("Do you want to logout?")) {
-
-        localStorage.removeItem("loggedIn");
-        localStorage.removeItem("studentName");
-        localStorage.removeItem("username");
-
-        window.location.href = "index.html";
     }
 
-});
+}
+
+
+loadStudent();
+
+
+/* =====================================================
+   MOBILE SIDEBAR
+   ===================================================== */
+
+function toggleSidebar(){
+
+    document
+        .getElementById("sidebar")
+        .classList.toggle("open");
+
+}
+
+
+/* =====================================================
+   WELCOME MESSAGE
+   ===================================================== */
+
+setTimeout(function(){
+
+    showToast("Welcome back to CampusConnect 🎓");
+
+},800);
 
 </script>
-<script src="js/dashboard.js"></script>
 
 </body>
 </html>
