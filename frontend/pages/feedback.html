@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CampusConnect | Feedback</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f5f7fb;
+    color:#222;
+}
+
+/* ================= SIDEBAR ================= */
+
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    width:240px;
+    height:100vh;
+    background:linear-gradient(180deg,#172554,#312e81,#4c1d95);
+    color:white;
+    padding:20px 15px;
+    overflow-y:auto;
+    z-index:1000;
+}
+
+.sidebar h2{
+    font-size:22px;
+    font-weight:bold;
+    padding:7px 15px 28px;
+    border-bottom:1px solid rgba(255,255,255,0.18);
+    margin-bottom:15px;
+}
+
+.nav-item{
+    height:48px;
+    display:flex;
+    align-items:center;
+    padding:0 18px;
+    margin:2px 0;
+    border-radius:11px;
+    cursor:pointer;
+    font-size:15px;
+    color:#e5e7eb;
+    transition:0.2s;
+}
+
+.nav-item:hover{
+    background:rgba(255,255,255,0.12);
+}
+
+.nav-item.active{
+    background:linear-gradient(90deg,#22c1dc,#8b5cf6);
+    color:white;
+    font-weight:bold;
+}
+
+/* ================= MAIN ================= */
+
+.main{
+    margin-left:240px;
+    min-height:100vh;
+}
+
+/* ================= HEADER ================= */
+
+.header{
+    height:75px;
+    background:white;
+    padding:0 30px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    box-shadow:0 2px 10px rgba(0,0,0,0.08);
+}
+
+.logo{
+    font-size:25px;
+    font-weight:bold;
+    color:#2563eb;
+}
+
+.back-btn{
+    background:#2563eb;
+    color:white;
+    border:none;
+    padding:10px 18px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:14px;
+}
+
+.back-btn:hover{
+    background:#1d4ed8;
+}
+
+/* ================= CONTENT ================= */
+
+.container{
+    max-width:850px;
+    margin:35px auto;
+    padding:0 20px;
+}
+
+.page-title{
+    font-size:30px;
+    margin-bottom:8px;
+}
+
+.page-subtitle{
+    color:#6b7280;
+    margin-bottom:25px;
+}
+
+/* ================= FORM CARD ================= */
+
+.feedback-card{
+    background:white;
+    padding:30px;
+    border-radius:14px;
+    box-shadow:0 3px 12px rgba(0,0,0,0.07);
+}
+
+.form-group{
+    margin-bottom:20px;
+}
+
+.form-group label{
+    display:block;
+    font-weight:bold;
+    margin-bottom:8px;
+    font-size:14px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea{
+    width:100%;
+    padding:12px;
+    border:1px solid #d1d5db;
+    border-radius:8px;
+    font-size:14px;
+    outline:none;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{
+    border-color:#2563eb;
+}
+
+textarea{
+    resize:vertical;
+    min-height:130px;
+}
+
+/* ================= RATING ================= */
+
+.rating{
+    display:flex;
+    gap:8px;
+}
+
+.rating input{
+    display:none;
+}
+
+.rating label{
+    font-size:30px;
+    color:#d1d5db;
+    cursor:pointer;
+    transition:0.2s;
+}
+
+.rating label:hover{
+    color:#f59e0b;
+}
+
+.rating input:checked + label{
+    color:#f59e0b;
+}
+
+/* ================= BUTTON ================= */
+
+.submit-btn{
+    width:100%;
+    padding:13px;
+    border:none;
+    border-radius:8px;
+    background:#2563eb;
+    color:white;
+    font-size:15px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.submit-btn:hover{
+    background:#1d4ed8;
+}
+
+/* ================= MESSAGE ================= */
+
+.message{
+    display:none;
+    margin-top:18px;
+    padding:12px;
+    border-radius:8px;
+    text-align:center;
+    background:#ecfdf5;
+    color:#047857;
+    font-size:14px;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:800px){
+
+    .sidebar{
+        width:210px;
+    }
+
+    .main{
+        margin-left:210px;
+    }
+}
+
+@media(max-width:600px){
+
+    .sidebar{
+        position:relative;
+        width:100%;
+        height:auto;
+    }
+
+    .main{
+        margin-left:0;
+    }
+
+    .header{
+        padding:15px 18px;
+    }
+
+    .logo{
+        font-size:21px;
+    }
+
+    .container{
+        margin-top:25px;
+    }
+
+    .page-title{
+        font-size:25px;
+    }
+
+    .feedback-card{
+        padding:20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= SIDEBAR ================= -->
+
+<aside class="sidebar">
+
+    <h2>CampusConnect</h2>
+
+    <div class="nav-item" onclick="go('dashboard')">
+        🏠&nbsp;&nbsp; Dashboard
+    </div>
+
+    <div class="nav-item" onclick="go('courses')">
+        📚&nbsp;&nbsp; My Courses
+    </div>
+
+    <div class="nav-item" onclick="go('timetable')">
+        🗓️&nbsp;&nbsp; Timetable
+    </div>
+
+    <div class="nav-item" onclick="go('assignments')">
+        📝&nbsp;&nbsp; Assignments
+    </div>
+
+    <div class="nav-item" onclick="go('attendance')">
+        📊&nbsp;&nbsp; Attendance
+    </div>
+
+    <div class="nav-item" onclick="go('academics')">
+        🎓&nbsp;&nbsp; Academics
+    </div>
+
+    <div class="nav-item" onclick="go('faculty')">
+        👨‍🏫&nbsp;&nbsp; Faculty
+    </div>
+
+    <div class="nav-item" onclick="go('placement')">
+        💼&nbsp;&nbsp; Placement
+    </div>
+
+    <div class="nav-item" onclick="go('results')">
+        📈&nbsp;&nbsp; Results
+    </div>
+
+    <div class="nav-item" onclick="go('documents')">
+        📄&nbsp;&nbsp; Documents
+    </div>
+
+    <div class="nav-item" onclick="go('complaints')">
+        ⚠️&nbsp;&nbsp; Complaints
+    </div>
+
+    <div class="nav-item active" onclick="go('feedback')">
+        💬&nbsp;&nbsp; Feedback
+    </div>
+
+    <div class="nav-item" onclick="go('lost-found')">
+        🔍&nbsp;&nbsp; Lost & Found
+    </div>
+
+    <div class="nav-item" onclick="go('campus')">
+        🏫&nbsp;&nbsp; Campus
+    </div>
+
+    <div class="nav-item" onclick="go('events')">
+        🎉&nbsp;&nbsp; Events
+    </div>
+
+    <div class="nav-item" onclick="go('exams')">
+        📖&nbsp;&nbsp; Exams
+    </div>
+
+    <div class="nav-item" onclick="go('notifications')">
+        🔔&nbsp;&nbsp; Notifications
+    </div>
+
+    <div class="nav-item" onclick="go('profile')">
+        👤&nbsp;&nbsp; Profile
+    </div>
+
+    <div class="nav-item" onclick="go('settings')">
+        ⚙️&nbsp;&nbsp; Settings
+    </div>
+
+</aside>
+
+
+<!-- ================= MAIN ================= -->
+
+<div class="main">
+
+<header class="header">
+
+    <div class="logo">
+        CampusConnect
+    </div>
+
+    <button class="back-btn" onclick="goBack()">
+        ← Back
+    </button>
+
+</header>
+
+
+<main class="container">
+
+    <h1 class="page-title">
+        Feedback
+    </h1>
+
+    <p class="page-subtitle">
+        Share your feedback to help improve the CampusConnect experience.
+    </p>
+
+
+    <div class="feedback-card">
+
+        <form id="feedbackForm">
+
+            <div class="form-group">
+
+                <label for="category">
+                    Feedback Category
+                </label>
+
+                <select id="category" required>
+
+                    <option value="">
+                        Select a category
+                    </option>
+
+                    <option value="Academics">
+                        Academics
+                    </option>
+
+                    <option value="Faculty">
+                        Faculty
+                    </option>
+
+                    <option value="Campus">
+                        Campus
+                    </option>
+
+                    <option value="Events">
+                        Events
+                    </option>
+
+                    <option value="Placement">
+                        Placement
+                    </option>
+
+                    <option value="Portal">
+                        Portal
+                    </option>
+
+                    <option value="Other">
+                        Other
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Rating
+                </label>
+
+                <div class="rating">
+
+                    <input type="radio"
+                           id="star1"
+                           name="rating"
+                           value="1"
+                           required>
+
+                    <label for="star1">★</label>
+
+
+                    <input type="radio"
+                           id="star2"
+                           name="rating"
+                           value="2">
+
+                    <label for="star2">★</label>
+
+
+                    <input type="radio"
+                           id="star3"
+                           name="rating"
+                           value="3">
+
+                    <label for="star3">★</label>
+
+
+                    <input type="radio"
+                           id="star4"
+                           name="rating"
+                           value="4">
+
+                    <label for="star4">★</label>
+
+
+                    <input type="radio"
+                           id="star5"
+                           name="rating"
+                           value="5">
+
+                    <label for="star5">★</label>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="feedback">
+                    Your Feedback
+                </label>
+
+                <textarea
+                    id="feedback"
+                    placeholder="Write your feedback here..."
+                    required></textarea>
+
+            </div>
+
+
+            <button type="submit" class="submit-btn">
+                Submit Feedback
+            </button>
+
+
+            <div class="message" id="successMessage">
+                ✓ Thank you! Your feedback has been submitted successfully.
+            </div>
+
+        </form>
+
+    </div>
+
+</main>
+
+</div>
+
+
+<script>
+
+/* ================= NAVIGATION ================= */
+
+const pages = {
+
+    dashboard: "../dashboard.html",
+    courses: "../dashboard.html",
+    timetable: "timetable.html",
+    assignments: "../dashboard.html",
+    attendance: "attendance.html",
+    academics: "academics.html",
+    faculty: "faculty.html",
+    placement: "placement.html",
+    results: "results.html",
+    documents: "documents.html",
+    complaints: "complaints.html",
+    feedback: "feedback.html",
+    "lost-found": "lost-found.html",
+    campus: "campus.html",
+    events: "events.html",
+    exams: "exams.html",
+    notifications: "notifications.html",
+    profile: "profile.html",
+    settings: "settings.html"
+
+};
+
+
+function go(page){
+
+    if(pages[page]){
+        window.location.href = pages[page];
+    }
+
+}
+
+
+/* ================= BACK ================= */
+
+function goBack(){
+
+    window.history.back();
+
+}
+
+
+/* ================= FEEDBACK ================= */
+
+const feedbackForm =
+    document.getElementById("feedbackForm");
+
+const successMessage =
+    document.getElementById("successMessage");
+
+
+feedbackForm.addEventListener("submit", function(event){
+
+    event.preventDefault();
+
+    const category =
+        document.getElementById("category").value;
+
+    const rating =
+        document.querySelector(
+            'input[name="rating"]:checked'
+        );
+
+    const feedback =
+        document.getElementById("feedback")
+        .value
+        .trim();
+
+
+    if(category === ""){
+
+        alert("Please select a feedback category.");
+
+        return;
+    }
+
+
+    if(!rating){
+
+        alert("Please select a rating.");
+
+        return;
+    }
+
+
+    if(feedback === ""){
+
+        alert("Please enter your feedback.");
+
+        return;
+    }
+
+
+    successMessage.style.display = "block";
+
+    alert("✓ Feedback submitted successfully!");
+
+    feedbackForm.reset();
+
+});
+
+</script>
+
+</body>
+</html>
