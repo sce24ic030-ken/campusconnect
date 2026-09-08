@@ -1,1149 +1,734 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>CampusConnect | Placements</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet"
-    >
-
-    <style>
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: "Poppins", sans-serif;
-            background: #f5f7fb;
-            color: #20243a;
-            min-height: 100vh;
-        }
-
-        /* =========================
-           TOP BAR
-        ========================= */
-
-        .topbar {
-            height: 75px;
-            background: white;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 35px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .brand-icon {
-            width: 45px;
-            height: 45px;
-            border-radius: 14px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 22px;
-            color: white;
-        }
-
-        .brand h2 {
-            font-size: 20px;
-            font-weight: 700;
-        }
-
-        .brand span {
-            color: #667eea;
-        }
-
-        .back-btn {
-            border: none;
-            background: #eef1ff;
-            color: #667eea;
-            padding: 11px 20px;
-            border-radius: 12px;
-            font-family: inherit;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .back-btn:hover {
-            background: #667eea;
-            color: white;
-            transform: translateX(-4px);
-        }
-
-        /* =========================
-           MAIN
-        ========================= */
-
-        .container {
-            max-width: 1250px;
-            margin: auto;
-            padding: 35px;
-        }
-
-        /* =========================
-           HERO
-        ========================= */
-
-        .hero {
-            background: linear-gradient(
-                135deg,
-                #667eea,
-                #764ba2
-            );
-
-            color: white;
-            border-radius: 28px;
-            padding: 40px;
-            position: relative;
-            overflow: hidden;
-            margin-bottom: 30px;
-        }
-
-        .hero::before {
-            content: "";
-            position: absolute;
-            width: 280px;
-            height: 280px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.08);
-            right: -80px;
-            top: -100px;
-        }
-
-        .hero::after {
-            content: "";
-            position: absolute;
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.06);
-            right: 180px;
-            bottom: -110px;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 720px;
-        }
-
-        .hero h1 {
-            font-size: 36px;
-            margin-bottom: 10px;
-        }
-
-        .hero p {
-            font-size: 15px;
-            line-height: 1.8;
-            opacity: 0.92;
-        }
-
-        .hero-badge {
-            display: inline-block;
-            background: rgba(255,255,255,0.18);
-            padding: 8px 15px;
-            border-radius: 30px;
-            margin-bottom: 15px;
-            font-size: 13px;
-            font-weight: 600;
-        }
-
-        /* =========================
-           STATS
-        ========================= */
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .stat-card {
-            background: white;
-            border-radius: 20px;
-            padding: 23px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.06);
-            transition: 0.3s;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.10);
-        }
-
-        .stat-icon {
-            font-size: 28px;
-            margin-bottom: 12px;
-        }
-
-        .stat-card h3 {
-            font-size: 27px;
-            margin-bottom: 4px;
-        }
-
-        .stat-card p {
-            color: #777;
-            font-size: 13px;
-        }
-
-        /* =========================
-           SECTION
-        ========================= */
-
-        .section-title {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 35px 0 18px;
-        }
-
-        .section-title h2 {
-            font-size: 24px;
-        }
-
-        .section-title p {
-            color: #777;
-            font-size: 13px;
-        }
-
-        /* =========================
-           COMPANY CARDS
-        ========================= */
-
-        .companies {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 22px;
-        }
-
-        .company-card {
-            background: white;
-            border-radius: 22px;
-            padding: 24px;
-            box-shadow: 0 8px 28px rgba(0,0,0,0.06);
-            transition: 0.35s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .company-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 18px 40px rgba(0,0,0,0.12);
-        }
-
-        .company-top {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 18px;
-        }
-
-        .company-logo {
-            width: 58px;
-            height: 58px;
-            border-radius: 16px;
-            background: #f0f2ff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 27px;
-        }
-
-        .status {
-            padding: 6px 11px;
-            border-radius: 20px;
-            background: #e8fff2;
-            color: #1a9b59;
-            font-size: 11px;
-            font-weight: 600;
-        }
-
-        .company-card h3 {
-            font-size: 19px;
-            margin-bottom: 7px;
-        }
-
-        .company-card p {
-            color: #777;
-            font-size: 13px;
-            line-height: 1.7;
-            margin-bottom: 18px;
-        }
-
-        .company-details {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 20px;
-        }
-
-        .tag {
-            background: #f5f6fa;
-            padding: 7px 10px;
-            border-radius: 9px;
-            font-size: 11px;
-            color: #555;
-        }
-
-        .apply-btn {
-            width: 100%;
-            border: none;
-            padding: 12px;
-            border-radius: 12px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            font-family: inherit;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .apply-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(102,126,234,0.3);
-        }
-
-        /* =========================
-           UPCOMING DRIVES
-        ========================= */
-
-        .drives {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-        }
-
-        .drive-card {
-            background: white;
-            border-radius: 20px;
-            padding: 22px;
-            display: flex;
-            gap: 18px;
-            align-items: center;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.06);
-            transition: 0.3s;
-        }
-
-        .drive-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .date-box {
-            min-width: 65px;
-            height: 70px;
-            border-radius: 15px;
-            background: #eef1ff;
-            color: #667eea;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .date-box strong {
-            font-size: 21px;
-        }
-
-        .date-box span {
-            font-size: 10px;
-            font-weight: 600;
-        }
-
-        .drive-info h3 {
-            font-size: 16px;
-            margin-bottom: 5px;
-        }
-
-        .drive-info p {
-            color: #777;
-            font-size: 12px;
-        }
-
-        /* =========================
-           PREPARATION
-        ========================= */
-
-        .prep-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 18px;
-        }
-
-        .prep-card {
-            background: white;
-            border-radius: 18px;
-            padding: 22px;
-            text-align: center;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
-            transition: 0.3s;
-        }
-
-        .prep-card:hover {
-            transform: translateY(-6px);
-        }
-
-        .prep-icon {
-            font-size: 35px;
-            margin-bottom: 12px;
-        }
-
-        .prep-card h3 {
-            font-size: 16px;
-            margin-bottom: 7px;
-        }
-
-        .prep-card p {
-            font-size: 12px;
-            color: #777;
-            line-height: 1.6;
-        }
-
-        /* =========================
-           PLACEMENT TIPS
-        ========================= */
-
-        .tips {
-            background: white;
-            border-radius: 22px;
-            padding: 28px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.06);
-        }
-
-        .tip {
-            display: flex;
-            gap: 15px;
-            padding: 14px 0;
-            border-bottom: 1px solid #eee;
-        }
-
-        .tip:last-child {
-            border-bottom: none;
-        }
-
-        .tip-icon {
-            width: 38px;
-            height: 38px;
-            border-radius: 11px;
-            background: #eef1ff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-
-        .tip h3 {
-            font-size: 14px;
-            margin-bottom: 4px;
-        }
-
-        .tip p {
-            color: #777;
-            font-size: 12px;
-            line-height: 1.6;
-        }
-
-        /* =========================
-           FOOTER
-        ========================= */
-
-        footer {
-            text-align: center;
-            padding: 35px 0 15px;
-            color: #888;
-            font-size: 12px;
-        }
-
-        /* =========================
-           RESPONSIVE
-        ========================= */
-
-        @media (max-width: 1000px) {
-
-            .stats {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .companies {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .prep-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-        }
-
-        @media (max-width: 700px) {
-
-            .topbar {
-                padding: 0 18px;
-            }
-
-            .container {
-                padding: 20px;
-            }
-
-            .hero {
-                padding: 28px;
-            }
-
-            .hero h1 {
-                font-size: 27px;
-            }
-
-            .stats,
-            .companies,
-            .drives,
-            .prep-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .brand h2 {
-                font-size: 16px;
-            }
-
-        }
-
-    </style>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CampusConnect - Placement</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#f5f7fb;
+    color:#1e293b;
+}
+
+/* SIDEBAR */
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    width:250px;
+    height:100vh;
+    background:linear-gradient(180deg,#172554,#312e81,#4c1d95);
+    color:white;
+    padding:22px 15px;
+    overflow-y:auto;
+    z-index:1000;
+}
+
+.logo{
+    font-size:24px;
+    font-weight:700;
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.nav-item{
+    width:100%;
+    border:none;
+    background:transparent;
+    color:#e0e7ff;
+    padding:12px 14px;
+    margin:3px 0;
+    border-radius:10px;
+    text-align:left;
+    font-family:inherit;
+    font-size:14px;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    transition:.2s;
+}
+
+.nav-item:hover{
+    background:rgba(255,255,255,.12);
+    color:white;
+}
+
+.nav-item.active{
+    background:linear-gradient(90deg,#22d3ee,#8b5cf6);
+    color:white;
+    font-weight:600;
+}
+
+.nav-icon{
+    width:24px;
+    text-align:center;
+    font-size:17px;
+}
+
+/* MAIN */
+.main{
+    margin-left:250px;
+    min-height:100vh;
+}
+
+/* TOPBAR */
+.topbar{
+    height:75px;
+    background:white;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 30px;
+    box-shadow:0 2px 10px rgba(0,0,0,.06);
+}
+
+.brand{
+    font-size:22px;
+    font-weight:700;
+    color:#312e81;
+}
+
+.back-btn{
+    border:none;
+    background:#eef2ff;
+    color:#312e81;
+    padding:9px 16px;
+    border-radius:8px;
+    cursor:pointer;
+    font-family:inherit;
+    font-weight:500;
+}
+
+/* CONTENT */
+.container{
+    padding:30px;
+}
+
+.hero{
+    background:linear-gradient(135deg,#172554,#4c1d95);
+    color:white;
+    padding:32px;
+    border-radius:18px;
+    margin-bottom:25px;
+}
+
+.hero h1{
+    font-size:30px;
+    margin-bottom:8px;
+}
+
+.hero p{
+    opacity:.9;
+}
+
+/* STATS */
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+    margin-bottom:25px;
+}
+
+.stat-card{
+    background:white;
+    padding:22px;
+    border-radius:15px;
+    box-shadow:0 4px 15px rgba(0,0,0,.06);
+}
+
+.stat-card h2{
+    color:#4c1d95;
+    font-size:27px;
+    margin-bottom:5px;
+}
+
+.stat-card p{
+    color:#64748b;
+    font-size:13px;
+}
+
+/* SECTIONS */
+.section{
+    margin-bottom:30px;
+}
+
+.section-title{
+    font-size:21px;
+    margin-bottom:16px;
+    color:#1e293b;
+}
+
+/* COMPANY CARDS */
+.company-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.company-card{
+    background:white;
+    border-radius:15px;
+    padding:22px;
+    box-shadow:0 4px 15px rgba(0,0,0,.06);
+}
+
+.company-logo{
+    width:55px;
+    height:55px;
+    border-radius:12px;
+    background:#eef2ff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:25px;
+    margin-bottom:15px;
+}
+
+.company-card h3{
+    margin-bottom:7px;
+}
+
+.company-card p{
+    color:#64748b;
+    font-size:13px;
+    margin:5px 0;
+}
+
+.badge{
+    display:inline-block;
+    background:#dcfce7;
+    color:#166534;
+    padding:5px 10px;
+    border-radius:20px;
+    font-size:11px;
+    margin-top:10px;
+}
+
+/* DRIVES */
+.drive-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+}
+
+.drive-card{
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 4px 15px rgba(0,0,0,.06);
+}
+
+.drive-card h3{
+    color:#312e81;
+    margin-bottom:8px;
+}
+
+.drive-card p{
+    font-size:13px;
+    color:#64748b;
+    margin:5px 0;
+}
+
+.register-btn{
+    margin-top:14px;
+    border:none;
+    background:#4c1d95;
+    color:white;
+    padding:9px 15px;
+    border-radius:8px;
+    cursor:pointer;
+    font-family:inherit;
+}
+
+/* PREPARATION */
+.prep-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+}
+
+.prep-card{
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    text-align:center;
+    box-shadow:0 4px 15px rgba(0,0,0,.06);
+}
+
+.prep-icon{
+    font-size:32px;
+    margin-bottom:10px;
+}
+
+.prep-card h3{
+    font-size:16px;
+    margin-bottom:7px;
+}
+
+.prep-card p{
+    font-size:12px;
+    color:#64748b;
+}
+
+/* TIPS */
+.tips{
+    background:white;
+    padding:24px;
+    border-radius:15px;
+    box-shadow:0 4px 15px rgba(0,0,0,.06);
+}
+
+.tip{
+    display:flex;
+    gap:12px;
+    padding:12px 0;
+    border-bottom:1px solid #e2e8f0;
+    font-size:14px;
+}
+
+.tip:last-child{
+    border-bottom:none;
+}
+
+.tip-number{
+    width:28px;
+    height:28px;
+    background:#ede9fe;
+    color:#4c1d95;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:600;
+}
+
+/* FOOTER */
+.footer{
+    text-align:center;
+    color:#64748b;
+    font-size:12px;
+    padding:20px;
+}
+
+/* MOBILE */
+@media(max-width:900px){
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .company-grid{
+        grid-template-columns:1fr;
+    }
+
+    .prep-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:700px){
+    .sidebar{
+        width:220px;
+    }
+
+    .main{
+        margin-left:220px;
+    }
+
+    .topbar{
+        padding:0 15px;
+    }
+
+    .container{
+        padding:18px;
+    }
+
+    .drive-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:550px){
+    .sidebar{
+        position:relative;
+        width:100%;
+        height:auto;
+    }
+
+    .main{
+        margin-left:0;
+    }
+
+    .stats{
+        grid-template-columns:1fr;
+    }
+
+    .prep-grid{
+        grid-template-columns:1fr;
+    }
+
+    .hero h1{
+        font-size:23px;
+    }
+}
+</style>
 </head>
 
 <body>
 
-    <!-- TOP BAR -->
+<!-- SIDEBAR -->
+<aside class="sidebar">
 
-    <header class="topbar">
+    <div class="logo">🎓 CampusConnect</div>
 
-        <div class="brand">
+    <button class="nav-item" onclick="go('dashboard')">
+        <span class="nav-icon">🏠</span> Dashboard
+    </button>
 
-            <div class="brand-icon">
-                🎓
-            </div>
+    <button class="nav-item" onclick="go('courses')">
+        <span class="nav-icon">📚</span> My Courses
+    </button>
 
-            <h2>
-                Campus<span>Connect</span>
-            </h2>
+    <button class="nav-item" onclick="go('timetable')">
+        <span class="nav-icon">🗓️</span> Timetable
+    </button>
 
-        </div>
+    <button class="nav-item" onclick="go('assignments')">
+        <span class="nav-icon">📝</span> Assignments
+    </button>
 
-        <button
-            class="back-btn"
-            onclick="window.location.href='../dashboard.html'"
-        >
+    <button class="nav-item" onclick="go('attendance')">
+        <span class="nav-icon">📊</span> Attendance
+    </button>
+
+    <button class="nav-item" onclick="go('academics')">
+        <span class="nav-icon">🎓</span> Academics
+    </button>
+
+    <button class="nav-item" onclick="go('faculty')">
+        <span class="nav-icon">👨‍🏫</span> Faculty
+    </button>
+
+    <button class="nav-item active" onclick="go('placement')">
+        <span class="nav-icon">💼</span> Placement
+    </button>
+
+    <button class="nav-item" onclick="go('results')">
+        <span class="nav-icon">📈</span> Results
+    </button>
+
+    <button class="nav-item" onclick="go('documents')">
+        <span class="nav-icon">📄</span> Documents
+    </button>
+
+    <button class="nav-item" onclick="go('complaints')">
+        <span class="nav-icon">📢</span> Complaints
+    </button>
+
+    <button class="nav-item" onclick="go('feedback')">
+        <span class="nav-icon">💬</span> Feedback
+    </button>
+
+    <button class="nav-item" onclick="go('lost-found')">
+        <span class="nav-icon">🔎</span> Lost & Found
+    </button>
+
+    <button class="nav-item" onclick="go('campus')">
+        <span class="nav-icon">🏫</span> Campus
+    </button>
+
+    <button class="nav-item" onclick="go('events')">
+        <span class="nav-icon">🎉</span> Events
+    </button>
+
+    <button class="nav-item" onclick="go('exams')">
+        <span class="nav-icon">📋</span> Exams
+    </button>
+
+    <button class="nav-item" onclick="go('notifications')">
+        <span class="nav-icon">🔔</span> Notifications
+    </button>
+
+    <button class="nav-item" onclick="go('profile')">
+        <span class="nav-icon">👤</span> Profile
+    </button>
+
+    <button class="nav-item" onclick="go('settings')">
+        <span class="nav-icon">⚙️</span> Settings
+    </button>
+
+</aside>
+
+
+<!-- MAIN -->
+<div class="main">
+
+    <div class="topbar">
+        <div class="brand">CampusConnect</div>
+
+        <button class="back-btn" onclick="go('dashboard')">
             ← Dashboard
         </button>
+    </div>
 
-    </header>
 
-
-    <main class="container">
-
+    <div class="container">
 
         <!-- HERO -->
-
         <section class="hero">
-
-            <div class="hero-content">
-
-                <div class="hero-badge">
-                    🚀 Career & Placement Center
-                </div>
-
-                <h1>
-                    Build Your Career With Confidence
-                </h1>
-
-                <p>
-                    Discover placement opportunities, upcoming
-                    recruitment drives, company information and
-                    preparation resources designed to help you
-                    take the next step toward your dream career.
-                </p>
-
-            </div>
-
+            <h1>Career & Placement Center</h1>
+            <p>Build Your Career With Confidence</p>
         </section>
 
 
         <!-- STATS -->
-
         <section class="stats">
 
             <div class="stat-card">
-
-                <div class="stat-icon">
-                    🏢
-                </div>
-
-                <h3>25+</h3>
-
-                <p>
-                    Partner Companies
-                </p>
-
+                <h2>25+</h2>
+                <p>Partner Companies</p>
             </div>
 
-
             <div class="stat-card">
-
-                <div class="stat-icon">
-                    💼
-                </div>
-
-                <h3>18</h3>
-
-                <p>
-                    Active Opportunities
-                </p>
-
+                <h2>18</h2>
+                <p>Active Opportunities</p>
             </div>
 
-
             <div class="stat-card">
-
-                <div class="stat-icon">
-                    🎯
-                </div>
-
-                <h3>92%</h3>
-
-                <p>
-                    Placement Assistance
-                </p>
-
+                <h2>92%</h2>
+                <p>Placement Assistance</p>
             </div>
 
-
             <div class="stat-card">
-
-                <div class="stat-icon">
-                    💰
-                </div>
-
-                <h3>8.5 LPA</h3>
-
-                <p>
-                    Highest Package
-                </p>
-
+                <h2>8.5 LPA</h2>
+                <p>Highest Package</p>
             </div>
 
         </section>
 
 
-        <!-- COMPANIES -->
+        <!-- FEATURED COMPANIES -->
+        <section class="section">
 
-        <div class="section-title">
+            <h2 class="section-title">Featured Companies</h2>
 
-            <div>
-                <h2>🔥 Featured Companies</h2>
+            <div class="company-grid">
 
-                <p>
-                    Explore companies hiring students
-                </p>
-            </div>
-
-        </div>
-
-
-        <section class="companies">
-
-
-            <div class="company-card">
-
-                <div class="company-top">
-
-                    <div class="company-logo">
-                        💻
-                    </div>
-
-                    <div class="status">
-                        Open
-                    </div>
-
+                <div class="company-card">
+                    <div class="company-logo">💻</div>
+                    <h3>Tech Solutions</h3>
+                    <p>Software Development</p>
+                    <p>Package: 6 - 8 LPA</p>
+                    <span class="badge">Hiring Now</span>
                 </div>
 
-                <h3>Software Development</h3>
-
-                <p>
-                    Opportunities for students interested
-                    in software development and technology.
-                </p>
-
-                <div class="company-details">
-
-                    <span class="tag">
-                        💰 5–8 LPA
-                    </span>
-
-                    <span class="tag">
-                        🎓 BCA / MCA
-                    </span>
-
-                    <span class="tag">
-                        📍 Bengaluru
-                    </span>
-
+                <div class="company-card">
+                    <div class="company-logo">🚀</div>
+                    <h3>Innovate Labs</h3>
+                    <p>Technology & Innovation</p>
+                    <p>Package: 5 - 7 LPA</p>
+                    <span class="badge">Hiring Now</span>
                 </div>
 
-                <button
-                    class="apply-btn"
-                    onclick="showMessage('Application details opened!')"
-                >
-                    View Opportunity →
-                </button>
+                <div class="company-card">
+                    <div class="company-logo">🌐</div>
+                    <h3>Digital Works</h3>
+                    <p>Web & Digital Services</p>
+                    <p>Package: 4 - 6 LPA</p>
+                    <span class="badge">Open Positions</span>
+                </div>
 
             </div>
-
-
-            <div class="company-card">
-
-                <div class="company-top">
-
-                    <div class="company-logo">
-                        📊
-                    </div>
-
-                    <div class="status">
-                        Open
-                    </div>
-
-                </div>
-
-                <h3>Data & Analytics</h3>
-
-                <p>
-                    Build your career in data analysis,
-                    business intelligence and analytics.
-                </p>
-
-                <div class="company-details">
-
-                    <span class="tag">
-                        💰 4–7 LPA
-                    </span>
-
-                    <span class="tag">
-                        🎓 BCA / BSc
-                    </span>
-
-                    <span class="tag">
-                        📍 Hyderabad
-                    </span>
-
-                </div>
-
-                <button
-                    class="apply-btn"
-                    onclick="showMessage('Application details opened!')"
-                >
-                    View Opportunity →
-                </button>
-
-            </div>
-
-
-            <div class="company-card">
-
-                <div class="company-top">
-
-                    <div class="company-logo">
-                        ☁️
-                    </div>
-
-                    <div class="status">
-                        Open
-                    </div>
-
-                </div>
-
-                <h3>Cloud & IT Services</h3>
-
-                <p>
-                    Explore opportunities in cloud computing,
-                    IT infrastructure and support.
-                </p>
-
-                <div class="company-details">
-
-                    <span class="tag">
-                        💰 4–6 LPA
-                    </span>
-
-                    <span class="tag">
-                        🎓 BCA / MCA
-                    </span>
-
-                    <span class="tag">
-                        📍 Chennai
-                    </span>
-
-                </div>
-
-                <button
-                    class="apply-btn"
-                    onclick="showMessage('Application details opened!')"
-                >
-                    View Opportunity →
-                </button>
-
-            </div>
-
 
         </section>
 
 
         <!-- UPCOMING DRIVES -->
+        <section class="section">
 
-        <div class="section-title">
+            <h2 class="section-title">Upcoming Placement Drives</h2>
 
-            <div>
+            <div class="drive-grid">
 
-                <h2>📅 Upcoming Placement Drives</h2>
+                <div class="drive-card">
+                    <h3>Software Developer</h3>
+                    <p>🏢 Tech Solutions</p>
+                    <p>📅 September 15, 2026</p>
+                    <p>💰 6 - 8 LPA</p>
 
-                <p>
-                    Don't miss important recruitment events
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <section class="drives">
-
-
-            <div class="drive-card">
-
-                <div class="date-box">
-
-                    <strong>15</strong>
-
-                    <span>SEP</span>
-
+                    <button class="register-btn"
+                            onclick="showMessage('Software Developer - Tech Solutions')">
+                        Register
+                    </button>
                 </div>
 
-                <div class="drive-info">
+                <div class="drive-card">
+                    <h3>Web Developer</h3>
+                    <p>🏢 Digital Works</p>
+                    <p>📅 September 20, 2026</p>
+                    <p>💰 4 - 6 LPA</p>
 
-                    <h3>Technical Recruitment Drive</h3>
-
-                    <p>
-                        Aptitude + Technical Interview
-                    </p>
-
+                    <button class="register-btn"
+                            onclick="showMessage('Web Developer - Digital Works')">
+                        Register
+                    </button>
                 </div>
 
-            </div>
+                <div class="drive-card">
+                    <h3>Graduate Engineer Trainee</h3>
+                    <p>🏢 Innovate Labs</p>
+                    <p>📅 September 25, 2026</p>
+                    <p>💰 5 - 7 LPA</p>
 
-
-            <div class="drive-card">
-
-                <div class="date-box">
-
-                    <strong>22</strong>
-
-                    <span>SEP</span>
-
+                    <button class="register-btn"
+                            onclick="showMessage('Graduate Engineer Trainee - Innovate Labs')">
+                        Register
+                    </button>
                 </div>
 
-                <div class="drive-info">
+                <div class="drive-card">
+                    <h3>Data Analyst</h3>
+                    <p>🏢 Tech Solutions</p>
+                    <p>📅 October 2, 2026</p>
+                    <p>💰 5 - 7 LPA</p>
 
-                    <h3>Campus Hiring Program</h3>
-
-                    <p>
-                        Aptitude + HR Interview
-                    </p>
-
+                    <button class="register-btn"
+                            onclick="showMessage('Data Analyst - Tech Solutions')">
+                        Register
+                    </button>
                 </div>
 
             </div>
-
-
-            <div class="drive-card">
-
-                <div class="date-box">
-
-                    <strong>03</strong>
-
-                    <span>OCT</span>
-
-                </div>
-
-                <div class="drive-info">
-
-                    <h3>IT Services Recruitment</h3>
-
-                    <p>
-                        Coding + Technical Discussion
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="drive-card">
-
-                <div class="date-box">
-
-                    <strong>10</strong>
-
-                    <span>OCT</span>
-
-                </div>
-
-                <div class="drive-info">
-
-                    <h3>Graduate Hiring Drive</h3>
-
-                    <p>
-                        Aptitude + Group Discussion + HR
-                    </p>
-
-                </div>
-
-            </div>
-
 
         </section>
 
 
         <!-- PREPARATION -->
+        <section class="section">
 
-        <div class="section-title">
+            <h2 class="section-title">Placement Preparation</h2>
 
-            <div>
+            <div class="prep-grid">
 
-                <h2>🧠 Placement Preparation</h2>
-
-                <p>
-                    Improve your skills before the interview
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <section class="prep-grid">
-
-
-            <div class="prep-card">
-
-                <div class="prep-icon">
-                    🧮
+                <div class="prep-card">
+                    <div class="prep-icon">🧠</div>
+                    <h3>Aptitude</h3>
+                    <p>Practice quantitative and logical reasoning.</p>
                 </div>
 
-                <h3>Aptitude</h3>
-
-                <p>
-                    Practice quantitative, logical and
-                    verbal reasoning questions.
-                </p>
-
-            </div>
-
-
-            <div class="prep-card">
-
-                <div class="prep-icon">
-                    💻
+                <div class="prep-card">
+                    <div class="prep-icon">💻</div>
+                    <h3>Coding</h3>
+                    <p>Improve programming and problem-solving skills.</p>
                 </div>
 
-                <h3>Coding</h3>
-
-                <p>
-                    Improve programming fundamentals and
-                    problem-solving skills.
-                </p>
-
-            </div>
-
-
-            <div class="prep-card">
-
-                <div class="prep-icon">
-                    🗣️
+                <div class="prep-card">
+                    <div class="prep-icon">🎤</div>
+                    <h3>Interview</h3>
+                    <p>Prepare for technical and HR interviews.</p>
                 </div>
 
-                <h3>Communication</h3>
-
-                <p>
-                    Build confidence for group discussions
-                    and interviews.
-                </p>
-
-            </div>
-
-
-            <div class="prep-card">
-
-                <div class="prep-icon">
-                    📄
+                <div class="prep-card">
+                    <div class="prep-icon">📄</div>
+                    <h3>Resume</h3>
+                    <p>Create a professional and impressive resume.</p>
                 </div>
 
-                <h3>Resume</h3>
-
-                <p>
-                    Create a professional resume that
-                    highlights your skills.
-                </p>
-
             </div>
-
 
         </section>
 
 
         <!-- TIPS -->
+        <section class="section">
 
-        <div class="section-title">
+            <h2 class="section-title">Placement Tips</h2>
 
-            <div>
+            <div class="tips">
 
-                <h2>💡 Placement Tips</h2>
-
-                <p>
-                    Small improvements can make a big difference
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <section class="tips">
-
-
-            <div class="tip">
-
-                <div class="tip-icon">
-                    1️⃣
+                <div class="tip">
+                    <div class="tip-number">1</div>
+                    <div>Build strong fundamentals in programming and computer science.</div>
                 </div>
 
-                <div>
+                <div class="tip">
+                    <div class="tip-number">2</div>
+                    <div>Practice coding problems regularly.</div>
+                </div>
 
-                    <h3>Keep your resume updated</h3>
+                <div class="tip">
+                    <div class="tip-number">3</div>
+                    <div>Keep your resume updated with projects and skills.</div>
+                </div>
 
-                    <p>
-                        Add your latest projects, certifications,
-                        technical skills and achievements.
-                    </p>
-
+                <div class="tip">
+                    <div class="tip-number">4</div>
+                    <div>Improve communication and interview skills.</div>
                 </div>
 
             </div>
-
-
-            <div class="tip">
-
-                <div class="tip-icon">
-                    2️⃣
-                </div>
-
-                <div>
-
-                    <h3>Practice aptitude regularly</h3>
-
-                    <p>
-                        Spend at least a few minutes every day
-                        solving aptitude and reasoning problems.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="tip">
-
-                <div class="tip-icon">
-                    3️⃣
-                </div>
-
-                <div>
-
-                    <h3>Build practical projects</h3>
-
-                    <p>
-                        Real projects demonstrate your technical
-                        knowledge and problem-solving ability.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="tip">
-
-                <div class="tip-icon">
-                    4️⃣
-                </div>
-
-                <div>
-
-                    <h3>Prepare for interviews</h3>
-
-                    <p>
-                        Practice introducing yourself and answering
-                        common technical and HR interview questions.
-                    </p>
-
-                </div>
-
-            </div>
-
 
         </section>
 
-
-        <footer>
-            CampusConnect • Placement & Career Center
-        </footer>
+    </div>
 
 
-    </main>
+    <div class="footer">
+        © 2026 CampusConnect. All Rights Reserved.
+    </div>
+
+</div>
 
 
-    <script>
+<script>
+const pages = {
+    dashboard: "../dashboard.html",
+    courses: "../dashboard.html",
+    timetable: "timetable.html",
+    assignments: "../dashboard.html",
+    attendance: "attendance.html",
+    academics: "academics.html",
+    faculty: "faculty.html",
+    placement: "placement.html",
+    results: "results.html",
+    documents: "documents.html",
+    complaints: "complaints.html",
+    feedback: "feedback.html",
+    "lost-found": "lost-found.html",
+    campus: "campus.html",
+    events: "events.html",
+    exams: "exams.html",
+    notifications: "notifications.html",
+    profile: "profile.html",
+    settings: "settings.html"
+};
 
-        function showMessage(message) {
+function go(page){
+    if(pages[page]){
+        window.location.href = pages[page];
+    }
+}
 
-            alert(message);
+function showMessage(eventName){
+    alert(
+        "🎉 Registration Successful!\n\n" +
+        eventName +
+        "\n\nYour registration has been saved for this frontend demo."
+    );
+}
+</script>
 
-        }
-
-    </script>
-
-
-    <!-- KEEP YOUR EXISTING PLACEMENT JS -->
-
-    <script src="../js/placement.js"></script>
+<script src="../js/placement.js"></script>
 
 </body>
-
 </html>
