@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CampusConnect | Documents</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Poppins", sans-serif;
+            background: #f5f7fb;
+            color: #20243a;
+        }
+
+        /* SIDEBAR */
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 250px;
+            height: 100vh;
+            background: linear-gradient(180deg,#172554,#312e81,#4c1d95);
+            color: white;
+            padding: 22px 15px;
+            overflow-y: auto;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .nav-item {
+            width: 100%;
+            border: none;
+            background: transparent;
+            color: #e0e7ff;
+            padding: 12px 14px;
+            margin: 3px 0;
+            border-radius: 10px;
+            text-align: left;
+            font-family: inherit;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: .2s;
+        }
+
+        .nav-item:hover {
+            background: rgba(255,255,255,.12);
+            color: white;
+        }
+
+        .nav-item.active {
+            background: linear-gradient(90deg,#22d3ee,#8b5cf6);
+            color: white;
+            font-weight: 600;
+        }
+
+        .nav-icon {
+            width: 24px;
+            text-align: center;
+            font-size: 17px;
+        }
+
+        /* MAIN */
+
+        .main {
+            margin-left: 250px;
+            min-height: 100vh;
+        }
+
+        /* TOP BAR */
+
+        .topbar {
+            height: 75px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 35px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+        }
+
+        .brand h2 {
+            font-size: 20px;
+        }
+
+        .brand span {
+            color: #667eea;
+        }
+
+        .back-btn {
+            border: none;
+            background: #eef1ff;
+            color: #667eea;
+            padding: 11px 20px;
+            border-radius: 12px;
+            font-family: inherit;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .back-btn:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        /* CONTENT */
+
+        .container {
+            max-width: 1150px;
+            margin: auto;
+            padding: 35px;
+        }
+
+        /* HEADER */
+
+        .page-header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 25px;
+            padding: 35px;
+            margin-bottom: 30px;
+        }
+
+        .page-header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .page-header p {
+            font-size: 14px;
+            line-height: 1.7;
+            opacity: 0.92;
+        }
+
+        /* DOCUMENT CARDS */
+
+        .documents-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .document-card {
+            background: white;
+            border-radius: 20px;
+            padding: 22px;
+            box-shadow: 0 8px 28px rgba(0,0,0,0.06);
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            transition: 0.2s;
+        }
+
+        .document-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .document-icon {
+            width: 58px;
+            height: 58px;
+            border-radius: 15px;
+            background: #eef1ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            flex-shrink: 0;
+        }
+
+        .document-info {
+            flex: 1;
+        }
+
+        .document-info h3 {
+            font-size: 15px;
+            margin-bottom: 5px;
+        }
+
+        .document-info p {
+            color: #777;
+            font-size: 11px;
+        }
+
+        .document-btn {
+            border: none;
+            background: #667eea;
+            color: white;
+            padding: 9px 14px;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .document-btn:hover {
+            background: #764ba2;
+        }
+
+        /* SECTION TITLE */
+
+        .section-title {
+            margin: 35px 0 18px;
+        }
+
+        .section-title h2 {
+            font-size: 21px;
+        }
+
+        .section-title p {
+            color: #777;
+            font-size: 12px;
+            margin-top: 4px;
+        }
+
+        /* INFO */
+
+        .info-card {
+            margin-top: 30px;
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 8px 28px rgba(0,0,0,0.06);
+        }
+
+        .info-card h2 {
+            font-size: 19px;
+            margin-bottom: 10px;
+        }
+
+        .info-card p {
+            color: #777;
+            font-size: 12px;
+            line-height: 1.7;
+        }
+
+        /* FOOTER */
+
+        footer {
+            text-align: center;
+            padding: 30px 0 15px;
+            color: #888;
+            font-size: 11px;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 900px) {
+
+            .documents-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            .topbar {
+                padding: 0 18px;
+            }
+
+        }
+
+        @media (max-width: 700px) {
+
+            .sidebar {
+                width: 220px;
+            }
+
+            .main {
+                margin-left: 220px;
+            }
+
+        }
+
+        @media (max-width: 550px) {
+
+            .sidebar {
+                position: relative;
+                width: 100%;
+                height: auto;
+            }
+
+            .main {
+                margin-left: 0;
+            }
+
+            .document-card {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .document-btn {
+                width: 100%;
+            }
+
+            .page-header h1 {
+                font-size: 25px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="logo">🎓 CampusConnect</div>
+
+        <button class="nav-item" onclick="go('dashboard')">
+            <span class="nav-icon">🏠</span>
+            Dashboard
+        </button>
+
+        <button class="nav-item" onclick="go('courses')">
+            <span class="nav-icon">📚</span>
+            My Courses
+        </button>
+
+        <button class="nav-item" onclick="go('timetable')">
+            <span class="nav-icon">🗓️</span>
+            Timetable
+        </button>
+
+        <button class="nav-item" onclick="go('assignments')">
+            <span class="nav-icon">📝</span>
+            Assignments
+        </button>
+
+        <button class="nav-item" onclick="go('attendance')">
+            <span class="nav-icon">📊</span>
+            Attendance
+        </button>
+
+        <button class="nav-item" onclick="go('academics')">
+            <span class="nav-icon">🎓</span>
+            Academics
+        </button>
+
+        <button class="nav-item" onclick="go('faculty')">
+            <span class="nav-icon">👨‍🏫</span>
+            Faculty
+        </button>
+
+        <button class="nav-item" onclick="go('placement')">
+            <span class="nav-icon">💼</span>
+            Placement
+        </button>
+
+        <button class="nav-item" onclick="go('results')">
+            <span class="nav-icon">📈</span>
+            Results
+        </button>
+
+        <button class="nav-item active" onclick="go('documents')">
+            <span class="nav-icon">📄</span>
+            Documents
+        </button>
+
+        <button class="nav-item" onclick="go('complaints')">
+            <span class="nav-icon">📢</span>
+            Complaints
+        </button>
+
+        <button class="nav-item" onclick="go('feedback')">
+            <span class="nav-icon">💬</span>
+            Feedback
+        </button>
+
+        <button class="nav-item" onclick="go('lost-found')">
+            <span class="nav-icon">🔎</span>
+            Lost & Found
+        </button>
+
+        <button class="nav-item" onclick="go('campus')">
+            <span class="nav-icon">🏫</span>
+            Campus
+        </button>
+
+        <button class="nav-item" onclick="go('events')">
+            <span class="nav-icon">🎉</span>
+            Events
+        </button>
+
+        <button class="nav-item" onclick="go('exams')">
+            <span class="nav-icon">📋</span>
+            Exams
+        </button>
+
+        <button class="nav-item" onclick="go('notifications')">
+            <span class="nav-icon">🔔</span>
+            Notifications
+        </button>
+
+        <button class="nav-item" onclick="go('profile')">
+            <span class="nav-icon">👤</span>
+            Profile
+        </button>
+
+        <button class="nav-item" onclick="go('settings')">
+            <span class="nav-icon">⚙️</span>
+            Settings
+        </button>
+
+    </aside>
+
+
+    <!-- MAIN -->
+
+    <div class="main">
+
+        <!-- TOP BAR -->
+
+        <header class="topbar">
+
+            <div class="brand">
+
+                <div class="brand-icon">
+                    📄
+                </div>
+
+                <h2>
+                    Campus<span>Connect</span>
+                </h2>
+
+            </div>
+
+            <button
+                class="back-btn"
+                onclick="go('dashboard')"
+            >
+                ← Dashboard
+            </button>
+
+        </header>
+
+
+        <!-- CONTENT -->
+
+        <main class="container">
+
+
+            <!-- HEADER -->
+
+            <section class="page-header">
+
+                <h1>Student Documents</h1>
+
+                <p>
+                    Access important academic and student documents
+                    from your CampusConnect portal.
+                </p>
+
+            </section>
+
+
+            <!-- AVAILABLE DOCUMENTS -->
+
+            <div class="section-title">
+
+                <h2>📁 Available Documents</h2>
+
+                <p>
+                    View your important college documents
+                </p>
+
+            </div>
+
+
+            <section class="documents-grid">
+
+
+                <!-- DOCUMENT 1 -->
+
+                <div class="document-card">
+
+                    <div class="document-icon">
+                        🎓
+                    </div>
+
+                    <div class="document-info">
+
+                        <h3>Student ID Card</h3>
+
+                        <p>
+                            Student identification document
+                        </p>
+
+                    </div>
+
+                    <button
+                        class="document-btn"
+                        onclick="viewDocument('Student ID Card')"
+                    >
+                        View
+                    </button>
+
+                </div>
+
+
+                <!-- DOCUMENT 2 -->
+
+                <div class="document-card">
+
+                    <div class="document-icon">
+                        📜
+                    </div>
+
+                    <div class="document-info">
+
+                        <h3>Bonafide Certificate</h3>
+
+                        <p>
+                            Student bonafide certificate
+                        </p>
+
+                    </div>
+
+                    <button
+                        class="document-btn"
+                        onclick="viewDocument('Bonafide Certificate')"
+                    >
+                        View
+                    </button>
+
+                </div>
+
+
+                <!-- DOCUMENT 3 -->
+
+                <div class="document-card">
+
+                    <div class="document-icon">
+                        📊
+                    </div>
+
+                    <div class="document-info">
+
+                        <h3>Academic Result</h3>
+
+                        <p>
+                            Semester academic result
+                        </p>
+
+                    </div>
+
+                    <button
+                        class="document-btn"
+                        onclick="viewDocument('Academic Result')"
+                    >
+                        View
+                    </button>
+
+                </div>
+
+
+                <!-- DOCUMENT 4 -->
+
+                <div class="document-card">
+
+                    <div class="document-icon">
+                        💳
+                    </div>
+
+                    <div class="document-info">
+
+                        <h3>Fee Receipt</h3>
+
+                        <p>
+                            College fee payment receipt
+                        </p>
+
+                    </div>
+
+                    <button
+                        class="document-btn"
+                        onclick="viewDocument('Fee Receipt')"
+                    >
+                        View
+                    </button>
+
+                </div>
+
+
+                <!-- DOCUMENT 5 -->
+
+                <div class="document-card">
+
+                    <div class="document-icon">
+                        📚
+                    </div>
+
+                    <div class="document-info">
+
+                        <h3>Library Card</h3>
+
+                        <p>
+                            Student library membership card
+                        </p>
+
+                    </div>
+
+                    <button
+                        class="document-btn"
+                        onclick="viewDocument('Library Card')"
+                    >
+                        View
+                    </button>
+
+                </div>
+
+
+                <!-- DOCUMENT 6 -->
+
+                <div class="document-card">
+
+                    <div class="document-icon">
+                        📋
+                    </div>
+
+                    <div class="document-info">
+
+                        <h3>Attendance Report</h3>
+
+                        <p>
+                            Semester attendance report
+                        </p>
+
+                    </div>
+
+                    <button
+                        class="document-btn"
+                        onclick="viewDocument('Attendance Report')"
+                    >
+                        View
+                    </button>
+
+                </div>
+
+
+            </section>
+
+
+            <!-- INFORMATION -->
+
+            <section class="info-card">
+
+                <h2>ℹ️ Document Information</h2>
+
+                <p>
+                    These documents are displayed as part of the
+                    CampusConnect student portal. Actual document
+                    retrieval and downloads can be connected to the
+                    backend when the server and database are integrated.
+                </p>
+
+            </section>
+
+
+            <footer>
+                CampusConnect • Student Document Center
+            </footer>
+
+
+        </main>
+
+    </div>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        const pages = {
+
+            dashboard: "../dashboard.html",
+
+            courses: "../dashboard.html",
+
+            timetable: "timetable.html",
+
+            assignments: "../dashboard.html",
+
+            attendance: "attendance.html",
+
+            academics: "academics.html",
+
+            faculty: "faculty.html",
+
+            placement: "placement.html",
+
+            results: "results.html",
+
+            documents: "documents.html",
+
+            complaints: "complaints.html",
+
+            feedback: "feedback.html",
+
+            "lost-found": "lost-found.html",
+
+            campus: "campus.html",
+
+            events: "events.html",
+
+            exams: "exams.html",
+
+            notifications: "notifications.html",
+
+            profile: "profile.html",
+
+            settings: "settings.html"
+
+        };
+
+
+        function go(page) {
+
+            if (pages[page]) {
+
+                window.location.href = pages[page];
+
+            }
+
+        }
+
+
+        function viewDocument(documentName) {
+
+            alert(
+                documentName +
+                "\n\nDocument viewing will be available when the backend is connected."
+            );
+
+        }
+
+    </script>
+
+</body>
+
+</html>
