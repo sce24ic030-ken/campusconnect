@@ -1,5 +1,8 @@
+
+```html
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,11 +10,16 @@
 <title>CampusConnect | Student Dashboard</title>
 
 <style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Arial, Helvetica, sans-serif;
+    font-family:Arial,Helvetica,sans-serif;
 }
 
 body{
@@ -20,7 +28,10 @@ body{
     min-height:100vh;
 }
 
-/* ================= SIDEBAR ================= */
+
+/* =====================================================
+   SIDEBAR
+===================================================== */
 
 .sidebar{
     position:fixed;
@@ -28,9 +39,17 @@ body{
     top:0;
     width:250px;
     height:100vh;
-    background:linear-gradient(180deg,#172554,#312e81,#4c1d95);
+
+    background:linear-gradient(
+        180deg,
+        #172554,
+        #312e81,
+        #4c1d95
+    );
+
     color:white;
     padding:25px 15px;
+
     z-index:1000;
     overflow-y:auto;
 }
@@ -39,7 +58,9 @@ body{
     display:flex;
     align-items:center;
     gap:12px;
+
     padding:0 12px 25px;
+
     border-bottom:1px solid rgba(255,255,255,.2);
     margin-bottom:20px;
 }
@@ -47,13 +68,20 @@ body{
 .logo-icon{
     width:45px;
     height:45px;
+
     border-radius:14px;
-    background:linear-gradient(135deg,#38bdf8,#a78bfa);
+
+    background:linear-gradient(
+        135deg,
+        #38bdf8,
+        #a78bfa
+    );
+
     display:flex;
-    justify-content:center;
     align-items:center;
+    justify-content:center;
+
     font-size:23px;
-    box-shadow:0 0 20px rgba(56,189,248,.5);
 }
 
 .logo h2{
@@ -67,20 +95,32 @@ body{
     margin-top:3px;
 }
 
+
+/* NAVIGATION */
+
 .nav-item{
     width:100%;
+
     border:none;
     background:transparent;
+
     color:#dbeafe;
+
     display:flex;
     align-items:center;
+
     gap:13px;
+
     padding:13px 15px;
-    margin:5px 0;
+    margin:4px 0;
+
     border-radius:12px;
+
     cursor:pointer;
+
     font-size:14px;
     text-align:left;
+
     transition:.25s;
 }
 
@@ -91,9 +131,13 @@ body{
 }
 
 .nav-item.active{
-    background:linear-gradient(90deg,#38bdf8,#8b5cf6);
+    background:linear-gradient(
+        90deg,
+        #38bdf8,
+        #8b5cf6
+    );
+
     color:white;
-    box-shadow:0 8px 25px rgba(59,130,246,.3);
 }
 
 .nav-icon{
@@ -102,25 +146,37 @@ body{
     font-size:17px;
 }
 
-/* ================= MAIN ================= */
+
+/* =====================================================
+   MAIN
+===================================================== */
 
 .main{
     margin-left:250px;
     min-height:100vh;
 }
 
-/* ================= TOPBAR ================= */
+
+/* =====================================================
+   TOPBAR
+===================================================== */
 
 .topbar{
     height:75px;
+
     background:white;
+
     display:flex;
     align-items:center;
     justify-content:space-between;
+
     padding:0 30px;
+
     border-bottom:1px solid #e5e7eb;
+
     position:sticky;
     top:0;
+
     z-index:500;
 }
 
@@ -149,21 +205,37 @@ body{
 .notification{
     width:40px;
     height:40px;
+
     border-radius:50%;
+
     background:#f1f5f9;
+
     display:flex;
     justify-content:center;
     align-items:center;
+
     cursor:pointer;
+
     position:relative;
+
+    transition:.2s;
+}
+
+.notification:hover{
+    background:#e0e7ff;
+    transform:scale(1.05);
 }
 
 .notification-dot{
     position:absolute;
+
     width:8px;
     height:8px;
+
     border-radius:50%;
+
     background:#ef4444;
+
     right:8px;
     top:7px;
 }
@@ -172,18 +244,28 @@ body{
     display:flex;
     align-items:center;
     gap:10px;
+
     cursor:pointer;
 }
 
 .profile-avatar{
     width:40px;
     height:40px;
+
     border-radius:50%;
-    background:linear-gradient(135deg,#06b6d4,#6366f1);
+
+    background:linear-gradient(
+        135deg,
+        #06b6d4,
+        #6366f1
+    );
+
     color:white;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     font-weight:bold;
 }
 
@@ -197,43 +279,71 @@ body{
     color:#64748b;
 }
 
-/* ================= CONTENT ================= */
+
+/* =====================================================
+   CONTENT
+===================================================== */
 
 .content{
     padding:30px;
 }
 
-/* ================= HERO ================= */
+
+/* =====================================================
+   HERO
+===================================================== */
 
 .hero{
-    background:linear-gradient(120deg,#172554,#312e81,#6d28d9);
+    background:linear-gradient(
+        120deg,
+        #172554,
+        #312e81,
+        #6d28d9
+    );
+
     border-radius:24px;
+
     padding:32px;
+
     color:white;
+
     position:relative;
     overflow:hidden;
+
     margin-bottom:25px;
-    box-shadow:0 15px 40px rgba(49,46,129,.2);
+
+    box-shadow:
+        0 15px 40px rgba(49,46,129,.2);
 }
 
 .hero:before{
     content:"";
+
     position:absolute;
+
     width:300px;
     height:300px;
+
     border-radius:50%;
+
     background:rgba(255,255,255,.08);
+
     right:-80px;
     top:-130px;
 }
 
 .hero:after{
     content:"";
+
     position:absolute;
+
     width:180px;
     height:180px;
+
     border-radius:50%;
+
     background:rgba(56,189,248,.12);
+
     right:150px;
     bottom:-100px;
 }
@@ -257,33 +367,51 @@ body{
 
 .hero-date{
     display:inline-block;
+
     margin-top:18px;
+
     padding:9px 14px;
+
     background:rgba(255,255,255,.12);
+
     border-radius:20px;
+
     font-size:12px;
 }
 
-/* ================= STATS ================= */
+
+/* =====================================================
+   STATS
+===================================================== */
 
 .stats{
     display:grid;
-    grid-template-columns:repeat(4,1fr);
+
+    grid-template-columns:
+        repeat(4,1fr);
+
     gap:18px;
+
     margin-bottom:25px;
 }
 
 .stat-card{
     background:white;
+
     border-radius:18px;
+
     padding:22px;
+
     border:1px solid #e5e7eb;
+
     transition:.25s;
 }
 
 .stat-card:hover{
     transform:translateY(-5px);
-    box-shadow:0 12px 30px rgba(15,23,42,.1);
+
+    box-shadow:
+        0 12px 30px rgba(15,23,42,.1);
 }
 
 .stat-top{
@@ -295,11 +423,15 @@ body{
 .stat-icon{
     width:45px;
     height:45px;
+
     border-radius:13px;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     font-size:20px;
+
     background:#eef2ff;
 }
 
@@ -329,19 +461,29 @@ body{
     color:#7c3aed;
 }
 
-/* ================= GRID ================= */
+
+/* =====================================================
+   GRID
+===================================================== */
 
 .dashboard-grid{
     display:grid;
-    grid-template-columns:1.5fr 1fr;
+
+    grid-template-columns:
+        1.5fr 1fr;
+
     gap:22px;
 }
 
 .card{
     background:white;
+
     border:1px solid #e5e7eb;
+
     border-radius:20px;
+
     padding:23px;
+
     margin-bottom:22px;
 }
 
@@ -349,6 +491,7 @@ body{
     display:flex;
     justify-content:space-between;
     align-items:center;
+
     margin-bottom:20px;
 }
 
@@ -362,7 +505,14 @@ body{
     cursor:pointer;
 }
 
-/* ================= TIMETABLE ================= */
+.card-header span:hover{
+    text-decoration:underline;
+}
+
+
+/* =====================================================
+   SCHEDULE
+===================================================== */
 
 .schedule{
     display:flex;
@@ -372,12 +522,27 @@ body{
 
 .schedule-item{
     display:grid;
-    grid-template-columns:80px 1fr 80px;
+
+    grid-template-columns:
+        80px 1fr 80px;
+
     align-items:center;
+
     padding:14px;
+
     border-radius:13px;
+
     background:#f8fafc;
-    border-left:4px solid #6366f1;
+
+    border-left:
+        4px solid #6366f1;
+
+    transition:.2s;
+}
+
+.schedule-item:hover{
+    background:#eef2ff;
+    transform:translateX(3px);
 }
 
 .schedule-time{
@@ -396,28 +561,43 @@ body{
     text-align:right;
 }
 
-/* ================= QUICK ACTIONS ================= */
+
+/* =====================================================
+   QUICK ACTIONS
+===================================================== */
 
 .actions{
     display:grid;
-    grid-template-columns:1fr 1fr;
+
+    grid-template-columns:
+        1fr 1fr;
+
     gap:12px;
 }
 
 .action{
     border:1px solid #e5e7eb;
+
     background:#fff;
+
     padding:17px;
+
     border-radius:15px;
+
     cursor:pointer;
+
     transition:.25s;
+
     text-align:left;
 }
 
 .action:hover{
     transform:translateY(-3px);
+
     border-color:#818cf8;
-    box-shadow:0 8px 20px rgba(99,102,241,.1);
+
+    box-shadow:
+        0 8px 20px rgba(99,102,241,.1);
 }
 
 .action-icon{
@@ -435,7 +615,10 @@ body{
     font-size:10px;
 }
 
-/* ================= PROGRESS ================= */
+
+/* =====================================================
+   PROGRESS
+===================================================== */
 
 .progress-box{
     margin-bottom:18px;
@@ -444,48 +627,84 @@ body{
 .progress-info{
     display:flex;
     justify-content:space-between;
+
     font-size:12px;
+
     margin-bottom:8px;
 }
 
 .progress{
     width:100%;
+
     height:8px;
+
     background:#e5e7eb;
+
     border-radius:20px;
+
     overflow:hidden;
 }
 
 .progress-bar{
     height:100%;
+
     border-radius:20px;
-    background:linear-gradient(90deg,#06b6d4,#6366f1);
+
+    background:linear-gradient(
+        90deg,
+        #06b6d4,
+        #6366f1
+    );
 }
 
-/* ================= CAMPUS ================= */
+
+/* =====================================================
+   CAMPUS
+===================================================== */
 
 .campus-grid{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
+
+    grid-template-columns:
+        repeat(3,1fr);
+
     gap:18px;
 }
 
 .campus-card{
     min-height:160px;
+
     border-radius:18px;
+
     padding:22px;
+
     color:white;
+
     position:relative;
+
     overflow:hidden;
-    background:linear-gradient(135deg,#0f766e,#0891b2);
+
+    background:linear-gradient(
+        135deg,
+        #0f766e,
+        #0891b2
+    );
 }
 
 .campus-card:nth-child(2){
-    background:linear-gradient(135deg,#7c3aed,#4f46e5);
+    background:linear-gradient(
+        135deg,
+        #7c3aed,
+        #4f46e5
+    );
 }
 
 .campus-card:nth-child(3){
-    background:linear-gradient(135deg,#c2410c,#ea580c);
+    background:linear-gradient(
+        135deg,
+        #c2410c,
+        #ea580c
+    );
 }
 
 .campus-card h3{
@@ -499,39 +718,36 @@ body{
     line-height:1.5;
 }
 
-.campus-card .big-icon{
-    position:absolute;
-    right:18px;
-    bottom:10px;
-    font-size:55px;
-    opacity:.2;
-}
 
-/* ================= PAGE AREA ================= */
-
-#pageContainer{
-    display:none;
-}
-
-#dashboardContainer{
-    display:block;
-}
-
-/* ================= TOAST ================= */
+/* =====================================================
+   TOAST
+===================================================== */
 
 .toast{
     position:fixed;
+
     right:25px;
     bottom:25px;
+
     background:#172554;
+
     color:white;
+
     padding:15px 20px;
+
     border-radius:12px;
-    box-shadow:0 10px 30px rgba(0,0,0,.2);
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.2);
+
     transform:translateY(120px);
+
     opacity:0;
+
     transition:.3s;
+
     z-index:3000;
+
     font-size:13px;
 }
 
@@ -540,11 +756,27 @@ body{
     opacity:1;
 }
 
-/* ================= MOBILE ================= */
+
+/* =====================================================
+   MOBILE MENU
+===================================================== */
 
 .mobile-menu{
     display:none;
+
+    border:none;
+
+    background:none;
+
+    font-size:22px;
+
+    cursor:pointer;
 }
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
 
 @media(max-width:1000px){
 
@@ -561,11 +793,14 @@ body{
     }
 }
 
+
 @media(max-width:700px){
 
     .sidebar{
         width:220px;
+
         transform:translateX(-100%);
+
         transition:.3s;
     }
 
@@ -579,10 +814,6 @@ body{
 
     .mobile-menu{
         display:block;
-        border:none;
-        background:none;
-        font-size:22px;
-        cursor:pointer;
         margin-right:15px;
     }
 
@@ -625,7 +856,8 @@ body{
     }
 
     .schedule-item{
-        grid-template-columns:65px 1fr;
+        grid-template-columns:
+            65px 1fr;
     }
 
     .schedule-room{
@@ -633,85 +865,146 @@ body{
     }
 }
 
- 
-.campus-card img {
-    width: 100%;
-    height: 210px;
-    object-fit: cover;
-    display: block;
-}
-
-.campus-card {
-    overflow: hidden;
-    border-radius: 22px;
-}
-
-.campus-card:hover img {
-    transform: scale(1.05);
-}
-
-
 </style>
+
 </head>
+
 
 <body>
 
-<!-- ================= SIDEBAR ================= -->
+
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
 
 <aside class="sidebar" id="sidebar">
 
     <div class="logo">
-        <div class="logo-icon">🎓</div>
-        <div>
-            <h2>CampusConnect</h2>
-            <span>AI College Companion</span>
+
+        <div class="logo-icon">
+            🎓
         </div>
+
+        <div>
+
+            <h2>CampusConnect</h2>
+
+            <span>
+                AI College Companion
+            </span>
+
+        </div>
+
     </div>
+
 
     <button class="nav-item active" data-page="dashboard">
         <span class="nav-icon">🏠</span>
         Dashboard
     </button>
 
+
     <button class="nav-item" data-page="courses">
         <span class="nav-icon">📚</span>
         My Courses
     </button>
+
 
     <button class="nav-item" data-page="timetable">
         <span class="nav-icon">🗓️</span>
         Timetable
     </button>
 
+
     <button class="nav-item" data-page="assignments">
         <span class="nav-icon">📝</span>
         Assignments
     </button>
+
 
     <button class="nav-item" data-page="attendance">
         <span class="nav-icon">📊</span>
         Attendance
     </button>
 
+
     <button class="nav-item" data-page="academics">
         <span class="nav-icon">🎓</span>
         Academics
     </button>
+
+
+    <button class="nav-item" data-page="faculty">
+        <span class="nav-icon">👩‍🏫</span>
+        Faculty
+    </button>
+
+
+    <button class="nav-item" data-page="placement">
+        <span class="nav-icon">💼</span>
+        Placement
+    </button>
+
+
+    <button class="nav-item" data-page="results">
+        <span class="nav-icon">📈</span>
+        Results
+    </button>
+
+
+    <button class="nav-item" data-page="documents">
+        <span class="nav-icon">📄</span>
+        Documents
+    </button>
+
+
+    <button class="nav-item" data-page="complaints">
+        <span class="nav-icon">📢</span>
+        Complaints
+    </button>
+
+
+    <button class="nav-item" data-page="feedback">
+        <span class="nav-icon">💬</span>
+        Feedback
+    </button>
+
+
+    <button class="nav-item" data-page="lost-found">
+        <span class="nav-icon">🔎</span>
+        Lost & Found
+    </button>
+
 
     <button class="nav-item" data-page="campus">
         <span class="nav-icon">🏫</span>
         Campus
     </button>
 
+
     <button class="nav-item" data-page="events">
         <span class="nav-icon">🎉</span>
         Events
     </button>
 
+
     <button class="nav-item" data-page="exams">
         <span class="nav-icon">📋</span>
         Exams
     </button>
+
+
+    <button class="nav-item" data-page="notifications">
+        <span class="nav-icon">🔔</span>
+        Notifications
+    </button>
+
+
+    <button class="nav-item" data-page="profile">
+        <span class="nav-icon">👤</span>
+        Profile
+    </button>
+
 
     <button class="nav-item" data-page="settings">
         <span class="nav-icon">⚙️</span>
@@ -721,9 +1014,13 @@ body{
 </aside>
 
 
-<!-- ================= MAIN ================= -->
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
 
 <main class="main">
+
 
     <!-- TOPBAR -->
 
@@ -731,38 +1028,73 @@ body{
 
         <div style="display:flex;align-items:center;">
 
-            <button class="mobile-menu" onclick="toggleSidebar()">☰</button>
+            <button
+                class="mobile-menu"
+                onclick="toggleSidebar()">
+
+                ☰
+
+            </button>
+
 
             <div>
-                <div class="page-title" id="pageTitle">
+
+                <div
+                    class="page-title"
+                    id="pageTitle">
+
                     Student Dashboard
+
                 </div>
 
-                <div class="page-subtitle" id="pageSubtitle">
+
+                <div class="page-subtitle">
+
                     Your complete college companion
+
                 </div>
+
             </div>
 
         </div>
 
+
         <div class="top-right">
 
-            <div class="clock" id="clock">
-                Loading time...
+
+            <div
+                class="clock"
+                id="clock">
+
+                12:00:00 PM
+
             </div>
 
-            <div class="notification" onclick="showToast('You have new notifications 🔔')">
+
+            <div
+                class="notification"
+                onclick="openPage('notifications')">
+
                 🔔
-                <span class="notification-dot"></span>
+
+                <span
+                    class="notification-dot">
+                </span>
+
             </div>
 
-            <div class="profile" onclick="showToast('Profile opened 👤')">
+
+            <div
+                class="profile"
+                onclick="openPage('profile')">
 
                 <div class="profile-avatar">
                     P
                 </div>
 
+
                 <div class="profile-info">
+
                     <strong id="studentName">
                         Student
                     </strong>
@@ -770,6 +1102,7 @@ body{
                     <span>
                         BCA Student
                     </span>
+
                 </div>
 
             </div>
@@ -779,13 +1112,20 @@ body{
     </header>
 
 
-    <!-- CONTENT -->
+
+    <!-- =================================================
+         CONTENT
+    ================================================= -->
 
     <section class="content">
 
-        <!-- DASHBOARD -->
+
+        <!-- =================================================
+             DASHBOARD
+        ================================================= -->
 
         <div id="dashboardContainer">
+
 
             <!-- HERO -->
 
@@ -794,8 +1134,13 @@ body{
                 <div class="hero-content">
 
                     <h1>
-                        Welcome back, <span id="welcomeName">Student</span>! 👋
+                        Welcome back,
+                        <span id="welcomeName">
+                            Student
+                        </span>
+                        ! 👋
                     </h1>
+
 
                     <p>
                         Welcome to your CampusConnect student dashboard.
@@ -803,82 +1148,149 @@ body{
                         assignments and campus activities from one place.
                     </p>
 
-                    <div class="hero-date" id="todayDate">
-                        📅 Loading date...
+
+                    <div
+                        class="hero-date"
+                        id="todayDate">
+
+                        📅 Today
+
                     </div>
 
                 </div>
 
             </div>
+
 
 
             <!-- STATS -->
 
             <div class="stats">
 
+
                 <div class="stat-card">
 
                     <div class="stat-top">
-                        <span class="stat-icon blue">📚</span>
-                        <span class="blue">Academic</span>
+
+                        <div class="stat-icon">
+                            📚
+                        </div>
+
+                        <span class="blue">
+                            Academic
+                        </span>
+
                     </div>
 
-                    <h3>8</h3>
 
-                    <p>Active Courses</p>
+                    <h3>
+                        8
+                    </h3>
+
+
+                    <p>
+                        Active Courses
+                    </p>
 
                 </div>
 
 
+
                 <div class="stat-card">
 
                     <div class="stat-top">
-                        <span class="stat-icon green">📊</span>
-                        <span class="green">Good</span>
+
+                        <div class="stat-icon">
+                            📊
+                        </div>
+
+                        <span class="green">
+                            Good
+                        </span>
+
                     </div>
 
-                    <h3>86%</h3>
 
-                    <p>Overall Attendance</p>
+                    <h3>
+                        86%
+                    </h3>
+
+
+                    <p>
+                        Overall Attendance
+                    </p>
 
                 </div>
 
 
+
                 <div class="stat-card">
 
                     <div class="stat-top">
-                        <span class="stat-icon orange">📝</span>
-                        <span class="orange">Pending</span>
+
+                        <div class="stat-icon">
+                            📝
+                        </div>
+
+                        <span class="orange">
+                            Pending
+                        </span>
+
                     </div>
 
-                    <h3>4</h3>
 
-                    <p>Assignments</p>
+                    <h3>
+                        4
+                    </h3>
+
+
+                    <p>
+                        Assignments
+                    </p>
 
                 </div>
 
 
+
                 <div class="stat-card">
 
                     <div class="stat-top">
-                        <span class="stat-icon purple">🏆</span>
-                        <span class="purple">CGPA</span>
+
+                        <div class="stat-icon">
+                            🏆
+                        </div>
+
+                        <span class="purple">
+                            CGPA
+                        </span>
+
                     </div>
 
-                    <h3>8.7</h3>
 
-                    <p>Current Semester</p>
+                    <h3>
+                        8.7
+                    </h3>
+
+
+                    <p>
+                        Current Semester
+                    </p>
 
                 </div>
 
             </div>
 
 
+
             <!-- DASHBOARD GRID -->
 
             <div class="dashboard-grid">
 
+
+                <!-- LEFT COLUMN -->
+
                 <div>
+
 
                     <!-- TODAY'S SCHEDULE -->
 
@@ -886,10 +1298,16 @@ body{
 
                         <div class="card-header">
 
-                            <h2>🗓️ Today's Schedule</h2>
+                            <h2>
+                                🗓️ Today's Schedule
+                            </h2>
 
-                            <span onclick="openPage('timetable')">
+
+                            <span
+                                onclick="openPage('timetable')">
+
                                 View Timetable →
+
                             </span>
 
                         </div>
@@ -897,21 +1315,32 @@ body{
 
                         <div class="schedule">
 
+
                             <div class="schedule-item">
 
                                 <div class="schedule-time">
                                     09:00 AM
                                 </div>
 
+
                                 <div>
+
                                     <div class="schedule-subject">
                                         Web Development
                                     </div>
 
-                                    <small style="color:#64748b;">
+                                    <div
+                                        style="
+                                        font-size:11px;
+                                        color:#64748b;
+                                        ">
+
                                         BCA • Lecture
-                                    </small>
+
+                                    </div>
+
                                 </div>
+
 
                                 <div class="schedule-room">
                                     Room 204
@@ -920,21 +1349,32 @@ body{
                             </div>
 
 
+
                             <div class="schedule-item">
 
                                 <div class="schedule-time">
                                     11:00 AM
                                 </div>
 
+
                                 <div>
+
                                     <div class="schedule-subject">
                                         Database Management
                                     </div>
 
-                                    <small style="color:#64748b;">
+                                    <div
+                                        style="
+                                        font-size:11px;
+                                        color:#64748b;
+                                        ">
+
                                         BCA • Practical
-                                    </small>
+
+                                    </div>
+
                                 </div>
+
 
                                 <div class="schedule-room">
                                     Lab 2
@@ -943,47 +1383,35 @@ body{
                             </div>
 
 
+
                             <div class="schedule-item">
 
                                 <div class="schedule-time">
                                     02:00 PM
                                 </div>
 
+
                                 <div>
+
                                     <div class="schedule-subject">
                                         Computer Networks
                                     </div>
 
-                                    <small style="color:#64748b;">
+                                    <div
+                                        style="
+                                        font-size:11px;
+                                        color:#64748b;
+                                        ">
+
                                         BCA • Lecture
-                                    </small>
+
+                                    </div>
+
                                 </div>
+
 
                                 <div class="schedule-room">
                                     Room 106
-                                </div>
-
-                            </div>
-
-
-                            <div class="schedule-item">
-
-                                <div class="schedule-time">
-                                    03:30 PM
-                                </div>
-
-                                <div>
-                                    <div class="schedule-subject">
-                                        Software Engineering
-                                    </div>
-
-                                    <small style="color:#64748b;">
-                                        BCA • Lecture
-                                    </small>
-                                </div>
-
-                                <div class="schedule-room">
-                                    Room 302
                                 </div>
 
                             </div>
@@ -993,16 +1421,23 @@ body{
                     </div>
 
 
-                    <!-- ATTENDANCE -->
+
+                    <!-- ACADEMIC PROGRESS -->
 
                     <div class="card">
 
                         <div class="card-header">
 
-                            <h2>📊 Attendance Overview</h2>
+                            <h2>
+                                📈 Academic Progress
+                            </h2>
 
-                            <span onclick="openPage('attendance')">
-                                View Details →
+
+                            <span
+                                onclick="openPage('academics')">
+
+                                View Academics →
+
                             </span>
 
                         </div>
@@ -1011,54 +1446,81 @@ body{
                         <div class="progress-box">
 
                             <div class="progress-info">
-                                <span>Web Development</span>
-                                <strong>92%</strong>
+
+                                <span>
+                                    Web Development
+                                </span>
+
+                                <strong>
+                                    90%
+                                </strong>
+
                             </div>
 
+
                             <div class="progress">
-                                <div class="progress-bar" style="width:92%;"></div>
+
+                                <div
+                                    class="progress-bar"
+                                    style="width:90%;">
+                                </div>
+
                             </div>
 
                         </div>
 
 
+
                         <div class="progress-box">
 
                             <div class="progress-info">
-                                <span>Database Management</span>
-                                <strong>88%</strong>
+
+                                <span>
+                                    Database Management
+                                </span>
+
+                                <strong>
+                                    82%
+                                </strong>
+
                             </div>
 
+
                             <div class="progress">
-                                <div class="progress-bar" style="width:88%;"></div>
+
+                                <div
+                                    class="progress-bar"
+                                    style="width:82%;">
+                                </div>
+
                             </div>
 
                         </div>
 
 
-                        <div class="progress-box">
-
-                            <div class="progress-info">
-                                <span>Computer Networks</span>
-                                <strong>82%</strong>
-                            </div>
-
-                            <div class="progress">
-                                <div class="progress-bar" style="width:82%;"></div>
-                            </div>
-
-                        </div>
-
 
                         <div class="progress-box">
 
                             <div class="progress-info">
-                                <span>Software Engineering</span>
-                                <strong>85%</strong>
+
+                                <span>
+                                    Computer Networks
+                                </span>
+
+                                <strong>
+                                    86%
+                                </strong>
+
                             </div>
 
+
                             <div class="progress">
-                                <div class="progress-bar" style="width:85%;"></div>
+
+                                <div
+                                    class="progress-bar"
+                                    style="width:86%;">
+                                </div>
+
                             </div>
 
                         </div>
@@ -1068,118 +1530,229 @@ body{
                 </div>
 
 
+
                 <!-- RIGHT COLUMN -->
 
                 <div>
+
 
                     <!-- QUICK ACTIONS -->
 
                     <div class="card">
 
                         <div class="card-header">
-                            <h2>⚡ Quick Actions</h2>
+
+                            <h2>
+                                ⚡ Quick Actions
+                            </h2>
+
                         </div>
+
 
                         <div class="actions">
 
-                            <div class="action" onclick="openPage('assignments')">
 
-                                <div class="action-icon">📝</div>
+                            <button
+                                class="action"
+                                onclick="openPage('assignments')">
 
-                                <strong>Assignments</strong>
+                                <div class="action-icon">
+                                    📝
+                                </div>
 
-                                <small>Check pending work</small>
+                                <strong>
+                                    Assignments
+                                </strong>
 
-                            </div>
+                                <small>
+                                    Check pending work
+                                </small>
 
-
-                            <div class="action" onclick="openPage('exams')">
-
-                                <div class="action-icon">📋</div>
-
-                                <strong>Exams</strong>
-
-                                <small>View exam schedule</small>
-
-                            </div>
+                            </button>
 
 
-                            <div class="action" onclick="openPage('events')">
 
-                                <div class="action-icon">🎉</div>
+                            <button
+                                class="action"
+                                onclick="openPage('exams')">
 
-                                <strong>Events</strong>
+                                <div class="action-icon">
+                                    📋
+                                </div>
 
-                                <small>Explore campus events</small>
+                                <strong>
+                                    Exams
+                                </strong>
 
-                            </div>
+                                <small>
+                                    View exam schedule
+                                </small>
+
+                            </button>
 
 
-                            <div class="action" onclick="openPage('campus')">
 
-                                <div class="action-icon">🏫</div>
+                            <button
+                                class="action"
+                                onclick="openPage('events')">
 
-                                <strong>Campus</strong>
+                                <div class="action-icon">
+                                    🎉
+                                </div>
 
-                                <small>Explore campus</small>
+                                <strong>
+                                    Events
+                                </strong>
 
-                            </div>
+                                <small>
+                                    Explore campus events
+                                </small>
+
+                            </button>
+
+
+
+                            <button
+                                class="action"
+                                onclick="openPage('campus')">
+
+                                <div class="action-icon">
+                                    🏫
+                                </div>
+
+                                <strong>
+                                    Campus
+                                </strong>
+
+                                <small>
+                                    Explore campus
+                                </small>
+
+                            </button>
+
+
+
+                            <button
+                                class="action"
+                                onclick="openPage('placement')">
+
+                                <div class="action-icon">
+                                    💼
+                                </div>
+
+                                <strong>
+                                    Placement
+                                </strong>
+
+                                <small>
+                                    Placement opportunities
+                                </small>
+
+                            </button>
+
+
+
+                            <button
+                                class="action"
+                                onclick="openPage('results')">
+
+                                <div class="action-icon">
+                                    📊
+                                </div>
+
+                                <strong>
+                                    Results
+                                </strong>
+
+                                <small>
+                                    View academic results
+                                </small>
+
+                            </button>
 
                         </div>
 
                     </div>
 
 
-                    <!-- UPCOMING -->
+
+                    <!-- NOTIFICATIONS -->
 
                     <div class="card">
 
                         <div class="card-header">
 
-                            <h2>⏰ Upcoming</h2>
+                            <h2>
+                                🔔 Notifications
+                            </h2>
+
+
+                            <span
+                                onclick="openPage('notifications')">
+
+                                View All →
+
+                            </span>
 
                         </div>
 
 
-                        <div style="display:flex;flex-direction:column;gap:14px;">
+                        <div
+                            style="
+                            padding:15px;
+                            background:#f8fafc;
+                            border-radius:12px;
+                            margin-bottom:10px;
+                            ">
 
-                            <div style="padding:13px;background:#f8fafc;border-radius:12px;">
+                            <strong
+                                style="font-size:13px;">
 
-                                <strong style="font-size:13px;">
-                                    Database Assignment
-                                </strong>
+                                New Campus Announcement
 
-                                <div style="font-size:11px;color:#ef4444;margin-top:5px;">
-                                    Due tomorrow
-                                </div>
-
-                            </div>
-
-
-                            <div style="padding:13px;background:#f8fafc;border-radius:12px;">
-
-                                <strong style="font-size:13px;">
-                                    Internal Examination
-                                </strong>
-
-                                <div style="font-size:11px;color:#64748b;margin-top:5px;">
-                                    15 September 2026
-                                </div>
-
-                            </div>
+                            </strong>
 
 
-                            <div style="padding:13px;background:#f8fafc;border-radius:12px;">
+                            <p
+                                style="
+                                font-size:11px;
+                                color:#64748b;
+                                margin-top:5px;
+                                ">
 
-                                <strong style="font-size:13px;">
-                                    Campus Tech Fest
-                                </strong>
+                                Check the latest campus updates.
 
-                                <div style="font-size:11px;color:#64748b;margin-top:5px;">
-                                    20 September 2026
-                                </div>
+                            </p>
 
-                            </div>
+                        </div>
+
+
+
+                        <div
+                            style="
+                            padding:15px;
+                            background:#f8fafc;
+                            border-radius:12px;
+                            ">
+
+                            <strong
+                                style="font-size:13px;">
+
+                                Academic Update
+
+                            </strong>
+
+
+                            <p
+                                style="
+                                font-size:11px;
+                                color:#64748b;
+                                margin-top:5px;
+                                ">
+
+                                Check your latest academic information.
+
+                            </p>
 
                         </div>
 
@@ -1188,6 +1761,7 @@ body{
                 </div>
 
             </div>
+
 
 
             <!-- CAMPUS -->
@@ -1196,10 +1770,16 @@ body{
 
                 <div class="card-header">
 
-                    <h2>🏫 Explore Your Campus</h2>
+                    <h2>
+                        🏫 Campus
+                    </h2>
 
-                    <span onclick="openPage('campus')">
-                        Explore →
+
+                    <span
+                        onclick="openPage('campus')">
+
+                        Explore Campus →
+
                     </span>
 
                 </div>
@@ -1207,154 +1787,81 @@ body{
 
                 <div class="campus-grid">
 
-    <!-- CENTRAL LIBRARY -->
-    <div class="campus-card">
 
-        <img
-            src="https://images.unsplash.com/photo-1568667256549-094345857637?auto=format&fit=crop&w=900&q=80"
-            alt="Central Library"
-        >
+                    <div class="campus-card">
 
-        <div class="campus-info">
+                        <h3>
+                            📚 Library
+                        </h3>
 
-            <div class="big-icon">📚</div>
+                        <p>
+                            Access books, study materials and
+                            reference resources.
+                        </p>
 
-            <h3>Central Library</h3>
-
-            <p>
-                Explore books, digital resources,
-                journals and peaceful study spaces.
-            </p>
-
-            <button onclick="showToast('Central Library selected 📚')">
-                Explore Library →
-            </button>
-
-        </div>
-
-    </div>
+                    </div>
 
 
-    <!-- COMPUTER LABS -->
-    <div class="campus-card">
 
-        <img
-            src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=900&q=80"
-            alt="Computer Labs"
-        >
+                    <div class="campus-card">
 
-        <div class="campus-info">
+                        <h3>
+                            💻 Computer Lab
+                        </h3>
 
-            <div class="big-icon">💻</div>
+                        <p>
+                            Facilities for practical sessions
+                            and academic learning.
+                        </p>
 
-            <h3>Computer Labs</h3>
-
-            <p>
-                Access modern computers and
-                technology facilities for practical sessions.
-            </p>
-
-            <button onclick="showToast('Computer Labs selected 💻')">
-                Explore Labs →
-            </button>
-
-        </div>
-
-    </div>
+                    </div>
 
 
-    <!-- SPORTS GROUND -->
-    <div class="campus-card">
 
-        <img
-            src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=900&q=80"
-            alt="Sports Ground"
-        >
+                    <div class="campus-card">
 
-        <div class="campus-info">
+                        <h3>
+                            ⚽ Sports
+                        </h3>
 
-            <div class="big-icon">⚽</div>
+                        <p>
+                            Participate in sports and
+                            recreational activities.
+                        </p>
 
-            <h3>Sports Ground</h3>
+                    </div>
 
-            <p>
-                Stay active with sports, recreation
-                and exciting campus activities.
-            </p>
-
-            <button onclick="showToast('Sports Ground selected ⚽')">
-                Explore Ground →
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <!-- CAFETERIA -->
-    <div class="campus-card">
-
-        <img
-            src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=900&q=80"
-            alt="Cafeteria"
-        >
-
-        <div class="campus-info">
-
-            <div class="big-icon">☕</div>
-
-            <h3>Cafeteria</h3>
-
-            <p>
-                Enjoy snacks, refreshments and
-                relaxing moments with your friends.
-            </p>
-
-            <button onclick="showToast('Cafeteria selected ☕')">
-                Explore Cafeteria →
-            </button>
-
-        </div>
-
-    </div>
-
-</div>==
                 </div>
 
             </div>
 
         </div>
 
-
-        <!-- OTHER INTERNAL PAGE AREA -->
-
-        <div id="pageContainer"></div>
-
     </section>
 
 </main>
 
 
-<!-- TOAST -->
 
-<div class="toast" id="toast">
+<!-- =====================================================
+     TOAST
+===================================================== -->
+
+<div
+    class="toast"
+    id="toast">
+
     Welcome to CampusConnect
+
 </div>
 
-
-<!-- YOUR EXISTING JAVASCRIPT FILES - KEPT -->
-
-<script src="js/attendance.js"></script>
-<script src="js/assignments.js"></script>
-<script src="js/events.js"></script>
-<script src="js/dashboard.js"></script>
 
 
 <script>
 
 /* =====================================================
-   CAMPUSCONNECT DASHBOARD NAVIGATION
-   ===================================================== */
+   PAGE TITLES
+===================================================== */
 
 const pageTitles = {
 
@@ -1370,18 +1877,39 @@ const pageTitles = {
 
     academics: "Academics",
 
+    faculty: "Faculty",
+
+    placement: "Placement",
+
+    results: "Results",
+
+    documents: "Documents",
+
+    complaints: "Complaints",
+
+    feedback: "Feedback",
+
+    "lost-found": "Lost & Found",
+
     campus: "Campus",
 
     events: "Events",
 
     exams: "Exams",
 
+    notifications: "Notifications",
+
+    profile: "Profile",
+
     settings: "Settings"
 
 };
 
 
-/* Pages which already have separate HTML files */
+
+/* =====================================================
+   MODULE FILE PATHS
+===================================================== */
 
 const externalPages = {
 
@@ -1397,18 +1925,42 @@ const externalPages = {
 
     exams: "pages/exams.html",
 
+    faculty: "pages/faculty.html",
+
+    placement: "pages/placement.html",
+
+    results: "pages/results.html",
+
+    documents: "pages/documents.html",
+
+    complaints: "pages/complaints.html",
+
+    feedback: "pages/feedback.html",
+
+    "lost-found": "pages/lost-found.html",
+
+    notifications: "pages/notifications.html",
+
+    profile: "pages/profile.html",
+
     settings: "pages/settings.html"
 
 };
 
 
+
 /* =====================================================
    OPEN PAGE
-   ===================================================== */
+===================================================== */
 
 function openPage(page){
 
-    /* Dashboard */
+    if(!page){
+        return;
+    }
+
+
+    /* DASHBOARD */
 
     if(page === "dashboard"){
 
@@ -1418,17 +1970,18 @@ function openPage(page){
     }
 
 
-    /* Pages with separate HTML files */
+    /* EXTERNAL MODULE */
 
     if(externalPages[page]){
 
-        window.location.href = externalPages[page];
+        window.location.href =
+            externalPages[page];
 
         return;
     }
 
 
-    /* Courses */
+    /* COURSES */
 
     if(page === "courses"){
 
@@ -1438,7 +1991,7 @@ function openPage(page){
     }
 
 
-    /* Assignments */
+    /* ASSIGNMENTS */
 
     if(page === "assignments"){
 
@@ -1450,61 +2003,107 @@ function openPage(page){
 }
 
 
+
 /* =====================================================
-   ACTIVE SIDEBAR BUTTON
-   ===================================================== */
+   SIDEBAR NAVIGATION
+===================================================== */
 
-document.querySelectorAll(".nav-item").forEach(function(item){
+document
+.querySelectorAll(".nav-item")
+.forEach(function(item){
 
-    item.addEventListener("click", function(){
+    item.addEventListener(
+        "click",
+        function(){
 
-        const page = this.dataset.page;
+            const page =
+                this.dataset.page;
 
-        document.querySelectorAll(".nav-item").forEach(function(nav){
 
-            nav.classList.remove("active");
+            document
+            .querySelectorAll(".nav-item")
+            .forEach(function(nav){
 
-        });
+                nav.classList.remove(
+                    "active"
+                );
 
-        this.classList.add("active");
+            });
 
-        if(pageTitles[page]){
 
-            document.getElementById("pageTitle").textContent =
-                pageTitles[page];
+            this.classList.add("active");
+
+
+            if(pageTitles[page]){
+
+                document
+                .getElementById("pageTitle")
+                .textContent =
+                    pageTitles[page];
+
+            }
+
+
+            openPage(page);
+
+
+            if(window.innerWidth <= 700){
+
+                document
+                .getElementById("sidebar")
+                .classList.remove("open");
+
+            }
 
         }
-
-        openPage(page);
-
-    });
+    );
 
 });
 
 
+
 /* =====================================================
    COURSES PAGE
-   ===================================================== */
+===================================================== */
 
 function showCoursesPage(){
 
-    const dashboard =
-        document.getElementById("dashboardContainer");
+    document
+    .getElementById("dashboardContainer")
+    .style.display = "none";
+
 
     const page =
         document.getElementById("pageContainer");
 
-    dashboard.style.display = "none";
 
-    page.style.display = "block";
+    /*
+       Create container if required
+    */
 
-    page.innerHTML = `
+    if(!page){
+
+        createInternalContainer();
+
+    }
+
+
+    const container =
+        document.getElementById("pageContainer");
+
+
+    container.style.display = "block";
+
+
+    container.innerHTML = `
 
         <div class="card">
 
             <div class="card-header">
 
-                <h2>📚 My Courses</h2>
+                <h2>
+                    📚 My Courses
+                </h2>
 
                 <span onclick="returnDashboard()">
                     ← Dashboard
@@ -1512,34 +2111,46 @@ function showCoursesPage(){
 
             </div>
 
+
             <div class="campus-grid">
 
                 <div class="campus-card">
 
-                    <h3>Web Development</h3>
+                    <h3>
+                        Web Development
+                    </h3>
 
                     <p>
-                        HTML, CSS, JavaScript and modern web technologies.
+                        HTML, CSS, JavaScript and
+                        modern web technologies.
                     </p>
 
                 </div>
 
+
                 <div class="campus-card">
 
-                    <h3>Database Management</h3>
+                    <h3>
+                        Database Management
+                    </h3>
 
                     <p>
-                        SQL, MySQL, database design and management.
+                        SQL, MySQL, database design
+                        and management.
                     </p>
 
                 </div>
 
+
                 <div class="campus-card">
 
-                    <h3>Computer Networks</h3>
+                    <h3>
+                        Computer Networks
+                    </h3>
 
                     <p>
-                        Networking concepts, protocols and security.
+                        Networking concepts,
+                        protocols and security.
                     </p>
 
                 </div>
@@ -1553,21 +2164,31 @@ function showCoursesPage(){
 }
 
 
+
 /* =====================================================
    ASSIGNMENTS PAGE
-   ===================================================== */
+===================================================== */
 
 function showAssignmentsPage(){
 
-    const dashboard =
-        document.getElementById("dashboardContainer");
+    document
+    .getElementById("dashboardContainer")
+    .style.display = "none";
+
+
+    if(!document.getElementById("pageContainer")){
+
+        createInternalContainer();
+
+    }
+
 
     const page =
         document.getElementById("pageContainer");
 
-    dashboard.style.display = "none";
 
     page.style.display = "block";
+
 
     page.innerHTML = `
 
@@ -1575,7 +2196,9 @@ function showAssignmentsPage(){
 
             <div class="card-header">
 
-                <h2>📝 Assignments</h2>
+                <h2>
+                    📝 Assignments
+                </h2>
 
                 <span onclick="returnDashboard()">
                     ← Dashboard
@@ -1583,19 +2206,41 @@ function showAssignmentsPage(){
 
             </div>
 
-            <div style="display:flex;flex-direction:column;gap:15px;">
 
-                <div style="padding:20px;background:#f8fafc;border-radius:15px;">
+            <div
+                style="
+                display:flex;
+                flex-direction:column;
+                gap:15px;
+                ">
+
+
+                <div
+                    style="
+                    padding:20px;
+                    background:#f8fafc;
+                    border-radius:15px;
+                    ">
 
                     <strong>
                         Database Management Assignment
                     </strong>
 
-                    <p style="font-size:12px;color:#64748b;margin-top:7px;">
-                        Design and implement a student database.
+                    <p
+                        style="
+                        font-size:12px;
+                        color:#64748b;
+                        margin-top:7px;
+                        ">
+
+                        Design and implement a
+                        student database.
+
                     </p>
 
-                    <span style="
+
+                    <span
+                        style="
                         display:inline-block;
                         margin-top:10px;
                         padding:6px 10px;
@@ -1603,24 +2248,42 @@ function showAssignmentsPage(){
                         color:#dc2626;
                         border-radius:8px;
                         font-size:11px;
-                    ">
+                        ">
+
                         Pending
+
                     </span>
 
                 </div>
 
 
-                <div style="padding:20px;background:#f8fafc;border-radius:15px;">
+
+                <div
+                    style="
+                    padding:20px;
+                    background:#f8fafc;
+                    border-radius:15px;
+                    ">
 
                     <strong>
                         Web Development Project
                     </strong>
 
-                    <p style="font-size:12px;color:#64748b;margin-top:7px;">
+
+                    <p
+                        style="
+                        font-size:12px;
+                        color:#64748b;
+                        margin-top:7px;
+                        ">
+
                         Build a responsive college website.
+
                     </p>
 
-                    <span style="
+
+                    <span
+                        style="
                         display:inline-block;
                         margin-top:10px;
                         padding:6px 10px;
@@ -1628,8 +2291,10 @@ function showAssignmentsPage(){
                         color:#16a34a;
                         border-radius:8px;
                         font-size:11px;
-                    ">
+                        ">
+
                         In Progress
+
                     </span>
 
                 </div>
@@ -1643,93 +2308,164 @@ function showAssignmentsPage(){
 }
 
 
+
 /* =====================================================
-   RETURN TO DASHBOARD
-   ===================================================== */
+   INTERNAL CONTAINER
+===================================================== */
+
+function createInternalContainer(){
+
+    const content =
+        document.querySelector(".content");
+
+
+    const container =
+        document.createElement("div");
+
+
+    container.id =
+        "pageContainer";
+
+
+    container.style.display =
+        "none";
+
+
+    content.appendChild(container);
+
+}
+
+
+
+/* =====================================================
+   RETURN DASHBOARD
+===================================================== */
 
 function returnDashboard(){
 
-    window.location.href = "dashboard.html";
+    window.location.href =
+        "dashboard.html";
 
 }
 
-
-/* =====================================================
-   TOAST
-   ===================================================== */
-
-function showToast(message){
-
-    const toast =
-        document.getElementById("toast");
-
-    toast.textContent = message;
-
-    toast.classList.add("show");
-
-    setTimeout(function(){
-
-        toast.classList.remove("show");
-
-    },3000);
-
-}
 
 
 /* =====================================================
    CLOCK
-   ===================================================== */
+===================================================== */
 
 function updateClock(){
 
-    const now = new Date();
+    const now =
+        new Date();
 
-    let hours = now.getHours();
 
-    let minutes = now.getMinutes();
+    let hours =
+        now.getHours();
 
-    let seconds = now.getSeconds();
 
-    const ampm = hours >= 12 ? "PM" : "AM";
+    let minutes =
+        now.getMinutes();
 
-    hours = hours % 12;
 
-    hours = hours ? hours : 12;
+    let seconds =
+        now.getSeconds();
+
+
+    const ampm =
+        hours >= 12
+            ? "PM"
+            : "AM";
+
+
+    hours =
+        hours % 12;
+
+
+    hours =
+        hours
+            ? hours
+            : 12;
+
 
     minutes =
-        minutes < 10 ? "0" + minutes : minutes;
+        minutes < 10
+            ? "0" + minutes
+            : minutes;
+
 
     seconds =
-        seconds < 10 ? "0" + seconds : seconds;
+        seconds < 10
+            ? "0" + seconds
+            : seconds;
 
-    document.getElementById("clock").textContent =
-        hours + ":" + minutes + ":" + seconds + " " + ampm;
+
+    const clock =
+        document.getElementById("clock");
+
+
+    if(clock){
+
+        clock.textContent =
+            hours + ":" +
+            minutes + ":" +
+            seconds + " " +
+            ampm;
+
+    }
 
 }
 
 
-setInterval(updateClock,1000);
+setInterval(
+    updateClock,
+    1000
+);
+
 
 updateClock();
 
 
+
 /* =====================================================
    DATE
-   ===================================================== */
+===================================================== */
 
 function updateDate(){
 
-    const now = new Date();
+    const now =
+        new Date();
+
 
     const options = {
+
         weekday:"long",
+
         year:"numeric",
+
         month:"long",
+
         day:"numeric"
+
     };
 
-    document.getElementById("todayDate").textContent =
-        "📅 " + now.toLocaleDateString("en-IN",options);
+
+    const dateElement =
+        document.getElementById(
+            "todayDate"
+        );
+
+
+    if(dateElement){
+
+        dateElement.textContent =
+            "📅 " +
+            now.toLocaleDateString(
+                "en-IN",
+                options
+            );
+
+    }
 
 }
 
@@ -1737,16 +2473,22 @@ function updateDate(){
 updateDate();
 
 
+
 /* =====================================================
    STUDENT NAME
-   ===================================================== */
+===================================================== */
 
 function loadStudent(){
 
     try{
 
         const student =
-            JSON.parse(localStorage.getItem("student"));
+            JSON.parse(
+                localStorage.getItem(
+                    "student"
+                )
+            );
+
 
         if(student){
 
@@ -1755,21 +2497,47 @@ function loadStudent(){
                 student.username ||
                 student.fullName;
 
+
             if(name){
 
-                document.getElementById("studentName")
-                    .textContent = name;
+                const studentName =
+                    document.getElementById(
+                        "studentName"
+                    );
 
-                document.getElementById("welcomeName")
-                    .textContent = name;
+
+                const welcomeName =
+                    document.getElementById(
+                        "welcomeName"
+                    );
+
+
+                if(studentName){
+
+                    studentName.textContent =
+                        name;
+
+                }
+
+
+                if(welcomeName){
+
+                    welcomeName.textContent =
+                        name;
+
+                }
 
             }
 
         }
 
-    }catch(error){
+    }
 
-        console.log("Student information not available.");
+    catch(error){
+
+        console.log(
+            "Student information not available."
+        );
 
     }
 
@@ -1779,30 +2547,87 @@ function loadStudent(){
 loadStudent();
 
 
+
 /* =====================================================
    MOBILE SIDEBAR
-   ===================================================== */
+===================================================== */
 
 function toggleSidebar(){
 
-    document
-        .getElementById("sidebar")
-        .classList.toggle("open");
+    const sidebar =
+        document.getElementById(
+            "sidebar"
+        );
+
+
+    sidebar.classList.toggle(
+        "open"
+    );
 
 }
 
 
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+function showToast(message){
+
+    const toast =
+        document.getElementById(
+            "toast"
+        );
+
+
+    if(!toast){
+        return;
+    }
+
+
+    toast.textContent =
+        message;
+
+
+    toast.classList.add(
+        "show"
+    );
+
+
+    setTimeout(
+        function(){
+
+            toast.classList.remove(
+                "show"
+            );
+
+        },
+        3000
+    );
+
+}
+
+
+
 /* =====================================================
    WELCOME MESSAGE
-   ===================================================== */
+===================================================== */
 
-setTimeout(function(){
+setTimeout(
+    function(){
 
-    showToast("Welcome back to CampusConnect 🎓");
+        showToast(
+            "Welcome back to CampusConnect 🎓"
+        );
 
-},800);
+    },
+    800
+);
 
 </script>
 
+
 </body>
+
 </html>
+```
