@@ -1,692 +1,835 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>CampusConnect - Assignments</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: #f5f7fb;
-            color: #1e293b;
-        }
-
-        /* ================= SIDEBAR ================= */
-
-        .sidebar {
-            position: fixed;
-            left: 0;
-            top: 0;
-            width: 250px;
-            height: 100vh;
-            background: #ffffff;
-            border-right: 1px solid #e5e7eb;
-            padding: 25px 15px;
-            z-index: 1000;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 0 12px;
-            margin-bottom: 35px;
-        }
-
-        .logo-icon {
-            width: 42px;
-            height: 42px;
-            background: linear-gradient(135deg, #4f46e5, #7c3aed);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 21px;
-            font-weight: 800;
-        }
-
-        .logo-text {
-            font-size: 20px;
-            font-weight: 800;
-            color: #111827;
-        }
-
-        .nav-title {
-            font-size: 11px;
-            font-weight: 700;
-            color: #94a3b8;
-            padding: 0 15px;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-        }
-
-        .nav-item {
-            display: flex;
-            align-items: center;
-            gap: 13px;
-            padding: 12px 15px;
-            margin-bottom: 5px;
-            border-radius: 10px;
-            text-decoration: none;
-            color: #64748b;
-            font-size: 14px;
-            font-weight: 500;
-            transition: 0.2s;
-        }
-
-        .nav-item:hover {
-            background: #f1f5f9;
-            color: #4f46e5;
-        }
-
-        .nav-item.active {
-            background: #eef2ff;
-            color: #4f46e5;
-            font-weight: 600;
-        }
-
-        .nav-icon {
-            width: 20px;
-            text-align: center;
-            font-size: 17px;
-        }
-
-        /* ================= MAIN ================= */
-
-        .main {
-            margin-left: 250px;
-            min-height: 100vh;
-            padding: 28px 35px;
-        }
-
-        /* ================= TOP BAR ================= */
-
-        .topbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-
-        .page-title h1 {
-            font-size: 28px;
-            font-weight: 800;
-            color: #111827;
-            margin-bottom: 6px;
-        }
-
-        .page-title p {
-            color: #64748b;
-            font-size: 14px;
-        }
-
-        .top-actions {
-            display: flex;
-            align-items: center;
-            gap: 18px;
-        }
-
-        .notification {
-            width: 42px;
-            height: 42px;
-            border-radius: 12px;
-            background: #ffffff;
-            border: 1px solid #e5e7eb;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 18px;
-        }
-
-        .profile {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: #ffffff;
-            padding: 7px 12px 7px 7px;
-            border-radius: 14px;
-            border: 1px solid #e5e7eb;
-        }
-
-        .profile-avatar {
-            width: 36px;
-            height: 36px;
-            border-radius: 10px;
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 700;
-            font-size: 14px;
-        }
-
-        .profile-info {
-            line-height: 1.3;
-        }
-
-        .profile-name {
-            font-size: 13px;
-            font-weight: 700;
-        }
-
-        .profile-role {
-            font-size: 11px;
-            color: #94a3b8;
-        }
-
-        /* ================= STATS ================= */
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 18px;
-            margin-bottom: 25px;
-        }
-
-        .stat-card {
-            background: white;
-            border: 1px solid #e5e7eb;
-            border-radius: 16px;
-            padding: 20px;
-        }
-
-        .stat-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .stat-icon {
-            width: 42px;
-            height: 42px;
-            border-radius: 11px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 19px;
-        }
-
-        .purple {
-            background: #eef2ff;
-            color: #4f46e5;
-        }
-
-        .orange {
-            background: #fff7ed;
-            color: #ea580c;
-        }
-
-        .green {
-            background: #ecfdf5;
-            color: #059669;
-        }
-
-        .blue {
-            background: #eff6ff;
-            color: #2563eb;
-        }
-
-        .stat-number {
-            margin-top: 15px;
-            font-size: 27px;
-            font-weight: 800;
-            color: #111827;
-        }
-
-        .stat-label {
-            margin-top: 4px;
-            font-size: 12px;
-            color: #64748b;
-        }
-
-        /* ================= CONTENT ================= */
-
-        .content-card {
-            background: #ffffff;
-            border: 1px solid #e5e7eb;
-            border-radius: 18px;
-            padding: 24px;
-        }
-
-        .content-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 22px;
-        }
-
-        .content-header h2 {
-            font-size: 18px;
-            font-weight: 750;
-            color: #111827;
-        }
-
-        .filter-area {
-            display: flex;
-            gap: 10px;
-        }
-
-        select {
-            border: 1px solid #e2e8f0;
-            background: #f8fafc;
-            padding: 10px 13px;
-            border-radius: 9px;
-            color: #475569;
-            font-size: 13px;
-            outline: none;
-        }
-
-        /* ================= ASSIGNMENTS ================= */
-
-        .assignment-list {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .assignment {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 18px;
-            border: 1px solid #e8edf3;
-            border-radius: 13px;
-            transition: 0.2s;
-        }
-
-        .assignment:hover {
-            border-color: #c7d2fe;
-            background: #fafaff;
-        }
-
-        .assignment-left {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .subject-icon {
-            width: 46px;
-            height: 46px;
-            border-radius: 12px;
-            background: #eef2ff;
-            color: #4f46e5;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-        }
-
-        .assignment-info h3 {
-            font-size: 14px;
-            font-weight: 700;
-            color: #1e293b;
-            margin-bottom: 5px;
-        }
-
-        .assignment-info p {
-            font-size: 12px;
-            color: #64748b;
-        }
-
-        .assignment-right {
-            display: flex;
-            align-items: center;
-            gap: 18px;
-        }
-
-        .due-date {
-            text-align: right;
-        }
-
-        .due-label {
-            font-size: 10px;
-            color: #94a3b8;
-            margin-bottom: 4px;
-            text-transform: uppercase;
-        }
-
-        .due-value {
-            font-size: 12px;
-            font-weight: 600;
-            color: #475569;
-        }
-
-        .status {
-            min-width: 85px;
-            text-align: center;
-            padding: 7px 10px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: 700;
-        }
-
-        .pending {
-            background: #fff7ed;
-            color: #ea580c;
-        }
-
-        .submitted {
-            background: #ecfdf5;
-            color: #059669;
-        }
-
-        .overdue {
-            background: #fef2f2;
-            color: #dc2626;
-        }
-
-        .view-btn {
-            border: none;
-            background: #eef2ff;
-            color: #4f46e5;
-            padding: 8px 13px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 11px;
-            font-weight: 600;
-        }
-
-        .view-btn:hover {
-            background: #e0e7ff;
-        }
-
-        /* ================= RESPONSIVE ================= */
-
-        @media (max-width: 1100px) {
-            .stats {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 800px) {
-            .sidebar {
-                width: 70px;
-                padding: 20px 8px;
-            }
-
-            .logo-text,
-            .nav-title,
-            .nav-item span {
-                display: none;
-            }
-
-            .logo {
-                justify-content: center;
-                padding: 0;
-            }
-
-            .nav-item {
-                justify-content: center;
-                padding: 13px;
-            }
-
-            .main {
-                margin-left: 70px;
-                padding: 20px;
-            }
-
-            .assignment {
-                align-items: flex-start;
-                gap: 15px;
-            }
-
-            .assignment-right {
-                flex-direction: column;
-                align-items: flex-end;
-                gap: 8px;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .stats {
-                grid-template-columns: 1fr;
-            }
-
-            .topbar {
-                align-items: flex-start;
-            }
-
-            .profile-info {
-                display: none;
-            }
-
-            .content-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 15px;
-            }
-
-            .assignment-left {
-                align-items: flex-start;
-            }
-
-            .assignment-right {
-                display: none;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CampusConnect | Assignments</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    background:#f4f7fb;
+    color:#1f2937;
+    min-height:100vh;
+}
+
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    width:250px;
+    height:100vh;
+    background:linear-gradient(180deg,#172554,#312e81,#4c1d95);
+    color:white;
+    padding:25px 15px;
+    z-index:1000;
+    overflow-y:auto;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:0 12px 25px;
+    border-bottom:1px solid rgba(255,255,255,.2);
+    margin-bottom:20px;
+}
+
+.logo-icon{
+    width:45px;
+    height:45px;
+    border-radius:14px;
+    background:linear-gradient(135deg,#38bdf8,#a78bfa);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:23px;
+}
+
+.logo h2{
+    font-size:20px;
+}
+
+.logo span{
+    display:block;
+    font-size:11px;
+    opacity:.7;
+    margin-top:3px;
+}
+
+.nav-item{
+    width:100%;
+    border:none;
+    background:transparent;
+    color:#dbeafe;
+    display:flex;
+    align-items:center;
+    gap:13px;
+    padding:13px 15px;
+    margin:4px 0;
+    border-radius:12px;
+    cursor:pointer;
+    font-size:14px;
+    text-align:left;
+    transition:.25s;
+}
+
+.nav-item:hover{
+    background:rgba(255,255,255,.12);
+    transform:translateX(4px);
+    color:white;
+}
+
+.nav-item.active{
+    background:linear-gradient(90deg,#38bdf8,#8b5cf6);
+    color:white;
+}
+
+.nav-icon{
+    width:25px;
+    text-align:center;
+    font-size:17px;
+}
+
+.main{
+    margin-left:250px;
+    min-height:100vh;
+}
+
+.topbar{
+    height:75px;
+    background:white;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 30px;
+    border-bottom:1px solid #e5e7eb;
+    position:sticky;
+    top:0;
+    z-index:500;
+}
+
+.page-title{
+    font-size:21px;
+    font-weight:700;
+}
+
+.page-subtitle{
+    font-size:12px;
+    color:#6b7280;
+    margin-top:4px;
+}
+
+.top-right{
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+.clock{
+    font-size:13px;
+    color:#64748b;
+}
+
+.profile{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.profile-avatar{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#06b6d4,#6366f1);
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:bold;
+}
+
+.profile-info strong{
+    display:block;
+    font-size:13px;
+}
+
+.profile-info span{
+    font-size:11px;
+    color:#64748b;
+}
+
+.content{
+    padding:30px;
+}
+
+.hero{
+    background:linear-gradient(120deg,#172554,#312e81,#6d28d9);
+    border-radius:24px;
+    padding:30px;
+    color:white;
+    margin-bottom:25px;
+}
+
+.hero h1{
+    font-size:28px;
+    margin-bottom:8px;
+}
+
+.hero p{
+    font-size:13px;
+    color:#dbeafe;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+    margin-bottom:22px;
+}
+
+.stat-card{
+    background:white;
+    border:1px solid #e5e7eb;
+    border-radius:18px;
+    padding:20px;
+}
+
+.stat-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.stat-label{
+    font-size:12px;
+    color:#64748b;
+}
+
+.stat-number{
+    font-size:27px;
+    font-weight:800;
+    margin-top:8px;
+    color:#111827;
+}
+
+.stat-icon{
+    width:42px;
+    height:42px;
+    border-radius:11px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:19px;
+}
+
+.purple{
+    background:#eef2ff;
+}
+
+.orange{
+    background:#fff7ed;
+}
+
+.green{
+    background:#ecfdf5;
+}
+
+.blue{
+    background:#eff6ff;
+}
+
+.card{
+    background:white;
+    border:1px solid #e5e7eb;
+    border-radius:20px;
+    padding:23px;
+}
+
+.card-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.card-header h2{
+    font-size:18px;
+}
+
+.filter-area{
+    display:flex;
+    gap:10px;
+}
+
+select{
+    border:1px solid #e2e8f0;
+    background:#f8fafc;
+    padding:10px 13px;
+    border-radius:9px;
+    color:#475569;
+    font-size:13px;
+    outline:none;
+}
+
+.assignment-list{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.assignment{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:17px;
+    border-radius:14px;
+    background:#f8fafc;
+    border-left:4px solid #6366f1;
+    transition:.2s;
+}
+
+.assignment:hover{
+    background:#eef2ff;
+    transform:translateX(3px);
+}
+
+.assignment-left{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.subject-icon{
+    width:46px;
+    height:46px;
+    border-radius:12px;
+    background:#eef2ff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:20px;
+}
+
+.assignment-info h3{
+    font-size:14px;
+    font-weight:600;
+}
+
+.assignment-info p{
+    font-size:11px;
+    color:#64748b;
+    margin-top:5px;
+}
+
+.assignment-right{
+    display:flex;
+    align-items:center;
+    gap:18px;
+}
+
+.due-date{
+    text-align:right;
+}
+
+.due-label{
+    font-size:10px;
+    color:#94a3b8;
+    text-transform:uppercase;
+    margin-bottom:4px;
+}
+
+.due-value{
+    font-size:12px;
+    font-weight:600;
+    color:#475569;
+}
+
+.status{
+    min-width:80px;
+    text-align:center;
+    padding:7px 10px;
+    border-radius:20px;
+    font-size:11px;
+    font-weight:700;
+}
+
+.pending{
+    background:#fff7ed;
+    color:#ea580c;
+}
+
+.submitted{
+    background:#ecfdf5;
+    color:#059669;
+}
+
+.overdue{
+    background:#fef2f2;
+    color:#dc2626;
+}
+
+.view-btn{
+    border:none;
+    background:#eef2ff;
+    color:#4f46e5;
+    padding:8px 13px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:11px;
+    font-weight:600;
+}
+
+.view-btn:hover{
+    background:#e0e7ff;
+}
+
+.mobile-menu{
+    display:none;
+    border:none;
+    background:none;
+    font-size:22px;
+    cursor:pointer;
+}
+
+@media(max-width:1100px){
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:700px){
+
+    .sidebar{
+        width:220px;
+        transform:translateX(-100%);
+        transition:.3s;
+    }
+
+    .sidebar.open{
+        transform:translateX(0);
+    }
+
+    .main{
+        margin-left:0;
+    }
+
+    .mobile-menu{
+        display:block;
+        margin-right:15px;
+    }
+
+    .topbar{
+        padding:0 15px;
+    }
+
+    .clock,
+    .profile-info{
+        display:none;
+    }
+
+    .content{
+        padding:15px;
+    }
+
+    .stats{
+        grid-template-columns:1fr;
+    }
+
+    .assignment{
+        align-items:flex-start;
+        gap:15px;
+    }
+
+    .assignment-right{
+        flex-direction:column;
+        align-items:flex-end;
+        gap:8px;
+    }
+}
+
+@media(max-width:600px){
+
+    .filter-area{
+        flex-direction:column;
+        width:100%;
+    }
+
+    .card-header{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:15px;
+    }
+
+    select{
+        width:100%;
+    }
+
+    .assignment-right{
+        display:none;
+    }
+}
+</style>
 </head>
 
 <body>
 
-    <!-- ================= SIDEBAR ================= -->
+<aside class="sidebar" id="sidebar">
 
-    <aside class="sidebar">
+    <div class="logo">
+        <div class="logo-icon">🎓</div>
 
-        <div class="logo">
-            <div class="logo-icon">C</div>
-            <div class="logo-text">CampusConnect</div>
+        <div>
+            <h2>CampusConnect</h2>
+            <span>AI College Companion</span>
         </div>
+    </div>
 
-        <div class="nav-title">Main Menu</div>
+    <button class="nav-item"
+        onclick="window.location.href='../dashboard.html'">
+        <span class="nav-icon">🏠</span>
+        Dashboard
+    </button>
 
-        <a href="dashboard.html" class="nav-item">
-            <div class="nav-icon">⌂</div>
-            <span>Dashboard</span>
-        </a>
+    <button class="nav-item"
+        onclick="window.location.href='../dashboard.html'">
+        <span class="nav-icon">📚</span>
+        My Courses
+    </button>
 
-        <a href="timetable.html" class="nav-item">
-            <div class="nav-icon">▦</div>
-            <span>Timetable</span>
-        </a>
+    <button class="nav-item"
+        onclick="window.location.href='timetable.html'">
+        <span class="nav-icon">🗓️</span>
+        Timetable
+    </button>
 
-        <a href="attendance.html" class="nav-item">
-            <div class="nav-icon">✓</div>
-            <span>Attendance</span>
-        </a>
+    <!-- ASSIGNMENTS ACTIVE -->
+    <button class="nav-item active"
+        onclick="window.location.href='assignments.html'">
+        <span class="nav-icon">📝</span>
+        Assignments
+    </button>
 
-        <a href="academics.html" class="nav-item">
-            <div class="nav-icon">▤</div>
-            <span>Academics</span>
-        </a>
+    <button class="nav-item"
+        onclick="window.location.href='attendance.html'">
+        <span class="nav-icon">📊</span>
+        Attendance
+    </button>
 
-        <a href="assignments.html" class="nav-item active">
-            <div class="nav-icon">📝</div>
-            <span>Assignments</span>
-        </a>
+    <button class="nav-item"
+        onclick="window.location.href='academics.html'">
+        <span class="nav-icon">🎓</span>
+        Academics
+    </button>
 
-        <a href="results.html" class="nav-item">
-            <div class="nav-icon">▥</div>
-            <span>Results</span>
-        </a>
+    <button class="nav-item"
+        onclick="window.location.href='faculty.html'">
+        <span class="nav-icon">👩‍🏫</span>
+        Faculty
+    </button>
 
-        <a href="events.html" class="nav-item">
-            <div class="nav-icon">◷</div>
-            <span>Events</span>
-        </a>
+    <button class="nav-item"
+        onclick="window.location.href='placement.html'">
+        <span class="nav-icon">💼</span>
+        Placement
+    </button>
 
-        <a href="placement.html" class="nav-item">
-            <div class="nav-icon">💼</div>
-            <span>Placement</span>
-        </a>
+    <button class="nav-item"
+        onclick="window.location.href='results.html'">
+        <span class="nav-icon">📈</span>
+        Results
+    </button>
 
-        <a href="faculty.html" class="nav-item">
-            <div class="nav-icon">♙</div>
-            <span>Faculty</span>
-        </a>
+    <button class="nav-item"
+        onclick="window.location.href='documents.html'">
+        <span class="nav-icon">📄</span>
+        Documents
+    </button>
 
-        <a href="profile.html" class="nav-item">
-            <div class="nav-icon">◉</div>
-            <span>Profile</span>
-        </a>
+    <button class="nav-item"
+        onclick="window.location.href='complaints.html'">
+        <span class="nav-icon">📢</span>
+        Complaints
+    </button>
 
-    </aside>
+    <button class="nav-item"
+        onclick="window.location.href='feedback.html'">
+        <span class="nav-icon">💬</span>
+        Feedback
+    </button>
 
+    <button class="nav-item"
+        onclick="window.location.href='lost-found.html'">
+        <span class="nav-icon">🔎</span>
+        Lost & Found
+    </button>
 
-    <!-- ================= MAIN CONTENT ================= -->
+    <button class="nav-item"
+        onclick="window.location.href='campus.html'">
+        <span class="nav-icon">🏫</span>
+        Campus
+    </button>
 
-    <main class="main">
+    <button class="nav-item"
+        onclick="window.location.href='events.html'">
+        <span class="nav-icon">🎉</span>
+        Events
+    </button>
 
-        <!-- TOP BAR -->
+    <button class="nav-item"
+        onclick="window.location.href='exams.html'">
+        <span class="nav-icon">📋</span>
+        Exams
+    </button>
 
-        <div class="topbar">
+    <button class="nav-item"
+        onclick="window.location.href='notifications.html'">
+        <span class="nav-icon">🔔</span>
+        Notifications
+    </button>
 
-            <div class="page-title">
-                <h1>Assignments</h1>
-                <p>Track your assignments and submission deadlines</p>
-            </div>
+    <button class="nav-item"
+        onclick="window.location.href='profile.html'">
+        <span class="nav-icon">👤</span>
+        Profile
+    </button>
 
-            <div class="top-actions">
+    <button class="nav-item"
+        onclick="window.location.href='settings.html'">
+        <span class="nav-icon">⚙️</span>
+        Settings
+    </button>
 
-                <div class="notification">
-                    🔔
+</aside>
+
+<main class="main">
+
+    <header class="topbar">
+
+        <div style="display:flex;align-items:center;">
+
+            <button class="mobile-menu" onclick="toggleSidebar()">
+                ☰
+            </button>
+
+            <div>
+
+                <div class="page-title">
+                    Assignments
                 </div>
 
-                <div class="profile">
-                    <div class="profile-avatar">PB</div>
-
-                    <div class="profile-info">
-                        <div class="profile-name">Student</div>
-                        <div class="profile-role">Student</div>
-                    </div>
+                <div class="page-subtitle">
+                    Track your assignments and submission deadlines
                 </div>
 
             </div>
 
         </div>
 
+        <div class="top-right">
 
-        <!-- ================= STAT CARDS ================= -->
+            <div class="clock" id="clock"></div>
+
+            <div class="profile">
+
+                <div class="profile-avatar">
+                    P
+                </div>
+
+                <div class="profile-info">
+                    <strong id="studentName">Student</strong>
+                    <span>BCA Student</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+    <section class="content">
+
+        <div class="hero">
+
+            <h1>📝 My Assignments</h1>
+
+            <p>
+                View your assignments, submission status
+                and upcoming deadlines.
+            </p>
+
+        </div>
 
         <div class="stats">
 
             <div class="stat-card">
 
                 <div class="stat-top">
+
                     <div>
-                        <div class="stat-label">Total Assignments</div>
-                        <div class="stat-number" id="totalAssignments">0</div>
+
+                        <div class="stat-label">
+                            Total Assignments
+                        </div>
+
+                        <div class="stat-number"
+                             id="totalAssignments">
+                            0
+                        </div>
+
                     </div>
 
                     <div class="stat-icon purple">
                         📝
                     </div>
+
                 </div>
 
             </div>
 
-
             <div class="stat-card">
 
                 <div class="stat-top">
+
                     <div>
-                        <div class="stat-label">Pending</div>
-                        <div class="stat-number" id="pendingAssignments">0</div>
+
+                        <div class="stat-label">
+                            Pending
+                        </div>
+
+                        <div class="stat-number"
+                             id="pendingAssignments">
+                            0
+                        </div>
+
                     </div>
 
                     <div class="stat-icon orange">
                         ⏳
                     </div>
+
                 </div>
 
             </div>
 
-
             <div class="stat-card">
 
                 <div class="stat-top">
+
                     <div>
-                        <div class="stat-label">Submitted</div>
-                        <div class="stat-number" id="submittedAssignments">0</div>
+
+                        <div class="stat-label">
+                            Submitted
+                        </div>
+
+                        <div class="stat-number"
+                             id="submittedAssignments">
+                            0
+                        </div>
+
                     </div>
 
                     <div class="stat-icon green">
                         ✓
                     </div>
+
                 </div>
 
             </div>
 
-
             <div class="stat-card">
 
                 <div class="stat-top">
+
                     <div>
-                        <div class="stat-label">Overdue</div>
-                        <div class="stat-number" id="overdueAssignments">0</div>
+
+                        <div class="stat-label">
+                            Overdue
+                        </div>
+
+                        <div class="stat-number"
+                             id="overdueAssignments">
+                            0
+                        </div>
+
                     </div>
 
                     <div class="stat-icon blue">
                         ⚠
                     </div>
+
                 </div>
 
             </div>
 
         </div>
 
+        <div class="card">
 
-        <!-- ================= ASSIGNMENT CONTENT ================= -->
+            <div class="card-header">
 
-        <div class="content-card">
-
-            <div class="content-header">
-
-                <h2>My Assignments</h2>
+                <h2>Today's Assignments</h2>
 
                 <div class="filter-area">
 
                     <select id="subjectFilter">
-                        <option value="all">All Subjects</option>
-                        <option value="Web Technology">Web Technology</option>
-                        <option value="DBMS">DBMS</option>
-                        <option value="Java">Java</option>
-                        <option value="Python">Python</option>
+
+                        <option value="all">
+                            All Subjects
+                        </option>
+
+                        <option value="Web Technology">
+                            Web Technology
+                        </option>
+
+                        <option value="DBMS">
+                            DBMS
+                        </option>
+
+                        <option value="Java">
+                            Java
+                        </option>
+
+                        <option value="Python">
+                            Python
+                        </option>
+
                     </select>
 
                     <select id="statusFilter">
-                        <option value="all">All Status</option>
-                        <option value="Pending">Pending</option>
-                        <option value="Submitted">Submitted</option>
-                        <option value="Overdue">Overdue</option>
+
+                        <option value="all">
+                            All Status
+                        </option>
+
+                        <option value="Pending">
+                            Pending
+                        </option>
+
+                        <option value="Submitted">
+                            Submitted
+                        </option>
+
+                        <option value="Overdue">
+                            Overdue
+                        </option>
+
                     </select>
 
                 </div>
 
             </div>
 
-
             <div class="assignment-list" id="assignmentList">
 
-                <!-- Assignment 1 -->
                 <div class="assignment"
                      data-subject="Web Technology"
                      data-status="Pending">
@@ -698,8 +841,15 @@
                         </div>
 
                         <div class="assignment-info">
-                            <h3>Responsive Website Design</h3>
-                            <p>Web Technology • Assignment 01</p>
+
+                            <h3>
+                                Responsive Website Design
+                            </h3>
+
+                            <p>
+                                Web Technology • Assignment 01
+                            </p>
+
                         </div>
 
                     </div>
@@ -707,15 +857,23 @@
                     <div class="assignment-right">
 
                         <div class="due-date">
-                            <div class="due-label">Due Date</div>
-                            <div class="due-value">12 Sep 2026</div>
+
+                            <div class="due-label">
+                                Due Date
+                            </div>
+
+                            <div class="due-value">
+                                12 Sep 2026
+                            </div>
+
                         </div>
 
                         <div class="status pending">
                             Pending
                         </div>
 
-                        <button class="view-btn" onclick="viewAssignment('Responsive Website Design')">
+                        <button class="view-btn"
+                                onclick="viewAssignment('Responsive Website Design')">
                             View
                         </button>
 
@@ -723,8 +881,6 @@
 
                 </div>
 
-
-                <!-- Assignment 2 -->
                 <div class="assignment"
                      data-subject="DBMS"
                      data-status="Submitted">
@@ -736,8 +892,15 @@
                         </div>
 
                         <div class="assignment-info">
-                            <h3>Database Normalization</h3>
-                            <p>DBMS • Assignment 02</p>
+
+                            <h3>
+                                Database Normalization
+                            </h3>
+
+                            <p>
+                                DBMS • Assignment 02
+                            </p>
+
                         </div>
 
                     </div>
@@ -745,15 +908,23 @@
                     <div class="assignment-right">
 
                         <div class="due-date">
-                            <div class="due-label">Due Date</div>
-                            <div class="due-value">10 Sep 2026</div>
+
+                            <div class="due-label">
+                                Due Date
+                            </div>
+
+                            <div class="due-value">
+                                10 Sep 2026
+                            </div>
+
                         </div>
 
                         <div class="status submitted">
                             Submitted
                         </div>
 
-                        <button class="view-btn" onclick="viewAssignment('Database Normalization')">
+                        <button class="view-btn"
+                                onclick="viewAssignment('Database Normalization')">
                             View
                         </button>
 
@@ -761,8 +932,6 @@
 
                 </div>
 
-
-                <!-- Assignment 3 -->
                 <div class="assignment"
                      data-subject="Java"
                      data-status="Pending">
@@ -774,8 +943,15 @@
                         </div>
 
                         <div class="assignment-info">
-                            <h3>Object Oriented Programming</h3>
-                            <p>Java • Assignment 03</p>
+
+                            <h3>
+                                Object Oriented Programming
+                            </h3>
+
+                            <p>
+                                Java • Assignment 03
+                            </p>
+
                         </div>
 
                     </div>
@@ -783,15 +959,23 @@
                     <div class="assignment-right">
 
                         <div class="due-date">
-                            <div class="due-label">Due Date</div>
-                            <div class="due-value">15 Sep 2026</div>
+
+                            <div class="due-label">
+                                Due Date
+                            </div>
+
+                            <div class="due-value">
+                                15 Sep 2026
+                            </div>
+
                         </div>
 
                         <div class="status pending">
                             Pending
                         </div>
 
-                        <button class="view-btn" onclick="viewAssignment('Object Oriented Programming')">
+                        <button class="view-btn"
+                                onclick="viewAssignment('Object Oriented Programming')">
                             View
                         </button>
 
@@ -799,8 +983,6 @@
 
                 </div>
 
-
-                <!-- Assignment 4 -->
                 <div class="assignment"
                      data-subject="Python"
                      data-status="Submitted">
@@ -812,8 +994,15 @@
                         </div>
 
                         <div class="assignment-info">
-                            <h3>Python Data Structures</h3>
-                            <p>Python • Assignment 04</p>
+
+                            <h3>
+                                Python Data Structures
+                            </h3>
+
+                            <p>
+                                Python • Assignment 04
+                            </p>
+
                         </div>
 
                     </div>
@@ -821,15 +1010,23 @@
                     <div class="assignment-right">
 
                         <div class="due-date">
-                            <div class="due-label">Due Date</div>
-                            <div class="due-value">08 Sep 2026</div>
+
+                            <div class="due-label">
+                                Due Date
+                            </div>
+
+                            <div class="due-value">
+                                08 Sep 2026
+                            </div>
+
                         </div>
 
                         <div class="status submitted">
                             Submitted
                         </div>
 
-                        <button class="view-btn" onclick="viewAssignment('Python Data Structures')">
+                        <button class="view-btn"
+                                onclick="viewAssignment('Python Data Structures')">
                             View
                         </button>
 
@@ -837,8 +1034,6 @@
 
                 </div>
 
-
-                <!-- Assignment 5 -->
                 <div class="assignment"
                      data-subject="DBMS"
                      data-status="Overdue">
@@ -850,8 +1045,15 @@
                         </div>
 
                         <div class="assignment-info">
-                            <h3>SQL Queries and Joins</h3>
-                            <p>DBMS • Assignment 05</p>
+
+                            <h3>
+                                SQL Queries and Joins
+                            </h3>
+
+                            <p>
+                                DBMS • Assignment 05
+                            </p>
+
                         </div>
 
                     </div>
@@ -859,15 +1061,23 @@
                     <div class="assignment-right">
 
                         <div class="due-date">
-                            <div class="due-label">Due Date</div>
-                            <div class="due-value">05 Sep 2026</div>
+
+                            <div class="due-label">
+                                Due Date
+                            </div>
+
+                            <div class="due-value">
+                                05 Sep 2026
+                            </div>
+
                         </div>
 
                         <div class="status overdue">
                             Overdue
                         </div>
 
-                        <button class="view-btn" onclick="viewAssignment('SQL Queries and Joins')">
+                        <button class="view-btn"
+                                onclick="viewAssignment('SQL Queries and Joins')">
                             View
                         </button>
 
@@ -879,104 +1089,202 @@
 
         </div>
 
-    </main>
+    </section>
+
+</main>
+
+<script>
+
+/* ================= CLOCK ================= */
+
+function updateClock(){
+
+    const now = new Date();
+
+    document.getElementById("clock").textContent =
+        now.toLocaleTimeString("en-IN");
+
+}
+
+setInterval(updateClock,1000);
+
+updateClock();
 
 
-    <!-- ================= JAVASCRIPT ================= -->
+/* ================= SIDEBAR ================= */
 
-    <script>
+function toggleSidebar(){
 
-        const assignments = document.querySelectorAll(".assignment");
+    document
+        .getElementById("sidebar")
+        .classList.toggle("open");
 
-        function updateStats() {
-
-            let total = assignments.length;
-            let pending = 0;
-            let submitted = 0;
-            let overdue = 0;
-
-            assignments.forEach(function(assignment) {
-
-                const status = assignment.dataset.status;
-
-                if (status === "Pending") {
-                    pending++;
-                }
-
-                if (status === "Submitted") {
-                    submitted++;
-                }
-
-                if (status === "Overdue") {
-                    overdue++;
-                }
-
-            });
-
-            document.getElementById("totalAssignments").textContent = total;
-            document.getElementById("pendingAssignments").textContent = pending;
-            document.getElementById("submittedAssignments").textContent = submitted;
-            document.getElementById("overdueAssignments").textContent = overdue;
-        }
+}
 
 
-        function filterAssignments() {
+/* ================= STUDENT ================= */
 
-            const subject =
-                document.getElementById("subjectFilter").value;
+try{
 
-            const status =
-                document.getElementById("statusFilter").value;
+    const student =
+        JSON.parse(localStorage.getItem("student"));
 
-            assignments.forEach(function(assignment) {
+    if(student){
 
-                const assignmentSubject =
-                    assignment.dataset.subject;
+        const name =
+            student.name ||
+            student.username ||
+            student.fullName;
 
-                const assignmentStatus =
-                    assignment.dataset.status;
+        if(name){
 
-                const subjectMatch =
-                    subject === "all" ||
-                    assignmentSubject === subject;
-
-                const statusMatch =
-                    status === "all" ||
-                    assignmentStatus === status;
-
-                if (subjectMatch && statusMatch) {
-                    assignment.style.display = "flex";
-                } else {
-                    assignment.style.display = "none";=
-                }
-
-            });
-        }
-
-
-        function viewAssignment(name) {
-
-            alert(
-                "Assignment: " +
-                name +
-                "\n\nAssignment details will be connected to the backend later."
-            );
+            document.getElementById("studentName")
+                .textContent = name;
 
         }
 
+    }
 
-        document
-            .getElementById("subjectFilter")
-            .addEventListener("change", filterAssignments);
+}catch(error){
 
-        document
-            .getElementById("statusFilter")
-            .addEventListener("change", filterAssignments);
+    console.log("Student information not available.");
+
+}
 
 
-        updateStats();
+/* ================= ASSIGNMENT DATA ================= */
 
-    </script>
+const assignments =
+    document.querySelectorAll(".assignment");
+
+
+/* ================= STATS ================= */
+
+function updateStats(){
+
+    let total = assignments.length;
+    let pending = 0;
+    let submitted = 0;
+    let overdue = 0;
+
+    assignments.forEach(function(assignment){
+
+        const status =
+            assignment.dataset.status;
+
+        if(status === "Pending"){
+            pending++;
+        }
+
+        if(status === "Submitted"){
+            submitted++;
+        }
+
+        if(status === "Overdue"){
+            overdue++;
+        }
+
+    });
+
+    document.getElementById(
+        "totalAssignments"
+    ).textContent = total;
+
+    document.getElementById(
+        "pendingAssignments"
+    ).textContent = pending;
+
+    document.getElementById(
+        "submittedAssignments"
+    ).textContent = submitted;
+
+    document.getElementById(
+        "overdueAssignments"
+    ).textContent = overdue;
+
+}
+
+
+/* ================= FILTER ================= */
+
+function filterAssignments(){
+
+    const subject =
+        document.getElementById(
+            "subjectFilter"
+        ).value;
+
+    const status =
+        document.getElementById(
+            "statusFilter"
+        ).value;
+
+    assignments.forEach(function(assignment){
+
+        const assignmentSubject =
+            assignment.dataset.subject;
+
+        const assignmentStatus =
+            assignment.dataset.status;
+
+        const subjectMatch =
+            subject === "all" ||
+            assignmentSubject === subject;
+
+        const statusMatch =
+            status === "all" ||
+            assignmentStatus === status;
+
+        if(subjectMatch && statusMatch){
+
+            assignment.style.display = "flex";
+
+        }else{
+
+            assignment.style.display = "none";
+
+        }
+
+    });
+
+}
+
+
+/* ================= VIEW ================= */
+
+function viewAssignment(name){
+
+    alert(
+        "Assignment: " +
+        name +
+        "\n\nAssignment details will be connected to the backend later."
+    );
+
+}
+
+
+/* ================= EVENTS ================= */
+
+document
+    .getElementById("subjectFilter")
+    .addEventListener(
+        "change",
+        filterAssignments
+    );
+
+document
+    .getElementById("statusFilter")
+    .addEventListener(
+        "change",
+        filterAssignments
+    );
+
+
+/* ================= START ================= */
+
+updateStats();
+
+</script>
 
 </body>
 </html>
