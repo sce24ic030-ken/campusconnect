@@ -3,24 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CampusConnect - Placement</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<title>CampusConnect | Placement</title>
 
 <style>
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
 }
 
 body{
-    font-family:'Poppins',sans-serif;
-    background:#f5f7fb;
-    color:#1e293b;
+    background:#f4f7fb;
+    color:#1f2937;
+    min-height:100vh;
 }
 
-/* SIDEBAR */
+/* ================= SIDEBAR ================= */
+
 .sidebar{
     position:fixed;
     left:0;
@@ -29,60 +30,87 @@ body{
     height:100vh;
     background:linear-gradient(180deg,#172554,#312e81,#4c1d95);
     color:white;
-    padding:22px 15px;
-    overflow-y:auto;
+    padding:25px 15px;
     z-index:1000;
+    overflow-y:auto;
 }
 
 .logo{
-    font-size:24px;
-    font-weight:700;
-    text-align:center;
-    margin-bottom:25px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:0 12px 25px;
+    border-bottom:1px solid rgba(255,255,255,.2);
+    margin-bottom:20px;
 }
+
+.logo-icon{
+    width:45px;
+    height:45px;
+    border-radius:14px;
+    background:linear-gradient(135deg,#38bdf8,#a78bfa);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:23px;
+}
+
+.logo h2{
+    font-size:20px;
+}
+
+.logo span{
+    display:block;
+    font-size:11px;
+    opacity:.7;
+    margin-top:3px;
+}
+
+/* MODULES - SAME AS TIMETABLE */
 
 .nav-item{
     width:100%;
     border:none;
     background:transparent;
-    color:#e0e7ff;
-    padding:12px 14px;
-    margin:3px 0;
-    border-radius:10px;
-    text-align:left;
-    font-family:inherit;
-    font-size:14px;
-    cursor:pointer;
+    color:#dbeafe;
     display:flex;
     align-items:center;
-    gap:12px;
-    transition:.2s;
+    gap:13px;
+    padding:13px 15px;
+    margin:4px 0;
+    border-radius:12px;
+    cursor:pointer;
+    font-size:14px;
+    text-align:left;
+    transition:.25s;
 }
 
 .nav-item:hover{
     background:rgba(255,255,255,.12);
+    transform:translateX(4px);
     color:white;
 }
 
 .nav-item.active{
-    background:linear-gradient(90deg,#22d3ee,#8b5cf6);
+    background:linear-gradient(90deg,#38bdf8,#8b5cf6);
     color:white;
-    font-weight:600;
 }
 
 .nav-icon{
-    width:24px;
+    width:25px;
     text-align:center;
     font-size:17px;
 }
 
-/* MAIN */
+/* ================= MAIN ================= */
+
 .main{
     margin-left:250px;
     min-height:100vh;
 }
 
-/* TOPBAR */
+/* ================= TOPBAR ================= */
+
 .topbar{
     height:75px;
     background:white;
@@ -90,103 +118,150 @@ body{
     align-items:center;
     justify-content:space-between;
     padding:0 30px;
-    box-shadow:0 2px 10px rgba(0,0,0,.06);
+    border-bottom:1px solid #e5e7eb;
+    position:sticky;
+    top:0;
+    z-index:500;
 }
 
-.brand{
-    font-size:22px;
+.page-title{
+    font-size:21px;
     font-weight:700;
-    color:#312e81;
 }
 
-.back-btn{
-    border:none;
-    background:#eef2ff;
-    color:#312e81;
-    padding:9px 16px;
-    border-radius:8px;
-    cursor:pointer;
-    font-family:inherit;
-    font-weight:500;
+.page-subtitle{
+    font-size:12px;
+    color:#6b7280;
+    margin-top:4px;
 }
 
-/* CONTENT */
-.container{
+.top-right{
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+.clock{
+    font-size:13px;
+    color:#64748b;
+}
+
+.profile{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.profile-avatar{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#06b6d4,#6366f1);
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:bold;
+}
+
+.profile-info strong{
+    display:block;
+    font-size:13px;
+}
+
+.profile-info span{
+    font-size:11px;
+    color:#64748b;
+}
+
+/* ================= CONTENT ================= */
+
+.content{
     padding:30px;
 }
 
+/* ================= HERO ================= */
+
 .hero{
-    background:linear-gradient(135deg,#172554,#4c1d95);
+    background:linear-gradient(120deg,#172554,#312e81,#6d28d9);
+    border-radius:24px;
+    padding:30px;
     color:white;
-    padding:32px;
-    border-radius:18px;
     margin-bottom:25px;
 }
 
 .hero h1{
-    font-size:30px;
+    font-size:28px;
     margin-bottom:8px;
 }
 
 .hero p{
-    opacity:.9;
+    font-size:13px;
+    color:#dbeafe;
 }
 
-/* STATS */
+/* ================= STATS ================= */
+
 .stats{
     display:grid;
     grid-template-columns:repeat(4,1fr);
     gap:18px;
-    margin-bottom:25px;
+    margin-bottom:28px;
 }
 
 .stat-card{
     background:white;
+    border:1px solid #e5e7eb;
+    border-radius:18px;
     padding:22px;
-    border-radius:15px;
-    box-shadow:0 4px 15px rgba(0,0,0,.06);
 }
 
-.stat-card h2{
-    color:#4c1d95;
-    font-size:27px;
-    margin-bottom:5px;
-}
-
-.stat-card p{
+.stat-title{
     color:#64748b;
-    font-size:13px;
+    font-size:12px;
+    margin-bottom:8px;
 }
 
-/* SECTIONS */
+.stat-value{
+    font-size:25px;
+    font-weight:700;
+    color:#172554;
+}
+
+/* ================= SECTION ================= */
+
 .section{
-    margin-bottom:30px;
+    margin-bottom:28px;
+}
+
+.section-header{
+    margin-bottom:16px;
 }
 
 .section-title{
-    font-size:21px;
-    margin-bottom:16px;
-    color:#1e293b;
+    font-size:19px;
+    font-weight:700;
 }
 
-/* COMPANY CARDS */
+/* ================= COMPANIES ================= */
+
 .company-grid{
     display:grid;
     grid-template-columns:repeat(3,1fr);
-    gap:20px;
+    gap:18px;
 }
 
 .company-card{
     background:white;
-    border-radius:15px;
+    border:1px solid #e5e7eb;
+    border-radius:18px;
     padding:22px;
-    box-shadow:0 4px 15px rgba(0,0,0,.06);
 }
 
 .company-logo{
-    width:55px;
-    height:55px;
-    border-radius:12px;
+    width:50px;
+    height:50px;
+    border-radius:14px;
     background:#eef2ff;
     display:flex;
     align-items:center;
@@ -196,133 +271,147 @@ body{
 }
 
 .company-card h3{
-    margin-bottom:7px;
+    font-size:16px;
+    margin-bottom:5px;
 }
 
 .company-card p{
     color:#64748b;
-    font-size:13px;
-    margin:5px 0;
+    font-size:12px;
+    line-height:1.6;
+    margin-bottom:15px;
 }
 
-.badge{
-    display:inline-block;
-    background:#dcfce7;
-    color:#166534;
-    padding:5px 10px;
-    border-radius:20px;
-    font-size:11px;
-    margin-top:10px;
+.company-btn{
+    border:none;
+    background:#4f46e5;
+    color:white;
+    padding:9px 15px;
+    border-radius:9px;
+    cursor:pointer;
+    font-size:12px;
 }
 
-/* DRIVES */
-.drive-grid{
+/* ================= DRIVES ================= */
+
+.drive-list{
     display:grid;
     grid-template-columns:repeat(2,1fr);
-    gap:18px;
+    gap:15px;
 }
 
 .drive-card{
     background:white;
+    border:1px solid #e5e7eb;
+    border-radius:16px;
     padding:20px;
-    border-radius:15px;
-    box-shadow:0 4px 15px rgba(0,0,0,.06);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 }
 
-.drive-card h3{
-    color:#312e81;
-    margin-bottom:8px;
+.drive-company{
+    font-size:15px;
+    font-weight:600;
 }
 
-.drive-card p{
-    font-size:13px;
+.drive-role{
     color:#64748b;
-    margin:5px 0;
+    font-size:12px;
+    margin-top:4px;
 }
 
-.register-btn{
-    margin-top:14px;
-    border:none;
-    background:#4c1d95;
-    color:white;
-    padding:9px 15px;
-    border-radius:8px;
-    cursor:pointer;
-    font-family:inherit;
+.drive-date{
+    color:#6366f1;
+    font-size:12px;
+    font-weight:600;
 }
 
-/* PREPARATION */
+/* ================= PREPARATION ================= */
+
 .prep-grid{
     display:grid;
     grid-template-columns:repeat(4,1fr);
-    gap:18px;
+    gap:16px;
 }
 
 .prep-card{
     background:white;
+    border:1px solid #e5e7eb;
+    border-radius:16px;
     padding:20px;
-    border-radius:15px;
-    text-align:center;
-    box-shadow:0 4px 15px rgba(0,0,0,.06);
 }
 
 .prep-icon{
-    font-size:32px;
+    font-size:25px;
     margin-bottom:10px;
 }
 
 .prep-card h3{
-    font-size:16px;
-    margin-bottom:7px;
+    font-size:14px;
+    margin-bottom:6px;
 }
 
 .prep-card p{
-    font-size:12px;
     color:#64748b;
+    font-size:12px;
+    line-height:1.6;
 }
 
-/* TIPS */
+/* ================= TIPS ================= */
+
 .tips{
-    background:white;
-    padding:24px;
-    border-radius:15px;
-    box-shadow:0 4px 15px rgba(0,0,0,.06);
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:16px;
 }
 
 .tip{
-    display:flex;
-    gap:12px;
-    padding:12px 0;
-    border-bottom:1px solid #e2e8f0;
-    font-size:14px;
-}
-
-.tip:last-child{
-    border-bottom:none;
-}
-
-.tip-number{
-    width:28px;
-    height:28px;
-    background:#ede9fe;
-    color:#4c1d95;
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-weight:600;
-}
-
-/* FOOTER */
-.footer{
-    text-align:center;
-    color:#64748b;
-    font-size:12px;
+    background:white;
+    border:1px solid #e5e7eb;
+    border-radius:16px;
     padding:20px;
 }
 
-/* MOBILE */
-@media(max-width:900px){
+.tip-number{
+    font-size:22px;
+    font-weight:700;
+    color:#6366f1;
+    margin-bottom:7px;
+}
+
+.tip h3{
+    font-size:14px;
+    margin-bottom:6px;
+}
+
+.tip p{
+    color:#64748b;
+    font-size:12px;
+    line-height:1.6;
+}
+
+/* ================= FOOTER ================= */
+
+.footer{
+    text-align:center;
+    padding:25px;
+    color:#64748b;
+    font-size:12px;
+}
+
+/* ================= MOBILE ================= */
+
+.mobile-menu{
+    display:none;
+    border:none;
+    background:none;
+    font-size:22px;
+    cursor:pointer;
+}
+
+@media(max-width:1000px){
+
     .stats{
         grid-template-columns:repeat(2,1fr);
     }
@@ -331,54 +420,51 @@ body{
         grid-template-columns:1fr;
     }
 
-    .prep-grid{
+    .prep-grid,
+    .tips{
         grid-template-columns:repeat(2,1fr);
     }
 }
 
 @media(max-width:700px){
+
     .sidebar{
         width:220px;
+        transform:translateX(-100%);
+        transition:.3s;
     }
 
-    .main{
-        margin-left:220px;
-    }
-
-    .topbar{
-        padding:0 15px;
-    }
-
-    .container{
-        padding:18px;
-    }
-
-    .drive-grid{
-        grid-template-columns:1fr;
-    }
-}
-
-@media(max-width:550px){
-    .sidebar{
-        position:relative;
-        width:100%;
-        height:auto;
+    .sidebar.open{
+        transform:translateX(0);
     }
 
     .main{
         margin-left:0;
     }
 
-    .stats{
-        grid-template-columns:1fr;
+    .mobile-menu{
+        display:block;
+        margin-right:15px;
     }
 
-    .prep-grid{
-        grid-template-columns:1fr;
+    .topbar{
+        padding:0 15px;
     }
 
-    .hero h1{
-        font-size:23px;
+    .clock,
+    .profile-info{
+        display:none;
+    }
+
+    .content{
+        padding:15px;
+    }
+
+    .stats,
+    .drive-list,
+    .prep-grid,
+    .tips{
+        grid-template-columns:1fr;
     }
 }
 </style>
@@ -386,166 +472,359 @@ body{
 
 <body>
 
-<!-- SIDEBAR -->
-<aside class="sidebar">
+<!-- ================= SIDEBAR ================= -->
 
-    <div class="logo">🎓 CampusConnect</div>
+<aside class="sidebar" id="sidebar">
 
-    <button class="nav-item" onclick="go('dashboard')">
-        <span class="nav-icon">🏠</span> Dashboard
+    <div class="logo">
+        <div class="logo-icon">🎓</div>
+
+        <div>
+            <h2>CampusConnect</h2>
+            <span>AI College Companion</span>
+        </div>
+    </div>
+
+
+    <button class="nav-item"
+        onclick="window.location.href='../dashboard.html'">
+        <span class="nav-icon">🏠</span>
+        Dashboard
     </button>
 
-    <button class="nav-item" onclick="go('courses')">
-        <span class="nav-icon">📚</span> My Courses
+
+    <button class="nav-item"
+        onclick="window.location.href='../dashboard.html'">
+        <span class="nav-icon">📚</span>
+        My Courses
     </button>
 
-    <button class="nav-item" onclick="go('timetable')">
-        <span class="nav-icon">🗓️</span> Timetable
+
+    <button class="nav-item"
+        onclick="window.location.href='timetable.html'">
+        <span class="nav-icon">🗓️</span>
+        Timetable
     </button>
 
-    <button class="nav-item" onclick="go('assignments')">
-        <span class="nav-icon">📝</span> Assignments
+
+    <button class="nav-item"
+        onclick="window.location.href='assignments.html'">
+        <span class="nav-icon">📝</span>
+        Assignments
     </button>
 
-    <button class="nav-item" onclick="go('attendance')">
-        <span class="nav-icon">📊</span> Attendance
+
+    <button class="nav-item"
+        onclick="window.location.href='attendance.html'">
+        <span class="nav-icon">📊</span>
+        Attendance
     </button>
 
-    <button class="nav-item" onclick="go('academics')">
-        <span class="nav-icon">🎓</span> Academics
+
+    <button class="nav-item"
+        onclick="window.location.href='academics.html'">
+        <span class="nav-icon">🎓</span>
+        Academics
     </button>
 
-    <button class="nav-item" onclick="go('faculty')">
-        <span class="nav-icon">👨‍🏫</span> Faculty
+
+    <button class="nav-item"
+        onclick="window.location.href='faculty.html'">
+        <span class="nav-icon">👩‍🏫</span>
+        Faculty
     </button>
 
-    <button class="nav-item active" onclick="go('placement')">
-        <span class="nav-icon">💼</span> Placement
+
+    <!-- PLACEMENT ACTIVE -->
+
+    <button class="nav-item active"
+        onclick="window.location.href='placement.html'">
+        <span class="nav-icon">💼</span>
+        Placement
     </button>
 
-    <button class="nav-item" onclick="go('results')">
-        <span class="nav-icon">📈</span> Results
+
+    <button class="nav-item"
+        onclick="window.location.href='results.html'">
+        <span class="nav-icon">📈</span>
+        Results
     </button>
 
-    <button class="nav-item" onclick="go('documents')">
-        <span class="nav-icon">📄</span> Documents
+
+    <button class="nav-item"
+        onclick="window.location.href='documents.html'">
+        <span class="nav-icon">📄</span>
+        Documents
     </button>
 
-    <button class="nav-item" onclick="go('complaints')">
-        <span class="nav-icon">📢</span> Complaints
+
+    <button class="nav-item"
+        onclick="window.location.href='complaints.html'">
+        <span class="nav-icon">📢</span>
+        Complaints
     </button>
 
-    <button class="nav-item" onclick="go('feedback')">
-        <span class="nav-icon">💬</span> Feedback
+
+    <button class="nav-item"
+        onclick="window.location.href='feedback.html'">
+        <span class="nav-icon">💬</span>
+        Feedback
     </button>
 
-    <button class="nav-item" onclick="go('lost-found')">
-        <span class="nav-icon">🔎</span> Lost & Found
+
+    <button class="nav-item"
+        onclick="window.location.href='lost-found.html'">
+        <span class="nav-icon">🔎</span>
+        Lost & Found
     </button>
 
-    <button class="nav-item" onclick="go('campus')">
-        <span class="nav-icon">🏫</span> Campus
+
+    <button class="nav-item"
+        onclick="window.location.href='campus.html'">
+        <span class="nav-icon">🏫</span>
+        Campus
     </button>
 
-    <button class="nav-item" onclick="go('events')">
-        <span class="nav-icon">🎉</span> Events
+
+    <button class="nav-item"
+        onclick="window.location.href='events.html'">
+        <span class="nav-icon">🎉</span>
+        Events
     </button>
 
-    <button class="nav-item" onclick="go('exams')">
-        <span class="nav-icon">📋</span> Exams
+
+    <button class="nav-item"
+        onclick="window.location.href='exams.html'">
+        <span class="nav-icon">📋</span>
+        Exams
     </button>
 
-    <button class="nav-item" onclick="go('notifications')">
-        <span class="nav-icon">🔔</span> Notifications
+
+    <button class="nav-item"
+        onclick="window.location.href='notifications.html'">
+        <span class="nav-icon">🔔</span>
+        Notifications
     </button>
 
-    <button class="nav-item" onclick="go('profile')">
-        <span class="nav-icon">👤</span> Profile
+
+    <button class="nav-item"
+        onclick="window.location.href='profile.html'">
+        <span class="nav-icon">👤</span>
+        Profile
     </button>
 
-    <button class="nav-item" onclick="go('settings')">
-        <span class="nav-icon">⚙️</span> Settings
+
+    <button class="nav-item"
+        onclick="window.location.href='settings.html'">
+        <span class="nav-icon">⚙️</span>
+        Settings
     </button>
 
 </aside>
 
 
-<!-- MAIN -->
-<div class="main">
+<!-- ================= MAIN ================= -->
 
-    <div class="topbar">
-        <div class="brand">CampusConnect</div>
+<main class="main">
 
-        <button class="back-btn" onclick="go('dashboard')">
-            ← Dashboard
-        </button>
-    </div>
+    <header class="topbar">
+
+        <div style="display:flex;align-items:center;">
+
+            <button class="mobile-menu"
+                onclick="toggleSidebar()">
+                ☰
+            </button>
+
+            <div>
+
+                <div class="page-title">
+                    Placement
+                </div>
+
+                <div class="page-subtitle">
+                    Career & Placement Center
+                </div>
+
+            </div>
+
+        </div>
 
 
-    <div class="container">
+        <div class="top-right">
+
+            <div class="clock" id="clock"></div>
+
+            <div class="profile">
+
+                <div class="profile-avatar">
+                    P
+                </div>
+
+                <div class="profile-info">
+
+                    <strong id="studentName">
+                        Student
+                    </strong>
+
+                    <span>
+                        BCA Student
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <section class="content">
+
 
         <!-- HERO -->
-        <section class="hero">
-            <h1>Career & Placement Center</h1>
-            <p>Build Your Career With Confidence</p>
-        </section>
+
+        <div class="hero">
+
+            <h1>
+                Career & Placement Center
+            </h1>
+
+            <p>
+                Build Your Career With Confidence
+            </p>
+
+        </div>
 
 
         <!-- STATS -->
-        <section class="stats">
 
-            <div class="stat-card">
-                <h2>25+</h2>
-                <p>Partner Companies</p>
-            </div>
+        <section class="section">
 
-            <div class="stat-card">
-                <h2>18</h2>
-                <p>Active Opportunities</p>
-            </div>
+            <div class="stats">
 
-            <div class="stat-card">
-                <h2>92%</h2>
-                <p>Placement Assistance</p>
-            </div>
+                <div class="stat-card">
+                    <div class="stat-title">
+                        Partner Companies
+                    </div>
 
-            <div class="stat-card">
-                <h2>8.5 LPA</h2>
-                <p>Highest Package</p>
+                    <div class="stat-value">
+                        25+
+                    </div>
+                </div>
+
+
+                <div class="stat-card">
+                    <div class="stat-title">
+                        Active Opportunities
+                    </div>
+
+                    <div class="stat-value">
+                        18
+                    </div>
+                </div>
+
+
+                <div class="stat-card">
+                    <div class="stat-title">
+                        Placement Assistance
+                    </div>
+
+                    <div class="stat-value">
+                        92%
+                    </div>
+                </div>
+
+
+                <div class="stat-card">
+                    <div class="stat-title">
+                        Highest Package
+                    </div>
+
+                    <div class="stat-value">
+                        8.5 LPA
+                    </div>
+                </div>
+
             </div>
 
         </section>
 
 
         <!-- FEATURED COMPANIES -->
+
         <section class="section">
 
-            <h2 class="section-title">Featured Companies</h2>
+            <div class="section-header">
+                <div class="section-title">
+                    Featured Companies
+                </div>
+            </div>
+
 
             <div class="company-grid">
 
                 <div class="company-card">
-                    <div class="company-logo">💻</div>
-                    <h3>Tech Solutions</h3>
-                    <p>Software Development</p>
-                    <p>Package: 6 - 8 LPA</p>
-                    <span class="badge">Hiring Now</span>
+
+                    <div class="company-logo">
+                        💻
+                    </div>
+
+                    <h3>Infosys</h3>
+
+                    <p>
+                        Software Development & IT Services
+                    </p>
+
+                    <button
+                        class="company-btn"
+                        onclick="showMessage('Infosys')">
+                        View Opportunities
+                    </button>
+
                 </div>
 
-                <div class="company-card">
-                    <div class="company-logo">🚀</div>
-                    <h3>Innovate Labs</h3>
-                    <p>Technology & Innovation</p>
-                    <p>Package: 5 - 7 LPA</p>
-                    <span class="badge">Hiring Now</span>
-                </div>
 
                 <div class="company-card">
-                    <div class="company-logo">🌐</div>
-                    <h3>Digital Works</h3>
-                    <p>Web & Digital Services</p>
-                    <p>Package: 4 - 6 LPA</p>
-                    <span class="badge">Open Positions</span>
+
+                    <div class="company-logo">
+                        🚀
+                    </div>
+
+                    <h3>TCS</h3>
+
+                    <p>
+                        Technology & Consulting
+                    </p>
+
+                    <button
+                        class="company-btn"
+                        onclick="showMessage('TCS')">
+                        View Opportunities
+                    </button>
+
+                </div>
+
+
+                <div class="company-card">
+
+                    <div class="company-logo">
+                        🏢
+                    </div>
+
+                    <h3>Wipro</h3>
+
+                    <p>
+                        IT Services & Digital Solutions
+                    </p>
+
+                    <button
+                        class="company-btn"
+                        onclick="showMessage('Wipro')">
+                        View Opportunities
+                    </button>
+
                 </div>
 
             </div>
@@ -554,58 +833,91 @@ body{
 
 
         <!-- UPCOMING DRIVES -->
+
         <section class="section">
 
-            <h2 class="section-title">Upcoming Placement Drives</h2>
+            <div class="section-header">
+                <div class="section-title">
+                    Upcoming Placement Drives
+                </div>
+            </div>
 
-            <div class="drive-grid">
+
+            <div class="drive-list">
 
                 <div class="drive-card">
-                    <h3>Software Developer</h3>
-                    <p>🏢 Tech Solutions</p>
-                    <p>📅 September 15, 2026</p>
-                    <p>💰 6 - 8 LPA</p>
 
-                    <button class="register-btn"
-                            onclick="showMessage('Software Developer - Tech Solutions')">
-                        Register
-                    </button>
+                    <div>
+                        <div class="drive-company">
+                            Infosys
+                        </div>
+
+                        <div class="drive-role">
+                            System Engineer
+                        </div>
+                    </div>
+
+                    <div class="drive-date">
+                        15 Sep 2026
+                    </div>
+
                 </div>
 
-                <div class="drive-card">
-                    <h3>Web Developer</h3>
-                    <p>🏢 Digital Works</p>
-                    <p>📅 September 20, 2026</p>
-                    <p>💰 4 - 6 LPA</p>
 
-                    <button class="register-btn"
-                            onclick="showMessage('Web Developer - Digital Works')">
-                        Register
-                    </button>
+                <div class="drive-card">
+
+                    <div>
+                        <div class="drive-company">
+                            TCS
+                        </div>
+
+                        <div class="drive-role">
+                            Graduate Engineer Trainee
+                        </div>
+                    </div>
+
+                    <div class="drive-date">
+                        18 Sep 2026
+                    </div>
+
                 </div>
 
-                <div class="drive-card">
-                    <h3>Graduate Engineer Trainee</h3>
-                    <p>🏢 Innovate Labs</p>
-                    <p>📅 September 25, 2026</p>
-                    <p>💰 5 - 7 LPA</p>
 
-                    <button class="register-btn"
-                            onclick="showMessage('Graduate Engineer Trainee - Innovate Labs')">
-                        Register
-                    </button>
+                <div class="drive-card">
+
+                    <div>
+                        <div class="drive-company">
+                            Wipro
+                        </div>
+
+                        <div class="drive-role">
+                            Project Engineer
+                        </div>
+                    </div>
+
+                    <div class="drive-date">
+                        22 Sep 2026
+                    </div>
+
                 </div>
 
-                <div class="drive-card">
-                    <h3>Data Analyst</h3>
-                    <p>🏢 Tech Solutions</p>
-                    <p>📅 October 2, 2026</p>
-                    <p>💰 5 - 7 LPA</p>
 
-                    <button class="register-btn"
-                            onclick="showMessage('Data Analyst - Tech Solutions')">
-                        Register
-                    </button>
+                <div class="drive-card">
+
+                    <div>
+                        <div class="drive-company">
+                            Accenture
+                        </div>
+
+                        <div class="drive-role">
+                            Associate Software Engineer
+                        </div>
+                    </div>
+
+                    <div class="drive-date">
+                        25 Sep 2026
+                    </div>
+
                 </div>
 
             </div>
@@ -614,34 +926,75 @@ body{
 
 
         <!-- PREPARATION -->
+
         <section class="section">
 
-            <h2 class="section-title">Placement Preparation</h2>
+            <div class="section-header">
+                <div class="section-title">
+                    Placement Preparation
+                </div>
+            </div>
+
 
             <div class="prep-grid">
 
                 <div class="prep-card">
-                    <div class="prep-icon">🧠</div>
+
+                    <div class="prep-icon">
+                        🧠
+                    </div>
+
                     <h3>Aptitude</h3>
-                    <p>Practice quantitative and logical reasoning.</p>
+
+                    <p>
+                        Practice quantitative, logical and verbal reasoning questions.
+                    </p>
+
                 </div>
 
+
                 <div class="prep-card">
-                    <div class="prep-icon">💻</div>
+
+                    <div class="prep-icon">
+                        💻
+                    </div>
+
                     <h3>Coding</h3>
-                    <p>Improve programming and problem-solving skills.</p>
+
+                    <p>
+                        Improve your programming and problem-solving skills.
+                    </p>
+
                 </div>
 
-                <div class="prep-card">
-                    <div class="prep-icon">🎤</div>
-                    <h3>Interview</h3>
-                    <p>Prepare for technical and HR interviews.</p>
-                </div>
 
                 <div class="prep-card">
-                    <div class="prep-icon">📄</div>
+
+                    <div class="prep-icon">
+                        📄
+                    </div>
+
                     <h3>Resume</h3>
-                    <p>Create a professional and impressive resume.</p>
+
+                    <p>
+                        Create a professional resume that highlights your strengths.
+                    </p>
+
+                </div>
+
+
+                <div class="prep-card">
+
+                    <div class="prep-icon">
+                        🎤
+                    </div>
+
+                    <h3>Interview</h3>
+
+                    <p>
+                        Prepare for technical and HR interview rounds.
+                    </p>
+
                 </div>
 
             </div>
@@ -650,85 +1003,172 @@ body{
 
 
         <!-- TIPS -->
+
         <section class="section">
 
-            <h2 class="section-title">Placement Tips</h2>
+            <div class="section-header">
+                <div class="section-title">
+                    Placement Tips
+                </div>
+            </div>
+
 
             <div class="tips">
 
                 <div class="tip">
-                    <div class="tip-number">1</div>
-                    <div>Build strong fundamentals in programming and computer science.</div>
+
+                    <div class="tip-number">
+                        01
+                    </div>
+
+                    <h3>
+                        Build Strong Basics
+                    </h3>
+
+                    <p>
+                        Focus on programming fundamentals and core subjects.
+                    </p>
+
                 </div>
 
-                <div class="tip">
-                    <div class="tip-number">2</div>
-                    <div>Practice coding problems regularly.</div>
-                </div>
 
                 <div class="tip">
-                    <div class="tip-number">3</div>
-                    <div>Keep your resume updated with projects and skills.</div>
+
+                    <div class="tip-number">
+                        02
+                    </div>
+
+                    <h3>
+                        Practice Regularly
+                    </h3>
+
+                    <p>
+                        Solve coding and aptitude problems every day.
+                    </p>
+
                 </div>
 
+
                 <div class="tip">
-                    <div class="tip-number">4</div>
-                    <div>Improve communication and interview skills.</div>
+
+                    <div class="tip-number">
+                        03
+                    </div>
+
+                    <h3>
+                        Improve Communication
+                    </h3>
+
+                    <p>
+                        Develop confidence and communication skills for interviews.
+                    </p>
+
+                </div>
+
+
+                <div class="tip">
+
+                    <div class="tip-number">
+                        04
+                    </div>
+
+                    <h3>
+                        Stay Updated
+                    </h3>
+
+                    <p>
+                        Keep track of placement drives and company requirements.
+                    </p>
+
                 </div>
 
             </div>
 
         </section>
 
-    </div>
 
+        <footer class="footer">
+            © 2026 CampusConnect. All rights reserved.
+        </footer>
 
-    <div class="footer">
-        © 2026 CampusConnect. All Rights Reserved.
-    </div>
+    </section>
 
-</div>
+</main>
 
 
 <script>
-const pages = {
-    dashboard: "../dashboard.html",
-    courses: "../dashboard.html",
-    timetable: "timetable.html",
-    assignments: "../dashboard.html",
-    attendance: "attendance.html",
-    academics: "academics.html",
-    faculty: "faculty.html",
-    placement: "placement.html",
-    results: "results.html",
-    documents: "documents.html",
-    complaints: "complaints.html",
-    feedback: "feedback.html",
-    "lost-found": "lost-found.html",
-    campus: "campus.html",
-    events: "events.html",
-    exams: "exams.html",
-    notifications: "notifications.html",
-    profile: "profile.html",
-    settings: "settings.html"
-};
 
-function go(page){
-    if(pages[page]){
-        window.location.href = pages[page];
+/* ================= CLOCK ================= */
+
+function updateClock(){
+
+    const now = new Date();
+
+    document.getElementById("clock").textContent =
+        now.toLocaleTimeString("en-IN");
+
+}
+
+setInterval(updateClock,1000);
+
+updateClock();
+
+
+/* ================= STUDENT NAME ================= */
+
+try{
+
+    const student =
+        JSON.parse(localStorage.getItem("student"));
+
+    if(student){
+
+        const name =
+            student.name ||
+            student.username ||
+            student.fullName;
+
+        if(name){
+
+            document.getElementById("studentName")
+                .textContent = name;
+
+        }
+
     }
-}
 
-function showMessage(eventName){
-    alert(
-        "🎉 Registration Successful!\n\n" +
-        eventName +
-        "\n\nYour registration has been saved for this frontend demo."
+}catch(error){
+
+    console.log(
+        "Student information not available."
     );
-}
-</script>
 
-<script src="../js/placement.js"></script>
+}
+
+
+/* ================= MOBILE SIDEBAR ================= */
+
+function toggleSidebar(){
+
+    document
+        .getElementById("sidebar")
+        .classList.toggle("open");
+
+}
+
+
+/* ================= COMPANY MESSAGE ================= */
+
+function showMessage(company){
+
+    alert(
+        company +
+        " opportunities will be connected with the backend soon."
+    );
+
+}
+
+</script>
 
 </body>
 </html>
