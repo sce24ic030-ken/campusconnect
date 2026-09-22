@@ -1,652 +1,2218 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>CampusConnect | Assignments</title>
 
 <style>
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Arial,Helvetica,sans-serif;
 }
 
+html,
 body{
-    background:#f4f7fb;
-    color:#1f2937;
-    min-height:100vh;
+    width:100%;
+    height:100%;
+    font-family:"Segoe UI",Arial,sans-serif;
+    background:#f4f6ff;
+    color:#17203a;
 }
+
+button,
+input,
+select{
+    font-family:inherit;
+}
+
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
 
 .sidebar{
     position:fixed;
     left:0;
     top:0;
-    width:250px;
-    height:100vh;
-    background:linear-gradient(180deg,#172554,#312e81,#4c1d95);
+    bottom:0;
+    width:268px;
+    min-width:268px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #172a70 0%,
+            #28237d 48%,
+            #5520a7 100%
+        );
+
     color:white;
-    padding:25px 15px;
-    z-index:1000;
     overflow-y:auto;
+    overflow-x:hidden;
+    z-index:1000;
+    padding-bottom:20px;
+
+    scrollbar-width:thin;
+    scrollbar-color:rgba(255,255,255,.25) transparent;
 }
 
-.logo{
+
+/* =========================================================
+   BRAND
+========================================================= */
+
+.brand{
+    height:120px;
     display:flex;
     align-items:center;
-    gap:12px;
-    padding:0 12px 25px;
-    border-bottom:1px solid rgba(255,255,255,.2);
-    margin-bottom:20px;
+    padding:22px 18px;
+
+    border-bottom:
+        1px solid rgba(255,255,255,.12);
 }
 
-.logo-icon{
-    width:45px;
-    height:45px;
-    border-radius:14px;
-    background:linear-gradient(135deg,#38bdf8,#a78bfa);
+.logo-box{
+    width:52px;
+    height:52px;
+    border-radius:16px;
+
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:23px;
+
+    font-size:28px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #24b8ff,
+            #7144f5
+        );
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,.20);
 }
 
-.logo h2{
-    font-size:20px;
+.brand-text{
+    margin-left:13px;
 }
 
-.logo span{
-    display:block;
-    font-size:11px;
-    opacity:.7;
+.brand-title{
+    font-size:21px;
+    font-weight:800;
+    letter-spacing:-.5px;
+}
+
+.brand-subtitle{
+    font-size:12px;
+    opacity:.72;
     margin-top:3px;
+}
+
+
+/* =========================================================
+   MENU
+========================================================= */
+
+.menu{
+    padding:25px 14px;
+}
+
+.menu-title{
+    font-size:12px;
+    font-weight:700;
+    color:rgba(255,255,255,.52);
+    letter-spacing:1px;
+    padding:0 11px 10px;
+}
+
+.menu-section{
+    margin-top:20px;
 }
 
 .nav-item{
     width:100%;
-    border:none;
-    background:transparent;
-    color:#dbeafe;
     display:flex;
     align-items:center;
-    gap:13px;
-    padding:13px 15px;
-    margin:4px 0;
-    border-radius:12px;
-    cursor:pointer;
-    font-size:14px;
-    text-align:left;
-    transition:.25s;
+
+    min-height:49px;
+
+    padding:0 14px;
+    margin:5px 0;
+
+    border-radius:13px;
+
+    color:rgba(255,255,255,.84);
+    text-decoration:none;
+
+    transition:
+        transform .2s ease,
+        background .2s ease,
+        color .2s ease;
 }
 
 .nav-item:hover{
     background:rgba(255,255,255,.12);
-    transform:translateX(4px);
     color:white;
+    transform:translateX(3px);
 }
 
 .nav-item.active{
-    background:linear-gradient(90deg,#38bdf8,#8b5cf6);
     color:white;
+
+    background:
+        linear-gradient(
+            90deg,
+            #22b9f5,
+            #6942f4
+        );
+
+    box-shadow:
+        0 9px 22px rgba(0,0,0,.18);
 }
 
 .nav-icon{
-    width:25px;
+    width:31px;
+    font-size:20px;
     text-align:center;
-    font-size:17px;
+    margin-right:10px;
 }
 
-.main{
-    margin-left:250px;
-    min-height:100vh;
+.nav-text{
+    font-size:15px;
+    font-weight:650;
 }
 
-.topbar{
-    height:75px;
-    background:white;
+.logout{
+    margin-top:14px;
+    padding-top:15px;
+
+    border-top:
+        1px solid rgba(255,255,255,.13);
+}
+
+
+/* =========================================================
+   MAIN AREA
+========================================================= */
+
+.main-area{
+    margin-left:268px;
+    margin-right:0;
+
+    width:auto;
+    height:100vh;
+
+    overflow-y:auto;
+    overflow-x:hidden;
+
+    background:
+        linear-gradient(
+            180deg,
+            #f8f9ff,
+            #eef1fb
+        );
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.top-header{
+    height:120px;
+
+    background:
+        rgba(255,255,255,.96);
+
     display:flex;
     align-items:center;
     justify-content:space-between;
-    padding:0 30px;
-    border-bottom:1px solid #e5e7eb;
+
+    padding:22px 28px;
+
+    border-bottom:
+        1px solid #e9ebf5;
+
     position:sticky;
     top:0;
-    z-index:500;
+    z-index:100;
 }
 
-.page-title{
-    font-size:21px;
-    font-weight:700;
+.header-left h1{
+    font-size:30px;
+    line-height:1.05;
+    font-weight:800;
 }
 
-.page-subtitle{
-    font-size:12px;
-    color:#6b7280;
-    margin-top:4px;
+.header-left p{
+    margin-top:7px;
+    color:#8990a7;
+    font-size:14px;
 }
 
-.top-right{
+.header-right{
     display:flex;
     align-items:center;
-    gap:20px;
+    gap:18px;
 }
 
-.clock{
-    font-size:13px;
-    color:#64748b;
+.time-box{
+    font-size:18px;
+    font-weight:750;
+    color:#59617d;
 }
 
-.profile{
+.notification{
+    width:48px;
+    height:48px;
+
+    background:#fff;
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:22px;
+
+    box-shadow:
+        0 5px 18px rgba(40,35,100,.10);
+
+    position:relative;
+}
+
+.notification::after{
+    content:"";
+
+    width:8px;
+    height:8px;
+
+    border-radius:50%;
+
+    background:#ff4f8b;
+
+    position:absolute;
+    top:7px;
+    right:8px;
+}
+
+.profile-mini{
     display:flex;
     align-items:center;
     gap:10px;
 }
 
-.profile-avatar{
-    width:40px;
-    height:40px;
+.profile-circle{
+    width:48px;
+    height:48px;
+
     border-radius:50%;
-    background:linear-gradient(135deg,#06b6d4,#6366f1);
+
+    background:
+        linear-gradient(
+            135deg,
+            #25b8ee,
+            #466cf1
+        );
+
     color:white;
+
     display:flex;
     align-items:center;
     justify-content:center;
-    font-weight:bold;
+
+    font-size:20px;
+    font-weight:800;
 }
 
 .profile-info strong{
     display:block;
-    font-size:13px;
+    font-size:15px;
 }
 
 .profile-info span{
-    font-size:11px;
-    color:#64748b;
-}
-
-.content{
-    padding:30px;
-}
-
-.hero{
-    background:linear-gradient(120deg,#172554,#312e81,#6d28d9);
-    border-radius:24px;
-    padding:30px;
-    color:white;
-    margin-bottom:25px;
-}
-
-.hero h1{
-    font-size:28px;
-    margin-bottom:8px;
-}
-
-.hero p{
-    font-size:13px;
-    color:#dbeafe;
-}
-
-.stats{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:18px;
-    margin-bottom:22px;
-}
-
-.stat-card{
-    background:white;
-    border:1px solid #e5e7eb;
-    border-radius:18px;
-    padding:20px;
-}
-
-.stat-top{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-
-.stat-label{
+    display:block;
+    color:#8d93a8;
     font-size:12px;
-    color:#64748b;
 }
 
-.stat-number{
-    font-size:27px;
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.page-content{
+    padding:20px 24px 35px;
+    width:100%;
+}
+
+
+/* =========================================================
+   PAGE HEADING
+========================================================= */
+
+.page-heading{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:18px;
+}
+
+.page-heading h2{
+    font-size:24px;
     font-weight:800;
-    margin-top:8px;
-    color:#111827;
 }
 
-.stat-icon{
-    width:42px;
-    height:42px;
-    border-radius:11px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:19px;
-}
-
-.purple{
-    background:#eef2ff;
-}
-
-.orange{
-    background:#fff7ed;
-}
-
-.green{
-    background:#ecfdf5;
-}
-
-.blue{
-    background:#eff6ff;
-}
-
-.card{
-    background:white;
-    border:1px solid #e5e7eb;
-    border-radius:20px;
-    padding:23px;
-}
-
-.card-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:20px;
-}
-
-.card-header h2{
-    font-size:18px;
-}
-
-.filter-area{
-    display:flex;
-    gap:10px;
-}
-
-select{
-    border:1px solid #e2e8f0;
-    background:#f8fafc;
-    padding:10px 13px;
-    border-radius:9px;
-    color:#475569;
+.page-heading p{
+    color:#8990a7;
     font-size:13px;
-    outline:none;
+    margin-top:5px;
 }
 
-.assignment-list{
+.header-actions{
     display:flex;
-    flex-direction:column;
-    gap:12px;
+    gap:9px;
 }
 
-.assignment{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:17px;
-    border-radius:14px;
-    background:#f8fafc;
-    border-left:4px solid #6366f1;
+.action-btn{
+    border:none;
+    padding:11px 15px;
+    border-radius:11px;
+
+    cursor:pointer;
+
+    font-size:12px;
+    font-weight:700;
+
     transition:.2s;
 }
 
-.assignment:hover{
-    background:#eef2ff;
-    transform:translateX(3px);
+.add-btn{
+    color:white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #24aaf1,
+            #7040ef
+        );
 }
 
-.assignment-left{
-    display:flex;
-    align-items:center;
+.action-btn:hover{
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(40,35,100,.12);
+}
+
+
+/* =========================================================
+   SUMMARY CARDS
+========================================================= */
+
+.summary-grid{
+    display:grid;
+    grid-template-columns:
+        repeat(4,minmax(0,1fr));
+
     gap:15px;
+    margin-bottom:18px;
 }
 
-.subject-icon{
-    width:46px;
-    height:46px;
+.summary-card{
+    background:white;
+
+    border:1px solid #e9ebf5;
+    border-radius:17px;
+
+    padding:17px;
+    min-height:105px;
+
+    box-shadow:
+        0 8px 25px rgba(40,35,100,.06);
+
+    transition:.2s;
+}
+
+.summary-card:hover{
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 13px 30px rgba(40,35,100,.10);
+}
+
+.summary-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.summary-title{
+    color:#7f88a5;
+    font-size:12px;
+    font-weight:650;
+}
+
+.summary-icon{
+    width:38px;
+    height:38px;
+
     border-radius:12px;
-    background:#eef2ff;
+
+    background:#f0f3ff;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
+    font-size:19px;
+}
+
+.summary-number{
+    font-size:25px;
+    font-weight:800;
+
+    color:#3063df;
+
+    margin-top:9px;
+}
+
+.summary-small{
+    color:#9aa2b9;
+    font-size:10px;
+    margin-top:2px;
+}
+
+
+/* =========================================================
+   ASSIGNMENT CARD
+========================================================= */
+
+.assignment-card{
+    background:white;
+
+    border:1px solid #e9ebf5;
+    border-radius:17px;
+
+    box-shadow:
+        0 8px 25px rgba(40,35,100,.06);
+
+    overflow:hidden;
+}
+
+
+/* =========================================================
+   CARD HEADER
+========================================================= */
+
+.card-header{
+    padding:20px;
+
+    border-bottom:
+        1px solid #edf0f6;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.card-header h3{
+    font-size:17px;
+}
+
+.card-header p{
+    color:#9299ae;
+    font-size:11px;
+    margin-top:4px;
+}
+
+
+/* =========================================================
+   FILTERS
+========================================================= */
+
+.filters{
+    display:flex;
+    gap:8px;
+
+    padding:15px 20px;
+
+    border-bottom:
+        1px solid #edf0f6;
+}
+
+.search-box{
+    flex:1;
+    min-width:120px;
+    height:38px;
+
+    border:1px solid #e1e4ef;
+    border-radius:10px;
+
+    outline:none;
+
+    padding:0 12px;
+
+    font-size:11px;
+    color:#59617d;
+}
+
+.search-box:focus{
+    border-color:#7244e8;
+
+    box-shadow:
+        0 0 0 3px rgba(114,68,232,.08);
+}
+
+.filter-select{
+    height:38px;
+
+    border:1px solid #e1e4ef;
+    border-radius:10px;
+
+    padding:0 10px;
+
+    background:white;
+    color:#68728d;
+
+    font-size:11px;
+    outline:none;
+}
+
+
+/* =========================================================
+   ASSIGNMENT LIST
+========================================================= */
+
+.assignment-list{
+    padding:5px 20px 20px;
+}
+
+.assignment-item{
+    display:grid;
+
+    grid-template-columns:
+        48px 1fr auto;
+
+    align-items:center;
+
+    gap:13px;
+
+    padding:17px 5px;
+
+    border-bottom:
+        1px solid #f0f1f7;
+
+    transition:.2s;
+}
+
+.assignment-item:last-child{
+    border-bottom:none;
+}
+
+.assignment-item:hover{
+    background:#fafaff;
+    transform:translateX(3px);
+}
+
+.assignment-icon{
+    width:43px;
+    height:43px;
+
+    border-radius:13px;
+
+    background:#f0f3ff;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
     font-size:20px;
 }
 
-.assignment-info h3{
+.assignment-info strong{
+    display:block;
+
+    color:#17203a;
     font-size:14px;
-    font-weight:600;
 }
 
-.assignment-info p{
+.assignment-info span{
+    display:block;
+
+    color:#9299ae;
     font-size:11px;
-    color:#64748b;
-    margin-top:5px;
+
+    margin-top:4px;
 }
 
 .assignment-right{
     display:flex;
     align-items:center;
-    gap:18px;
+    gap:10px;
 }
 
 .due-date{
     text-align:right;
 }
 
-.due-label{
-    font-size:10px;
-    color:#94a3b8;
-    text-transform:uppercase;
-    margin-bottom:4px;
+.due-date strong{
+    display:block;
+
+    color:#59617d;
+    font-size:11px;
 }
 
-.due-value{
-    font-size:12px;
-    font-weight:600;
-    color:#475569;
+.due-date span{
+    color:#a0a6b8;
+    font-size:9px;
 }
 
 .status{
-    min-width:80px;
-    text-align:center;
-    padding:7px 10px;
+    padding:6px 10px;
+
     border-radius:20px;
+
+    font-size:9px;
+    font-weight:750;
+
+    white-space:nowrap;
+}
+
+.status-pending{
+    background:#fff4e8;
+    color:#d9812d;
+}
+
+.status-submitted{
+    background:#eafaf3;
+    color:#18a871;
+}
+
+.status-overdue{
+    background:#fff0f3;
+    color:#e24b72;
+}
+
+.status-new{
+    background:#edf8ff;
+    color:#238acb;
+}
+
+
+/* =========================================================
+   ITEM BUTTONS
+========================================================= */
+
+.item-actions{
+    display:flex;
+    gap:5px;
+    margin-left:10px;
+}
+
+.small-btn{
+    border:1px solid #e0e3f0;
+
+    background:white;
+    color:#6845e9;
+
+    border-radius:9px;
+
+    padding:7px 9px;
+
+    cursor:pointer;
+
+    font-size:9px;
+    font-weight:700;
+
+    transition:.2s;
+}
+
+.small-btn:hover{
+    background:#f0edff;
+}
+
+.submit-small{
+    color:white;
+    border-color:transparent;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6241e8,
+            #7b3ee0
+        );
+}
+
+
+/* =========================================================
+   EMPTY
+========================================================= */
+
+.empty-state{
+    display:none;
+
+    text-align:center;
+
+    padding:45px 20px;
+
+    color:#8990a7;
+}
+
+.empty-state div{
+    font-size:40px;
+    margin-bottom:10px;
+}
+
+.empty-state strong{
+    display:block;
+
+    color:#59617d;
+    font-size:15px;
+
+    margin-bottom:4px;
+}
+
+
+/* =========================================================
+   =========================================================
+   AI CHATBOT LAUNCHER
+   SAME STYLE / SIZE AS TIMETABLE
+   =========================================================
+========================================================= */
+
+.chat-launcher{
+
+    position:fixed;
+
+    right:24px;
+    bottom:24px;
+
+    width:72px;
+    height:72px;
+
+    padding:0;
+
+    border:4px solid #ffffff;
+
+    border-radius:50%;
+
+    background:
+        linear-gradient(
+            145deg,
+            #6840ef 0%,
+            #8b35e5 55%,
+            #6d35d9 100%
+        );
+
+    box-shadow:
+        0 0 0 1px rgba(117,70,235,.12),
+        0 10px 30px rgba(91,52,196,.38),
+        0 0 34px rgba(126,70,239,.30);
+
+    z-index:10000;
+
+    cursor:pointer;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
+}
+
+.chat-launcher:hover{
+
+    transform:
+        translateY(-3px)
+        scale(1.04);
+
+    box-shadow:
+        0 0 0 1px rgba(117,70,235,.16),
+        0 14px 34px rgba(91,52,196,.45),
+        0 0 40px rgba(126,70,239,.40);
+}
+
+.chat-launcher:active{
+    transform:scale(.96);
+}
+
+.chat-launcher::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:6px;
+
+    border-radius:50%;
+
+    border:
+        1px solid
+        rgba(255,255,255,.20);
+
+    pointer-events:none;
+}
+
+.launcher-robot{
+
+    position:relative;
+
+    z-index:2;
+
+    font-size:34px;
+
+    line-height:1;
+
+    transform:translateY(1px);
+
+    filter:
+        drop-shadow(
+            0 3px 3px
+            rgba(44,22,112,.28)
+        );
+}
+
+.launcher-notification{
+
+    position:absolute;
+
+    top:-2px;
+    right:-1px;
+
+    width:19px;
+    height:19px;
+
+    border-radius:50%;
+
+    background:#ff3f8b;
+
+    border:3px solid #ffffff;
+
+    box-shadow:
+        0 3px 9px
+        rgba(75,26,107,.22);
+
+    z-index:4;
+}
+
+
+/* =========================================================
+   AI CHATBOT WINDOW
+========================================================= */
+
+.chatbot{
+
+    position:fixed;
+
+    right:24px;
+    bottom:108px;
+
+    width:390px;
+    height:600px;
+
+    background:#ffffff;
+
+    border:
+        1px solid
+        rgba(103,70,220,.16);
+
+    border-radius:22px;
+
+    overflow:hidden;
+
+    display:flex;
+    flex-direction:column;
+
+    opacity:0;
+    visibility:hidden;
+
+    transform:
+        translateY(20px)
+        scale(.96);
+
+    pointer-events:none;
+
+    box-shadow:
+        0 25px 70px rgba(48,34,113,.24),
+        0 8px 30px rgba(85,53,180,.12);
+
+    z-index:9999;
+
+    transition:
+        opacity .25s ease,
+        visibility .25s ease,
+        transform .25s ease;
+}
+
+.chatbot.cc-open{
+
+    opacity:1;
+
+    visibility:visible;
+
+    transform:
+        translateY(0)
+        scale(1);
+
+    pointer-events:auto;
+}
+
+
+/* =========================================================
+   CHAT HEADER
+========================================================= */
+
+.chat-header{
+
+    min-height:78px;
+
+    padding:13px 15px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:11px;
+
+    color:white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #5537d7,
+            #7139df 52%,
+            #8a39df
+        );
+
+    box-shadow:
+        0 5px 18px
+        rgba(77,48,170,.18);
+
+    flex-shrink:0;
+}
+
+.robot-icon{
+
+    width:48px;
+    height:48px;
+
+    flex-shrink:0;
+
+    border-radius:15px;
+
+    background:
+        rgba(255,255,255,.17);
+
+    border:
+        1px solid
+        rgba(255,255,255,.22);
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    font-size:27px;
+
+    box-shadow:
+        inset 0 1px 0
+        rgba(255,255,255,.15);
+}
+
+.chat-title{
+
+    flex:1;
+    min-width:0;
+}
+
+.chat-title strong{
+
+    display:block;
+
+    font-size:15px;
+
+    font-weight:800;
+
+    letter-spacing:.1px;
+}
+
+.chat-title span{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:6px;
+
+    margin-top:4px;
+
+    font-size:10px;
+
+    color:
+        rgba(255,255,255,.82);
+}
+
+.online-dot{
+
+    width:7px;
+    height:7px;
+
+    border-radius:50%;
+
+    background:#49ef9b;
+
+    display:inline-block;
+
+    box-shadow:
+        0 0 8px
+        rgba(73,239,155,.75);
+}
+
+.chat-close{
+
+    width:32px;
+    height:32px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:
+        rgba(255,255,255,.12);
+
+    color:white;
+
+    font-size:24px;
+
+    line-height:1;
+
+    cursor:pointer;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    transition:.2s;
+}
+
+.chat-close:hover{
+
+    background:
+        rgba(255,255,255,.23);
+
+    transform:rotate(90deg);
+}
+
+
+/* =========================================================
+   CHAT BODY
+========================================================= */
+
+.chat-body{
+
+    flex:1;
+
+    overflow-y:auto;
+
+    padding:18px 15px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #f8f7ff 0%,
+            #ffffff 100%
+        );
+
+    scroll-behavior:smooth;
+}
+
+.chat-body::-webkit-scrollbar{
+    width:5px;
+}
+
+.chat-body::-webkit-scrollbar-thumb{
+
+    background:
+        rgba(104,69,233,.25);
+
+    border-radius:10px;
+}
+
+
+/* =========================================================
+   BOT MESSAGE
+========================================================= */
+
+.bot-message{
+
+    max-width:88%;
+
+    width:max-content;
+
+    margin-bottom:11px;
+
+    padding:11px 13px;
+
+    background:#ffffff;
+
+    border:
+        1px solid
+        #ebe8f8;
+
+    border-radius:
+        15px
+        15px
+        15px
+        5px;
+
+    color:#4f5873;
+
+    font-size:12px;
+
+    line-height:1.55;
+
+    box-shadow:
+        0 4px 13px
+        rgba(55,40,125,.06);
+}
+
+.bot-message strong{
+    color:#4e3bc2;
+}
+
+
+/* =========================================================
+   USER MESSAGE
+========================================================= */
+
+.user-message{
+
+    max-width:88%;
+
+    width:max-content;
+
+    margin-left:auto;
+
+    margin-bottom:11px;
+
+    padding:11px 13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6741e9,
+            #8139dc
+        );
+
+    color:white;
+
+    border-radius:
+        15px
+        15px
+        5px
+        15px;
+
+    font-size:12px;
+
+    line-height:1.5;
+
+    box-shadow:
+        0 5px 15px
+        rgba(94,59,210,.18);
+}
+
+
+/* =========================================================
+   QUICK BUTTONS
+========================================================= */
+
+.quick-buttons{
+
+    display:flex;
+
+    gap:7px;
+
+    padding:10px 12px;
+
+    background:#ffffff;
+
+    border-top:
+        1px solid
+        #eeeef5;
+
+    flex-shrink:0;
+}
+
+.quick-btn{
+
+    flex:1;
+
+    min-width:0;
+
+    border:
+        1px solid
+        #ddd8f6;
+
+    background:#faf9ff;
+
+    color:#6044d5;
+
+    border-radius:10px;
+
+    padding:9px 5px;
+
+    cursor:pointer;
+
+    font-size:10px;
+
+    font-weight:750;
+
+    transition:.2s;
+}
+
+.quick-btn:hover{
+
+    color:white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6741e9,
+            #8139dc
+        );
+
+    border-color:transparent;
+
+    transform:translateY(-1px);
+}
+
+
+/* =========================================================
+   CHAT FOOTER
+========================================================= */
+
+.chat-footer{
+
+    display:flex;
+
+    gap:8px;
+
+    padding:11px 12px;
+
+    background:#ffffff;
+
+    border-top:
+        1px solid
+        #eeeef5;
+
+    flex-shrink:0;
+}
+
+.chat-input{
+
+    flex:1;
+
+    height:43px;
+
+    min-width:0;
+
+    border:
+        1px solid
+        #dedbea;
+
+    border-radius:12px;
+
+    outline:none;
+
+    padding:0 13px;
+
+    color:#4e5670;
+
+    background:#fafaff;
+
+    font-size:12px;
+
+    transition:.2s;
+}
+
+.chat-input:focus{
+
+    border-color:#7650e8;
+
+    background:white;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(118,80,232,.08);
+}
+
+.chat-input::placeholder{
+    color:#a1a5b6;
+}
+
+.send-btn{
+
+    width:43px;
+    height:43px;
+
+    flex-shrink:0;
+
+    border:none;
+
+    border-radius:12px;
+
+    color:white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6540e8,
+            #8139dc
+        );
+
+    cursor:pointer;
+
+    font-size:18px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    transition:.2s;
+
+    box-shadow:
+        0 5px 14px
+        rgba(102,63,220,.22);
+}
+
+.send-btn:hover{
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 8px 18px
+        rgba(102,63,220,.30);
+}
+
+.send-btn:active{
+    transform:scale(.94);
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.modal{
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+        rgba(24,25,55,.48);
+
+    display:none;
+
+    align-items:center;
+    justify-content:center;
+
+    padding:20px;
+
+    z-index:11000;
+
+    backdrop-filter:blur(4px);
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+
+    width:min(500px,100%);
+
+    max-height:90vh;
+
+    overflow-y:auto;
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:22px;
+
+    box-shadow:
+        0 25px 70px
+        rgba(30,25,80,.25);
+}
+
+.modal-top{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    margin-bottom:18px;
+}
+
+.modal-top h3{
+
+    color:#27304d;
+
+    font-size:18px;
+}
+
+.close-btn{
+
+    width:34px;
+    height:34px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#f2f2fa;
+
+    color:#626980;
+
+    font-size:22px;
+
+    cursor:pointer;
+}
+
+.close-btn:hover{
+    background:#e8e5f8;
+}
+
+.detail-box{
+
+    padding:13px;
+
+    background:#f8f8fd;
+
+    border-radius:12px;
+
+    margin-bottom:10px;
+}
+
+.detail-label{
+
+    color:#9299ae;
+
+    font-size:10px;
+
+    font-weight:700;
+
+    text-transform:uppercase;
+
+    letter-spacing:.5px;
+
+    margin-bottom:5px;
+}
+
+.detail-value{
+
+    color:#4e5874;
+
+    font-size:13px;
+
+    line-height:1.5;
+}
+
+.modal-buttons{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    gap:8px;
+
+    margin-top:17px;
+}
+
+.modal-btn{
+
+    border:none;
+
+    border-radius:10px;
+
+    padding:10px 15px;
+
+    cursor:pointer;
+
     font-size:11px;
+
     font-weight:700;
 }
 
-.pending{
-    background:#fff7ed;
-    color:#ea580c;
+.modal-cancel{
+
+    background:#f0f1f7;
+
+    color:#59617d;
 }
 
-.submitted{
-    background:#ecfdf5;
-    color:#059669;
+.modal-submit{
+
+    color:white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6241e8,
+            #7b3ee0
+        );
 }
 
-.overdue{
-    background:#fef2f2;
-    color:#dc2626;
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+.toast{
+
+    position:fixed;
+
+    left:50%;
+
+    bottom:25px;
+
+    transform:
+        translate(-50%,20px);
+
+    opacity:0;
+
+    visibility:hidden;
+
+    z-index:12000;
+
+    background:
+        #292c48;
+
+    color:white;
+
+    padding:12px 18px;
+
+    border-radius:11px;
+
+    font-size:12px;
+
+    box-shadow:
+        0 12px 30px
+        rgba(20,20,50,.22);
+
+    transition:.25s;
 }
 
-.view-btn{
-    border:none;
-    background:#eef2ff;
-    color:#4f46e5;
-    padding:8px 13px;
-    border-radius:8px;
-    cursor:pointer;
-    font-size:11px;
-    font-weight:600;
+.toast.show{
+
+    opacity:1;
+
+    visibility:visible;
+
+    transform:
+        translate(-50%,0);
 }
 
-.view-btn:hover{
-    background:#e0e7ff;
-}
 
-.mobile-menu{
-    display:none;
-    border:none;
-    background:none;
-    font-size:22px;
-    cursor:pointer;
-}
+/* =========================================================
+   RESPONSIVE
+========================================================= */
 
 @media(max-width:1100px){
 
-    .stats{
-        grid-template-columns:repeat(2,1fr);
+    .summary-grid{
+        grid-template-columns:
+            repeat(2,minmax(0,1fr));
+    }
+
+    .chatbot{
+        width:370px;
+    }
+}
+
+@media(max-width:850px){
+
+    .sidebar{
+        width:220px;
+        min-width:220px;
+    }
+
+    .main-area{
+        margin-left:220px;
+    }
+
+    .header-right .profile-info{
+        display:none;
+    }
+
+    .time-box{
+        display:none;
     }
 }
 
 @media(max-width:700px){
 
     .sidebar{
-        width:220px;
-        transform:translateX(-100%);
-        transition:.3s;
+        width:75px;
+        min-width:75px;
     }
 
-    .sidebar.open{
-        transform:translateX(0);
+    .main-area{
+        margin-left:75px;
     }
 
-    .main{
-        margin-left:0;
+    .brand{
+        justify-content:center;
+        padding:15px 8px;
     }
 
-    .mobile-menu{
-        display:block;
-        margin-right:15px;
-    }
-
-    .topbar{
-        padding:0 15px;
-    }
-
-    .clock,
-    .profile-info{
+    .brand-text{
         display:none;
     }
 
-    .content{
+    .logo-box{
+        width:48px;
+        height:48px;
+    }
+
+    .menu{
+        padding:18px 8px;
+    }
+
+    .menu-title{
+        display:none;
+    }
+
+    .nav-item{
+        justify-content:center;
+        padding:0;
+    }
+
+    .nav-icon{
+        margin-right:0;
+    }
+
+    .nav-text{
+        display:none;
+    }
+
+    .logout{
+        padding-top:10px;
+    }
+
+    .top-header{
+        height:auto;
+        min-height:100px;
+        padding:18px;
+    }
+
+    .header-left h1{
+        font-size:24px;
+    }
+
+    .header-left p{
+        font-size:11px;
+    }
+
+    .page-content{
         padding:15px;
     }
 
-    .stats{
+    .summary-grid{
+        grid-template-columns:1fr 1fr;
+        gap:10px;
+    }
+
+    .page-heading{
+        align-items:flex-start;
+        gap:10px;
+    }
+
+    .filters{
+        flex-direction:column;
+    }
+
+    .assignment-item{
+        grid-template-columns:43px 1fr;
+    }
+
+    .assignment-right{
+        grid-column:2;
+        flex-wrap:wrap;
+    }
+
+    .chatbot{
+
+        right:12px;
+        bottom:100px;
+
+        width:
+            calc(100vw - 24px);
+
+        height:
+            min(600px,calc(100vh - 125px));
+
+        border-radius:19px;
+    }
+
+    .chat-launcher{
+        right:18px;
+        bottom:18px;
+    }
+}
+
+@media(max-width:450px){
+
+    .summary-grid{
         grid-template-columns:1fr;
     }
 
-    .assignment{
-        align-items:flex-start;
-        gap:15px;
-    }
-
-    .assignment-right{
-        flex-direction:column;
-        align-items:flex-end;
-        gap:8px;
-    }
-}
-
-@media(max-width:600px){
-
-    .filter-area{
-        flex-direction:column;
-        width:100%;
-    }
-
-    .card-header{
-        flex-direction:column;
-        align-items:flex-start;
-        gap:15px;
-    }
-
-    select{
-        width:100%;
-    }
-
-    .assignment-right{
+    .header-actions{
         display:none;
     }
+
+    .profile-circle{
+        width:42px;
+        height:42px;
+    }
+
+    .notification{
+        width:42px;
+        height:42px;
+    }
+
+    .chatbot{
+        bottom:100px;
+    }
+
+    .quick-buttons{
+        gap:5px;
+    }
+
+    .quick-btn{
+        font-size:9px;
+    }
 }
+
 </style>
+
 </head>
+
 
 <body>
 
-<aside class="sidebar" id="sidebar">
 
-    <div class="logo">
-        <div class="logo-icon">🎓</div>
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
 
-        <div>
-            <h2>CampusConnect</h2>
-            <span>AI College Companion</span>
+<aside class="sidebar">
+
+    <div class="brand">
+
+        <div class="logo-box">
+            🎓
         </div>
+
+        <div class="brand-text">
+
+            <div class="brand-title">
+                CampusConnect
+            </div>
+
+            <div class="brand-subtitle">
+                AI College Companion
+            </div>
+
+        </div>
+
     </div>
 
-    <button class="nav-item"
-        onclick="window.location.href='../dashboard.html'">
-        <span class="nav-icon">🏠</span>
-        Dashboard
-    </button>
 
-    <button class="nav-item"
-        onclick="window.location.href='../dashboard.html'">
-        <span class="nav-icon">📚</span>
-        My Courses
-    </button>
+    <div class="menu">
 
-    <button class="nav-item"
-        onclick="window.location.href='timetable.html'">
-        <span class="nav-icon">🗓️</span>
-        Timetable
-    </button>
+        <div class="menu-title">
+            MAIN MENU
+        </div>
 
-    <!-- ASSIGNMENTS ACTIVE -->
-    <button class="nav-item active"
-        onclick="window.location.href='assignments.html'">
-        <span class="nav-icon">📝</span>
-        Assignments
-    </button>
+        <a class="nav-item" href="../dashboard.html">
 
-    <button class="nav-item"
-        onclick="window.location.href='attendance.html'">
-        <span class="nav-icon">📊</span>
-        Attendance
-    </button>
+            <span class="nav-icon">🏠</span>
 
-    <button class="nav-item"
-        onclick="window.location.href='academics.html'">
-        <span class="nav-icon">🎓</span>
-        Academics
-    </button>
+            <span class="nav-text">
+                Dashboard
+            </span>
 
-    <button class="nav-item"
-        onclick="window.location.href='faculty.html'">
-        <span class="nav-icon">👩‍🏫</span>
-        Faculty
-    </button>
+        </a>
 
-    <button class="nav-item"
-        onclick="window.location.href='placement.html'">
-        <span class="nav-icon">💼</span>
-        Placement
-    </button>
 
-    <button class="nav-item"
-        onclick="window.location.href='results.html'">
-        <span class="nav-icon">📈</span>
-        Results
-    </button>
+        <a class="nav-item" href="courses.html">
 
-    <button class="nav-item"
-        onclick="window.location.href='documents.html'">
-        <span class="nav-icon">📄</span>
-        Documents
-    </button>
+            <span class="nav-icon">
+                📚
+            </span>
 
-    <button class="nav-item"
-        onclick="window.location.href='complaints.html'">
-        <span class="nav-icon">📢</span>
-        Complaints
-    </button>
+            <span class="nav-text">
+                Courses
+            </span>
 
-    <button class="nav-item"
-        onclick="window.location.href='feedback.html'">
-        <span class="nav-icon">💬</span>
-        Feedback
-    </button>
+        </a>
 
-    <button class="nav-item"
-        onclick="window.location.href='lost-found.html'">
-        <span class="nav-icon">🔎</span>
-        Lost & Found
-    </button>
 
-    <button class="nav-item"
-        onclick="window.location.href='campus.html'">
-        <span class="nav-icon">🏫</span>
-        Campus
-    </button>
+        <a class="nav-item" href="timetable.html">
 
-    <button class="nav-item"
-        onclick="window.location.href='events.html'">
-        <span class="nav-icon">🎉</span>
-        Events
-    </button>
+            <span class="nav-icon">
+                🗓️
+            </span>
 
-    <button class="nav-item"
-        onclick="window.location.href='exams.html'">
-        <span class="nav-icon">📋</span>
-        Exams
-    </button>
+            <span class="nav-text">
+                Timetable
+            </span>
 
-    <button class="nav-item"
-        onclick="window.location.href='notifications.html'">
-        <span class="nav-icon">🔔</span>
-        Notifications
-    </button>
+        </a>
 
-    <button class="nav-item"
-        onclick="window.location.href='profile.html'">
-        <span class="nav-icon">👤</span>
-        Profile
-    </button>
 
-    <button class="nav-item"
-        onclick="window.location.href='settings.html'">
-        <span class="nav-icon">⚙️</span>
-        Settings
-    </button>
+        <a class="nav-item active" href="assignments.html">
 
-</aside>
+            <span class="nav-icon">
+                📝
+            </span>
 
-<main class="main">
+            <span class="nav-text">
+                Assignments
+            </span>
 
-    <header class="topbar">
+        </a>
 
-        <div style="display:flex;align-items:center;">
 
-            <button class="mobile-menu" onclick="toggleSidebar()">
-                ☰
-            </button>
+        <a class="nav-item" href="attendance.html">
 
-            <div>
+            <span class="nav-icon">
+                📊
+            </span>
 
-                <div class="page-title">
-                    Assignments
-                </div>
+            <span class="nav-text">
+                Attendance
+            </span>
 
-                <div class="page-subtitle">
-                    Track your assignments and submission deadlines
-                </div>
+        </a>
+
+
+        <a class="nav-item" href="academics.html">
+
+            <span class="nav-icon">
+                🎓
+            </span>
+
+            <span class="nav-text">
+                Academics
+            </span>
+
+        </a>
+
+
+        <a class="nav-item" href="faculty.html">
+
+            <span class="nav-icon">
+                👨‍🏫
+            </span>
+
+            <span class="nav-text">
+                Faculty
+            </span>
+
+        </a>
+
+
+        <div class="menu-section">
+
+            <div class="menu-title">
+                CAREER
+            </div>
+
+
+            <a class="nav-item" href="placement.html">
+
+                <span class="nav-icon">
+                    💼
+                </span>
+
+                <span class="nav-text">
+                    Placement
+                </span>
+
+            </a>
+
+
+            <a class="nav-item" href="results.html">
+
+                <span class="nav-icon">
+                    📈
+                </span>
+
+                <span class="nav-text">
+                    Results
+                </span>
+
+            </a>
+
+        </div>
+
+
+        <div class="menu-section">
+
+            <div class="menu-title">
+                CAMPUS
+            </div>
+
+
+            <a class="nav-item" href="documents.html">
+
+                <span class="nav-icon">
+                    📄
+                </span>
+
+                <span class="nav-text">
+                    Documents
+                </span>
+
+            </a>
+
+
+            <a class="nav-item" href="complaints.html">
+
+                <span class="nav-icon">
+                    📢
+                </span>
+
+                <span class="nav-text">
+                    Complaints
+                </span>
+
+            </a>
+
+
+            <a class="nav-item" href="feedback.html">
+
+                <span class="nav-icon">
+                    💬
+                </span>
+
+                <span class="nav-text">
+                    Feedback
+                </span>
+
+            </a>
+
+
+            <a class="nav-item" href="lost_found.html">
+
+                <span class="nav-icon">
+                    🔎
+                </span>
+
+                <span class="nav-text">
+                    Lost &amp; Found
+                </span>
+
+            </a>
+
+
+            <a class="nav-item" href="campus.html">
+
+                <span class="nav-icon">
+                    🏫
+                </span>
+
+                <span class="nav-text">
+                    Campus
+                </span>
+
+            </a>
+
+
+            <a class="nav-item" href="events.html">
+
+                <span class="nav-icon">
+                    🎉
+                </span>
+
+                <span class="nav-text">
+                    Events
+                </span>
+
+            </a>
+
+
+            <a class="nav-item" href="exams.html">
+
+                <span class="nav-icon">
+                    📋
+                </span>
+
+                <span class="nav-text">
+                    Exams
+                </span>
+
+            </a>
+
+
+            <a class="nav-item" href="notifications.html">
+
+                <span class="nav-icon">
+                    🔔
+                </span>
+
+                <span class="nav-text">
+                    Notifications
+                </span>
+
+            </a>
+
+        </div>
+
+
+        <div class="menu-section">
+
+            <div class="menu-title">
+                ACCOUNT
+            </div>
+
+
+            <a class="nav-item" href="profile.html">
+
+                <span class="nav-icon">
+                    👤
+                </span>
+
+                <span class="nav-text">
+                    Profile
+                </span>
+
+            </a>
+
+
+            <a class="nav-item" href="settings.html">
+
+                <span class="nav-icon">
+                    ⚙️
+                </span>
+
+                <span class="nav-text">
+                    Settings
+                </span>
+
+            </a>
+
+
+            <div class="logout">
+
+                <a
+                    class="nav-item"
+                    href="../index.html"
+                    onclick="return confirmLogout()"
+                >
+
+                    <span class="nav-icon">
+                        🚪
+                    </span>
+
+                    <span class="nav-text">
+                        Logout
+                    </span>
+
+                </a>
 
             </div>
 
         </div>
 
-        <div class="top-right">
+    </div>
 
-            <div class="clock" id="clock"></div>
+</aside>
 
-            <div class="profile">
 
-                <div class="profile-avatar">
+<!-- =====================================================
+     MAIN AREA
+===================================================== -->
+
+<main class="main-area">
+
+
+    <!-- HEADER -->
+
+    <header class="top-header">
+
+        <div class="header-left">
+
+            <h1>
+                Student<br>
+                Assignments
+            </h1>
+
+            <p>
+                Manage your assignments and submission deadlines
+            </p>
+
+        </div>
+
+
+        <div class="header-right">
+
+            <div
+                class="time-box"
+                id="clock"
+            >
+                6:00 PM
+            </div>
+
+
+            <div class="notification">
+                🔔
+            </div>
+
+
+            <div class="profile-mini">
+
+                <div class="profile-circle">
                     P
                 </div>
 
                 <div class="profile-info">
-                    <strong id="studentName">Student</strong>
-                    <span>BCA Student</span>
+
+                    <strong>
+                        Student
+                    </strong>
+
+                    <span>
+                        BCA
+                    </span>
+
+                    <span>
+                        Student
+                    </span>
+
                 </div>
 
             </div>
@@ -655,636 +2221,1862 @@ select{
 
     </header>
 
-    <section class="content">
 
-        <div class="hero">
+    <!-- PAGE CONTENT -->
 
-            <h1>📝 My Assignments</h1>
+    <div class="page-content">
 
-            <p>
-                View your assignments, submission status
-                and upcoming deadlines.
-            </p>
+
+        <!-- PAGE HEADING -->
+
+        <div class="page-heading">
+
+            <div>
+
+                <h2>
+                    📝 My Assignments
+                </h2>
+
+                <p>
+                    Track your assignments, deadlines and submissions.
+                </p>
+
+            </div>
+
+
+            <div class="header-actions">
+
+                <button
+                    class="action-btn add-btn"
+                    onclick="showToast('Assignment request opened')"
+                >
+                    + Add Assignment
+                </button>
+
+            </div>
 
         </div>
 
-        <div class="stats">
 
-            <div class="stat-card">
+        <!-- SUMMARY -->
 
-                <div class="stat-top">
+        <section class="summary-grid">
 
-                    <div>
 
-                        <div class="stat-label">
-                            Total Assignments
-                        </div>
+            <div class="summary-card">
 
-                        <div class="stat-number"
-                             id="totalAssignments">
-                            0
-                        </div>
+                <div class="summary-top">
 
+                    <div class="summary-title">
+                        TOTAL ASSIGNMENTS
                     </div>
 
-                    <div class="stat-icon purple">
+                    <div class="summary-icon">
                         📝
                     </div>
 
                 </div>
 
+                <div
+                    class="summary-number"
+                    id="totalCount"
+                >
+                    0
+                </div>
+
+                <div class="summary-small">
+                    This semester
+                </div>
+
             </div>
 
-            <div class="stat-card">
 
-                <div class="stat-top">
+            <div class="summary-card">
 
-                    <div>
+                <div class="summary-top">
 
-                        <div class="stat-label">
-                            Pending
-                        </div>
-
-                        <div class="stat-number"
-                             id="pendingAssignments">
-                            0
-                        </div>
-
+                    <div class="summary-title">
+                        PENDING
                     </div>
 
-                    <div class="stat-icon orange">
+                    <div class="summary-icon">
                         ⏳
                     </div>
 
                 </div>
 
-            </div>
+                <div
+                    class="summary-number"
+                    id="pendingCount"
+                >
+                    0
+                </div>
 
-            <div class="stat-card">
-
-                <div class="stat-top">
-
-                    <div>
-
-                        <div class="stat-label">
-                            Submitted
-                        </div>
-
-                        <div class="stat-number"
-                             id="submittedAssignments">
-                            0
-                        </div>
-
-                    </div>
-
-                    <div class="stat-icon green">
-                        ✓
-                    </div>
-
+                <div class="summary-small">
+                    Need your attention
                 </div>
 
             </div>
 
-            <div class="stat-card">
 
-                <div class="stat-top">
+            <div class="summary-card">
 
-                    <div>
+                <div class="summary-top">
 
-                        <div class="stat-label">
-                            Overdue
-                        </div>
-
-                        <div class="stat-number"
-                             id="overdueAssignments">
-                            0
-                        </div>
-
+                    <div class="summary-title">
+                        SUBMITTED
                     </div>
 
-                    <div class="stat-icon blue">
-                        ⚠
+                    <div class="summary-icon">
+                        ✅
                     </div>
 
                 </div>
 
+                <div
+                    class="summary-number"
+                    id="submittedCount"
+                >
+                    0
+                </div>
+
+                <div class="summary-small">
+                    Successfully submitted
+                </div>
+
             </div>
 
-        </div>
 
-        <div class="card">
+            <div class="summary-card">
+
+                <div class="summary-top">
+
+                    <div class="summary-title">
+                        OVERDUE
+                    </div>
+
+                    <div class="summary-icon">
+                        ⚠️
+                    </div>
+
+                </div>
+
+                <div
+                    class="summary-number"
+                    id="overdueCount"
+                >
+                    0
+                </div>
+
+                <div class="summary-small">
+                    Deadline passed
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ASSIGNMENT CARD -->
+
+        <section class="assignment-card">
+
 
             <div class="card-header">
 
-                <h2>Today's Assignments</h2>
+                <div>
 
-                <div class="filter-area">
+                    <h3>
+                        Assignment List
+                    </h3>
 
-                    <select id="subjectFilter">
-
-                        <option value="all">
-                            All Subjects
-                        </option>
-
-                        <option value="Web Technology">
-                            Web Technology
-                        </option>
-
-                        <option value="DBMS">
-                            DBMS
-                        </option>
-
-                        <option value="Java">
-                            Java
-                        </option>
-
-                        <option value="Python">
-                            Python
-                        </option>
-
-                    </select>
-
-                    <select id="statusFilter">
-
-                        <option value="all">
-                            All Status
-                        </option>
-
-                        <option value="Pending">
-                            Pending
-                        </option>
-
-                        <option value="Submitted">
-                            Submitted
-                        </option>
-
-                        <option value="Overdue">
-                            Overdue
-                        </option>
-
-                    </select>
+                    <p>
+                        Click an assignment to view its details.
+                    </p>
 
                 </div>
 
             </div>
 
-            <div class="assignment-list" id="assignmentList">
 
-                <div class="assignment"
-                     data-subject="Web Technology"
-                     data-status="Pending">
+            <!-- FILTERS -->
 
-                    <div class="assignment-left">
+            <div class="filters">
 
-                        <div class="subject-icon">
-                            🌐
-                        </div>
+                <input
+                    class="search-box"
+                    id="searchInput"
+                    type="text"
+                    placeholder="🔎 Search assignments..."
+                    oninput="renderAssignments()"
+                >
 
-                        <div class="assignment-info">
 
-                            <h3>
-                                Responsive Website Design
-                            </h3>
+                <select
+                    class="filter-select"
+                    id="subjectFilter"
+                    onchange="renderAssignments()"
+                >
 
-                            <p>
-                                Web Technology • Assignment 01
-                            </p>
+                    <option value="all">
+                        All Subjects
+                    </option>
 
-                        </div>
+                </select>
 
-                    </div>
 
-                    <div class="assignment-right">
+                <select
+                    class="filter-select"
+                    id="statusFilter"
+                    onchange="renderAssignments()"
+                >
 
-                        <div class="due-date">
+                    <option value="all">
+                        All Status
+                    </option>
 
-                            <div class="due-label">
-                                Due Date
-                            </div>
+                    <option value="Pending">
+                        Pending
+                    </option>
 
-                            <div class="due-value">
-                                12 Sep 2026
-                            </div>
+                    <option value="Submitted">
+                        Submitted
+                    </option>
 
-                        </div>
+                    <option value="Overdue">
+                        Overdue
+                    </option>
 
-                        <div class="status pending">
-                            Pending
-                        </div>
+                    <option value="New">
+                        New
+                    </option>
 
-                        <button class="view-btn"
-                                onclick="viewAssignment('Responsive Website Design')">
-                            View
-                        </button>
+                </select>
 
-                    </div>
+            </div>
 
+
+            <!-- LIST -->
+
+            <div
+                class="assignment-list"
+                id="assignmentList"
+            >
+            </div>
+
+
+            <!-- EMPTY -->
+
+            <div
+                class="empty-state"
+                id="emptyState"
+            >
+
+                <div>
+                    📚
                 </div>
 
-                <div class="assignment"
-                     data-subject="DBMS"
-                     data-status="Submitted">
+                <strong>
+                    No assignments found
+                </strong>
 
-                    <div class="assignment-left">
+                <p>
+                    Try changing your search or filters.
+                </p>
 
-                        <div class="subject-icon">
-                            🗄️
-                        </div>
+            </div>
 
-                        <div class="assignment-info">
+        </section>
 
-                            <h3>
-                                Database Normalization
-                            </h3>
+    </div>
 
-                            <p>
-                                DBMS • Assignment 02
-                            </p>
+</main>
 
-                        </div>
 
-                    </div>
+<!-- =====================================================
+     CHATBOT LAUNCHER
+===================================================== -->
 
-                    <div class="assignment-right">
+<button
+    class="chat-launcher"
+    id="chatLauncher"
+    onclick="toggleChatbot()"
+    title="Open AI College Companion"
+    aria-label="Open AI College Companion"
+>
 
-                        <div class="due-date">
+    <span
+        class="launcher-robot"
+        aria-hidden="true"
+    >
+        🤖
+    </span>
 
-                            <div class="due-label">
-                                Due Date
-                            </div>
+    <span
+        class="launcher-notification"
+        aria-hidden="true"
+    >
+    </span>
 
-                            <div class="due-value">
-                                10 Sep 2026
-                            </div>
+</button>
 
-                        </div>
 
-                        <div class="status submitted">
-                            Submitted
-                        </div>
+<!-- =====================================================
+     CHATBOT
+===================================================== -->
 
-                        <button class="view-btn"
-                                onclick="viewAssignment('Database Normalization')">
-                            View
-                        </button>
+<aside
+    class="chatbot"
+    id="chatbotPanel"
+>
 
-                    </div>
+    <div class="chat-header">
 
-                </div>
+        <div class="robot-icon">
+            🤖
+        </div>
 
-                <div class="assignment"
-                     data-subject="Java"
-                     data-status="Pending">
 
-                    <div class="assignment-left">
+        <div class="chat-title">
 
-                        <div class="subject-icon">
-                            ☕
-                        </div>
+            <strong>
+                AI College Companion
+            </strong>
 
-                        <div class="assignment-info">
+            <span>
 
-                            <h3>
-                                Object Oriented Programming
-                            </h3>
+                <i class="online-dot"></i>
 
-                            <p>
-                                Java • Assignment 03
-                            </p>
+                Online • Ready to help
 
-                        </div>
+            </span>
 
-                    </div>
+        </div>
 
-                    <div class="assignment-right">
 
-                        <div class="due-date">
+        <button
+            class="chat-close"
+            onclick="toggleChatbot()"
+            aria-label="Close chatbot"
+            title="Close"
+        >
+            ×
+        </button>
 
-                            <div class="due-label">
-                                Due Date
-                            </div>
+    </div>
 
-                            <div class="due-value">
-                                15 Sep 2026
-                            </div>
 
-                        </div>
+    <div
+        class="chat-body"
+        id="chatBody"
+    >
 
-                        <div class="status pending">
-                            Pending
-                        </div>
+        <div class="bot-message">
 
-                        <button class="view-btn"
-                                onclick="viewAssignment('Object Oriented Programming')">
-                            View
-                        </button>
+            👋 Hi! I'm your
+            <strong>AI College Companion.</strong>
 
-                    </div>
+            I can help you with assignments,
+            deadlines and submission status.
 
-                </div>
+        </div>
 
-                <div class="assignment"
-                     data-subject="Python"
-                     data-status="Submitted">
 
-                    <div class="assignment-left">
+        <div class="bot-message">
 
-                        <div class="subject-icon">
-                            🐍
-                        </div>
+            What would you like to know? 😊
 
-                        <div class="assignment-info">
+        </div>
 
-                            <h3>
-                                Python Data Structures
-                            </h3>
+    </div>
 
-                            <p>
-                                Python • Assignment 04
-                            </p>
 
-                        </div>
+    <div class="quick-buttons">
 
-                    </div>
+        <button
+            class="quick-btn"
+            onclick="quickChat('Show my pending assignments')"
+        >
+            Pending
+        </button>
 
-                    <div class="assignment-right">
 
-                        <div class="due-date">
+        <button
+            class="quick-btn"
+            onclick="quickChat('Show my overdue assignments')"
+        >
+            Overdue
+        </button>
 
-                            <div class="due-label">
-                                Due Date
-                            </div>
 
-                            <div class="due-value">
-                                08 Sep 2026
-                            </div>
+        <button
+            class="quick-btn"
+            onclick="quickChat('What is my next deadline?')"
+        >
+            Next deadline
+        </button>
 
-                        </div>
+    </div>
 
-                        <div class="status submitted">
-                            Submitted
-                        </div>
 
-                        <button class="view-btn"
-                                onclick="viewAssignment('Python Data Structures')">
-                            View
-                        </button>
+    <div class="chat-footer">
 
-                    </div>
+        <input
+            id="chatInput"
+            class="chat-input"
+            type="text"
+            placeholder="Ask your companion..."
+            onkeydown="handleChatKey(event)"
+        >
 
-                </div>
 
-                <div class="assignment"
-                     data-subject="DBMS"
-                     data-status="Overdue">
+        <button
+            class="send-btn"
+            onclick="sendChat()"
+        >
+            ➤
+        </button>
 
-                    <div class="assignment-left">
+    </div>
 
-                        <div class="subject-icon">
-                            🗃️
-                        </div>
+</aside>
 
-                        <div class="assignment-info">
 
-                            <h3>
-                                SQL Queries and Joins
-                            </h3>
+<!-- =====================================================
+     DETAILS MODAL
+===================================================== -->
 
-                            <p>
-                                DBMS • Assignment 05
-                            </p>
+<div
+    class="modal"
+    id="assignmentModal"
+    onclick="closeModalOutside(event)"
+>
 
-                        </div>
+    <div class="modal-box">
 
-                    </div>
 
-                    <div class="assignment-right">
+        <div class="modal-top">
 
-                        <div class="due-date">
+            <h3 id="modalTitle">
+                Assignment Details
+            </h3>
 
-                            <div class="due-label">
-                                Due Date
-                            </div>
+            <button
+                class="close-btn"
+                onclick="closeModal()"
+            >
+                ×
+            </button>
 
-                            <div class="due-value">
-                                05 Sep 2026
-                            </div>
+        </div>
 
-                        </div>
 
-                        <div class="status overdue">
-                            Overdue
-                        </div>
+        <div class="detail-box">
 
-                        <button class="view-btn"
-                                onclick="viewAssignment('SQL Queries and Joins')">
-                            View
-                        </button>
+            <div class="detail-label">
+                Subject
+            </div>
 
-                    </div>
-
-                </div>
-
+            <div
+                class="detail-value"
+                id="modalSubject"
+            >
             </div>
 
         </div>
 
-    </section>
 
-</main>
+        <div class="detail-box">
+
+            <div class="detail-label">
+                Description
+            </div>
+
+            <div
+                class="detail-value"
+                id="modalDescription"
+            >
+            </div>
+
+        </div>
+
+
+        <div class="detail-box">
+
+            <div class="detail-label">
+                Due Date
+            </div>
+
+            <div
+                class="detail-value"
+                id="modalDueDate"
+            >
+            </div>
+
+        </div>
+
+
+        <div class="detail-box">
+
+            <div class="detail-label">
+                Status
+            </div>
+
+            <div
+                class="detail-value"
+                id="modalStatus"
+            >
+            </div>
+
+        </div>
+
+
+        <div class="modal-buttons">
+
+            <button
+                class="modal-btn modal-cancel"
+                onclick="closeModal()"
+            >
+                Close
+            </button>
+
+            <button
+                class="modal-btn modal-submit"
+                onclick="submitFromModal()"
+            >
+                Submit Assignment
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     TOAST
+===================================================== -->
+
+<div
+    class="toast"
+    id="toast"
+>
+</div>
+
 
 <script>
 
-/* ================= CLOCK ================= */
+
+/* =========================================================
+   CLOCK
+========================================================= */
 
 function updateClock(){
 
+    const clock =
+        document.getElementById("clock");
+
+    if(!clock) return;
+
     const now = new Date();
 
-    document.getElementById("clock").textContent =
-        now.toLocaleTimeString("en-IN");
-
+    clock.textContent =
+        now.toLocaleTimeString(
+            [],
+            {
+                hour:"numeric",
+                minute:"2-digit"
+            }
+        );
 }
-
-setInterval(updateClock,1000);
 
 updateClock();
 
+setInterval(
+    updateClock,
+    1000
+);
 
-/* ================= SIDEBAR ================= */
 
-function toggleSidebar(){
+/* =========================================================
+   LOGOUT
+========================================================= */
 
-    document
-        .getElementById("sidebar")
-        .classList.toggle("open");
+function confirmLogout(){
+
+    return confirm(
+        "Are you sure you want to logout?"
+    );
 
 }
 
 
-/* ================= STUDENT ================= */
+/* =========================================================
+   TOAST
+========================================================= */
 
-try{
+function showToast(message){
 
-    const student =
-        JSON.parse(localStorage.getItem("student"));
+    const toast =
+        document.getElementById("toast");
 
-    if(student){
+    if(!toast) return;
 
-        const name =
-            student.name ||
-            student.username ||
-            student.fullName;
+    toast.textContent =
+        message;
 
-        if(name){
+    toast.classList.add("show");
 
-            document.getElementById("studentName")
-                .textContent = name;
+    setTimeout(
+        () => {
+
+            toast.classList.remove("show");
+
+        },
+        2500
+    );
+
+}
+
+
+/* =========================================================
+   ASSIGNMENTS DATA
+========================================================= */
+
+const assignments = [
+
+    {
+        id:1,
+
+        title:
+            "Database Management System Assignment",
+
+        subject:
+            "Database Management System",
+
+        description:
+            "Complete the DBMS assignment and submit it through the portal.",
+
+        dueDate:
+            "2026-09-25",
+
+        status:
+            "Pending",
+
+        icon:
+            "🗄️"
+    },
+
+
+    {
+        id:2,
+
+        title:
+            "Web Programming Project",
+
+        subject:
+            "Web Programming",
+
+        description:
+            "Create and submit the required web programming project.",
+
+        dueDate:
+            "2026-09-27",
+
+        status:
+            "New",
+
+        icon:
+            "💻"
+    },
+
+
+    {
+        id:3,
+
+        title:
+            "Software Engineering Report",
+
+        subject:
+            "Software Engineering",
+
+        description:
+            "Prepare the software engineering report and submit it.",
+
+        dueDate:
+            "2026-09-22",
+
+        status:
+            "Pending",
+
+        icon:
+            "⚙️"
+    },
+
+
+    {
+        id:4,
+
+        title:
+            "Computer Networks Assignment",
+
+        subject:
+            "Computer Networks",
+
+        description:
+            "Complete the computer networks assignment.",
+
+        dueDate:
+            "2026-09-20",
+
+        status:
+            "Overdue",
+
+        icon:
+            "🌐"
+    },
+
+
+    {
+        id:5,
+
+        title:
+            "Mathematics Assignment",
+
+        subject:
+            "Mathematics",
+
+        description:
+            "Solve and submit the mathematics assignment.",
+
+        dueDate:
+            "2026-09-29",
+
+        status:
+            "Submitted",
+
+        icon:
+            "📐"
+    }
+
+];
+
+
+/* =========================================================
+   RENDER ASSIGNMENTS
+========================================================= */
+
+function renderAssignments(){
+
+    const list =
+        document.getElementById(
+            "assignmentList"
+        );
+
+    const empty =
+        document.getElementById(
+            "emptyState"
+        );
+
+    const search =
+        document.getElementById(
+            "searchInput"
+        );
+
+    const subject =
+        document.getElementById(
+            "subjectFilter"
+        );
+
+    const status =
+        document.getElementById(
+            "statusFilter"
+        );
+
+
+    if(!list) return;
+
+
+    const searchText =
+        search
+        ? search.value.toLowerCase().trim()
+        : "";
+
+
+    const subjectValue =
+        subject
+        ? subject.value
+        : "all";
+
+
+    const statusValue =
+        status
+        ? status.value
+        : "all";
+
+
+    const filtered =
+        assignments.filter(
+            assignment => {
+
+                const matchesSearch =
+
+                    assignment.title
+                        .toLowerCase()
+                        .includes(searchText)
+
+                    ||
+
+                    assignment.subject
+                        .toLowerCase()
+                        .includes(searchText);
+
+
+                const matchesSubject =
+
+                    subjectValue === "all"
+
+                    ||
+
+                    assignment.subject ===
+                    subjectValue;
+
+
+                const matchesStatus =
+
+                    statusValue === "all"
+
+                    ||
+
+                    assignment.status ===
+                    statusValue;
+
+
+                return (
+                    matchesSearch &&
+                    matchesSubject &&
+                    matchesStatus
+                );
+
+            }
+        );
+
+
+    list.innerHTML = "";
+
+
+    filtered.forEach(
+        assignment => {
+
+            const item =
+                document.createElement(
+                    "div"
+                );
+
+            item.className =
+                "assignment-item";
+
+
+            item.innerHTML = `
+
+                <div class="assignment-icon">
+                    ${assignment.icon}
+                </div>
+
+
+                <div class="assignment-info">
+
+                    <strong>
+                        ${assignment.title}
+                    </strong>
+
+                    <span>
+                        ${assignment.subject}
+                    </span>
+
+                </div>
+
+
+                <div class="assignment-right">
+
+                    <div class="due-date">
+
+                        <strong>
+                            ${formatDate(assignment.dueDate)}
+                        </strong>
+
+                        <span>
+                            Due date
+                        </span>
+
+                    </div>
+
+
+                    <span
+                        class="status status-${assignment.status.toLowerCase()}"
+                    >
+                        ${assignment.status}
+                    </span>
+
+
+                    <div class="item-actions">
+
+                        <button
+                            class="small-btn"
+                            onclick="viewAssignment(${assignment.id})"
+                        >
+                            View
+                        </button>
+
+
+                        ${
+                            assignment.status !== "Submitted"
+
+                            ?
+
+                            `
+                            <button
+                                class="small-btn submit-small"
+                                onclick="submitAssignment(${assignment.id})"
+                            >
+                                Submit
+                            </button>
+                            `
+
+                            :
+
+                            ""
+                        }
+
+                    </div>
+
+                </div>
+
+            `;
+
+
+            list.appendChild(item);
+
+        }
+    );
+
+
+    if(empty){
+
+        empty.style.display =
+            filtered.length === 0
+            ? "block"
+            : "none";
+
+    }
+
+
+    updateSummary();
+
+}
+
+
+/* =========================================================
+   FORMAT DATE
+========================================================= */
+
+function formatDate(dateString){
+
+    const date =
+        new Date(
+            dateString + "T00:00:00"
+        );
+
+    return date.toLocaleDateString(
+        "en-IN",
+        {
+            day:"2-digit",
+            month:"short",
+            year:"numeric"
+        }
+    );
+
+}
+
+
+/* =========================================================
+   SUMMARY
+========================================================= */
+
+function updateSummary(){
+
+    const total =
+        document.getElementById(
+            "totalCount"
+        );
+
+    const pending =
+        document.getElementById(
+            "pendingCount"
+        );
+
+    const submitted =
+        document.getElementById(
+            "submittedCount"
+        );
+
+    const overdue =
+        document.getElementById(
+            "overdueCount"
+        );
+
+
+    if(total)
+
+        total.textContent =
+            assignments.length;
+
+
+    if(pending)
+
+        pending.textContent =
+            assignments.filter(
+                a =>
+                    a.status === "Pending"
+            ).length;
+
+
+    if(submitted)
+
+        submitted.textContent =
+            assignments.filter(
+                a =>
+                    a.status === "Submitted"
+            ).length;
+
+
+    if(overdue)
+
+        overdue.textContent =
+            assignments.filter(
+                a =>
+                    a.status === "Overdue"
+            ).length;
+
+}
+
+
+/* =========================================================
+   SUBJECT FILTER
+========================================================= */
+
+function loadSubjects(){
+
+    const select =
+        document.getElementById(
+            "subjectFilter"
+        );
+
+    if(!select) return;
+
+
+    const subjects = [
+
+        ...new Set(
+            assignments.map(
+                a => a.subject
+            )
+        )
+
+    ];
+
+
+    subjects.forEach(
+        subject => {
+
+            const option =
+                document.createElement(
+                    "option"
+                );
+
+            option.value =
+                subject;
+
+            option.textContent =
+                subject;
+
+            select.appendChild(
+                option
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   VIEW ASSIGNMENT
+========================================================= */
+
+function viewAssignment(id){
+
+    const assignment =
+        assignments.find(
+            a => a.id === id
+        );
+
+    if(!assignment) return;
+
+
+    document.getElementById(
+        "modalTitle"
+    ).textContent =
+        assignment.title;
+
+
+    document.getElementById(
+        "modalSubject"
+    ).textContent =
+        assignment.subject;
+
+
+    document.getElementById(
+        "modalDescription"
+    ).textContent =
+        assignment.description;
+
+
+    document.getElementById(
+        "modalDueDate"
+    ).textContent =
+        formatDate(
+            assignment.dueDate
+        );
+
+
+    document.getElementById(
+        "modalStatus"
+    ).textContent =
+        assignment.status;
+
+
+    document.getElementById(
+        "assignmentModal"
+    ).classList.add("show");
+
+
+    window.currentAssignmentId =
+        id;
+
+}
+
+
+/* =========================================================
+   CLOSE MODAL
+========================================================= */
+
+function closeModal(){
+
+    const modal =
+        document.getElementById(
+            "assignmentModal"
+        );
+
+    if(modal)
+
+        modal.classList.remove("show");
+
+}
+
+
+function closeModalOutside(event){
+
+    if(
+        event.target.id ===
+        "assignmentModal"
+    ){
+
+        closeModal();
+
+    }
+
+}
+
+
+/* =========================================================
+   SUBMIT ASSIGNMENT
+========================================================= */
+
+function submitAssignment(id){
+
+    const assignment =
+        assignments.find(
+            a => a.id === id
+        );
+
+    if(!assignment) return;
+
+
+    if(
+        assignment.status ===
+        "Submitted"
+    ){
+
+        showToast(
+            "This assignment is already submitted."
+        );
+
+        return;
+
+    }
+
+
+    assignment.status =
+        "Submitted";
+
+
+    renderAssignments();
+
+
+    showToast(
+        "Assignment submitted successfully!"
+    );
+
+}
+
+
+/* =========================================================
+   SUBMIT FROM MODAL
+========================================================= */
+
+function submitFromModal(){
+
+    if(
+        window.currentAssignmentId
+    ){
+
+        submitAssignment(
+            window.currentAssignmentId
+        );
+
+        closeModal();
+
+    }
+
+}
+
+
+/* =========================================================
+   CHATBOT OPEN / CLOSE
+========================================================= */
+
+function toggleChatbot(){
+
+    const chatbot =
+        document.getElementById(
+            "chatbotPanel"
+        );
+
+    const launcher =
+        document.getElementById(
+            "chatLauncher"
+        );
+
+
+    if(!chatbot) return;
+
+
+    chatbot.classList.toggle(
+        "cc-open"
+    );
+
+
+    if(
+        chatbot.classList.contains(
+            "cc-open"
+        )
+    ){
+
+        if(launcher){
+
+            launcher.setAttribute(
+                "aria-label",
+                "Close AI College Companion"
+            );
+
+        }
+
+        setTimeout(
+            () => {
+
+                const input =
+                    document.getElementById(
+                        "chatInput"
+                    );
+
+                if(input)
+                    input.focus();
+
+            },
+            250
+        );
+
+    }
+
+    else{
+
+        if(launcher){
+
+            launcher.setAttribute(
+                "aria-label",
+                "Open AI College Companion"
+            );
 
         }
 
     }
 
-}catch(error){
-
-    console.log("Student information not available.");
-
 }
 
 
-/* ================= ASSIGNMENT DATA ================= */
+/* =========================================================
+   QUICK CHAT
+========================================================= */
 
-const assignments =
-    document.querySelectorAll(".assignment");
+function quickChat(message){
 
-
-/* ================= STATS ================= */
-
-function updateStats(){
-
-    let total = assignments.length;
-    let pending = 0;
-    let submitted = 0;
-    let overdue = 0;
-
-    assignments.forEach(function(assignment){
-
-        const status =
-            assignment.dataset.status;
-
-        if(status === "Pending"){
-            pending++;
-        }
-
-        if(status === "Submitted"){
-            submitted++;
-        }
-
-        if(status === "Overdue"){
-            overdue++;
-        }
-
-    });
-
-    document.getElementById(
-        "totalAssignments"
-    ).textContent = total;
-
-    document.getElementById(
-        "pendingAssignments"
-    ).textContent = pending;
-
-    document.getElementById(
-        "submittedAssignments"
-    ).textContent = submitted;
-
-    document.getElementById(
-        "overdueAssignments"
-    ).textContent = overdue;
-
-}
-
-
-/* ================= FILTER ================= */
-
-function filterAssignments(){
-
-    const subject =
+    const input =
         document.getElementById(
-            "subjectFilter"
-        ).value;
+            "chatInput"
+        );
 
-    const status =
+
+    if(input){
+
+        input.value =
+            message;
+
+    }
+
+
+    sendChat();
+
+}
+
+
+/* =========================================================
+   ADD CHAT MESSAGE
+========================================================= */
+
+function addChatMessage(
+    message,
+    type
+){
+
+    const body =
         document.getElementById(
-            "statusFilter"
-        ).value;
+            "chatBody"
+        );
 
-    assignments.forEach(function(assignment){
 
-        const assignmentSubject =
-            assignment.dataset.subject;
+    if(!body) return;
 
-        const assignmentStatus =
-            assignment.dataset.status;
 
-        const subjectMatch =
-            subject === "all" ||
-            assignmentSubject === subject;
+    const div =
+        document.createElement(
+            "div"
+        );
 
-        const statusMatch =
-            status === "all" ||
-            assignmentStatus === status;
 
-        if(subjectMatch && statusMatch){
+    div.className =
+        type === "user"
+        ? "user-message"
+        : "bot-message";
 
-            assignment.style.display = "flex";
 
-        }else{
+    div.innerHTML =
+        message;
 
-            assignment.style.display = "none";
+
+    body.appendChild(div);
+
+
+    body.scrollTop =
+        body.scrollHeight;
+
+}
+
+
+/* =========================================================
+   CHATBOT ANSWERS
+========================================================= */
+
+function getChatbotAnswer(question){
+
+    const q =
+        question
+        .toLowerCase()
+        .trim();
+
+
+    /* PENDING */
+
+    if(
+        q.includes("pending")
+        ||
+        q.includes("incomplete")
+    ){
+
+        const pending =
+            assignments.filter(
+                a =>
+                    a.status === "Pending"
+            );
+
+
+        if(pending.length === 0){
+
+            return `
+                ✅ You have no pending assignments.
+            `;
 
         }
 
-    });
+
+        return `
+
+            <strong>
+                ⏳ Pending assignments:
+            </strong>
+
+            <br><br>
+
+            ${
+                pending
+                .map(
+                    a =>
+                    `• ${a.title}<br>
+                     &nbsp;&nbsp;Due: ${formatDate(a.dueDate)}`
+                )
+                .join("<br>")
+            }
+
+        `;
+
+    }
+
+
+    /* OVERDUE */
+
+    if(
+        q.includes("overdue")
+        ||
+        q.includes("late")
+    ){
+
+        const overdue =
+            assignments.filter(
+                a =>
+                    a.status === "Overdue"
+            );
+
+
+        if(overdue.length === 0){
+
+            return `
+                ✅ You have no overdue assignments.
+            `;
+
+        }
+
+
+        return `
+
+            <strong>
+                ⚠️ Overdue assignments:
+            </strong>
+
+            <br><br>
+
+            ${
+                overdue
+                .map(
+                    a =>
+                    `• ${a.title}<br>
+                     &nbsp;&nbsp;Due: ${formatDate(a.dueDate)}`
+                )
+                .join("<br>")
+            }
+
+        `;
+
+    }
+
+
+    /* SUBMITTED */
+
+    if(
+        q.includes("submitted")
+        ||
+        q.includes("completed")
+    ){
+
+        const submitted =
+            assignments.filter(
+                a =>
+                    a.status === "Submitted"
+            );
+
+
+        return `
+
+            <strong>
+                ✅ Submitted assignments:
+            </strong>
+
+            <br><br>
+
+            ${
+                submitted.length
+
+                ?
+
+                submitted
+                .map(
+                    a =>
+                        `• ${a.title}`
+                )
+                .join("<br>")
+
+                :
+
+                "No assignments have been submitted yet."
+            }
+
+        `;
+
+    }
+
+
+    /* NEXT DEADLINE */
+
+    if(
+        q.includes("next deadline")
+        ||
+        q.includes("next due")
+        ||
+        q.includes("deadline")
+    ){
+
+        const upcoming =
+
+            assignments
+
+            .filter(
+                a =>
+                    a.status !== "Submitted"
+            )
+
+            .sort(
+                (a,b) =>
+                    new Date(a.dueDate)
+                    -
+                    new Date(b.dueDate)
+            );
+
+
+        if(!upcoming.length){
+
+            return `
+                🎉 You have no upcoming assignment deadlines.
+            `;
+
+        }
+
+
+        const next =
+            upcoming[0];
+
+
+        return `
+
+            <strong>
+                📅 Your next deadline:
+            </strong>
+
+            <br><br>
+
+            ${next.title}
+
+            <br>
+
+            <strong>
+                Subject:
+            </strong>
+
+            ${next.subject}
+
+            <br>
+
+            <strong>
+                Due:
+            </strong>
+
+            ${formatDate(next.dueDate)}
+
+            <br>
+
+            <strong>
+                Status:
+            </strong>
+
+            ${next.status}
+
+        `;
+
+    }
+
+
+    /* TOTAL */
+
+    if(
+        q.includes("how many")
+        ||
+        q.includes("total assignments")
+        ||
+        q.includes("number of assignments")
+    ){
+
+        return `
+
+            📝 You have
+            <strong>
+                ${assignments.length}
+            </strong>
+            assignments in total.
+
+        `;
+
+    }
+
+
+    /* HELP */
+
+    if(
+        q.includes("help")
+        ||
+        q === "hi"
+        ||
+        q === "hello"
+        ||
+        q.includes("what can you do")
+    ){
+
+        return `
+
+            👋 I can help you with:
+
+            <br><br>
+
+            • Pending assignments
+            <br>
+
+            • Overdue assignments
+            <br>
+
+            • Submitted assignments
+            <br>
+
+            • Next deadline
+            <br>
+
+            • Assignment subjects
+            <br>
+
+            • Assignment status
+            <br>
+
+            • Total assignment count
+
+        `;
+
+    }
+
+
+    /* SPECIFIC ASSIGNMENT */
+
+    const matched =
+        assignments.find(
+            a =>
+
+                q.includes(
+                    a.title
+                    .toLowerCase()
+                )
+
+                ||
+
+                q.includes(
+                    a.subject
+                    .toLowerCase()
+                )
+        );
+
+
+    if(matched){
+
+        return `
+
+            <strong>
+                📝 ${matched.title}
+            </strong>
+
+            <br><br>
+
+            <strong>
+                Subject:
+            </strong>
+
+            ${matched.subject}
+
+            <br>
+
+            <strong>
+                Due:
+            </strong>
+
+            ${formatDate(matched.dueDate)}
+
+            <br>
+
+            <strong>
+                Status:
+            </strong>
+
+            ${matched.status}
+
+            <br><br>
+
+            ${matched.description}
+
+        `;
+
+    }
+
+
+    /* DEFAULT */
+
+    return `
+
+        🤖 I can help you with your
+        assignments, deadlines and
+        submission status.
+
+        <br><br>
+
+        Try asking:
+
+        <br>
+
+        • "Show my pending assignments"
+
+        <br>
+
+        • "Show my overdue assignments"
+
+        <br>
+
+        • "What is my next deadline?"
+
+        <br>
+
+        • "Show submitted assignments"
+
+    `;
 
 }
 
 
-/* ================= VIEW ================= */
+/* =========================================================
+   SEND CHAT
+========================================================= */
 
-function viewAssignment(name){
+function sendChat(){
 
-    alert(
-        "Assignment: " +
-        name +
-        "\n\nAssignment details will be connected to the backend later."
+    const input =
+        document.getElementById(
+            "chatInput"
+        );
+
+
+    if(!input) return;
+
+
+    const question =
+        input.value.trim();
+
+
+    if(!question) return;
+
+
+    addChatMessage(
+        question,
+        "user"
+    );
+
+
+    input.value = "";
+
+
+    setTimeout(
+        () => {
+
+            const answer =
+                getChatbotAnswer(
+                    question
+                );
+
+
+            addChatMessage(
+                answer,
+                "bot"
+            );
+
+        },
+        250
     );
 
 }
 
 
-/* ================= EVENTS ================= */
+/* =========================================================
+   ENTER KEY
+========================================================= */
 
-document
-    .getElementById("subjectFilter")
-    .addEventListener(
-        "change",
-        filterAssignments
-    );
+function handleChatKey(event){
 
-document
-    .getElementById("statusFilter")
-    .addEventListener(
-        "change",
-        filterAssignments
-    );
+    if(
+        event.key ===
+        "Enter"
+    ){
+
+        event.preventDefault();
+
+        sendChat();
+
+    }
+
+}
 
 
-/* ================= START ================= */
+/* =========================================================
+   START PAGE
+========================================================= */
 
-updateStats();
+loadSubjects();
+
+renderAssignments();
+
 
 </script>
 
 </body>
+
 </html>
