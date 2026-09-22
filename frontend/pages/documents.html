@@ -1,789 +1,3185 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>CampusConnect | Documents</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet"
-    >
-
-    <style>
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: "Poppins", sans-serif;
-            background: #f5f7fb;
-            color: #20243a;
-        }
-
-        /* SIDEBAR */
-
-        .sidebar {
-            position: fixed;
-            left: 0;
-            top: 0;
-            width: 250px;
-            height: 100vh;
-            background: linear-gradient(180deg,#172554,#312e81,#4c1d95);
-            color: white;
-            padding: 22px 15px;
-            overflow-y: auto;
-            z-index: 1000;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 25px;
-        }
-
-        .nav-item {
-            width: 100%;
-            border: none;
-            background: transparent;
-            color: #e0e7ff;
-            padding: 12px 14px;
-            margin: 3px 0;
-            border-radius: 10px;
-            text-align: left;
-            font-family: inherit;
-            font-size: 14px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            transition: .2s;
-        }
-
-        .nav-item:hover {
-            background: rgba(255,255,255,.12);
-            color: white;
-        }
-
-        .nav-item.active {
-            background: linear-gradient(90deg,#22d3ee,#8b5cf6);
-            color: white;
-            font-weight: 600;
-        }
-
-        .nav-icon {
-            width: 24px;
-            text-align: center;
-            font-size: 17px;
-        }
-
-        /* MAIN */
-
-        .main {
-            margin-left: 250px;
-            min-height: 100vh;
-        }
-
-        /* TOP BAR */
-
-        .topbar {
-            height: 75px;
-            background: white;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 35px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .brand-icon {
-            width: 45px;
-            height: 45px;
-            border-radius: 14px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 22px;
-        }
-
-        .brand h2 {
-            font-size: 20px;
-        }
-
-        .brand span {
-            color: #667eea;
-        }
-
-        .back-btn {
-            border: none;
-            background: #eef1ff;
-            color: #667eea;
-            padding: 11px 20px;
-            border-radius: 12px;
-            font-family: inherit;
-            font-weight: 600;
-            cursor: pointer;
-        }
-
-        .back-btn:hover {
-            background: #667eea;
-            color: white;
-        }
-
-        /* CONTENT */
-
-        .container {
-            max-width: 1150px;
-            margin: auto;
-            padding: 35px;
-        }
-
-        /* HEADER */
-
-        .page-header {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            border-radius: 25px;
-            padding: 35px;
-            margin-bottom: 30px;
-        }
-
-        .page-header h1 {
-            font-size: 32px;
-            margin-bottom: 10px;
-        }
-
-        .page-header p {
-            font-size: 14px;
-            line-height: 1.7;
-            opacity: 0.92;
-        }
-
-        /* DOCUMENT CARDS */
-
-        .documents-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-        }
-
-        .document-card {
-            background: white;
-            border-radius: 20px;
-            padding: 22px;
-            box-shadow: 0 8px 28px rgba(0,0,0,0.06);
-            display: flex;
-            align-items: center;
-            gap: 18px;
-            transition: 0.2s;
-        }
-
-        .document-card:hover {
-            transform: translateY(-3px);
-        }
-
-        .document-icon {
-            width: 58px;
-            height: 58px;
-            border-radius: 15px;
-            background: #eef1ff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            flex-shrink: 0;
-        }
-
-        .document-info {
-            flex: 1;
-        }
-
-        .document-info h3 {
-            font-size: 15px;
-            margin-bottom: 5px;
-        }
-
-        .document-info p {
-            color: #777;
-            font-size: 11px;
-        }
-
-        .document-btn {
-            border: none;
-            background: #667eea;
-            color: white;
-            padding: 9px 14px;
-            border-radius: 10px;
-            font-family: inherit;
-            font-size: 11px;
-            font-weight: 600;
-            cursor: pointer;
-        }
-
-        .document-btn:hover {
-            background: #764ba2;
-        }
-
-        /* SECTION TITLE */
-
-        .section-title {
-            margin: 35px 0 18px;
-        }
-
-        .section-title h2 {
-            font-size: 21px;
-        }
-
-        .section-title p {
-            color: #777;
-            font-size: 12px;
-            margin-top: 4px;
-        }
-
-        /* INFO */
-
-        .info-card {
-            margin-top: 30px;
-            background: white;
-            border-radius: 20px;
-            padding: 25px;
-            box-shadow: 0 8px 28px rgba(0,0,0,0.06);
-        }
-
-        .info-card h2 {
-            font-size: 19px;
-            margin-bottom: 10px;
-        }
-
-        .info-card p {
-            color: #777;
-            font-size: 12px;
-            line-height: 1.7;
-        }
-
-        /* FOOTER */
-
-        footer {
-            text-align: center;
-            padding: 30px 0 15px;
-            color: #888;
-            font-size: 11px;
-        }
-
-        /* RESPONSIVE */
-
-        @media (max-width: 900px) {
-
-            .documents-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .container {
-                padding: 20px;
-            }
-
-            .topbar {
-                padding: 0 18px;
-            }
-
-        }
-
-        @media (max-width: 700px) {
-
-            .sidebar {
-                width: 220px;
-            }
-
-            .main {
-                margin-left: 220px;
-            }
-
-        }
-
-        @media (max-width: 550px) {
-
-            .sidebar {
-                position: relative;
-                width: 100%;
-                height: auto;
-            }
-
-            .main {
-                margin-left: 0;
-            }
-
-            .document-card {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .document-btn {
-                width: 100%;
-            }
-
-            .page-header h1 {
-                font-size: 25px;
-            }
-
-        }
-
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CampusConnect | Documents</title>
+
+<style>
+
+/* =========================
+   GLOBAL
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,body{
+    width:100%;
+    height:100%;
+    font-family:"Segoe UI",Arial,sans-serif;
+    background:#f4f6ff;
+    color:#17203a;
+    overflow:hidden;
+}
+
+button,
+input,
+select{
+    font-family:inherit;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    bottom:0;
+    width:268px;
+    min-width:268px;
+
+    background:linear-gradient(
+        180deg,
+        #172a70 0%,
+        #28237d 48%,
+        #5520a7 100%
+    );
+
+    color:white;
+    overflow-y:auto;
+    overflow-x:hidden;
+    z-index:1000;
+
+    padding-bottom:20px;
+
+    scrollbar-width:thin;
+    scrollbar-color:rgba(255,255,255,.25) transparent;
+}
+
+/* BRAND */
+
+.brand{
+    height:120px;
+    display:flex;
+    align-items:center;
+    padding:22px 18px;
+    border-bottom:1px solid rgba(255,255,255,.12);
+}
+
+.logo-box{
+    width:52px;
+    height:52px;
+    border-radius:16px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:28px;
+
+    background:linear-gradient(
+        135deg,
+        #24b8ff,
+        #7144f5
+    );
+
+    box-shadow:0 10px 25px rgba(0,0,0,.20);
+}
+
+.brand-text{
+    margin-left:13px;
+}
+
+.brand-title{
+    font-size:21px;
+    font-weight:800;
+    letter-spacing:-.5px;
+}
+
+.brand-subtitle{
+    font-size:12px;
+    opacity:.72;
+    margin-top:3px;
+}
+
+/* MENU */
+
+.menu{
+    padding:25px 14px;
+}
+
+.menu-title{
+    font-size:12px;
+    font-weight:700;
+    color:rgba(255,255,255,.52);
+    letter-spacing:1px;
+    padding:0 11px 10px;
+}
+
+.menu-section{
+    margin-top:20px;
+}
 
+.nav-item{
+    width:100%;
+
+    display:flex;
+    align-items:center;
+
+    min-height:49px;
+
+    padding:0 14px;
+    margin:5px 0;
+
+    border-radius:13px;
+
+    color:rgba(255,255,255,.84);
+
+    text-decoration:none;
+
+    transition:
+        transform .2s ease,
+        background .2s ease,
+        color .2s ease;
+}
+
+.nav-item:hover{
+    background:rgba(255,255,255,.12);
+    color:white;
+    transform:translateX(3px);
+}
+
+.nav-item.active{
+    color:white;
+
+    background:linear-gradient(
+        90deg,
+        #22b9f5,
+        #6942f4
+    );
+
+    box-shadow:0 9px 22px rgba(0,0,0,.18);
+}
+
+.nav-icon{
+    width:31px;
+    font-size:20px;
+    text-align:center;
+    margin-right:10px;
+}
+
+.nav-text{
+    font-size:15px;
+    font-weight:650;
+}
+
+.logout{
+    margin-top:14px;
+    padding-top:15px;
+    border-top:1px solid rgba(255,255,255,.13);
+}
+
+/* =========================
+   MAIN AREA
+========================= */
+
+.main-area{
+    margin-left:268px;
+    margin-right:286px;
+
+    width:auto;
+    height:100vh;
+
+    overflow-y:auto;
+    overflow-x:hidden;
+
+    background:
+        linear-gradient(
+            180deg,
+            #f8f9ff,
+            #eef1fb
+        );
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.top-header{
+    height:120px;
+
+    background:rgba(255,255,255,.96);
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:22px 28px;
+
+    border-bottom:1px solid #e9ebf5;
+
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+.header-left h1{
+    font-size:30px;
+    line-height:1.05;
+    font-weight:800;
+}
+
+.header-left p{
+    margin-top:7px;
+    color:#8990a7;
+    font-size:14px;
+}
+
+.header-right{
+    display:flex;
+    align-items:center;
+    gap:18px;
+}
+
+.time-box{
+    font-size:18px;
+    font-weight:750;
+    color:#59617d;
+}
+
+.notification{
+    width:48px;
+    height:48px;
+
+    background:#fff;
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:22px;
+
+    box-shadow:
+        0 5px 18px rgba(40,35,100,.10);
+
+    position:relative;
+    cursor:pointer;
+}
+
+.notification::after{
+    content:"";
+
+    width:8px;
+    height:8px;
+
+    border-radius:50%;
+
+    background:#ff4f8b;
+
+    position:absolute;
+    top:7px;
+    right:8px;
+}
+
+.profile-mini{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.profile-circle{
+    width:48px;
+    height:48px;
+
+    border-radius:50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #25b8ee,
+            #466cf1
+        );
+
+    color:white;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:20px;
+    font-weight:800;
+}
+
+.profile-info strong{
+    display:block;
+    font-size:15px;
+}
+
+.profile-info span{
+    display:block;
+    color:#8d93a8;
+    font-size:12px;
+}
+
+/* =========================
+   CONTENT
+========================= */
+
+.content{
+    padding:28px;
+}
+
+/* HERO */
+
+.hero{
+    min-height:180px;
+
+    border-radius:22px;
+
+    padding:28px 30px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    color:white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #29277d,
+            #6736d4
+        );
+
+    box-shadow:
+        0 15px 35px rgba(61,45,150,.20);
+
+    position:relative;
+    overflow:hidden;
+}
+
+.hero::after{
+    content:"";
+
+    position:absolute;
+
+    width:250px;
+    height:250px;
+
+    border-radius:50%;
+
+    right:-70px;
+    top:-90px;
+
+    background:rgba(255,255,255,.08);
+}
+
+.hero-text{
+    position:relative;
+    z-index:2;
+}
+
+.hero-text small{
+    font-size:13px;
+    opacity:.72;
+}
+
+.hero-text h2{
+    font-size:28px;
+    margin:7px 0;
+}
+
+.hero-text p{
+    font-size:13px;
+    opacity:.82;
+}
+
+.hero-icon{
+    position:relative;
+    z-index:2;
+
+    width:82px;
+    height:82px;
+
+    border-radius:24px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:42px;
+
+    background:rgba(255,255,255,.13);
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,.12);
+}
+
+/* =========================
+   SUMMARY CARDS
+========================= */
+
+.summary-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:18px;
+
+    margin-top:22px;
+}
+
+.summary-card{
+    background:white;
+
+    border:1px solid #e6e8f2;
+
+    border-radius:18px;
+
+    padding:20px;
+
+    box-shadow:
+        0 8px 25px rgba(40,35,100,.06);
+
+    transition:.2s;
+}
+
+.summary-card:hover{
+    transform:translateY(-4px);
+
+    box-shadow:
+        0 14px 30px rgba(40,35,100,.11);
+}
+
+.summary-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.summary-icon{
+    width:42px;
+    height:42px;
+
+    border-radius:13px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:21px;
+
+    background:#f0edff;
+}
+
+.summary-card h3{
+    margin-top:13px;
+
+    font-size:25px;
+}
+
+.summary-card p{
+    margin-top:4px;
+
+    font-size:12px;
+    color:#9096ab;
+}
+
+/* =========================
+   SECTION HEADER
+========================= */
+
+.section-header{
+    margin-top:30px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    gap:15px;
+}
+
+.section-header h2{
+    font-size:21px;
+}
+
+.section-header p{
+    color:#9298aa;
+    font-size:12px;
+    margin-top:4px;
+}
+
+/* =========================
+   TOOLBAR
+========================= */
+
+.toolbar{
+    margin-top:18px;
+
+    display:flex;
+    gap:12px;
+
+    align-items:center;
+}
+
+.search-box{
+    flex:1;
+
+    height:46px;
+
+    background:white;
+
+    border:1px solid #e1e4ef;
+
+    border-radius:13px;
+
+    padding:0 15px;
+
+    outline:none;
+
+    font-size:13px;
+
+    color:#4f5871;
+}
+
+.search-box:focus{
+    border-color:#7650e8;
+
+    box-shadow:
+        0 0 0 3px rgba(118,80,232,.10);
+}
+
+.filter-select{
+    height:46px;
+
+    min-width:150px;
+
+    border:1px solid #e1e4ef;
+
+    background:white;
+
+    border-radius:13px;
+
+    padding:0 12px;
+
+    outline:none;
+
+    color:#626b84;
+
+    cursor:pointer;
+}
+
+.upload-btn{
+    height:46px;
+
+    border:none;
+
+    border-radius:13px;
+
+    padding:0 18px;
+
+    color:white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6543e8,
+            #843de0
+        );
+
+    font-size:13px;
+    font-weight:700;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 8px 18px rgba(101,67,232,.20);
+
+    transition:.2s;
+}
+
+.upload-btn:hover{
+    transform:translateY(-2px);
+}
+
+/* =========================
+   DOCUMENT GRID
+========================= */
+
+.document-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:18px;
+
+    margin-top:20px;
+
+    padding-bottom:30px;
+}
+
+.document-card{
+    background:white;
+
+    border:1px solid #e6e8f2;
+
+    border-radius:18px;
+
+    padding:20px;
+
+    box-shadow:
+        0 8px 25px rgba(40,35,100,.06);
+
+    transition:.2s;
+
+    position:relative;
+}
+
+.document-card:hover{
+    transform:translateY(-4px);
+
+    box-shadow:
+        0 15px 30px rgba(40,35,100,.11);
+}
+
+.document-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+}
+
+.document-icon{
+    width:52px;
+    height:52px;
+
+    border-radius:15px;
+
+    background:#f0edff;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:27px;
+}
+
+.document-menu{
+    width:30px;
+    height:30px;
+
+    border:none;
+    background:#f5f6fb;
+
+    border-radius:9px;
+
+    cursor:pointer;
+
+    color:#7c8298;
+}
+
+.document-card h3{
+    font-size:16px;
+
+    margin-top:17px;
+
+    color:#29314c;
+}
+
+.document-card .category{
+    display:inline-block;
+
+    margin-top:8px;
+
+    padding:5px 9px;
+
+    border-radius:20px;
+
+    background:#f0edff;
+
+    color:#684bd8;
+
+    font-size:10px;
+    font-weight:700;
+}
+
+.document-info{
+    margin-top:15px;
+
+    display:flex;
+    flex-direction:column;
+
+    gap:7px;
+}
+
+.document-info span{
+    font-size:11px;
+    color:#858ca3;
+}
+
+.document-actions{
+    display:flex;
+
+    gap:8px;
+
+    margin-top:18px;
+}
+
+.view-btn,
+.download-btn{
+    flex:1;
+
+    height:36px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-size:11px;
+    font-weight:700;
+}
+
+.view-btn{
+    border:1px solid #dddff0;
+
+    background:white;
+
+    color:#684bd8;
+}
+
+.download-btn{
+    border:none;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6241e8,
+            #7b3ee0
+        );
+
+    color:white;
+}
+
+.view-btn:hover,
+.download-btn:hover{
+    transform:translateY(-1px);
+}
+
+/* EMPTY */
+
+.empty-state{
+    display:none;
+
+    text-align:center;
+
+    background:white;
+
+    border:1px dashed #d9dced;
+
+    border-radius:18px;
+
+    padding:45px 20px;
+
+    color:#9298aa;
+
+    grid-column:1/-1;
+}
+
+.empty-state div{
+    font-size:40px;
+    margin-bottom:10px;
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.modal-overlay{
+    display:none;
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(19,23,54,.55);
+
+    backdrop-filter:blur(5px);
+
+    z-index:20000;
+
+    align-items:center;
+    justify-content:center;
+
+    padding:20px;
+}
+
+.modal{
+    width:100%;
+    max-width:520px;
+
+    background:white;
+
+    border-radius:22px;
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,.25);
+
+    overflow:hidden;
+
+    animation:modalIn .2s ease;
+}
+
+@keyframes modalIn{
+    from{
+        opacity:0;
+        transform:translateY(15px) scale(.98);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+.modal-header{
+    padding:20px 22px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    color:white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #29277d,
+            #7137d8
+        );
+}
+
+.modal-header h2{
+    font-size:19px;
+}
+
+.close-btn{
+    width:34px;
+    height:34px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:rgba(255,255,255,.13);
+
+    color:white;
+
+    font-size:19px;
+
+    cursor:pointer;
+}
+
+.modal-body{
+    padding:22px;
+}
+
+.form-group{
+    margin-bottom:16px;
+}
+
+.form-group label{
+    display:block;
+
+    font-size:12px;
+    font-weight:700;
+
+    color:#59617d;
+
+    margin-bottom:7px;
+}
+
+.form-input,
+.form-select{
+    width:100%;
+
+    height:43px;
+
+    border:1px solid #e0e3ef;
+
+    border-radius:11px;
+
+    padding:0 12px;
+
+    outline:none;
+
+    color:#5e667d;
+
+    font-size:12px;
+}
+
+.form-input:focus,
+.form-select:focus{
+    border-color:#7550e8;
+
+    box-shadow:
+        0 0 0 3px rgba(117,80,232,.08);
+}
+
+.file-input{
+    padding:10px;
+    height:auto;
+}
+
+.modal-footer{
+    padding:15px 22px;
+
+    border-top:1px solid #eceef5;
+
+    display:flex;
+    justify-content:flex-end;
+
+    gap:10px;
+}
+
+.cancel-btn,
+.save-btn{
+    height:40px;
+
+    padding:0 17px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-size:12px;
+    font-weight:700;
+}
+
+.cancel-btn{
+    border:1px solid #dddfea;
+
+    background:white;
+
+    color:#687089;
+}
+
+.save-btn{
+    border:none;
+
+    color:white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6543e8,
+            #843de0
+        );
+}
+
+/* =========================
+   CHATBOT
+========================= */
+
+.chatbot{
+    position:fixed;
+
+    top:18px;
+    right:18px;
+    bottom:18px;
+
+    width:268px;
+    min-width:268px;
+    max-width:268px;
+
+    background:white;
+
+    border-radius:22px;
+
+    border:1px solid #e5e6f2;
+
+    box-shadow:
+        0 15px 45px rgba(40,35,100,.15);
+
+    z-index:9999;
+
+    display:flex;
+    flex-direction:column;
+
+    overflow:hidden;
+}
+
+.chat-header{
+    min-height:82px;
+
+    flex-shrink:0;
+
+    padding:15px;
+
+    display:flex;
+    align-items:center;
+
+    color:white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #29277d,
+            #7137d8
+        );
+}
+
+.robot-icon{
+    width:45px;
+    height:45px;
+
+    border-radius:14px;
+
+    background:rgba(255,255,255,.15);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:24px;
+
+    margin-right:10px;
+}
+
+.chat-title strong{
+    display:block;
+    font-size:15px;
+}
+
+.chat-title span{
+    display:block;
+    font-size:10px;
+
+    margin-top:3px;
+
+    color:rgba(255,255,255,.78);
+}
+
+.online-dot{
+    display:inline-block;
+
+    width:7px;
+    height:7px;
+
+    background:#57e6a3;
+
+    border-radius:50%;
+
+    margin-right:4px;
+}
+
+.chat-body{
+    flex:1;
+
+    min-height:0;
+
+    padding:17px 14px;
+
+    overflow-y:auto;
+
+    background:
+        linear-gradient(
+            180deg,
+            #fafbff,
+            #f4f5fb
+        );
+}
+
+.bot-message{
+    background:white;
+
+    border:1px solid #e7e9f3;
+
+    border-radius:14px;
+
+    padding:12px;
+
+    margin-bottom:10px;
+
+    color:#65708d;
+
+    font-size:11px;
+
+    line-height:1.6;
+
+    box-shadow:
+        0 5px 15px rgba(40,35,100,.04);
+}
+
+.user-message{
+    background:
+        linear-gradient(
+            135deg,
+            #6241e8,
+            #7b3ee0
+        );
+
+    color:white;
+
+    padding:10px 12px;
+
+    border-radius:
+        14px 14px 4px 14px;
+
+    margin:
+        9px 0 9px 20px;
+
+    font-size:11px;
+
+    line-height:1.5;
+}
+
+.quick-buttons{
+    display:flex;
+
+    gap:5px;
+
+    flex-wrap:wrap;
+
+    padding:9px 14px;
+
+    background:white;
+
+    border-top:1px solid #eceef5;
+}
+
+.quick-btn{
+    border:1px solid #e0e3f0;
+
+    background:white;
+
+    color:#6b54d9;
+
+    border-radius:20px;
+
+    padding:7px 9px;
+
+    font-size:9px;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.quick-btn:hover{
+    background:#f3f0ff;
+}
+
+.chat-footer{
+    flex-shrink:0;
+
+    padding:10px;
+
+    background:white;
+
+    border-top:1px solid #eceef5;
+
+    display:flex;
+
+    gap:7px;
+}
+
+.chat-input{
+    flex:1;
+
+    min-width:0;
+
+    height:40px;
+
+    border:1px solid #e1e4ef;
+
+    border-radius:12px;
+
+    outline:none;
+
+    padding:0 11px;
+
+    font-size:11px;
+
+    color:#555e78;
+}
+
+.send-btn{
+    width:40px;
+    height:40px;
+
+    border:none;
+
+    border-radius:12px;
+
+    color:white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6543e8,
+            #843de0
+        );
+
+    cursor:pointer;
+
+    font-size:17px;
+
+    transition:.2s;
+}
+
+.send-btn:hover{
+    transform:scale(1.04);
+}
+
+/* =========================
+   TOAST
+========================= */
+
+.toast{
+    position:fixed;
+
+    left:50%;
+    bottom:25px;
+
+    transform:
+        translateX(-50%)
+        translateY(80px);
+
+    background:#25244f;
+
+    color:white;
+
+    padding:12px 18px;
+
+    border-radius:12px;
+
+    font-size:12px;
+
+    opacity:0;
+
+    transition:.3s;
+
+    z-index:30000;
+
+    box-shadow:
+        0 12px 30px rgba(0,0,0,.20);
+}
+
+.toast.show{
+    opacity:1;
+
+    transform:
+        translateX(-50%)
+        translateY(0);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:1150px){
+
+    .sidebar{
+        width:230px;
+        min-width:230px;
+    }
+
+    .main-area{
+        margin-left:230px;
+        margin-right:250px;
+    }
+
+    .chatbot{
+        width:232px;
+        min-width:232px;
+        max-width:232px;
+
+        right:10px;
+    }
+
+    .document-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .summary-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:900px){
+
+    .chatbot{
+        display:none;
+    }
+
+    .main-area{
+        margin-right:0;
+    }
+
+    .document-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:700px){
+
+    .sidebar{
+        width:80px;
+        min-width:80px;
+    }
+
+    .brand{
+        justify-content:center;
+        padding:15px;
+    }
+
+    .brand-text{
+        display:none;
+    }
+
+    .menu-title,
+    .nav-text{
+        display:none;
+    }
+
+    .nav-item{
+        justify-content:center;
+        padding:0;
+    }
+
+    .nav-icon{
+        margin:0;
+    }
+
+    .main-area{
+        margin-left:80px;
+    }
+
+    .top-header{
+        padding:18px;
+    }
+
+    .header-left h1{
+        font-size:23px;
+    }
+
+    .header-right{
+        gap:8px;
+    }
+
+    .time-box,
+    .profile-info{
+        display:none;
+    }
+
+    .content{
+        padding:18px;
+    }
+
+    .hero{
+        padding:22px;
+    }
+
+    .hero-text h2{
+        font-size:23px;
+    }
+
+    .hero-icon{
+        width:60px;
+        height:60px;
+        font-size:30px;
+    }
+
+    .summary-grid{
+        grid-template-columns:1fr;
+    }
+
+    .document-grid{
+        grid-template-columns:1fr;
+    }
+
+    .toolbar{
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+    .filter-select,
+    .upload-btn{
+        width:100%;
+    }
+}
+
+</style>
 </head>
 
 <body>
 
-    <!-- SIDEBAR -->
+<!-- =========================
+     SIDEBAR
+========================= -->
 
-    <aside class="sidebar">
+<aside class="sidebar">
 
-        <div class="logo">🎓 CampusConnect</div>
+    <div class="brand">
 
-        <button class="nav-item" onclick="go('dashboard')">
+        <div class="logo-box">
+            🎓
+        </div>
+
+        <div class="brand-text">
+
+            <div class="brand-title">
+                CampusConnect
+            </div>
+
+            <div class="brand-subtitle">
+                AI College Companion
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="menu">
+
+        <!-- MAIN MENU -->
+
+        <div class="menu-title">
+            MAIN MENU
+        </div>
+
+        <a class="nav-item" href="../dashboard.html">
             <span class="nav-icon">🏠</span>
-            Dashboard
-        </button>
+            <span class="nav-text">Dashboard</span>
+        </a>
 
-        <button class="nav-item" onclick="go('courses')">
-            <span class="nav-icon">📚</span>
-            My Courses
-        </button>
-
-        <button class="nav-item" onclick="go('timetable')">
+        <a class="nav-item" href="timetable.html">
             <span class="nav-icon">🗓️</span>
-            Timetable
-        </button>
+            <span class="nav-text">Timetable</span>
+        </a>
 
-        <button class="nav-item" onclick="go('assignments')">
+        <a class="nav-item" href="assignments.html">
             <span class="nav-icon">📝</span>
-            Assignments
-        </button>
+            <span class="nav-text">Assignments</span>
+        </a>
 
-        <button class="nav-item" onclick="go('attendance')">
+        <a class="nav-item" href="attendance.html">
             <span class="nav-icon">📊</span>
-            Attendance
-        </button>
+            <span class="nav-text">Attendance</span>
+        </a>
 
-        <button class="nav-item" onclick="go('academics')">
+        <a class="nav-item" href="academics.html">
             <span class="nav-icon">🎓</span>
-            Academics
-        </button>
+            <span class="nav-text">Academics</span>
+        </a>
 
-        <button class="nav-item" onclick="go('faculty')">
+        <a class="nav-item" href="faculty.html">
             <span class="nav-icon">👨‍🏫</span>
-            Faculty
-        </button>
-
-        <button class="nav-item" onclick="go('placement')">
-            <span class="nav-icon">💼</span>
-            Placement
-        </button>
-
-        <button class="nav-item" onclick="go('results')">
-            <span class="nav-icon">📈</span>
-            Results
-        </button>
-
-        <button class="nav-item active" onclick="go('documents')">
-            <span class="nav-icon">📄</span>
-            Documents
-        </button>
-
-        <button class="nav-item" onclick="go('complaints')">
-            <span class="nav-icon">📢</span>
-            Complaints
-        </button>
-
-        <button class="nav-item" onclick="go('feedback')">
-            <span class="nav-icon">💬</span>
-            Feedback
-        </button>
-
-        <button class="nav-item" onclick="go('lost-found')">
-            <span class="nav-icon">🔎</span>
-            Lost & Found
-        </button>
-
-        <button class="nav-item" onclick="go('campus')">
-            <span class="nav-icon">🏫</span>
-            Campus
-        </button>
-
-        <button class="nav-item" onclick="go('events')">
-            <span class="nav-icon">🎉</span>
-            Events
-        </button>
-
-        <button class="nav-item" onclick="go('exams')">
-            <span class="nav-icon">📋</span>
-            Exams
-        </button>
-
-        <button class="nav-item" onclick="go('notifications')">
-            <span class="nav-icon">🔔</span>
-            Notifications
-        </button>
-
-        <button class="nav-item" onclick="go('profile')">
-            <span class="nav-icon">👤</span>
-            Profile
-        </button>
-
-        <button class="nav-item" onclick="go('settings')">
-            <span class="nav-icon">⚙️</span>
-            Settings
-        </button>
-
-    </aside>
+            <span class="nav-text">Faculty</span>
+        </a>
 
 
-    <!-- MAIN -->
+        <!-- CAREER -->
 
-    <div class="main">
+        <div class="menu-section">
 
-        <!-- TOP BAR -->
+            <div class="menu-title">
+                CAREER
+            </div>
 
-        <header class="topbar">
+            <a class="nav-item" href="placement.html">
+                <span class="nav-icon">💼</span>
+                <span class="nav-text">Placement</span>
+            </a>
 
-            <div class="brand">
+            <a class="nav-item" href="results.html">
+                <span class="nav-icon">📈</span>
+                <span class="nav-text">Results</span>
+            </a>
 
-                <div class="brand-icon">
-                    📄
+        </div>
+
+
+        <!-- CAMPUS -->
+
+        <div class="menu-section">
+
+            <div class="menu-title">
+                CAMPUS
+            </div>
+
+            <a class="nav-item active" href="documents.html">
+                <span class="nav-icon">📄</span>
+                <span class="nav-text">Documents</span>
+            </a>
+
+            <a class="nav-item" href="courses.html">
+
+    <span class="nav-icon">
+        📚
+    </span>
+
+    <span class="nav-text">
+        Courses
+    </span>
+
+</a>
+
+            <a class="nav-item" href="complaints.html">
+                <span class="nav-icon">📢</span>
+                <span class="nav-text">Complaints</span>
+            </a>
+
+            <a class="nav-item" href="feedback.html">
+                <span class="nav-icon">💬</span>
+                <span class="nav-text">Feedback</span>
+            </a>
+
+            <a class="nav-item" href="lost-found.html">
+                <span class="nav-icon">🔎</span>
+                <span class="nav-text">Lost &amp; Found</span>
+            </a>
+
+            <a class="nav-item" href="campus.html">
+                <span class="nav-icon">🏫</span>
+                <span class="nav-text">Campus</span>
+            </a>
+
+            <a class="nav-item" href="events.html">
+                <span class="nav-icon">🎉</span>
+                <span class="nav-text">Events</span>
+            </a>
+
+            <a class="nav-item" href="exams.html">
+                <span class="nav-icon">📋</span>
+                <span class="nav-text">Exams</span>
+            </a>
+
+            <a class="nav-item" href="notifications.html">
+                <span class="nav-icon">🔔</span>
+                <span class="nav-text">Notifications</span>
+            </a>
+
+        </div>
+
+
+        <!-- ACCOUNT -->
+
+        <div class="menu-section">
+
+            <div class="menu-title">
+                ACCOUNT
+            </div>
+
+            <a class="nav-item" href="profile.html">
+                <span class="nav-icon">👤</span>
+                <span class="nav-text">Profile</span>
+            </a>
+
+            <a class="nav-item" href="settings.html">
+                <span class="nav-icon">⚙️</span>
+                <span class="nav-text">Settings</span>
+            </a>
+
+            <a class="nav-item logout" href="#" onclick="logoutUser(event)">
+                <span class="nav-icon">🚪</span>
+                <span class="nav-text">Logout</span>
+            </a>
+
+        </div>
+
+    </div>
+
+</aside>
+
+
+<!-- =========================
+     MAIN
+========================= -->
+
+<main class="main-area">
+
+    <!-- HEADER -->
+
+    <header class="top-header">
+
+        <div class="header-left">
+
+            <h1>
+                Documents
+            </h1>
+
+            <p>
+                Manage and access your important college documents
+            </p>
+
+        </div>
+
+
+        <div class="header-right">
+
+            <div class="time-box" id="clock">
+                00:00:00
+            </div>
+
+            <div
+                class="notification"
+                onclick="showToast('You have new notifications 🔔')"
+            >
+                🔔
+            </div>
+
+            <div class="profile-mini">
+
+                <div class="profile-circle">
+                    PB
                 </div>
 
+                <div class="profile-info">
+
+                    <strong>
+                        Priya Bhavani
+                    </strong>
+
+                    <span>
+                        Student
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- CONTENT -->
+
+    <section class="content">
+
+
+        <!-- HERO -->
+
+        <div class="hero">
+
+            <div class="hero-text">
+
+                <small>
+                    CAMPUS DOCUMENT CENTER
+                </small>
+
                 <h2>
-                    Campus<span>Connect</span>
+                    My Documents 📄
                 </h2>
 
-            </div>
-
-            <button
-                class="back-btn"
-                onclick="go('dashboard')"
-            >
-                ← Dashboard
-            </button>
-
-        </header>
-
-
-        <!-- CONTENT -->
-
-        <main class="container">
-
-
-            <!-- HEADER -->
-
-            <section class="page-header">
-
-                <h1>Student Documents</h1>
-
                 <p>
-                    Access important academic and student documents
-                    from your CampusConnect portal.
-                </p>
-
-            </section>
-
-
-            <!-- AVAILABLE DOCUMENTS -->
-
-            <div class="section-title">
-
-                <h2>📁 Available Documents</h2>
-
-                <p>
-                    View your important college documents
+                    Store, view and manage your academic and campus documents
+                    in one place.
                 </p>
 
             </div>
 
+            <div class="hero-icon">
+                📂
+            </div>
 
-            <section class="documents-grid">
+        </div>
 
 
-                <!-- DOCUMENT 1 -->
+        <!-- SUMMARY -->
 
-                <div class="document-card">
+        <div class="summary-grid">
 
-                    <div class="document-icon">
+            <div class="summary-card">
+
+                <div class="summary-top">
+
+                    <div>
+                        <span style="font-size:11px;color:#9298aa;">
+                            Total Documents
+                        </span>
+                    </div>
+
+                    <div class="summary-icon">
+                        📄
+                    </div>
+
+                </div>
+
+                <h3 id="totalDocuments">
+                    8
+                </h3>
+
+                <p>
+                    Documents available
+                </p>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="summary-top">
+
+                    <div>
+                        <span style="font-size:11px;color:#9298aa;">
+                            Academic
+                        </span>
+                    </div>
+
+                    <div class="summary-icon">
                         🎓
                     </div>
 
-                    <div class="document-info">
+                </div>
 
-                        <h3>Student ID Card</h3>
+                <h3 id="academicDocuments">
+                    4
+                </h3>
 
-                        <p>
-                            Student identification document
-                        </p>
+                <p>
+                    Academic documents
+                </p>
 
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="summary-top">
+
+                    <div>
+                        <span style="font-size:11px;color:#9298aa;">
+                            Certificates
+                        </span>
                     </div>
 
-                    <button
-                        class="document-btn"
-                        onclick="viewDocument('Student ID Card')"
-                    >
-                        View
-                    </button>
+                    <div class="summary-icon">
+                        🏆
+                    </div>
 
                 </div>
 
+                <h3 id="certificateDocuments">
+                    2
+                </h3>
 
-                <!-- DOCUMENT 2 -->
+                <p>
+                    Certificates stored
+                </p>
 
-                <div class="document-card">
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="summary-top">
+
+                    <div>
+                        <span style="font-size:11px;color:#9298aa;">
+                            Recent
+                        </span>
+                    </div>
+
+                    <div class="summary-icon">
+                        🕒
+                    </div>
+
+                </div>
+
+                <h3>
+                    2
+                </h3>
+
+                <p>
+                    Added recently
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- SECTION -->
+
+        <div class="section-header">
+
+            <div>
+
+                <h2>
+                    My Document Library
+                </h2>
+
+                <p>
+                    Search and manage your uploaded documents
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- TOOLBAR -->
+
+        <div class="toolbar">
+
+            <input
+                type="text"
+                class="search-box"
+                id="searchInput"
+                placeholder="🔍 Search documents..."
+            >
+
+            <select
+                class="filter-select"
+                id="categoryFilter"
+            >
+
+                <option value="All">
+                    All Categories
+                </option>
+
+                <option value="Academic">
+                    Academic
+                </option>
+
+                <option value="Certificate">
+                    Certificate
+                </option>
+
+                <option value="Identity">
+                    Identity
+                </option>
+
+                <option value="Other">
+                    Other
+                </option>
+
+            </select>
+
+
+            <button
+                class="upload-btn"
+                onclick="openUploadModal()"
+            >
+                + Upload Document
+            </button>
+
+        </div>
+
+
+        <!-- DOCUMENT GRID -->
+
+        <div
+            class="document-grid"
+            id="documentGrid"
+        >
+
+
+            <!-- DOCUMENT 1 -->
+
+            <div
+                class="document-card"
+                data-category="Academic"
+                data-name="Semester 4 Marks Card"
+            >
+
+                <div class="document-top">
 
                     <div class="document-icon">
                         📜
                     </div>
 
-                    <div class="document-info">
+                    <button
+                        class="document-menu"
+                        onclick="deleteDocument('Semester 4 Marks Card')"
+                    >
+                        ⋮
+                    </button>
 
-                        <h3>Bonafide Certificate</h3>
+                </div>
 
-                        <p>
-                            Student bonafide certificate
-                        </p>
+                <h3>
+                    Semester 4 Marks Card
+                </h3>
 
+                <span class="category">
+                    Academic
+                </span>
+
+                <div class="document-info">
+
+                    <span>
+                        📅 Added: 12 Sep 2026
+                    </span>
+
+                    <span>
+                        📦 PDF • 1.2 MB
+                    </span>
+
+                </div>
+
+                <div class="document-actions">
+
+                    <button
+                        class="view-btn"
+                        onclick="viewDocument('Semester 4 Marks Card')"
+                    >
+                        View
+                    </button>
+
+                    <button
+                        class="download-btn"
+                        onclick="downloadDocument('Semester 4 Marks Card')"
+                    >
+                        Download
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- DOCUMENT 2 -->
+
+            <div
+                class="document-card"
+                data-category="Academic"
+                data-name="Semester 3 Marks Card"
+            >
+
+                <div class="document-top">
+
+                    <div class="document-icon">
+                        📜
                     </div>
 
                     <button
-                        class="document-btn"
+                        class="document-menu"
+                        onclick="deleteDocument('Semester 3 Marks Card')"
+                    >
+                        ⋮
+                    </button>
+
+                </div>
+
+                <h3>
+                    Semester 3 Marks Card
+                </h3>
+
+                <span class="category">
+                    Academic
+                </span>
+
+                <div class="document-info">
+
+                    <span>
+                        📅 Added: 20 May 2026
+                    </span>
+
+                    <span>
+                        📦 PDF • 1.1 MB
+                    </span>
+
+                </div>
+
+                <div class="document-actions">
+
+                    <button
+                        class="view-btn"
+                        onclick="viewDocument('Semester 3 Marks Card')"
+                    >
+                        View
+                    </button>
+
+                    <button
+                        class="download-btn"
+                        onclick="downloadDocument('Semester 3 Marks Card')"
+                    >
+                        Download
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- DOCUMENT 3 -->
+
+            <div
+                class="document-card"
+                data-category="Academic"
+                data-name="College ID Card"
+            >
+
+                <div class="document-top">
+
+                    <div class="document-icon">
+                        🪪
+                    </div>
+
+                    <button
+                        class="document-menu"
+                        onclick="deleteDocument('College ID Card')"
+                    >
+                        ⋮
+                    </button>
+
+                </div>
+
+                <h3>
+                    College ID Card
+                </h3>
+
+                <span class="category">
+                    Identity
+                </span>
+
+                <div class="document-info">
+
+                    <span>
+                        📅 Added: 15 Jun 2026
+                    </span>
+
+                    <span>
+                        📦 JPG • 640 KB
+                    </span>
+
+                </div>
+
+                <div class="document-actions">
+
+                    <button
+                        class="view-btn"
+                        onclick="viewDocument('College ID Card')"
+                    >
+                        View
+                    </button>
+
+                    <button
+                        class="download-btn"
+                        onclick="downloadDocument('College ID Card')"
+                    >
+                        Download
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- DOCUMENT 4 -->
+
+            <div
+                class="document-card"
+                data-category="Certificate"
+                data-name="Python Course Certificate"
+            >
+
+                <div class="document-top">
+
+                    <div class="document-icon">
+                        🏆
+                    </div>
+
+                    <button
+                        class="document-menu"
+                        onclick="deleteDocument('Python Course Certificate')"
+                    >
+                        ⋮
+                    </button>
+
+                </div>
+
+                <h3>
+                    Python Course Certificate
+                </h3>
+
+                <span class="category">
+                    Certificate
+                </span>
+
+                <div class="document-info">
+
+                    <span>
+                        📅 Added: 05 Sep 2026
+                    </span>
+
+                    <span>
+                        📦 PDF • 850 KB
+                    </span>
+
+                </div>
+
+                <div class="document-actions">
+
+                    <button
+                        class="view-btn"
+                        onclick="viewDocument('Python Course Certificate')"
+                    >
+                        View
+                    </button>
+
+                    <button
+                        class="download-btn"
+                        onclick="downloadDocument('Python Course Certificate')"
+                    >
+                        Download
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- DOCUMENT 5 -->
+
+            <div
+                class="document-card"
+                data-category="Certificate"
+                data-name="Web Development Certificate"
+            >
+
+                <div class="document-top">
+
+                    <div class="document-icon">
+                        🏅
+                    </div>
+
+                    <button
+                        class="document-menu"
+                        onclick="deleteDocument('Web Development Certificate')"
+                    >
+                        ⋮
+                    </button>
+
+                </div>
+
+                <h3>
+                    Web Development Certificate
+                </h3>
+
+                <span class="category">
+                    Certificate
+                </span>
+
+                <div class="document-info">
+
+                    <span>
+                        📅 Added: 01 Sep 2026
+                    </span>
+
+                    <span>
+                        📦 PDF • 920 KB
+                    </span>
+
+                </div>
+
+                <div class="document-actions">
+
+                    <button
+                        class="view-btn"
+                        onclick="viewDocument('Web Development Certificate')"
+                    >
+                        View
+                    </button>
+
+                    <button
+                        class="download-btn"
+                        onclick="downloadDocument('Web Development Certificate')"
+                    >
+                        Download
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- DOCUMENT 6 -->
+
+            <div
+                class="document-card"
+                data-category="Academic"
+                data-name="Bonafide Certificate"
+            >
+
+                <div class="document-top">
+
+                    <div class="document-icon">
+                        📃
+                    </div>
+
+                    <button
+                        class="document-menu"
+                        onclick="deleteDocument('Bonafide Certificate')"
+                    >
+                        ⋮
+                    </button>
+
+                </div>
+
+                <h3>
+                    Bonafide Certificate
+                </h3>
+
+                <span class="category">
+                    Academic
+                </span>
+
+                <div class="document-info">
+
+                    <span>
+                        📅 Added: 28 Aug 2026
+                    </span>
+
+                    <span>
+                        📦 PDF • 520 KB
+                    </span>
+
+                </div>
+
+                <div class="document-actions">
+
+                    <button
+                        class="view-btn"
                         onclick="viewDocument('Bonafide Certificate')"
                     >
                         View
                     </button>
 
-                </div>
-
-
-                <!-- DOCUMENT 3 -->
-
-                <div class="document-card">
-
-                    <div class="document-icon">
-                        📊
-                    </div>
-
-                    <div class="document-info">
-
-                        <h3>Academic Result</h3>
-
-                        <p>
-                            Semester academic result
-                        </p>
-
-                    </div>
-
                     <button
-                        class="document-btn"
-                        onclick="viewDocument('Academic Result')"
+                        class="download-btn"
+                        onclick="downloadDocument('Bonafide Certificate')"
                     >
-                        View
+                        Download
                     </button>
 
                 </div>
 
+            </div>
 
-                <!-- DOCUMENT 4 -->
 
-                <div class="document-card">
+            <!-- DOCUMENT 7 -->
+
+            <div
+                class="document-card"
+                data-category="Identity"
+                data-name="Aadhaar Document"
+            >
+
+                <div class="document-top">
 
                     <div class="document-icon">
-                        💳
-                    </div>
-
-                    <div class="document-info">
-
-                        <h3>Fee Receipt</h3>
-
-                        <p>
-                            College fee payment receipt
-                        </p>
-
+                        🪪
                     </div>
 
                     <button
-                        class="document-btn"
-                        onclick="viewDocument('Fee Receipt')"
+                        class="document-menu"
+                        onclick="deleteDocument('Aadhaar Document')"
                     >
-                        View
+                        ⋮
                     </button>
 
                 </div>
 
+                <h3>
+                    Aadhaar Document
+                </h3>
 
-                <!-- DOCUMENT 5 -->
+                <span class="category">
+                    Identity
+                </span>
 
-                <div class="document-card">
+                <div class="document-info">
 
-                    <div class="document-icon">
-                        📚
-                    </div>
+                    <span>
+                        📅 Added: 10 Aug 2026
+                    </span>
 
-                    <div class="document-info">
+                    <span>
+                        📦 PDF • 780 KB
+                    </span>
 
-                        <h3>Library Card</h3>
+                </div>
 
-                        <p>
-                            Student library membership card
-                        </p>
-
-                    </div>
+                <div class="document-actions">
 
                     <button
-                        class="document-btn"
-                        onclick="viewDocument('Library Card')"
+                        class="view-btn"
+                        onclick="viewDocument('Aadhaar Document')"
                     >
                         View
                     </button>
 
-                </div>
-
-
-                <!-- DOCUMENT 6 -->
-
-                <div class="document-card">
-
-                    <div class="document-icon">
-                        📋
-                    </div>
-
-                    <div class="document-info">
-
-                        <h3>Attendance Report</h3>
-
-                        <p>
-                            Semester attendance report
-                        </p>
-
-                    </div>
-
                     <button
-                        class="document-btn"
-                        onclick="viewDocument('Attendance Report')"
+                        class="download-btn"
+                        onclick="downloadDocument('Aadhaar Document')"
                     >
-                        View
+                        Download
                     </button>
 
                 </div>
 
+            </div>
 
-            </section>
+
+            <!-- DOCUMENT 8 -->
+
+            <div
+                class="document-card"
+                data-category="Other"
+                data-name="Internship Letter"
+            >
+
+                <div class="document-top">
+
+                    <div class="document-icon">
+                        💼
+                    </div>
+
+                    <button
+                        class="document-menu"
+                        onclick="deleteDocument('Internship Letter')"
+                    >
+                        ⋮
+                    </button>
+
+                </div>
+
+                <h3>
+                    Internship Letter
+                </h3>
+
+                <span class="category">
+                    Other
+                </span>
+
+                <div class="document-info">
+
+                    <span>
+                        📅 Added: 01 Aug 2026
+                    </span>
+
+                    <span>
+                        📦 PDF • 680 KB
+                    </span>
+
+                </div>
+
+                <div class="document-actions">
+
+                    <button
+                        class="view-btn"
+                        onclick="viewDocument('Internship Letter')"
+                    >
+                        View
+                    </button>
+
+                    <button
+                        class="download-btn"
+                        onclick="downloadDocument('Internship Letter')"
+                    >
+                        Download
+                    </button>
+
+                </div>
+
+            </div>
 
 
-            <!-- INFORMATION -->
+            <div
+                class="empty-state"
+                id="emptyState"
+            >
 
-            <section class="info-card">
+                <div>
+                    📂
+                </div>
 
-                <h2>ℹ️ Document Information</h2>
+                <strong>
+                    No documents found
+                </strong>
 
-                <p>
-                    These documents are displayed as part of the
-                    CampusConnect student portal. Actual document
-                    retrieval and downloads can be connected to the
-                    backend when the server and database are integrated.
+                <p style="margin-top:6px;font-size:11px;">
+                    Try changing your search or category filter.
                 </p>
 
-            </section>
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
 
 
-            <footer>
-                CampusConnect • Student Document Center
-            </footer>
+<!-- =========================
+     CHATBOT
+========================= -->
 
+<aside class="chatbot">
 
-        </main>
+    <div class="chat-header">
+
+        <div class="robot-icon">
+            🤖
+        </div>
+
+        <div class="chat-title">
+
+            <strong>
+                CampusConnect AI
+            </strong>
+
+            <span>
+                <span class="online-dot"></span>
+                College Companion
+            </span>
+
+        </div>
 
     </div>
 
 
-    <!-- JAVASCRIPT -->
+    <div
+        class="chat-body"
+        id="chatBody"
+    >
 
-    <script>
+        <div class="bot-message">
 
-        const pages = {
+            Hi Priya! 👋<br><br>
 
-            dashboard: "../dashboard.html",
+            I'm your <strong>CampusConnect AI College Companion</strong>.
+            I can help you manage and find your college documents.
 
-            courses: "../dashboard.html",
+        </div>
 
-            timetable: "timetable.html",
+        <div class="bot-message">
 
-            assignments: "../dashboard.html",
+            Try asking me:
+            <br><br>
 
-            attendance: "attendance.html",
+            • How many documents do I have?<br>
+            • What certificates do I have?<br>
+            • Show academic documents
 
-            academics: "academics.html",
+        </div>
 
-            faculty: "faculty.html",
-
-            placement: "placement.html",
-
-            results: "results.html",
-
-            documents: "documents.html",
-
-            complaints: "complaints.html",
-
-            feedback: "feedback.html",
-
-            "lost-found": "lost-found.html",
-
-            campus: "campus.html",
-
-            events: "events.html",
-
-            exams: "exams.html",
-
-            notifications: "notifications.html",
-
-            profile: "profile.html",
-
-            settings: "settings.html"
-
-        };
+    </div>
 
 
-        function go(page) {
+    <div class="quick-buttons">
 
-            if (pages[page]) {
+        <button
+            class="quick-btn"
+            onclick="quickChat('How many documents do I have?')"
+        >
+            My Documents
+        </button>
 
-                window.location.href = pages[page];
+        <button
+            class="quick-btn"
+            onclick="quickChat('Show certificates')"
+        >
+            Certificates
+        </button>
+
+        <button
+            class="quick-btn"
+            onclick="quickChat('Show academic documents')"
+        >
+            Academic
+        </button>
+
+    </div>
+
+
+    <div class="chat-footer">
+
+        <input
+            type="text"
+            class="chat-input"
+            id="chatInput"
+            placeholder="Ask CampusConnect AI..."
+        >
+
+        <button
+            class="send-btn"
+            onclick="sendMessage()"
+        >
+            ➤
+        </button>
+
+    </div>
+
+</aside>
+
+
+<!-- =========================
+     UPLOAD MODAL
+========================= -->
+
+<div
+    class="modal-overlay"
+    id="uploadModal"
+>
+
+    <div class="modal">
+
+        <div class="modal-header">
+
+            <h2>
+                Upload Document
+            </h2>
+
+            <button
+                class="close-btn"
+                onclick="closeUploadModal()"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <div class="modal-body">
+
+            <div class="form-group">
+
+                <label>
+                    Document Name
+                </label>
+
+                <input
+                    type="text"
+                    class="form-input"
+                    id="documentName"
+                    placeholder="Enter document name"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Category
+                </label>
+
+                <select
+                    class="form-select"
+                    id="documentCategory"
+                >
+
+                    <option value="Academic">
+                        Academic
+                    </option>
+
+                    <option value="Certificate">
+                        Certificate
+                    </option>
+
+                    <option value="Identity">
+                        Identity
+                    </option>
+
+                    <option value="Other">
+                        Other
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Select File
+                </label>
+
+                <input
+                    type="file"
+                    class="form-input file-input"
+                    id="documentFile"
+                >
+
+            </div>
+
+        </div>
+
+
+        <div class="modal-footer">
+
+            <button
+                class="cancel-btn"
+                onclick="closeUploadModal()"
+            >
+                Cancel
+            </button>
+
+            <button
+                class="save-btn"
+                onclick="uploadDocument()"
+            >
+                Upload Document
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     TOAST
+========================= -->
+
+<div
+    class="toast"
+    id="toast"
+>
+    Document uploaded successfully!
+</div>
+
+
+<script>
+
+/* =========================
+   CLOCK
+========================= */
+
+function updateClock(){
+
+    const now = new Date();
+
+    let hours = now.getHours();
+    let minutes = now.getMinutes();
+    let seconds = now.getSeconds();
+
+    const ampm = hours >= 12 ? "PM" : "AM";
+
+    hours = hours % 12;
+
+    hours = hours || 12;
+
+    hours = String(hours).padStart(2,"0");
+    minutes = String(minutes).padStart(2,"0");
+    seconds = String(seconds).padStart(2,"0");
+
+    document.getElementById("clock").textContent =
+        `${hours}:${minutes}:${seconds} ${ampm}`;
+}
+
+updateClock();
+
+setInterval(updateClock,1000);
+
+
+/* =========================
+   SEARCH + FILTER
+========================= */
+
+const searchInput =
+    document.getElementById("searchInput");
+
+const categoryFilter =
+    document.getElementById("categoryFilter");
+
+const documentCards =
+    document.querySelectorAll(".document-card");
+
+const emptyState =
+    document.getElementById("emptyState");
+
+
+function filterDocuments(){
+
+    const search =
+        searchInput.value
+        .toLowerCase()
+        .trim();
+
+    const category =
+        categoryFilter.value;
+
+    let visible = 0;
+
+    documentCards.forEach(card => {
+
+        const name =
+            card.dataset.name.toLowerCase();
+
+        const cardCategory =
+            card.dataset.category;
+
+        const matchesSearch =
+            name.includes(search);
+
+        const matchesCategory =
+            category === "All" ||
+            cardCategory === category;
+
+        if(matchesSearch && matchesCategory){
+
+            card.style.display = "";
+
+            visible++;
+
+        }else{
+
+            card.style.display = "none";
+
+        }
+
+    });
+
+
+    emptyState.style.display =
+        visible === 0 ? "block" : "none";
+}
+
+
+searchInput.addEventListener(
+    "input",
+    filterDocuments
+);
+
+categoryFilter.addEventListener(
+    "change",
+    filterDocuments
+);
+
+
+/* =========================
+   UPLOAD MODAL
+========================= */
+
+function openUploadModal(){
+
+    document.getElementById(
+        "uploadModal"
+    ).style.display = "flex";
+
+}
+
+function closeUploadModal(){
+
+    document.getElementById(
+        "uploadModal"
+    ).style.display = "none";
+
+}
+
+
+/* =========================
+   UPLOAD DOCUMENT
+========================= */
+
+function uploadDocument(){
+
+    const name =
+        document.getElementById(
+            "documentName"
+        ).value.trim();
+
+    const file =
+        document.getElementById(
+            "documentFile"
+        ).files[0];
+
+    if(!name){
+
+        showToast(
+            "Please enter document name"
+        );
+
+        return;
+    }
+
+    if(!file){
+
+        showToast(
+            "Please select a file"
+        );
+
+        return;
+    }
+
+
+    closeUploadModal();
+
+
+    document.getElementById(
+        "documentName"
+    ).value = "";
+
+    document.getElementById(
+        "documentFile"
+    ).value = "";
+
+
+    showToast(
+        `${name} uploaded successfully!`
+    );
+
+}
+
+
+/* =========================
+   VIEW DOCUMENT
+========================= */
+
+function viewDocument(name){
+
+    showToast(
+        `Opening ${name}...`
+    );
+
+}
+
+
+/* =========================
+   DOWNLOAD
+========================= */
+
+function downloadDocument(name){
+
+    showToast(
+        `Preparing ${name} for download...`
+    );
+
+}
+
+
+/* =========================
+   DELETE
+========================= */
+
+function deleteDocument(name){
+
+    const confirmed =
+        confirm(
+            `Are you sure you want to delete "${name}"?`
+        );
+
+    if(confirmed){
+
+        showToast(
+            `${name} deleted`
+        );
+
+    }
+
+}
+
+
+/* =========================
+   TOAST
+========================= */
+
+let toastTimer;
+
+function showToast(message){
+
+    const toast =
+        document.getElementById("toast");
+
+    toast.textContent = message;
+
+    toast.classList.add("show");
+
+    clearTimeout(toastTimer);
+
+    toastTimer =
+        setTimeout(() => {
+
+            toast.classList.remove("show");
+
+        },2500);
+}
+
+
+/* =========================
+   CHATBOT
+========================= */
+
+function addUserMessage(message){
+
+    const chatBody =
+        document.getElementById("chatBody");
+
+    const div =
+        document.createElement("div");
+
+    div.className = "user-message";
+
+    div.textContent = message;
+
+    chatBody.appendChild(div);
+
+    chatBody.scrollTop =
+        chatBody.scrollHeight;
+}
+
+
+function addBotMessage(message){
+
+    const chatBody =
+        document.getElementById("chatBody");
+
+    const div =
+        document.createElement("div");
+
+    div.className = "bot-message";
+
+    div.innerHTML = message;
+
+    chatBody.appendChild(div);
+
+    chatBody.scrollTop =
+        chatBody.scrollHeight;
+}
+
+
+function getBotResponse(message){
+
+    const text =
+        message.toLowerCase();
+
+
+    if(
+        text.includes("how many") ||
+        text.includes("documents")
+    ){
+
+        return `
+            You currently have
+            <strong>8 documents</strong>
+            in your CampusConnect library. 📄
+        `;
+
+    }
+
+
+    if(
+        text.includes("certificate") ||
+        text.includes("certificates")
+    ){
+
+        return `
+            You have <strong>2 certificates</strong>:
+            <br><br>
+            🏆 Python Course Certificate<br>
+            🏅 Web Development Certificate
+        `;
+
+    }
+
+
+    if(
+        text.includes("academic")
+    ){
+
+        return `
+            Your academic documents include:
+            <br><br>
+            📜 Semester 4 Marks Card<br>
+            📜 Semester 3 Marks Card<br>
+            📃 Bonafide Certificate
+        `;
+
+    }
+
+
+    if(
+        text.includes("identity") ||
+        text.includes("id")
+    ){
+
+        return `
+            Your identity documents include:
+            <br><br>
+            🪪 College ID Card<br>
+            🪪 Aadhaar Document
+        `;
+
+    }
+
+
+    if(
+        text.includes("upload")
+    ){
+
+        return `
+            To upload a document, click the
+            <strong>+ Upload Document</strong>
+            button on the Documents page. 📤
+        `;
+
+    }
+
+
+    if(
+        text.includes("help") ||
+        text.includes("hello") ||
+        text.includes("hi")
+    ){
+
+        return `
+            Hi! 👋 I can help you with:
+            <br><br>
+            📄 Documents<br>
+            🏆 Certificates<br>
+            🎓 Academic documents<br>
+            📤 Uploading documents
+        `;
+
+    }
+
+
+    return `
+        I can help you find your documents,
+        certificates and academic records.
+        Try asking:
+        <br><br>
+        <strong>"How many documents do I have?"</strong>
+    `;
+
+}
+
+
+function sendMessage(){
+
+    const input =
+        document.getElementById("chatInput");
+
+    const message =
+        input.value.trim();
+
+    if(!message){
+        return;
+    }
+
+    addUserMessage(message);
+
+    input.value = "";
+
+
+    setTimeout(() => {
+
+        addBotMessage(
+            getBotResponse(message)
+        );
+
+    },400);
+}
+
+
+function quickChat(message){
+
+    addUserMessage(message);
+
+    setTimeout(() => {
+
+        addBotMessage(
+            getBotResponse(message)
+        );
+
+    },300);
+}
+
+
+document
+    .getElementById("chatInput")
+    .addEventListener(
+        "keydown",
+        function(event){
+
+            if(event.key === "Enter"){
+
+                sendMessage();
 
             }
 
         }
+    );
 
 
-        function viewDocument(documentName) {
+/* =========================
+   LOGOUT
+========================= */
 
-            alert(
-                documentName +
-                "\n\nDocument viewing will be available when the backend is connected."
-            );
+function logoutUser(event){
+
+    event.preventDefault();
+
+    const confirmed =
+        confirm(
+            "Are you sure you want to logout?"
+        );
+
+    if(confirmed){
+
+        window.location.href =
+            "../index.html";
+
+    }
+
+}
+
+
+/* =========================
+   MODAL OUTSIDE CLICK
+========================= */
+
+document
+    .getElementById("uploadModal")
+    .addEventListener(
+        "click",
+        function(event){
+
+            if(event.target === this){
+
+                closeUploadModal();
+
+            }
+
+        }
+    );
+
+
+/* =========================
+   ESCAPE KEY
+========================= */
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(event.key === "Escape"){
+
+            closeUploadModal();
 
         }
 
-    </script>
+    }
+);
+
+</script>
 
 </body>
-
 </html>
