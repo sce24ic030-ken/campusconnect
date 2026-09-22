@@ -1,0 +1,3707 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CampusConnect | Courses</title>
+
+<style>
+
+/* =========================
+   GLOBAL
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,body{
+    width:100%;
+    height:100%;
+    font-family:"Segoe UI",Arial,sans-serif;
+    background:#f4f6ff;
+    color:#17203a;
+    overflow:hidden;
+}
+
+button,
+input,
+select{
+    font-family:inherit;
+}
+
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    bottom:0;
+
+    width:268px;
+    min-width:268px;
+
+    background:linear-gradient(
+        180deg,
+        #172a70 0%,
+        #28237d 48%,
+        #5520a7 100%
+    );
+
+    color:white;
+
+    overflow-y:auto;
+    overflow-x:hidden;
+
+    z-index:1000;
+
+    padding-bottom:20px;
+
+    scrollbar-width:thin;
+    scrollbar-color:rgba(255,255,255,.25) transparent;
+}
+
+
+/* BRAND */
+
+.brand{
+    height:120px;
+
+    display:flex;
+    align-items:center;
+
+    padding:22px 18px;
+
+    border-bottom:1px solid rgba(255,255,255,.12);
+}
+
+.logo-box{
+    width:52px;
+    height:52px;
+
+    border-radius:16px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:28px;
+
+    background:linear-gradient(
+        135deg,
+        #24b8ff,
+        #7144f5
+    );
+
+    box-shadow:0 10px 25px rgba(0,0,0,.20);
+}
+
+.brand-text{
+    margin-left:13px;
+}
+
+.brand-title{
+    font-size:21px;
+    font-weight:800;
+    letter-spacing:-.5px;
+}
+
+.brand-subtitle{
+    font-size:12px;
+    opacity:.72;
+    margin-top:3px;
+}
+
+
+/* MENU */
+
+.menu{
+    padding:25px 14px;
+}
+
+.menu-title{
+    font-size:12px;
+    font-weight:700;
+
+    color:rgba(255,255,255,.52);
+
+    letter-spacing:1px;
+
+    padding:0 11px 10px;
+}
+
+.menu-section{
+    margin-top:20px;
+}
+
+.nav-item{
+    width:100%;
+
+    display:flex;
+    align-items:center;
+
+    min-height:49px;
+
+    padding:0 14px;
+
+    margin:5px 0;
+
+    border-radius:13px;
+
+    color:rgba(255,255,255,.84);
+
+    text-decoration:none;
+
+    transition:
+        transform .2s ease,
+        background .2s ease,
+        color .2s ease;
+}
+
+.nav-item:hover{
+    background:rgba(255,255,255,.12);
+    color:white;
+    transform:translateX(3px);
+}
+
+.nav-item.active{
+    color:white;
+
+    background:linear-gradient(
+        90deg,
+        #22b9f5,
+        #6942f4
+    );
+
+    box-shadow:0 9px 22px rgba(0,0,0,.18);
+}
+
+.nav-icon{
+    width:31px;
+
+    font-size:20px;
+
+    text-align:center;
+
+    margin-right:10px;
+}
+
+.nav-text{
+    font-size:15px;
+    font-weight:650;
+}
+
+.logout{
+    margin-top:14px;
+
+    padding-top:15px;
+
+    border-top:1px solid rgba(255,255,255,.13);
+}
+
+
+/* =========================
+   MAIN AREA
+========================= */
+
+.main-area{
+    margin-left:268px;
+    margin-right:0px;
+
+    width:auto;
+    height:100vh;
+
+    overflow-y:auto;
+    overflow-x:hidden;
+
+    background:linear-gradient(
+        180deg,
+        #f8f9ff,
+        #eef1fb
+    );
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.top-header{
+    height:120px;
+
+    background:rgba(255,255,255,.96);
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:22px 28px;
+
+    border-bottom:1px solid #e9ebf5;
+
+    position:sticky;
+    top:0;
+
+    z-index:100;
+}
+
+.header-left h1{
+    font-size:30px;
+    line-height:1.05;
+    font-weight:800;
+}
+
+.header-left p{
+    margin-top:7px;
+    color:#8990a7;
+    font-size:14px;
+}
+
+.header-right{
+    display:flex;
+    align-items:center;
+    gap:18px;
+}
+
+.time-box{
+    font-size:18px;
+    font-weight:750;
+    color:#59617d;
+}
+
+.notification{
+    width:48px;
+    height:48px;
+
+    background:#fff;
+
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:22px;
+
+    box-shadow:0 5px 18px rgba(40,35,100,.10);
+
+    position:relative;
+
+    cursor:pointer;
+}
+
+.notification::after{
+    content:"";
+
+    width:8px;
+    height:8px;
+
+    border-radius:50%;
+
+    background:#ff4f8b;
+
+    position:absolute;
+
+    top:7px;
+    right:8px;
+}
+
+.profile-mini{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.profile-circle{
+    width:48px;
+    height:48px;
+
+    border-radius:50%;
+
+    background:linear-gradient(
+        135deg,
+        #25b8ee,
+        #466cf1
+    );
+
+    color:white;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:20px;
+    font-weight:800;
+}
+
+.profile-info strong{
+    display:block;
+    font-size:15px;
+}
+
+.profile-info span{
+    display:block;
+    color:#8d93a8;
+    font-size:12px;
+}
+
+
+/* =========================
+   CONTENT
+========================= */
+
+.content{
+    padding:28px;
+}
+
+.page-heading{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin-bottom:22px;
+}
+
+.page-heading h2{
+    font-size:23px;
+    font-weight:800;
+}
+
+.page-heading p{
+    color:#8a91a8;
+    font-size:13px;
+    margin-top:5px;
+}
+
+.primary-btn{
+    border:none;
+
+    color:white;
+
+    background:linear-gradient(
+        135deg,
+        #6241e8,
+        #843de0
+    );
+
+    padding:12px 18px;
+
+    border-radius:12px;
+
+    font-size:13px;
+    font-weight:700;
+
+    cursor:pointer;
+
+    box-shadow:0 8px 20px rgba(101,67,232,.20);
+
+    transition:.2s;
+}
+
+.primary-btn:hover{
+    transform:translateY(-2px);
+}
+
+
+/* =========================
+   STAT CARDS
+========================= */
+
+.stats{
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:16px;
+
+    margin-bottom:22px;
+}
+
+.stat-card{
+    background:white;
+
+    border:1px solid #e8eaf3;
+
+    border-radius:17px;
+
+    padding:19px;
+
+    box-shadow:
+        0 7px 20px rgba(40,35,100,.05);
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.stat-card::after{
+    content:"";
+
+    position:absolute;
+
+    width:65px;
+    height:65px;
+
+    border-radius:50%;
+
+    background:#f1efff;
+
+    right:-20px;
+    top:-20px;
+}
+
+.stat-icon{
+    width:40px;
+    height:40px;
+
+    border-radius:12px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:#f0edff;
+
+    font-size:20px;
+
+    margin-bottom:12px;
+}
+
+.stat-number{
+    font-size:26px;
+    font-weight:800;
+}
+
+.stat-label{
+    color:#8b92a8;
+    font-size:12px;
+    margin-top:3px;
+}
+
+
+/* =========================
+   COURSE LIST
+========================= */
+
+.course-card{
+    background:white;
+
+    border:1px solid #e6e8f1;
+
+    border-radius:20px;
+
+    box-shadow:
+        0 10px 30px rgba(40,35,100,.06);
+
+    overflow:hidden;
+}
+
+.card-header{
+    padding:20px 22px;
+
+    border-bottom:1px solid #eceef5;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:15px;
+}
+
+.card-title h3{
+    font-size:18px;
+    font-weight:800;
+}
+
+.card-title p{
+    font-size:12px;
+    color:#9197ab;
+    margin-top:4px;
+}
+
+.filters{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+}
+
+.search-box{
+    width:210px;
+
+    height:38px;
+
+    border:1px solid #e0e3ef;
+
+    border-radius:10px;
+
+    outline:none;
+
+    padding:0 12px;
+
+    font-size:12px;
+
+    color:#555e78;
+
+    background:#fafbff;
+}
+
+.filter-select{
+    height:38px;
+
+    border:1px solid #e0e3ef;
+
+    border-radius:10px;
+
+    padding:0 10px;
+
+    outline:none;
+
+    font-size:12px;
+
+    color:#5d6680;
+
+    background:#fafbff;
+}
+
+
+/* COURSE ROW */
+
+.course-list{
+    padding:7px 20px 15px;
+}
+
+.course-row{
+    display:grid;
+
+    grid-template-columns:
+        minmax(250px,1.7fr)
+        120px
+        120px
+        170px;
+
+    align-items:center;
+
+    gap:15px;
+
+    padding:17px 7px;
+
+    border-bottom:1px solid #eef0f6;
+
+    transition:.2s;
+}
+
+.course-row:last-child{
+    border-bottom:none;
+}
+
+.course-row:hover{
+    background:#fafaff;
+    border-radius:12px;
+}
+
+.course-main{
+    display:flex;
+    align-items:center;
+    min-width:0;
+}
+
+.course-icon{
+    width:48px;
+    height:48px;
+
+    flex-shrink:0;
+
+    border-radius:14px;
+
+    background:linear-gradient(
+        135deg,
+        #e9e7ff,
+        #f0f8ff
+    );
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:23px;
+
+    margin-right:13px;
+}
+
+.course-info{
+    min-width:0;
+}
+
+.course-name{
+    font-size:14px;
+    font-weight:800;
+
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.course-meta{
+    font-size:11px;
+
+    color:#8d94aa;
+
+    margin-top:5px;
+
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.course-detail{
+    text-align:center;
+}
+
+.detail-label{
+    color:#9aa0b3;
+    font-size:10px;
+    display:block;
+    margin-bottom:4px;
+}
+
+.detail-value{
+    color:#59617a;
+    font-size:12px;
+    font-weight:700;
+}
+
+.status{
+    display:inline-flex;
+
+    align-items:center;
+
+    padding:6px 10px;
+
+    border-radius:20px;
+
+    font-size:10px;
+
+    font-weight:700;
+}
+
+.status.active{
+    background:#e7faf1;
+    color:#1c9b64;
+}
+
+.status.completed{
+    background:#eeeafd;
+    color:#7052c9;
+}
+
+.course-actions{
+    display:flex;
+    justify-content:flex-end;
+    gap:6px;
+}
+
+.action-btn{
+    border:1px solid #e0e3ef;
+
+    background:white;
+
+    color:#6658b9;
+
+    border-radius:9px;
+
+    padding:7px 9px;
+
+    font-size:10px;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.action-btn:hover{
+    background:#f4f1ff;
+}
+
+.action-btn.delete{
+    color:#e05669;
+}
+
+.empty-state{
+    text-align:center;
+
+    padding:45px 20px;
+
+    color:#9299ad;
+
+    font-size:13px;
+}
+
+
+/* =========================
+   CHATBOT
+========================= */
+
+   .chatbot{
+    position:fixed;
+
+    right:25px;
+    bottom:95px;
+
+    width:330px;
+    height:500px;
+
+    background:white;
+
+    border-radius:22px;
+
+
+    border:1px solid #e5e6f2;
+
+    box-shadow:
+        0 15px 45px rgba(40,35,100,.15);
+
+    z-index:9999;
+
+    display:flex;
+    flex-direction:column;
+
+    overflow:hidden;
+}
+
+.chat-header{
+    min-height:82px;
+
+    flex-shrink:0;
+
+    padding:15px;
+
+    display:flex;
+    align-items:center;
+
+    color:white;
+
+    background:linear-gradient(
+        135deg,
+        #29277d,
+        #7137d8
+    );
+}
+
+.robot-icon{
+    width:45px;
+    height:45px;
+
+    border-radius:14px;
+
+    background:rgba(255,255,255,.15);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:24px;
+
+    margin-right:10px;
+}
+
+.chat-title strong{
+    display:block;
+    font-size:15px;
+}
+
+.chat-title span{
+    display:block;
+
+    font-size:10px;
+
+    margin-top:3px;
+
+    color:rgba(255,255,255,.78);
+}
+
+.online-dot{
+    display:inline-block;
+
+    width:7px;
+    height:7px;
+
+    background:#57e6a3;
+
+    border-radius:50%;
+
+    margin-right:4px;
+}
+
+.chat-body{
+    flex:1;
+
+    min-height:0;
+
+    padding:17px 14px;
+
+    overflow-y:auto;
+
+    background:linear-gradient(
+        180deg,
+        #fafbff,
+        #f4f5fb
+    );
+}
+
+.bot-message{
+    background:white;
+
+    border:1px solid #e7e9f3;
+
+    border-radius:14px;
+
+    padding:12px;
+
+    margin-bottom:10px;
+
+    color:#65708d;
+
+    font-size:11px;
+
+    line-height:1.6;
+
+    box-shadow:
+        0 5px 15px rgba(40,35,100,.04);
+}
+
+.user-message{
+    background:linear-gradient(
+        135deg,
+        #6241e8,
+        #7b3ee0
+    );
+
+    color:white;
+
+    padding:10px 12px;
+
+    border-radius:
+        14px 14px 4px 14px;
+
+    margin:
+        9px 0 9px 20px;
+
+    font-size:11px;
+
+    line-height:1.5;
+}
+
+.quick-buttons{
+    display:flex;
+
+    gap:5px;
+
+    flex-wrap:wrap;
+
+    padding:9px 14px;
+
+    background:white;
+
+    border-top:1px solid #eceef5;
+}
+
+.quick-btn{
+    border:1px solid #e0e3f0;
+
+    background:white;
+
+    color:#6b54d9;
+
+    border-radius:20px;
+
+    padding:7px 9px;
+
+    font-size:9px;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.quick-btn:hover{
+    background:#f4f1ff;
+}
+
+.chat-footer{
+    flex-shrink:0;
+
+    padding:10px;
+
+    background:white;
+
+    border-top:1px solid #eceef5;
+
+    display:flex;
+
+    gap:7px;
+}
+
+.chat-input{
+    flex:1;
+
+    min-width:0;
+
+    height:40px;
+
+    border:1px solid #e1e4ef;
+
+    border-radius:12px;
+
+    outline:none;
+
+    padding:0 11px;
+
+    font-size:11px;
+
+    color:#555e78;
+}
+
+.send-btn{
+    width:40px;
+    height:40px;
+
+    border:none;
+
+    border-radius:12px;
+
+    color:white;
+
+    background:linear-gradient(
+        135deg,
+        #6543e8,
+        #843de0
+    );
+
+    cursor:pointer;
+
+    font-size:17px;
+
+    transition:.2s;
+}
+
+.send-btn:hover{
+    transform:scale(1.05);
+}
+
+
+/* =========================
+   MODALS
+========================= */
+
+.modal-overlay{
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(25,30,65,.52);
+
+    backdrop-filter:blur(5px);
+
+    display:none;
+
+    align-items:center;
+    justify-content:center;
+
+    z-index:20000;
+
+    padding:20px;
+}
+
+.modal-overlay.show{
+    display:flex;
+}
+
+.modal{
+    width:min(520px,100%);
+
+    max-height:90vh;
+
+    overflow-y:auto;
+
+    background:white;
+
+    border-radius:20px;
+
+    box-shadow:
+        0 25px 70px rgba(20,20,70,.25);
+}
+
+.modal-header{
+    padding:20px;
+
+    border-bottom:1px solid #eceef5;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:space-between;
+}
+
+.modal-header h3{
+    font-size:18px;
+}
+
+.close-btn{
+    border:none;
+
+    background:#f1f2f8;
+
+    width:34px;
+    height:34px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-size:17px;
+
+    color:#626a82;
+}
+
+.modal-body{
+    padding:20px;
+}
+
+.form-grid{
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:14px;
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+}
+
+.form-group.full{
+    grid-column:1/-1;
+}
+
+.form-group label{
+    font-size:11px;
+
+    color:#737b94;
+
+    font-weight:700;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea{
+    width:100%;
+
+    border:1px solid #dfe2ed;
+
+    border-radius:10px;
+
+    padding:10px;
+
+    outline:none;
+
+    font-size:12px;
+
+    color:#4f5872;
+
+    background:#fafbff;
+}
+
+.form-group textarea{
+    min-height:80px;
+    resize:vertical;
+}
+
+.modal-footer{
+    padding:15px 20px;
+
+    border-top:1px solid #eceef5;
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    gap:8px;
+}
+
+.secondary-btn{
+    border:1px solid #dfe2ed;
+
+    background:white;
+
+    color:#646d86;
+
+    border-radius:10px;
+
+    padding:10px 15px;
+
+    cursor:pointer;
+
+    font-size:12px;
+
+    font-weight:650;
+}
+
+
+/* DETAILS */
+
+.detail-hero{
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    margin-bottom:20px;
+}
+
+.detail-icon{
+    width:58px;
+    height:58px;
+
+    border-radius:16px;
+
+    background:#efedff;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:28px;
+}
+
+.detail-hero h3{
+    font-size:19px;
+}
+
+.detail-code{
+    font-size:11px;
+    color:#8c93a8;
+    margin-top:4px;
+}
+
+.detail-box{
+    background:#f8f9fd;
+
+    border:1px solid #e8eaf2;
+
+    border-radius:13px;
+
+    padding:14px;
+
+    margin-bottom:12px;
+}
+
+.detail-box strong{
+    display:block;
+
+    font-size:11px;
+
+    color:#737b93;
+
+    margin-bottom:5px;
+}
+
+.detail-box span,
+.detail-box p{
+    font-size:12px;
+    color:#535d77;
+    line-height:1.6;
+}
+
+
+/* TOAST */
+
+.toast{
+    position:fixed;
+
+    bottom:25px;
+
+    left:50%;
+
+    transform:
+        translate(-50%,20px);
+
+    background:#20274b;
+
+    color:white;
+
+    padding:12px 18px;
+
+    border-radius:12px;
+
+    font-size:12px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.2);
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transition:.3s;
+
+    z-index:30000;
+}
+
+.toast.show{
+    opacity:1;
+
+    transform:
+        translate(-50%,0);
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:1150px){
+
+    .sidebar{
+        width:230px;
+        min-width:230px;
+    }
+
+    .main-area{
+        margin-left:230px;
+        margin-right:250px;
+    }
+
+    .chatbot{
+        width:232px;
+        min-width:232px;
+        max-width:232px;
+
+        right:10px;
+    }
+
+    .stats{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .course-row{
+        grid-template-columns:
+            minmax(220px,1fr)
+            100px
+            100px
+            145px;
+    }
+}
+
+@media(max-width:900px){
+
+    .chatbot{
+        display:none;
+    }
+
+    .main-area{
+        margin-right:0;
+    }
+
+    .course-row{
+        grid-template-columns:
+            minmax(230px,1fr)
+            100px
+            130px;
+    }
+
+    .course-detail:nth-child(3){
+        display:none;
+    }
+}
+
+@media(max-width:700px){
+
+    .sidebar{
+        width:80px;
+        min-width:80px;
+    }
+
+    .brand{
+        justify-content:center;
+        padding:15px;
+    }
+
+    .brand-text{
+        display:none;
+    }
+
+    .menu-title,
+    .nav-text{
+        display:none;
+    }
+
+    .nav-item{
+        justify-content:center;
+        padding:0;
+    }
+
+    .nav-icon{
+        margin:0;
+    }
+
+    .main-area{
+        margin-left:80px;
+    }
+
+    .top-header{
+        padding:18px;
+    }
+
+    .header-left h1{
+        font-size:23px;
+    }
+
+    .header-left p{
+        font-size:11px;
+    }
+
+    .time-box,
+    .profile-info{
+        display:none;
+    }
+
+    .content{
+        padding:18px;
+    }
+
+    .page-heading{
+        align-items:flex-start;
+        flex-direction:column;
+        gap:14px;
+    }
+
+    .stats{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .card-header{
+        align-items:flex-start;
+        flex-direction:column;
+    }
+
+    .filters{
+        width:100%;
+    }
+
+    .search-box{
+        width:100%;
+    }
+
+    .course-row{
+        display:block;
+
+        padding:16px 5px;
+    }
+
+    .course-detail{
+        display:inline-block;
+
+        margin:
+            12px 10px 0 60px;
+
+        text-align:left;
+    }
+
+    .course-actions{
+        margin-top:12px;
+
+        justify-content:flex-start;
+
+        margin-left:60px;
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .form-group.full{
+        grid-column:auto;
+    }
+}
+/* COURSES CHATBOT ICON */
+
+.chatbot {
+    display: none !important;
+}
+
+.chatbot.cc-open {
+    display: flex !important;
+}
+
+.chatbot-icon {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    width: 64px;
+    height: 64px;
+    border: 3px solid white;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #2563eb, #7c3aed, #a855f7);
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 25px rgba(76, 29, 149, 0.35);
+    transition: all 0.3s ease;
+    animation: chatbotFloat 3s ease-in-out infinite;
+}
+
+.chatbot-icon::before {
+    content: "🤖";
+}
+
+.chatbot-icon::after {
+    content: "";
+    position: absolute;
+    top: 2px;
+    right: 3px;
+    width: 13px;
+    height: 13px;
+    background: #ff3b81;
+    border: 3px solid white;
+    border-radius: 50%;
+}
+
+.chatbot-icon:hover {
+    transform: translateY(-6px) scale(1.08);
+    box-shadow: 0 14px 35px rgba(76, 29, 149, 0.45);
+    animation: none;
+}
+
+@keyframes chatbotFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+.main-area {
+    margin-right: 0 !important;
+}
+
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- ==================================================
+     SIDEBAR
+================================================== -->
+
+<aside class="sidebar">
+
+    <div class="brand">
+
+        <div class="logo-box">
+            🎓
+        </div>
+
+        <div class="brand-text">
+
+            <div class="brand-title">
+                CampusConnect
+            </div>
+
+            <div class="brand-subtitle">
+                AI College Companion
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <nav class="menu">
+
+        <div class="menu-title">
+            MAIN MENU
+        </div>
+
+
+        <a class="nav-item" href="../dashboard.html">
+
+            <span class="nav-icon">
+                🏠
+            </span>
+
+            <span class="nav-text">
+                Dashboard
+            </span>
+
+        </a>
+
+
+        <a class="nav-item active" href="courses.html">
+
+            <span class="nav-icon">
+                📚
+            </span>
+
+            <span class="nav-text">
+                Courses
+            </span>
+
+        </a>
+
+
+        <a class="nav-item" href="timetable.html">
+
+            <span class="nav-icon">
+                🗓️
+            </span>
+
+            <span class="nav-text">
+                Timetable
+            </span>
+
+        </a>
+
+
+        <a class="nav-item" href="assignments.html">
+
+            <span class="nav-icon">
+                📝
+            </span>
+
+            <span class="nav-text">
+                Assignments
+            </span>
+
+        </a>
+
+
+        <a class="nav-item" href="attendance.html">
+
+            <span class="nav-icon">
+                📊
+            </span>
+
+            <span class="nav-text">
+                Attendance
+            </span>
+
+        </a>
+
+
+        <a class="nav-item" href="academics.html">
+
+            <span class="nav-icon">
+                🎓
+            </span>
+
+            <span class="nav-text">
+                Academics
+            </span>
+
+        </a>
+
+
+        <a class="nav-item" href="faculty.html">
+
+            <span class="nav-icon">
+                👨‍🏫
+            </span>
+
+            <span class="nav-text">
+                Faculty
+            </span>
+
+        </a>
+
+
+        <div class="menu-section">
+
+            <div class="menu-title">
+                CAREER
+            </div>
+
+
+            <a class="nav-item" href="placement.html">
+
+                <span class="nav-icon">
+                    💼
+                </span>
+
+                <span class="nav-text">
+                    Placement
+                </span>
+
+            </a>
+
+
+            <a class="nav-item" href="results.html">
+
+                <span class="nav-icon">
+                    📈
+                </span>
+
+                <span class="nav-text">
+                    Results
+                </span>
+
+            </a>
+
+        </div>
+
+
+        <div class="menu-section">
+
+            <div class="menu-title">
+                CAMPUS
+            </div>
+
+
+            <a class="nav-item" href="documents.html">
+
+                <span class="nav-icon">
+                    📄
+                </span>
+
+                <span class="nav-text">
+                    Documents
+                </span>
+
+            </a>
+
+
+            <a class="nav-item" href="complaints.html">
+
+                <span class="nav-icon">
+                    📢
+                </span>
+
+                <span class="nav-text">
+                    Complaints
+                </span>
+
+            </a>
+
+
+            <a class="nav-item" href="feedback.html">
+
+                <span class="nav-icon">
+                    💬
+                </span>
+
+                <span class="nav-text">
+                    Feedback
+                </span>
+
+            </a>
+
+
+            <a class="nav-item" href="lost-found.html">
+
+                <span class="nav-icon">
+                    🔎
+                </span>
+
+                <span class="nav-text">
+                    Lost & Found
+                </span>
+
+            </a>
+
+
+            <a class="nav-item" href="campus.html">
+
+                <span class="nav-icon">
+                    🏫
+                </span>
+
+                <span class="nav-text">
+                    Campus
+                </span>
+
+            </a>
+
+
+            <a class="nav-item" href="events.html">
+
+                <span class="nav-icon">
+                    🎉
+                </span>
+
+                <span class="nav-text">
+                    Events
+                </span>
+
+            </a>
+
+
+            <a class="nav-item" href="exams.html">
+
+                <span class="nav-icon">
+                    📋
+                </span>
+
+                <span class="nav-text">
+                    Exams
+                </span>
+
+            </a>
+
+
+            <a class="nav-item" href="notifications.html">
+
+                <span class="nav-icon">
+                    🔔
+                </span>
+
+                <span class="nav-text">
+                    Notifications
+                </span>
+
+            </a>
+
+        </div>
+
+
+        <div class="menu-section">
+
+            <div class="menu-title">
+                ACCOUNT
+            </div>
+
+
+            <a class="nav-item" href="profile.html">
+
+                <span class="nav-icon">
+                    👤
+                </span>
+
+                <span class="nav-text">
+                    Profile
+                </span>
+
+            </a>
+
+
+            <a class="nav-item" href="settings.html">
+
+                <span class="nav-icon">
+                    ⚙️
+                </span>
+
+                <span class="nav-text">
+                    Settings
+                </span>
+
+            </a>
+
+
+            <a class="nav-item logout" href="#" onclick="logoutUser(event)">
+
+                <span class="nav-icon">
+                    🚪
+                </span>
+
+                <span class="nav-text">
+                    Logout
+                </span>
+
+            </a>
+
+        </div>
+
+    </nav>
+
+</aside>
+
+
+
+<!-- ==================================================
+     MAIN
+================================================== -->
+
+<main class="main-area">
+
+
+    <!-- HEADER -->
+
+    <header class="top-header">
+
+        <div class="header-left">
+
+            <h1>
+                Student Courses
+            </h1>
+
+            <p>
+                View and manage your academic courses
+            </p>
+
+        </div>
+
+
+        <div class="header-right">
+
+            <div class="time-box" id="clock">
+                09:30 PM
+            </div>
+
+
+            <div class="notification"
+                 onclick="showToast('You have 3 new notifications')">
+
+                🔔
+
+            </div>
+
+
+            <div class="profile-mini">
+
+                <div class="profile-circle">
+                    P
+                </div>
+
+                <div class="profile-info">
+
+                    <strong>
+                        Student
+                    </strong>
+
+                    <span>
+                        BCA / Student
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- CONTENT -->
+
+    <section class="content">
+
+
+        <!-- PAGE HEADING -->
+
+        <div class="page-heading">
+
+            <div>
+
+                <h2>
+                    📚 My Courses
+                </h2>
+
+                <p>
+                    View your registered subjects, faculty and course details.
+                </p>
+
+            </div>
+
+
+            <button class="primary-btn"
+                    onclick="openAddModal()">
+
+                + Add Course
+
+            </button>
+
+        </div>
+
+
+
+        <!-- STAT CARDS -->
+
+        <div class="stats">
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    📚
+                </div>
+
+                <div class="stat-number"
+                     id="totalCourses">
+                    0
+                </div>
+
+                <div class="stat-label">
+                    Total Courses
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    ⚡
+                </div>
+
+                <div class="stat-number"
+                     id="activeCourses">
+                    0
+                </div>
+
+                <div class="stat-label">
+                    Active Courses
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    ⭐
+                </div>
+
+                <div class="stat-number"
+                     id="totalCredits">
+                    0
+                </div>
+
+                <div class="stat-label">
+                    Total Credits
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    🏛️
+                </div>
+
+                <div class="stat-number"
+                     id="departments">
+                    0
+                </div>
+
+                <div class="stat-label">
+                    Departments
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- COURSE LIST -->
+
+        <div class="course-card">
+
+
+            <div class="card-header">
+
+                <div class="card-title">
+
+                    <h3>
+                        Course List
+                    </h3>
+
+                    <p>
+                        Click on a course to view its details.
+                    </p>
+
+                </div>
+
+
+                <div class="filters">
+
+                    <input
+                        type="text"
+                        id="searchCourse"
+                        class="search-box"
+                        placeholder="Search courses..."
+                        oninput="renderCourses()"
+                    >
+
+
+                    <select
+                        id="semesterFilter"
+                        class="filter-select"
+                        onchange="renderCourses()">
+
+                        <option value="all">
+                            All Semesters
+                        </option>
+
+                        <option value="Semester 1">
+                            Semester 1
+                        </option>
+
+                        <option value="Semester 2">
+                            Semester 2
+                        </option>
+
+                        <option value="Semester 3">
+                            Semester 3
+                        </option>
+
+                        <option value="Semester 4">
+                            Semester 4
+                        </option>
+
+                        <option value="Semester 5">
+                            Semester 5
+                        </option>
+
+                        <option value="Semester 6">
+                            Semester 6
+                        </option>
+
+                    </select>
+
+
+                    <select
+                        id="statusFilter"
+                        class="filter-select"
+                        onchange="renderCourses()">
+
+                        <option value="all">
+                            All Status
+                        </option>
+
+                        <option value="Active">
+                            Active
+                        </option>
+
+                        <option value="Completed">
+                            Completed
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="course-list"
+                id="courseList">
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+
+<!-- ==================================================
+     AI CHATBOT
+================================================== -->
+
+<button class="chatbot-icon" id="chatbotToggle" onclick="toggleChatbot()">
+    
+</button>
+
+<aside class="chatbot">
+
+
+    <div class="chat-header">
+
+        <div class="robot-icon">
+            🤖
+        </div>
+
+        <div class="chat-title">
+
+            <strong>
+                AI College Companion
+            </strong>
+
+            <span>
+                <span class="online-dot"></span>
+                Online • Ready to help
+            </span>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="chat-body"
+         id="chatBody">
+
+        <div class="bot-message">
+
+            👋 Hi! I'm your
+            <b>CampusConnect AI College Companion.</b>
+
+            <br><br>
+
+            I can help you with your courses,
+            credits, semesters and subjects.
+
+        </div>
+
+
+        <div class="bot-message">
+
+            Try asking:
+
+            <br>
+
+            • How many courses do I have?
+
+            <br>
+
+            • How many credits?
+
+            <br>
+
+            • Show my Semester 4 courses.
+
+        </div>
+
+    </div>
+
+
+
+    <div class="quick-buttons">
+
+        <button class="quick-btn"
+                onclick="quickChat('My courses')">
+
+            My courses
+
+        </button>
+
+        <button class="quick-btn"
+                onclick="quickChat('Credits')">
+
+            Credits
+
+        </button>
+
+        <button class="quick-btn"
+                onclick="quickChat('Semester 4')">
+
+            Semester 4
+
+        </button>
+
+    </div>
+
+
+
+    <div class="chat-footer">
+
+        <input
+            id="chatInput"
+            class="chat-input"
+            placeholder="Ask your companion..."
+            onkeydown="handleChatKey(event)"
+        >
+
+        <button
+            class="send-btn"
+            onclick="sendChat()">
+
+            ➤
+
+        </button>
+
+    </div>
+
+</aside>
+
+
+
+<!-- ==================================================
+     ADD / EDIT MODAL
+================================================== -->
+
+<div class="modal-overlay"
+     id="courseModal">
+
+    <div class="modal">
+
+        <div class="modal-header">
+
+            <h3 id="modalTitle">
+                Add Course
+            </h3>
+
+            <button
+                class="close-btn"
+                onclick="closeModal()">
+
+                ✕
+
+            </button>
+
+        </div>
+
+
+        <div class="modal-body">
+
+            <div class="form-grid">
+
+
+                <div class="form-group">
+
+                    <label>
+                        Course Code
+                    </label>
+
+                    <input
+                        id="courseCode"
+                        placeholder="Example: BCA401"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Course Name
+                    </label>
+
+                    <input
+                        id="courseName"
+                        placeholder="Example: Database Management"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Faculty
+                    </label>
+
+                    <input
+                        id="courseFaculty"
+                        placeholder="Faculty name"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Credits
+                    </label>
+
+                    <input
+                        id="courseCredits"
+                        type="number"
+                        min="1"
+                        max="10"
+                        placeholder="4"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Department
+                    </label>
+
+                    <input
+                        id="courseDepartment"
+                        placeholder="Computer Science"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Semester
+                    </label>
+
+                    <select id="courseSemester">
+
+                        <option>
+                            Semester 1
+                        </option>
+
+                        <option>
+                            Semester 2
+                        </option>
+
+                        <option>
+                            Semester 3
+                        </option>
+
+                        <option selected>
+                            Semester 4
+                        </option>
+
+                        <option>
+                            Semester 5
+                        </option>
+
+                        <option>
+                            Semester 6
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Status
+                    </label>
+
+                    <select id="courseStatus">
+
+                        <option>
+                            Active
+                        </option>
+
+                        <option>
+                            Completed
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Icon
+                    </label>
+
+                    <input
+                        id="courseIcon"
+                        placeholder="📚"
+                        maxlength="2"
+                    >
+
+                </div>
+
+
+                <div class="form-group full">
+
+                    <label>
+                        Description
+                    </label>
+
+                    <textarea
+                        id="courseDescription"
+                        placeholder="Course description...">
+                    </textarea>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="modal-footer">
+
+            <button
+                class="secondary-btn"
+                onclick="closeModal()">
+
+                Cancel
+
+            </button>
+
+
+            <button
+                class="primary-btn"
+                onclick="saveCourse()">
+
+                Save Course
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- ==================================================
+     DETAILS MODAL
+================================================== -->
+
+<div class="modal-overlay"
+     id="detailsModal">
+
+    <div class="modal">
+
+        <div class="modal-header">
+
+            <h3>
+                Course Details
+            </h3>
+
+            <button
+                class="close-btn"
+                onclick="closeDetails()">
+
+                ✕
+
+            </button>
+
+        </div>
+
+
+        <div class="modal-body"
+             id="detailsBody">
+        </div>
+
+
+        <div class="modal-footer">
+
+            <button
+                class="secondary-btn"
+                onclick="closeDetails()">
+
+                Close
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- TOAST -->
+
+<div class="toast"
+     id="toast">
+</div>
+
+
+
+<script>
+
+    /* ==================================================
+   CHATBOT OPEN / CLOSE
+================================================== */
+
+function toggleChatbot() {
+
+    const chatbot = document.querySelector(".chatbot");
+
+    if (!chatbot) return;
+
+    chatbot.classList.toggle("cc-open");
+
+}
+
+/* ==================================================
+   COURSE DATA
+================================================== */
+
+const defaultCourses = [
+
+    {
+        id:1,
+        code:"BCA401",
+        name:"Database Management System",
+        faculty:"Prof. Sharma",
+        credits:4,
+        department:"Computer Science",
+        semester:"Semester 4",
+        status:"Active",
+        icon:"🗄️",
+        description:
+        "Study database concepts, SQL queries, database design, normalization and transaction management."
+    },
+
+    {
+        id:2,
+        code:"BCA402",
+        name:"Web Programming",
+        faculty:"Prof. Priya",
+        credits:4,
+        department:"Computer Science",
+        semester:"Semester 4",
+        status:"Active",
+        icon:"💻",
+        description:
+        "Learn HTML, CSS, JavaScript and modern web development concepts for interactive websites."
+    },
+
+    {
+        id:3,
+        code:"BCA403",
+        name:"Software Engineering",
+        faculty:"Prof. Kumar",
+        credits:4,
+        department:"Computer Science",
+        semester:"Semester 4",
+        status:"Active",
+        icon:"⚙️",
+        description:
+        "Learn software development life cycle, requirements, design, testing and project management."
+    },
+
+    {
+        id:4,
+        code:"BCA404",
+        name:"Computer Networks",
+        faculty:"Prof. Rao",
+        credits:4,
+        department:"Computer Science",
+        semester:"Semester 4",
+        status:"Active",
+        icon:"🌐",
+        description:
+        "Understand networking concepts, protocols, OSI model, TCP/IP, network devices and security."
+    },
+
+    {
+        id:5,
+        code:"BCA405",
+        name:"Mathematics",
+        faculty:"Prof. Mehta",
+        credits:3,
+        department:"Mathematics",
+        semester:"Semester 4",
+        status:"Active",
+        icon:"📐",
+        description:
+        "Study mathematical concepts and problem-solving techniques used in computer applications."
+    },
+
+    {
+        id:6,
+        code:"BCA306",
+        name:"Artificial Intelligence",
+        faculty:"Prof. Rao",
+        credits:4,
+        department:"Computer Science",
+        semester:"Semester 3",
+        status:"Completed",
+        icon:"🤖",
+        description:
+        "Introduction to artificial intelligence, intelligent agents, search techniques and machine learning."
+    }
+
+];
+
+
+/* ==================================================
+   LOAD DATA
+================================================== */
+
+let courses =
+    JSON.parse(
+        localStorage.getItem("campusConnectCourses")
+    ) || defaultCourses;
+
+let editingId = null;
+
+
+/* ==================================================
+   ESCAPE HTML
+================================================== */
+
+function safe(value){
+
+    return String(value ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+/* ==================================================
+   SAVE DATA
+================================================== */
+
+function saveData(){
+
+    localStorage.setItem(
+        "campusConnectCourses",
+        JSON.stringify(courses)
+    );
+
+}
+
+
+/* ==================================================
+   RENDER COURSES
+================================================== */
+
+function renderCourses(){
+
+    const list =
+        document.getElementById("courseList");
+
+    const search =
+        document.getElementById("searchCourse")
+        .value
+        .toLowerCase()
+        .trim();
+
+    const semester =
+        document.getElementById("semesterFilter")
+        .value;
+
+    const status =
+        document.getElementById("statusFilter")
+        .value;
+
+
+    const filtered =
+        courses.filter(course => {
+
+            const matchesSearch =
+                course.name.toLowerCase().includes(search) ||
+                course.code.toLowerCase().includes(search) ||
+                course.faculty.toLowerCase().includes(search) ||
+                course.department.toLowerCase().includes(search);
+
+            const matchesSemester =
+                semester === "all" ||
+                course.semester === semester;
+
+            const matchesStatus =
+                status === "all" ||
+                course.status === status;
+
+            return (
+                matchesSearch &&
+                matchesSemester &&
+                matchesStatus
+            );
+
+        });
+
+
+    if(filtered.length === 0){
+
+        list.innerHTML = `
+
+            <div class="empty-state">
+
+                📚 No courses found.
+
+                <br><br>
+
+                Try changing your search or filters.
+
+            </div>
+
+        `;
+
+        updateStats();
+
+        return;
+    }
+
+
+    list.innerHTML =
+        filtered.map(course => `
+
+            <div class="course-row">
+
+                <div class="course-main">
+
+                    <div class="course-icon">
+
+                        ${safe(course.icon)}
+
+                    </div>
+
+                    <div class="course-info">
+
+                        <div class="course-name">
+
+                            ${safe(course.name)}
+
+                        </div>
+
+                        <div class="course-meta">
+
+                            ${safe(course.code)}
+                            •
+                            ${safe(course.department)}
+                            •
+                            ${safe(course.faculty)}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="course-detail">
+
+                    <span class="detail-label">
+                        SEMESTER
+                    </span>
+
+                    <span class="detail-value">
+                        ${safe(course.semester)}
+                    </span>
+
+                </div>
+
+
+                <div class="course-detail">
+
+                    <span class="detail-label">
+                        CREDITS
+                    </span>
+
+                    <span class="detail-value">
+                        ${safe(course.credits)}
+                    </span>
+
+                </div>
+
+
+                <div class="course-actions">
+
+                    <span class="status ${
+                        course.status === "Active"
+                            ? "active"
+                            : "completed"
+                    }">
+
+                        ${safe(course.status)}
+
+                    </span>
+
+
+                    <button
+                        class="action-btn"
+                        onclick="viewCourse(${course.id})">
+
+                        View
+
+                    </button>
+
+
+                    <button
+                        class="action-btn"
+                        onclick="editCourse(${course.id})">
+
+                        Edit
+
+                    </button>
+
+
+                    <button
+                        class="action-btn delete"
+                        onclick="deleteCourse(${course.id})">
+
+                        Delete
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        `).join("");
+
+
+    updateStats();
+
+}
+
+
+/* ==================================================
+   UPDATE STATS
+================================================== */
+
+function updateStats(){
+
+    const total =
+        courses.length;
+
+    const active =
+        courses.filter(
+            c => c.status === "Active"
+        ).length;
+
+    const credits =
+        courses.reduce(
+            (sum,c) =>
+                sum + Number(c.credits || 0),
+            0
+        );
+
+    const departments =
+        new Set(
+            courses.map(
+                c => c.department
+            )
+        ).size;
+
+
+    document.getElementById("totalCourses")
+        .textContent = total;
+
+    document.getElementById("activeCourses")
+        .textContent = active;
+
+    document.getElementById("totalCredits")
+        .textContent = credits;
+
+    document.getElementById("departments")
+        .textContent = departments;
+
+}
+
+
+/* ==================================================
+   ADD COURSE
+================================================== */
+
+function openAddModal(){
+
+    editingId = null;
+
+    document.getElementById("modalTitle")
+        .textContent = "Add Course";
+
+    clearForm();
+
+    document.getElementById("courseModal")
+        .classList.add("show");
+
+}
+
+
+/* ==================================================
+   CLEAR FORM
+================================================== */
+
+function clearForm(){
+
+    document.getElementById("courseCode").value = "";
+    document.getElementById("courseName").value = "";
+    document.getElementById("courseFaculty").value = "";
+    document.getElementById("courseCredits").value = "";
+    document.getElementById("courseDepartment").value = "";
+    document.getElementById("courseSemester").value = "Semester 4";
+    document.getElementById("courseStatus").value = "Active";
+    document.getElementById("courseIcon").value = "📚";
+    document.getElementById("courseDescription").value = "";
+
+}
+
+
+/* ==================================================
+   EDIT COURSE
+================================================== */
+
+function editCourse(id){
+
+    const course =
+        courses.find(c => c.id === id);
+
+    if(!course) return;
+
+    editingId = id;
+
+    document.getElementById("modalTitle")
+        .textContent = "Edit Course";
+
+
+    document.getElementById("courseCode").value =
+        course.code;
+
+    document.getElementById("courseName").value =
+        course.name;
+
+    document.getElementById("courseFaculty").value =
+        course.faculty;
+
+    document.getElementById("courseCredits").value =
+        course.credits;
+
+    document.getElementById("courseDepartment").value =
+        course.department;
+
+    document.getElementById("courseSemester").value =
+        course.semester;
+
+    document.getElementById("courseStatus").value =
+        course.status;
+
+    document.getElementById("courseIcon").value =
+        course.icon;
+
+    document.getElementById("courseDescription").value =
+        course.description;
+
+
+    document.getElementById("courseModal")
+        .classList.add("show");
+
+}
+
+
+/* ==================================================
+   SAVE COURSE
+================================================== */
+
+function saveCourse(){
+
+    const code =
+        document.getElementById("courseCode")
+        .value.trim();
+
+    const name =
+        document.getElementById("courseName")
+        .value.trim();
+
+    const faculty =
+        document.getElementById("courseFaculty")
+        .value.trim();
+
+    const credits =
+        Number(
+            document.getElementById("courseCredits")
+            .value
+        );
+
+    const department =
+        document.getElementById("courseDepartment")
+        .value.trim();
+
+    const semester =
+        document.getElementById("courseSemester")
+        .value;
+
+    const status =
+        document.getElementById("courseStatus")
+        .value;
+
+    const icon =
+        document.getElementById("courseIcon")
+        .value.trim() || "📚";
+
+    const description =
+        document.getElementById("courseDescription")
+        .value.trim();
+
+
+    if(
+        !code ||
+        !name ||
+        !faculty ||
+        !credits ||
+        !department
+    ){
+
+        showToast(
+            "Please fill all required fields."
+        );
+
+        return;
+    }
+
+
+    if(editingId !== null){
+
+        const index =
+            courses.findIndex(
+                c => c.id === editingId
+            );
+
+        if(index !== -1){
+
+            courses[index] = {
+
+                ...courses[index],
+
+                code,
+                name,
+                faculty,
+                credits,
+                department,
+                semester,
+                status,
+                icon,
+                description
+
+            };
+
+        }
+
+        showToast("Course updated successfully.");
+
+    }else{
+
+        courses.push({
+
+            id:Date.now(),
+
+            code,
+            name,
+            faculty,
+            credits,
+            department,
+            semester,
+            status,
+            icon,
+            description
+
+        });
+
+        showToast("Course added successfully.");
+
+    }
+
+
+    saveData();
+
+    renderCourses();
+
+    closeModal();
+
+}
+
+
+/* ==================================================
+   DELETE COURSE
+================================================== */
+
+function deleteCourse(id){
+
+    const course =
+        courses.find(
+            c => c.id === id
+        );
+
+    if(!course) return;
+
+
+    const confirmed =
+        confirm(
+            `Delete "${course.name}"?`
+        );
+
+
+    if(!confirmed) return;
+
+
+    courses =
+        courses.filter(
+            c => c.id !== id
+        );
+
+
+    saveData();
+
+    renderCourses();
+
+    showToast(
+        "Course deleted successfully."
+    );
+
+}
+
+
+/* ==================================================
+   VIEW COURSE
+================================================== */
+
+function viewCourse(id){
+
+    const course =
+        courses.find(
+            c => c.id === id
+        );
+
+    if(!course) return;
+
+
+    document.getElementById("detailsBody")
+        .innerHTML = `
+
+            <div class="detail-hero">
+
+                <div class="detail-icon">
+
+                    ${safe(course.icon)}
+
+                </div>
+
+                <div>
+
+                    <h3>
+                        ${safe(course.name)}
+                    </h3>
+
+                    <div class="detail-code">
+
+                        ${safe(course.code)}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="detail-box">
+
+                <strong>
+                    FACULTY
+                </strong>
+
+                <span>
+                    ${safe(course.faculty)}
+                </span>
+
+            </div>
+
+
+            <div class="detail-box">
+
+                <strong>
+                    DEPARTMENT
+                </strong>
+
+                <span>
+                    ${safe(course.department)}
+                </span>
+
+            </div>
+
+
+            <div class="detail-box">
+
+                <strong>
+                    SEMESTER
+                </strong>
+
+                <span>
+                    ${safe(course.semester)}
+                </span>
+
+            </div>
+
+
+            <div class="detail-box">
+
+                <strong>
+                    CREDITS
+                </strong>
+
+                <span>
+                    ${safe(course.credits)} Credits
+                </span>
+
+            </div>
+
+
+            <div class="detail-box">
+
+                <strong>
+                    STATUS
+                </strong>
+
+                <span>
+
+                    ${safe(course.status)}
+
+                </span>
+
+            </div>
+
+
+            <div class="detail-box">
+
+                <strong>
+                    DESCRIPTION
+                </strong>
+
+                <p>
+
+                    ${safe(
+                        course.description ||
+                        "No description available."
+                    )}
+
+                </p>
+
+            </div>
+
+        `;
+
+
+    document.getElementById("detailsModal")
+        .classList.add("show");
+
+}
+
+
+/* ==================================================
+   CLOSE MODALS
+================================================== */
+
+function closeModal(){
+
+    document.getElementById("courseModal")
+        .classList.remove("show");
+
+}
+
+function closeDetails(){
+
+    document.getElementById("detailsModal")
+        .classList.remove("show");
+
+}
+
+
+/* ==================================================
+   CLOCK
+================================================== */
+
+function updateClock(){
+
+    const now =
+        new Date();
+
+    let hours =
+        now.getHours();
+
+    const minutes =
+        String(
+            now.getMinutes()
+        ).padStart(2,"0");
+
+    const seconds =
+        String(
+            now.getSeconds()
+        ).padStart(2,"0");
+
+    const ampm =
+        hours >= 12
+            ? "PM"
+            : "AM";
+
+    hours =
+        hours % 12 || 12;
+
+    document.getElementById("clock")
+        .textContent =
+            `${String(hours).padStart(2,"0")}:${minutes}:${seconds} ${ampm}`;
+
+}
+
+setInterval(updateClock,1000);
+
+updateClock();
+
+
+/* ==================================================
+   TOAST
+================================================== */
+
+let toastTimer;
+
+function showToast(message){
+
+    const toast =
+        document.getElementById("toast");
+
+    toast.textContent =
+        message;
+
+    toast.classList.add("show");
+
+
+    clearTimeout(toastTimer);
+
+
+    toastTimer =
+        setTimeout(
+            () => {
+
+                toast.classList.remove("show");
+
+            },
+            2500
+        );
+
+}
+
+
+/* ==================================================
+   CHATBOT
+================================================== */
+
+function addChatMessage(
+    text,
+    type
+){
+
+    const body =
+        document.getElementById("chatBody");
+
+
+    const message =
+        document.createElement("div");
+
+
+    message.className =
+        type === "user"
+            ? "user-message"
+            : "bot-message";
+
+
+    message.innerHTML =
+        safe(text);
+
+
+    body.appendChild(message);
+
+
+    body.scrollTop =
+        body.scrollHeight;
+
+}
+
+
+/* ==================================================
+   AI RESPONSE
+================================================== */
+
+function getAIResponse(question){
+
+    const q =
+        question.toLowerCase();
+
+
+    if(
+        q.includes("how many") &&
+        q.includes("course")
+    ){
+
+        return `You currently have ${courses.length} courses registered.`;
+
+    }
+
+
+    if(
+        q.includes("credit")
+    ){
+
+        const credits =
+            courses.reduce(
+                (sum,c) =>
+                    sum + Number(c.credits || 0),
+                0
+            );
+
+        return `You currently have ${credits} total course credits.`;
+
+    }
+
+
+    if(
+        q.includes("active")
+    ){
+
+        const active =
+            courses.filter(
+                c => c.status === "Active"
+            ).length;
+
+        return `You have ${active} active courses.`;
+
+    }
+
+
+    if(
+        q.includes("semester 4") ||
+        q.includes("sem 4")
+    ){
+
+        const sem4 =
+            courses.filter(
+                c =>
+                    c.semester === "Semester 4"
+            );
+
+        if(!sem4.length){
+
+            return "There are no Semester 4 courses in your list.";
+
+        }
+
+        return "Your Semester 4 courses are: " +
+            sem4.map(
+                c => c.name
+            ).join(", ") +
+            ".";
+
+    }
+
+
+    if(
+        q.includes("database") ||
+        q.includes("dbms")
+    ){
+
+        const course =
+            courses.find(
+                c =>
+                    c.name
+                    .toLowerCase()
+                    .includes("database")
+            );
+
+        if(course){
+
+            return `${course.name} (${course.code}) is taught by ${course.faculty} and carries ${course.credits} credits.`;
+
+        }
+
+    }
+
+
+    if(
+        q.includes("web") ||
+        q.includes("programming")
+    ){
+
+        const course =
+            courses.find(
+                c =>
+                    c.name
+                    .toLowerCase()
+                    .includes("web")
+            );
+
+        if(course){
+
+            return `${course.name} (${course.code}) is taught by ${course.faculty} and carries ${course.credits} credits.`;
+
+        }
+
+    }
+
+
+    if(
+        q.includes("help") ||
+        q.includes("what can you do")
+    ){
+
+        return "I can help you check your courses, credits, semesters, active subjects and course details.";
+
+    }
+
+
+    return "I can help with your courses, credits, semesters and subjects. Try asking “How many courses do I have?”";
+
+}
+
+
+/* ==================================================
+   SEND CHAT
+================================================== */
+
+function sendChat(){
+
+    const input =
+        document.getElementById("chatInput");
+
+    const text =
+        input.value.trim();
+
+
+    if(!text) return;
+
+
+    addChatMessage(
+        text,
+        "user"
+    );
+
+
+    input.value = "";
+
+
+    setTimeout(
+        () => {
+
+            const response =
+                getAIResponse(text);
+
+            addChatMessage(
+                response,
+                "bot"
+            );
+
+        },
+        350
+    );
+
+}
+
+
+/* ==================================================
+   QUICK CHAT
+================================================== */
+
+function quickChat(question){
+
+    document.getElementById("chatInput")
+        .value = question;
+
+    sendChat();
+
+}
+
+
+/* ==================================================
+   ENTER KEY
+================================================== */
+
+function handleChatKey(event){
+
+    if(event.key === "Enter"){
+
+        sendChat();
+
+    }
+
+}
+
+
+/* ==================================================
+   LOGOUT
+================================================== */
+
+function logoutUser(event){
+
+    event.preventDefault();
+
+
+    const confirmed =
+        confirm(
+            "Are you sure you want to logout?"
+        );
+
+
+    if(confirmed){
+
+        showToast(
+            "Logging out..."
+        );
+
+
+        setTimeout(
+            () => {
+
+                window.location.href =
+                    "../index.html";
+
+            },
+            700
+        );
+
+    }
+
+}
+
+
+/* ==================================================
+   CLOSE MODALS ON OUTSIDE CLICK
+================================================== */
+
+document
+    .getElementById("courseModal")
+    .addEventListener(
+        "click",
+        function(event){
+
+            if(event.target === this){
+
+                closeModal();
+
+            }
+
+        }
+    );
+
+
+document
+    .getElementById("detailsModal")
+    .addEventListener(
+        "click",
+        function(event){
+
+            if(event.target === this){
+
+                closeDetails();
+
+            }
+
+        }
+    );
+
+
+/* ==================================================
+   INITIAL LOAD
+================================================== */
+
+renderCourses();
+
+</script>
+
+</body>
+</html>
