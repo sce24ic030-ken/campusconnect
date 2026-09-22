@@ -1,632 +1,448 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>CampusConnect | Attendance</title>
 
 <style>
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,Helvetica,sans-serif;
+*{ margin:0; padding:0; box-sizing:border-box; }
+
+html,body{
+    width:100%; height:100%;
+    font-family:"Segoe UI",Arial,sans-serif;
+    background:#f4f6ff;
+    color:#17203a;
+    overflow:hidden;
 }
 
-body{
-    background:#f4f7fb;
-    color:#1f2937;
-    min-height:100vh;
-}
+button,input,select{ font-family:inherit; }
 
-/* ================= SIDEBAR ================= */
-
+/* SIDEBAR */
 .sidebar{
-    position:fixed;
-    left:0;
-    top:0;
-    width:250px;
-    height:100vh;
-
-    background:linear-gradient(
-        180deg,
-        #172554,
-        #312e81,
-        #4c1d95
-    );
-
+    position:fixed; left:0; top:0; bottom:0;
+    width:268px; min-width:268px;
+    background:linear-gradient(180deg,#172a70 0%,#28237d 48%,#5520a7 100%);
     color:white;
-    padding:25px 15px;
-
+    overflow-y:auto; overflow-x:hidden;
     z-index:1000;
-    overflow-y:auto;
+    padding-bottom:20px;
+    scrollbar-width:thin;
+    scrollbar-color:rgba(255,255,255,.25) transparent;
 }
 
-.logo{
-    display:flex;
-    align-items:center;
-    gap:12px;
-
-    padding:0 12px 25px;
-
-    border-bottom:1px solid rgba(255,255,255,.2);
-
-    margin-bottom:20px;
+.brand{
+    height:120px; display:flex; align-items:center;
+    padding:22px 18px;
+    border-bottom:1px solid rgba(255,255,255,.12);
 }
-
-.logo-icon{
-    width:45px;
-    height:45px;
-
-    border-radius:14px;
-
-    background:linear-gradient(
-        135deg,
-        #38bdf8,
-        #a78bfa
-    );
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    font-size:23px;
+.logo-box{
+    width:52px; height:52px; border-radius:16px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:28px;
+    background:linear-gradient(135deg,#24b8ff,#7144f5);
+    box-shadow:0 10px 25px rgba(0,0,0,.20);
 }
+.brand-text{ margin-left:13px; }
+.brand-title{ font-size:21px; font-weight:800; letter-spacing:-.5px; }
+.brand-subtitle{ font-size:12px; opacity:.72; margin-top:3px; }
 
-.logo h2{
-    font-size:20px;
+.menu{ padding:25px 14px; }
+.menu-title{
+    font-size:12px; font-weight:700;
+    color:rgba(255,255,255,.52);
+    letter-spacing:1px;
+    padding:0 11px 10px;
 }
-
-.logo span{
-    display:block;
-
-    font-size:11px;
-    opacity:.7;
-
-    margin-top:3px;
-}
+.menu-section{ margin-top:20px; }
 
 .nav-item{
-    width:100%;
-
-    border:none;
-    background:transparent;
-
-    color:#dbeafe;
-
-    display:flex;
-    align-items:center;
-
-    gap:13px;
-
-    padding:13px 15px;
-
-    margin:4px 0;
-
-    border-radius:12px;
-
-    cursor:pointer;
-
-    font-size:14px;
-
-    text-align:left;
-
-    transition:.25s;
+    width:100%; display:flex; align-items:center;
+    min-height:49px; padding:0 14px; margin:5px 0;
+    border-radius:13px;
+    color:rgba(255,255,255,.84);
+    text-decoration:none;
+    transition:transform .2s ease, background .2s ease, color .2s ease;
 }
-
-.nav-item:hover{
-    background:rgba(255,255,255,.12);
-
-    transform:translateX(4px);
-
-    color:white;
-}
-
+.nav-item:hover{ background:rgba(255,255,255,.12); color:white; transform:translateX(3px); }
 .nav-item.active{
-    background:linear-gradient(
-        90deg,
-        #38bdf8,
-        #8b5cf6
-    );
-
     color:white;
+    background:linear-gradient(90deg,#22b9f5,#6942f4);
+    box-shadow:0 9px 22px rgba(0,0,0,.18);
+}
+.nav-icon{ width:31px; font-size:20px; text-align:center; margin-right:10px; }
+.nav-text{ font-size:15px; font-weight:650; }
+.logout{ margin-top:14px; padding-top:15px; border-top:1px solid rgba(255,255,255,.13); }
+
+/* MAIN */
+.main-area{
+    margin-left:268px;
+    width:auto; height:100vh;
+    overflow-y:auto; overflow-x:hidden;
+    background:linear-gradient(180deg,#f8f9ff,#eef1fb);
 }
 
-.nav-icon{
-    width:25px;
-
-    text-align:center;
-
-    font-size:17px;
+.top-header{
+    height:120px;
+    background:rgba(255,255,255,.96);
+    display:flex; align-items:center; justify-content:space-between;
+    padding:22px 28px;
+    border-bottom:1px solid #e9ebf5;
+    position:sticky; top:0; z-index:100;
 }
-
-/* ================= MAIN ================= */
-
-.main{
-    margin-left:250px;
-
-    min-height:100vh;
-}
-
-/* ================= TOPBAR ================= */
-
-.topbar{
-    height:75px;
-
-    background:white;
-
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-
-    padding:0 30px;
-
-    border-bottom:1px solid #e5e7eb;
-
-    position:sticky;
-
-    top:0;
-
-    z-index:500;
-}
-
-.page-title{
-    font-size:21px;
-
-    font-weight:700;
-}
-
-.page-subtitle{
-    font-size:12px;
-
-    color:#6b7280;
-
-    margin-top:4px;
-}
-
-.top-right{
-    display:flex;
-
-    align-items:center;
-
-    gap:20px;
-}
-
-.clock{
-    font-size:13px;
-
-    color:#64748b;
-}
+.header-left h1{ font-size:30px; line-height:1.05; font-weight:800; }
+.header-left p{ margin-top:7px; color:#8990a7; font-size:14px; }
+.header-right{ display:flex; align-items:center; gap:18px; }
+.time-box{ font-size:18px; font-weight:750; color:#59617d; }
 
 .notification{
-    width:40px;
-    height:40px;
-
-    border-radius:50%;
-
-    background:#f1f5f9;
-
-    display:flex;
-
-    justify-content:center;
-    align-items:center;
-
-    cursor:pointer;
-
-    position:relative;
+    width:48px; height:48px; background:#fff; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-size:22px;
+    box-shadow:0 5px 18px rgba(40,35,100,.10);
+    position:relative; cursor:pointer; transition:.2s;
+}
+.notification:hover{ transform:scale(1.06); }
+.notification::after{
+    content:""; width:8px; height:8px; border-radius:50%;
+    background:#ff4f8b; position:absolute; top:7px; right:8px;
 }
 
-.notification-dot{
-    position:absolute;
-
-    width:8px;
-    height:8px;
-
-    border-radius:50%;
-
-    background:#ef4444;
-
-    right:8px;
-    top:7px;
+.profile-mini{ display:flex; align-items:center; gap:10px; }
+.profile-circle{
+    width:48px; height:48px; border-radius:50%;
+    background:linear-gradient(135deg,#25b8ee,#466cf1);
+    color:white; display:flex; align-items:center; justify-content:center;
+    font-size:20px; font-weight:800;
 }
+.profile-info strong{ display:block; font-size:15px; }
+.profile-info span{ display:block; color:#8d93a8; font-size:12px; }
 
-.profile{
-    display:flex;
+.page-content{ padding:20px 24px 35px; width:100%; }
 
-    align-items:center;
-
-    gap:10px;
-
-    cursor:pointer;
-}
-
-.profile-avatar{
-    width:40px;
-    height:40px;
-
-    border-radius:50%;
-
-    background:linear-gradient(
-        135deg,
-        #06b6d4,
-        #6366f1
-    );
-
-    color:white;
-
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-
-    font-weight:bold;
-}
-
-.profile-info strong{
-    display:block;
-
-    font-size:13px;
-}
-
-.profile-info span{
-    font-size:11px;
-
-    color:#64748b;
-}
-
-/* ================= CONTENT ================= */
-
-.content{
-    padding:30px;
-}
-
-/* ================= HERO ================= */
-
-.hero{
-    background:linear-gradient(
-        120deg,
-        #172554,
-        #312e81,
-        #6d28d9
-    );
-
-    border-radius:24px;
-
-    padding:32px;
-
-    color:white;
-
-    position:relative;
-
-    overflow:hidden;
-
-    margin-bottom:25px;
-
-    box-shadow:
-        0 15px 40px rgba(49,46,129,.2);
-}
-
-.hero:before{
-    content:"";
-
-    position:absolute;
-
-    width:300px;
-    height:300px;
-
-    border-radius:50%;
-
-    background:rgba(255,255,255,.08);
-
-    right:-80px;
-    top:-130px;
-}
-
-.hero:after{
-    content:"";
-
-    position:absolute;
-
-    width:180px;
-    height:180px;
-
-    border-radius:50%;
-
-    background:rgba(56,189,248,.12);
-
-    right:150px;
-    bottom:-100px;
-}
-
-.hero-content{
-    position:relative;
-
-    z-index:2;
-}
-
-.hero h1{
-    font-size:30px;
-
-    margin-bottom:10px;
-}
-
-.hero p{
-    color:#dbeafe;
-
-    font-size:14px;
-
-    max-width:650px;
-
-    line-height:1.6;
-}
-
-.hero-date{
-    display:inline-block;
-
-    margin-top:18px;
-
-    padding:9px 14px;
-
-    background:rgba(255,255,255,.12);
-
-    border-radius:20px;
-
-    font-size:12px;
-}
-
-/* ================= STATS ================= */
-
-.stats{
-    display:grid;
-
-    grid-template-columns:repeat(3,1fr);
-
-    gap:18px;
-
-    margin-bottom:25px;
-}
-
-.stat-card{
-    background:white;
-
-    border-radius:18px;
-
-    padding:22px;
-
-    border:1px solid #e5e7eb;
-
-    transition:.25s;
-}
-
-.stat-card:hover{
-    transform:translateY(-5px);
-
-    box-shadow:
-        0 12px 30px rgba(15,23,42,.1);
-}
-
-.stat-top{
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-}
-
-.stat-icon{
-    width:45px;
-    height:45px;
-
-    border-radius:13px;
-
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-
-    font-size:20px;
-
-    background:#eef2ff;
-}
-
-.stat-card h3{
-    font-size:28px;
-
-    margin:15px 0 5px;
-}
-
-.stat-card p{
-    color:#64748b;
-
-    font-size:12px;
-}
-
-.green{
-    color:#16a34a;
-}
-
-.blue{
-    color:#2563eb;
-}
-
-.purple{
-    color:#7c3aed;
-}
-
-/* ================= CARD ================= */
-
-.card{
-    background:white;
-
-    border:1px solid #e5e7eb;
-
-    border-radius:20px;
-
-    padding:23px;
-
-    margin-bottom:22px;
-}
-
-.card-header{
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
+.page-heading{
+    display:flex; align-items:center; justify-content:space-between;
     margin-bottom:20px;
 }
+.page-heading h2{ font-size:24px; font-weight:800; }
+.page-heading p{ margin-top:6px; color:#8990a7; font-size:13px; }
 
-.card-header h2{
-    font-size:17px;
+.heading-btn{
+    border:none; border-radius:11px; padding:11px 16px;
+    color:white; font-size:12px; font-weight:700; cursor:pointer;
+    background:linear-gradient(135deg,#6543e8,#843de0);
+    box-shadow:0 8px 20px rgba(85,50,190,.25);
+    transition:.2s;
+}
+.heading-btn:hover{ transform:translateY(-2px); }
+
+/* HERO */
+.attendance-hero{
+    width:100%; min-height:190px; border-radius:20px;
+    padding:25px 30px; color:white;
+    background:linear-gradient(120deg,#19398d,#4828c8 55%,#7738dd);
+    box-shadow:0 14px 35px rgba(55,44,150,.20);
+    display:flex; align-items:center; justify-content:space-between;
+    margin-bottom:20px; position:relative; overflow:hidden;
+}
+.attendance-hero::after{
+    content:""; position:absolute; width:220px; height:220px;
+    border-radius:50%; right:-70px; top:-100px;
+    background:rgba(255,255,255,.08);
+}
+.hero-left{ position:relative; z-index:2; }
+.hero-left h3{ font-size:22px; font-weight:800; margin-bottom:8px; }
+.hero-left p{ font-size:12px; color:rgba(255,255,255,.75); max-width:450px; line-height:1.6; }
+
+.hero-stat{ position:relative; z-index:2; display:flex; align-items:center; gap:22px; }
+.circle-progress{
+    width:115px; height:115px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    background:conic-gradient(#57e6a3 0deg,#57e6a3 0deg,rgba(255,255,255,.16) 0deg,rgba(255,255,255,.16) 360deg);
+    position:relative; transition:background .6s ease;
+}
+.circle-progress::before{
+    content:""; position:absolute; width:91px; height:91px;
+    border-radius:50%; background:#3629a2;
+}
+.circle-progress strong{ position:relative; font-size:23px; z-index:2; }
+
+.hero-small{ text-align:center; }
+.hero-small strong{ display:block; font-size:24px; }
+.hero-small span{ display:block; margin-top:4px; font-size:10px; color:rgba(255,255,255,.68); }
+
+/* SUMMARY */
+.summary-grid{
+    width:100%; display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:18px; margin-bottom:20px;
+}
+.summary-card{
+    background:white; border:1px solid #e9ebf5; border-radius:17px;
+    padding:18px; min-height:120px;
+    box-shadow:0 8px 25px rgba(40,35,100,.06);
+    transition:.2s; cursor:pointer;
+}
+.summary-card:hover{ transform:translateY(-4px); box-shadow:0 15px 35px rgba(40,35,100,.12); }
+.summary-top{ display:flex; justify-content:space-between; }
+.summary-title{ color:#7f88a5; font-size:12px; font-weight:700; }
+.summary-icon{
+    width:43px; height:43px; border-radius:13px; background:#f0f3ff;
+    display:flex; align-items:center; justify-content:center; font-size:21px;
+}
+.summary-number{ font-size:27px; font-weight:800; margin-top:9px; color:#3063df; }
+.summary-small{ color:#9aa2b9; font-size:10px; margin-top:2px; }
+
+/* SUBJECT ATTENDANCE */
+.content-card{
+    background:white; border:1px solid #e9ebf5; border-radius:17px;
+    padding:20px; box-shadow:0 8px 25px rgba(40,35,100,.06); margin-bottom:20px;
+}
+.card-heading{
+    display:flex; justify-content:space-between; align-items:center;
+    margin-bottom:15px; gap:10px; flex-wrap:wrap;
+}
+.card-heading h3{ font-size:17px; }
+.card-tools{ display:flex; gap:8px; align-items:center; }
+.filter-select{
+    height:38px; border:1px solid #e1e4ef; border-radius:10px;
+    padding:0 11px; color:#68728d; background:white; outline:none;
+    font-size:11px; cursor:pointer; transition:.2s;
+}
+.filter-select:hover{ border-color:#c9cee4; }
+
+.subject-row{
+    display:grid;
+    grid-template-columns:45px minmax(170px,1.4fr) minmax(130px,1fr) 100px 100px;
+    align-items:center; gap:14px; padding:14px 5px;
+    border-bottom:1px solid #f0f1f7; transition:.2s; cursor:pointer;
+}
+.subject-row:last-child{ border-bottom:none; }
+.subject-row:hover{ background:#fafaff; transform:translateX(3px); }
+
+.subject-icon{
+    width:43px; height:43px; border-radius:12px; background:#f0f3ff;
+    display:flex; align-items:center; justify-content:center; font-size:20px;
+}
+.subject-info strong{ display:block; font-size:13px; color:#27304b; }
+.subject-info span{ display:block; margin-top:4px; color:#9aa2b9; font-size:10px; }
+
+.progress-area{ width:100%; }
+.progress-top{ display:flex; justify-content:space-between; margin-bottom:5px; }
+.progress-top span{ color:#8b93aa; font-size:9px; }
+.progress-top strong{ font-size:10px; }
+.progress-bar{ width:100%; height:7px; background:#eef0f7; border-radius:10px; overflow:hidden; }
+.progress-fill{
+    height:100%; width:0; border-radius:10px;
+    background:linear-gradient(90deg,#25b8ee,#6241e8);
+    transition:width .8s ease;
+}
+.progress-fill.low{ background:linear-gradient(90deg,#ffa84d,#e24b72); }
+
+.attended{ text-align:center; }
+.attended strong{ display:block; font-size:13px; color:#59617d; }
+.attended span{ font-size:9px; color:#9aa2b9; }
+
+.attendance-status{
+    text-align:center; padding:7px 9px; border-radius:20px;
+    font-size:9px; font-weight:750;
+}
+.good{ background:#eafaf3; color:#18a871; }
+.warning{ background:#fff4e8; color:#d9812d; }
+.danger{ background:#fff0f3; color:#e24b72; }
+.empty-note{ padding:25px 5px; text-align:center; color:#9aa2b9; font-size:12px; }
+
+/* HISTORY */
+.attendance-history{
+    display:grid;
+    grid-template-columns:repeat(7,minmax(65px,1fr));
+    gap:8px;
+}
+.day-card{
+    border:1px solid #eceef5; border-radius:12px; padding:11px 5px;
+    text-align:center; background:#fafbff; transition:.2s; cursor:pointer;
+}
+.day-card:hover{ transform:translateY(-3px); box-shadow:0 8px 20px rgba(40,35,100,.08); }
+.day-card .day{ font-size:9px; color:#9299ae; font-weight:700; }
+.day-card .date{ font-size:13px; color:#39425e; font-weight:800; margin:4px 0 8px; }
+.day-status{
+    width:24px; height:24px; border-radius:50%; margin:auto;
+    display:flex; align-items:center; justify-content:center;
+    font-size:11px; font-weight:800;
+}
+.present{ background:#eafaf3; color:#18a871; }
+.absent{ background:#fff0f3; color:#e24b72; }
+.holiday{ background:#f0f2fa; color:#8990a7; }
+
+/* ============ FLOATING CHAT BUBBLE ============ */
+.chat-bubble{
+    position:fixed; right:24px; bottom:24px;
+    width:64px; height:64px; border-radius:50%;
+    background:linear-gradient(135deg,#6543e8,#a855f7);
+    display:flex; align-items:center; justify-content:center;
+    font-size:30px; color:white; border:none; cursor:pointer;
+    box-shadow:0 12px 30px rgba(101,67,232,.45);
+    z-index:9998; transition:transform .2s ease;
+}
+.chat-bubble:hover{ transform:scale(1.08); }
+.chat-bubble::after{
+    content:""; position:absolute; top:4px; right:4px;
+    width:12px; height:12px; border-radius:50%;
+    background:#ff4f8b; border:2px solid white;
+}
+.chat-bubble.hide{ display:none; }
+
+.chatbot-panel{
+    position:fixed; right:24px; bottom:24px;
+    width:320px; height:460px; background:white; border-radius:22px;
+    border:1px solid #e5e6f2; box-shadow:0 20px 55px rgba(40,35,100,.25);
+    z-index:9999; display:none; flex-direction:column; overflow:hidden;
+    animation:panelIn .2s ease;
+}
+.chatbot-panel.open{ display:flex; }
+@keyframes panelIn{
+    from{ opacity:0; transform:translateY(20px) scale(.96); }
+    to{ opacity:1; transform:translateY(0) scale(1); }
 }
 
-.card-header span{
-    font-size:12px;
-
-    color:#6366f1;
+.chat-header{
+    min-height:70px; flex-shrink:0; padding:14px;
+    display:flex; align-items:center; justify-content:space-between;
+    color:white; background:linear-gradient(135deg,#29277d,#7137d8);
+}
+.chat-header-left{ display:flex; align-items:center; }
+.robot-icon{
+    width:42px; height:42px; border-radius:12px;
+    background:rgba(255,255,255,.15);
+    display:flex; align-items:center; justify-content:center;
+    font-size:22px; margin-right:10px;
+}
+.chat-title strong{ display:block; font-size:14px; }
+.chat-title span{ display:block; font-size:9px; margin-top:2px; color:rgba(255,255,255,.78); }
+.online-dot{
+    display:inline-block; width:7px; height:7px;
+    background:#57e6a3; border-radius:50%; margin-right:4px;
+}
+.close-chat{
+    width:30px; height:30px; border:none; border-radius:50%;
+    background:rgba(255,255,255,.15); color:white; font-size:16px; cursor:pointer;
 }
 
-/* ================= TABLE ================= */
-
-.table-container{
-    overflow-x:auto;
+.chat-body{
+    flex:1; min-height:0; padding:14px; overflow-y:auto;
+    background:linear-gradient(180deg,#fafbff,#f4f5fb);
 }
-
-table{
-    width:100%;
-
-    border-collapse:collapse;
+.bot-message{
+    background:white; border:1px solid #e7e9f3; border-radius:14px;
+    padding:11px; margin-bottom:9px; color:#65708d;
+    font-size:11px; line-height:1.55;
+    box-shadow:0 5px 15px rgba(40,35,100,.04);
 }
-
-thead{
-    background:#f8fafc;
+.user-message{
+    background:linear-gradient(135deg,#6241e8,#7b3ee0); color:white;
+    padding:9px 12px; border-radius:14px 14px 4px 14px;
+    margin:8px 0 8px 25px; font-size:11px; line-height:1.5;
 }
-
-th{
-    text-align:left;
-
-    padding:15px;
-
-    font-size:12px;
-
-    color:#64748b;
-
-    border-bottom:1px solid #e5e7eb;
+.typing{
+    display:flex; gap:4px; width:52px; padding:12px;
+    background:white; border:1px solid #e7e9f3; border-radius:14px; margin-bottom:9px;
 }
+.typing i{ width:6px; height:6px; border-radius:50%; background:#b9bed4; animation:blink 1s infinite; }
+.typing i:nth-child(2){ animation-delay:.2s; }
+.typing i:nth-child(3){ animation-delay:.4s; }
+@keyframes blink{ 0%,100%{opacity:.3;} 50%{opacity:1;} }
 
-td{
-    padding:16px 15px;
-
-    font-size:13px;
-
-    border-bottom:1px solid #e5e7eb;
+.quick-buttons{
+    display:flex; gap:5px; flex-wrap:wrap; padding:8px 12px;
+    background:white; border-top:1px solid #eceef5;
 }
-
-tbody tr:hover{
-    background:#f8fafc;
+.quick-btn{
+    border:1px solid #e0e3f0; background:white; color:#6b54d9;
+    border-radius:20px; padding:6px 9px; font-size:9px; cursor:pointer; transition:.2s;
 }
+.quick-btn:hover{ background:#f0edff; }
 
-.subject{
-    font-weight:600;
+.chat-footer{
+    flex-shrink:0; padding:10px; background:white;
+    border-top:1px solid #eceef5; display:flex; gap:7px;
 }
-
-.badge{
-    display:inline-block;
-
-    padding:6px 12px;
-
-    border-radius:20px;
-
-    font-size:11px;
-
-    font-weight:600;
+.chat-input{
+    flex:1; min-width:0; height:38px; border:1px solid #e1e4ef;
+    border-radius:12px; outline:none; padding:0 11px; font-size:11px; color:#555e78;
 }
-
-.good{
-    background:#dcfce7;
-
-    color:#15803d;
+.chat-input:focus{ border-color:#a99bf0; }
+.send-btn{
+    width:38px; height:38px; border:none; border-radius:12px; color:white;
+    background:linear-gradient(135deg,#6543e8,#843de0); cursor:pointer; font-size:16px; transition:.2s;
 }
+.send-btn:hover{ transform:scale(1.05); }
 
-/* ================= PROGRESS ================= */
-
-.progress{
-    width:120px;
-
-    height:7px;
-
-    background:#e5e7eb;
-
-    border-radius:20px;
-
-    overflow:hidden;
-
-    display:inline-block;
-
-    vertical-align:middle;
-
-    margin-right:8px;
+/* MODAL */
+.modal{
+    position:fixed; inset:0; background:rgba(20,25,65,.55);
+    display:none; align-items:center; justify-content:center; z-index:30000; padding:20px;
 }
-
-.progress-bar{
-    height:100%;
-
-    border-radius:20px;
-
-    background:linear-gradient(
-        90deg,
-        #06b6d4,
-        #6366f1
-    );
+.modal.show{ display:flex; }
+.modal-box{
+    width:min(500px,95%); max-height:88vh; overflow-y:auto;
+    background:white; border-radius:20px; padding:25px;
+    box-shadow:0 25px 70px rgba(20,25,70,.25); animation:modalIn .2s ease;
 }
-
-/* ================= MOBILE ================= */
-
-@media(max-width:900px){
-
-    .sidebar{
-        width:220px;
-    }
-
-    .main{
-        margin-left:220px;
-    }
-
-    .stats{
-        grid-template-columns:1fr;
-    }
+@keyframes modalIn{
+    from{ opacity:0; transform:translateY(15px) scale(.97); }
+    to{ opacity:1; transform:translateY(0) scale(1); }
 }
+.modal-top{ display:flex; align-items:center; justify-content:space-between; margin-bottom:20px; }
+.modal-top h3{ font-size:19px; }
+.close-btn{
+    width:35px; height:35px; border:none; border-radius:50%;
+    background:#f0f2fa; color:#68728d; cursor:pointer; font-size:18px;
+}
+.modal-content{ color:#68728d; font-size:12px; line-height:1.7; }
+.modal-content p{ margin-bottom:4px; }
+.mini-table{ width:100%; border-collapse:collapse; margin-top:10px; font-size:11px; }
+.mini-table th,.mini-table td{ padding:8px 6px; text-align:left; border-bottom:1px solid #f0f1f7; }
+.mini-table th{ color:#8b93aa; font-size:10px; text-transform:uppercase; }
+.tip-box{
+    margin-top:12px; padding:11px 13px; border-radius:12px;
+    background:#f4f2ff; color:#5d4fbe; font-size:11px; line-height:1.6;
+}
+.modal-buttons{ display:flex; justify-content:flex-end; gap:8px; margin-top:18px; }
+.modal-btn{ border:none; border-radius:10px; padding:10px 15px; cursor:pointer; font-size:11px; font-weight:700; }
+.modal-cancel{ background:#f0f2fa; color:#68728d; }
+.modal-ok{ background:linear-gradient(135deg,#6543e8,#843de0); color:white; }
 
-@media(max-width:650px){
+/* TOAST */
+.toast{
+    position:fixed; left:50%; bottom:25px;
+    transform:translateX(-50%) translateY(20px);
+    background:#29277d; color:white; padding:12px 18px; border-radius:12px;
+    font-size:12px; opacity:0; pointer-events:none; transition:.3s; z-index:40000;
+}
+.toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
 
-    .sidebar{
-        position:relative;
-
-        width:100%;
-
-        height:auto;
-    }
-
-    .main{
-        margin-left:0;
-    }
-
-    .topbar{
-        padding:0 15px;
-    }
-
-    .content{
-        padding:15px;
-    }
-
-    .profile-info,
-    .clock{
-        display:none;
-    }
+/* RESPONSIVE */
+@media(max-width:1150px){
+    .sidebar{ width:230px; min-width:230px; }
+    .main-area{ margin-left:230px; }
+    .summary-grid{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .subject-row{ grid-template-columns:45px 1fr 1fr 80px; }
+    .attendance-status{ display:none; }
+}
+@media(max-width:700px){
+    .sidebar{ width:80px; min-width:80px; }
+    .brand{ justify-content:center; padding:15px; }
+    .brand-text,.menu-title,.nav-text{ display:none; }
+    .nav-item{ justify-content:center; padding:0; }
+    .nav-icon{ margin:0; }
+    .main-area{ margin-left:80px; }
+    .summary-grid{ grid-template-columns:1fr; }
+    .attendance-hero{ flex-direction:column; align-items:flex-start; gap:20px; }
+    .subject-row{ grid-template-columns:43px 1fr; }
+    .progress-area,.attended{ grid-column:2; }
+    .attendance-history{ grid-template-columns:repeat(4,1fr); }
+    .chatbot-panel{ width:92vw; right:4vw; left:4vw; }
 }
 
 </style>
@@ -636,797 +452,720 @@ tbody tr:hover{
 <body>
 
 
-<!-- ================= SIDEBAR ================= -->
-
+<!-- SIDEBAR -->
 <aside class="sidebar">
 
-    <div class="logo">
+    <div class="brand">
+        <div class="logo-box">🎓</div>
+        <div class="brand-text">
+            <div class="brand-title">CampusConnect</div>
+            <div class="brand-subtitle">AI College Companion</div>
+        </div>
+    </div>
 
-        <div class="logo-icon">
-            🎓
+    <div class="menu">
+
+        <div class="menu-title">MAIN MENU</div>
+
+        <a class="nav-item" href="../dashboard.html">
+            <span class="nav-icon">🏠</span><span class="nav-text">Dashboard</span>
+        </a>
+        <a class="nav-item" href="courses.html">
+            <span class="nav-icon">📚</span><span class="nav-text">Courses</span>
+        </a>
+        <a class="nav-item" href="timetable.html">
+            <span class="nav-icon">🗓️</span><span class="nav-text">Timetable</span>
+        </a>
+        <a class="nav-item" href="assignments.html">
+            <span class="nav-icon">📝</span><span class="nav-text">Assignments</span>
+        </a>
+        <a class="nav-item active" href="attendance.html">
+            <span class="nav-icon">📊</span><span class="nav-text">Attendance</span>
+        </a>
+        <a class="nav-item" href="academics.html">
+            <span class="nav-icon">🎓</span><span class="nav-text">Academics</span>
+        </a>
+        <a class="nav-item" href="faculty.html">
+            <span class="nav-icon">👨‍🏫</span><span class="nav-text">Faculty</span>
+        </a>
+
+        <div class="menu-section">
+            <div class="menu-title">CAREER</div>
+            <a class="nav-item" href="placement.html">
+                <span class="nav-icon">💼</span><span class="nav-text">Placement</span>
+            </a>
+            <a class="nav-item" href="results.html">
+                <span class="nav-icon">📈</span><span class="nav-text">Results</span>
+            </a>
         </div>
 
-        <div>
+        <div class="menu-section">
+            <div class="menu-title">CAMPUS</div>
+            <a class="nav-item" href="documents.html">
+                <span class="nav-icon">📄</span><span class="nav-text">Documents</span>
+            </a>
+            <a class="nav-item" href="complaints.html">
+                <span class="nav-icon">📢</span><span class="nav-text">Complaints</span>
+            </a>
+            <a class="nav-item" href="feedback.html">
+                <span class="nav-icon">💬</span><span class="nav-text">Feedback</span>
+            </a>
+            <a class="nav-item" href="lost_found.html">
+                <span class="nav-icon">🔎</span><span class="nav-text">Lost &amp; Found</span>
+            </a>
+            <a class="nav-item" href="campus.html">
+                <span class="nav-icon">🏫</span><span class="nav-text">Campus</span>
+            </a>
+            <a class="nav-item" href="events.html">
+                <span class="nav-icon">🎉</span><span class="nav-text">Events</span>
+            </a>
+            <a class="nav-item" href="exams.html">
+                <span class="nav-icon">📋</span><span class="nav-text">Exams</span>
+            </a>
+            <a class="nav-item" href="notifications.html">
+                <span class="nav-icon">🔔</span><span class="nav-text">Notifications</span>
+            </a>
+        </div>
 
-            <h2>CampusConnect</h2>
-
-            <span>
-                AI College Companion
-            </span>
-
+        <div class="menu-section">
+            <div class="menu-title">ACCOUNT</div>
+            <a class="nav-item" href="profile.html">
+                <span class="nav-icon">👤</span><span class="nav-text">Profile</span>
+            </a>
+            <a class="nav-item" href="settings.html">
+                <span class="nav-icon">⚙️</span><span class="nav-text">Settings</span>
+            </a>
+            <div class="logout">
+                <a class="nav-item" href="../index.html" onclick="return confirmLogout()">
+                    <span class="nav-icon">🚪</span><span class="nav-text">Logout</span>
+                </a>
+            </div>
         </div>
 
     </div>
 
-
-    <button class="nav-item"
-        onclick="go('../dashboard.html')">
-
-        <span class="nav-icon">🏠</span>
-
-        Dashboard
-
-    </button>
-
-
-    <button class="nav-item"
-        onclick="go('../dashboard.html')">
-
-        <span class="nav-icon">📚</span>
-
-        My Courses
-
-    </button>
-
-
-    <button class="nav-item"
-        onclick="go('timetable.html')">
-
-        <span class="nav-icon">🗓️</span>
-
-        Timetable
-
-    </button>
-
-
-    <button class="nav-item"
-        onclick="go('../dashboard.html')">
-
-        <span class="nav-icon">📝</span>
-
-        Assignments
-
-    </button>
-
-
-    <button class="nav-item active">
-
-        <span class="nav-icon">📊</span>
-
-        Attendance
-
-    </button>
-
-
-    <button class="nav-item"
-        onclick="go('academics.html')">
-
-        <span class="nav-icon">🎓</span>
-
-        Academics
-
-    </button>
-
-
-    <button class="nav-item"
-        onclick="go('faculty.html')">
-
-        <span class="nav-icon">👩‍🏫</span>
-
-        Faculty
-
-    </button>
-
-
-    <button class="nav-item"
-        onclick="go('placement.html')">
-
-        <span class="nav-icon">💼</span>
-
-        Placement
-
-    </button>
-
-
-    <button class="nav-item"
-        onclick="go('results.html')">
-
-        <span class="nav-icon">📊</span>
-
-        Results
-
-    </button>
-
-
-    <button class="nav-item"
-        onclick="go('documents.html')">
-
-        <span class="nav-icon">📄</span>
-
-        Documents
-
-    </button>
-
-
-    <button class="nav-item"
-        onclick="go('complaints.html')">
-
-        <span class="nav-icon">📢</span>
-
-        Complaints
-
-    </button>
-
-
-    <button class="nav-item"
-        onclick="go('feedback.html')">
-
-        <span class="nav-icon">💬</span>
-
-        Feedback
-
-    </button>
-
-
-    <button class="nav-item"
-        onclick="go('lost-found.html')">
-
-        <span class="nav-icon">🔎</span>
-
-        Lost &amp; Found
-
-    </button>
-
-
-    <button class="nav-item"
-        onclick="go('campus.html')">
-
-        <span class="nav-icon">🏫</span>
-
-        Campus
-
-    </button>
-
-
-    <button class="nav-item"
-        onclick="go('events.html')">
-
-        <span class="nav-icon">🎉</span>
-
-        Events
-
-    </button>
-
-
-    <button class="nav-item"
-        onclick="go('exams.html')">
-
-        <span class="nav-icon">📝</span>
-
-        Exams
-
-    </button>
-
-
-    <button class="nav-item"
-        onclick="go('notifications.html')">
-
-        <span class="nav-icon">🔔</span>
-
-        Notifications
-
-    </button>
-
-
-    <button class="nav-item"
-        onclick="go('profile.html')">
-
-        <span class="nav-icon">👤</span>
-
-        Profile
-
-    </button>
-
-
-    <button class="nav-item"
-        onclick="go('settings.html')">
-
-        <span class="nav-icon">⚙️</span>
-
-        Settings
-
-    </button>
-
-
 </aside>
 
 
-<!-- ================= MAIN ================= -->
+<!-- MAIN AREA -->
+<main class="main-area">
 
-<div class="main">
+    <header class="top-header">
 
-
-    <!-- TOPBAR -->
-
-    <header class="topbar">
-
-        <div>
-
-            <div class="page-title">
-                Attendance
-            </div>
-
-            <div class="page-subtitle">
-                CampusConnect Student Portal
-            </div>
-
+        <div class="header-left">
+            <h1>Student<br>Attendance</h1>
+            <p>Track your attendance and stay above the required percentage</p>
         </div>
 
-
-        <div class="top-right">
-
-            <div class="clock" id="clock">
-                Loading...
-            </div>
-
-
-            <div class="notification">
-
-                🔔
-
-                <div class="notification-dot"></div>
-
-            </div>
-
-
-            <div class="profile">
-
-                <div class="profile-avatar">
-                    P
-                </div>
-
+        <div class="header-right">
+            <div class="time-box" id="clock">6:00 PM</div>
+            <div class="notification" onclick="showNotifications()">🔔</div>
+            <div class="profile-mini">
+                <div class="profile-circle">P</div>
                 <div class="profile-info">
-
-                    <strong id="studentName">
-                        Student
-                    </strong>
-
-                    <span>
-                        BCA Student
-                    </span>
-
+                    <strong>Student</strong>
+                    <span>BCA &bull; 5th Sem</span>
                 </div>
-
             </div>
-
         </div>
 
     </header>
 
+    <div class="page-content">
 
-    <!-- ================= CONTENT ================= -->
+        <div class="page-heading">
+            <div>
+                <h2>📊 Attendance Overview</h2>
+                <p>Monitor your subject-wise attendance and recent records.</p>
+            </div>
+            <button class="heading-btn" onclick="showAttendanceInfo()">View Full Report</button>
+        </div>
 
-    <main class="content">
-
-
-        <!-- HERO -->
-
-        <section class="hero">
-
-            <div class="hero-content">
-
-                <h1>
-                    Attendance
-                </h1>
-
-                <p>
-                    Monitor your subject-wise attendance
-                    and keep track of your academic progress.
+        <section class="attendance-hero">
+            <div class="hero-left">
+                <h3 id="heroTitle">Great job! Keep it up 🎉</h3>
+                <p id="heroText">
+                    Your overall attendance is healthy. Maintain regular
+                    attendance to stay eligible for exams and academic activities.
                 </p>
-
-                <div class="hero-date" id="today">
-                    Today
+            </div>
+            <div class="hero-stat">
+                <div class="circle-progress" id="circleProgress">
+                    <strong id="circleValue">0%</strong>
                 </div>
+                <div class="hero-small">
+                    <strong id="heroPercent">0%</strong>
+                    <span>Overall Attendance</span>
+                </div>
+            </div>
+        </section>
 
+        <section class="summary-grid">
+
+            <div class="summary-card" onclick="showToast('You have attended ' + totals().present + ' classes ✅')">
+                <div class="summary-top">
+                    <div class="summary-title">PRESENT</div>
+                    <div class="summary-icon">✅</div>
+                </div>
+                <div class="summary-number" id="statPresent">0</div>
+                <div class="summary-small">Classes attended</div>
+            </div>
+
+            <div class="summary-card" onclick="showToast('You have missed ' + totals().absent + ' classes ❌')">
+                <div class="summary-top">
+                    <div class="summary-title">ABSENT</div>
+                    <div class="summary-icon">❌</div>
+                </div>
+                <div class="summary-number" id="statAbsent">0</div>
+                <div class="summary-small">Classes missed</div>
+            </div>
+
+            <div class="summary-card" onclick="showToast('Total classes conducted: ' + totals().total + ' 📅')">
+                <div class="summary-top">
+                    <div class="summary-title">WORKING DAYS</div>
+                    <div class="summary-icon">📅</div>
+                </div>
+                <div class="summary-number" id="statTotal">0</div>
+                <div class="summary-small">Total classes</div>
+            </div>
+
+            <div class="summary-card" onclick="showToast('Minimum attendance required is ' + REQUIRED + '% 🎯')">
+                <div class="summary-top">
+                    <div class="summary-title">REQUIRED</div>
+                    <div class="summary-icon">🎯</div>
+                </div>
+                <div class="summary-number" id="statRequired">75%</div>
+                <div class="summary-small">Minimum attendance</div>
             </div>
 
         </section>
 
+        <section class="content-card">
 
-        <!-- ================= STATS ================= -->
-
-        <section class="stats">
-
-
-            <div class="stat-card">
-
-                <div class="stat-top">
-
-                    <div>
-                        <p>Overall Attendance</p>
-                    </div>
-
-                    <div class="stat-icon">
-                        📊
-                    </div>
-
+            <div class="card-heading">
+                <h3>Subject-wise Attendance</h3>
+                <div class="card-tools">
+                    <select class="filter-select" id="attendanceSort" onchange="renderSubjects()">
+                        <option value="default">Default Order</option>
+                        <option value="low">Lowest First</option>
+                        <option value="high">Highest First</option>
+                        <option value="name">Subject Name</option>
+                    </select>
+                    <select class="filter-select" id="attendanceFilter" onchange="renderSubjects()">
+                        <option value="all">All Subjects</option>
+                        <option value="good">Good Attendance</option>
+                        <option value="warning">Needs Attention</option>
+                        <option value="danger">Critical</option>
+                    </select>
                 </div>
-
-                <h3 class="green">
-                    87%
-                </h3>
-
-                <p>
-                    Overall attendance percentage
-                </p>
-
             </div>
 
-
-            <div class="stat-card">
-
-                <div class="stat-top">
-
-                    <div>
-                        <p>Total Classes</p>
-                    </div>
-
-                    <div class="stat-icon">
-                        📚
-                    </div>
-
-                </div>
-
-                <h3 class="blue">
-                    120
-                </h3>
-
-                <p>
-                    Classes conducted
-                </p>
-
-            </div>
-
-
-            <div class="stat-card">
-
-                <div class="stat-top">
-
-                    <div>
-                        <p>Classes Attended</p>
-                    </div>
-
-                    <div class="stat-icon">
-                        ✅
-                    </div>
-
-                </div>
-
-                <h3 class="purple">
-                    104
-                </h3>
-
-                <p>
-                    Classes attended
-                </p>
-
-            </div>
-
+            <div id="subjectList"></div>
 
         </section>
 
-
-        <!-- ================= ATTENDANCE TABLE ================= -->
-
-        <section class="card">
-
-
-            <div class="card-header">
-
-                <h2>
-                    Subject-wise Attendance
-                </h2>
-
-                <span>
-                    Current Semester
-                </span>
-
+        <section class="content-card">
+            <div class="card-heading">
+                <h3>Recent Attendance</h3>
+                <button class="filter-select" onclick="showAttendanceInfo()">View Details</button>
             </div>
-
-
-            <div class="table-container">
-
-                <table>
-
-                    <thead>
-
-                        <tr>
-
-                            <th>
-                                Subject
-                            </th>
-
-                            <th>
-                                Total Classes
-                            </th>
-
-                            <th>
-                                Attended
-                            </th>
-
-                            <th>
-                                Absent
-                            </th>
-
-                            <th>
-                                Attendance
-                            </th>
-
-                            <th>
-                                Status
-                            </th>
-
-                        </tr>
-
-                    </thead>
-
-
-                    <tbody>
-
-
-                        <tr>
-
-                            <td class="subject">
-                                Data Structures
-                            </td>
-
-                            <td>
-                                25
-                            </td>
-
-                            <td>
-                                23
-                            </td>
-
-                            <td>
-                                2
-                            </td>
-
-                            <td>
-
-                                <div class="progress">
-
-                                    <div
-                                        class="progress-bar"
-                                        style="width:92%">
-                                    </div>
-
-                                </div>
-
-                                <strong>
-                                    92%
-                                </strong>
-
-                            </td>
-
-                            <td>
-
-                                <span class="badge good">
-                                    Good
-                                </span>
-
-                            </td>
-
-                        </tr>
-
-
-                        <tr>
-
-                            <td class="subject">
-                                Database Management
-                            </td>
-
-                            <td>
-                                24
-                            </td>
-
-                            <td>
-                                21
-                            </td>
-
-                            <td>
-                                3
-                            </td>
-
-                            <td>
-
-                                <div class="progress">
-
-                                    <div
-                                        class="progress-bar"
-                                        style="width:88%">
-                                    </div>
-
-                                </div>
-
-                                <strong>
-                                    88%
-                                </strong>
-
-                            </td>
-
-                            <td>
-
-                                <span class="badge good">
-                                    Good
-                                </span>
-
-                            </td>
-
-                        </tr>
-
-
-                        <tr>
-
-                            <td class="subject">
-                                Computer Networks
-                            </td>
-
-                            <td>
-                                23
-                            </td>
-
-                            <td>
-                                19
-                            </td>
-
-                            <td>
-                                4
-                            </td>
-
-                            <td>
-
-                                <div class="progress">
-
-                                    <div
-                                        class="progress-bar"
-                                        style="width:83%">
-                                    </div>
-
-                                </div>
-
-                                <strong>
-                                    83%
-                                </strong>
-
-                            </td>
-
-                            <td>
-
-                                <span class="badge good">
-                                    Good
-                                </span>
-
-                            </td>
-
-                        </tr>
-
-
-                        <tr>
-
-                            <td class="subject">
-                                Web Development
-                            </td>
-
-                            <td>
-                                25
-                            </td>
-
-                            <td>
-                                22
-                            </td>
-
-                            <td>
-                                3
-                            </td>
-
-                            <td>
-
-                                <div class="progress">
-
-                                    <div
-                                        class="progress-bar"
-                                        style="width:88%">
-                                    </div>
-
-                                </div>
-
-                                <strong>
-                                    88%
-                                </strong>
-
-                            </td>
-
-                            <td>
-
-                                <span class="badge good">
-                                    Good
-                                </span>
-
-                            </td>
-
-                        </tr>
-
-
-                        <tr>
-
-                            <td class="subject">
-                                Software Engineering
-                            </td>
-
-                            <td>
-                                23
-                            </td>
-
-                            <td>
-                                19
-                            </td>
-
-                            <td>
-                                4
-                            </td>
-
-                            <td>
-
-                                <div class="progress">
-
-                                    <div
-                                        class="progress-bar"
-                                        style="width:83%">
-                                    </div>
-
-                                </div>
-
-                                <strong>
-                                    83%
-                                </strong>
-
-                            </td>
-
-                            <td>
-
-                                <span class="badge good">
-                                    Good
-                                </span>
-
-                            </td>
-
-                        </tr>
-
-
-                    </tbody>
-
-                </table>
-
-            </div>
-
+            <div class="attendance-history" id="historyGrid"></div>
         </section>
 
+    </div>
 
-    </main>
+</main>
+
+
+<!-- FLOATING CHAT BUBBLE -->
+<button class="chat-bubble" id="chatBubble" onclick="openChatPanel()">🤖</button>
+
+<div class="chatbot-panel" id="chatbotPanel">
+
+    <div class="chat-header">
+        <div class="chat-header-left">
+            <div class="robot-icon">🤖</div>
+            <div class="chat-title">
+                <strong>AI College Companion</strong>
+                <span><i class="online-dot"></i>Online • Ready to help</span>
+            </div>
+        </div>
+        <button class="close-chat" onclick="closeChatPanel()">×</button>
+    </div>
+
+    <div class="chat-body" id="chatBody">
+        <div class="bot-message">
+            👋 Hi! I'm your <strong>AI College Companion.</strong>
+            Ask me about your attendance or any subject.
+        </div>
+    </div>
+
+    <div class="quick-buttons">
+        <button class="quick-btn" onclick="quickChat('What is my attendance?')">My Attendance</button>
+        <button class="quick-btn" onclick="quickChat('Which subject needs attention?')">Low Attendance</button>
+        <button class="quick-btn" onclick="quickChat('What is the minimum attendance?')">Minimum %</button>
+        <button class="quick-btn" onclick="quickChat('How many classes can I bunk?')">Can I Bunk?</button>
+        <button class="quick-btn" onclick="quickChat('Am I safe for exams?')">Exam Eligible?</button>
+    </div>
+
+    <div class="chat-footer">
+        <input id="chatInput" class="chat-input" type="text"
+               placeholder="Ask your companion..." onkeydown="handleChatKey(event)">
+        <button class="send-btn" onclick="sendChat()">➤</button>
+    </div>
 
 </div>
 
 
-<!-- ================= JAVASCRIPT ================= -->
+<!-- MODAL -->
+<div class="modal" id="attendanceModal" onclick="closeModalOutside(event)">
+    <div class="modal-box">
+        <div class="modal-top">
+            <h3 id="modalTitle">📊 Attendance Details</h3>
+            <button class="close-btn" onclick="closeModal()">×</button>
+        </div>
+        <div class="modal-content" id="modalContent"></div>
+        <div class="modal-buttons">
+            <button class="modal-btn modal-cancel" onclick="closeModal()">Close</button>
+            <button class="modal-btn modal-ok" onclick="downloadReport()">Download Report</button>
+        </div>
+    </div>
+</div>
+
+
+<!-- TOAST -->
+<div class="toast" id="toast">Done</div>
+
 
 <script>
 
+/* ===== DATA — change values here, the whole page updates ===== */
 
-/* PAGE NAVIGATION */
+const REQUIRED = 75;
 
-function go(page){
+const SUBJECTS = [
+    { code:"DBMS", name:"Database Management System", faculty:"Prof. Sharma", icon:"🗄️", attended:46, total:50 },
+    { code:"WEB",  name:"Web Programming",            faculty:"Prof. Priya",  icon:"💻", attended:45, total:50 },
+    { code:"SE",   name:"Software Engineering",       faculty:"Prof. Kumar",  icon:"⚙️", attended:43, total:50 },
+    { code:"CN",   name:"Computer Networks",          faculty:"Prof. Rao",    icon:"🌐", attended:42, total:50 },
+    { code:"MATH", name:"Mathematics",                faculty:"Prof. Mehta",  icon:"📐", attended:38, total:50 },
+    { code:"AI",   name:"Artificial Intelligence",    faculty:"Prof. Singh",  icon:"🤖", attended:36, total:50 }
+];
 
-    window.location.href = page;
+const HISTORY = [
+    { day:"MON", date:14, status:"P" },
+    { day:"TUE", date:15, status:"P" },
+    { day:"WED", date:16, status:"A" },
+    { day:"THU", date:17, status:"P" },
+    { day:"FRI", date:18, status:"P" },
+    { day:"SAT", date:19, status:"P" },
+    { day:"SUN", date:20, status:"H" }
+];
 
+/* ===== HELPERS ===== */
+
+function percent(s){ return s.total === 0 ? 0 : Math.round((s.attended / s.total) * 100); }
+
+function statusOf(s){
+    const p = percent(s);
+    if(p >= 85) return "good";
+    if(p >= REQUIRED) return "warning";
+    return "danger";
 }
 
+function labelOf(s){
+    const p = percent(s);
+    if(p >= 90) return "Excellent";
+    if(p >= 85) return "Good";
+    if(p >= REQUIRED) return "Attention";
+    return "Critical";
+}
 
-/* CLOCK */
+function totals(){
+    let attended = 0, total = 0;
+    SUBJECTS.forEach(s => { attended += s.attended; total += s.total; });
+    return { present:attended, absent:total-attended, total:total, percent: total ? Math.round((attended/total)*100) : 0 };
+}
+
+function canBunk(s){
+    let skip = 0;
+    while(((s.attended) / (s.total + skip + 1)) * 100 >= REQUIRED){ skip++; }
+    return skip;
+}
+
+function needToAttend(s){
+    let need = 0;
+    while(((s.attended + need) / (s.total + need)) * 100 < REQUIRED){
+        need++;
+        if(need > 500) break;
+    }
+    return need;
+}
+
+/* ===== CLOCK ===== */
 
 function updateClock(){
-
     const now = new Date();
-
     let hours = now.getHours();
-
-    let minutes = String(
-        now.getMinutes()
-    ).padStart(2,"0");
-
-    let seconds = String(
-        now.getSeconds()
-    ).padStart(2,"0");
-
-    let ampm = hours >= 12 ? "PM" : "AM";
-
-    hours = hours % 12;
-
-    hours = hours || 12;
-
-    document.getElementById("clock").innerText =
-        `${hours}:${minutes}:${seconds} ${ampm}`;
-
+    const minutes = String(now.getMinutes()).padStart(2,"0");
+    const seconds = String(now.getSeconds()).padStart(2,"0");
+    const ampm = hours >= 12 ? "PM" : "AM";
+    hours = hours % 12 || 12;
+    document.getElementById("clock").textContent = hours + ":" + minutes + ":" + seconds + " " + ampm;
 }
-
+updateClock();
 setInterval(updateClock,1000);
 
-updateClock();
+/* ===== RENDER HERO + SUMMARY ===== */
 
+function renderOverview(){
+    const t = totals();
 
-/* DATE */
+    document.getElementById("statPresent").textContent  = t.present;
+    document.getElementById("statAbsent").textContent   = t.absent;
+    document.getElementById("statTotal").textContent    = t.total;
+    document.getElementById("statRequired").textContent = REQUIRED + "%";
+    document.getElementById("circleValue").textContent  = t.percent + "%";
+    document.getElementById("heroPercent").textContent   = t.percent + "%";
 
-const date = new Date();
+    const deg = (t.percent / 100) * 360;
+    const ringColor = t.percent >= 85 ? "#57e6a3" : t.percent >= REQUIRED ? "#ffc861" : "#ff7b9c";
 
-document.getElementById("today").innerText =
-    date.toLocaleDateString(
-        "en-IN",
-        {
-            weekday:"long",
-            day:"numeric",
-            month:"long",
-            year:"numeric"
-        }
-    );
+    setTimeout(function(){
+        document.getElementById("circleProgress").style.background =
+            "conic-gradient(" + ringColor + " 0deg," + ringColor + " " + deg + "deg," +
+            "rgba(255,255,255,.16) " + deg + "deg,rgba(255,255,255,.16) 360deg)";
+    },150);
 
+    const title = document.getElementById("heroTitle");
+    const text  = document.getElementById("heroText");
 
-/* STUDENT NAME */
-
-try{
-
-    const student =
-        JSON.parse(
-            localStorage.getItem("student")
-        );
-
-    if(student){
-
-        const name =
-            student.name ||
-            student.username ||
-            student.fullName;
-
-        if(name){
-
-            document.getElementById(
-                "studentName"
-            ).innerText = name;
-
-        }
-
+    if(t.percent >= 85){
+        title.textContent = "Great job! Keep it up 🎉";
+        text.textContent = "Your overall attendance is healthy. Maintain regular attendance to stay eligible for exams and academic activities.";
+    } else if(t.percent >= REQUIRED){
+        title.textContent = "You're above the line ⚠️";
+        text.textContent = "You are above the " + REQUIRED + "% requirement, but the margin is small. Missing a few more classes could put you at risk.";
+    } else {
+        title.textContent = "Attendance shortage 🚨";
+        text.textContent = "You are below the " + REQUIRED + "% requirement. Attend classes regularly and contact your class coordinator about the shortage.";
     }
-
-}catch(error){
-
-    console.log(
-        "Student information not available."
-    );
-
 }
 
+/* ===== RENDER SUBJECTS ===== */
+
+function renderSubjects(){
+    const filter = document.getElementById("attendanceFilter").value;
+    const sort   = document.getElementById("attendanceSort").value;
+    const list   = document.getElementById("subjectList");
+
+    let rows = SUBJECTS.slice();
+
+    if(sort === "low")  rows.sort((a,b) => percent(a) - percent(b));
+    if(sort === "high") rows.sort((a,b) => percent(b) - percent(a));
+    if(sort === "name") rows.sort((a,b) => a.name.localeCompare(b.name));
+
+    if(filter !== "all") rows = rows.filter(s => statusOf(s) === filter);
+
+    list.innerHTML = "";
+
+    if(rows.length === 0){
+        list.innerHTML = '<div class="empty-note">No subjects match this filter 🎉</div>';
+        return;
+    }
+
+    rows.forEach(function(s){
+        const p = percent(s), st = statusOf(s);
+        const row = document.createElement("div");
+        row.className = "subject-row";
+        row.onclick = function(){ showSubjectInfo(s.code); };
+
+        row.innerHTML =
+            '<div class="subject-icon">' + s.icon + '</div>' +
+            '<div class="subject-info"><strong>' + s.name + '</strong><span>' + s.faculty + '</span></div>' +
+            '<div class="progress-area">' +
+                '<div class="progress-top"><span>Attendance</span><strong>' + p + '%</strong></div>' +
+                '<div class="progress-bar"><div class="progress-fill' + (p < REQUIRED ? " low" : "") + '"></div></div>' +
+            '</div>' +
+            '<div class="attended"><strong>' + s.attended + '/' + s.total + '</strong><span>Classes</span></div>' +
+            '<div class="attendance-status ' + st + '">' + labelOf(s) + '</div>';
+
+        list.appendChild(row);
+
+        setTimeout(function(){
+            row.querySelector(".progress-fill").style.width = p + "%";
+        },60);
+    });
+}
+
+/* ===== RENDER HISTORY ===== */
+
+function renderHistory(){
+    const grid = document.getElementById("historyGrid");
+    grid.innerHTML = "";
+
+    const map = {
+        P:{ cls:"present", mark:"✓", text:"Present" },
+        A:{ cls:"absent",  mark:"×", text:"Absent"  },
+        H:{ cls:"holiday", mark:"–", text:"Holiday" }
+    };
+
+    HISTORY.forEach(function(d){
+        const info = map[d.status];
+        const card = document.createElement("div");
+        card.className = "day-card";
+        card.onclick = function(){ showToast(d.day + " " + d.date + " — " + info.text); };
+        card.innerHTML =
+            '<div class="day">' + d.day + '</div>' +
+            '<div class="date">' + d.date + '</div>' +
+            '<div class="day-status ' + info.cls + '">' + info.mark + '</div>';
+        grid.appendChild(card);
+    });
+}
+
+/* ===== MODAL ===== */
+
+function openModal(title,html){
+    document.getElementById("modalTitle").textContent = title;
+    document.getElementById("modalContent").innerHTML = html;
+    document.getElementById("attendanceModal").classList.add("show");
+}
+
+function showAttendanceInfo(){
+    const t = totals();
+    let rowsHtml = "";
+
+    SUBJECTS.forEach(function(s){
+        rowsHtml += "<tr><td>" + s.icon + " " + s.name + "</td><td>" + s.attended + "/" + s.total +
+                    "</td><td>" + percent(s) + "%</td><td>" + labelOf(s) + "</td></tr>";
+    });
+
+    const weak = SUBJECTS.filter(s => percent(s) < REQUIRED);
+
+    const tip = weak.length
+        ? "⚠️ " + weak.map(s => s.name + " needs " + needToAttend(s) + " more classes in a row to cross " + REQUIRED + "%").join(". ") + "."
+        : "💡 You are above the minimum requirement in every subject. Keep attending regularly.";
+
+    openModal(
+        "📊 Attendance Details",
+        "<p><strong>Overall Attendance:</strong> " + t.percent + "%</p>" +
+        "<p><strong>Total Classes:</strong> " + t.total + "</p>" +
+        "<p><strong>Classes Attended:</strong> " + t.present + "</p>" +
+        "<p><strong>Classes Missed:</strong> " + t.absent + "</p>" +
+        "<p><strong>Minimum Required:</strong> " + REQUIRED + "%</p>" +
+        "<table class='mini-table'><tr><th>Subject</th><th>Classes</th><th>%</th><th>Status</th></tr>" + rowsHtml + "</table>" +
+        "<div class='tip-box'>" + tip + "</div>"
+    );
+}
+
+function showSubjectInfo(code){
+    const s = SUBJECTS.filter(x => x.code === code)[0];
+    if(!s) return;
+
+    const p = percent(s);
+    const advice = p >= REQUIRED
+        ? "✅ You can miss up to <strong>" + canBunk(s) + "</strong> more class(es) of this subject and still stay above " + REQUIRED + "%."
+        : "🚨 You need to attend <strong>" + needToAttend(s) + "</strong> class(es) in a row to reach " + REQUIRED + "%.";
+
+    openModal(
+        s.icon + " " + s.name,
+        "<p><strong>Faculty:</strong> " + s.faculty + "</p>" +
+        "<p><strong>Classes Attended:</strong> " + s.attended + "</p>" +
+        "<p><strong>Classes Conducted:</strong> " + s.total + "</p>" +
+        "<p><strong>Classes Missed:</strong> " + (s.total - s.attended) + "</p>" +
+        "<p><strong>Percentage:</strong> " + p + "%</p>" +
+        "<p><strong>Status:</strong> " + labelOf(s) + "</p>" +
+        "<div class='tip-box'>" + advice + "</div>"
+    );
+}
+
+function showNotifications(){
+    const weak = SUBJECTS.filter(s => percent(s) < REQUIRED);
+    let html = "<p><strong>Today</strong></p>";
+
+    if(weak.length){
+        weak.forEach(s => { html += "<p>🚨 Low attendance alert in <strong>" + s.name + "</strong> (" + percent(s) + "%)</p>"; });
+    } else {
+        html += "<p>✅ No attendance alerts. You're doing well.</p>";
+    }
+
+    html += "<p>📅 Attendance for this week has been updated.</p><p>📋 Exam eligibility is calculated at " + REQUIRED + "% minimum.</p>";
+    openModal("🔔 Notifications", html);
+}
+
+function closeModal(){ document.getElementById("attendanceModal").classList.remove("show"); }
+
+function closeModalOutside(event){
+    if(event.target === document.getElementById("attendanceModal")) closeModal();
+}
+
+/* ===== DOWNLOAD REPORT ===== */
+
+function downloadReport(){
+    const t = totals();
+    let text = "CampusConnect - Attendance Report\n==================================\n\n" +
+        "Overall Attendance : " + t.percent + "%\nClasses Attended   : " + t.present +
+        "\nClasses Missed     : " + t.absent + "\nTotal Classes      : " + t.total +
+        "\nMinimum Required   : " + REQUIRED + "%\n\nSubject-wise\n------------\n";
+
+    SUBJECTS.forEach(s => {
+        text += s.name + " (" + s.faculty + ") : " + s.attended + "/" + s.total + "  = " + percent(s) + "%  [" + labelOf(s) + "]\n";
+    });
+
+    const blob = new Blob([text],{ type:"text/plain" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "attendance-report.txt";
+    link.click();
+    URL.revokeObjectURL(link.href);
+    showToast("Report downloaded 📄");
+}
+
+/* ===== TOAST ===== */
+
+function showToast(message){
+    const toast = document.getElementById("toast");
+    toast.textContent = message;
+    toast.classList.add("show");
+    clearTimeout(toast._timer);
+    toast._timer = setTimeout(() => toast.classList.remove("show"),2500);
+}
+
+/* ===== CHAT BUBBLE OPEN/CLOSE ===== */
+
+function openChatPanel(){
+    document.getElementById("chatbotPanel").classList.add("open");
+    document.getElementById("chatBubble").classList.add("hide");
+}
+
+function closeChatPanel(){
+    document.getElementById("chatbotPanel").classList.remove("open");
+    document.getElementById("chatBubble").classList.remove("hide");
+}
+
+/* ===== CHATBOT ===== */
+
+function quickChat(text){
+    document.getElementById("chatInput").value = text;
+    sendChat();
+}
+
+function addMessage(cls,html){
+    const body = document.getElementById("chatBody");
+    const msg = document.createElement("div");
+    msg.className = cls;
+    msg.innerHTML = html;
+    body.appendChild(msg);
+    body.scrollTop = body.scrollHeight;
+    return msg;
+}
+
+function botReply(text){
+    const t = totals();
+    const lower = text.toLowerCase();
+
+    const weakest = SUBJECTS.slice().sort((a,b) => percent(a) - percent(b))[0];
+    const best = SUBJECTS.slice().sort((a,b) => percent(b) - percent(a))[0];
+
+    if(/^(hi|hello|hey|hii|yo)\b/.test(lower)){
+        return "👋 Hey! Ask me about your attendance, a specific subject, or how many classes you can afford to miss.";
+    }
+
+    for(let i = 0; i < SUBJECTS.length; i++){
+        const s = SUBJECTS[i];
+        if(lower.includes(s.name.toLowerCase()) || lower.includes(s.code.toLowerCase())){
+            const p = percent(s);
+            const extra = p >= REQUIRED
+                ? "You can still miss " + canBunk(s) + " more class(es)."
+                : "You need " + needToAttend(s) + " more class(es) to reach " + REQUIRED + "%.";
+            return s.icon + " <strong>" + s.name + "</strong> — " + s.attended + "/" + s.total + " classes (" + p + "%). " + extra;
+        }
+    }
+
+    if(lower.includes("bunk") || lower.includes("skip") || lower.includes("miss") || lower.includes("leave")){
+        const lines = SUBJECTS.map(s => s.name + ": " + (percent(s) >= REQUIRED ? canBunk(s) + " can be missed" : "needs " + needToAttend(s) + " more")).join("<br>");
+        return "🧮 Bunk calculator (limit " + REQUIRED + "%):<br>" + lines;
+    }
+
+    if(lower.includes("overall") || (lower.includes("attendance") && (lower.includes("my") || lower.includes("what")))){
+        return "📊 Your overall attendance is <strong>" + t.percent + "%</strong>. You have attended " + t.present + " of " + t.total + " classes.";
+    }
+
+    if(lower.includes("low") || lower.includes("attention") || lower.includes("weak") || lower.includes("worst") || lower.includes("critical")){
+        const weak = SUBJECTS.filter(s => percent(s) < 85);
+        if(weak.length === 0) return "✅ No subject needs attention — all are above 85%.";
+        return "⚠️ Needs attention: " + weak.map(s => s.name + " (" + percent(s) + "%)").join(", ") + ".";
+    }
+
+    if(lower.includes("best") || lower.includes("highest") || lower.includes("top")){
+        return "🏆 Your best subject is " + best.name + " at " + percent(best) + "%.";
+    }
+
+    if(lower.includes("minimum") || lower.includes("required") || lower.includes("criteria")){
+        return "🎯 The minimum required attendance is " + REQUIRED + "%. Your current overall attendance is " + t.percent + "%.";
+    }
+
+    if(lower.includes("safe") || lower.includes("eligible") || lower.includes("exam") || lower.includes("debar")){
+        const failing = SUBJECTS.filter(s => percent(s) < REQUIRED);
+        if(failing.length === 0) return "✅ You're exam eligible — every subject is above " + REQUIRED + "% and your overall is " + t.percent + "%.";
+        return "🚨 You're short in " + failing.map(s => s.name + " (" + percent(s) + "%)").join(", ") + ". Clear the shortage before exam forms close.";
+    }
+
+    if(lower.includes("present")) return "✅ You have attended " + t.present + " classes so far.";
+    if(lower.includes("absent") || lower.includes("missed")) return "❌ You have missed " + t.absent + " classes out of " + t.total + ".";
+
+    if(lower.includes("improve") || lower.includes("increase") || lower.includes("how to")){
+        return "📈 Focus on " + weakest.name + " first (" + percent(weakest) + "%). Attending " + needToAttend(weakest) + " straight classes there gives the biggest jump.";
+    }
+
+    if(lower.includes("thank")) return "😊 Anytime! Keep that attendance up.";
+
+    return "😊 I can help with your overall attendance, subject-wise percentages, exam eligibility, and how many classes you can miss. Try asking \"How is my DBMS attendance?\"";
+}
+
+function sendChat(){
+    const input = document.getElementById("chatInput");
+    const text = input.value.trim();
+    if(!text) return;
+
+    addMessage("user-message", escapeHtml(text));
+    input.value = "";
+
+    const typing = addMessage("typing","<i></i><i></i><i></i>");
+
+    setTimeout(function(){
+        typing.remove();
+        addMessage("bot-message", botReply(text));
+    },600);
+}
+
+function handleChatKey(event){ if(event.key === "Enter") sendChat(); }
+
+function escapeHtml(str){
+    return str.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+}
+
+/* ===== LOGOUT ===== */
+
+function confirmLogout(){ return confirm("Are you sure you want to logout?"); }
+
+/* ===== ESCAPE KEY ===== */
+
+document.addEventListener("keydown", function(event){
+    if(event.key === "Escape"){ closeModal(); closeChatPanel(); }
+});
+
+/* ===== INIT ===== */
+
+renderOverview();
+renderSubjects();
+renderHistory();
+
+setTimeout(function(){
+    addMessage("bot-message","Your current overall attendance is <strong>" + totals().percent + "%</strong>. Tap the bubble anytime to ask me something. 😊");
+},1200);
 
 </script>
 
 </body>
-
 </html>
