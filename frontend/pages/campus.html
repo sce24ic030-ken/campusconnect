@@ -7,221 +7,950 @@
 <title>CampusConnect | Campus</title>
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-body {
-    background: #f5f7fb;
-    color: #222;
+html,body{
+    width:100%;
+    height:100%;
+    font-family:"Segoe UI",Arial,sans-serif;
+    background:#f4f6ff;
+    color:#17203a;
+    overflow:hidden;
 }
 
-/* SIDEBAR */
-.sidebar {
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 240px;
-    height: 100vh;
-    background: linear-gradient(180deg,#172554,#312e81,#4c1d95);
-    color: white;
-    padding: 20px 15px;
-    overflow-y: auto;
-    z-index: 1000;
+button,input,select{
+    font-family:inherit;
 }
 
-.sidebar h2 {
-    font-size: 22px;
-    font-weight: bold;
-    padding: 7px 15px 28px;
-    border-bottom: 1px solid rgba(255,255,255,0.18);
-    margin-bottom: 15px;
+/* ================= SIDEBAR ================= */
+
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    bottom:0;
+    width:268px;
+    min-width:268px;
+    background:linear-gradient(180deg,#172a70 0%,#28237d 48%,#5520a7 100%);
+    color:white;
+    overflow-y:auto;
+    overflow-x:hidden;
+    z-index:1000;
+    padding-bottom:20px;
+    scrollbar-width:thin;
+    scrollbar-color:rgba(255,255,255,.25) transparent;
 }
 
-.nav-item {
-    height: 48px;
-    display: flex;
-    align-items: center;
-    padding: 0 18px;
-    margin: 2px 0;
-    border-radius: 11px;
-    cursor: pointer;
-    font-size: 15px;
-    color: #e5e7eb;
-    transition: 0.2s;
+.brand{
+    height:120px;
+    display:flex;
+    align-items:center;
+    padding:22px 18px;
+    border-bottom:1px solid rgba(255,255,255,.12);
 }
 
-.nav-item:hover {
-    background: rgba(255,255,255,0.12);
+.logo-box{
+    width:52px;
+    height:52px;
+    border-radius:16px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:28px;
+    background:linear-gradient(135deg,#24b8ff,#7144f5);
+    box-shadow:0 10px 25px rgba(0,0,0,.20);
 }
 
-.nav-item.active {
-    background: linear-gradient(90deg,#22c1dc,#8b5cf6);
-    color: white;
-    font-weight: bold;
+.brand-text{
+    margin-left:13px;
 }
 
-/* MAIN */
-.main {
-    margin-left: 240px;
-    min-height: 100vh;
+.brand-title{
+    font-size:21px;
+    font-weight:800;
+    letter-spacing:-.5px;
 }
 
-/* HEADER */
-.header {
-    background: white;
-    padding: 18px 35px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+.brand-subtitle{
+    font-size:12px;
+    opacity:.72;
+    margin-top:3px;
 }
 
-.logo {
-    font-size: 25px;
-    font-weight: bold;
-    color: #2563eb;
+.menu{
+    padding:25px 14px;
 }
 
-.back-btn {
-    background: #2563eb;
-    color: white;
-    border: none;
-    padding: 10px 18px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 14px;
+.menu-title{
+    font-size:12px;
+    font-weight:700;
+    color:rgba(255,255,255,.52);
+    letter-spacing:1px;
+    padding:0 11px 10px;
 }
 
-.back-btn:hover {
-    background: #1d4ed8;
+.menu-section{
+    margin-top:20px;
 }
 
-/* MAIN */
-.container {
-    max-width: 1100px;
-    margin: 35px auto;
-    padding: 0 20px;
+.nav-item{
+    width:100%;
+    display:flex;
+    align-items:center;
+    min-height:49px;
+    padding:0 14px;
+    margin:5px 0;
+    border-radius:13px;
+    color:rgba(255,255,255,.84);
+    text-decoration:none;
+    transition:transform .2s ease,background .2s ease,color .2s ease;
 }
 
-.page-title {
-    font-size: 30px;
-    margin-bottom: 8px;
+.nav-item:hover{
+    background:rgba(255,255,255,.12);
+    color:white;
+    transform:translateX(3px);
 }
 
-.page-subtitle {
-    color: #6b7280;
-    margin-bottom: 28px;
+.nav-item.active{
+    color:white;
+    background:linear-gradient(90deg,#22b9f5,#6942f4);
+    box-shadow:0 9px 22px rgba(0,0,0,.18);
 }
 
-/* CAMPUS CARDS */
-.campus-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+.nav-icon{
+    width:31px;
+    font-size:20px;
+    text-align:center;
+    margin-right:10px;
 }
 
-.campus-card {
-    background: white;
-    border-radius: 14px;
-    padding: 25px;
-    box-shadow: 0 3px 12px rgba(0,0,0,0.07);
-    transition: transform 0.2s;
+.nav-text{
+    font-size:15px;
+    font-weight:650;
 }
 
-.campus-card:hover {
-    transform: translateY(-3px);
+.logout{
+    margin-top:14px;
+    padding-top:15px;
+    border-top:1px solid rgba(255,255,255,.13);
 }
 
-.icon {
-    width: 52px;
-    height: 52px;
-    border-radius: 12px;
-    background: #e8f0ff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 25px;
-    margin-bottom: 15px;
+/* ================= MAIN ================= */
+
+.main-area{
+    margin-left:268px;
+    margin-right:286px;
+    width:auto;
+    height:100vh;
+    overflow-y:auto;
+    overflow-x:hidden;
+    background:linear-gradient(180deg,#f8f9ff,#eef1fb);
 }
 
-.campus-card h2 {
-    font-size: 19px;
-    margin-bottom: 9px;
+/* ================= HEADER ================= */
+
+.top-header{
+    height:120px;
+    background:rgba(255,255,255,.96);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:22px 28px;
+    border-bottom:1px solid #e9ebf5;
+    position:sticky;
+    top:0;
+    z-index:100;
 }
 
-.campus-card p {
-    color: #666;
-    font-size: 14px;
-    line-height: 1.6;
+.header-left h1{
+    font-size:30px;
+    line-height:1.05;
+    font-weight:800;
 }
 
-/* INFO SECTION */
-.info-section {
-    margin-top: 25px;
-    background: white;
-    padding: 25px;
-    border-radius: 14px;
-    box-shadow: 0 3px 12px rgba(0,0,0,0.07);
+.header-left p{
+    margin-top:7px;
+    color:#8990a7;
+    font-size:14px;
 }
 
-.info-section h2 {
-    margin-bottom: 15px;
+.header-right{
+    display:flex;
+    align-items:center;
+    gap:18px;
 }
 
-.info-list {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
+.time-box{
+    font-size:18px;
+    font-weight:750;
+    color:#59617d;
 }
 
-.info-item {
-    padding: 13px;
-    background: #f8fafc;
-    border-radius: 8px;
-    font-size: 14px;
+.notification{
+    width:48px;
+    height:48px;
+    background:#fff;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+    box-shadow:0 5px 18px rgba(40,35,100,.10);
+    position:relative;
 }
 
-.info-item strong {
-    display: block;
-    margin-bottom: 4px;
+.notification::after{
+    content:"";
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:#ff4f8b;
+    position:absolute;
+    top:7px;
+    right:8px;
 }
 
-/* MOBILE */
-@media (max-width: 800px) {
+.profile-mini{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
 
-    .sidebar {
-        width: 210px;
+.profile-circle{
+    width:48px;
+    height:48px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#25b8ee,#466cf1);
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:20px;
+    font-weight:800;
+}
+
+.profile-info strong{
+    display:block;
+    font-size:15px;
+}
+
+.profile-info span{
+    display:block;
+    color:#8d93a8;
+    font-size:12px;
+}
+
+/* ================= CONTENT ================= */
+
+.content{
+    padding:26px 28px 45px;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+    min-height:190px;
+    padding:28px 30px;
+    border-radius:24px;
+    color:white;
+    background:
+        radial-gradient(circle at 90% 20%,rgba(37,184,238,.30),transparent 28%),
+        radial-gradient(circle at 20% 100%,rgba(126,58,220,.45),transparent 35%),
+        linear-gradient(135deg,#29277d,#5a28a7);
+    box-shadow:0 14px 35px rgba(65,48,150,.18);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    overflow:hidden;
+    position:relative;
+}
+
+.hero::after{
+    content:"🏫";
+    position:absolute;
+    right:50px;
+    bottom:-35px;
+    font-size:135px;
+    opacity:.09;
+}
+
+.hero-text{
+    max-width:650px;
+    position:relative;
+    z-index:2;
+}
+
+.hero-label{
+    display:inline-block;
+    background:rgba(255,255,255,.13);
+    border:1px solid rgba(255,255,255,.16);
+    padding:7px 13px;
+    border-radius:20px;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.5px;
+    margin-bottom:13px;
+}
+
+.hero h2{
+    font-size:28px;
+    margin-bottom:8px;
+}
+
+.hero p{
+    color:rgba(255,255,255,.75);
+    font-size:13px;
+    line-height:1.6;
+}
+
+/* ================= SUMMARY ================= */
+
+.summary-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+    margin-top:20px;
+}
+
+.summary-card{
+    background:white;
+    border:1px solid #e7e9f3;
+    border-radius:18px;
+    padding:18px;
+    box-shadow:0 7px 22px rgba(40,35,100,.06);
+    transition:.2s;
+}
+
+.summary-card:hover{
+    transform:translateY(-3px);
+    box-shadow:0 12px 28px rgba(40,35,100,.10);
+}
+
+.summary-icon{
+    width:42px;
+    height:42px;
+    border-radius:13px;
+    background:#f0edff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:21px;
+    margin-bottom:12px;
+}
+
+.summary-card strong{
+    display:block;
+    font-size:24px;
+}
+
+.summary-card span{
+    display:block;
+    color:#8b92a9;
+    font-size:12px;
+    margin-top:4px;
+}
+
+/* ================= SECTION ================= */
+
+.section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin:28px 0 14px;
+}
+
+.section-head h3{
+    font-size:19px;
+}
+
+.section-head p{
+    color:#9298ad;
+    font-size:12px;
+    margin-top:4px;
+}
+
+/* ================= CONTROLS ================= */
+
+.controls{
+    background:white;
+    border:1px solid #e7e9f3;
+    border-radius:18px;
+    padding:14px;
+    display:flex;
+    gap:10px;
+    margin-bottom:17px;
+    box-shadow:0 6px 18px rgba(40,35,100,.05);
+}
+
+.search-box{
+    flex:1;
+    position:relative;
+}
+
+.search-box span{
+    position:absolute;
+    left:13px;
+    top:11px;
+    font-size:15px;
+}
+
+.search-box input,
+.controls select{
+    width:100%;
+    height:40px;
+    border:1px solid #e0e3ef;
+    border-radius:11px;
+    outline:none;
+    color:#5b637b;
+    background:#fafbff;
+    font-size:12px;
+    padding:0 12px;
+}
+
+.search-box input{
+    padding-left:36px;
+}
+
+.controls select{
+    width:170px;
+}
+
+/* ================= CAMPUS CARDS ================= */
+
+.campus-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
+
+.campus-card{
+    background:white;
+    border:1px solid #e7e9f3;
+    border-radius:18px;
+    padding:18px;
+    box-shadow:0 7px 22px rgba(40,35,100,.05);
+    transition:.2s;
+    cursor:pointer;
+}
+
+.campus-card:hover{
+    transform:translateY(-3px);
+    box-shadow:0 13px 30px rgba(40,35,100,.10);
+}
+
+.card-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+}
+
+.campus-icon{
+    width:55px;
+    height:55px;
+    border-radius:16px;
+    background:linear-gradient(135deg,#eef2ff,#f3eaff);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:28px;
+}
+
+.open-status{
+    padding:6px 10px;
+    background:#eafbf4;
+    color:#18a673;
+    border-radius:20px;
+    font-size:10px;
+    font-weight:750;
+}
+
+.campus-card h4{
+    margin-top:14px;
+    font-size:17px;
+}
+
+.card-description{
+    margin-top:6px;
+    color:#7e879f;
+    font-size:12px;
+    line-height:1.55;
+}
+
+.card-meta{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+    margin-top:14px;
+}
+
+.meta-box{
+    background:#f7f8fc;
+    border-radius:10px;
+    padding:9px;
+}
+
+.meta-box small{
+    display:block;
+    color:#9aa0b3;
+    font-size:9px;
+}
+
+.meta-box strong{
+    display:block;
+    color:#59617b;
+    font-size:10px;
+    margin-top:3px;
+}
+
+.card-footer{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:14px;
+    padding-top:12px;
+    border-top:1px solid #eef0f6;
+}
+
+.category-tag{
+    color:#7761d9;
+    background:#efecff;
+    padding:6px 9px;
+    border-radius:8px;
+    font-size:9px;
+    font-weight:700;
+}
+
+.details-btn{
+    border:none;
+    background:#eeeaff;
+    color:#6543d5;
+    padding:8px 12px;
+    border-radius:9px;
+    font-size:10px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+/* ================= EMPTY ================= */
+
+.empty-state{
+    display:none;
+    background:white;
+    border-radius:18px;
+    padding:45px;
+    text-align:center;
+    border:1px solid #e7e9f3;
+}
+
+.empty-state div{
+    font-size:40px;
+}
+
+.empty-state h3{
+    margin-top:10px;
+}
+
+.empty-state p{
+    color:#9298ad;
+    font-size:12px;
+    margin-top:5px;
+}
+
+/* ================= CHATBOT ================= */
+
+.chatbot{
+    position:fixed;
+    top:18px;
+    right:18px;
+    bottom:18px;
+    width:268px;
+    min-width:268px;
+    max-width:268px;
+    background:white;
+    border-radius:22px;
+    border:1px solid #e5e6f2;
+    box-shadow:0 15px 45px rgba(40,35,100,.15);
+    z-index:9999;
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
+}
+
+.chat-header{
+    min-height:82px;
+    flex-shrink:0;
+    padding:15px;
+    display:flex;
+    align-items:center;
+    color:white;
+    background:linear-gradient(135deg,#29277d,#7137d8);
+}
+
+.robot-icon{
+    width:45px;
+    height:45px;
+    border-radius:14px;
+    background:rgba(255,255,255,.15);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:24px;
+    margin-right:10px;
+}
+
+.chat-title strong{
+    display:block;
+    font-size:15px;
+}
+
+.chat-title span{
+    display:block;
+    font-size:10px;
+    margin-top:3px;
+    color:rgba(255,255,255,.78);
+}
+
+.online-dot{
+    display:inline-block;
+    width:7px;
+    height:7px;
+    background:#57e6a3;
+    border-radius:50%;
+    margin-right:4px;
+}
+
+.chat-body{
+    flex:1;
+    min-height:0;
+    padding:17px 14px;
+    overflow-y:auto;
+    background:linear-gradient(180deg,#fafbff,#f4f5fb);
+}
+
+.bot-message{
+    background:white;
+    border:1px solid #e7e9f3;
+    border-radius:14px;
+    padding:12px;
+    margin-bottom:10px;
+    color:#65708d;
+    font-size:11px;
+    line-height:1.6;
+    box-shadow:0 5px 15px rgba(40,35,100,.04);
+}
+
+.user-message{
+    background:linear-gradient(135deg,#6241e8,#7b3ee0);
+    color:white;
+    padding:10px 12px;
+    border-radius:14px 14px 4px 14px;
+    margin:9px 0 9px 20px;
+    font-size:11px;
+    line-height:1.5;
+}
+
+.quick-buttons{
+    display:flex;
+    gap:5px;
+    flex-wrap:wrap;
+    padding:9px 14px;
+    background:white;
+    border-top:1px solid #eceef5;
+}
+
+.quick-btn{
+    border:1px solid #e0e3f0;
+    background:white;
+    color:#6b54d9;
+    border-radius:20px;
+    padding:7px 9px;
+    font-size:9px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.quick-btn:hover{
+    background:#f1edff;
+}
+
+.chat-footer{
+    flex-shrink:0;
+    padding:10px;
+    background:white;
+    border-top:1px solid #eceef5;
+    display:flex;
+    gap:7px;
+}
+
+.chat-input{
+    flex:1;
+    min-width:0;
+    height:40px;
+    border:1px solid #e1e4ef;
+    border-radius:12px;
+    outline:none;
+    padding:0 11px;
+    font-size:11px;
+    color:#555e78;
+}
+
+.send-btn{
+    width:40px;
+    height:40px;
+    border:none;
+    border-radius:12px;
+    color:white;
+    background:linear-gradient(135deg,#6543e8,#843de0);
+    cursor:pointer;
+    font-size:17px;
+}
+
+/* ================= MODAL ================= */
+
+.modal-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(22,24,55,.48);
+    backdrop-filter:blur(5px);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:20000;
+    padding:20px;
+}
+
+.modal{
+    width:500px;
+    max-width:100%;
+    max-height:90vh;
+    overflow-y:auto;
+    background:white;
+    border-radius:22px;
+    box-shadow:0 25px 70px rgba(20,20,70,.25);
+    padding:24px;
+}
+
+.modal-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:20px;
+}
+
+.modal-header h2{
+    font-size:20px;
+}
+
+.close-btn{
+    width:34px;
+    height:34px;
+    border:none;
+    border-radius:10px;
+    background:#f1f2f8;
+    color:#69718a;
+    cursor:pointer;
+    font-size:17px;
+}
+
+.modal-icon{
+    width:75px;
+    height:75px;
+    border-radius:20px;
+    background:#f0edff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:40px;
+    margin-bottom:15px;
+}
+
+.modal-title{
+    font-size:23px;
+}
+
+.modal-description{
+    color:#727b94;
+    font-size:13px;
+    line-height:1.65;
+    margin:10px 0 17px;
+}
+
+.detail-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+}
+
+.detail-box{
+    background:#f7f8fc;
+    padding:12px;
+    border-radius:12px;
+}
+
+.detail-box small{
+    display:block;
+    color:#9aa0b3;
+    font-size:9px;
+}
+
+.detail-box strong{
+    display:block;
+    margin-top:4px;
+    font-size:12px;
+    color:#4f5872;
+}
+
+.modal-action{
+    width:100%;
+    height:44px;
+    border:none;
+    border-radius:12px;
+    background:linear-gradient(135deg,#6543e8,#843de0);
+    color:white;
+    font-weight:750;
+    cursor:pointer;
+    margin-top:18px;
+}
+
+/* ================= TOAST ================= */
+
+.toast{
+    position:fixed;
+    right:310px;
+    bottom:25px;
+    background:#29277d;
+    color:white;
+    padding:13px 18px;
+    border-radius:12px;
+    font-size:12px;
+    box-shadow:0 12px 30px rgba(20,20,70,.2);
+    transform:translateY(100px);
+    opacity:0;
+    transition:.3s;
+    z-index:30000;
+}
+
+.toast.show{
+    transform:translateY(0);
+    opacity:1;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:1150px){
+
+    .sidebar{
+        width:230px;
+        min-width:230px;
     }
 
-    .main {
-        margin-left: 210px;
+    .main-area{
+        margin-left:230px;
+        margin-right:250px;
+    }
+
+    .chatbot{
+        width:232px;
+        min-width:232px;
+        max-width:232px;
+        right:10px;
+    }
+
+    .summary-grid{
+        grid-template-columns:repeat(2,1fr);
     }
 }
 
-@media (max-width: 700px) {
+@media(max-width:900px){
 
-    .header {
-        padding: 15px 18px;
+    .chatbot{
+        display:none;
     }
 
-    .logo {
-        font-size: 21px;
+    .main-area{
+        margin-right:0;
     }
 
-    .campus-grid {
-        grid-template-columns: 1fr;
+    .campus-grid{
+        grid-template-columns:1fr;
     }
 
-    .info-list {
-        grid-template-columns: 1fr;
+    .toast{
+        right:20px;
+    }
+}
+
+@media(max-width:700px){
+
+    .sidebar{
+        width:80px;
+        min-width:80px;
     }
 
-    .page-title {
-        font-size: 25px;
+    .brand{
+        justify-content:center;
+        padding:15px;
+    }
+
+    .brand-text{
+        display:none;
+    }
+
+    .menu-title,
+    .nav-text{
+        display:none;
+    }
+
+    .nav-item{
+        justify-content:center;
+        padding:0;
+    }
+
+    .nav-icon{
+        margin:0;
+    }
+
+    .main-area{
+        margin-left:80px;
+    }
+
+    .top-header{
+        height:100px;
+        padding:15px;
+    }
+
+    .header-left h1{
+        font-size:22px;
+    }
+
+    .profile-info,
+    .time-box{
+        display:none;
+    }
+
+    .content{
+        padding:18px;
+    }
+
+    .hero{
+        align-items:flex-start;
+    }
+
+    .summary-grid{
+        grid-template-columns:1fr;
+    }
+
+    .controls{
+        flex-direction:column;
+    }
+
+    .controls select{
+        width:100%;
     }
 }
 </style>
@@ -229,251 +958,1365 @@ body {
 
 <body>
 
-<!-- SIDEBAR -->
+<!-- ================= SIDEBAR ================= -->
 
 <aside class="sidebar">
 
-    <h2>CampusConnect</h2>
+    <div class="brand">
 
-    <div class="nav-item" onclick="go('dashboard')">
-        🏠&nbsp;&nbsp; Dashboard
+        <div class="logo-box">🎓</div>
+
+        <div class="brand-text">
+
+            <div class="brand-title">
+                CampusConnect
+            </div>
+
+            <div class="brand-subtitle">
+                AI College Companion
+            </div>
+
+        </div>
+
     </div>
 
-    <div class="nav-item" onclick="go('courses')">
-        📚&nbsp;&nbsp; My Courses
+
+    <nav class="menu">
+
+        <div class="menu-title">
+            MAIN MENU
+        </div>
+
+
+        <a href="../dashboard.html" class="nav-item">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-text">Dashboard</span>
+        </a>
+
+        <a class="nav-item" href="courses.html">
+
+    <span class="nav-icon">
+        📚
+    </span>
+
+    <span class="nav-text">
+        Courses
+    </span>
+
+</a>
+
+
+        <a href="timetable.html" class="nav-item">
+            <span class="nav-icon">🗓️</span>
+            <span class="nav-text">Timetable</span>
+        </a>
+
+
+        <a href="assignments.html" class="nav-item">
+            <span class="nav-icon">📝</span>
+            <span class="nav-text">Assignments</span>
+        </a>
+
+
+        <a href="attendance.html" class="nav-item">
+            <span class="nav-icon">📊</span>
+            <span class="nav-text">Attendance</span>
+        </a>
+
+
+        <a href="academics.html" class="nav-item">
+            <span class="nav-icon">🎓</span>
+            <span class="nav-text">Academics</span>
+        </a>
+
+
+        <a href="faculty.html" class="nav-item">
+            <span class="nav-icon">👨‍🏫</span>
+            <span class="nav-text">Faculty</span>
+        </a>
+
+
+        <div class="menu-section">
+
+            <div class="menu-title">
+                CAREER
+            </div>
+
+
+            <a href="placement.html" class="nav-item">
+                <span class="nav-icon">💼</span>
+                <span class="nav-text">Placement</span>
+            </a>
+
+
+            <a href="results.html" class="nav-item">
+                <span class="nav-icon">📈</span>
+                <span class="nav-text">Results</span>
+            </a>
+
+        </div>
+
+
+        <div class="menu-section">
+
+            <div class="menu-title">
+                CAMPUS
+            </div>
+
+
+            <a href="documents.html" class="nav-item">
+                <span class="nav-icon">📄</span>
+                <span class="nav-text">Documents</span>
+            </a>
+
+
+            <a href="complaints.html" class="nav-item">
+                <span class="nav-icon">📢</span>
+                <span class="nav-text">Complaints</span>
+            </a>
+
+
+            <a href="feedback.html" class="nav-item">
+                <span class="nav-icon">💬</span>
+                <span class="nav-text">Feedback</span>
+            </a>
+
+
+            <a href="lost-found.html" class="nav-item">
+                <span class="nav-icon">🔎</span>
+                <span class="nav-text">Lost & Found</span>
+            </a>
+
+
+            <a href="campus.html" class="nav-item active">
+                <span class="nav-icon">🏫</span>
+                <span class="nav-text">Campus</span>
+            </a>
+
+
+            <a href="events.html" class="nav-item">
+                <span class="nav-icon">🎉</span>
+                <span class="nav-text">Events</span>
+            </a>
+
+
+            <a href="exams.html" class="nav-item">
+                <span class="nav-icon">📋</span>
+                <span class="nav-text">Exams</span>
+            </a>
+
+
+            <a href="notifications.html" class="nav-item">
+                <span class="nav-icon">🔔</span>
+                <span class="nav-text">Notifications</span>
+            </a>
+
+        </div>
+
+
+        <div class="menu-section">
+
+            <div class="menu-title">
+                ACCOUNT
+            </div>
+
+
+            <a href="profile.html" class="nav-item">
+                <span class="nav-icon">👤</span>
+                <span class="nav-text">Profile</span>
+            </a>
+
+
+            <a href="settings.html" class="nav-item">
+                <span class="nav-icon">⚙️</span>
+                <span class="nav-text">Settings</span>
+            </a>
+
+
+            <a href="../index.html" class="nav-item logout">
+                <span class="nav-icon">🚪</span>
+                <span class="nav-text">Logout</span>
+            </a>
+
+        </div>
+
+    </nav>
+
+</aside>
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="main-area">
+
+    <header class="top-header">
+
+        <div class="header-left">
+
+            <h1>
+                Campus
+            </h1>
+
+            <p>
+                Explore campus buildings, facilities and services
+            </p>
+
+        </div>
+
+
+        <div class="header-right">
+
+            <div class="time-box" id="clock">
+                --:--
+            </div>
+
+            <div class="notification">
+                🔔
+            </div>
+
+
+            <div class="profile-mini">
+
+                <div class="profile-circle">
+                    P
+                </div>
+
+                <div class="profile-info">
+
+                    <strong>
+                        Priya
+                    </strong>
+
+                    <span>
+                        Student
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <div class="content">
+
+        <!-- HERO -->
+
+        <section class="hero">
+
+            <div class="hero-text">
+
+                <div class="hero-label">
+                    🏫 CAMPUS DIRECTORY
+                </div>
+
+                <h2>
+                    Explore Your Campus
+                </h2>
+
+                <p>
+                    Find classrooms, laboratories, libraries,
+                    cafeterias, sports facilities and important
+                    campus services from one place.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- SUMMARY -->
+
+        <section class="summary-grid">
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+                    🏢
+                </div>
+
+                <strong>
+                    12
+                </strong>
+
+                <span>
+                    Campus Buildings
+                </span>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+                    🧪
+                </div>
+
+                <strong>
+                    24
+                </strong>
+
+                <span>
+                    Laboratories
+                </span>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+                    📚
+                </div>
+
+                <strong>
+                    3
+                </strong>
+
+                <span>
+                    Libraries
+                </span>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+                    🍴
+                </div>
+
+                <strong>
+                    6
+                </strong>
+
+                <span>
+                    Student Facilities
+                </span>
+
+            </div>
+
+        </section>
+
+
+        <!-- BUILDINGS -->
+
+        <div class="section-head">
+
+            <div>
+
+                <h3>
+                    Campus Locations
+                </h3>
+
+                <p>
+                    Find important buildings and facilities
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- SEARCH/FILTER -->
+
+        <div class="controls">
+
+            <div class="search-box">
+
+                <span>
+                    🔍
+                </span>
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search buildings, facilities or locations..."
+                >
+
+            </div>
+
+
+            <select id="categoryFilter">
+
+                <option value="all">
+                    All Categories
+                </option>
+
+                <option value="Academic">
+                    Academic
+                </option>
+
+                <option value="Library">
+                    Library
+                </option>
+
+                <option value="Food">
+                    Food & Dining
+                </option>
+
+                <option value="Sports">
+                    Sports
+                </option>
+
+                <option value="Administration">
+                    Administration
+                </option>
+
+                <option value="Student">
+                    Student Services
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- CAMPUS GRID -->
+
+        <div
+            class="campus-grid"
+            id="campusGrid"
+        ></div>
+
+
+        <div
+            class="empty-state"
+            id="emptyState"
+        >
+
+            <div>
+                🔍
+            </div>
+
+            <h3>
+                No campus location found
+            </h3>
+
+            <p>
+                Try another search or category.
+            </p>
+
+        </div>
+
     </div>
 
-    <div class="nav-item" onclick="go('timetable')">
-        🗓️&nbsp;&nbsp; Timetable
+</main>
+
+
+<!-- ================= CHATBOT ================= -->
+
+<aside class="chatbot">
+
+    <div class="chat-header">
+
+        <div class="robot-icon">
+            🤖
+        </div>
+
+        <div class="chat-title">
+
+            <strong>
+                CampusConnect AI
+            </strong>
+
+            <span>
+                <span class="online-dot"></span>
+                College Companion
+            </span>
+
+        </div>
+
     </div>
 
-    <div class="nav-item" onclick="go('assignments')">
-        📝&nbsp;&nbsp; Assignments
+
+    <div
+        class="chat-body"
+        id="chatBody"
+    >
+
+        <div class="bot-message">
+
+            👋 Hi Priya! I'm your
+            <b>CampusConnect AI College Companion</b>.
+
+            <br><br>
+
+            I can help you find campus buildings,
+            facilities, libraries, labs and student services.
+
+        </div>
+
+
+        <div class="bot-message">
+
+            What would you like to find?
+
+        </div>
+
     </div>
 
-    <div class="nav-item" onclick="go('attendance')">
-        📊&nbsp;&nbsp; Attendance
+
+    <div class="quick-buttons">
+
+        <button
+            class="quick-btn"
+            onclick="quickChat('Find library')"
+        >
+            📚 Library
+        </button>
+
+
+        <button
+            class="quick-btn"
+            onclick="quickChat('Find cafeteria')"
+        >
+            🍴 Cafeteria
+        </button>
+
+
+        <button
+            class="quick-btn"
+            onclick="quickChat('Find laboratories')"
+        >
+            🧪 Labs
+        </button>
+
     </div>
 
-    <div class="nav-item" onclick="go('academics')">
-        🎓&nbsp;&nbsp; Academics
-    </div>
 
-    <div class="nav-item" onclick="go('faculty')">
-        👨‍🏫&nbsp;&nbsp; Faculty
-    </div>
+    <div class="chat-footer">
 
-    <div class="nav-item" onclick="go('placement')">
-        💼&nbsp;&nbsp; Placement
-    </div>
+        <input
+            type="text"
+            id="chatInput"
+            class="chat-input"
+            placeholder="Ask CampusConnect AI..."
+        >
 
-    <div class="nav-item" onclick="go('results')">
-        📈&nbsp;&nbsp; Results
-    </div>
+        <button
+            class="send-btn"
+            onclick="sendChat()"
+        >
+            ➤
+        </button>
 
-    <div class="nav-item" onclick="go('documents')">
-        📄&nbsp;&nbsp; Documents
-    </div>
-
-    <div class="nav-item" onclick="go('complaints')">
-        ⚠️&nbsp;&nbsp; Complaints
-    </div>
-
-    <div class="nav-item" onclick="go('feedback')">
-        💬&nbsp;&nbsp; Feedback
-    </div>
-
-    <div class="nav-item" onclick="go('lost-found')">
-        🔍&nbsp;&nbsp; Lost & Found
-    </div>
-
-    <div class="nav-item active" onclick="go('campus')">
-        🏫&nbsp;&nbsp; Campus
-    </div>
-
-    <div class="nav-item" onclick="go('events')">
-        🎉&nbsp;&nbsp; Events
-    </div>
-
-    <div class="nav-item" onclick="go('exams')">
-        📖&nbsp;&nbsp; Exams
-    </div>
-
-    <div class="nav-item" onclick="go('notifications')">
-        🔔&nbsp;&nbsp; Notifications
-    </div>
-
-    <div class="nav-item" onclick="go('profile')">
-        👤&nbsp;&nbsp; Profile
-    </div>
-
-    <div class="nav-item" onclick="go('settings')">
-        ⚙️&nbsp;&nbsp; Settings
     </div>
 
 </aside>
 
 
-<!-- MAIN -->
+<!-- ================= MODAL ================= -->
 
-<div class="main">
+<div
+    class="modal-overlay"
+    id="detailsModal"
+>
 
-<header class="header">
+    <div class="modal">
 
-    <div class="logo">
-        CampusConnect
-    </div>
+        <div class="modal-header">
 
-    <button class="back-btn" onclick="goBack()">
-        ← Back
-    </button>
+            <h2>
+                Campus Location
+            </h2>
 
-</header>
+            <button
+                class="close-btn"
+                onclick="closeDetails()"
+            >
+                ×
+            </button>
 
-
-<main class="container">
-
-    <h1 class="page-title">Campus</h1>
-
-    <p class="page-subtitle">
-        Explore important facilities and resources available on campus.
-    </p>
-
-    <div class="campus-grid">
-
-        <div class="campus-card">
-            <div class="icon">📚</div>
-            <h2>Library</h2>
-            <p>
-                Access books, study materials, reference resources
-                and a quiet environment for learning.
-            </p>
         </div>
 
-        <div class="campus-card">
-            <div class="icon">💻</div>
-            <h2>Computer Lab</h2>
-            <p>
-                Computer facilities are available for academic work,
-                practical sessions and student learning.
-            </p>
-        </div>
 
-        <div class="campus-card">
-            <div class="icon">🏢</div>
-            <h2>Classrooms</h2>
-            <p>
-                Well-equipped classrooms support lectures, discussions
-                and academic activities.
-            </p>
-        </div>
-
-        <div class="campus-card">
-            <div class="icon">⚽</div>
-            <h2>Sports Facilities</h2>
-            <p>
-                Students can participate in sports and recreational
-                activities as part of campus life.
-            </p>
-        </div>
-
-        <div class="campus-card">
-            <div class="icon">☕</div>
-            <h2>Cafeteria</h2>
-            <p>
-                A campus cafeteria provides refreshments and food
-                options for students and staff.
-            </p>
-        </div>
-
-        <div class="campus-card">
-            <div class="icon">🏥</div>
-            <h2>Health & First Aid</h2>
-            <p>
-                Basic first-aid support is available for students
-                when required.
-            </p>
-        </div>
+        <div id="detailsContent"></div>
 
     </div>
 
+</div>
 
-    <section class="info-section">
 
-        <h2>Campus Information</h2>
+<!-- ================= TOAST ================= -->
 
-        <div class="info-list">
-
-            <div class="info-item">
-                <strong>📖 Academic Environment</strong>
-                Supportive facilities for teaching and learning.
-            </div>
-
-            <div class="info-item">
-                <strong>🎓 Student Activities</strong>
-                Opportunities for academic and extracurricular activities.
-            </div>
-
-            <div class="info-item">
-                <strong>🔐 Campus Safety</strong>
-                Students are expected to follow campus safety guidelines.
-            </div>
-
-            <div class="info-item">
-                <strong>📢 Campus Updates</strong>
-                Check Notifications and Events for the latest information.
-            </div>
-
-        </div>
-
-    </section>
-
-</main>
-
+<div
+    class="toast"
+    id="toast"
+>
+    Information opened
 </div>
 
 
 <script>
 
-/* NAVIGATION */
+/* ================= CAMPUS DATA ================= */
 
-const pages = {
+const campusLocations = [
 
-    dashboard: "../dashboard.html",
-    courses: "../dashboard.html",
-    timetable: "timetable.html",
-    assignments: "../dashboard.html",
-    attendance: "attendance.html",
-    academics: "academics.html",
-    faculty: "faculty.html",
-    placement: "placement.html",
-    results: "results.html",
-    documents: "documents.html",
-    complaints: "complaints.html",
-    feedback: "feedback.html",
-    "lost-found": "lost-found.html",
-    campus: "campus.html",
-    events: "events.html",
-    exams: "exams.html",
-    notifications: "notifications.html",
-    profile: "profile.html",
-    settings: "settings.html"
+    {
+        id:1,
+        name:"Main Academic Block",
+        category:"Academic",
+        icon:"🏢",
+        description:"Main teaching and learning block containing classrooms, lecture halls and department offices.",
+        location:"Central Campus",
+        floor:"Ground - 3rd Floor",
+        hours:"8:00 AM - 6:00 PM",
+        contact:"Campus Office"
+    },
 
-};
+    {
+        id:2,
+        name:"Central Library",
+        category:"Library",
+        icon:"📚",
+        description:"Central library with textbooks, reference materials, digital resources and study spaces.",
+        location:"North Campus",
+        floor:"Ground - 2nd Floor",
+        hours:"8:00 AM - 8:00 PM",
+        contact:"Library Desk"
+    },
 
+    {
+        id:3,
+        name:"Computer Science Block",
+        category:"Academic",
+        icon:"💻",
+        description:"Dedicated academic block for Computer Science and Information Technology students.",
+        location:"East Campus",
+        floor:"Ground - 3rd Floor",
+        hours:"8:00 AM - 6:00 PM",
+        contact:"CSE Department"
+    },
 
-function go(page) {
+    {
+        id:4,
+        name:"Engineering Laboratories",
+        category:"Academic",
+        icon:"🧪",
+        description:"Modern laboratories for programming, electronics, networking and engineering practical sessions.",
+        location:"South Campus",
+        floor:"Ground - 2nd Floor",
+        hours:"9:00 AM - 5:30 PM",
+        contact:"Lab Coordinator"
+    },
 
-    if (pages[page]) {
-        window.location.href = pages[page];
+    {
+        id:5,
+        name:"Student Cafeteria",
+        category:"Food",
+        icon:"🍴",
+        description:"Main student cafeteria serving breakfast, lunch, snacks and beverages.",
+        location:"Student Plaza",
+        floor:"Ground Floor",
+        hours:"8:00 AM - 7:00 PM",
+        contact:"Cafeteria Office"
+    },
+
+    {
+        id:6,
+        name:"Sports Complex",
+        category:"Sports",
+        icon:"🏟️",
+        description:"Indoor and outdoor sports facilities including basketball, badminton and fitness areas.",
+        location:"West Campus",
+        floor:"Ground Floor",
+        hours:"6:00 AM - 8:00 PM",
+        contact:"Sports Department"
+    },
+
+    {
+        id:7,
+        name:"Administration Block",
+        category:"Administration",
+        icon:"🏛️",
+        description:"Administrative offices for student records, certificates, fees and official campus services.",
+        location:"Main Entrance",
+        floor:"Ground - 2nd Floor",
+        hours:"9:30 AM - 5:30 PM",
+        contact:"Administration Office"
+    },
+
+    {
+        id:8,
+        name:"Student Activity Centre",
+        category:"Student",
+        icon:"🎭",
+        description:"Student activity centre for clubs, cultural activities, meetings and student events.",
+        location:"Central Campus",
+        floor:"1st Floor",
+        hours:"9:00 AM - 7:00 PM",
+        contact:"Student Affairs"
+    },
+
+    {
+        id:9,
+        name:"Placement Cell",
+        category:"Student",
+        icon:"💼",
+        description:"Career and placement office supporting students with internships, recruitment drives and career guidance.",
+        location:"Administration Block",
+        floor:"1st Floor",
+        hours:"9:30 AM - 5:30 PM",
+        contact:"Placement Officer"
+    },
+
+    {
+        id:10,
+        name:"Medical Centre",
+        category:"Student",
+        icon:"🏥",
+        description:"Campus medical centre providing first aid and basic medical assistance to students.",
+        location:"Near Main Gate",
+        floor:"Ground Floor",
+        hours:"8:00 AM - 6:00 PM",
+        contact:"Medical Centre"
     }
 
+];
+
+
+/* ================= RENDER ================= */
+
+function renderCampus(){
+
+    const grid =
+        document.getElementById("campusGrid");
+
+    const empty =
+        document.getElementById("emptyState");
+
+    const search =
+        document
+        .getElementById("searchInput")
+        .value
+        .toLowerCase();
+
+    const category =
+        document
+        .getElementById("categoryFilter")
+        .value;
+
+
+    const filtered =
+        campusLocations.filter(location => {
+
+            const matchesSearch =
+                location.name
+                .toLowerCase()
+                .includes(search)
+                ||
+                location.description
+                .toLowerCase()
+                .includes(search)
+                ||
+                location.location
+                .toLowerCase()
+                .includes(search);
+
+
+            const matchesCategory =
+                category === "all"
+                ||
+                location.category === category;
+
+
+            return matchesSearch &&
+                   matchesCategory;
+
+        });
+
+
+    grid.innerHTML = "";
+
+
+    if(filtered.length === 0){
+
+        empty.style.display = "block";
+
+        return;
+
+    }
+
+
+    empty.style.display = "none";
+
+
+    filtered.forEach(location => {
+
+        const card =
+            document.createElement("div");
+
+        card.className =
+            "campus-card";
+
+
+        card.onclick =
+            () => openDetails(location.id);
+
+
+        card.innerHTML = `
+
+            <div class="card-top">
+
+                <div class="campus-icon">
+                    ${location.icon}
+                </div>
+
+                <span class="open-status">
+                    ● Open
+                </span>
+
+            </div>
+
+
+            <h4>
+                ${location.name}
+            </h4>
+
+
+            <p class="card-description">
+                ${location.description}
+            </p>
+
+
+            <div class="card-meta">
+
+                <div class="meta-box">
+
+                    <small>LOCATION</small>
+
+                    <strong>
+                        📍 ${location.location}
+                    </strong>
+
+                </div>
+
+
+                <div class="meta-box">
+
+                    <small>HOURS</small>
+
+                    <strong>
+                        🕐 ${location.hours}
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="card-footer">
+
+                <span class="category-tag">
+                    ${location.category}
+                </span>
+
+                <button
+                    class="details-btn"
+                    onclick="event.stopPropagation();openDetails(${location.id})"
+                >
+                    View Details →
+                </button>
+
+            </div>
+
+        `;
+
+
+        grid.appendChild(card);
+
+    });
+
 }
 
 
-function goBack() {
-    window.history.back();
+/* ================= DETAILS MODAL ================= */
+
+function openDetails(id){
+
+    const location =
+        campusLocations.find(
+            item => item.id === id
+        );
+
+
+    if(!location) return;
+
+
+    document.getElementById(
+        "detailsContent"
+    ).innerHTML = `
+
+        <div class="modal-icon">
+            ${location.icon}
+        </div>
+
+
+        <h2 class="modal-title">
+            ${location.name}
+        </h2>
+
+
+        <p class="modal-description">
+            ${location.description}
+        </p>
+
+
+        <div class="detail-grid">
+
+            <div class="detail-box">
+
+                <small>
+                    CATEGORY
+                </small>
+
+                <strong>
+                    ${location.category}
+                </strong>
+
+            </div>
+
+
+            <div class="detail-box">
+
+                <small>
+                    LOCATION
+                </small>
+
+                <strong>
+                    📍 ${location.location}
+                </strong>
+
+            </div>
+
+
+            <div class="detail-box">
+
+                <small>
+                    FLOOR
+                </small>
+
+                <strong>
+                    ${location.floor}
+                </strong>
+
+            </div>
+
+
+            <div class="detail-box">
+
+                <small>
+                    OPENING HOURS
+                </small>
+
+                <strong>
+                    🕐 ${location.hours}
+                </strong>
+
+            </div>
+
+
+            <div class="detail-box">
+
+                <small>
+                    CONTACT
+                </small>
+
+                <strong>
+                    📞 ${location.contact}
+                </strong>
+
+            </div>
+
+
+            <div class="detail-box">
+
+                <small>
+                    STATUS
+                </small>
+
+                <strong>
+                    🟢 Currently Open
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <button
+            class="modal-action"
+            onclick="showToast('Location information saved!');closeDetails()"
+        >
+            Got It ✓
+        </button>
+
+    `;
+
+
+    document.getElementById(
+        "detailsModal"
+    ).style.display = "flex";
+
 }
+
+
+function closeDetails(){
+
+    document.getElementById(
+        "detailsModal"
+    ).style.display = "none";
+
+}
+
+
+/* ================= SEARCH ================= */
+
+document
+.getElementById("searchInput")
+.addEventListener(
+    "input",
+    renderCampus
+);
+
+
+document
+.getElementById("categoryFilter")
+.addEventListener(
+    "change",
+    renderCampus
+);
+
+
+/* ================= CLOCK ================= */
+
+function updateClock(){
+
+    const now =
+        new Date();
+
+
+    document.getElementById(
+        "clock"
+    ).textContent =
+        now.toLocaleTimeString(
+            "en-IN",
+            {
+                hour:"2-digit",
+                minute:"2-digit",
+                hour12:true
+            }
+        );
+
+}
+
+setInterval(
+    updateClock,
+    1000
+);
+
+updateClock();
+
+
+/* ================= TOAST ================= */
+
+function showToast(message){
+
+    const toast =
+        document.getElementById("toast");
+
+
+    toast.textContent =
+        message;
+
+
+    toast.classList.add("show");
+
+
+    setTimeout(() => {
+
+        toast.classList.remove("show");
+
+    },3000);
+
+}
+
+
+/* ================= CHATBOT ================= */
+
+function addUserMessage(message){
+
+    const body =
+        document.getElementById("chatBody");
+
+
+    const div =
+        document.createElement("div");
+
+
+    div.className =
+        "user-message";
+
+
+    div.textContent =
+        message;
+
+
+    body.appendChild(div);
+
+
+    body.scrollTop =
+        body.scrollHeight;
+
+}
+
+
+function addBotMessage(message){
+
+    const body =
+        document.getElementById("chatBody");
+
+
+    const div =
+        document.createElement("div");
+
+
+    div.className =
+        "bot-message";
+
+
+    div.innerHTML =
+        message;
+
+
+    body.appendChild(div);
+
+
+    body.scrollTop =
+        body.scrollHeight;
+
+}
+
+
+function quickChat(message){
+
+    addUserMessage(message);
+
+
+    setTimeout(() => {
+
+        if(message === "Find library"){
+
+            addBotMessage(
+                "📚 The <b>Central Library</b> is located in the North Campus. It is open from <b>8:00 AM to 8:00 PM</b>."
+            );
+
+        }
+
+        else if(message === "Find cafeteria"){
+
+            addBotMessage(
+                "🍴 The <b>Student Cafeteria</b> is located at the Student Plaza and operates from <b>8:00 AM to 7:00 PM</b>."
+            );
+
+        }
+
+        else if(message === "Find laboratories"){
+
+            addBotMessage(
+                "🧪 The <b>Engineering Laboratories</b> are in the South Campus and include programming, electronics and networking labs."
+            );
+
+        }
+
+    },500);
+
+}
+
+
+function sendChat(){
+
+    const input =
+        document.getElementById("chatInput");
+
+
+    const message =
+        input.value.trim();
+
+
+    if(!message) return;
+
+
+    addUserMessage(message);
+
+
+    input.value = "";
+
+
+    setTimeout(() => {
+
+        const lower =
+            message.toLowerCase();
+
+
+        if(
+            lower.includes("library")
+        ){
+
+            addBotMessage(
+                "📚 The <b>Central Library</b> is located in the North Campus and is open from <b>8:00 AM - 8:00 PM</b>."
+            );
+
+        }
+
+        else if(
+            lower.includes("cafeteria")
+            ||
+            lower.includes("food")
+        ){
+
+            addBotMessage(
+                "🍴 You can find the <b>Student Cafeteria</b> at the Student Plaza."
+            );
+
+        }
+
+        else if(
+            lower.includes("lab")
+        ){
+
+            addBotMessage(
+                "🧪 The campus has dedicated <b>Engineering Laboratories</b> for programming, electronics and networking."
+            );
+
+        }
+
+        else if(
+            lower.includes("sports")
+            ||
+            lower.includes("gym")
+        ){
+
+            addBotMessage(
+                "🏟️ The <b>Sports Complex</b> provides indoor and outdoor sports facilities."
+            );
+
+        }
+
+        else if(
+            lower.includes("placement")
+        ){
+
+            addBotMessage(
+                "💼 The <b>Placement Cell</b> helps students with internships, recruitment drives and career guidance."
+            );
+
+        }
+
+        else if(
+            lower.includes("medical")
+            ||
+            lower.includes("hospital")
+        ){
+
+            addBotMessage(
+                "🏥 The <b>Medical Centre</b> is near the Main Gate and provides basic medical assistance."
+            );
+
+        }
+
+        else if(
+            lower.includes("admin")
+            ||
+            lower.includes("office")
+        ){
+
+            addBotMessage(
+                "🏛️ The <b>Administration Block</b> handles student records, certificates, fees and official services."
+            );
+
+        }
+
+        else if(
+            lower.includes("campus")
+        ){
+
+            addBotMessage(
+                "🏫 You can use the search and category filters on this page to explore campus buildings and facilities."
+            );
+
+        }
+
+        else{
+
+            addBotMessage(
+                "🤖 I can help you find <b>libraries, cafeterias, laboratories, sports facilities, placement offices, medical services and campus buildings</b>."
+            );
+
+        }
+
+    },500);
+
+}
+
+
+document
+.getElementById("chatInput")
+.addEventListener(
+    "keydown",
+    function(e){
+
+        if(e.key === "Enter"){
+
+            sendChat();
+
+        }
+
+    }
+);
+
+
+/* ================= ESCAPE ================= */
+
+document.addEventListener(
+    "keydown",
+    function(e){
+
+        if(e.key === "Escape"){
+
+            closeDetails();
+
+        }
+
+    }
+);
+
+
+/* ================= OUTSIDE MODAL ================= */
+
+document
+.getElementById("detailsModal")
+.addEventListener(
+    "click",
+    function(e){
+
+        if(e.target === this){
+
+            closeDetails();
+
+        }
+
+    }
+);
+
+
+/* ================= INITIAL LOAD ================= */
+
+renderCampus();
 
 </script>
 
