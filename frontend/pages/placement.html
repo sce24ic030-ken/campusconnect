@@ -11,13 +11,19 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Arial,Helvetica,sans-serif;
 }
 
-body{
-    background:#f4f7fb;
-    color:#1f2937;
-    min-height:100vh;
+html,body{
+    width:100%;
+    height:100%;
+    font-family:"Segoe UI",Arial,sans-serif;
+    background:#f4f6ff;
+    color:#17203a;
+    overflow:hidden;
+}
+
+button,input,select{
+    font-family:inherit;
 }
 
 /* ================= SIDEBAR ================= */
@@ -26,445 +32,956 @@ body{
     position:fixed;
     left:0;
     top:0;
-    width:250px;
-    height:100vh;
-    background:linear-gradient(180deg,#172554,#312e81,#4c1d95);
+    bottom:0;
+    width:268px;
+    min-width:268px;
+    background:linear-gradient(180deg,#172a70 0%,#28237d 48%,#5520a7 100%);
     color:white;
-    padding:25px 15px;
-    z-index:1000;
     overflow-y:auto;
+    overflow-x:hidden;
+    z-index:1000;
+    padding-bottom:20px;
+    scrollbar-width:thin;
+    scrollbar-color:rgba(255,255,255,.25) transparent;
 }
 
-.logo{
+.brand{
+    height:120px;
     display:flex;
     align-items:center;
-    gap:12px;
-    padding:0 12px 25px;
-    border-bottom:1px solid rgba(255,255,255,.2);
-    margin-bottom:20px;
+    padding:22px 18px;
+    border-bottom:1px solid rgba(255,255,255,.12);
 }
 
-.logo-icon{
-    width:45px;
-    height:45px;
-    border-radius:14px;
-    background:linear-gradient(135deg,#38bdf8,#a78bfa);
+.logo-box{
+    width:52px;
+    height:52px;
+    border-radius:16px;
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:23px;
+    font-size:28px;
+    background:linear-gradient(135deg,#24b8ff,#7144f5);
+    box-shadow:0 10px 25px rgba(0,0,0,.20);
 }
 
-.logo h2{
-    font-size:20px;
+.brand-text{
+    margin-left:13px;
 }
 
-.logo span{
-    display:block;
-    font-size:11px;
-    opacity:.7;
+.brand-title{
+    font-size:21px;
+    font-weight:800;
+    letter-spacing:-.5px;
+}
+
+.brand-subtitle{
+    font-size:12px;
+    opacity:.72;
     margin-top:3px;
 }
 
-/* MODULES - SAME AS TIMETABLE */
+.menu{
+    padding:25px 14px;
+}
+
+.menu-title{
+    font-size:12px;
+    font-weight:700;
+    color:rgba(255,255,255,.52);
+    letter-spacing:1px;
+    padding:0 11px 10px;
+}
+
+.menu-section{
+    margin-top:20px;
+}
 
 .nav-item{
     width:100%;
-    border:none;
-    background:transparent;
-    color:#dbeafe;
     display:flex;
     align-items:center;
-    gap:13px;
-    padding:13px 15px;
-    margin:4px 0;
-    border-radius:12px;
-    cursor:pointer;
-    font-size:14px;
-    text-align:left;
-    transition:.25s;
+    min-height:49px;
+    padding:0 14px;
+    margin:5px 0;
+    border-radius:13px;
+    color:rgba(255,255,255,.84);
+    text-decoration:none;
+    transition:transform .2s ease,background .2s ease,color .2s ease;
 }
 
 .nav-item:hover{
     background:rgba(255,255,255,.12);
-    transform:translateX(4px);
     color:white;
+    transform:translateX(3px);
 }
 
 .nav-item.active{
-    background:linear-gradient(90deg,#38bdf8,#8b5cf6);
     color:white;
+    background:linear-gradient(90deg,#22b9f5,#6942f4);
+    box-shadow:0 9px 22px rgba(0,0,0,.18);
 }
 
 .nav-icon{
-    width:25px;
+    width:31px;
+    font-size:20px;
     text-align:center;
-    font-size:17px;
+    margin-right:10px;
+}
+
+.nav-text{
+    font-size:15px;
+    font-weight:650;
+}
+
+.logout{
+    margin-top:14px;
+    padding-top:15px;
+    border-top:1px solid rgba(255,255,255,.13);
 }
 
 /* ================= MAIN ================= */
 
-.main{
-    margin-left:250px;
-    min-height:100vh;
+.main-area{
+    margin-left:268px;
+    margin-right:286px;
+    width:auto;
+    height:100vh;
+    overflow-y:auto;
+    overflow-x:hidden;
+    background:linear-gradient(180deg,#f8f9ff,#eef1fb);
 }
 
-/* ================= TOPBAR ================= */
+/* ================= HEADER ================= */
 
-.topbar{
-    height:75px;
-    background:white;
+.top-header{
+    height:120px;
+    background:rgba(255,255,255,.96);
     display:flex;
     align-items:center;
     justify-content:space-between;
-    padding:0 30px;
-    border-bottom:1px solid #e5e7eb;
+    padding:22px 28px;
+    border-bottom:1px solid #e9ebf5;
     position:sticky;
     top:0;
-    z-index:500;
+    z-index:100;
 }
 
-.page-title{
-    font-size:21px;
-    font-weight:700;
+.header-left h1{
+    font-size:30px;
+    line-height:1.05;
+    font-weight:800;
 }
 
-.page-subtitle{
-    font-size:12px;
-    color:#6b7280;
-    margin-top:4px;
+.header-left p{
+    margin-top:7px;
+    color:#8990a7;
+    font-size:14px;
 }
 
-.top-right{
+.header-right{
     display:flex;
     align-items:center;
-    gap:20px;
+    gap:18px;
 }
 
-.clock{
-    font-size:13px;
-    color:#64748b;
+.time-box{
+    font-size:18px;
+    font-weight:750;
+    color:#59617d;
 }
 
-.profile{
+.notification{
+    width:48px;
+    height:48px;
+    background:#fff;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+    box-shadow:0 5px 18px rgba(40,35,100,.10);
+    position:relative;
+    cursor:pointer;
+}
+
+.notification::after{
+    content:"";
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:#ff4f8b;
+    position:absolute;
+    top:7px;
+    right:8px;
+}
+
+.profile-mini{
     display:flex;
     align-items:center;
     gap:10px;
 }
 
-.profile-avatar{
-    width:40px;
-    height:40px;
+.profile-circle{
+    width:48px;
+    height:48px;
     border-radius:50%;
-    background:linear-gradient(135deg,#06b6d4,#6366f1);
+    background:linear-gradient(135deg,#25b8ee,#466cf1);
     color:white;
     display:flex;
     align-items:center;
     justify-content:center;
-    font-weight:bold;
+    font-size:20px;
+    font-weight:800;
 }
 
 .profile-info strong{
     display:block;
-    font-size:13px;
+    font-size:15px;
 }
 
 .profile-info span{
-    font-size:11px;
-    color:#64748b;
+    display:block;
+    color:#8d93a8;
+    font-size:12px;
 }
 
 /* ================= CONTENT ================= */
 
 .content{
-    padding:30px;
+    padding:28px;
 }
 
 /* ================= HERO ================= */
 
 .hero{
-    background:linear-gradient(120deg,#172554,#312e81,#6d28d9);
-    border-radius:24px;
-    padding:30px;
+    background:linear-gradient(135deg,#25277d,#6339d5);
+    border-radius:22px;
+    padding:28px;
     color:white;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    box-shadow:0 15px 35px rgba(55,40,150,.18);
     margin-bottom:25px;
 }
 
-.hero h1{
-    font-size:28px;
+.hero h2{
+    font-size:26px;
     margin-bottom:8px;
 }
 
 .hero p{
-    font-size:13px;
-    color:#dbeafe;
+    color:rgba(255,255,255,.75);
+    font-size:14px;
 }
 
-/* ================= STATS ================= */
+.hero-right{
+    text-align:right;
+}
 
-.stats{
+.hero-number{
+    font-size:35px;
+    font-weight:800;
+}
+
+.hero-label{
+    font-size:11px;
+    color:rgba(255,255,255,.7);
+}
+
+.hero-icon{
+    width:75px;
+    height:75px;
+    border-radius:22px;
+    background:rgba(255,255,255,.14);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:40px;
+}
+
+/* ================= SUMMARY ================= */
+
+.summary-grid{
     display:grid;
     grid-template-columns:repeat(4,1fr);
-    gap:18px;
-    margin-bottom:28px;
+    gap:16px;
+    margin-bottom:25px;
 }
 
-.stat-card{
+.summary-card{
     background:white;
-    border:1px solid #e5e7eb;
+    border:1px solid #e7e9f2;
     border-radius:18px;
-    padding:22px;
+    padding:20px;
+    box-shadow:0 7px 22px rgba(40,35,100,.06);
+    transition:.25s;
 }
 
-.stat-title{
-    color:#64748b;
+.summary-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 13px 30px rgba(40,35,100,.11);
+}
+
+.summary-icon{
+    width:42px;
+    height:42px;
+    border-radius:13px;
+    background:#f0edff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:21px;
+    margin-bottom:13px;
+}
+
+.summary-card strong{
+    display:block;
+    font-size:24px;
+    color:#25275e;
+}
+
+.summary-card span{
+    color:#8c93aa;
     font-size:12px;
-    margin-bottom:8px;
 }
 
-.stat-value{
-    font-size:25px;
-    font-weight:700;
-    color:#172554;
+/* ================= MAIN GRID ================= */
+
+.main-grid{
+    display:grid;
+    grid-template-columns:1.15fr .85fr;
+    gap:18px;
 }
 
 /* ================= SECTION ================= */
 
-.section{
-    margin-bottom:28px;
+.section-card{
+    background:white;
+    border:1px solid #e6e8f1;
+    border-radius:20px;
+    padding:22px;
+    box-shadow:0 7px 22px rgba(40,35,100,.06);
 }
 
 .section-header{
-    margin-bottom:16px;
-}
-
-.section-title{
-    font-size:19px;
-    font-weight:700;
-}
-
-/* ================= COMPANIES ================= */
-
-.company-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:18px;
-}
-
-.company-card{
-    background:white;
-    border:1px solid #e5e7eb;
-    border-radius:18px;
-    padding:22px;
-}
-
-.company-logo{
-    width:50px;
-    height:50px;
-    border-radius:14px;
-    background:#eef2ff;
     display:flex;
     align-items:center;
-    justify-content:center;
-    font-size:25px;
-    margin-bottom:15px;
-}
-
-.company-card h3{
-    font-size:16px;
-    margin-bottom:5px;
-}
-
-.company-card p{
-    color:#64748b;
-    font-size:12px;
-    line-height:1.6;
-    margin-bottom:15px;
-}
-
-.company-btn{
-    border:none;
-    background:#4f46e5;
-    color:white;
-    padding:9px 15px;
-    border-radius:9px;
-    cursor:pointer;
-    font-size:12px;
-}
-
-/* ================= DRIVES ================= */
-
-.drive-list{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:15px;
-}
-
-.drive-card{
-    background:white;
-    border:1px solid #e5e7eb;
-    border-radius:16px;
-    padding:20px;
-    display:flex;
     justify-content:space-between;
-    align-items:center;
+    margin-bottom:18px;
 }
 
-.drive-company{
-    font-size:15px;
-    font-weight:600;
+.section-header h3{
+    font-size:19px;
+    color:#25275e;
 }
 
-.drive-role{
-    color:#64748b;
+.section-header p{
+    color:#9399ad;
     font-size:12px;
     margin-top:4px;
 }
 
-.drive-date{
-    color:#6366f1;
-    font-size:12px;
-    font-weight:600;
+/* ================= COMPANY CARDS ================= */
+
+.company-list{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
 }
 
-/* ================= PREPARATION ================= */
-
-.prep-grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:16px;
+.company-card{
+    border:1px solid #e6e8f0;
+    border-radius:15px;
+    padding:15px;
+    display:flex;
+    align-items:center;
+    gap:13px;
+    cursor:pointer;
+    transition:.25s;
 }
 
-.prep-card{
-    background:white;
-    border:1px solid #e5e7eb;
-    border-radius:16px;
-    padding:20px;
+.company-card:hover{
+    transform:translateX(3px);
+    border-color:#bdb2f3;
+    box-shadow:0 8px 22px rgba(55,40,150,.08);
 }
 
-.prep-icon{
-    font-size:25px;
-    margin-bottom:10px;
+.company-logo{
+    width:48px;
+    height:48px;
+    min-width:48px;
+    border-radius:14px;
+    background:linear-gradient(135deg,#24b8ff,#7044ee);
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:18px;
+    font-weight:800;
 }
 
-.prep-card h3{
+.company-info{
+    flex:1;
+}
+
+.company-info h4{
+    color:#292b62;
     font-size:14px;
+    margin-bottom:4px;
+}
+
+.company-info p{
+    color:#8d94aa;
+    font-size:10px;
+}
+
+.company-package{
+    text-align:right;
+}
+
+.company-package strong{
+    display:block;
+    color:#6246d2;
+    font-size:15px;
+}
+
+.company-package span{
+    color:#9a9fb2;
+    font-size:9px;
+}
+
+.arrow{
+    color:#7258dc;
+    font-size:18px;
+}
+
+/* ================= PLACEMENT PROCESS ================= */
+
+.process-list{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+}
+
+.process-item{
+    display:flex;
+    align-items:center;
+    gap:13px;
+}
+
+.process-icon{
+    width:42px;
+    height:42px;
+    min-width:42px;
+    border-radius:13px;
+    background:#f1efff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:19px;
+}
+
+.process-info{
+    flex:1;
+}
+
+.process-info strong{
+    display:block;
+    color:#343866;
+    font-size:12px;
     margin-bottom:6px;
 }
 
-.prep-card p{
-    color:#64748b;
-    font-size:12px;
-    line-height:1.6;
+.progress{
+    height:7px;
+    background:#edf0f7;
+    border-radius:10px;
+    overflow:hidden;
 }
 
-/* ================= TIPS ================= */
-
-.tips{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:16px;
+.progress-bar{
+    height:100%;
+    border-radius:10px;
+    background:linear-gradient(90deg,#25b8ee,#7044ee);
 }
 
-.tip{
-    background:white;
-    border:1px solid #e5e7eb;
-    border-radius:16px;
-    padding:20px;
-}
-
-.tip-number{
-    font-size:22px;
+.process-percent{
+    color:#6952d1;
+    font-size:11px;
     font-weight:700;
-    color:#6366f1;
-    margin-bottom:7px;
 }
 
-.tip h3{
-    font-size:14px;
-    margin-bottom:6px;
+/* ================= UPCOMING ================= */
+
+.upcoming{
+    margin-top:18px;
 }
 
-.tip p{
-    color:#64748b;
+.event-item{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:12px 0;
+    border-bottom:1px solid #eceef5;
+}
+
+.event-item:last-child{
+    border-bottom:none;
+}
+
+.event-date{
+    width:43px;
+    height:43px;
+    border-radius:12px;
+    background:#f1efff;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+}
+
+.event-date strong{
+    color:#644bd0;
+    font-size:15px;
+}
+
+.event-date span{
+    color:#9298ad;
+    font-size:8px;
+}
+
+.event-info{
+    flex:1;
+}
+
+.event-info strong{
+    display:block;
+    color:#353966;
     font-size:12px;
-    line-height:1.6;
 }
 
-/* ================= FOOTER ================= */
-
-.footer{
-    text-align:center;
-    padding:25px;
-    color:#64748b;
-    font-size:12px;
+.event-info span{
+    display:block;
+    color:#9298ad;
+    font-size:10px;
+    margin-top:3px;
 }
 
-/* ================= MOBILE ================= */
+/* ================= BUTTON ================= */
 
-.mobile-menu{
-    display:none;
+.primary-btn{
     border:none;
-    background:none;
-    font-size:22px;
+    background:linear-gradient(135deg,#6241e8,#843de0);
+    color:white;
+    padding:9px 14px;
+    border-radius:10px;
+    font-size:10px;
+    font-weight:700;
     cursor:pointer;
 }
 
-@media(max-width:1000px){
+.primary-btn:hover{
+    transform:translateY(-1px);
+}
 
-    .stats{
+/* ================= CHATBOT ================= */
+
+.chatbot{
+    position:fixed;
+    top:18px;
+    right:18px;
+    bottom:18px;
+    width:268px;
+    min-width:268px;
+    max-width:268px;
+    background:white;
+    border-radius:22px;
+    border:1px solid #e5e6f2;
+    box-shadow:0 15px 45px rgba(40,35,100,.15);
+    z-index:9999;
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
+}
+
+.chat-header{
+    min-height:82px;
+    flex-shrink:0;
+    padding:15px;
+    display:flex;
+    align-items:center;
+    color:white;
+    background:linear-gradient(135deg,#29277d,#7137d8);
+}
+
+.robot-icon{
+    width:45px;
+    height:45px;
+    border-radius:14px;
+    background:rgba(255,255,255,.15);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:24px;
+    margin-right:10px;
+}
+
+.chat-title strong{
+    display:block;
+    font-size:15px;
+}
+
+.chat-title span{
+    display:block;
+    font-size:10px;
+    margin-top:3px;
+    color:rgba(255,255,255,.78);
+}
+
+.online-dot{
+    display:inline-block;
+    width:7px;
+    height:7px;
+    background:#57e6a3;
+    border-radius:50%;
+    margin-right:4px;
+}
+
+.chat-body{
+    flex:1;
+    min-height:0;
+    padding:17px 14px;
+    overflow-y:auto;
+    background:linear-gradient(180deg,#fafbff,#f4f5fb);
+}
+
+.bot-message{
+    background:white;
+    border:1px solid #e7e9f3;
+    border-radius:14px;
+    padding:12px;
+    margin-bottom:10px;
+    color:#65708d;
+    font-size:11px;
+    line-height:1.6;
+    box-shadow:0 5px 15px rgba(40,35,100,.04);
+}
+
+.user-message{
+    background:linear-gradient(135deg,#6241e8,#7b3ee0);
+    color:white;
+    padding:10px 12px;
+    border-radius:14px 14px 4px 14px;
+    margin:9px 0 9px 20px;
+    font-size:11px;
+    line-height:1.5;
+}
+
+.quick-buttons{
+    display:flex;
+    gap:5px;
+    flex-wrap:wrap;
+    padding:9px 14px;
+    background:white;
+    border-top:1px solid #eceef5;
+}
+
+.quick-btn{
+    border:1px solid #e0e3f0;
+    background:white;
+    color:#6b54d9;
+    border-radius:20px;
+    padding:7px 9px;
+    font-size:9px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.quick-btn:hover{
+    background:#6843e7;
+    color:white;
+}
+
+.chat-footer{
+    flex-shrink:0;
+    padding:10px;
+    background:white;
+    border-top:1px solid #eceef5;
+    display:flex;
+    gap:7px;
+}
+
+.chat-input{
+    flex:1;
+    min-width:0;
+    height:40px;
+    border:1px solid #e1e4ef;
+    border-radius:12px;
+    outline:none;
+    padding:0 11px;
+    font-size:11px;
+    color:#555e78;
+}
+
+.send-btn{
+    width:40px;
+    height:40px;
+    border:none;
+    border-radius:12px;
+    color:white;
+    background:linear-gradient(135deg,#6543e8,#843de0);
+    cursor:pointer;
+    font-size:17px;
+}
+
+/* ================= MODAL ================= */
+
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(17,20,60,.55);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:20000;
+    padding:20px;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    width:450px;
+    max-width:100%;
+    background:white;
+    border-radius:22px;
+    padding:25px;
+    box-shadow:0 25px 70px rgba(0,0,0,.25);
+    animation:pop .2s ease;
+}
+
+@keyframes pop{
+    from{
+        transform:scale(.9);
+        opacity:0;
+    }
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
+.modal-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.modal-top h3{
+    color:#25275e;
+}
+
+.close-btn{
+    border:none;
+    background:#f1f2f8;
+    width:34px;
+    height:34px;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:18px;
+}
+
+.modal-company{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    padding:15px;
+    background:#f7f7ff;
+    border-radius:15px;
+    margin-bottom:16px;
+}
+
+.modal-logo{
+    width:60px;
+    height:60px;
+    border-radius:17px;
+    background:linear-gradient(135deg,#24b8ff,#7044ee);
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:20px;
+    font-weight:800;
+}
+
+.modal-company strong{
+    display:block;
+    color:#292b62;
+}
+
+.modal-company span{
+    display:block;
+    color:#8d94aa;
+    font-size:11px;
+    margin-top:4px;
+}
+
+.detail-row{
+    display:flex;
+    justify-content:space-between;
+    padding:12px 0;
+    border-bottom:1px solid #eceef5;
+    font-size:12px;
+}
+
+.detail-row span{
+    color:#9298ac;
+}
+
+.detail-row strong{
+    color:#41476b;
+}
+
+.apply-btn{
+    width:100%;
+    margin-top:18px;
+    height:44px;
+    border:none;
+    border-radius:12px;
+    color:white;
+    font-weight:700;
+    cursor:pointer;
+    background:linear-gradient(135deg,#6241e8,#843de0);
+}
+
+/* ================= TOAST ================= */
+
+.toast{
+    position:fixed;
+    bottom:25px;
+    left:50%;
+    transform:translateX(-50%) translateY(80px);
+    background:#29275f;
+    color:white;
+    padding:12px 20px;
+    border-radius:12px;
+    font-size:12px;
+    opacity:0;
+    transition:.3s;
+    z-index:30000;
+}
+
+.toast.show{
+    transform:translateX(-50%) translateY(0);
+    opacity:1;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:1150px){
+
+    .sidebar{
+        width:230px;
+        min-width:230px;
+    }
+
+    .main-area{
+        margin-left:230px;
+        margin-right:250px;
+    }
+
+    .chatbot{
+        width:232px;
+        min-width:232px;
+        max-width:232px;
+        right:10px;
+    }
+
+    .summary-grid{
         grid-template-columns:repeat(2,1fr);
     }
 
-    .company-grid{
+    .main-grid{
         grid-template-columns:1fr;
     }
+}
 
-    .prep-grid,
-    .tips{
-        grid-template-columns:repeat(2,1fr);
+@media(max-width:900px){
+
+    .chatbot{
+        display:none;
+    }
+
+    .main-area{
+        margin-right:0;
     }
 }
 
 @media(max-width:700px){
 
     .sidebar{
-        width:220px;
-        transform:translateX(-100%);
-        transition:.3s;
+        width:80px;
+        min-width:80px;
     }
 
-    .sidebar.open{
-        transform:translateX(0);
+    .brand{
+        justify-content:center;
+        padding:15px;
     }
 
-    .main{
-        margin-left:0;
+    .brand-text{
+        display:none;
     }
 
-    .mobile-menu{
-        display:block;
-        margin-right:15px;
+    .menu-title,
+    .nav-text{
+        display:none;
     }
 
-    .topbar{
-        padding:0 15px;
+    .nav-item{
+        justify-content:center;
+        padding:0;
     }
 
-    .clock,
-    .profile-info{
+    .nav-icon{
+        margin:0;
+    }
+
+    .main-area{
+        margin-left:80px;
+    }
+
+    .top-header{
+        padding:18px;
+    }
+
+    .header-left h1{
+        font-size:22px;
+    }
+
+    .profile-info,
+    .time-box{
         display:none;
     }
 
     .content{
-        padding:15px;
+        padding:18px;
     }
 
-    .stats,
-    .drive-list,
-    .prep-grid,
-    .tips{
-        grid-template-columns:1fr;
+    .summary-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .hero{
+        padding:20px;
+    }
+
+    .hero-icon{
+        display:none;
     }
 }
 </style>
@@ -474,203 +991,184 @@ body{
 
 <!-- ================= SIDEBAR ================= -->
 
-<aside class="sidebar" id="sidebar">
+<aside class="sidebar">
 
-    <div class="logo">
-        <div class="logo-icon">🎓</div>
+    <div class="brand">
+        <div class="logo-box">🎓</div>
 
-        <div>
-            <h2>CampusConnect</h2>
-            <span>AI College Companion</span>
+        <div class="brand-text">
+            <div class="brand-title">CampusConnect</div>
+            <div class="brand-subtitle">AI College Companion</div>
         </div>
     </div>
 
+    <div class="menu">
 
-    <button class="nav-item"
-        onclick="window.location.href='../dashboard.html'">
-        <span class="nav-icon">🏠</span>
-        Dashboard
-    </button>
+        <div class="menu-title">MAIN MENU</div>
 
+        <a class="nav-item" href="../dashboard.html">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-text">Dashboard</span>
+        </a>
 
-    <button class="nav-item"
-        onclick="window.location.href='../dashboard.html'">
-        <span class="nav-icon">📚</span>
-        My Courses
-    </button>
+        <a class="nav-item" href="courses.html">
 
+    <span class="nav-icon">
+        📚
+    </span>
 
-    <button class="nav-item"
-        onclick="window.location.href='timetable.html'">
-        <span class="nav-icon">🗓️</span>
-        Timetable
-    </button>
+    <span class="nav-text">
+        Courses
+    </span>
 
+</a>
 
-    <button class="nav-item"
-        onclick="window.location.href='assignments.html'">
-        <span class="nav-icon">📝</span>
-        Assignments
-    </button>
+        <a class="nav-item" href="timetable.html">
+            <span class="nav-icon">🗓️</span>
+            <span class="nav-text">Timetable</span>
+        </a>
 
+        <a class="nav-item" href="assignments.html">
+            <span class="nav-icon">📝</span>
+            <span class="nav-text">Assignments</span>
+        </a>
 
-    <button class="nav-item"
-        onclick="window.location.href='attendance.html'">
-        <span class="nav-icon">📊</span>
-        Attendance
-    </button>
+        <a class="nav-item" href="attendance.html">
+            <span class="nav-icon">📊</span>
+            <span class="nav-text">Attendance</span>
+        </a>
 
+        <a class="nav-item" href="academics.html">
+            <span class="nav-icon">🎓</span>
+            <span class="nav-text">Academics</span>
+        </a>
 
-    <button class="nav-item"
-        onclick="window.location.href='academics.html'">
-        <span class="nav-icon">🎓</span>
-        Academics
-    </button>
+        <a class="nav-item" href="faculty.html">
+            <span class="nav-icon">👨‍🏫</span>
+            <span class="nav-text">Faculty</span>
+        </a>
 
+        <div class="menu-section">
 
-    <button class="nav-item"
-        onclick="window.location.href='faculty.html'">
-        <span class="nav-icon">👩‍🏫</span>
-        Faculty
-    </button>
+            <div class="menu-title">CAREER</div>
 
+            <a class="nav-item active" href="placement.html">
+                <span class="nav-icon">💼</span>
+                <span class="nav-text">Placement</span>
+            </a>
 
-    <!-- PLACEMENT ACTIVE -->
+            <a class="nav-item" href="results.html">
+                <span class="nav-icon">📈</span>
+                <span class="nav-text">Results</span>
+            </a>
 
-    <button class="nav-item active"
-        onclick="window.location.href='placement.html'">
-        <span class="nav-icon">💼</span>
-        Placement
-    </button>
+        </div>
 
+        <div class="menu-section">
 
-    <button class="nav-item"
-        onclick="window.location.href='results.html'">
-        <span class="nav-icon">📈</span>
-        Results
-    </button>
+            <div class="menu-title">CAMPUS</div>
 
+            <a class="nav-item" href="documents.html">
+                <span class="nav-icon">📄</span>
+                <span class="nav-text">Documents</span>
+            </a>
 
-    <button class="nav-item"
-        onclick="window.location.href='documents.html'">
-        <span class="nav-icon">📄</span>
-        Documents
-    </button>
+            <a class="nav-item" href="complaints.html">
+                <span class="nav-icon">📢</span>
+                <span class="nav-text">Complaints</span>
+            </a>
 
+            <a class="nav-item" href="feedback.html">
+                <span class="nav-icon">💬</span>
+                <span class="nav-text">Feedback</span>
+            </a>
 
-    <button class="nav-item"
-        onclick="window.location.href='complaints.html'">
-        <span class="nav-icon">📢</span>
-        Complaints
-    </button>
+            <a class="nav-item" href="lost-found.html">
+                <span class="nav-icon">🔎</span>
+                <span class="nav-text">Lost & Found</span>
+            </a>
 
+            <a class="nav-item" href="campus.html">
+                <span class="nav-icon">🏫</span>
+                <span class="nav-text">Campus</span>
+            </a>
 
-    <button class="nav-item"
-        onclick="window.location.href='feedback.html'">
-        <span class="nav-icon">💬</span>
-        Feedback
-    </button>
+            <a class="nav-item" href="events.html">
+                <span class="nav-icon">🎉</span>
+                <span class="nav-text">Events</span>
+            </a>
 
+            <a class="nav-item" href="exams.html">
+                <span class="nav-icon">📋</span>
+                <span class="nav-text">Exams</span>
+            </a>
 
-    <button class="nav-item"
-        onclick="window.location.href='lost-found.html'">
-        <span class="nav-icon">🔎</span>
-        Lost & Found
-    </button>
+            <a class="nav-item" href="notifications.html">
+                <span class="nav-icon">🔔</span>
+                <span class="nav-text">Notifications</span>
+            </a>
 
+        </div>
 
-    <button class="nav-item"
-        onclick="window.location.href='campus.html'">
-        <span class="nav-icon">🏫</span>
-        Campus
-    </button>
+        <div class="menu-section">
 
+            <div class="menu-title">ACCOUNT</div>
 
-    <button class="nav-item"
-        onclick="window.location.href='events.html'">
-        <span class="nav-icon">🎉</span>
-        Events
-    </button>
+            <a class="nav-item" href="profile.html">
+                <span class="nav-icon">👤</span>
+                <span class="nav-text">Profile</span>
+            </a>
 
+            <a class="nav-item" href="settings.html">
+                <span class="nav-icon">⚙️</span>
+                <span class="nav-text">Settings</span>
+            </a>
 
-    <button class="nav-item"
-        onclick="window.location.href='exams.html'">
-        <span class="nav-icon">📋</span>
-        Exams
-    </button>
+            <a class="nav-item logout"
+               href="#"
+               onclick="logoutUser(event)">
+                <span class="nav-icon">🚪</span>
+                <span class="nav-text">Logout</span>
+            </a>
 
+        </div>
 
-    <button class="nav-item"
-        onclick="window.location.href='notifications.html'">
-        <span class="nav-icon">🔔</span>
-        Notifications
-    </button>
-
-
-    <button class="nav-item"
-        onclick="window.location.href='profile.html'">
-        <span class="nav-icon">👤</span>
-        Profile
-    </button>
-
-
-    <button class="nav-item"
-        onclick="window.location.href='settings.html'">
-        <span class="nav-icon">⚙️</span>
-        Settings
-    </button>
+    </div>
 
 </aside>
 
 
 <!-- ================= MAIN ================= -->
 
-<main class="main">
+<main class="main-area">
 
-    <header class="topbar">
+    <header class="top-header">
 
-        <div style="display:flex;align-items:center;">
-
-            <button class="mobile-menu"
-                onclick="toggleSidebar()">
-                ☰
-            </button>
-
-            <div>
-
-                <div class="page-title">
-                    Placement
-                </div>
-
-                <div class="page-subtitle">
-                    Career & Placement Center
-                </div>
-
-            </div>
-
+        <div class="header-left">
+            <h1>Placement</h1>
+            <p>Build your career and explore placement opportunities</p>
         </div>
 
+        <div class="header-right">
 
-        <div class="top-right">
+            <div class="time-box" id="clock">
+                00:00:00
+            </div>
 
-            <div class="clock" id="clock"></div>
+            <div class="notification"
+                 onclick="showToast('You have new placement notifications 🔔')">
+                🔔
+            </div>
 
-            <div class="profile">
+            <div class="profile-mini">
 
-                <div class="profile-avatar">
+                <div class="profile-circle">
                     P
                 </div>
 
                 <div class="profile-info">
-
-                    <strong id="studentName">
-                        Student
-                    </strong>
-
-                    <span>
-                        BCA Student
-                    </span>
-
+                    <strong>Priya Bhavani</strong>
+                    <span>Computer Science</span>
                 </div>
 
             </div>
@@ -682,421 +1180,684 @@ body{
 
     <section class="content">
 
-
         <!-- HERO -->
 
         <div class="hero">
 
-            <h1>
-                Career & Placement Center
-            </h1>
+            <div>
+                <h2>Placement Journey 🚀</h2>
 
-            <p>
-                Build Your Career With Confidence
-            </p>
+                <p>
+                    Track your placement preparation, companies and upcoming opportunities.
+                </p>
+            </div>
+
+            <div class="hero-right">
+                <div class="hero-number">85%</div>
+                <div class="hero-label">Placement Readiness</div>
+            </div>
+
+            <div class="hero-icon">
+                💼
+            </div>
 
         </div>
 
 
-        <!-- STATS -->
+        <!-- SUMMARY -->
 
-        <section class="section">
+        <div class="summary-grid">
 
-            <div class="stats">
+            <div class="summary-card">
 
-                <div class="stat-card">
-                    <div class="stat-title">
-                        Partner Companies
-                    </div>
-
-                    <div class="stat-value">
-                        25+
-                    </div>
+                <div class="summary-icon">
+                    🏢
                 </div>
 
+                <strong>24</strong>
 
-                <div class="stat-card">
-                    <div class="stat-title">
-                        Active Opportunities
-                    </div>
-
-                    <div class="stat-value">
-                        18
-                    </div>
-                </div>
-
-
-                <div class="stat-card">
-                    <div class="stat-title">
-                        Placement Assistance
-                    </div>
-
-                    <div class="stat-value">
-                        92%
-                    </div>
-                </div>
-
-
-                <div class="stat-card">
-                    <div class="stat-title">
-                        Highest Package
-                    </div>
-
-                    <div class="stat-value">
-                        8.5 LPA
-                    </div>
-                </div>
+                <span>
+                    Companies Visited
+                </span>
 
             </div>
 
-        </section>
 
+            <div class="summary-card">
 
-        <!-- FEATURED COMPANIES -->
-
-        <section class="section">
-
-            <div class="section-header">
-                <div class="section-title">
-                    Featured Companies
+                <div class="summary-icon">
+                    💼
                 </div>
+
+                <strong>8</strong>
+
+                <span>
+                    Eligible Companies
+                </span>
+
             </div>
 
 
-            <div class="company-grid">
+            <div class="summary-card">
 
-                <div class="company-card">
-
-                    <div class="company-logo">
-                        💻
-                    </div>
-
-                    <h3>Infosys</h3>
-
-                    <p>
-                        Software Development & IT Services
-                    </p>
-
-                    <button
-                        class="company-btn"
-                        onclick="showMessage('Infosys')">
-                        View Opportunities
-                    </button>
-
+                <div class="summary-icon">
+                    💰
                 </div>
 
+                <strong>12 LPA</strong>
 
-                <div class="company-card">
-
-                    <div class="company-logo">
-                        🚀
-                    </div>
-
-                    <h3>TCS</h3>
-
-                    <p>
-                        Technology & Consulting
-                    </p>
-
-                    <button
-                        class="company-btn"
-                        onclick="showMessage('TCS')">
-                        View Opportunities
-                    </button>
-
-                </div>
-
-
-                <div class="company-card">
-
-                    <div class="company-logo">
-                        🏢
-                    </div>
-
-                    <h3>Wipro</h3>
-
-                    <p>
-                        IT Services & Digital Solutions
-                    </p>
-
-                    <button
-                        class="company-btn"
-                        onclick="showMessage('Wipro')">
-                        View Opportunities
-                    </button>
-
-                </div>
+                <span>
+                    Highest Package
+                </span>
 
             </div>
 
-        </section>
 
+            <div class="summary-card">
 
-        <!-- UPCOMING DRIVES -->
-
-        <section class="section">
-
-            <div class="section-header">
-                <div class="section-title">
-                    Upcoming Placement Drives
+                <div class="summary-icon">
+                    🎯
                 </div>
+
+                <strong>85%</strong>
+
+                <span>
+                    Readiness Score
+                </span>
+
             </div>
 
+        </div>
 
-            <div class="drive-list">
 
-                <div class="drive-card">
+        <!-- MAIN GRID -->
+
+        <div class="main-grid">
+
+            <!-- COMPANIES -->
+
+            <div class="section-card">
+
+                <div class="section-header">
 
                     <div>
-                        <div class="drive-company">
-                            Infosys
-                        </div>
-
-                        <div class="drive-role">
-                            System Engineer
-                        </div>
+                        <h3>Top Placement Companies</h3>
+                        <p>Explore current placement opportunities</p>
                     </div>
 
-                    <div class="drive-date">
-                        15 Sep 2026
-                    </div>
+                    <button
+                        class="primary-btn"
+                        onclick="showToast('Showing all placement companies')">
+                        View All
+                    </button>
 
                 </div>
 
 
-                <div class="drive-card">
+                <div class="company-list">
 
-                    <div>
-                        <div class="drive-company">
+
+                    <div class="company-card"
+                         onclick="openCompany(0)">
+
+                        <div class="company-logo">
                             TCS
                         </div>
 
-                        <div class="drive-role">
-                            Graduate Engineer Trainee
+                        <div class="company-info">
+                            <h4>Tata Consultancy Services</h4>
+                            <p>Software Engineer • CSE</p>
                         </div>
+
+                        <div class="company-package">
+                            <strong>7 LPA</strong>
+                            <span>Package</span>
+                        </div>
+
+                        <div class="arrow">
+                            →
+                        </div>
+
                     </div>
 
-                    <div class="drive-date">
-                        18 Sep 2026
+
+                    <div class="company-card"
+                         onclick="openCompany(1)">
+
+                        <div class="company-logo">
+                            INF
+                        </div>
+
+                        <div class="company-info">
+                            <h4>Infosys</h4>
+                            <p>Systems Engineer • CSE</p>
+                        </div>
+
+                        <div class="company-package">
+                            <strong>6.5 LPA</strong>
+                            <span>Package</span>
+                        </div>
+
+                        <div class="arrow">
+                            →
+                        </div>
+
+                    </div>
+
+
+                    <div class="company-card"
+                         onclick="openCompany(2)">
+
+                        <div class="company-logo">
+                            ACC
+                        </div>
+
+                        <div class="company-info">
+                            <h4>Accenture</h4>
+                            <p>Application Developer • CSE</p>
+                        </div>
+
+                        <div class="company-package">
+                            <strong>8 LPA</strong>
+                            <span>Package</span>
+                        </div>
+
+                        <div class="arrow">
+                            →
+                        </div>
+
+                    </div>
+
+
+                    <div class="company-card"
+                         onclick="openCompany(3)">
+
+                        <div class="company-logo">
+                            WIP
+                        </div>
+
+                        <div class="company-info">
+                            <h4>Wipro</h4>
+                            <p>Project Engineer • CSE</p>
+                        </div>
+
+                        <div class="company-package">
+                            <strong>6 LPA</strong>
+                            <span>Package</span>
+                        </div>
+
+                        <div class="arrow">
+                            →
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+            <!-- RIGHT COLUMN -->
+
+            <div>
+
+                <!-- PREPARATION -->
+
+                <div class="section-card">
+
+                    <div class="section-header">
+
+                        <div>
+                            <h3>Preparation</h3>
+                            <p>Your placement readiness</p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="process-list">
+
+                        <div class="process-item">
+
+                            <div class="process-icon">
+                                💻
+                            </div>
+
+                            <div class="process-info">
+
+                                <strong>
+                                    Technical Skills
+                                </strong>
+
+                                <div class="progress">
+                                    <div
+                                        class="progress-bar"
+                                        style="width:90%">
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="process-percent">
+                                90%
+                            </div>
+
+                        </div>
+
+
+                        <div class="process-item">
+
+                            <div class="process-icon">
+                                🧠
+                            </div>
+
+                            <div class="process-info">
+
+                                <strong>
+                                    Aptitude
+                                </strong>
+
+                                <div class="progress">
+                                    <div
+                                        class="progress-bar"
+                                        style="width:82%">
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="process-percent">
+                                82%
+                            </div>
+
+                        </div>
+
+
+                        <div class="process-item">
+
+                            <div class="process-icon">
+                                🗣️
+                            </div>
+
+                            <div class="process-info">
+
+                                <strong>
+                                    Communication
+                                </strong>
+
+                                <div class="progress">
+                                    <div
+                                        class="progress-bar"
+                                        style="width:78%">
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="process-percent">
+                                78%
+                            </div>
+
+                        </div>
+
+
+                        <div class="process-item">
+
+                            <div class="process-icon">
+                                👔
+                            </div>
+
+                            <div class="process-info">
+
+                                <strong>
+                                    Interview Skills
+                                </strong>
+
+                                <div class="progress">
+                                    <div
+                                        class="progress-bar"
+                                        style="width:75%">
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="process-percent">
+                                75%
+                            </div>
+
+                        </div>
+
                     </div>
 
                 </div>
 
 
-                <div class="drive-card">
+                <!-- UPCOMING -->
 
-                    <div>
-                        <div class="drive-company">
-                            Wipro
+                <div class="section-card upcoming">
+
+                    <div class="section-header">
+
+                        <div>
+                            <h3>Upcoming Drives</h3>
+                            <p>Important placement dates</p>
                         </div>
 
-                        <div class="drive-role">
-                            Project Engineer
-                        </div>
                     </div>
 
-                    <div class="drive-date">
-                        22 Sep 2026
-                    </div>
 
-                </div>
+                    <div class="event-item">
 
-
-                <div class="drive-card">
-
-                    <div>
-                        <div class="drive-company">
-                            Accenture
+                        <div class="event-date">
+                            <strong>18</strong>
+                            <span>SEP</span>
                         </div>
 
-                        <div class="drive-role">
-                            Associate Software Engineer
+                        <div class="event-info">
+                            <strong>TCS Placement Drive</strong>
+                            <span>10:00 AM • Main Auditorium</span>
                         </div>
+
                     </div>
 
-                    <div class="drive-date">
-                        25 Sep 2026
+
+                    <div class="event-item">
+
+                        <div class="event-date">
+                            <strong>21</strong>
+                            <span>SEP</span>
+                        </div>
+
+                        <div class="event-info">
+                            <strong>Infosys Recruitment</strong>
+                            <span>9:30 AM • Seminar Hall</span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="event-item">
+
+                        <div class="event-date">
+                            <strong>25</strong>
+                            <span>SEP</span>
+                        </div>
+
+                        <div class="event-info">
+                            <strong>Accenture Drive</strong>
+                            <span>10:30 AM • Block B</span>
+                        </div>
+
                     </div>
 
                 </div>
 
             </div>
 
-        </section>
-
-
-        <!-- PREPARATION -->
-
-        <section class="section">
-
-            <div class="section-header">
-                <div class="section-title">
-                    Placement Preparation
-                </div>
-            </div>
-
-
-            <div class="prep-grid">
-
-                <div class="prep-card">
-
-                    <div class="prep-icon">
-                        🧠
-                    </div>
-
-                    <h3>Aptitude</h3>
-
-                    <p>
-                        Practice quantitative, logical and verbal reasoning questions.
-                    </p>
-
-                </div>
-
-
-                <div class="prep-card">
-
-                    <div class="prep-icon">
-                        💻
-                    </div>
-
-                    <h3>Coding</h3>
-
-                    <p>
-                        Improve your programming and problem-solving skills.
-                    </p>
-
-                </div>
-
-
-                <div class="prep-card">
-
-                    <div class="prep-icon">
-                        📄
-                    </div>
-
-                    <h3>Resume</h3>
-
-                    <p>
-                        Create a professional resume that highlights your strengths.
-                    </p>
-
-                </div>
-
-
-                <div class="prep-card">
-
-                    <div class="prep-icon">
-                        🎤
-                    </div>
-
-                    <h3>Interview</h3>
-
-                    <p>
-                        Prepare for technical and HR interview rounds.
-                    </p>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- TIPS -->
-
-        <section class="section">
-
-            <div class="section-header">
-                <div class="section-title">
-                    Placement Tips
-                </div>
-            </div>
-
-
-            <div class="tips">
-
-                <div class="tip">
-
-                    <div class="tip-number">
-                        01
-                    </div>
-
-                    <h3>
-                        Build Strong Basics
-                    </h3>
-
-                    <p>
-                        Focus on programming fundamentals and core subjects.
-                    </p>
-
-                </div>
-
-
-                <div class="tip">
-
-                    <div class="tip-number">
-                        02
-                    </div>
-
-                    <h3>
-                        Practice Regularly
-                    </h3>
-
-                    <p>
-                        Solve coding and aptitude problems every day.
-                    </p>
-
-                </div>
-
-
-                <div class="tip">
-
-                    <div class="tip-number">
-                        03
-                    </div>
-
-                    <h3>
-                        Improve Communication
-                    </h3>
-
-                    <p>
-                        Develop confidence and communication skills for interviews.
-                    </p>
-
-                </div>
-
-
-                <div class="tip">
-
-                    <div class="tip-number">
-                        04
-                    </div>
-
-                    <h3>
-                        Stay Updated
-                    </h3>
-
-                    <p>
-                        Keep track of placement drives and company requirements.
-                    </p>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <footer class="footer">
-            © 2026 CampusConnect. All rights reserved.
-        </footer>
+        </div>
 
     </section>
 
 </main>
 
 
+<!-- ================= AI CHATBOT ================= -->
+
+<aside class="chatbot">
+
+    <div class="chat-header">
+
+        <div class="robot-icon">
+            🤖
+        </div>
+
+        <div class="chat-title">
+
+            <strong>
+                CampusConnect AI
+            </strong>
+
+            <span>
+                <i class="online-dot"></i>
+                College Companion
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="chat-body" id="chatBody">
+
+        <div class="bot-message">
+
+            Hi Priya! 👋<br><br>
+
+            I'm your
+            <b>CampusConnect AI College Companion</b>.
+
+            I can help you with placement preparation,
+            companies, packages and upcoming drives.
+
+        </div>
+
+
+        <div class="bot-message">
+
+            Try asking me:<br>
+
+            • Which company has the highest package?<br>
+            • How is my placement readiness?<br>
+            • When is the next drive?
+
+        </div>
+
+    </div>
+
+
+    <div class="quick-buttons">
+
+        <button
+            class="quick-btn"
+            onclick="quickChat('highest package')">
+            Highest Package
+        </button>
+
+        <button
+            class="quick-btn"
+            onclick="quickChat('readiness')">
+            Readiness
+        </button>
+
+        <button
+            class="quick-btn"
+            onclick="quickChat('next drive')">
+            Next Drive
+        </button>
+
+    </div>
+
+
+    <div class="chat-footer">
+
+        <input
+            type="text"
+            id="chatInput"
+            class="chat-input"
+            placeholder="Ask CampusConnect AI..."
+        >
+
+        <button
+            class="send-btn"
+            onclick="sendMessage()">
+            ➤
+        </button>
+
+    </div>
+
+</aside>
+
+
+<!-- ================= COMPANY MODAL ================= -->
+
+<div class="modal" id="companyModal">
+
+    <div class="modal-box">
+
+        <div class="modal-top">
+
+            <h3>Company Details</h3>
+
+            <button
+                class="close-btn"
+                onclick="closeModal()">
+                ×
+            </button>
+
+        </div>
+
+
+        <div class="modal-company">
+
+            <div
+                class="modal-logo"
+                id="modalLogo">
+                TCS
+            </div>
+
+            <div>
+
+                <strong id="modalName">
+                    Tata Consultancy Services
+                </strong>
+
+                <span id="modalRole">
+                    Software Engineer
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="detail-row">
+
+            <span>
+                Package
+            </span>
+
+            <strong id="modalPackage">
+                7 LPA
+            </strong>
+
+        </div>
+
+
+        <div class="detail-row">
+
+            <span>
+                Eligibility
+            </span>
+
+            <strong id="modalEligibility">
+                7.0 CGPA+
+            </strong>
+
+        </div>
+
+
+        <div class="detail-row">
+
+            <span>
+                Location
+            </span>
+
+            <strong id="modalLocation">
+                Bengaluru
+            </strong>
+
+        </div>
+
+
+        <div class="detail-row">
+
+            <span>
+                Drive Date
+            </span>
+
+            <strong id="modalDate">
+                18 Sep 2026
+            </strong>
+
+        </div>
+
+
+        <button
+            class="apply-btn"
+            onclick="applyCompany()">
+            🚀 Apply / Register
+        </button>
+
+    </div>
+
+</div>
+
+
+<div class="toast" id="toast">
+    Action completed
+</div>
+
+
 <script>
+
+/* ================= COMPANY DATA ================= */
+
+const companies = [
+
+    {
+        name:"Tata Consultancy Services",
+        logo:"TCS",
+        role:"Software Engineer",
+        package:"7 LPA",
+        eligibility:"7.0 CGPA+",
+        location:"Bengaluru",
+        date:"18 Sep 2026"
+    },
+
+    {
+        name:"Infosys",
+        logo:"INF",
+        role:"Systems Engineer",
+        package:"6.5 LPA",
+        eligibility:"6.5 CGPA+",
+        location:"Mysuru",
+        date:"21 Sep 2026"
+    },
+
+    {
+        name:"Accenture",
+        logo:"ACC",
+        role:"Application Developer",
+        package:"8 LPA",
+        eligibility:"7.0 CGPA+",
+        location:"Bengaluru",
+        date:"25 Sep 2026"
+    },
+
+    {
+        name:"Wipro",
+        logo:"WIP",
+        role:"Project Engineer",
+        package:"6 LPA",
+        eligibility:"6.5 CGPA+",
+        location:"Bengaluru",
+        date:"28 Sep 2026"
+    }
+
+];
+
 
 /* ================= CLOCK ================= */
 
@@ -1104,69 +1865,309 @@ function updateClock(){
 
     const now = new Date();
 
+    let h = String(now.getHours()).padStart(2,"0");
+    let m = String(now.getMinutes()).padStart(2,"0");
+    let s = String(now.getSeconds()).padStart(2,"0");
+
     document.getElementById("clock").textContent =
-        now.toLocaleTimeString("en-IN");
-
+        `${h}:${m}:${s}`;
 }
-
-setInterval(updateClock,1000);
 
 updateClock();
 
+setInterval(updateClock,1000);
 
-/* ================= STUDENT NAME ================= */
 
-try{
+/* ================= COMPANY MODAL ================= */
 
-    const student =
-        JSON.parse(localStorage.getItem("student"));
+function openCompany(index){
 
-    if(student){
+    const company = companies[index];
 
-        const name =
-            student.name ||
-            student.username ||
-            student.fullName;
+    document.getElementById("modalLogo").textContent =
+        company.logo;
 
-        if(name){
+    document.getElementById("modalName").textContent =
+        company.name;
 
-            document.getElementById("studentName")
-                .textContent = name;
+    document.getElementById("modalRole").textContent =
+        company.role;
+
+    document.getElementById("modalPackage").textContent =
+        company.package;
+
+    document.getElementById("modalEligibility").textContent =
+        company.eligibility;
+
+    document.getElementById("modalLocation").textContent =
+        company.location;
+
+    document.getElementById("modalDate").textContent =
+        company.date;
+
+    document.getElementById("companyModal")
+        .classList.add("show");
+}
+
+
+function closeModal(){
+
+    document.getElementById("companyModal")
+        .classList.remove("show");
+}
+
+
+document.getElementById("companyModal")
+    .addEventListener("click",function(e){
+
+        if(e.target === this){
+            closeModal();
+        }
+
+    });
+
+
+/* ================= APPLY ================= */
+
+function applyCompany(){
+
+    const company =
+        document.getElementById("modalName").textContent;
+
+    closeModal();
+
+    showToast(
+        "Registration started for " + company + " 🚀"
+    );
+
+}
+
+
+/* ================= TOAST ================= */
+
+function showToast(message){
+
+    const toast =
+        document.getElementById("toast");
+
+    toast.textContent = message;
+
+    toast.classList.add("show");
+
+    setTimeout(function(){
+
+        toast.classList.remove("show");
+
+    },2500);
+
+}
+
+
+/* ================= CHATBOT ================= */
+
+function addBotMessage(message){
+
+    const chatBody =
+        document.getElementById("chatBody");
+
+    const div =
+        document.createElement("div");
+
+    div.className = "bot-message";
+
+    div.innerHTML = message;
+
+    chatBody.appendChild(div);
+
+    chatBody.scrollTop =
+        chatBody.scrollHeight;
+}
+
+
+function addUserMessage(message){
+
+    const chatBody =
+        document.getElementById("chatBody");
+
+    const div =
+        document.createElement("div");
+
+    div.className = "user-message";
+
+    div.textContent = message;
+
+    chatBody.appendChild(div);
+
+    chatBody.scrollTop =
+        chatBody.scrollHeight;
+}
+
+
+function sendMessage(){
+
+    const input =
+        document.getElementById("chatInput");
+
+    const message =
+        input.value.trim();
+
+    if(!message) return;
+
+    addUserMessage(message);
+
+    input.value = "";
+
+    setTimeout(function(){
+
+        const q = message.toLowerCase();
+
+
+        if(
+            q.includes("highest") ||
+            q.includes("best package")
+        ){
+
+            addBotMessage(
+                "💰 Currently, <b>Accenture</b> has the highest listed package at <b>8 LPA</b>."
+            );
 
         }
 
+        else if(
+            q.includes("readiness") ||
+            q.includes("ready")
+        ){
+
+            addBotMessage(
+                "🎯 Your current placement readiness is <b>85%</b>. Technical skills are your strongest area at <b>90%</b>."
+            );
+
+        }
+
+        else if(
+            q.includes("next") ||
+            q.includes("drive")
+        ){
+
+            addBotMessage(
+                "📅 The next listed drive is <b>TCS</b> on <b>18 Sep 2026</b> at 10:00 AM."
+            );
+
+        }
+
+        else if(
+            q.includes("tcs")
+        ){
+
+            addBotMessage(
+                "🏢 <b>TCS</b> offers approximately <b>7 LPA</b> for the listed Software Engineer role."
+            );
+
+        }
+
+        else if(
+            q.includes("infosys")
+        ){
+
+            addBotMessage(
+                "🏢 <b>Infosys</b> offers approximately <b>6.5 LPA</b> for the listed Systems Engineer role."
+            );
+
+        }
+
+        else if(
+            q.includes("accenture")
+        ){
+
+            addBotMessage(
+                "🏢 <b>Accenture</b> offers approximately <b>8 LPA</b> for the listed Application Developer role."
+            );
+
+        }
+
+        else if(
+            q.includes("wipro")
+        ){
+
+            addBotMessage(
+                "🏢 <b>Wipro</b> offers approximately <b>6 LPA</b> for the listed Project Engineer role."
+            );
+
+        }
+
+        else if(
+            q.includes("skill") ||
+            q.includes("prepare") ||
+            q.includes("preparation")
+        ){
+
+            addBotMessage(
+                "🚀 Focus on <b>technical skills, aptitude, communication and interview preparation</b>. Your technical score is currently 90%."
+            );
+
+        }
+
+        else{
+
+            addBotMessage(
+                "🤖 I can help with <b>companies, packages, placement readiness and upcoming drives</b>. Try asking about the highest package."
+            );
+
+        }
+
+    },500);
+}
+
+
+/* ================= QUICK CHAT ================= */
+
+function quickChat(text){
+
+    document.getElementById("chatInput").value =
+        text;
+
+    sendMessage();
+}
+
+
+document.getElementById("chatInput")
+    .addEventListener("keydown",function(e){
+
+        if(e.key === "Enter"){
+            sendMessage();
+        }
+
+    });
+
+
+/* ================= LOGOUT ================= */
+
+function logoutUser(event){
+
+    event.preventDefault();
+
+    const confirmLogout =
+        confirm("Are you sure you want to logout?");
+
+    if(confirmLogout){
+
+        window.location.href =
+            "../index.html";
+
     }
 
-}catch(error){
-
-    console.log(
-        "Student information not available."
-    );
-
 }
 
 
-/* ================= MOBILE SIDEBAR ================= */
+/* ================= ESC ================= */
 
-function toggleSidebar(){
+document.addEventListener("keydown",function(e){
 
-    document
-        .getElementById("sidebar")
-        .classList.toggle("open");
+    if(e.key === "Escape"){
+        closeModal();
+    }
 
-}
-
-
-/* ================= COMPANY MESSAGE ================= */
-
-function showMessage(company){
-
-    alert(
-        company +
-        " opportunities will be connected with the backend soon."
-    );
-
-}
+});
 
 </script>
 
