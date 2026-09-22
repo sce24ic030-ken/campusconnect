@@ -1,1783 +1,2486 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>CampusConnect - Student Profile</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<title>CampusConnect | Profile</title>
 
 <style>
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-body {
-    min-height: 100vh;
-    font-family: 'Poppins', sans-serif;
+html,body{
+    width:100%;
+    height:100%;
+    font-family:"Segoe UI",Arial,sans-serif;
+    background:#f4f6ff;
+    color:#17203a;
+    overflow:hidden;
+}
+
+button,input,select{
+    font-family:inherit;
+}
+
+/* ================= SIDEBAR ================= */
+
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    bottom:0;
+    width:268px;
+    min-width:268px;
+
     background:
-        radial-gradient(circle at 10% 10%, rgba(145,67,255,.20), transparent 25%),
-        radial-gradient(circle at 90% 90%, rgba(240,58,171,.16), transparent 25%),
-        #f7f5fb;
-    color: #29243b;
+    linear-gradient(
+        180deg,
+        #172a70 0%,
+        #28237d 48%,
+        #5520a7 100%
+    );
+
+    color:white;
+    overflow-y:auto;
+    overflow-x:hidden;
+    z-index:1000;
+    padding-bottom:20px;
+
+    scrollbar-width:thin;
+    scrollbar-color:rgba(255,255,255,.25) transparent;
 }
 
-/* =========================
-   SIDEBAR
-========================= */
+.brand{
+    height:120px;
+    display:flex;
+    align-items:center;
+    padding:22px 18px;
+    border-bottom:1px solid rgba(255,255,255,.12);
+}
 
-.sidebar {
-    position: fixed;
-    left: 0;
-    top: 0;
+.logo-box{
+    width:52px;
+    height:52px;
+    border-radius:16px;
 
-    width: 240px;
-    height: 100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-    padding: 20px 15px;
+    font-size:28px;
 
     background:
-        linear-gradient(
-            180deg,
-            #172554,
-            #312e81,
-            #4c1d95
-        );
+    linear-gradient(
+        135deg,
+        #24b8ff,
+        #7144f5
+    );
 
-    color: white;
-
-    box-shadow: 5px 0 25px rgba(48,20,75,.15);
-
-    z-index: 100;
+    box-shadow:0 10px 25px rgba(0,0,0,.20);
 }
 
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 11px;
-
-    padding: 8px 10px;
-    margin-bottom: 25px;
+.brand-text{
+    margin-left:13px;
 }
 
-.logo-icon {
-    width: 42px;
-    height: 42px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 13px;
-
-    background: rgba(255,255,255,.14);
-
-    font-size: 21px;
+.brand-title{
+    font-size:21px;
+    font-weight:800;
+    letter-spacing:-.5px;
 }
 
-.logo-text {
-    font-size: 17px;
-    font-weight: 700;
+.brand-subtitle{
+    font-size:12px;
+    opacity:.72;
+    margin-top:3px;
 }
 
-.logo-text span {
-    color: #8ee7ff;
+.menu{
+    padding:25px 14px;
 }
 
-.menu-title {
-    padding: 0 12px;
-    margin-bottom: 8px;
-
-    color: #b8c4e8;
-
-    font-size: 9px;
-    font-weight: 600;
-
-    letter-spacing: 1px;
+.menu-title{
+    font-size:12px;
+    font-weight:700;
+    color:rgba(255,255,255,.52);
+    letter-spacing:1px;
+    padding:0 11px 10px;
 }
 
-.nav-menu {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
+.menu-section{
+    margin-top:20px;
 }
 
-.nav-item {
-    display: flex;
-    align-items: center;
+.nav-item{
+    width:100%;
+    display:flex;
+    align-items:center;
+    min-height:49px;
 
-    gap: 12px;
+    padding:0 14px;
+    margin:5px 0;
 
-    width: 100%;
-    height: 48px;
+    border-radius:13px;
 
-    padding: 0 18px;
+    color:rgba(255,255,255,.84);
+    text-decoration:none;
 
-    border: none;
-    border-radius: 11px;
-
-    background: transparent;
-
-    color: #d9e0f5;
-
-    font-family: inherit;
-    font-size: 15px;
-
-    text-align: left;
-
-    cursor: pointer;
-
-    transition: .25s;
+    transition:
+    transform .2s ease,
+    background .2s ease,
+    color .2s ease;
 }
 
-.nav-item:hover {
-    background: rgba(255,255,255,.10);
-    color: white;
-    transform: translateX(3px);
+.nav-item:hover{
+    background:rgba(255,255,255,.12);
+    color:white;
+    transform:translateX(3px);
 }
 
-.nav-item.active {
+.nav-item.active{
+    color:white;
+
     background:
-        linear-gradient(
-            90deg,
-            #22c1dc,
-            #8b5cf6
-        );
+    linear-gradient(
+        90deg,
+        #22b9f5,
+        #6942f4
+    );
 
-    color: white;
+    box-shadow:0 9px 22px rgba(0,0,0,.18);
+}
+
+.nav-icon{
+    width:31px;
+    font-size:20px;
+    text-align:center;
+    margin-right:10px;
+}
+
+.nav-text{
+    font-size:15px;
+    font-weight:650;
+}
+
+.logout{
+    margin-top:14px;
+    padding-top:15px;
+    border-top:1px solid rgba(255,255,255,.13);
+}
+
+/* ================= MAIN ================= */
+
+.main-area{
+    margin-left:268px;
+    margin-right:286px;
+
+    width:auto;
+    height:100vh;
+
+    overflow-y:auto;
+    overflow-x:hidden;
+
+    background:
+    linear-gradient(
+        180deg,
+        #f8f9ff,
+        #eef1fb
+    );
+}
+
+/* ================= HEADER ================= */
+
+.top-header{
+    height:120px;
+
+    background:rgba(255,255,255,.96);
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:22px 28px;
+
+    border-bottom:1px solid #e9ebf5;
+
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+.header-left h1{
+    font-size:30px;
+    line-height:1.05;
+    font-weight:800;
+}
+
+.header-left p{
+    margin-top:7px;
+    color:#8990a7;
+    font-size:14px;
+}
+
+.header-right{
+    display:flex;
+    align-items:center;
+    gap:18px;
+}
+
+.time-box{
+    font-size:18px;
+    font-weight:750;
+    color:#59617d;
+}
+
+.notification{
+    width:48px;
+    height:48px;
+
+    background:#fff;
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:22px;
 
     box-shadow:
-        0 8px 20px rgba(0,0,0,.10);
+    0 5px 18px rgba(40,35,100,.10);
+
+    position:relative;
+
+    cursor:pointer;
 }
 
-.nav-icon {
-    width: 22px;
-    text-align: center;
-    font-size: 17px;
+.notification::after{
+    content:"";
+
+    width:8px;
+    height:8px;
+
+    border-radius:50%;
+
+    background:#ff4f8b;
+
+    position:absolute;
+
+    top:7px;
+    right:8px;
 }
 
-.sidebar-bottom {
-    position: absolute;
-
-    bottom: 20px;
-    left: 15px;
-    right: 15px;
+.profile-mini{
+    display:flex;
+    align-items:center;
+    gap:10px;
 }
 
-.logout {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+.profile-circle{
+    width:48px;
+    height:48px;
 
-    width: 100%;
-    height: 48px;
-
-    padding: 0 18px;
-
-    border: none;
-    border-radius: 11px;
-
-    background: rgba(255,255,255,.08);
-
-    color: #eadff1;
-
-    font-family: inherit;
-    font-size: 15px;
-
-    cursor: pointer;
-
-    transition: .25s;
-}
-
-.logout:hover {
-    background: rgba(255,255,255,.15);
-}
-
-/* =========================
-   MAIN
-========================= */
-
-.main {
-    margin-left: 240px;
-
-    min-height: 100vh;
-
-    padding: 28px 35px;
-}
-
-/* TOPBAR */
-
-.topbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    margin-bottom: 25px;
-}
-
-.page-title h1 {
-    font-size: 25px;
-    color: #282238;
-}
-
-.page-title p {
-    margin-top: 4px;
-    color: #918b9c;
-    font-size: 10px;
-}
-
-.top-actions {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.notification {
-    width: 39px;
-    height: 39px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border: 1px solid #ebe7f0;
-    border-radius: 11px;
-
-    background: white;
-
-    font-size: 16px;
-
-    cursor: pointer;
-
-    box-shadow: 0 4px 15px rgba(40,20,60,.05);
-}
-
-.mini-profile {
-    display: flex;
-    align-items: center;
-
-    gap: 9px;
-
-    padding: 5px 10px 5px 5px;
-
-    border-radius: 30px;
-
-    background: white;
-
-    box-shadow: 0 4px 15px rgba(40,20,60,.05);
-}
-
-.mini-avatar {
-    width: 32px;
-    height: 32px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 50%;
+    border-radius:50%;
 
     background:
-        linear-gradient(135deg,#7a43db,#e34aa9);
+    linear-gradient(
+        135deg,
+        #25b8ee,
+        #466cf1
+    );
 
-    color: white;
+    color:white;
 
-    font-size: 13px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:20px;
+    font-weight:800;
 }
 
-.mini-name {
-    color: #40394d;
-
-    font-size: 9px;
-
-    font-weight: 600;
+.profile-info strong{
+    display:block;
+    font-size:15px;
 }
 
-/* =========================
-   PROFILE HERO
-========================= */
+.profile-info span{
+    display:block;
+    color:#8d93a8;
+    font-size:12px;
+}
 
-.profile-hero {
-    position: relative;
+/* ================= CONTENT ================= */
 
-    padding: 30px;
+.content{
+    padding:26px 28px 40px;
+}
 
-    margin-bottom: 20px;
+/* ================= PROFILE HERO ================= */
 
-    border-radius: 22px;
+.profile-hero{
+    background:
+    linear-gradient(
+        135deg,
+        #25277d,
+        #6337d8
+    );
 
-    overflow: hidden;
+    border-radius:24px;
+
+    padding:28px 30px;
+
+    color:white;
+
+    position:relative;
+
+    overflow:hidden;
+
+    box-shadow:
+    0 15px 35px rgba(57,48,150,.18);
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.profile-hero::before{
+    content:"";
+
+    position:absolute;
+
+    width:230px;
+    height:230px;
+
+    border-radius:50%;
 
     background:
-        linear-gradient(
-            120deg,
-            #6e38ca,
-            #9e43c7,
-            #dd4caa
-        );
+    rgba(255,255,255,.06);
 
-    color: white;
-
-    box-shadow:
-        0 15px 35px rgba(110,56,202,.22);
+    right:-60px;
+    top:-100px;
 }
 
-.profile-hero::before {
-    content: "";
-
-    position: absolute;
-
-    width: 280px;
-    height: 280px;
-
-    right: -80px;
-    top: -130px;
-
-    border: 1px solid rgba(255,255,255,.15);
-
-    border-radius: 50%;
+.profile-hero-left{
+    display:flex;
+    align-items:center;
+    gap:20px;
+    position:relative;
+    z-index:2;
 }
 
-.profile-hero::after {
-    content: "";
+.big-profile{
+    width:90px;
+    height:90px;
 
-    position: absolute;
-
-    width: 190px;
-    height: 190px;
-
-    right: 120px;
-    bottom: -130px;
-
-    border: 1px solid rgba(255,255,255,.12);
-
-    border-radius: 50%;
-}
-
-.hero-content {
-    position: relative;
-
-    z-index: 2;
-
-    display: flex;
-    align-items: center;
-
-    gap: 22px;
-}
-
-.profile-avatar {
-    width: 88px;
-    height: 88px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    flex-shrink: 0;
-
-    border: 4px solid rgba(255,255,255,.40);
-
-    border-radius: 50%;
+    border-radius:25px;
 
     background:
-        linear-gradient(
-            135deg,
-            #f6b2ff,
-            #bc61e9
-        );
+    linear-gradient(
+        135deg,
+        #24b8ff,
+        #7650ef
+    );
 
-    font-size: 34px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-    box-shadow:
-        0 10px 25px rgba(0,0,0,.18);
-}
-
-.hero-text h2 {
-    font-size: 23px;
-    margin-bottom: 5px;
-}
-
-.hero-text p {
-    color: #f2e8fa;
-    font-size: 10px;
-}
-
-.student-badge {
-    display: inline-block;
-
-    margin-top: 10px;
-
-    padding: 5px 10px;
-
-    border-radius: 20px;
-
-    background: rgba(255,255,255,.15);
-
-    font-size: 9px;
-}
-
-.edit-btn {
-    margin-left: auto;
-
-    padding: 10px 18px;
-
-    border: 1px solid rgba(255,255,255,.30);
-
-    border-radius: 10px;
-
-    background: rgba(255,255,255,.14);
-
-    color: white;
-
-    font-family: inherit;
-
-    font-size: 10px;
-    font-weight: 600;
-
-    cursor: pointer;
-
-    transition: .25s;
-}
-
-.edit-btn:hover {
-    background: rgba(255,255,255,.24);
-    transform: translateY(-2px);
-}
-
-/* =========================
-   CONTENT GRID
-========================= */
-
-.content-grid {
-    display: grid;
-
-    grid-template-columns: 1.5fr 1fr;
-
-    gap: 20px;
-}
-
-.card {
-    padding: 22px;
-
-    border: 1px solid #ece8f1;
-
-    border-radius: 18px;
-
-    background: white;
+    font-size:31px;
+    font-weight:800;
 
     box-shadow:
-        0 8px 25px rgba(45,25,70,.05);
+    0 12px 28px rgba(0,0,0,.22);
 
-    animation: cardAppear .5s ease;
+    border:
+    3px solid rgba(255,255,255,.22);
 }
 
-@keyframes cardAppear {
-    from {
-        opacity: 0;
-        transform: translateY(12px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.profile-hero h2{
+    font-size:25px;
+    margin-bottom:6px;
 }
 
-.card-title {
-    display: flex;
-    align-items: center;
-
-    gap: 9px;
-
-    margin-bottom: 20px;
-
-    color: #30293e;
-
-    font-size: 14px;
-    font-weight: 700;
+.profile-hero p{
+    font-size:13px;
+    color:rgba(255,255,255,.75);
 }
 
-.title-icon {
-    width: 31px;
-    height: 31px;
+.profile-status{
+    display:inline-flex;
+    align-items:center;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    gap:6px;
 
-    border-radius: 9px;
+    margin-top:10px;
 
-    background: #f2e8ff;
+    padding:6px 11px;
 
-    font-size: 15px;
+    border-radius:20px;
+
+    background:rgba(255,255,255,.13);
+
+    font-size:10px;
 }
 
-/* =========================
-   INFORMATION
-========================= */
-
-.info-list {
-    display: grid;
-
-    grid-template-columns: 1fr 1fr;
-
-    gap: 14px;
+.status-dot{
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:#57e6a3;
 }
 
-.info-item {
-    padding: 13px;
+.edit-profile-btn{
+    position:relative;
+    z-index:2;
 
-    border-radius: 12px;
+    border:none;
 
-    background: #faf9fc;
+    padding:12px 18px;
 
-    border: 1px solid #f0edf3;
+    border-radius:12px;
+
+    background:white;
+
+    color:#5a3bd0;
+
+    font-size:11px;
+    font-weight:800;
+
+    cursor:pointer;
+
+    transition:.2s;
 }
 
-.info-label {
-    margin-bottom: 5px;
-
-    color: #9b96a4;
-
-    font-size: 8px;
-
-    font-weight: 600;
-
-    text-transform: uppercase;
-
-    letter-spacing: .5px;
+.edit-profile-btn:hover{
+    transform:translateY(-2px);
 }
 
-.info-value {
-    color: #40394c;
+/* ================= GRID ================= */
 
-    font-size: 10px;
+.profile-grid{
+    display:grid;
 
-    font-weight: 600;
+    grid-template-columns:
+    1.3fr .7fr;
+
+    gap:18px;
+
+    margin-top:20px;
 }
 
-/* =========================
-   ACADEMIC CARD
-========================= */
+/* ================= CARDS ================= */
 
-.academic-item {
-    display: flex;
-    align-items: center;
+.card{
+    background:white;
 
-    justify-content: space-between;
+    border:
+    1px solid #e7e9f3;
 
-    padding: 13px 0;
+    border-radius:18px;
 
-    border-bottom: 1px solid #f0edf3;
-}
-
-.academic-item:last-child {
-    border-bottom: none;
-}
-
-.academic-left {
-    display: flex;
-    align-items: center;
-
-    gap: 10px;
-}
-
-.academic-icon {
-    width: 35px;
-    height: 35px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 10px;
-
-    background: #f5ecff;
-
-    font-size: 15px;
-}
-
-.academic-name {
-    color: #4b4555;
-
-    font-size: 9px;
-
-    font-weight: 600;
-}
-
-.academic-description {
-    color: #a09ba6;
-
-    font-size: 8px;
-
-    margin-top: 2px;
-}
-
-.academic-value {
-    color: #713bd0;
-
-    font-size: 11px;
-
-    font-weight: 700;
-}
-
-/* =========================
-   QUICK ACTIONS
-========================= */
-
-.quick-actions {
-    display: grid;
-
-    grid-template-columns: 1fr 1fr;
-
-    gap: 10px;
-}
-
-.quick-btn {
-    padding: 13px;
-
-    border: 1px solid #eee9f3;
-
-    border-radius: 12px;
-
-    background: #faf9fc;
-
-    color: #514b5b;
-
-    font-family: inherit;
-
-    font-size: 9px;
-
-    font-weight: 600;
-
-    cursor: pointer;
-
-    transition: .25s;
-}
-
-.quick-btn:hover {
-    background: #f4ebff;
-
-    border-color: #d9baff;
-
-    color: #7037c9;
-
-    transform: translateY(-2px);
-}
-
-/* =========================
-   MODAL
-========================= */
-
-.modal {
-    display: none;
-
-    position: fixed;
-
-    inset: 0;
-
-    background: rgba(26,15,39,.55);
-
-    backdrop-filter: blur(5px);
-
-    align-items: center;
-    justify-content: center;
-
-    z-index: 500;
-
-    padding: 20px;
-}
-
-.modal.show {
-    display: flex;
-}
-
-.modal-box {
-    width: 100%;
-    max-width: 500px;
-
-    padding: 28px;
-
-    border-radius: 20px;
-
-    background: white;
+    padding:20px;
 
     box-shadow:
-        0 25px 70px rgba(0,0,0,.25);
-
-    animation: modalIn .3s ease;
+    0 7px 22px rgba(40,35,100,.06);
 }
 
-@keyframes modalIn {
-    from {
-        opacity: 0;
-        transform: scale(.95);
-    }
+.card-title{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
 
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
+    margin-bottom:18px;
 }
 
-.modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    margin-bottom: 20px;
+.card-title h3{
+    font-size:17px;
+    font-weight:800;
 }
 
-.modal-header h3 {
-    font-size: 17px;
+.card-title span{
+    color:#9299ae;
+    font-size:11px;
 }
 
-.close-modal {
-    border: none;
+/* ================= INFO ================= */
 
-    background: #f3eff7;
+.info-grid{
+    display:grid;
 
-    width: 30px;
-    height: 30px;
+    grid-template-columns:
+    1fr 1fr;
 
-    border-radius: 50%;
-
-    cursor: pointer;
+    gap:13px;
 }
 
-.edit-grid {
-    display: grid;
+.info-box{
+    background:#f7f8fc;
 
-    grid-template-columns: 1fr 1fr;
+    border-radius:13px;
 
-    gap: 14px;
+    padding:13px;
 }
 
-.edit-group.full {
-    grid-column: 1 / -1;
+.info-box label{
+    display:block;
+
+    color:#959bad;
+
+    font-size:9px;
+
+    margin-bottom:5px;
 }
 
-.edit-group label {
-    display: block;
+.info-box strong{
+    display:block;
 
-    margin-bottom: 6px;
+    color:#424a69;
 
-    color: #625b6d;
-
-    font-size: 9px;
-
-    font-weight: 600;
+    font-size:12px;
 }
 
-.edit-group input,
-.edit-group select {
-    width: 100%;
+/* ================= STATS ================= */
 
-    height: 40px;
+.stats-grid{
+    display:grid;
 
-    padding: 0 12px;
+    grid-template-columns:
+    1fr 1fr;
 
-    border: 1px solid #e6e1eb;
-
-    border-radius: 9px;
-
-    outline: none;
-
-    font-family: inherit;
-
-    font-size: 9px;
-
-    background: #faf9fc;
+    gap:12px;
 }
 
-.edit-group input:focus,
-.edit-group select:focus {
-    border-color: #9348d9;
-}
+.stat-box{
+    padding:16px;
 
-.save-btn {
-    width: 100%;
-
-    height: 42px;
-
-    margin-top: 20px;
-
-    border: none;
-
-    border-radius: 10px;
+    border-radius:14px;
 
     background:
-        linear-gradient(
-            100deg,
-            #713bd8,
-            #a83ec8,
-            #df439d
-        );
+    linear-gradient(
+        135deg,
+        #f5f3ff,
+        #f8fbff
+    );
 
-    color: white;
-
-    font-family: inherit;
-
-    font-size: 10px;
-
-    font-weight: 600;
-
-    cursor: pointer;
+    border:
+    1px solid #ececf6;
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
+.stat-icon{
+    font-size:22px;
+}
 
-@media(max-width: 950px) {
+.stat-value{
+    margin-top:9px;
 
-    .sidebar {
-        width: 205px;
+    font-size:22px;
+
+    font-weight:800;
+
+    color:#282f56;
+}
+
+.stat-label{
+    margin-top:3px;
+
+    color:#9299ae;
+
+    font-size:10px;
+}
+
+/* ================= CONTACT ================= */
+
+.contact-list{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.contact-item{
+    display:flex;
+    align-items:center;
+
+    gap:11px;
+
+    padding:11px;
+
+    background:#f8f9fc;
+
+    border-radius:12px;
+}
+
+.contact-icon{
+    width:36px;
+    height:36px;
+
+    border-radius:10px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:#efedff;
+
+    font-size:17px;
+}
+
+.contact-text span{
+    display:block;
+
+    font-size:9px;
+
+    color:#999fb1;
+}
+
+.contact-text strong{
+    display:block;
+
+    font-size:11px;
+
+    color:#4a5270;
+
+    margin-top:2px;
+}
+
+/* ================= ACTIVITY ================= */
+
+.activity{
+    margin-top:18px;
+}
+
+.activity-list{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.activity-item{
+    display:flex;
+    align-items:center;
+    gap:11px;
+}
+
+.activity-icon{
+    width:35px;
+    height:35px;
+
+    border-radius:10px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:#f0efff;
+
+    font-size:16px;
+}
+
+.activity-text{
+    flex:1;
+}
+
+.activity-text strong{
+    display:block;
+
+    font-size:11px;
+
+    color:#4a5270;
+}
+
+.activity-text span{
+    display:block;
+
+    margin-top:2px;
+
+    font-size:9px;
+
+    color:#9ba1b2;
+}
+
+/* ================= CHATBOT ================= */
+
+.chatbot{
+    position:fixed;
+
+    top:18px;
+    right:18px;
+    bottom:18px;
+
+    width:268px;
+    min-width:268px;
+    max-width:268px;
+
+    background:white;
+
+    border-radius:22px;
+
+    border:1px solid #e5e6f2;
+
+    box-shadow:
+    0 15px 45px rgba(40,35,100,.15);
+
+    z-index:9999;
+
+    display:flex;
+    flex-direction:column;
+
+    overflow:hidden;
+}
+
+.chat-header{
+    min-height:82px;
+    flex-shrink:0;
+
+    padding:15px;
+
+    display:flex;
+    align-items:center;
+
+    color:white;
+
+    background:
+    linear-gradient(
+        135deg,
+        #29277d,
+        #7137d8
+    );
+}
+
+.robot-icon{
+    width:45px;
+    height:45px;
+
+    border-radius:14px;
+
+    background:rgba(255,255,255,.15);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:24px;
+
+    margin-right:10px;
+}
+
+.chat-title strong{
+    display:block;
+    font-size:15px;
+}
+
+.chat-title span{
+    display:block;
+    font-size:10px;
+    margin-top:3px;
+    color:rgba(255,255,255,.78);
+}
+
+.online-dot{
+    display:inline-block;
+
+    width:7px;
+    height:7px;
+
+    background:#57e6a3;
+
+    border-radius:50%;
+
+    margin-right:4px;
+}
+
+.chat-body{
+    flex:1;
+    min-height:0;
+
+    padding:17px 14px;
+
+    overflow-y:auto;
+
+    background:
+    linear-gradient(
+        180deg,
+        #fafbff,
+        #f4f5fb
+    );
+}
+
+.bot-message{
+    background:white;
+
+    border:1px solid #e7e9f3;
+
+    border-radius:14px;
+
+    padding:12px;
+
+    margin-bottom:10px;
+
+    color:#65708d;
+
+    font-size:11px;
+
+    line-height:1.6;
+
+    box-shadow:
+    0 5px 15px rgba(40,35,100,.04);
+}
+
+.user-message{
+    background:
+    linear-gradient(
+        135deg,
+        #6241e8,
+        #7b3ee0
+    );
+
+    color:white;
+
+    padding:10px 12px;
+
+    border-radius:
+    14px 14px 4px 14px;
+
+    margin:
+    9px 0 9px 20px;
+
+    font-size:11px;
+
+    line-height:1.5;
+}
+
+.quick-buttons{
+    display:flex;
+
+    gap:5px;
+
+    flex-wrap:wrap;
+
+    padding:9px 14px;
+
+    background:white;
+
+    border-top:
+    1px solid #eceef5;
+}
+
+.quick-btn{
+    border:1px solid #e0e3f0;
+
+    background:white;
+
+    color:#6b54d9;
+
+    border-radius:20px;
+
+    padding:7px 9px;
+
+    font-size:9px;
+
+    cursor:pointer;
+}
+
+.quick-btn:hover{
+    background:#f3f0ff;
+}
+
+.chat-footer{
+    flex-shrink:0;
+
+    padding:10px;
+
+    background:white;
+
+    border-top:
+    1px solid #eceef5;
+
+    display:flex;
+
+    gap:7px;
+}
+
+.chat-input{
+    flex:1;
+    min-width:0;
+
+    height:40px;
+
+    border:1px solid #e1e4ef;
+
+    border-radius:12px;
+
+    outline:none;
+
+    padding:0 11px;
+
+    font-size:11px;
+
+    color:#555e78;
+}
+
+.send-btn{
+    width:40px;
+    height:40px;
+
+    border:none;
+
+    border-radius:12px;
+
+    color:white;
+
+    background:
+    linear-gradient(
+        135deg,
+        #6543e8,
+        #843de0
+    );
+
+    cursor:pointer;
+
+    font-size:17px;
+}
+
+/* ================= MODAL ================= */
+
+.modal-overlay{
+    position:fixed;
+    inset:0;
+
+    background:rgba(20,25,65,.48);
+
+    backdrop-filter:blur(5px);
+
+    display:none;
+
+    align-items:center;
+    justify-content:center;
+
+    z-index:20000;
+
+    padding:20px;
+}
+
+.modal-overlay.show{
+    display:flex;
+}
+
+.modal{
+    width:520px;
+    max-width:100%;
+
+    background:white;
+
+    border-radius:22px;
+
+    overflow:hidden;
+
+    box-shadow:
+    0 25px 70px rgba(25,25,70,.25);
+
+    animation:
+    modalIn .2s ease;
+}
+
+@keyframes modalIn{
+
+    from{
+        opacity:0;
+        transform:
+        translateY(12px) scale(.98);
     }
 
-    .main {
-        margin-left: 205px;
-        padding: 25px;
-    }
-
-    .content-grid {
-        grid-template-columns: 1fr;
+    to{
+        opacity:1;
+        transform:
+        translateY(0) scale(1);
     }
 }
 
-@media(max-width: 700px) {
+.modal-head{
+    padding:20px 22px;
 
-    .sidebar {
-        position: relative;
+    color:white;
 
-        width: 100%;
-        height: auto;
+    background:
+    linear-gradient(
+        135deg,
+        #29277d,
+        #7137d8
+    );
 
-        padding: 15px;
+    display:flex;
+
+    align-items:center;
+    justify-content:space-between;
+}
+
+.modal-head h3{
+    font-size:18px;
+}
+
+.close-modal{
+    width:34px;
+    height:34px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.14);
+
+    color:white;
+
+    font-size:19px;
+
+    cursor:pointer;
+}
+
+.modal-body{
+    padding:23px;
+}
+
+.form-grid{
+    display:grid;
+
+    grid-template-columns:
+    1fr 1fr;
+
+    gap:13px;
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+}
+
+.form-group.full{
+    grid-column:1 / -1;
+}
+
+.form-group label{
+    font-size:10px;
+    font-weight:700;
+    color:#777f98;
+}
+
+.form-group input,
+.form-group select{
+    height:40px;
+
+    border:
+    1px solid #e0e3ef;
+
+    border-radius:11px;
+
+    outline:none;
+
+    padding:0 11px;
+
+    color:#4d5672;
+
+    font-size:11px;
+
+    background:white;
+}
+
+.form-group input:focus,
+.form-group select:focus{
+    border-color:#7050e8;
+}
+
+.modal-buttons{
+    display:flex;
+
+    justify-content:flex-end;
+
+    gap:8px;
+
+    margin-top:20px;
+}
+
+.cancel-btn,
+.save-btn{
+    height:40px;
+
+    padding:0 16px;
+
+    border-radius:11px;
+
+    font-size:11px;
+
+    font-weight:700;
+
+    cursor:pointer;
+}
+
+.cancel-btn{
+    border:1px solid #e0e3ee;
+
+    background:white;
+
+    color:#727a91;
+}
+
+.save-btn{
+    border:none;
+
+    background:
+    linear-gradient(
+        135deg,
+        #6243e7,
+        #7b3fdf
+    );
+
+    color:white;
+}
+
+/* ================= TOAST ================= */
+
+.toast{
+    position:fixed;
+
+    bottom:30px;
+    left:50%;
+
+    transform:
+    translateX(-50%)
+    translateY(20px);
+
+    background:#20264b;
+
+    color:white;
+
+    padding:12px 18px;
+
+    border-radius:12px;
+
+    font-size:11px;
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transition:.3s;
+
+    z-index:30000;
+}
+
+.toast.show{
+    opacity:1;
+
+    transform:
+    translateX(-50%)
+    translateY(0);
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:1150px){
+
+    .sidebar{
+        width:230px;
+        min-width:230px;
     }
 
-    .nav-menu {
-        flex-direction: row;
-
-        overflow-x: auto;
+    .main-area{
+        margin-left:230px;
+        margin-right:250px;
     }
 
-    .nav-item {
-        min-width: max-content;
+    .chatbot{
+        width:232px;
+        min-width:232px;
+        max-width:232px;
+        right:10px;
     }
 
-    .sidebar-bottom {
-        display: none;
-    }
-
-    .main {
-        margin-left: 0;
-        padding: 20px;
-    }
-
-    .logo {
-        margin-bottom: 15px;
-    }
-
-    .menu-title {
-        display: none;
-    }
-
-    .hero-content {
-        flex-wrap: wrap;
-    }
-
-    .edit-btn {
-        margin-left: 0;
+    .profile-grid{
+        grid-template-columns:1fr;
     }
 }
 
-@media(max-width: 520px) {
+@media(max-width:900px){
 
-    .topbar {
-        align-items: flex-start;
+    .chatbot{
+        display:none;
     }
 
-    .mini-name {
-        display: none;
+    .main-area{
+        margin-right:0;
+    }
+}
+
+@media(max-width:700px){
+
+    .sidebar{
+        width:80px;
+        min-width:80px;
     }
 
-    .profile-hero {
-        padding: 22px;
+    .brand{
+        justify-content:center;
+        padding:15px;
     }
 
-    .profile-avatar {
-        width: 70px;
-        height: 70px;
-
-        font-size: 28px;
+    .brand-text{
+        display:none;
     }
 
-    .hero-text h2 {
-        font-size: 18px;
+    .menu-title,
+    .nav-text{
+        display:none;
     }
 
-    .info-list {
-        grid-template-columns: 1fr;
+    .nav-item{
+        justify-content:center;
+        padding:0;
     }
 
-    .edit-grid {
-        grid-template-columns: 1fr;
+    .nav-icon{
+        margin:0;
     }
 
-    .edit-group.full {
-        grid-column: auto;
+    .main-area{
+        margin-left:80px;
+    }
+
+    .top-header{
+        padding:18px;
+    }
+
+    .header-left h1{
+        font-size:23px;
+    }
+
+    .header-left p{
+        font-size:11px;
+    }
+
+    .time-box,
+    .profile-info{
+        display:none;
+    }
+
+    .content{
+        padding:18px;
+    }
+
+    .profile-hero{
+        align-items:flex-start;
+        flex-direction:column;
+        gap:18px;
+    }
+
+    .profile-hero-left{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .info-grid,
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .form-group.full{
+        grid-column:auto;
     }
 }
 
 </style>
 </head>
 
+
 <body>
 
-<!-- =========================
-     SIDEBAR
-========================= -->
+
+<!-- ================= SIDEBAR ================= -->
 
 <aside class="sidebar">
 
-    <div class="logo">
-        <div class="logo-icon">🎓</div>
+<div class="brand">
 
-        <div class="logo-text">
-            Campus<span>Connect</span>
-        </div>
+    <div class="logo-box">
+        🎓
     </div>
 
-    <div class="menu-title">
-        STUDENT PORTAL
-    </div>
+    <div class="brand-text">
 
-    <nav class="nav-menu">
-
-        <button class="nav-item" onclick="goTo('../dashboard.html')">
-            <span class="nav-icon">🏠</span>
-            Dashboard
-        </button>
-
-        <button class="nav-item" onclick="goTo('../dashboard.html')">
-            <span class="nav-icon">📖</span>
-            My Courses
-        </button>
-
-        <button class="nav-item" onclick="goTo('timetable.html')">
-            <span class="nav-icon">🗓️</span>
-            Timetable
-        </button>
-
-        <button class="nav-item" onclick="goTo('../dashboard.html')">
-            <span class="nav-icon">📝</span>
-            Assignments
-        </button>
-
-        <button class="nav-item" onclick="goTo('attendance.html')">
-            <span class="nav-icon">📊</span>
-            Attendance
-        </button>
-
-        <button class="nav-item" onclick="goTo('academics.html')">
-            <span class="nav-icon">📚</span>
-            Academics
-        </button>
-
-        <button class="nav-item" onclick="goTo('faculty.html')">
-            <span class="nav-icon">👨‍🏫</span>
-            Faculty
-        </button>
-
-        <button class="nav-item" onclick="goTo('placement.html')">
-            <span class="nav-icon">💼</span>
-            Placement
-        </button>
-
-        <button class="nav-item" onclick="goTo('results.html')">
-            <span class="nav-icon">🏆</span>
-            Results
-        </button>
-
-        <button class="nav-item" onclick="goTo('documents.html')">
-            <span class="nav-icon">📄</span>
-            Documents
-        </button>
-
-        <button class="nav-item" onclick="goTo('complaints.html')">
-            <span class="nav-icon">📢</span>
-            Complaints
-        </button>
-
-        <button class="nav-item" onclick="goTo('feedback.html')">
-            <span class="nav-icon">💬</span>
-            Feedback
-        </button>
-
-        <button class="nav-item" onclick="goTo('lost-found.html')">
-            <span class="nav-icon">🔎</span>
-            Lost & Found
-        </button>
-
-        <button class="nav-item" onclick="goTo('campus.html')">
-            <span class="nav-icon">🏫</span>
-            Campus
-        </button>
-
-        <button class="nav-item" onclick="goTo('events.html')">
-            <span class="nav-icon">🎫</span>
-            Events
-        </button>
-
-        <button class="nav-item" onclick="goTo('exams.html')">
-            <span class="nav-icon">📋</span>
-            Exams
-        </button>
-
-        <button class="nav-item" onclick="goTo('notifications.html')">
-            <span class="nav-icon">🔔</span>
-            Notifications
-        </button>
-
-        <button class="nav-item active">
-            <span class="nav-icon">👤</span>
-            Profile
-        </button>
-
-        <button class="nav-item" onclick="goTo('settings.html')">
-            <span class="nav-icon">⚙️</span>
-            Settings
-        </button>
-
-    </nav>
-
-    <div class="sidebar-bottom">
-
-        <button class="logout" onclick="goTo('../index.html')">
-            🚪
-            Logout
-        </button>
-
-    </div>
-
-</aside>
-
-
-<!-- =========================
-     MAIN CONTENT
-========================= -->
-
-<main class="main">
-
-    <header class="topbar">
-
-        <div class="page-title">
-
-            <h1>
-                My Profile
-            </h1>
-
-            <p>
-                Manage your student information
-            </p>
-
+        <div class="brand-title">
+            CampusConnect
         </div>
 
-        <div class="top-actions">
-
-            <button
-                class="notification"
-                onclick="goTo('notifications.html')"
-            >
-                🔔
-            </button>
-
-            <div class="mini-profile">
-
-                <div class="mini-avatar">
-                    👤
-                </div>
-
-                <div class="mini-name">
-                    Student
-                </div>
-
-            </div>
-
+        <div class="brand-subtitle">
+            AI College Companion
         </div>
-
-    </header>
-
-
-    <!-- PROFILE HERO -->
-
-    <section class="profile-hero">
-
-        <div class="hero-content">
-
-            <div class="profile-avatar">
-                👤
-            </div>
-
-            <div class="hero-text">
-
-                <h2 id="displayName">
-                    Student Name
-                </h2>
-
-                <p id="displayCourse">
-                    Course • Department
-                </p>
-
-                <span class="student-badge" id="displayId">
-                    Student ID: STU0001
-                </span>
-
-            </div>
-
-            <button
-                class="edit-btn"
-                onclick="openEditModal()"
-            >
-                ✏️ Edit Profile
-            </button>
-
-        </div>
-
-    </section>
-
-
-    <!-- CONTENT GRID -->
-
-    <div class="content-grid">
-
-        <!-- PERSONAL INFORMATION -->
-
-        <section class="card">
-
-            <div class="card-title">
-
-                <div class="title-icon">
-                    👤
-                </div>
-
-                Personal Information
-
-            </div>
-
-            <div class="info-list">
-
-                <div class="info-item">
-                    <div class="info-label">Full Name</div>
-                    <div class="info-value" id="nameInfo">
-                        Student Name
-                    </div>
-                </div>
-
-                <div class="info-item">
-                    <div class="info-label">Student ID</div>
-                    <div class="info-value" id="idInfo">
-                        STU0001
-                    </div>
-                </div>
-
-                <div class="info-item">
-                    <div class="info-label">College Email</div>
-                    <div class="info-value" id="emailInfo">
-                        student@college.edu
-                    </div>
-                </div>
-
-                <div class="info-item">
-                    <div class="info-label">Phone Number</div>
-                    <div class="info-value" id="phoneInfo">
-                        +91 XXXXX XXXXX
-                    </div>
-                </div>
-
-                <div class="info-item">
-                    <div class="info-label">Course / Program</div>
-                    <div class="info-value" id="courseInfo">
-                        BCA
-                    </div>
-                </div>
-
-                <div class="info-item">
-                    <div class="info-label">Department</div>
-                    <div class="info-value" id="departmentInfo">
-                        Computer Applications
-                    </div>
-                </div>
-
-                <div class="info-item">
-                    <div class="info-label">Academic Year</div>
-                    <div class="info-value" id="yearInfo">
-                        2nd Year
-                    </div>
-                </div>
-
-                <div class="info-item">
-                    <div class="info-label">Semester</div>
-                    <div class="info-value" id="semesterInfo">
-                        Semester 4
-                    </div>
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ACADEMIC OVERVIEW -->
-
-        <section class="card">
-
-            <div class="card-title">
-
-                <div class="title-icon">
-                    🎓
-                </div>
-
-                Academic Overview
-
-            </div>
-
-            <div class="academic-item">
-
-                <div class="academic-left">
-
-                    <div class="academic-icon">
-                        📚
-                    </div>
-
-                    <div>
-                        <div class="academic-name">
-                            Current Course
-                        </div>
-
-                        <div class="academic-description">
-                            Program
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="academic-value" id="courseAcademic">
-                    BCA
-                </div>
-
-            </div>
-
-
-            <div class="academic-item">
-
-                <div class="academic-left">
-
-                    <div class="academic-icon">
-                        📅
-                    </div>
-
-                    <div>
-                        <div class="academic-name">
-                            Current Year
-                        </div>
-
-                        <div class="academic-description">
-                            Academic year
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="academic-value" id="yearAcademic">
-                    2nd
-                </div>
-
-            </div>
-
-
-            <div class="academic-item">
-
-                <div class="academic-left">
-
-                    <div class="academic-icon">
-                        📝
-                    </div>
-
-                    <div>
-                        <div class="academic-name">
-                            Semester
-                        </div>
-
-                        <div class="academic-description">
-                            Current semester
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="academic-value" id="semesterAcademic">
-                    4
-                </div>
-
-            </div>
-
-
-            <div class="academic-item">
-
-                <div class="academic-left">
-
-                    <div class="academic-icon">
-                        🏫
-                    </div>
-
-                    <div>
-                        <div class="academic-name">
-                            Department
-                        </div>
-
-                        <div class="academic-description">
-                            Academic department
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="academic-value" id="departmentAcademic">
-                    CA
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- QUICK ACTIONS -->
-
-        <section class="card">
-
-            <div class="card-title">
-
-                <div class="title-icon">
-                    ⚡
-                </div>
-
-                Quick Actions
-
-            </div>
-
-            <div class="quick-actions">
-
-                <button
-                    class="quick-btn"
-                    onclick="goTo('timetable.html')"
-                >
-                    🗓️ Timetable
-                </button>
-
-                <button
-                    class="quick-btn"
-                    onclick="goTo('attendance.html')"
-                >
-                    📊 Attendance
-                </button>
-
-                <button
-                    class="quick-btn"
-                    onclick="goTo('academics.html')"
-                >
-                    📚 Academics
-                </button>
-
-                <button
-                    class="quick-btn"
-                    onclick="goTo('events.html')"
-                >
-                    🎫 Events
-                </button>
-
-            </div>
-
-        </section>
-
-
-        <!-- ACCOUNT STATUS -->
-
-        <section class="card">
-
-            <div class="card-title">
-
-                <div class="title-icon">
-                    🛡️
-                </div>
-
-                Account Status
-
-            </div>
-
-            <div class="academic-item">
-
-                <div class="academic-left">
-
-                    <div class="academic-icon">
-                        ✅
-                    </div>
-
-                    <div>
-                        <div class="academic-name">
-                            Account
-                        </div>
-
-                        <div class="academic-description">
-                            Student account status
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="academic-value">
-                    Active
-                </div>
-
-            </div>
-
-
-            <div class="academic-item">
-
-                <div class="academic-left">
-
-                    <div class="academic-icon">
-                        🔒
-                    </div>
-
-                    <div>
-                        <div class="academic-name">
-                            Security
-                        </div>
-
-                        <div class="academic-description">
-                            Account protection
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="academic-value">
-                    Secure
-                </div>
-
-            </div>
-
-        </section>
-
-    </div>
-
-</main>
-
-
-<!-- =========================
-     EDIT PROFILE MODAL
-========================= -->
-
-<div class="modal" id="editModal">
-
-    <div class="modal-box">
-
-        <div class="modal-header">
-
-            <h3>
-                Edit Profile
-            </h3>
-
-            <button
-                class="close-modal"
-                onclick="closeEditModal()"
-            >
-                ✕
-            </button>
-
-        </div>
-
-        <div class="edit-grid">
-
-            <div class="edit-group full">
-
-                <label>Full Name</label>
-
-                <input
-                    type="text"
-                    id="editName"
-                    placeholder="Enter your name"
-                >
-
-            </div>
-
-
-            <div class="edit-group">
-
-                <label>Student ID</label>
-
-                <input
-                    type="text"
-                    id="editId"
-                    placeholder="Student ID"
-                >
-
-            </div>
-
-
-            <div class="edit-group">
-
-                <label>College Email</label>
-
-                <input
-                    type="email"
-                    id="editEmail"
-                    placeholder="College email"
-                >
-
-            </div>
-
-
-            <div class="edit-group">
-
-                <label>Phone</label>
-
-                <input
-                    type="tel"
-                    id="editPhone"
-                    placeholder="Phone number"
-                >
-
-            </div>
-
-
-            <div class="edit-group">
-
-                <label>Course</label>
-
-                <select id="editCourse">
-
-                    <option value="BCA">BCA</option>
-                    <option value="BBA">BBA</option>
-                    <option value="B.Com">B.Com</option>
-                    <option value="B.Sc">B.Sc</option>
-                    <option value="MCA">MCA</option>
-                    <option value="MBA">MBA</option>
-                    <option value="M.Com">M.Com</option>
-                    <option value="Other">Other</option>
-
-                </select>
-
-            </div>
-
-
-            <div class="edit-group">
-
-                <label>Department</label>
-
-                <input
-                    type="text"
-                    id="editDepartment"
-                    placeholder="Department"
-                >
-
-            </div>
-
-
-            <div class="edit-group">
-
-                <label>Year</label>
-
-                <select id="editYear">
-
-                    <option value="1st Year">1st Year</option>
-                    <option value="2nd Year">2nd Year</option>
-                    <option value="3rd Year">3rd Year</option>
-                    <option value="4th Year">4th Year</option>
-
-                </select>
-
-            </div>
-
-
-            <div class="edit-group">
-
-                <label>Semester</label>
-
-                <select id="editSemester">
-
-                    <option value="Semester 1">Semester 1</option>
-                    <option value="Semester 2">Semester 2</option>
-                    <option value="Semester 3">Semester 3</option>
-                    <option value="Semester 4">Semester 4</option>
-                    <option value="Semester 5">Semester 5</option>
-                    <option value="Semester 6">Semester 6</option>
-                    <option value="Semester 7">Semester 7</option>
-                    <option value="Semester 8">Semester 8</option>
-
-                </select>
-
-            </div>
-
-        </div>
-
-
-        <button
-            class="save-btn"
-            onclick="saveProfile()"
-        >
-            Save Profile
-        </button>
 
     </div>
 
 </div>
 
 
+<nav class="menu">
+
+
+<div class="menu-title">
+    MAIN MENU
+</div>
+
+
+<a class="nav-item" href="../dashboard.html">
+    <span class="nav-icon">🏠</span>
+    <span class="nav-text">Dashboard</span>
+</a>
+
+<a class="nav-item" href="courses.html">
+
+    <span class="nav-icon">
+        📚
+    </span>
+
+    <span class="nav-text">
+        Courses
+    </span>
+
+</a>
+
+<a class="nav-item" href="timetable.html">
+    <span class="nav-icon">🗓️</span>
+    <span class="nav-text">Timetable</span>
+</a>
+
+
+<a class="nav-item" href="assignments.html">
+    <span class="nav-icon">📝</span>
+    <span class="nav-text">Assignments</span>
+</a>
+
+
+<a class="nav-item" href="attendance.html">
+    <span class="nav-icon">📊</span>
+    <span class="nav-text">Attendance</span>
+</a>
+
+
+<a class="nav-item" href="academics.html">
+    <span class="nav-icon">🎓</span>
+    <span class="nav-text">Academics</span>
+</a>
+
+
+<a class="nav-item" href="faculty.html">
+    <span class="nav-icon">👨‍🏫</span>
+    <span class="nav-text">Faculty</span>
+</a>
+
+
+<div class="menu-section">
+
+<div class="menu-title">
+    CAREER
+</div>
+
+
+<a class="nav-item" href="placement.html">
+    <span class="nav-icon">💼</span>
+    <span class="nav-text">Placement</span>
+</a>
+
+
+<a class="nav-item" href="results.html">
+    <span class="nav-icon">📈</span>
+    <span class="nav-text">Results</span>
+</a>
+
+</div>
+
+
+<div class="menu-section">
+
+<div class="menu-title">
+    CAMPUS
+</div>
+
+
+<a class="nav-item" href="documents.html">
+    <span class="nav-icon">📄</span>
+    <span class="nav-text">Documents</span>
+</a>
+
+
+<a class="nav-item" href="complaints.html">
+    <span class="nav-icon">📢</span>
+    <span class="nav-text">Complaints</span>
+</a>
+
+
+<a class="nav-item" href="feedback.html">
+    <span class="nav-icon">💬</span>
+    <span class="nav-text">Feedback</span>
+</a>
+
+
+<a class="nav-item" href="lost-found.html">
+    <span class="nav-icon">🔎</span>
+    <span class="nav-text">Lost & Found</span>
+</a>
+
+
+<a class="nav-item" href="campus.html">
+    <span class="nav-icon">🏫</span>
+    <span class="nav-text">Campus</span>
+</a>
+
+
+<a class="nav-item" href="events.html">
+    <span class="nav-icon">🎉</span>
+    <span class="nav-text">Events</span>
+</a>
+
+
+<a class="nav-item" href="exams.html">
+    <span class="nav-icon">📋</span>
+    <span class="nav-text">Exams</span>
+</a>
+
+
+<a class="nav-item" href="notifications.html">
+    <span class="nav-icon">🔔</span>
+    <span class="nav-text">Notifications</span>
+</a>
+
+</div>
+
+
+<div class="menu-section">
+
+<div class="menu-title">
+    ACCOUNT
+</div>
+
+
+<a class="nav-item active" href="profile.html">
+    <span class="nav-icon">👤</span>
+    <span class="nav-text">Profile</span>
+</a>
+
+
+<a class="nav-item" href="settings.html">
+    <span class="nav-icon">⚙️</span>
+    <span class="nav-text">Settings</span>
+</a>
+
+
+<a
+    class="nav-item logout"
+    href="../index.html"
+    onclick="logoutUser(event)"
+>
+    <span class="nav-icon">🚪</span>
+    <span class="nav-text">Logout</span>
+</a>
+
+
+</div>
+
+</nav>
+
+</aside>
+
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="main-area">
+
+
+<header class="top-header">
+
+<div class="header-left">
+
+<h1>
+    My Profile 👤
+</h1>
+
+<p>
+    Manage your CampusConnect student profile
+</p>
+
+</div>
+
+
+<div class="header-right">
+
+<div class="time-box" id="clock">
+    00:00:00
+</div>
+
+
+<div
+    class="notification"
+    onclick="window.location.href='notifications.html'"
+>
+    🔔
+</div>
+
+
+<div class="profile-mini">
+
+<div class="profile-circle">
+    PB
+</div>
+
+<div class="profile-info">
+
+<strong>
+    Priya Bhavani
+</strong>
+
+<span>
+    Student
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+</header>
+
+
+
+<div class="content">
+
+
+<!-- ================= PROFILE HERO ================= -->
+
+<section class="profile-hero">
+
+
+<div class="profile-hero-left">
+
+<div class="big-profile" id="bigInitials">
+    PB
+</div>
+
+
+<div>
+
+<h2 id="heroName">
+    Priya Bhavani
+</h2>
+
+<p>
+    Bachelor of Computer Applications
+    • Computer Science
+</p>
+
+<div class="profile-status">
+
+<span class="status-dot"></span>
+
+Active Student
+
+</div>
+
+</div>
+
+</div>
+
+
+<button
+    class="edit-profile-btn"
+    onclick="openEditProfile()"
+>
+    ✏️ Edit Profile
+</button>
+
+
+</section>
+
+
+
+<!-- ================= PROFILE GRID ================= -->
+
+<div class="profile-grid">
+
+
+<!-- PERSONAL INFORMATION -->
+
+<section class="card">
+
+<div class="card-title">
+
+<h3>
+    Personal Information
+</h3>
+
+<span>
+    Student Details
+</span>
+
+</div>
+
+
+<div class="info-grid">
+
+
+<div class="info-box">
+
+<label>
+    FULL NAME
+</label>
+
+<strong id="nameValue">
+    Priya Bhavani
+</strong>
+
+</div>
+
+
+<div class="info-box">
+
+<label>
+    STUDENT ID
+</label>
+
+<strong>
+    CC2026BCA014
+</strong>
+
+</div>
+
+
+<div class="info-box">
+
+<label>
+    EMAIL ADDRESS
+</label>
+
+<strong id="emailValue">
+    priya.bhavani@college.edu
+</strong>
+
+</div>
+
+
+<div class="info-box">
+
+<label>
+    PHONE NUMBER
+</label>
+
+<strong id="phoneValue">
+    +91 98765 43210
+</strong>
+
+</div>
+
+
+<div class="info-box">
+
+<label>
+    DATE OF BIRTH
+</label>
+
+<strong>
+    15 August 2005
+</strong>
+
+</div>
+
+
+<div class="info-box">
+
+<label>
+    GENDER
+</label>
+
+<strong>
+    Female
+</strong>
+
+</div>
+
+
+<div class="info-box">
+
+<label>
+    COURSE
+</label>
+
+<strong>
+    Bachelor of Computer Applications
+</strong>
+
+</div>
+
+
+<div class="info-box">
+
+<label>
+    DEPARTMENT
+</label>
+
+<strong>
+    Computer Science
+</strong>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- ACADEMIC SUMMARY -->
+
+<section class="card">
+
+<div class="card-title">
+
+<h3>
+    Academic Summary
+</h3>
+
+<span>
+    2026
+</span>
+
+</div>
+
+
+<div class="stats-grid">
+
+
+<div class="stat-box">
+
+<div class="stat-icon">
+    📊
+</div>
+
+<div class="stat-value">
+    8.6
+</div>
+
+<div class="stat-label">
+    Current CGPA
+</div>
+
+</div>
+
+
+<div class="stat-box">
+
+<div class="stat-icon">
+    📅
+</div>
+
+<div class="stat-value">
+    92%
+</div>
+
+<div class="stat-label">
+    Attendance
+</div>
+
+</div>
+
+
+<div class="stat-box">
+
+<div class="stat-icon">
+    📝
+</div>
+
+<div class="stat-value">
+    5
+</div>
+
+<div class="stat-label">
+    Pending Assignments
+</div>
+
+</div>
+
+
+<div class="stat-box">
+
+<div class="stat-icon">
+    🎓
+</div>
+
+<div class="stat-value">
+    4
+</div>
+
+<div class="stat-label">
+    Semester
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- CONTACT INFORMATION -->
+
+<section class="card">
+
+<div class="card-title">
+
+<h3>
+    Contact Information
+</h3>
+
+<span>
+    Reach Me
+</span>
+
+</div>
+
+
+<div class="contact-list">
+
+
+<div class="contact-item">
+
+<div class="contact-icon">
+    📧
+</div>
+
+<div class="contact-text">
+
+<span>
+    College Email
+</span>
+
+<strong id="contactEmail">
+    priya.bhavani@college.edu
+</strong>
+
+</div>
+
+</div>
+
+
+<div class="contact-item">
+
+<div class="contact-icon">
+    📱
+</div>
+
+<div class="contact-text">
+
+<span>
+    Mobile
+</span>
+
+<strong id="contactPhone">
+    +91 98765 43210
+</strong>
+
+</div>
+
+</div>
+
+
+<div class="contact-item">
+
+<div class="contact-icon">
+    🏠
+</div>
+
+<div class="contact-text">
+
+<span>
+    Address
+</span>
+
+<strong>
+    Hubballi, Karnataka
+</strong>
+
+</div>
+
+</div>
+
+
+<div class="contact-item">
+
+<div class="contact-icon">
+    👨‍🏫
+</div>
+
+<div class="contact-text">
+
+<span>
+    Academic Advisor
+</span>
+
+<strong>
+    Prof. Priya Sharma
+</strong>
+
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- RECENT ACTIVITY -->
+
+<section class="card activity">
+
+<div class="card-title">
+
+<h3>
+    Recent Activity
+</h3>
+
+<span>
+    Latest
+</span>
+
+</div>
+
+
+<div class="activity-list">
+
+
+<div class="activity-item">
+
+<div class="activity-icon">
+    📋
+</div>
+
+<div class="activity-text">
+
+<strong>
+    Viewed examination timetable
+</strong>
+
+<span>
+    Today • 10:30 AM
+</span>
+
+</div>
+
+</div>
+
+
+<div class="activity-item">
+
+<div class="activity-icon">
+    📝
+</div>
+
+<div class="activity-text">
+
+<strong>
+    Checked assignment deadline
+</strong>
+
+<span>
+    Today • 9:15 AM
+</span>
+
+</div>
+
+</div>
+
+
+<div class="activity-item">
+
+<div class="activity-icon">
+    🎉
+</div>
+
+<div class="activity-text">
+
+<strong>
+    Registered for Campus Cultural Fest
+</strong>
+
+<span>
+    Yesterday • 4:20 PM
+</span>
+
+</div>
+
+</div>
+
+
+<div class="activity-item">
+
+<div class="activity-icon">
+    💼
+</div>
+
+<div class="activity-text">
+
+<strong>
+    Viewed placement opportunities
+</strong>
+
+<span>
+    Yesterday • 2:10 PM
+</span>
+
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+</div>
+
+</div>
+
+</main>
+
+
+
+<!-- ================= CHATBOT ================= -->
+
+<aside class="chatbot">
+
+
+<div class="chat-header">
+
+<div class="robot-icon">
+    🤖
+</div>
+
+
+<div class="chat-title">
+
+<strong>
+    CampusConnect AI
+</strong>
+
+<span>
+
+<span class="online-dot"></span>
+
+College Companion
+
+</span>
+
+</div>
+
+</div>
+
+
+
+<div
+    class="chat-body"
+    id="chatBody"
+>
+
+<div class="bot-message">
+
+Hi Priya! 👋 I'm your CampusConnect AI
+College Companion.
+
+I can help you with your profile,
+academics, attendance, assignments,
+placements, and campus information.
+
+</div>
+
+
+<div class="bot-message">
+
+Your current CGPA is <b>8.6</b> and your
+attendance is <b>92%</b>. 🎓
+
+</div>
+
+</div>
+
+
+
+<div class="quick-buttons">
+
+<button
+    class="quick-btn"
+    onclick="quickChat('My Profile')"
+>
+    👤 My Profile
+</button>
+
+
+<button
+    class="quick-btn"
+    onclick="quickChat('My CGPA')"
+>
+    📊 My CGPA
+</button>
+
+
+<button
+    class="quick-btn"
+    onclick="quickChat('My Attendance')"
+>
+    📅 Attendance
+</button>
+
+
+<button
+    class="quick-btn"
+    onclick="quickChat('Edit Profile')"
+>
+    ✏️ Edit Profile
+</button>
+
+</div>
+
+
+
+<div class="chat-footer">
+
+<input
+    class="chat-input"
+    id="chatInput"
+    placeholder="Ask CampusConnect AI..."
+    onkeydown="handleChatKey(event)"
+>
+
+
+<button
+    class="send-btn"
+    onclick="sendChat()"
+>
+    ➤
+</button>
+
+</div>
+
+</aside>
+
+
+
+<!-- ================= EDIT PROFILE MODAL ================= -->
+
+<div
+    class="modal-overlay"
+    id="profileModal"
+>
+
+<div class="modal">
+
+
+<div class="modal-head">
+
+<h3>
+    ✏️ Edit Profile
+</h3>
+
+
+<button
+    class="close-modal"
+    onclick="closeEditProfile()"
+>
+    ×
+</button>
+
+</div>
+
+
+
+<div class="modal-body">
+
+
+<div class="form-grid">
+
+
+<div class="form-group">
+
+<label>
+    FULL NAME
+</label>
+
+<input
+    type="text"
+    id="editName"
+    value="Priya Bhavani"
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+    STUDENT ID
+</label>
+
+<input
+    type="text"
+    value="CC2026BCA014"
+    disabled
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+    EMAIL
+</label>
+
+<input
+    type="email"
+    id="editEmail"
+    value="priya.bhavani@college.edu"
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+    PHONE
+</label>
+
+<input
+    type="text"
+    id="editPhone"
+    value="+91 98765 43210"
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+    COURSE
+</label>
+
+<select>
+
+<option>
+    Bachelor of Computer Applications
+</option>
+
+<option>
+    Bachelor of Computer Science
+</option>
+
+<option>
+    Bachelor of Information Technology
+</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+    YEAR
+</label>
+
+<select>
+
+<option>
+    4th Semester
+</option>
+
+<option>
+    3rd Semester
+</option>
+
+<option>
+    2nd Semester
+</option>
+
+<option>
+    1st Semester
+</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group full">
+
+<label>
+    ADDRESS
+</label>
+
+<input
+    type="text"
+    value="Hubballi, Karnataka"
+>
+
+</div>
+
+
+</div>
+
+
+
+<div class="modal-buttons">
+
+<button
+    class="cancel-btn"
+    onclick="closeEditProfile()"
+>
+    Cancel
+</button>
+
+
+<button
+    class="save-btn"
+    onclick="saveProfile()"
+>
+    ✓ Save Changes
+</button>
+
+</div>
+
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- ================= TOAST ================= -->
+
+<div
+    class="toast"
+    id="toast"
+>
+    Profile updated successfully
+</div>
+
+
+
 <script>
 
-/* =========================
-   PAGE NAVIGATION
-========================= */
+/* ================= CLOCK ================= */
 
-const pages = {
+function updateClock(){
 
-    dashboard: "../dashboard.html",
+    const now = new Date();
 
-    courses: "../dashboard.html",
+    let hours = now.getHours();
 
-    timetable: "timetable.html",
+    const minutes =
+        String(now.getMinutes()).padStart(2,"0");
 
-    assignments: "../dashboard.html",
+    const seconds =
+        String(now.getSeconds()).padStart(2,"0");
 
-    attendance: "attendance.html",
+    const ampm =
+        hours >= 12 ? "PM" : "AM";
 
-    academics: "academics.html",
+    hours =
+        hours % 12 || 12;
 
-    faculty: "faculty.html",
-
-    placement: "placement.html",
-
-    results: "results.html",
-
-    documents: "documents.html",
-
-    complaints: "complaints.html",
-
-    feedback: "feedback.html",
-
-    "lost-found": "lost-found.html",
-
-    campus: "campus.html",
-
-    events: "events.html",
-
-    exams: "exams.html",
-
-    notifications: "notifications.html",
-
-    profile: "profile.html",
-
-    settings: "settings.html"
-
-};
-
-function goTo(page) {
-
-    window.location.href = page;
-
+    document.getElementById("clock").textContent =
+        `${String(hours).padStart(2,"0")}:${minutes}:${seconds} ${ampm}`;
 }
 
+updateClock();
 
-/* =========================
-   EDIT MODAL
-========================= */
+setInterval(updateClock,1000);
 
-function openEditModal() {
 
-    document.getElementById("editName").value =
-        document.getElementById("nameInfo").textContent.trim();
+/* ================= PROFILE MODAL ================= */
 
-    document.getElementById("editId").value =
-        document.getElementById("idInfo").textContent.trim();
-
-    document.getElementById("editEmail").value =
-        document.getElementById("emailInfo").textContent.trim();
-
-    document.getElementById("editPhone").value =
-        document.getElementById("phoneInfo").textContent.trim();
-
-    document.getElementById("editCourse").value =
-        document.getElementById("courseInfo").textContent.trim();
-
-    document.getElementById("editDepartment").value =
-        document.getElementById("departmentInfo").textContent.trim();
-
-    document.getElementById("editYear").value =
-        document.getElementById("yearInfo").textContent.trim();
-
-    document.getElementById("editSemester").value =
-        document.getElementById("semesterInfo").textContent.trim();
+function openEditProfile(){
 
     document
-        .getElementById("editModal")
+        .getElementById("profileModal")
         .classList.add("show");
 
 }
 
 
-function closeEditModal() {
+function closeEditProfile(){
 
     document
-        .getElementById("editModal")
+        .getElementById("profileModal")
         .classList.remove("show");
 
 }
 
 
-/* =========================
-   SAVE PROFILE
-========================= */
+document
+.getElementById("profileModal")
+.addEventListener(
+    "click",
+    function(event){
 
-function saveProfile() {
+        if(event.target === this){
+
+            closeEditProfile();
+
+        }
+
+    }
+);
+
+
+/* ================= SAVE PROFILE ================= */
+
+function saveProfile(){
 
     const name =
-        document.getElementById("editName").value.trim();
-
-    const id =
-        document.getElementById("editId").value.trim();
+        document
+        .getElementById("editName")
+        .value
+        .trim();
 
     const email =
-        document.getElementById("editEmail").value.trim();
+        document
+        .getElementById("editEmail")
+        .value
+        .trim();
 
     const phone =
-        document.getElementById("editPhone").value.trim();
-
-    const course =
-        document.getElementById("editCourse").value;
-
-    const department =
-        document.getElementById("editDepartment").value.trim();
-
-    const year =
-        document.getElementById("editYear").value;
-
-    const semester =
-        document.getElementById("editSemester").value;
+        document
+        .getElementById("editPhone")
+        .value
+        .trim();
 
 
-    if (!name || !id || !email) {
+    if(!name || !email || !phone){
 
-        alert(
-            "Please fill in the required information."
+        showToast(
+            "⚠️ Please fill all required fields"
         );
 
         return;
@@ -1785,90 +2488,335 @@ function saveProfile() {
     }
 
 
-    /* PROFILE DISPLAY */
+    document
+        .getElementById("heroName")
+        .textContent = name;
 
-    document.getElementById("displayName").textContent =
-        name;
+    document
+        .getElementById("nameValue")
+        .textContent = name;
 
-    document.getElementById("displayCourse").textContent =
-        course + " • " + department;
+    document
+        .getElementById("emailValue")
+        .textContent = email;
 
-    document.getElementById("displayId").textContent =
-        "Student ID: " + id;
+    document
+        .getElementById("phoneValue")
+        .textContent = phone;
 
+    document
+        .getElementById("contactEmail")
+        .textContent = email;
 
-    /* PERSONAL INFORMATION */
-
-    document.getElementById("nameInfo").textContent =
-        name;
-
-    document.getElementById("idInfo").textContent =
-        id;
-
-    document.getElementById("emailInfo").textContent =
-        email;
-
-    document.getElementById("phoneInfo").textContent =
-        phone;
-
-    document.getElementById("courseInfo").textContent =
-        course;
-
-    document.getElementById("departmentInfo").textContent =
-        department;
-
-    document.getElementById("yearInfo").textContent =
-        year;
-
-    document.getElementById("semesterInfo").textContent =
-        semester;
+    document
+        .getElementById("contactPhone")
+        .textContent = phone;
 
 
-    /* ACADEMIC OVERVIEW */
+    const parts =
+        name.split(" ");
 
-    document.getElementById("courseAcademic").textContent =
-        course;
+    let initials =
+        parts[0].charAt(0).toUpperCase();
 
-    document.getElementById("yearAcademic").textContent =
-        year.replace(" Year", "");
+    if(parts.length > 1){
 
-    document.getElementById("semesterAcademic").textContent =
-        semester.replace("Semester ", "");
+        initials +=
+            parts[parts.length - 1]
+            .charAt(0)
+            .toUpperCase();
 
-    document.getElementById("departmentAcademic").textContent =
-        department;
-
-
-    closeEditModal();
+    }
 
 
-    alert(
-        "Profile updated successfully!"
+    document
+        .getElementById("bigInitials")
+        .textContent = initials;
+
+
+    closeEditProfile();
+
+    showToast(
+        "✓ Profile updated successfully"
     );
 
 }
 
 
-/* =========================
-   CLOSE MODAL OUTSIDE CLICK
-========================= */
+/* ================= TOAST ================= */
 
-document
-    .getElementById("editModal")
-    .addEventListener(
-        "click",
-        function(event) {
+let toastTimer;
 
-            if (event.target === this) {
+function showToast(message){
 
-                closeEditModal();
+    const toast =
+        document.getElementById("toast");
 
-            }
+    toast.textContent =
+        message;
+
+    toast.classList.add("show");
+
+    clearTimeout(toastTimer);
+
+    toastTimer =
+        setTimeout(
+            () => {
+                toast.classList.remove("show");
+            },
+            3000
+        );
+}
+
+
+/* ================= CHATBOT ================= */
+
+function addBotMessage(message){
+
+    const body =
+        document.getElementById("chatBody");
+
+    const div =
+        document.createElement("div");
+
+    div.className =
+        "bot-message";
+
+    div.innerHTML =
+        message;
+
+    body.appendChild(div);
+
+    body.scrollTop =
+        body.scrollHeight;
+}
+
+
+function addUserMessage(message){
+
+    const body =
+        document.getElementById("chatBody");
+
+    const div =
+        document.createElement("div");
+
+    div.className =
+        "user-message";
+
+    div.textContent =
+        message;
+
+    body.appendChild(div);
+
+    body.scrollTop =
+        body.scrollHeight;
+}
+
+
+/* ================= QUICK CHAT ================= */
+
+function quickChat(type){
+
+    addUserMessage(type);
+
+
+    setTimeout(() => {
+
+        if(type === "My Profile"){
+
+            addBotMessage(
+                "👤 Your profile shows <b>Priya Bhavani</b>, BCA student in Computer Science, currently in the <b>4th semester</b>."
+            );
 
         }
-    );
+
+        else if(type === "My CGPA"){
+
+            addBotMessage(
+                "📊 Your current CGPA is <b>8.6</b>. Keep up the great work! 🎓"
+            );
+
+        }
+
+        else if(type === "My Attendance"){
+
+            addBotMessage(
+                "📅 Your current attendance is <b>92%</b>. That's a healthy attendance level."
+            );
+
+        }
+
+        else if(type === "Edit Profile"){
+
+            addBotMessage(
+                "✏️ You can edit your name, email, phone number, course, year, and address using the <b>Edit Profile</b> button."
+            );
+
+        }
+
+    },500);
+
+}
+
+
+/* ================= SEND CHAT ================= */
+
+function sendChat(){
+
+    const input =
+        document.getElementById("chatInput");
+
+    const message =
+        input.value.trim();
+
+    if(!message){
+        return;
+    }
+
+    addUserMessage(message);
+
+    input.value = "";
+
+
+    setTimeout(() => {
+
+        const text =
+            message.toLowerCase();
+
+
+        if(
+            text.includes("profile") ||
+            text.includes("name")
+        ){
+
+            addBotMessage(
+                "👤 Your profile name is <b>" +
+                document.getElementById("nameValue").textContent +
+                "</b>. You are a BCA Computer Science student."
+            );
+
+        }
+
+        else if(
+            text.includes("cgpa") ||
+            text.includes("marks")
+        ){
+
+            addBotMessage(
+                "📊 Your current CGPA is <b>8.6</b>."
+            );
+
+        }
+
+        else if(
+            text.includes("attendance")
+        ){
+
+            addBotMessage(
+                "📅 Your current attendance is <b>92%</b>."
+            );
+
+        }
+
+        else if(
+            text.includes("email")
+        ){
+
+            addBotMessage(
+                "📧 Your registered college email is <b>" +
+                document.getElementById("emailValue").textContent +
+                "</b>."
+            );
+
+        }
+
+        else if(
+            text.includes("phone") ||
+            text.includes("mobile")
+        ){
+
+            addBotMessage(
+                "📱 Your registered mobile number is <b>" +
+                document.getElementById("phoneValue").textContent +
+                "</b>."
+            );
+
+        }
+
+        else if(
+            text.includes("edit")
+        ){
+
+            addBotMessage(
+                "✏️ Click the <b>Edit Profile</b> button at the top of the page to update your details."
+            );
+
+        }
+
+        else{
+
+            addBotMessage(
+                "🤖 I can help you with your <b>profile, CGPA, attendance, email, phone number, and profile editing</b>."
+            );
+
+        }
+
+    },500);
+
+}
+
+
+/* ================= ENTER KEY ================= */
+
+function handleChatKey(event){
+
+    if(event.key === "Enter"){
+
+        sendChat();
+
+    }
+
+}
+
+
+/* ================= LOGOUT ================= */
+
+function logoutUser(event){
+
+    event.preventDefault();
+
+    const confirmed =
+        confirm(
+            "Are you sure you want to logout?"
+        );
+
+    if(confirmed){
+
+        window.location.href =
+            "../index.html";
+
+    }
+
+}
+
+
+/* ================= ESCAPE ================= */
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(event.key === "Escape"){
+
+            closeEditProfile();
+
+        }
+
+    }
+);
 
 </script>
 
 </body>
+
 </html>
