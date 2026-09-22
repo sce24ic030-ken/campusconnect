@@ -1,415 +1,2020 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Examinations - CampusConnect</title>
+<title>CampusConnect | Exams</title>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-        body {
-            background: #f4f6ff;
-            color: #222;
-        }
+html,body{
+    width:100%;
+    height:100%;
+    font-family:"Segoe UI",Arial,sans-serif;
+    background:#f4f6ff;
+    color:#17203a;
+    overflow:hidden;
+}
 
-        /* SIDEBAR */
+button,input,select{
+    font-family:inherit;
+}
 
-        .sidebar {
-            position: fixed;
-            left: 0;
-            top: 0;
-            width: 240px;
-            height: 100vh;
-            background: linear-gradient(180deg,#172554,#312e81,#4c1d95);
-            color: white;
-            padding: 20px 15px;
-            overflow-y: auto;
-            z-index: 1000;
-        }
+/* ================= SIDEBAR ================= */
 
-        .sidebar h2 {
-            font-size: 22px;
-            font-weight: bold;
-            padding: 7px 15px 28px;
-            border-bottom: 1px solid rgba(255,255,255,0.18);
-            margin-bottom: 15px;
-        }
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    bottom:0;
+    width:268px;
+    min-width:268px;
+    background:linear-gradient(180deg,#172a70 0%,#28237d 48%,#5520a7 100%);
+    color:white;
+    overflow-y:auto;
+    overflow-x:hidden;
+    z-index:1000;
+    padding-bottom:20px;
+    scrollbar-width:thin;
+    scrollbar-color:rgba(255,255,255,.25) transparent;
+}
 
-        .nav-item {
-            height: 48px;
-            display: flex;
-            align-items: center;
-            padding: 0 18px;
-            margin: 2px 0;
-            border-radius: 11px;
-            cursor: pointer;
-            font-size: 15px;
-            color: #e5e7eb;
-            transition: 0.2s;
-        }
+.brand{
+    height:120px;
+    display:flex;
+    align-items:center;
+    padding:22px 18px;
+    border-bottom:1px solid rgba(255,255,255,.12);
+}
 
-        .nav-item:hover {
-            background: rgba(255,255,255,0.12);
-        }
+.logo-box{
+    width:52px;
+    height:52px;
+    border-radius:16px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:28px;
+    background:linear-gradient(135deg,#24b8ff,#7144f5);
+    box-shadow:0 10px 25px rgba(0,0,0,.20);
+}
 
-        .nav-item.active {
-            background: linear-gradient(90deg,#22c1dc,#8b5cf6);
-            color: white;
-            font-weight: bold;
-        }
+.brand-text{
+    margin-left:13px;
+}
 
-        /* MAIN */
+.brand-title{
+    font-size:21px;
+    font-weight:800;
+    letter-spacing:-.5px;
+}
 
-        .main {
-            margin-left: 240px;
-            min-height: 100vh;
-        }
+.brand-subtitle{
+    font-size:12px;
+    opacity:.72;
+    margin-top:3px;
+}
 
-        /* HEADER */
+.menu{
+    padding:25px 14px;
+}
 
-        .header {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            padding: 35px 55px;
-        }
+.menu-title{
+    font-size:12px;
+    font-weight:700;
+    color:rgba(255,255,255,.52);
+    letter-spacing:1px;
+    padding:0 11px 10px;
+}
 
-        .header h1 {
-            font-size: 38px;
-            margin-bottom: 10px;
-        }
+.menu-section{
+    margin-top:20px;
+}
 
-        .header p {
-            font-size: 18px;
-        }
+.nav-item{
+    width:100%;
+    display:flex;
+    align-items:center;
+    min-height:49px;
+    padding:0 14px;
+    margin:5px 0;
+    border-radius:13px;
+    color:rgba(255,255,255,.84);
+    text-decoration:none;
+    transition:transform .2s ease,background .2s ease,color .2s ease;
+}
 
-        /* CONTAINER */
+.nav-item:hover{
+    background:rgba(255,255,255,.12);
+    color:white;
+    transform:translateX(3px);
+}
 
-        .container {
-            max-width: 1250px;
-            margin: auto;
-            padding: 40px;
-        }
+.nav-item.active{
+    color:white;
+    background:linear-gradient(90deg,#22b9f5,#6942f4);
+    box-shadow:0 9px 22px rgba(0,0,0,.18);
+}
 
-        .title {
-            font-size: 30px;
-            margin-bottom: 25px;
-        }
+.nav-icon{
+    width:31px;
+    font-size:20px;
+    text-align:center;
+    margin-right:10px;
+}
 
-        /* EXAM GRID */
+.nav-text{
+    font-size:15px;
+    font-weight:650;
+}
 
-        #examContainer {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 25px;
-        }
+.logout{
+    margin-top:14px;
+    padding-top:15px;
+    border-top:1px solid rgba(255,255,255,.13);
+}
 
-        /* EXAM CARD */
+/* ================= MAIN ================= */
 
-        .exam-card {
-            background: white;
-            border-radius: 20px;
-            padding: 25px;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-            border-left: 6px solid #667eea;
-            transition: 0.3s;
-        }
+.main-area{
+    margin-left:268px;
+    margin-right:286px;
+    width:auto;
+    height:100vh;
+    overflow-y:auto;
+    overflow-x:hidden;
+    background:linear-gradient(180deg,#f8f9ff,#eef1fb);
+}
 
-        .exam-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-        }
+/* ================= HEADER ================= */
 
-        .exam-icon {
-            width: 65px;
-            height: 65px;
-            min-width: 65px;
-            border-radius: 18px;
-            background: #eef0ff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 32px;
-        }
+.top-header{
+    height:120px;
+    background:rgba(255,255,255,.96);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:22px 28px;
+    border-bottom:1px solid #e9ebf5;
+    position:sticky;
+    top:0;
+    z-index:100;
+}
 
-        .exam-info {
-            flex: 1;
-        }
+.header-left h1{
+    font-size:30px;
+    line-height:1.05;
+    font-weight:800;
+}
 
-        .exam-info h3 {
-            color: #333;
-            font-size: 20px;
-            margin-bottom: 12px;
-        }
+.header-left p{
+    margin-top:7px;
+    color:#8990a7;
+    font-size:14px;
+}
 
-        .exam-info p {
-            color: #666;
-            font-size: 14px;
-            margin: 7px 0;
-        }
+.header-right{
+    display:flex;
+    align-items:center;
+    gap:18px;
+}
 
-        .exam-status {
-            background: #ffe8f1;
-            color: #e83e8c;
-            padding: 8px 13px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: bold;
-            white-space: nowrap;
-        }
+.time-box{
+    font-size:18px;
+    font-weight:750;
+    color:#59617d;
+}
 
-        /* LOADING */
+.notification{
+    width:48px;
+    height:48px;
+    background:#fff;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+    box-shadow:0 5px 18px rgba(40,35,100,.10);
+    position:relative;
+    cursor:pointer;
+}
 
-        .loading {
-            background: white;
-            padding: 40px;
-            border-radius: 20px;
-            text-align: center;
-            color: #666;
-            grid-column: 1 / -1;
-            font-size: 18px;
-        }
+.notification::after{
+    content:"";
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:#ff4f8b;
+    position:absolute;
+    top:7px;
+    right:8px;
+}
 
-        /* ERROR */
+.profile-mini{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
 
-        .error {
-            background: #fff0f0;
-            color: #d63031;
-            padding: 30px;
-            border-radius: 20px;
-            text-align: center;
-            grid-column: 1 / -1;
-        }
+.profile-circle{
+    width:48px;
+    height:48px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#25b8ee,#466cf1);
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:20px;
+    font-weight:800;
+}
 
-        /* INSTRUCTIONS */
+.profile-info strong{
+    display:block;
+    font-size:15px;
+}
 
-        .instructions {
-            margin-top: 40px;
-            background: white;
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-        }
+.profile-info span{
+    display:block;
+    color:#8d93a8;
+    font-size:12px;
+}
 
-        .instructions h2 {
-            color: #667eea;
-            margin-bottom: 20px;
-        }
+/* ================= CONTENT ================= */
 
-        .instructions p {
-            color: #555;
-            margin: 12px 0;
-            font-size: 16px;
-        }
+.content{
+    padding:26px 28px 40px;
+}
 
-        /* MOBILE */
+/* HERO */
 
-        @media (max-width: 800px) {
+.hero{
+    background:linear-gradient(135deg,#25277d,#6337d8);
+    border-radius:24px;
+    padding:27px 30px;
+    color:white;
+    position:relative;
+    overflow:hidden;
+    box-shadow:0 15px 35px rgba(57,48,150,.18);
+}
 
-            .sidebar {
-                width: 210px;
-            }
+.hero::before{
+    content:"";
+    position:absolute;
+    width:230px;
+    height:230px;
+    border-radius:50%;
+    background:rgba(255,255,255,.06);
+    right:-70px;
+    top:-90px;
+}
 
-            .main {
-                margin-left: 210px;
-            }
+.hero::after{
+    content:"";
+    position:absolute;
+    width:150px;
+    height:150px;
+    border-radius:50%;
+    background:rgba(36,184,255,.10);
+    right:120px;
+    bottom:-90px;
+}
 
-            #examContainer {
-                grid-template-columns: 1fr;
-            }
+.hero-content{
+    position:relative;
+    z-index:2;
+}
 
-            .container {
-                padding: 20px;
-            }
+.hero-tag{
+    display:inline-block;
+    background:rgba(255,255,255,.14);
+    padding:6px 12px;
+    border-radius:20px;
+    font-size:11px;
+    margin-bottom:10px;
+}
 
-            .header {
-                padding: 25px;
-            }
+.hero h2{
+    font-size:25px;
+    margin-bottom:7px;
+}
 
-            .exam-card {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-        }
+.hero p{
+    font-size:13px;
+    color:rgba(255,255,255,.78);
+}
 
-        @media (max-width: 600px) {
+.hero-date{
+    margin-top:17px;
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
 
-            .sidebar {
-                position: relative;
-                width: 100%;
-                height: auto;
-            }
+.date-pill{
+    background:rgba(255,255,255,.13);
+    border:1px solid rgba(255,255,255,.12);
+    padding:8px 12px;
+    border-radius:12px;
+    font-size:11px;
+}
 
-            .main {
-                margin-left: 0;
-            }
-        }
-    </style>
+/* SUMMARY */
+
+.summary-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:16px;
+    margin-top:20px;
+}
+
+.summary-card{
+    background:white;
+    border:1px solid #e7e9f3;
+    border-radius:18px;
+    padding:19px;
+    box-shadow:0 7px 22px rgba(40,35,100,.06);
+    transition:.2s;
+}
+
+.summary-card:hover{
+    transform:translateY(-3px);
+    box-shadow:0 12px 28px rgba(40,35,100,.10);
+}
+
+.summary-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.summary-icon{
+    width:43px;
+    height:43px;
+    border-radius:13px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:21px;
+    background:#f0efff;
+}
+
+.summary-label{
+    margin-top:13px;
+    font-size:12px;
+    color:#8a91a8;
+}
+
+.summary-value{
+    margin-top:3px;
+    font-size:24px;
+    font-weight:800;
+    color:#202750;
+}
+
+/* SECTION */
+
+.section-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-top:28px;
+    margin-bottom:14px;
+}
+
+.section-head h3{
+    font-size:19px;
+    font-weight:800;
+}
+
+.section-head span{
+    color:#8b92a8;
+    font-size:12px;
+}
+
+/* FILTER */
+
+.filters{
+    background:white;
+    padding:14px;
+    border-radius:16px;
+    border:1px solid #e7e9f3;
+    display:flex;
+    gap:10px;
+    margin-bottom:16px;
+    box-shadow:0 5px 16px rgba(40,35,100,.04);
+}
+
+.search-box{
+    flex:1;
+    position:relative;
+}
+
+.search-box input{
+    width:100%;
+    height:42px;
+    border:1px solid #e0e3ef;
+    border-radius:12px;
+    outline:none;
+    padding:0 13px;
+    font-size:12px;
+    color:#4f5875;
+}
+
+.search-box input:focus,
+.filters select:focus{
+    border-color:#7650e8;
+}
+
+.filters select{
+    height:42px;
+    border:1px solid #e0e3ef;
+    border-radius:12px;
+    padding:0 12px;
+    color:#59627d;
+    outline:none;
+    background:white;
+    font-size:12px;
+    min-width:140px;
+}
+
+/* EXAM CARDS */
+
+.exam-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:16px;
+}
+
+.exam-card{
+    background:white;
+    border:1px solid #e7e9f3;
+    border-radius:18px;
+    padding:19px;
+    box-shadow:0 7px 22px rgba(40,35,100,.05);
+    transition:.2s;
+}
+
+.exam-card:hover{
+    transform:translateY(-3px);
+    box-shadow:0 13px 28px rgba(40,35,100,.10);
+}
+
+.exam-top{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:10px;
+}
+
+.exam-icon{
+    width:48px;
+    height:48px;
+    border-radius:14px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:24px;
+    background:linear-gradient(135deg,#e9f7ff,#f0eaff);
+}
+
+.exam-type{
+    background:#f0edff;
+    color:#6949d8;
+    padding:6px 9px;
+    border-radius:20px;
+    font-size:9px;
+    font-weight:700;
+}
+
+.exam-card h4{
+    font-size:16px;
+    margin-top:14px;
+    color:#22294e;
+}
+
+.exam-subject{
+    color:#7e87a2;
+    font-size:11px;
+    margin-top:4px;
+}
+
+.exam-info{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin-top:16px;
+}
+
+.info-box{
+    background:#f8f9fd;
+    border-radius:11px;
+    padding:9px;
+}
+
+.info-label{
+    color:#999fb1;
+    font-size:9px;
+}
+
+.info-value{
+    margin-top:3px;
+    color:#454e6d;
+    font-size:11px;
+    font-weight:700;
+}
+
+.exam-bottom{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-top:16px;
+    padding-top:13px;
+    border-top:1px solid #edf0f6;
+}
+
+.exam-status{
+    font-size:10px;
+    font-weight:700;
+    padding:6px 9px;
+    border-radius:20px;
+}
+
+.status-upcoming{
+    color:#2674b9;
+    background:#eaf7ff;
+}
+
+.status-soon{
+    color:#bd7a12;
+    background:#fff5df;
+}
+
+.status-completed{
+    color:#2e9a69;
+    background:#e9fbf3;
+}
+
+.view-btn{
+    border:none;
+    background:linear-gradient(135deg,#6243e7,#7b3fdf);
+    color:white;
+    border-radius:10px;
+    padding:9px 13px;
+    cursor:pointer;
+    font-size:10px;
+    font-weight:700;
+    transition:.2s;
+}
+
+.view-btn:hover{
+    transform:translateY(-1px);
+    box-shadow:0 6px 14px rgba(100,65,220,.22);
+}
+
+/* EMPTY */
+
+.empty-state{
+    display:none;
+    background:white;
+    border:1px dashed #d9dced;
+    border-radius:18px;
+    text-align:center;
+    padding:35px;
+    color:#858ca3;
+    font-size:13px;
+}
+
+/* ================= CHATBOT ================= */
+
+.chatbot{
+    position:fixed;
+    top:18px;
+    right:18px;
+    bottom:18px;
+    width:268px;
+    min-width:268px;
+    max-width:268px;
+    background:white;
+    border-radius:22px;
+    border:1px solid #e5e6f2;
+    box-shadow:0 15px 45px rgba(40,35,100,.15);
+    z-index:9999;
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
+}
+
+.chat-header{
+    min-height:82px;
+    flex-shrink:0;
+    padding:15px;
+    display:flex;
+    align-items:center;
+    color:white;
+    background:linear-gradient(135deg,#29277d,#7137d8);
+}
+
+.robot-icon{
+    width:45px;
+    height:45px;
+    border-radius:14px;
+    background:rgba(255,255,255,.15);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:24px;
+    margin-right:10px;
+}
+
+.chat-title strong{
+    display:block;
+    font-size:15px;
+}
+
+.chat-title span{
+    display:block;
+    font-size:10px;
+    margin-top:3px;
+    color:rgba(255,255,255,.78);
+}
+
+.online-dot{
+    display:inline-block;
+    width:7px;
+    height:7px;
+    background:#57e6a3;
+    border-radius:50%;
+    margin-right:4px;
+}
+
+.chat-body{
+    flex:1;
+    min-height:0;
+    padding:17px 14px;
+    overflow-y:auto;
+    background:linear-gradient(180deg,#fafbff,#f4f5fb);
+}
+
+.bot-message{
+    background:white;
+    border:1px solid #e7e9f3;
+    border-radius:14px;
+    padding:12px;
+    margin-bottom:10px;
+    color:#65708d;
+    font-size:11px;
+    line-height:1.6;
+    box-shadow:0 5px 15px rgba(40,35,100,.04);
+}
+
+.user-message{
+    background:linear-gradient(135deg,#6241e8,#7b3ee0);
+    color:white;
+    padding:10px 12px;
+    border-radius:14px 14px 4px 14px;
+    margin:9px 0 9px 20px;
+    font-size:11px;
+    line-height:1.5;
+}
+
+.quick-buttons{
+    display:flex;
+    gap:5px;
+    flex-wrap:wrap;
+    padding:9px 14px;
+    background:white;
+    border-top:1px solid #eceef5;
+}
+
+.quick-btn{
+    border:1px solid #e0e3f0;
+    background:white;
+    color:#6b54d9;
+    border-radius:20px;
+    padding:7px 9px;
+    font-size:9px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.quick-btn:hover{
+    background:#f3f0ff;
+}
+
+.chat-footer{
+    flex-shrink:0;
+    padding:10px;
+    background:white;
+    border-top:1px solid #eceef5;
+    display:flex;
+    gap:7px;
+}
+
+.chat-input{
+    flex:1;
+    min-width:0;
+    height:40px;
+    border:1px solid #e1e4ef;
+    border-radius:12px;
+    outline:none;
+    padding:0 11px;
+    font-size:11px;
+    color:#555e78;
+}
+
+.send-btn{
+    width:40px;
+    height:40px;
+    border:none;
+    border-radius:12px;
+    color:white;
+    background:linear-gradient(135deg,#6543e8,#843de0);
+    cursor:pointer;
+    font-size:17px;
+    transition:.2s;
+}
+
+.send-btn:hover{
+    transform:scale(1.04);
+}
+
+/* ================= MODAL ================= */
+
+.modal-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(20,25,65,.48);
+    backdrop-filter:blur(5px);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:20000;
+    padding:20px;
+}
+
+.modal-overlay.show{
+    display:flex;
+}
+
+.modal{
+    width:520px;
+    max-width:100%;
+    max-height:90vh;
+    overflow-y:auto;
+    background:white;
+    border-radius:22px;
+    box-shadow:0 25px 70px rgba(25,25,70,.25);
+    animation:modalIn .2s ease;
+}
+
+@keyframes modalIn{
+    from{
+        opacity:0;
+        transform:translateY(12px) scale(.98);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+.modal-head{
+    padding:21px 23px;
+    background:linear-gradient(135deg,#29277d,#7137d8);
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.modal-head h3{
+    font-size:18px;
+}
+
+.close-modal{
+    width:34px;
+    height:34px;
+    border:none;
+    border-radius:50%;
+    background:rgba(255,255,255,.14);
+    color:white;
+    font-size:19px;
+    cursor:pointer;
+}
+
+.modal-body{
+    padding:22px;
+}
+
+.detail-title{
+    font-size:20px;
+    font-weight:800;
+    color:#252b51;
+}
+
+.detail-subject{
+    color:#7e86a0;
+    font-size:12px;
+    margin-top:5px;
+}
+
+.detail-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:11px;
+    margin-top:18px;
+}
+
+.detail-box{
+    padding:12px;
+    border-radius:13px;
+    background:#f7f8fc;
+}
+
+.detail-box span{
+    display:block;
+    font-size:9px;
+    color:#9299ac;
+}
+
+.detail-box strong{
+    display:block;
+    margin-top:4px;
+    font-size:12px;
+    color:#454d6a;
+}
+
+.instructions{
+    margin-top:17px;
+    background:#f2efff;
+    border-radius:14px;
+    padding:13px;
+    color:#5d5981;
+    font-size:11px;
+    line-height:1.6;
+}
+
+.modal-actions{
+    display:flex;
+    gap:9px;
+    margin-top:18px;
+}
+
+.action-btn{
+    flex:1;
+    height:42px;
+    border-radius:11px;
+    cursor:pointer;
+    font-size:11px;
+    font-weight:700;
+}
+
+.primary-action{
+    border:none;
+    color:white;
+    background:linear-gradient(135deg,#6243e7,#7b3fdf);
+}
+
+.secondary-action{
+    border:1px solid #dddff0;
+    background:white;
+    color:#6654bd;
+}
+
+/* TOAST */
+
+.toast{
+    position:fixed;
+    bottom:30px;
+    left:50%;
+    transform:translateX(-50%) translateY(20px);
+    background:#20264b;
+    color:white;
+    padding:12px 18px;
+    border-radius:12px;
+    font-size:11px;
+    opacity:0;
+    pointer-events:none;
+    transition:.3s;
+    z-index:30000;
+    box-shadow:0 12px 30px rgba(20,25,60,.22);
+}
+
+.toast.show{
+    opacity:1;
+    transform:translateX(-50%) translateY(0);
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:1150px){
+
+    .sidebar{
+        width:230px;
+        min-width:230px;
+    }
+
+    .main-area{
+        margin-left:230px;
+        margin-right:250px;
+    }
+
+    .chatbot{
+        width:232px;
+        min-width:232px;
+        max-width:232px;
+        right:10px;
+    }
+
+    .summary-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:900px){
+
+    .chatbot{
+        display:none;
+    }
+
+    .main-area{
+        margin-right:0;
+    }
+
+    .exam-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:700px){
+
+    .sidebar{
+        width:80px;
+        min-width:80px;
+    }
+
+    .brand{
+        justify-content:center;
+        padding:15px;
+    }
+
+    .brand-text{
+        display:none;
+    }
+
+    .menu-title,
+    .nav-text{
+        display:none;
+    }
+
+    .nav-item{
+        justify-content:center;
+        padding:0;
+    }
+
+    .nav-icon{
+        margin:0;
+    }
+
+    .main-area{
+        margin-left:80px;
+    }
+
+    .top-header{
+        padding:18px;
+    }
+
+    .header-left h1{
+        font-size:23px;
+    }
+
+    .header-left p{
+        font-size:11px;
+    }
+
+    .time-box,
+    .profile-info{
+        display:none;
+    }
+
+    .content{
+        padding:18px;
+    }
+
+    .summary-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .filters{
+        flex-direction:column;
+    }
+
+    .filters select{
+        width:100%;
+    }
+}
+</style>
 </head>
 
 <body>
 
-    <!-- SIDEBAR -->
+<!-- ================= SIDEBAR ================= -->
 
-    <aside class="sidebar">
+<aside class="sidebar">
 
-        <h2>CampusConnect</h2>
+    <div class="brand">
+        <div class="logo-box">🎓</div>
 
-        <div class="nav-item" onclick="go('dashboard')">
-            🏠&nbsp;&nbsp; Dashboard
+        <div class="brand-text">
+            <div class="brand-title">CampusConnect</div>
+            <div class="brand-subtitle">AI College Companion</div>
         </div>
+    </div>
 
-        <div class="nav-item" onclick="go('courses')">
-            📚&nbsp;&nbsp; My Courses
-        </div>
+    <nav class="menu">
 
-        <div class="nav-item" onclick="go('timetable')">
-            🗓️&nbsp;&nbsp; Timetable
-        </div>
+        <div class="menu-title">MAIN MENU</div>
 
-        <div class="nav-item" onclick="go('assignments')">
-            📝&nbsp;&nbsp; Assignments
-        </div>
+        <a class="nav-item" href="../dashboard.html">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-text">Dashboard</span>
+        </a>
 
-        <div class="nav-item" onclick="go('attendance')">
-            📊&nbsp;&nbsp; Attendance
-        </div>
+        <a class="nav-item" href="courses.html">
 
-        <div class="nav-item" onclick="go('academics')">
-            🎓&nbsp;&nbsp; Academics
-        </div>
+    <span class="nav-icon">
+        📚
+    </span>
 
-        <div class="nav-item" onclick="go('faculty')">
-            👨‍🏫&nbsp;&nbsp; Faculty
-        </div>
+    <span class="nav-text">
+        Courses
+    </span>
 
-        <div class="nav-item" onclick="go('placement')">
-            💼&nbsp;&nbsp; Placement
-        </div>
+</a>
 
-        <div class="nav-item" onclick="go('results')">
-            📈&nbsp;&nbsp; Results
-        </div>
+        <a class="nav-item" href="timetable.html">
+            <span class="nav-icon">🗓️</span>
+            <span class="nav-text">Timetable</span>
+        </a>
 
-        <div class="nav-item" onclick="go('documents')">
-            📄&nbsp;&nbsp; Documents
-        </div>
+        <a class="nav-item" href="assignments.html">
+            <span class="nav-icon">📝</span>
+            <span class="nav-text">Assignments</span>
+        </a>
 
-        <div class="nav-item" onclick="go('complaints')">
-            ⚠️&nbsp;&nbsp; Complaints
-        </div>
+        <a class="nav-item" href="attendance.html">
+            <span class="nav-icon">📊</span>
+            <span class="nav-text">Attendance</span>
+        </a>
 
-        <div class="nav-item" onclick="go('feedback')">
-            💬&nbsp;&nbsp; Feedback
-        </div>
+        <a class="nav-item" href="academics.html">
+            <span class="nav-icon">🎓</span>
+            <span class="nav-text">Academics</span>
+        </a>
 
-        <div class="nav-item" onclick="go('lost-found')">
-            🔍&nbsp;&nbsp; Lost & Found
-        </div>
+        <a class="nav-item" href="faculty.html">
+            <span class="nav-icon">👨‍🏫</span>
+            <span class="nav-text">Faculty</span>
+        </a>
 
-        <div class="nav-item" onclick="go('campus')">
-            🏫&nbsp;&nbsp; Campus
-        </div>
+        <div class="menu-section">
 
-        <div class="nav-item" onclick="go('events')">
-            🎉&nbsp;&nbsp; Events
-        </div>
+            <div class="menu-title">CAREER</div>
 
-        <!-- ACTIVE -->
+            <a class="nav-item" href="placement.html">
+                <span class="nav-icon">💼</span>
+                <span class="nav-text">Placement</span>
+            </a>
 
-        <div class="nav-item active" onclick="go('exams')">
-            📖&nbsp;&nbsp; Exams
-        </div>
-
-        <div class="nav-item" onclick="go('notifications')">
-            🔔&nbsp;&nbsp; Notifications
-        </div>
-
-        <div class="nav-item" onclick="go('profile')">
-            👤&nbsp;&nbsp; Profile
-        </div>
-
-        <div class="nav-item" onclick="go('settings')">
-            ⚙️&nbsp;&nbsp; Settings
-        </div>
-
-    </aside>
-
-
-    <!-- MAIN -->
-
-    <div class="main">
-
-        <!-- HEADER -->
-
-        <div class="header">
-
-            <h1>📚 Examinations</h1>
-
-            <p>
-                Your complete examination schedule
-            </p>
+            <a class="nav-item" href="results.html">
+                <span class="nav-icon">📈</span>
+                <span class="nav-text">Results</span>
+            </a>
 
         </div>
 
+        <div class="menu-section">
 
-        <!-- MAIN -->
+            <div class="menu-title">CAMPUS</div>
 
-        <div class="container">
+            <a class="nav-item" href="documents.html">
+                <span class="nav-icon">📄</span>
+                <span class="nav-text">Documents</span>
+            </a>
 
-            <h2 class="title">
-                📝 Upcoming Examinations
-            </h2>
+            <a class="nav-item" href="complaints.html">
+                <span class="nav-icon">📢</span>
+                <span class="nav-text">Complaints</span>
+            </a>
+
+            <a class="nav-item" href="feedback.html">
+                <span class="nav-icon">💬</span>
+                <span class="nav-text">Feedback</span>
+            </a>
+
+            <a class="nav-item" href="lost-found.html">
+                <span class="nav-icon">🔎</span>
+                <span class="nav-text">Lost & Found</span>
+            </a>
+
+            <a class="nav-item" href="campus.html">
+                <span class="nav-icon">🏫</span>
+                <span class="nav-text">Campus</span>
+            </a>
+
+            <a class="nav-item" href="events.html">
+                <span class="nav-icon">🎉</span>
+                <span class="nav-text">Events</span>
+            </a>
+
+            <a class="nav-item active" href="exams.html">
+                <span class="nav-icon">📋</span>
+                <span class="nav-text">Exams</span>
+            </a>
+
+            <a class="nav-item" href="notifications.html">
+                <span class="nav-icon">🔔</span>
+                <span class="nav-text">Notifications</span>
+            </a>
+
+        </div>
+
+        <div class="menu-section">
+
+            <div class="menu-title">ACCOUNT</div>
+
+            <a class="nav-item" href="profile.html">
+                <span class="nav-icon">👤</span>
+                <span class="nav-text">Profile</span>
+            </a>
+
+            <a class="nav-item" href="settings.html">
+                <span class="nav-icon">⚙️</span>
+                <span class="nav-text">Settings</span>
+            </a>
+
+            <a class="nav-item logout" href="../index.html" onclick="logoutUser(event)">
+                <span class="nav-icon">🚪</span>
+                <span class="nav-text">Logout</span>
+            </a>
+
+        </div>
+
+    </nav>
+</aside>
 
 
-            <!-- EXAMS APPEAR HERE -->
+<!-- ================= MAIN ================= -->
 
-            <div id="examContainer">
+<main class="main-area">
 
-                <div class="loading">
-                    Loading examination schedule...
+    <header class="top-header">
+
+        <div class="header-left">
+            <h1>Exams 📋</h1>
+            <p>View your examination schedule and important exam details</p>
+        </div>
+
+        <div class="header-right">
+
+            <div class="time-box" id="clock">
+                00:00:00
+            </div>
+
+            <div class="notification" onclick="showToast('You have 3 new notifications 🔔')">
+                🔔
+            </div>
+
+            <div class="profile-mini">
+
+                <div class="profile-circle">
+                    PB
+                </div>
+
+                <div class="profile-info">
+                    <strong>Priya Bhavani</strong>
+                    <span>Student</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <div class="content">
+
+        <!-- HERO -->
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <div class="hero-tag">
+                    📚 Examination Center
+                </div>
+
+                <h2>Stay Ready for Your Exams</h2>
+
+                <p>
+                    Check your upcoming examinations, timings, rooms,
+                    and important instructions in one place.
+                </p>
+
+                <div class="hero-date">
+
+                    <div class="date-pill">
+                        📅 Next Exam: 18 September 2026
+                    </div>
+
+                    <div class="date-pill">
+                        ⏰ 10:00 AM
+                    </div>
+
+                    <div class="date-pill">
+                        🏫 Semester IV
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- SUMMARY -->
+
+        <section class="summary-grid">
+
+            <div class="summary-card">
+
+                <div class="summary-top">
+                    <div class="summary-icon">📚</div>
+                </div>
+
+                <div class="summary-label">
+                    Total Exams
+                </div>
+
+                <div class="summary-value">
+                    6
                 </div>
 
             </div>
 
 
-            <!-- INSTRUCTIONS -->
+            <div class="summary-card">
+
+                <div class="summary-top">
+                    <div class="summary-icon">⏳</div>
+                </div>
+
+                <div class="summary-label">
+                    Upcoming
+                </div>
+
+                <div class="summary-value">
+                    4
+                </div>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="summary-top">
+                    <div class="summary-icon">✅</div>
+                </div>
+
+                <div class="summary-label">
+                    Completed
+                </div>
+
+                <div class="summary-value">
+                    2
+                </div>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="summary-top">
+                    <div class="summary-icon">📅</div>
+                </div>
+
+                <div class="summary-label">
+                    Next Exam
+                </div>
+
+                <div class="summary-value">
+                    3 Days
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- EXAMS -->
+
+        <div class="section-head">
+
+            <h3>Examination Schedule</h3>
+
+            <span>
+                Academic Year 2026
+            </span>
+
+        </div>
+
+
+        <!-- FILTERS -->
+
+        <div class="filters">
+
+            <div class="search-box">
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="🔎 Search exam or subject..."
+                    oninput="filterExams()"
+                >
+
+            </div>
+
+            <select id="semesterFilter" onchange="filterExams()">
+
+                <option value="all">
+                    All Semesters
+                </option>
+
+                <option value="Semester IV">
+                    Semester IV
+                </option>
+
+                <option value="Semester III">
+                    Semester III
+                </option>
+
+            </select>
+
+
+            <select id="statusFilter" onchange="filterExams()">
+
+                <option value="all">
+                    All Status
+                </option>
+
+                <option value="Upcoming">
+                    Upcoming
+                </option>
+
+                <option value="Completed">
+                    Completed
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="exam-grid" id="examGrid">
+
+            <!-- EXAM 1 -->
+
+            <div
+                class="exam-card"
+                data-name="Database Management System DBMS"
+                data-semester="Semester IV"
+                data-status="Upcoming"
+            >
+
+                <div class="exam-top">
+
+                    <div class="exam-icon">
+                        🗄️
+                    </div>
+
+                    <div class="exam-type">
+                        THEORY
+                    </div>
+
+                </div>
+
+                <h4>
+                    Database Management System
+                </h4>
+
+                <div class="exam-subject">
+                    DBMS • Semester IV
+                </div>
+
+                <div class="exam-info">
+
+                    <div class="info-box">
+                        <div class="info-label">Date</div>
+                        <div class="info-value">18 Sep 2026</div>
+                    </div>
+
+                    <div class="info-box">
+                        <div class="info-label">Time</div>
+                        <div class="info-value">10:00 AM</div>
+                    </div>
+
+                    <div class="info-box">
+                        <div class="info-label">Room</div>
+                        <div class="info-value">Block A - 204</div>
+                    </div>
+
+                    <div class="info-box">
+                        <div class="info-label">Duration</div>
+                        <div class="info-value">3 Hours</div>
+                    </div>
+
+                </div>
+
+                <div class="exam-bottom">
+
+                    <div class="exam-status status-soon">
+                        Upcoming
+                    </div>
+
+                    <button
+                        class="view-btn"
+                        onclick="openExam(0)"
+                    >
+                        View Details
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- EXAM 2 -->
+
+            <div
+                class="exam-card"
+                data-name="Web Programming Web Technology"
+                data-semester="Semester IV"
+                data-status="Upcoming"
+            >
+
+                <div class="exam-top">
+
+                    <div class="exam-icon">
+                        💻
+                    </div>
+
+                    <div class="exam-type">
+                        THEORY
+                    </div>
+
+                </div>
+
+                <h4>
+                    Web Programming
+                </h4>
+
+                <div class="exam-subject">
+                    Web Technology • Semester IV
+                </div>
+
+                <div class="exam-info">
+
+                    <div class="info-box">
+                        <div class="info-label">Date</div>
+                        <div class="info-value">20 Sep 2026</div>
+                    </div>
+
+                    <div class="info-box">
+                        <div class="info-label">Time</div>
+                        <div class="info-value">10:00 AM</div>
+                    </div>
+
+                    <div class="info-box">
+                        <div class="info-label">Room</div>
+                        <div class="info-value">Block B - 105</div>
+                    </div>
+
+                    <div class="info-box">
+                        <div class="info-label">Duration</div>
+                        <div class="info-value">3 Hours</div>
+                    </div>
+
+                </div>
+
+                <div class="exam-bottom">
+
+                    <div class="exam-status status-upcoming">
+                        Upcoming
+                    </div>
+
+                    <button
+                        class="view-btn"
+                        onclick="openExam(1)"
+                    >
+                        View Details
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- EXAM 3 -->
+
+            <div
+                class="exam-card"
+                data-name="Software Engineering SE"
+                data-semester="Semester IV"
+                data-status="Upcoming"
+            >
+
+                <div class="exam-top">
+
+                    <div class="exam-icon">
+                        ⚙️
+                    </div>
+
+                    <div class="exam-type">
+                        THEORY
+                    </div>
+
+                </div>
+
+                <h4>
+                    Software Engineering
+                </h4>
+
+                <div class="exam-subject">
+                    Software Engineering • Semester IV
+                </div>
+
+                <div class="exam-info">
+
+                    <div class="info-box">
+                        <div class="info-label">Date</div>
+                        <div class="info-value">22 Sep 2026</div>
+                    </div>
+
+                    <div class="info-box">
+                        <div class="info-label">Time</div>
+                        <div class="info-value">2:00 PM</div>
+                    </div>
+
+                    <div class="info-box">
+                        <div class="info-label">Room</div>
+                        <div class="info-value">Block A - 301</div>
+                    </div>
+
+                    <div class="info-box">
+                        <div class="info-label">Duration</div>
+                        <div class="info-value">3 Hours</div>
+                    </div>
+
+                </div>
+
+                <div class="exam-bottom">
+
+                    <div class="exam-status status-upcoming">
+                        Upcoming
+                    </div>
+
+                    <button
+                        class="view-btn"
+                        onclick="openExam(2)"
+                    >
+                        View Details
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- EXAM 4 -->
+
+            <div
+                class="exam-card"
+                data-name="Computer Networks CN"
+                data-semester="Semester IV"
+                data-status="Upcoming"
+            >
+
+                <div class="exam-top">
+
+                    <div class="exam-icon">
+                        🌐
+                    </div>
+
+                    <div class="exam-type">
+                        THEORY
+                    </div>
+
+                </div>
+
+                <h4>
+                    Computer Networks
+                </h4>
+
+                <div class="exam-subject">
+                    Computer Networks • Semester IV
+                </div>
+
+                <div class="exam-info">
+
+                    <div class="info-box">
+                        <div class="info-label">Date</div>
+                        <div class="info-value">24 Sep 2026</div>
+                    </div>
+
+                    <div class="info-box">
+                        <div class="info-label">Time</div>
+                        <div class="info-value">10:00 AM</div>
+                    </div>
+
+                    <div class="info-box">
+                        <div class="info-label">Room</div>
+                        <div class="info-value">Block B - 204</div>
+                    </div>
+
+                    <div class="info-box">
+                        <div class="info-label">Duration</div>
+                        <div class="info-value">3 Hours</div>
+                    </div>
+
+                </div>
+
+                <div class="exam-bottom">
+
+                    <div class="exam-status status-upcoming">
+                        Upcoming
+                    </div>
+
+                    <button
+                        class="view-btn"
+                        onclick="openExam(3)"
+                    >
+                        View Details
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- EXAM 5 -->
+
+            <div
+                class="exam-card"
+                data-name="Artificial Intelligence AI"
+                data-semester="Semester III"
+                data-status="Completed"
+            >
+
+                <div class="exam-top">
+
+                    <div class="exam-icon">
+                        🤖
+                    </div>
+
+                    <div class="exam-type">
+                        THEORY
+                    </div>
+
+                </div>
+
+                <h4>
+                    Artificial Intelligence
+                </h4>
+
+                <div class="exam-subject">
+                    AI • Semester III
+                </div>
+
+                <div class="exam-info">
+
+                    <div class="info-box">
+                        <div class="info-label">Date</div>
+                        <div class="info-value">10 Sep 2026</div>
+                    </div>
+
+                    <div class="info-box">
+                        <div class="info-label">Time</div>
+                        <div class="info-value">10:00 AM</div>
+                    </div>
+
+                    <div class="info-box">
+                        <div class="info-label">Room</div>
+                        <div class="info-value">Block A - 201</div>
+                    </div>
+
+                    <div class="info-box">
+                        <div class="info-label">Duration</div>
+                        <div class="info-value">3 Hours</div>
+                    </div>
+
+                </div>
+
+                <div class="exam-bottom">
+
+                    <div class="exam-status status-completed">
+                        Completed
+                    </div>
+
+                    <button
+                        class="view-btn"
+                        onclick="openExam(4)"
+                    >
+                        View Details
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- EXAM 6 -->
+
+            <div
+                class="exam-card"
+                data-name="Mathematics Mathematics IV"
+                data-semester="Semester III"
+                data-status="Completed"
+            >
+
+                <div class="exam-top">
+
+                    <div class="exam-icon">
+                        📐
+                    </div>
+
+                    <div class="exam-type">
+                        THEORY
+                    </div>
+
+                </div>
+
+                <h4>
+                    Mathematics
+                </h4>
+
+                <div class="exam-subject">
+                    Mathematics • Semester III
+                </div>
+
+                <div class="exam-info">
+
+                    <div class="info-box">
+                        <div class="info-label">Date</div>
+                        <div class="info-value">12 Sep 2026</div>
+                    </div>
+
+                    <div class="info-box">
+                        <div class="info-label">Time</div>
+                        <div class="info-value">2:00 PM</div>
+                    </div>
+
+                    <div class="info-box">
+                        <div class="info-label">Room</div>
+                        <div class="info-value">Block B - 102</div>
+                    </div>
+
+                    <div class="info-box">
+                        <div class="info-label">Duration</div>
+                        <div class="info-value">3 Hours</div>
+                    </div>
+
+                </div>
+
+                <div class="exam-bottom">
+
+                    <div class="exam-status status-completed">
+                        Completed
+                    </div>
+
+                    <button
+                        class="view-btn"
+                        onclick="openExam(5)"
+                    >
+                        View Details
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="empty-state" id="emptyState">
+            🔎 No exams found matching your search.
+        </div>
+
+    </div>
+
+</main>
+
+
+<!-- ================= CHATBOT ================= -->
+
+<aside class="chatbot">
+
+    <div class="chat-header">
+
+        <div class="robot-icon">
+            🤖
+        </div>
+
+        <div class="chat-title">
+            <strong>CampusConnect AI</strong>
+
+            <span>
+                <span class="online-dot"></span>
+                College Companion
+            </span>
+        </div>
+
+    </div>
+
+
+    <div class="chat-body" id="chatBody">
+
+        <div class="bot-message">
+            Hi Priya! 👋 I'm your CampusConnect AI College Companion.
+            I can help you with exam dates, rooms, timings, and preparation.
+        </div>
+
+        <div class="bot-message">
+            Your next exam is <b>Database Management System</b>
+            on <b>18 September 2026</b> at <b>10:00 AM</b>.
+        </div>
+
+    </div>
+
+
+    <div class="quick-buttons">
+
+        <button
+            class="quick-btn"
+            onclick="quickChat('Next Exam')"
+        >
+            📅 Next Exam
+        </button>
+
+        <button
+            class="quick-btn"
+            onclick="quickChat('Exam Schedule')"
+        >
+            📋 Schedule
+        </button>
+
+        <button
+            class="quick-btn"
+            onclick="quickChat('Exam Tips')"
+        >
+            💡 Exam Tips
+        </button>
+
+        <button
+            class="quick-btn"
+            onclick="quickChat('Hall Ticket')"
+        >
+            🎫 Hall Ticket
+        </button>
+
+    </div>
+
+
+    <div class="chat-footer">
+
+        <input
+            class="chat-input"
+            id="chatInput"
+            placeholder="Ask CampusConnect AI..."
+            onkeydown="handleChatKey(event)"
+        >
+
+        <button
+            class="send-btn"
+            onclick="sendChat()"
+        >
+            ➤
+        </button>
+
+    </div>
+
+</aside>
+
+
+<!-- ================= MODAL ================= -->
+
+<div class="modal-overlay" id="examModal">
+
+    <div class="modal">
+
+        <div class="modal-head">
+
+            <h3>
+                Examination Details
+            </h3>
+
+            <button
+                class="close-modal"
+                onclick="closeExam()"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <div class="modal-body">
+
+            <div class="detail-title" id="modalTitle">
+                Database Management System
+            </div>
+
+            <div class="detail-subject" id="modalSubject">
+                DBMS • Semester IV
+            </div>
+
+
+            <div class="detail-grid">
+
+                <div class="detail-box">
+                    <span>Date</span>
+                    <strong id="modalDate">18 Sep 2026</strong>
+                </div>
+
+                <div class="detail-box">
+                    <span>Time</span>
+                    <strong id="modalTime">10:00 AM</strong>
+                </div>
+
+                <div class="detail-box">
+                    <span>Exam Room</span>
+                    <strong id="modalRoom">Block A - 204</strong>
+                </div>
+
+                <div class="detail-box">
+                    <span>Duration</span>
+                    <strong id="modalDuration">3 Hours</strong>
+                </div>
+
+                <div class="detail-box">
+                    <span>Semester</span>
+                    <strong id="modalSemester">Semester IV</strong>
+                </div>
+
+                <div class="detail-box">
+                    <span>Status</span>
+                    <strong id="modalStatus">Upcoming</strong>
+                </div>
+
+            </div>
+
 
             <div class="instructions">
 
-                <h2>
-                    📌 Exam Instructions
-                </h2>
+                <b>Important Instructions</b>
 
-                <p>
-                    • Carry your college ID card to the examination hall.
-                </p>
+                <br><br>
 
-                <p>
-                    • Reach the examination centre at least 15 minutes before the exam.
-                </p>
+                • Carry your college ID card.<br>
+                • Reach the examination hall at least 30 minutes early.<br>
+                • Carry required stationery items.<br>
+                • Electronic devices are not permitted inside the exam hall.
 
-                <p>
-                    • Carry the required stationery items.
-                </p>
+            </div>
 
-                <p>
-                    • Mobile phones and electronic devices are not permitted inside the examination hall.
-                </p>
 
-                <p>
-                    • Check your examination date, time and venue carefully.
-                </p>
+            <div class="modal-actions">
+
+                <button
+                    class="action-btn secondary-action"
+                    onclick="downloadHallTicket()"
+                >
+                    🎫 Hall Ticket
+                </button>
+
+                <button
+                    class="action-btn primary-action"
+                    onclick="addCalendar()"
+                >
+                    📅 Add to Calendar
+                </button>
 
             </div>
 
@@ -417,159 +2022,483 @@
 
     </div>
 
+</div>
 
-    <!-- NAVIGATION -->
 
-    <script>
+<!-- TOAST -->
 
-        const pages = {
+<div class="toast" id="toast">
+    Action completed
+</div>
 
-            dashboard: "../dashboard.html",
-            courses: "../dashboard.html",
-            timetable: "timetable.html",
-            assignments: "../dashboard.html",
-            attendance: "attendance.html",
-            academics: "academics.html",
-            faculty: "faculty.html",
-            placement: "placement.html",
-            results: "results.html",
-            documents: "documents.html",
-            complaints: "complaints.html",
-            feedback: "feedback.html",
-            "lost-found": "lost-found.html",
-            campus: "campus.html",
-            events: "events.html",
-            exams: "exams.html",
-            notifications: "notifications.html",
-            profile: "profile.html",
-            settings: "settings.html"
 
-        };
+<script>
 
-        function go(page) {
+/* ================= EXAM DATA ================= */
 
-            if (pages[page]) {
-                window.location.href = pages[page];
-            }
+const exams = [
+
+    {
+        title:"Database Management System",
+        subject:"DBMS • Semester IV",
+        date:"18 Sep 2026",
+        time:"10:00 AM",
+        room:"Block A - 204",
+        duration:"3 Hours",
+        semester:"Semester IV",
+        status:"Upcoming"
+    },
+
+    {
+        title:"Web Programming",
+        subject:"Web Technology • Semester IV",
+        date:"20 Sep 2026",
+        time:"10:00 AM",
+        room:"Block B - 105",
+        duration:"3 Hours",
+        semester:"Semester IV",
+        status:"Upcoming"
+    },
+
+    {
+        title:"Software Engineering",
+        subject:"Software Engineering • Semester IV",
+        date:"22 Sep 2026",
+        time:"2:00 PM",
+        room:"Block A - 301",
+        duration:"3 Hours",
+        semester:"Semester IV",
+        status:"Upcoming"
+    },
+
+    {
+        title:"Computer Networks",
+        subject:"Computer Networks • Semester IV",
+        date:"24 Sep 2026",
+        time:"10:00 AM",
+        room:"Block B - 204",
+        duration:"3 Hours",
+        semester:"Semester IV",
+        status:"Upcoming"
+    },
+
+    {
+        title:"Artificial Intelligence",
+        subject:"AI • Semester III",
+        date:"10 Sep 2026",
+        time:"10:00 AM",
+        room:"Block A - 201",
+        duration:"3 Hours",
+        semester:"Semester III",
+        status:"Completed"
+    },
+
+    {
+        title:"Mathematics",
+        subject:"Mathematics • Semester III",
+        date:"12 Sep 2026",
+        time:"2:00 PM",
+        room:"Block B - 102",
+        duration:"3 Hours",
+        semester:"Semester III",
+        status:"Completed"
+    }
+
+];
+
+
+/* ================= CLOCK ================= */
+
+function updateClock(){
+
+    const now = new Date();
+
+    let hours = now.getHours();
+    let minutes = now.getMinutes();
+    let seconds = now.getSeconds();
+
+    const ampm = hours >= 12 ? "PM" : "AM";
+
+    hours = hours % 12 || 12;
+
+    document.getElementById("clock").textContent =
+        `${String(hours).padStart(2,"0")}:` +
+        `${String(minutes).padStart(2,"0")}:` +
+        `${String(seconds).padStart(2,"0")} ${ampm}`;
+}
+
+updateClock();
+
+setInterval(updateClock,1000);
+
+
+/* ================= FILTER ================= */
+
+function filterExams(){
+
+    const search =
+        document
+        .getElementById("searchInput")
+        .value
+        .toLowerCase();
+
+    const semester =
+        document
+        .getElementById("semesterFilter")
+        .value;
+
+    const status =
+        document
+        .getElementById("statusFilter")
+        .value;
+
+    const cards =
+        document.querySelectorAll(".exam-card");
+
+    let visible = 0;
+
+    cards.forEach(card => {
+
+        const name =
+            card.dataset.name.toLowerCase();
+
+        const cardSemester =
+            card.dataset.semester;
+
+        const cardStatus =
+            card.dataset.status;
+
+        const matchSearch =
+            name.includes(search);
+
+        const matchSemester =
+            semester === "all" ||
+            cardSemester === semester;
+
+        const matchStatus =
+            status === "all" ||
+            cardStatus === status;
+
+        if(
+            matchSearch &&
+            matchSemester &&
+            matchStatus
+        ){
+
+            card.style.display = "block";
+            visible++;
+
+        }else{
+
+            card.style.display = "none";
 
         }
 
-    </script>
+    });
+
+    document.getElementById("emptyState").style.display =
+        visible === 0 ? "block" : "none";
+}
 
 
-    <!-- BACKEND CONNECTION -->
+/* ================= MODAL ================= */
 
-    <script>
+function openExam(index){
 
-        document.addEventListener("DOMContentLoaded", function () {
+    const exam = exams[index];
 
-            const examContainer =
-                document.getElementById("examContainer");
+    document.getElementById("modalTitle").textContent =
+        exam.title;
 
+    document.getElementById("modalSubject").textContent =
+        exam.subject;
 
-            fetch("http://127.0.0.1:5000/api/exams/")
+    document.getElementById("modalDate").textContent =
+        exam.date;
 
-                .then(function (response) {
+    document.getElementById("modalTime").textContent =
+        exam.time;
 
-                    if (!response.ok) {
-                        throw new Error(
-                            "Server returned " + response.status
-                        );
-                    }
+    document.getElementById("modalRoom").textContent =
+        exam.room;
 
-                    return response.json();
+    document.getElementById("modalDuration").textContent =
+        exam.duration;
 
-                })
+    document.getElementById("modalSemester").textContent =
+        exam.semester;
 
-                .then(function (exams) {
+    document.getElementById("modalStatus").textContent =
+        exam.status;
 
-                    console.log("Exams received:", exams);
-
-
-                    if (!exams || exams.length === 0) {
-
-                        examContainer.innerHTML = `
-                            <div class="error">
-                                No examinations available.
-                            </div>
-                        `;
-
-                        return;
-                    }
+    document.getElementById("examModal").classList.add("show");
+}
 
 
-                    examContainer.innerHTML = exams.map(function (exam) {
+function closeExam(){
 
-                        return `
-
-                            <div class="exam-card">
-
-                                <div class="exam-icon">
-                                    📝
-                                </div>
-
-                                <div class="exam-info">
-
-                                    <h3>
-                                        ${exam.subject}
-                                    </h3>
-
-                                    <p>
-                                        📅 ${exam.date}
-                                    </p>
-
-                                    <p>
-                                        ⏰ ${exam.time}
-                                    </p>
-
-                                    <p>
-                                        📍 ${exam.venue}
-                                    </p>
-
-                                </div>
-
-                                <div class="exam-status">
-                                    Upcoming
-                                </div>
-
-                            </div>
-
-                        `;
-
-                    }).join("");
-
-                })
+    document
+        .getElementById("examModal")
+        .classList.remove("show");
+}
 
 
-                .catch(function (error) {
+document
+    .getElementById("examModal")
+    .addEventListener("click",function(e){
 
-                    console.error(
-                        "Exam loading error:",
-                        error
-                    );
+        if(e.target === this){
+            closeExam();
+        }
+
+    });
 
 
-                    examContainer.innerHTML = `
+/* ================= HALL TICKET ================= */
 
-                        <div class="error">
+function downloadHallTicket(){
 
-                            ❌ Unable to load examinations.
+    showToast(
+        "🎫 Hall ticket download started!"
+    );
+}
 
-                            <br><br>
 
-                            Please make sure the Flask backend
-                            is running on port 5000.
+/* ================= CALENDAR ================= */
 
-                        </div>
+function addCalendar(){
 
-                    `;
+    showToast(
+        "📅 Exam added to your calendar!"
+    );
+}
 
-                });
 
-        });
+/* ================= TOAST ================= */
 
-    </script>
+let toastTimer;
+
+function showToast(message){
+
+    const toast =
+        document.getElementById("toast");
+
+    toast.textContent = message;
+
+    toast.classList.add("show");
+
+    clearTimeout(toastTimer);
+
+    toastTimer = setTimeout(() => {
+
+        toast.classList.remove("show");
+
+    },3000);
+}
+
+
+/* ================= CHATBOT ================= */
+
+function addBotMessage(message){
+
+    const body =
+        document.getElementById("chatBody");
+
+    const div =
+        document.createElement("div");
+
+    div.className = "bot-message";
+
+    div.innerHTML = message;
+
+    body.appendChild(div);
+
+    body.scrollTop = body.scrollHeight;
+}
+
+
+function addUserMessage(message){
+
+    const body =
+        document.getElementById("chatBody");
+
+    const div =
+        document.createElement("div");
+
+    div.className = "user-message";
+
+    div.textContent = message;
+
+    body.appendChild(div);
+
+    body.scrollTop = body.scrollHeight;
+}
+
+
+function quickChat(type){
+
+    addUserMessage(type);
+
+    setTimeout(() => {
+
+        if(type === "Next Exam"){
+
+            addBotMessage(
+                "📅 Your next exam is <b>Database Management System</b> on <b>18 September 2026</b> at <b>10:00 AM</b> in <b>Block A - 204</b>."
+            );
+
+        }
+
+        else if(type === "Exam Schedule"){
+
+            addBotMessage(
+                "📋 Your upcoming exams are:<br><br>" +
+                "1. DBMS — 18 Sep<br>" +
+                "2. Web Programming — 20 Sep<br>" +
+                "3. Software Engineering — 22 Sep<br>" +
+                "4. Computer Networks — 24 Sep"
+            );
+
+        }
+
+        else if(type === "Exam Tips"){
+
+            addBotMessage(
+                "💡 Exam tip: Start with the subjects having the earliest exam dates. Keep your ID card, stationery, and hall ticket ready the night before."
+            );
+
+        }
+
+        else if(type === "Hall Ticket"){
+
+            addBotMessage(
+                "🎫 Your hall ticket can be accessed from the exam details popup. Open an exam and select <b>Hall Ticket</b>."
+            );
+
+        }
+
+    },500);
+}
+
+
+function sendChat(){
+
+    const input =
+        document.getElementById("chatInput");
+
+    const message =
+        input.value.trim();
+
+    if(!message){
+        return;
+    }
+
+    addUserMessage(message);
+
+    input.value = "";
+
+    setTimeout(() => {
+
+        const text =
+            message.toLowerCase();
+
+        if(
+            text.includes("next") ||
+            text.includes("upcoming")
+        ){
+
+            addBotMessage(
+                "📅 Your next exam is <b>Database Management System</b> on <b>18 September 2026</b> at <b>10:00 AM</b>."
+            );
+
+        }
+
+        else if(
+            text.includes("schedule") ||
+            text.includes("exam")
+        ){
+
+            addBotMessage(
+                "📋 Your exam schedule currently has 4 upcoming exams: DBMS, Web Programming, Software Engineering, and Computer Networks."
+            );
+
+        }
+
+        else if(
+            text.includes("tip") ||
+            text.includes("prepare")
+        ){
+
+            addBotMessage(
+                "💡 Prepare a short revision plan, practice previous questions, and reach the exam hall 30 minutes early."
+            );
+
+        }
+
+        else if(
+            text.includes("hall") ||
+            text.includes("ticket")
+        ){
+
+            addBotMessage(
+                "🎫 Open any exam using <b>View Details</b> and select the Hall Ticket button."
+            );
+
+        }
+
+        else{
+
+            addBotMessage(
+                "🤖 I can help with <b>exam dates, exam rooms, schedules, hall tickets, and preparation tips</b>. Try asking about your next exam."
+            );
+
+        }
+
+    },500);
+}
+
+
+function handleChatKey(event){
+
+    if(event.key === "Enter"){
+        sendChat();
+    }
+
+}
+
+
+/* ================= LOGOUT ================= */
+
+function logoutUser(event){
+
+    event.preventDefault();
+
+    const confirmLogout =
+        confirm("Are you sure you want to logout?");
+
+    if(confirmLogout){
+
+        window.location.href =
+            "../index.html";
+
+    }
+
+}
+
+
+/* ================= ESC KEY ================= */
+
+document.addEventListener("keydown",function(event){
+
+    if(event.key === "Escape"){
+
+        closeExam();
+
+    }
+
+});
+
+</script>
 
 </body>
-
 </html>
