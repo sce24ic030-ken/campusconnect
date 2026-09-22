@@ -7,462 +7,1740 @@
 <title>CampusConnect | Timetable</title>
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,Helvetica,sans-serif;
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-body{
-    background:#f4f7fb;
-    color:#1f2937;
-    min-height:100vh;
+html,
+body {
+    width: 100%;
+    height: 100%;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #f4f6ff;
+    color: #17203a;
 }
 
-/* SIDEBAR */
-.sidebar{
-    position:fixed;
-    left:0;
-    top:0;
-    width:250px;
-    height:100vh;
-    background:linear-gradient(180deg,#172554,#312e81,#4c1d95);
-    color:white;
-    padding:25px 15px;
-    z-index:1000;
-    overflow-y:auto;
+button,
+input,
+select {
+    font-family: inherit;
 }
 
-.logo{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    padding:0 12px 25px;
-    border-bottom:1px solid rgba(255,255,255,.2);
-    margin-bottom:20px;
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+
+    width: 268px;
+    min-width: 268px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #172a70 0%,
+            #28237d 48%,
+            #5520a7 100%
+        );
+
+    color: white;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    z-index: 1000;
+
+    padding-bottom: 20px;
+
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255,255,255,.25) transparent;
 }
 
-.logo-icon{
-    width:45px;
-    height:45px;
-    border-radius:14px;
-    background:linear-gradient(135deg,#38bdf8,#a78bfa);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:23px;
+/* =========================================================
+   LOGO
+========================================================= */
+
+.brand {
+    height: 120px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 22px 18px;
+
+    border-bottom: 1px solid rgba(255,255,255,.12);
 }
 
-.logo h2{
-    font-size:20px;
+.logo-box {
+    width: 52px;
+    height: 52px;
+
+    border-radius: 16px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 28px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #24b8ff,
+            #7144f5
+        );
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,.20);
 }
 
-.logo span{
-    display:block;
-    font-size:11px;
-    opacity:.7;
-    margin-top:3px;
+.brand-text {
+    margin-left: 13px;
 }
 
-.nav-item{
-    width:100%;
-    border:none;
-    background:transparent;
-    color:#dbeafe;
-    display:flex;
-    align-items:center;
-    gap:13px;
-    padding:13px 15px;
-    margin:4px 0;
-    border-radius:12px;
-    cursor:pointer;
-    font-size:14px;
-    text-align:left;
-    transition:.25s;
+.brand-title {
+    font-size: 21px;
+    font-weight: 800;
+    letter-spacing: -.5px;
 }
 
-.nav-item:hover{
-    background:rgba(255,255,255,.12);
-    transform:translateX(4px);
-    color:white;
+.brand-subtitle {
+    font-size: 12px;
+    opacity: .72;
+    margin-top: 3px;
 }
 
-.nav-item.active{
-    background:linear-gradient(90deg,#38bdf8,#8b5cf6);
-    color:white;
+/* =========================================================
+   MENU
+========================================================= */
+
+.menu {
+    padding: 25px 14px;
 }
 
-.nav-icon{
-    width:25px;
-    text-align:center;
-    font-size:17px;
+.menu-title {
+    font-size: 12px;
+    font-weight: 700;
+
+    color: rgba(255,255,255,.52);
+
+    letter-spacing: 1px;
+
+    padding: 0 11px 10px;
 }
 
-/* MAIN */
-.main{
-    margin-left:250px;
-    min-height:100vh;
+.menu-section {
+    margin-top: 20px;
 }
 
-/* TOPBAR */
-.topbar{
-    height:75px;
-    background:white;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:0 30px;
-    border-bottom:1px solid #e5e7eb;
-    position:sticky;
-    top:0;
-    z-index:500;
+.nav-item {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+
+    min-height: 49px;
+
+    padding: 0 14px;
+
+    margin: 5px 0;
+
+    border-radius: 13px;
+
+    color: rgba(255,255,255,.84);
+
+    text-decoration: none;
+
+    transition:
+        transform .2s ease,
+        background .2s ease,
+        color .2s ease;
 }
 
-.page-title{
-    font-size:21px;
-    font-weight:700;
+.nav-item:hover {
+    background: rgba(255,255,255,.12);
+    color: white;
+
+    transform: translateX(3px);
 }
 
-.page-subtitle{
-    font-size:12px;
-    color:#6b7280;
-    margin-top:4px;
+.nav-item.active {
+    color: white;
+
+    background:
+        linear-gradient(
+            90deg,
+            #22b9f5,
+            #6942f4
+        );
+
+    box-shadow:
+        0 9px 22px rgba(0,0,0,.18);
 }
 
-.top-right{
-    display:flex;
-    align-items:center;
-    gap:20px;
+.nav-icon {
+    width: 31px;
+
+    font-size: 20px;
+
+    text-align: center;
+
+    margin-right: 10px;
 }
 
-.clock{
-    font-size:13px;
-    color:#64748b;
+.nav-text {
+    font-size: 15px;
+    font-weight: 650;
 }
 
-.profile{
-    display:flex;
-    align-items:center;
-    gap:10px;
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+.logout {
+    margin-top: 14px;
+
+    padding-top: 15px;
+
+    border-top:
+        1px solid rgba(255,255,255,.13);
 }
 
-.profile-avatar{
-    width:40px;
-    height:40px;
-    border-radius:50%;
-    background:linear-gradient(135deg,#06b6d4,#6366f1);
-    color:white;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-weight:bold;
+/* =========================================================
+   MAIN AREA
+========================================================= */
+
+.main-area {
+    margin-left: 268px;
+    margin-right: 0px;
+
+    width: auto;
+    height: 100vh;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    background:
+        linear-gradient(
+            180deg,
+            #f8f9ff,
+            #eef1fb
+        );
 }
 
-.profile-info strong{
-    display:block;
-    font-size:13px;
+/* =========================================================
+   TOP HEADER
+========================================================= */
+
+.top-header {
+    height: 120px;
+
+    background:
+        rgba(255,255,255,.96);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 22px 28px;
+
+    border-bottom:
+        1px solid #e9ebf5;
+
+    position: sticky;
+    top: 0;
+
+    z-index: 100;
 }
 
-.profile-info span{
-    font-size:11px;
-    color:#64748b;
+.header-left h1 {
+    font-size: 30px;
+    line-height: 1.05;
+    font-weight: 800;
 }
 
-/* CONTENT */
-.content{
-    padding:30px;
+.header-left p {
+    margin-top: 7px;
+
+    color: #8990a7;
+
+    font-size: 14px;
 }
 
-/* HEADER CARD */
-.hero{
-    background:linear-gradient(120deg,#172554,#312e81,#6d28d9);
-    border-radius:24px;
-    padding:30px;
-    color:white;
-    margin-bottom:25px;
+.header-right {
+    display: flex;
+    align-items: center;
+
+    gap: 18px;
 }
 
-.hero h1{
-    font-size:28px;
-    margin-bottom:8px;
+.time-box {
+    font-size: 18px;
+    font-weight: 750;
+
+    color: #59617d;
 }
 
-.hero p{
-    font-size:13px;
-    color:#dbeafe;
+.notification {
+    width: 48px;
+    height: 48px;
+
+    background: #fff;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 22px;
+
+    box-shadow:
+        0 5px 18px rgba(40,35,100,.10);
+
+    position: relative;
 }
 
-/* TIMETABLE */
-.card{
-    background:white;
-    border:1px solid #e5e7eb;
-    border-radius:20px;
-    padding:23px;
-    margin-bottom:22px;
+.notification::after {
+    content: "";
+
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+
+    background: #ff4f8b;
+
+    position: absolute;
+
+    top: 7px;
+    right: 8px;
 }
 
-.card-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:20px;
+.profile-mini {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
 }
 
-.card-header h2{
-    font-size:18px;
+.profile-circle {
+    width: 48px;
+    height: 48px;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #25b8ee,
+            #466cf1
+        );
+
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 20px;
+    font-weight: 800;
 }
 
-.today{
-    color:#6366f1;
-    font-size:12px;
+.profile-info strong {
+    display: block;
+
+    font-size: 15px;
 }
 
-.timetable{
-    display:flex;
-    flex-direction:column;
-    gap:12px;
+.profile-info span {
+    display: block;
+
+    color: #8d93a8;
+
+    font-size: 12px;
 }
 
-.class-item{
-    display:grid;
-    grid-template-columns:100px 1fr 100px;
-    align-items:center;
-    padding:17px;
-    border-radius:14px;
-    background:#f8fafc;
-    border-left:4px solid #6366f1;
-    transition:.2s;
+/* =========================================================
+   PAGE CONTENT
+========================================================= */
+
+.page-content {
+    padding: 20px 24px 35px;
+
+    width: 100%;
 }
 
-.class-item:hover{
-    background:#eef2ff;
-    transform:translateX(3px);
+/* =========================================================
+   PAGE TITLE
+========================================================= */
+
+.page-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 18px;
 }
 
-.time{
-    font-size:12px;
-    color:#64748b;
+.page-heading h2 {
+    font-size: 24px;
+    font-weight: 800;
 }
 
-.subject{
-    font-size:14px;
-    font-weight:600;
+.page-heading p {
+    color: #8990a7;
+    font-size: 13px;
+
+    margin-top: 5px;
 }
 
-.details{
-    font-size:11px;
-    color:#64748b;
-    margin-top:5px;
+/* =========================================================
+   ACTION BUTTONS
+========================================================= */
+
+.header-actions {
+    display: flex;
+    gap: 9px;
 }
 
-.room{
-    text-align:right;
-    font-size:11px;
-    color:#64748b;
+.action-btn {
+    border: none;
+
+    padding: 11px 15px;
+
+    border-radius: 11px;
+
+    cursor: pointer;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    transition: .2s;
 }
 
-/* MOBILE */
-.mobile-menu{
-    display:none;
-    border:none;
-    background:none;
-    font-size:22px;
-    cursor:pointer;
+.print-btn {
+    color: #6845e9;
+    background: white;
+
+    border: 1px solid #e2e5f1;
 }
 
-@media(max-width:700px){
+.today-btn {
+    color: white;
 
-    .sidebar{
-        width:220px;
-        transform:translateX(-100%);
-        transition:.3s;
+    background:
+        linear-gradient(
+            135deg,
+            #24aaf1,
+            #7040ef
+        );
+}
+
+.action-btn:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(40,35,100,.12);
+}
+
+/* =========================================================
+   SUMMARY CARDS
+========================================================= */
+
+.summary-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0,1fr));
+
+    gap: 15px;
+
+    margin-bottom: 18px;
+}
+
+.summary-card {
+    background: white;
+
+    border: 1px solid #e9ebf5;
+
+    border-radius: 17px;
+
+    padding: 17px;
+
+    min-height: 105px;
+
+    box-shadow:
+        0 8px 25px rgba(40,35,100,.06);
+
+    transition: .2s;
+}
+
+.summary-card:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 13px 30px rgba(40,35,100,.10);
+}
+
+.summary-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.summary-title {
+    color: #7f88a5;
+
+    font-size: 12px;
+    font-weight: 650;
+}
+
+.summary-icon {
+    width: 38px;
+    height: 38px;
+
+    border-radius: 12px;
+
+    background: #f0f3ff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 19px;
+}
+
+.summary-number {
+    font-size: 25px;
+
+    font-weight: 800;
+
+    color: #3063df;
+
+    margin-top: 9px;
+}
+
+.summary-small {
+    color: #9aa2b9;
+
+    font-size: 10px;
+
+    margin-top: 2px;
+}
+
+/* =========================================================
+   TIMETABLE CARD
+========================================================= */
+
+.timetable-card {
+    background: white;
+
+    border: 1px solid #e9ebf5;
+
+    border-radius: 17px;
+
+    box-shadow:
+        0 8px 25px rgba(40,35,100,.06);
+
+    overflow: hidden;
+}
+
+/* =========================================================
+   TIMETABLE HEADER
+========================================================= */
+
+.timetable-header {
+    padding: 20px;
+
+    border-bottom: 1px solid #edf0f6;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.timetable-header h3 {
+    font-size: 17px;
+}
+
+.timetable-header p {
+    color: #9299ae;
+
+    font-size: 11px;
+
+    margin-top: 4px;
+}
+
+/* =========================================================
+   FILTER
+========================================================= */
+
+.filter-box {
+    display: flex;
+    gap: 8px;
+}
+
+.filter-box select {
+    height: 37px;
+
+    border: 1px solid #e1e4ef;
+
+    border-radius: 10px;
+
+    padding: 0 10px;
+
+    color: #68728d;
+
+    background: white;
+
+    outline: none;
+
+    font-size: 11px;
+}
+
+.filter-box select:focus {
+    border-color: #7244e8;
+}
+
+/* =========================================================
+   DAY TABS
+========================================================= */
+
+.day-tabs {
+    display: flex;
+
+    gap: 7px;
+
+    padding: 15px 20px;
+
+    overflow-x: auto;
+
+    border-bottom:
+        1px solid #edf0f6;
+}
+
+.day-tab {
+    border: 1px solid #e0e3f0;
+
+    background: white;
+
+    color: #737c96;
+
+    border-radius: 20px;
+
+    padding: 8px 15px;
+
+    cursor: pointer;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+
+    transition: .2s;
+}
+
+.day-tab:hover {
+    background: #f0edff;
+    color: #6845e9;
+}
+
+.day-tab.active {
+    color: white;
+
+    border-color: transparent;
+
+    background:
+        linear-gradient(
+            135deg,
+            #24aaf1,
+            #7040ef
+        );
+
+    box-shadow:
+        0 6px 16px rgba(80,60,210,.18);
+}
+
+/* =========================================================
+   CLASS LIST
+========================================================= */
+
+.class-list {
+    padding: 5px 20px 20px;
+}
+
+.class-item {
+    display: grid;
+
+    grid-template-columns: 100px 1fr auto;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 17px 5px;
+
+    border-bottom:
+        1px solid #f0f1f7;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.class-item:last-child {
+    border-bottom: none;
+}
+
+.class-item:hover {
+    background: #fafaff;
+
+    transform: translateX(3px);
+}
+
+.class-time {
+    color: #6845e9;
+
+    font-size: 13px;
+
+    font-weight: 750;
+}
+
+.class-main {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+}
+
+.subject-icon {
+    width: 43px;
+    height: 43px;
+
+    border-radius: 13px;
+
+    background: #f0f3ff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 20px;
+
+    flex-shrink: 0;
+}
+
+.subject-info strong {
+    display: block;
+
+    font-size: 14px;
+
+    color: #17203a;
+}
+
+.subject-info span {
+    display: block;
+
+    color: #9299ae;
+
+    font-size: 11px;
+
+    margin-top: 4px;
+}
+
+.class-status {
+    padding: 6px 10px;
+
+    border-radius: 20px;
+
+    font-size: 9px;
+
+    font-weight: 750;
+}
+
+.status-class {
+    background: #edf8ff;
+    color: #238acb;
+}
+
+.status-lab {
+    background: #f3edff;
+    color: #7040df;
+}
+
+.status-break {
+    background: #fff4e8;
+    color: #d9812d;
+}
+
+/* =========================================================
+   EMPTY
+========================================================= */
+
+.empty-state {
+    text-align: center;
+
+    padding: 45px 20px;
+
+    color: #8990a7;
+
+    display: none;
+}
+
+.empty-state div {
+    font-size: 40px;
+
+    margin-bottom: 10px;
+}
+
+.empty-state strong {
+    display: block;
+
+    color: #59617d;
+
+    font-size: 15px;
+}
+
+/* =========================================================
+   AI CHATBOT — SAME STYLE AS COURSES PAGE
+========================================================= */
+
+.chatbot {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    width: 320px;
+    height: 560px;
+    max-width: calc(100vw - 40px);
+    max-height: calc(100vh - 40px);
+    background: white;
+    border-radius: 20px;
+    border: 1px solid #e5e7ef;
+    box-shadow: 0 15px 45px rgba(40,35,100,.15);
+    z-index: 9999;
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.chatbot.cc-open {
+    display: flex;
+}
+
+/* =========================================================
+   CHATBOT FLOATING ICON
+========================================================= */
+
+.chat-launcher {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+
+    width: 78px;
+    height: 78px;
+    padding: 0;
+
+    border: 4px solid #ffffff;
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            145deg,
+            #6840ef 0%,
+            #8b35e5 55%,
+            #6d35d9 100%
+        );
+
+    box-shadow:
+        0 0 0 1px rgba(117,70,235,.12),
+        0 10px 30px rgba(91,52,196,.38),
+        0 0 34px rgba(126,70,239,.30);
+
+    z-index: 10000;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
+}
+
+.chat-launcher::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 7px;
+
+    border-radius: 50%;
+
+    border:
+        1px solid rgba(255,255,255,.20);
+
+    pointer-events: none;
+}
+
+.chat-launcher .launcher-robot {
+    position: relative;
+
+    z-index: 2;
+
+    font-size: 38px;
+
+    line-height: 1;
+
+    transform: translateY(1px);
+
+    filter:
+        drop-shadow(
+            0 3px 3px rgba(44,22,112,.28)
+        );
+}
+
+.chat-launcher .launcher-notification {
+    position: absolute;
+
+    top: -2px;
+    right: -1px;
+
+    width: 22px;
+    height: 22px;
+
+    border-radius: 50%;
+
+    background: #ff3f8b;
+
+    border: 4px solid #ffffff;
+
+    box-shadow:
+        0 3px 9px rgba(75,26,107,.22);
+
+    z-index: 4;
+}
+
+.chat-launcher:hover {
+    transform:
+        translateY(-4px)
+        scale(1.04);
+
+    box-shadow:
+        0 0 0 1px rgba(117,70,235,.14),
+        0 14px 34px rgba(91,52,196,.44),
+        0 0 40px rgba(126,70,239,.34);
+}
+
+.chat-launcher:active {
+    transform:
+        translateY(-1px)
+        scale(.98);
+}
+
+/* =========================================================
+   CHAT HEADER
+========================================================= */
+
+.chat-header {
+    min-height: 78px;
+
+    padding: 14px 15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #29277d,
+            #7137d8
+        );
+
+    color: white;
+
+    display: flex;
+    align-items: center;
+
+    gap: 11px;
+}
+
+.robot-icon {
+    width: 44px;
+    height: 44px;
+
+    border-radius: 14px;
+
+    background:
+        rgba(255,255,255,.18);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 25px;
+
+    flex-shrink: 0;
+}
+
+.chat-title {
+    min-width: 0;
+    flex: 1;
+}
+
+.chat-title strong {
+    display: block;
+
+    font-size: 14px;
+
+    font-weight: 800;
+}
+
+.chat-title span {
+    display: flex;
+    align-items: center;
+
+    gap: 5px;
+
+    margin-top: 4px;
+
+    font-size: 9px;
+
+    color:
+        rgba(255,255,255,.78);
+}
+
+.online-dot {
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: #5ff39c;
+
+    display: inline-block;
+}
+
+.chat-close {
+    width: 30px;
+    height: 30px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,255,255,.13);
+
+    color: white;
+
+    font-size: 22px;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: .2s;
+}
+
+.chat-close:hover {
+    background:
+        rgba(255,255,255,.24);
+
+    transform: rotate(90deg);
+}
+
+/* =========================================================
+   CHAT BODY
+========================================================= */
+
+.chat-body {
+    flex: 1;
+
+    padding: 15px;
+
+    overflow-y: auto;
+
+    background:
+        #f8f8fd;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+
+    scrollbar-width: thin;
+}
+
+.bot-message {
+    align-self: flex-start;
+
+    max-width: 88%;
+
+    padding: 10px 12px;
+
+    border-radius:
+        13px 13px 13px 4px;
+
+    background: white;
+
+    border:
+        1px solid #e8e8f1;
+
+    color: #4e5670;
+
+    font-size: 11px;
+
+    line-height: 1.55;
+
+    box-shadow:
+        0 3px 10px rgba(40,35,100,.05);
+}
+
+.user-message {
+    align-self: flex-end;
+
+    max-width: 82%;
+
+    padding: 10px 12px;
+
+    border-radius:
+        13px 13px 4px 13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6845e9,
+            #8d3fdb
+        );
+
+    color: white;
+
+    font-size: 11px;
+
+    line-height: 1.5;
+
+    box-shadow:
+        0 5px 14px rgba(80,55,190,.15);
+}
+
+/* =========================================================
+   QUICK BUTTONS
+========================================================= */
+
+.quick-buttons {
+    padding: 9px 11px;
+
+    display: flex;
+
+    gap: 6px;
+
+    flex-wrap: wrap;
+
+    background: white;
+
+    border-top:
+        1px solid #ececf3;
+}
+
+.quick-btn {
+    border:
+        1px solid #dedff0;
+
+    background: white;
+
+    color: #6845e9;
+
+    border-radius: 18px;
+
+    padding: 7px 10px;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.quick-btn:hover {
+    background: #f3f0ff;
+
+    border-color: #cfc5ff;
+
+    transform: translateY(-1px);
+}
+
+/* =========================================================
+   CHAT FOOTER
+========================================================= */
+
+.chat-footer {
+    min-height: 54px;
+
+    padding: 8px 10px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    background: white;
+
+    border-top:
+        1px solid #ececf3;
+}
+
+.chat-input {
+    flex: 1;
+
+    height: 38px;
+
+    border:
+        1px solid #e1e2ed;
+
+    border-radius: 12px;
+
+    outline: none;
+
+    padding: 0 11px;
+
+    font-size: 11px;
+
+    color: #4e5670;
+
+    background: #fafaff;
+}
+
+.chat-input:focus {
+    border-color: #7044e8;
+
+    background: white;
+}
+
+.chat-input::placeholder {
+    color: #a0a5b7;
+}
+
+.send-btn {
+    width: 38px;
+    height: 38px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6046ec,
+            #843bda
+        );
+
+    cursor: pointer;
+
+    font-size: 17px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: .2s;
+}
+
+.send-btn:hover {
+    transform: scale(1.05);
+
+    box-shadow:
+        0 5px 15px rgba(90,60,200,.22);
+}
+
+/* =========================================================
+   RESPONSIVE CHATBOT
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .chatbot {
+        right: 12px;
+        bottom: 12px;
+
+        width: calc(100vw - 24px);
+
+        height: min(560px, calc(100vh - 24px));
     }
 
-    .sidebar.open{
-        transform:translateX(0);
+    .chat-launcher {
+        right: 16px;
+        bottom: 16px;
+
+        width: 72px;
+        height: 72px;
     }
 
-    .main{
-        margin-left:0;
+    .chat-launcher .launcher-robot {
+        font-size: 34px;
     }
 
-    .mobile-menu{
-        display:block;
-        margin-right:15px;
-    }
-
-    .topbar{
-        padding:0 15px;
-    }
-
-    .clock,
-    .profile-info{
-        display:none;
-    }
-
-    .content{
-        padding:15px;
-    }
-
-    .class-item{
-        grid-template-columns:70px 1fr;
-    }
-
-    .room{
-        display:none;
+    .chat-launcher .launcher-notification {
+        width: 20px;
+        height: 20px;
     }
 }
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.modal-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    background:
+        rgba(15,20,55,.48);
+
+    backdrop-filter:
+        blur(4px);
+
+    z-index: 20000;
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+}
+
+.modal-overlay.show {
+    display: flex;
+}
+
+.modal {
+    width: 500px;
+    max-width: 100%;
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    background: white;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 25px 70px rgba(20,25,80,.25);
+}
+
+.modal-header {
+    padding: 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #29277d,
+            #7137d8
+        );
+
+    color: white;
+
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h3 {
+    font-size: 18px;
+}
+
+.modal-close {
+    width: 32px;
+    height: 32px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,255,255,.15);
+
+    color: white;
+
+    cursor: pointer;
+
+    font-size: 20px;
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+.detail-row {
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    padding: 12px 0;
+
+    border-bottom:
+        1px solid #f0f1f6;
+}
+
+.detail-row:last-child {
+    border-bottom: none;
+}
+
+.detail-icon {
+    width: 40px;
+    height: 40px;
+
+    border-radius: 12px;
+
+    background: #f1f3ff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 18px;
+}
+
+.detail-info span {
+    display: block;
+
+    color: #999fb2;
+
+    font-size: 10px;
+
+    margin-bottom: 3px;
+}
+
+.detail-info strong {
+    display: block;
+
+    color: #303750;
+
+    font-size: 13px;
+}
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+.toast {
+    position: fixed;
+
+    left: 50%;
+    bottom: 25px;
+
+    transform:
+        translate(-50%, 20px);
+
+    background:
+        #252a4b;
+
+    color: white;
+
+    padding: 11px 18px;
+
+    border-radius: 10px;
+
+    font-size: 11px;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition: .25s;
+
+    z-index: 30000;
+}
+
+.toast.show {
+    opacity: 1;
+
+    transform:
+        translate(-50%, 0);
+}
+
+/* =========================================================
+   PRINT
+========================================================= */
+
+@media print {
+
+    .sidebar,
+    .top-header,
+    .header-actions,
+    .day-tabs,
+    .chatbot,
+    .chat-launcher {
+        display: none !important;
+    }
+
+    .main-area {
+        margin-left: 0;
+
+        height: auto;
+
+        overflow: visible;
+
+        background: white;
+    }
+
+    .page-content {
+        padding: 0;
+    }
+
+    .timetable-card,
+    .summary-card {
+        box-shadow: none;
+    }
+}
+
 </style>
 </head>
 
 <body>
 
-<!-- SIDEBAR -->
-<aside class="sidebar" id="sidebar">
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
 
-    <div class="logo">
-        <div class="logo-icon">🎓</div>
+<aside class="sidebar">
 
-        <div>
-            <h2>CampusConnect</h2>
-            <span>AI College Companion</span>
+    <div class="brand">
+
+        <div class="logo-box">
+            🎓
         </div>
-    </div>
 
-    <button class="nav-item" onclick="go('dashboard')">
-        <span class="nav-icon">🏠</span>
-        Dashboard
-    </button>
+        <div class="brand-text">
 
-    <button class="nav-item" onclick="go('courses')">
-        <span class="nav-icon">📚</span>
-        My Courses
-    </button>
+            <div class="brand-title">
+                CampusConnect
+            </div>
 
-    <button class="nav-item active">
-        <span class="nav-icon">🗓️</span>
-        Timetable
-    </button>
-
-    <button class="nav-item" onclick="go('assignments')">
-        <span class="nav-icon">📝</span>
-        Assignments
-    </button>
-
-    <button class="nav-item" onclick="go('attendance')">
-        <span class="nav-icon">📊</span>
-        Attendance
-    </button>
-
-    <button class="nav-item" onclick="go('academics')">
-        <span class="nav-icon">🎓</span>
-        Academics
-    </button>
-
-    <button class="nav-item" onclick="go('faculty')">
-        <span class="nav-icon">👩‍🏫</span>
-        Faculty
-    </button>
-
-    <button class="nav-item" onclick="go('placement')">
-        <span class="nav-icon">💼</span>
-        Placement
-    </button>
-
-    <button class="nav-item" onclick="go('results')">
-        <span class="nav-icon">📈</span>
-        Results
-    </button>
-
-    <button class="nav-item" onclick="go('documents')">
-        <span class="nav-icon">📄</span>
-        Documents
-    </button>
-
-    <button class="nav-item" onclick="go('complaints')">
-        <span class="nav-icon">📢</span>
-        Complaints
-    </button>
-
-    <button class="nav-item" onclick="go('feedback')">
-        <span class="nav-icon">💬</span>
-        Feedback
-    </button>
-
-    <button class="nav-item" onclick="go('lost-found')">
-        <span class="nav-icon">🔎</span>
-        Lost & Found
-    </button>
-
-    <button class="nav-item" onclick="go('campus')">
-        <span class="nav-icon">🏫</span>
-        Campus
-    </button>
-
-    <button class="nav-item" onclick="go('events')">
-        <span class="nav-icon">🎉</span>
-        Events
-    </button>
-
-    <button class="nav-item" onclick="go('exams')">
-        <span class="nav-icon">📋</span>
-        Exams
-    </button>
-
-    <button class="nav-item" onclick="go('notifications')">
-        <span class="nav-icon">🔔</span>
-        Notifications
-    </button>
-
-    <button class="nav-item" onclick="go('profile')">
-        <span class="nav-icon">👤</span>
-        Profile
-    </button>
-
-    <button class="nav-item" onclick="go('settings')">
-        <span class="nav-icon">⚙️</span>
-        Settings
-    </button>
-
-</aside>
-
-
-<!-- MAIN -->
-<main class="main">
-
-    <!-- TOPBAR -->
-    <header class="topbar">
-
-        <div style="display:flex;align-items:center;">
-
-            <button class="mobile-menu" onclick="toggleSidebar()">
-                ☰
-            </button>
-
-            <div>
-                <div class="page-title">
-                    Timetable
-                </div>
-
-                <div class="page-subtitle">
-                    Your daily class schedule
-                </div>
+            <div class="brand-subtitle">
+                Student Portal
             </div>
 
         </div>
 
-        <div class="top-right">
+    </div>
 
-            <div class="clock" id="clock"></div>
 
-            <div class="profile">
-                <div class="profile-avatar">P</div>
+    <nav class="menu">
+
+        <div class="menu-title">
+            MAIN MENU
+        </div>
+
+
+        <div class="menu-section">
+
+            <a href="dashboard.html" class="nav-item">
+
+                <span class="nav-icon">🏠</span>
+
+                <span class="nav-text">
+                    Dashboard
+                </span>
+
+            </a>
+
+
+            <a href="courses.html" class="nav-item">
+
+                <span class="nav-icon">📚</span>
+
+                <span class="nav-text">
+                    Courses
+                </span>
+
+            </a>
+
+
+            <a href="timetable.html" class="nav-item active">
+
+                <span class="nav-icon">📅</span>
+
+                <span class="nav-text">
+                    Timetable
+                </span>
+
+            </a>
+
+
+            <a href="assignments.html" class="nav-item">
+
+                <span class="nav-icon">📝</span>
+
+                <span class="nav-text">
+                    Assignments
+                </span>
+
+            </a>
+
+
+            <a href="attendance.html" class="nav-item">
+
+                <span class="nav-icon">📊</span>
+
+                <span class="nav-text">
+                    Attendance
+                </span>
+
+            </a>
+
+
+            <a href="results.html" class="nav-item">
+
+                <span class="nav-icon">🏆</span>
+
+                <span class="nav-text">
+                    Results
+                </span>
+
+            </a>
+
+        </div>
+
+
+        <div class="menu-title menu-section">
+            STUDENT
+        </div>
+
+
+        <div>
+
+            <a href="profile.html" class="nav-item">
+
+                <span class="nav-icon">👤</span>
+
+                <span class="nav-text">
+                    Profile
+                </span>
+
+            </a>
+
+
+            <a href="settings.html" class="nav-item">
+
+                <span class="nav-icon">⚙️</span>
+
+                <span class="nav-text">
+                    Settings
+                </span>
+
+            </a>
+
+
+            <div class="logout">
+
+                <a
+                    href="login.html"
+                    class="nav-item"
+                    onclick="return confirmLogout()"
+                >
+
+                    <span class="nav-icon">🚪</span>
+
+                    <span class="nav-text">
+                        Logout
+                    </span>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+</aside>
+
+
+<!-- =====================================================
+     MAIN AREA
+===================================================== -->
+
+<main class="main-area">
+
+
+    <!-- =================================================
+         TOP HEADER
+    ================================================= -->
+
+    <header class="top-header">
+
+        <div class="header-left">
+
+            <h1>
+                Timetable
+            </h1>
+
+            <p>
+                View and manage your weekly class schedule
+            </p>
+
+        </div>
+
+
+        <div class="header-right">
+
+            <div class="time-box" id="currentTime">
+                09:00 AM
+            </div>
+
+
+            <div class="notification">
+                🔔
+            </div>
+
+
+            <div class="profile-mini">
+
+                <div class="profile-circle">
+                    P
+                </div>
 
                 <div class="profile-info">
-                    <strong id="studentName">Student</strong>
-                    <span>BCA Student</span>
+
+                    <strong>
+                        Student
+                    </strong>
+
+                    <span>
+                        Semester 4
+                    </span>
+
                 </div>
+
             </div>
 
         </div>
@@ -470,124 +1748,296 @@ body{
     </header>
 
 
-    <!-- CONTENT -->
-    <section class="content">
+    <!-- =================================================
+         PAGE CONTENT
+    ================================================= -->
 
-        <div class="hero">
-            <h1>🗓️ My Timetable</h1>
-
-            <p>
-                View your daily class schedule, subjects,
-                timings and classrooms.
-            </p>
-        </div>
+    <section class="page-content">
 
 
-        <div class="card">
+        <div class="page-heading">
 
-            <div class="card-header">
+            <div>
 
-                <h2>Today's Schedule</h2>
+                <h2>
+                    Weekly Schedule
+                </h2>
 
-                <span class="today" id="todayDate">
-                    Today
-                </span>
+                <p>
+                    Select a day to view your classes
+                </p>
 
             </div>
 
 
-            <div class="timetable">
+            <div class="header-actions">
 
-                <div class="class-item">
+                <button
+                    class="action-btn print-btn"
+                    onclick="printTimetable()"
+                >
+                    🖨 Print
+                </button>
 
-                    <div class="time">
-                        09:00 AM
+
+                <button
+                    class="action-btn today-btn"
+                    onclick="goToToday()"
+                >
+                    📅 Today
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             SUMMARY CARDS
+        ================================================= -->
+
+        <div class="summary-grid">
+
+            <div class="summary-card">
+
+                <div class="summary-top">
+
+                    <div class="summary-title">
+                        Total Classes
                     </div>
 
-                    <div>
-                        <div class="subject">
-                            Web Development
-                        </div>
-
-                        <div class="details">
-                            BCA • Lecture
-                        </div>
-                    </div>
-
-                    <div class="room">
-                        Room 204
-                    </div>
-
-                </div>
-
-
-                <div class="class-item">
-
-                    <div class="time">
-                        11:00 AM
-                    </div>
-
-                    <div>
-                        <div class="subject">
-                            Database Management
-                        </div>
-
-                        <div class="details">
-                            BCA • Practical
-                        </div>
-                    </div>
-
-                    <div class="room">
-                        Lab 2
+                    <div class="summary-icon">
+                        📚
                     </div>
 
                 </div>
 
+                <div
+                    class="summary-number"
+                    id="totalClasses"
+                >
+                    17
+                </div>
 
-                <div class="class-item">
+                <div class="summary-small">
+                    This week
+                </div>
 
-                    <div class="time">
-                        02:00 PM
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="summary-top">
+
+                    <div class="summary-title">
+                        Lab Sessions
                     </div>
 
-                    <div>
-                        <div class="subject">
-                            Computer Networks
-                        </div>
-
-                        <div class="details">
-                            BCA • Lecture
-                        </div>
-                    </div>
-
-                    <div class="room">
-                        Room 106
+                    <div class="summary-icon">
+                        💻
                     </div>
 
                 </div>
 
+                <div
+                    class="summary-number"
+                    id="totalLabs"
+                >
+                    6
+                </div>
 
-                <div class="class-item">
+                <div class="summary-small">
+                    Practical classes
+                </div>
 
-                    <div class="time">
-                        04:00 PM
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="summary-top">
+
+                    <div class="summary-title">
+                        Subjects
                     </div>
 
-                    <div>
-                        <div class="subject">
-                            Software Engineering
-                        </div>
-
-                        <div class="details">
-                            BCA • Lecture
-                        </div>
-                    </div>
-
-                    <div class="room">
-                        Room 305
+                    <div class="summary-icon">
+                        📖
                     </div>
 
                 </div>
+
+                <div
+                    class="summary-number"
+                    id="totalSubjects"
+                >
+                    6
+                </div>
+
+                <div class="summary-small">
+                    Unique subjects
+                </div>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="summary-top">
+
+                    <div class="summary-title">
+                        Weekly Hours
+                    </div>
+
+                    <div class="summary-icon">
+                        ⏰
+                    </div>
+
+                </div>
+
+                <div
+                    class="summary-number"
+                    id="weeklyHours"
+                >
+                    17
+                </div>
+
+                <div class="summary-small">
+                    Scheduled periods
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             TIMETABLE CARD
+        ================================================= -->
+
+        <div class="timetable-card">
+
+
+            <div class="timetable-header">
+
+                <div>
+
+                    <h3>
+                        Class Schedule
+                    </h3>
+
+                    <p id="selectedDayText">
+                        Monday's classes
+                    </p>
+
+                </div>
+
+
+                <div class="filter-box">
+
+                    <select id="typeFilter">
+                        <option value="all">
+                            All Types
+                        </option>
+
+                        <option value="Class">
+                            Classes
+                        </option>
+
+                        <option value="Lab">
+                            Labs
+                        </option>
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 DAY TABS
+            ================================================= -->
+
+            <div class="day-tabs">
+
+                <button
+                    class="day-tab active"
+                    data-day="Monday"
+                    onclick="selectDay('Monday')"
+                >
+                    Monday
+                </button>
+
+                <button
+                    class="day-tab"
+                    data-day="Tuesday"
+                    onclick="selectDay('Tuesday')"
+                >
+                    Tuesday
+                </button>
+
+                <button
+                    class="day-tab"
+                    data-day="Wednesday"
+                    onclick="selectDay('Wednesday')"
+                >
+                    Wednesday
+                </button>
+
+                <button
+                    class="day-tab"
+                    data-day="Thursday"
+                    onclick="selectDay('Thursday')"
+                >
+                    Thursday
+                </button>
+
+                <button
+                    class="day-tab"
+                    data-day="Friday"
+                    onclick="selectDay('Friday')"
+                >
+                    Friday
+                </button>
+
+                <button
+                    class="day-tab"
+                    data-day="Saturday"
+                    onclick="selectDay('Saturday')"
+                >
+                    Saturday
+                </button>
+
+            </div>
+
+
+            <!-- =================================================
+                 CLASS LIST
+            ================================================= -->
+
+            <div
+                class="class-list"
+                id="classList"
+            ></div>
+
+
+            <div
+                class="empty-state"
+                id="emptyState"
+            >
+
+                <div>
+                    📭
+                </div>
+
+                <strong>
+                    No classes found
+                </strong>
+
+                <p>
+                    There are no classes matching your filter.
+                </p>
 
             </div>
 
@@ -598,98 +2048,1737 @@ body{
 </main>
 
 
+<!-- =====================================================
+     AI CHATBOT BUTTON
+===================================================== -->
+
+<button
+    class="chat-launcher"
+    id="chatLauncher"
+    onclick="toggleChatbot()"
+    title="Open AI College Companion"
+    aria-label="Open AI College Companion"
+>
+
+    <span
+        class="launcher-robot"
+        aria-hidden="true"
+    >
+        🤖
+    </span>
+
+    <span
+        class="launcher-notification"
+        aria-hidden="true"
+    ></span>
+
+</button>
+
+
+<!-- =====================================================
+     AI CHATBOT
+===================================================== -->
+
+<aside
+    class="chatbot"
+    id="chatbotPanel"
+>
+
+    <div class="chat-header">
+
+        <div class="robot-icon">
+            🤖
+        </div>
+
+        <div class="chat-title">
+
+            <strong>
+                AI College Companion
+            </strong>
+
+            <span>
+                <span class="online-dot"></span>
+                Online • Ready to help
+            </span>
+
+        </div>
+
+
+        <button
+            class="chat-close"
+            onclick="toggleChatbot()"
+            aria-label="Close AI College Companion"
+        >
+            ×
+        </button>
+
+    </div>
+
+
+    <div
+        class="chat-body"
+        id="chatBody"
+    >
+
+        <div class="bot-message">
+
+            👋 Hi! I'm your
+            <b>AI College Companion</b>.
+
+        </div>
+
+
+        <div class="bot-message">
+
+            I can help you with your
+            <b>timetable, subjects, faculty,
+            rooms, labs and class timings.</b>
+
+            Ask me anything about your schedule!
+
+        </div>
+
+    </div>
+
+
+    <div class="quick-buttons">
+
+        <button
+            class="quick-btn"
+            onclick="quickChat('Show my timetable')"
+        >
+            📅 My timetable
+        </button>
+
+        <button
+            class="quick-btn"
+            onclick="quickChat('Show Monday')"
+        >
+            Monday
+        </button>
+
+        <button
+            class="quick-btn"
+            onclick="quickChat('Show my labs')"
+        >
+            💻 My labs
+        </button>
+
+        <button
+            class="quick-btn"
+            onclick="quickChat('What can you do')"
+        >
+            Help
+        </button>
+
+    </div>
+
+
+    <div class="chat-footer">
+
+        <input
+            type="text"
+            id="chatInput"
+            class="chat-input"
+            placeholder="Ask your companion..."
+            onkeydown="handleChatKey(event)"
+        >
+
+        <button
+            class="send-btn"
+            onclick="sendChat()"
+            aria-label="Send message"
+        >
+            ➤
+        </button>
+
+    </div>
+
+</aside>
+
+
+<!-- =====================================================
+     CLASS DETAILS MODAL
+===================================================== -->
+
+<div
+    class="modal-overlay"
+    id="classModal"
+    onclick="closeModalOutside(event)"
+>
+
+    <div class="modal">
+
+        <div class="modal-header">
+
+            <h3>
+                Class Details
+            </h3>
+
+            <button
+                class="modal-close"
+                onclick="closeModal()"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <div
+            class="modal-body"
+            id="modalBody"
+        ></div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     TOAST
+===================================================== -->
+
+<div
+    class="toast"
+    id="toast"
+></div>
+
+
 <script>
 
-function go(page){
+/* =========================================================
+   TIMETABLE DATA
+========================================================= */
 
-    const pages = {
-        dashboard: "../dashboard.html",
-        courses: "../dashboard.html",
-        timetable: "timetable.html",
-        assignments: "../dashboard.html",
-        attendance: "attendance.html",
-        academics: "academics.html",
-        faculty: "faculty.html",
-        placement: "placement.html",
-        results: "results.html",
-        documents: "documents.html",
-        complaints: "complaints.html",
-        feedback: "feedback.html",
-        "lost-found": "lost-found.html",
-        campus: "campus.html",
-        events: "events.html",
-        exams: "exams.html",
-        notifications: "notifications.html",
-        profile: "profile.html",
-        settings: "settings.html"
-    };
+const timetableData = {
 
-    if(pages[page]){
-        window.location.href = pages[page];
-    }
-}
+    Monday: [
+
+        {
+            time: "09:00 AM",
+            subject: "Database Management System",
+            faculty: "Prof. Sharma",
+            room: "Room 204",
+            type: "Class",
+            icon: "🗄️"
+        },
+
+        {
+            time: "11:00 AM",
+            subject: "Web Programming",
+            faculty: "Prof. Priya",
+            room: "Lab 2",
+            type: "Lab",
+            icon: "💻"
+        },
+
+        {
+            time: "02:00 PM",
+            subject: "Software Engineering",
+            faculty: "Prof. Kumar",
+            room: "Room 305",
+            type: "Class",
+            icon: "⚙️"
+        }
+
+    ],
 
 
-function updateClock(){
+    Tuesday: [
+
+        {
+            time: "09:00 AM",
+            subject: "Computer Networks",
+            faculty: "Prof. Rao",
+            room: "Room 201",
+            type: "Class",
+            icon: "🌐"
+        },
+
+        {
+            time: "11:00 AM",
+            subject: "Database Management System",
+            faculty: "Prof. Sharma",
+            room: "Lab 1",
+            type: "Lab",
+            icon: "🗄️"
+        },
+
+        {
+            time: "02:00 PM",
+            subject: "Mathematics",
+            faculty: "Prof. Mehta",
+            room: "Room 103",
+            type: "Class",
+            icon: "📐"
+        }
+
+    ],
+
+
+    Wednesday: [
+
+        {
+            time: "09:00 AM",
+            subject: "Web Programming",
+            faculty: "Prof. Priya",
+            room: "Lab 2",
+            type: "Lab",
+            icon: "💻"
+        },
+
+        {
+            time: "11:00 AM",
+            subject: "Software Engineering",
+            faculty: "Prof. Kumar",
+            room: "Room 305",
+            type: "Class",
+            icon: "⚙️"
+        },
+
+        {
+            time: "02:00 PM",
+            subject: "Computer Networks",
+            faculty: "Prof. Rao",
+            room: "Room 201",
+            type: "Class",
+            icon: "🌐"
+        }
+
+    ],
+
+
+    Thursday: [
+
+        {
+            time: "09:00 AM",
+            subject: "Mathematics",
+            faculty: "Prof. Mehta",
+            room: "Room 103",
+            type: "Class",
+            icon: "📐"
+        },
+
+        {
+            time: "11:00 AM",
+            subject: "Database Management System",
+            faculty: "Prof. Sharma",
+            room: "Room 204",
+            type: "Class",
+            icon: "🗄️"
+        },
+
+        {
+            time: "02:00 PM",
+            subject: "Web Programming",
+            faculty: "Prof. Priya",
+            room: "Lab 2",
+            type: "Lab",
+            icon: "💻"
+        }
+
+    ],
+
+
+    Friday: [
+
+        {
+            time: "09:00 AM",
+            subject: "Software Engineering",
+            faculty: "Prof. Kumar",
+            room: "Room 305",
+            type: "Class",
+            icon: "⚙️"
+        },
+
+        {
+            time: "11:00 AM",
+            subject: "Computer Networks",
+            faculty: "Prof. Rao",
+            room: "Room 201",
+            type: "Class",
+            icon: "🌐"
+        },
+
+        {
+            time: "02:00 PM",
+            subject: "Web Programming",
+            faculty: "Prof. Priya",
+            room: "Lab 2",
+            type: "Lab",
+            icon: "💻"
+        }
+
+    ],
+
+
+    Saturday: [
+
+        {
+            time: "09:00 AM",
+            subject: "Database Management System",
+            faculty: "Prof. Sharma",
+            room: "Room 204",
+            type: "Class",
+            icon: "🗄️"
+        },
+
+        {
+            time: "11:00 AM",
+            subject: "Mathematics",
+            faculty: "Prof. Mehta",
+            room: "Room 103",
+            type: "Class",
+            icon: "📐"
+        }
+
+    ]
+
+};
+
+
+let selectedDay = "Monday";
+
+
+/* =========================================================
+   CURRENT TIME
+========================================================= */
+
+function updateCurrentTime() {
+
+    const timeElement =
+        document.getElementById("currentTime");
+
+    if (!timeElement) return;
 
     const now = new Date();
 
-    document.getElementById("clock").textContent =
-        now.toLocaleTimeString("en-IN");
+    let hours = now.getHours();
 
+    const minutes =
+        String(now.getMinutes()).padStart(2, "0");
+
+    const seconds =
+        String(now.getSeconds()).padStart(2, "0");
+
+    const ampm =
+        hours >= 12 ? "PM" : "AM";
+
+    hours =
+        hours % 12 || 12;
+
+    timeElement.innerText =
+        `${String(hours).padStart(2, "0")}:${minutes}:${seconds} ${ampm}`;
 }
 
-setInterval(updateClock,1000);
-updateClock();
+
+updateCurrentTime();
+
+setInterval(updateCurrentTime, 1000);
 
 
-function updateDate(){
+/* =========================================================
+   SELECT DAY
+========================================================= */
 
-    const now = new Date();
+function selectDay(day) {
 
-    document.getElementById("todayDate").textContent =
-        now.toLocaleDateString("en-IN",{
-            weekday:"long",
-            day:"numeric",
-            month:"long",
-            year:"numeric"
-        });
-
-}
-
-updateDate();
-
-
-function toggleSidebar(){
+    selectedDay = day;
 
     document
-        .getElementById("sidebar")
-        .classList.toggle("open");
+        .querySelectorAll(".day-tab")
+        .forEach(function(tab) {
+
+            tab.classList.toggle(
+                "active",
+                tab.dataset.day === day
+            );
+
+        });
+
+
+    const selectedText =
+        document.getElementById(
+            "selectedDayText"
+        );
+
+    if (selectedText) {
+
+        selectedText.innerText =
+            day + "'s classes";
+
+    }
+
+
+    renderTimetable();
 
 }
 
 
-try{
+/* =========================================================
+   RENDER TIMETABLE
+========================================================= */
 
-    const student =
-        JSON.parse(localStorage.getItem("student"));
+function renderTimetable() {
 
-    if(student){
+    const classList =
+        document.getElementById("classList");
 
-        const name =
-            student.name ||
-            student.username ||
-            student.fullName;
+    const emptyState =
+        document.getElementById("emptyState");
 
-        if(name){
-            document.getElementById("studentName")
-                .textContent = name;
-        }
+    const typeFilter =
+        document.getElementById("typeFilter");
+
+
+    if (!classList) return;
+
+
+    const filter =
+        typeFilter
+            ? typeFilter.value
+            : "all";
+
+
+    let classes =
+        timetableData[selectedDay] || [];
+
+
+    if (filter !== "all") {
+
+        classes =
+            classes.filter(function(item) {
+
+                return item.type === filter;
+
+            });
+
     }
 
-}catch(error){
 
-    console.log("Student information not available.");
+    classList.innerHTML = "";
+
+
+    if (!classes.length) {
+
+        if (emptyState) {
+            emptyState.style.display = "block";
+        }
+
+        return;
+
+    }
+
+
+    if (emptyState) {
+        emptyState.style.display = "none";
+    }
+
+
+    classes.forEach(function(item) {
+
+        const card =
+            document.createElement("div");
+
+        card.className =
+            "class-item";
+
+
+        card.innerHTML = `
+
+            <div class="class-time">
+                ${item.time}
+            </div>
+
+
+            <div class="class-main">
+
+                <div class="subject-icon">
+                    ${item.icon}
+                </div>
+
+
+                <div class="subject-info">
+
+                    <strong>
+                        ${item.subject}
+                    </strong>
+
+                    <span>
+                        ${item.faculty} • ${item.room}
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="class-status ${
+                    item.type === "Lab"
+                        ? "status-lab"
+                        : "status-class"
+                }"
+            >
+                ${item.type}
+            </div>
+
+        `;
+
+
+        card.addEventListener(
+            "click",
+            function() {
+
+                openClassModal(
+                    item,
+                    selectedDay
+                );
+
+            }
+        );
+
+
+        classList.appendChild(card);
+
+    });
+
+}
+
+
+/* =========================================================
+   FILTER
+========================================================= */
+
+const typeFilter =
+    document.getElementById("typeFilter");
+
+if (typeFilter) {
+
+    typeFilter.addEventListener(
+        "change",
+        renderTimetable
+    );
+
+}
+
+
+/* =========================================================
+   INITIAL RENDER
+========================================================= */
+
+renderTimetable();
+
+
+/* =========================================================
+   SUMMARY
+========================================================= */
+
+function updateSummary() {
+
+    let totalClasses = 0;
+
+    let totalLabs = 0;
+
+    const subjects = new Set();
+
+
+    Object.keys(timetableData)
+        .forEach(function(day) {
+
+            timetableData[day]
+                .forEach(function(item) {
+
+                    totalClasses++;
+
+                    if (item.type === "Lab") {
+                        totalLabs++;
+                    }
+
+                    subjects.add(item.subject);
+
+                });
+
+        });
+
+
+    const totalClassesElement =
+        document.getElementById("totalClasses");
+
+    const totalLabsElement =
+        document.getElementById("totalLabs");
+
+    const totalSubjectsElement =
+        document.getElementById("totalSubjects");
+
+    const weeklyHoursElement =
+        document.getElementById("weeklyHours");
+
+
+    if (totalClassesElement) {
+        totalClassesElement.innerText =
+            totalClasses;
+    }
+
+    if (totalLabsElement) {
+        totalLabsElement.innerText =
+            totalLabs;
+    }
+
+    if (totalSubjectsElement) {
+        totalSubjectsElement.innerText =
+            subjects.size;
+    }
+
+    if (weeklyHoursElement) {
+        weeklyHoursElement.innerText =
+            totalClasses;
+    }
+
+}
+
+
+updateSummary();
+
+
+/* =========================================================
+   CLASS MODAL
+========================================================= */
+
+function openClassModal(item, day) {
+
+    const modal =
+        document.getElementById("classModal");
+
+    const body =
+        document.getElementById("modalBody");
+
+    if (!modal || !body) return;
+
+
+    body.innerHTML = `
+
+        <div class="detail-row">
+
+            <div class="detail-icon">
+                📚
+            </div>
+
+            <div class="detail-info">
+
+                <span>
+                    Subject
+                </span>
+
+                <strong>
+                    ${item.subject}
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="detail-row">
+
+            <div class="detail-icon">
+                📅
+            </div>
+
+            <div class="detail-info">
+
+                <span>
+                    Day
+                </span>
+
+                <strong>
+                    ${day}
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="detail-row">
+
+            <div class="detail-icon">
+                ⏰
+            </div>
+
+            <div class="detail-info">
+
+                <span>
+                    Time
+                </span>
+
+                <strong>
+                    ${item.time}
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="detail-row">
+
+            <div class="detail-icon">
+                👨‍🏫
+            </div>
+
+            <div class="detail-info">
+
+                <span>
+                    Faculty
+                </span>
+
+                <strong>
+                    ${item.faculty}
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="detail-row">
+
+            <div class="detail-icon">
+                📍
+            </div>
+
+            <div class="detail-info">
+
+                <span>
+                    Room
+                </span>
+
+                <strong>
+                    ${item.room}
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="detail-row">
+
+            <div class="detail-icon">
+                ${
+                    item.type === "Lab"
+                        ? "💻"
+                        : "🏫"
+                }
+            </div>
+
+            <div class="detail-info">
+
+                <span>
+                    Type
+                </span>
+
+                <strong>
+                    ${item.type}
+                </strong>
+
+            </div>
+
+        </div>
+
+    `;
+
+
+    modal.classList.add("show");
+
+}
+
+
+function closeModal() {
+
+    const modal =
+        document.getElementById("classModal");
+
+    if (modal) {
+        modal.classList.remove("show");
+    }
+
+}
+
+
+function closeModalOutside(event) {
+
+    if (
+        event.target &&
+        event.target.id === "classModal"
+    ) {
+
+        closeModal();
+
+    }
+
+}
+
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (event.key === "Escape") {
+
+            closeModal();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   TODAY
+========================================================= */
+
+function goToToday() {
+
+    const days = [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+    ];
+
+
+    const today =
+        days[new Date().getDay()];
+
+
+    if (timetableData[today]) {
+
+        selectDay(today);
+
+        showToast(
+            "Showing today's timetable"
+        );
+
+    } else {
+
+        showToast(
+            "No classes are scheduled today"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   PRINT
+========================================================= */
+
+function printTimetable() {
+
+    window.print();
+
+}
+
+
+/* =========================================================
+   CHATBOT
+========================================================= */
+
+function toggleChatbot() {
+
+    const chatbot =
+        document.getElementById(
+            "chatbotPanel"
+        );
+
+    const launcher =
+        document.getElementById(
+            "chatLauncher"
+        );
+
+    if (!chatbot || !launcher) {
+        return;
+    }
+
+
+    chatbot.classList.toggle(
+        "cc-open"
+    );
+
+
+    if (
+        chatbot.classList.contains(
+            "cc-open"
+        )
+    ) {
+
+        launcher.style.display =
+            "none";
+
+
+        const input =
+            document.getElementById(
+                "chatInput"
+            );
+
+
+        if (input) {
+
+            setTimeout(
+                function() {
+
+                    input.focus();
+
+                },
+                150
+            );
+
+        }
+
+    } else {
+
+        launcher.style.display =
+            "flex";
+
+    }
+
+}
+
+
+/* =========================================================
+   CHAT QUICK BUTTON
+========================================================= */
+
+function quickChat(text) {
+
+    const input =
+        document.getElementById(
+            "chatInput"
+        );
+
+    if (!input) return;
+
+
+    input.value = text;
+
+    sendChat();
+
+}
+
+
+/* =========================================================
+   GET ALL TIMETABLE CLASSES
+========================================================= */
+
+function getAllTimetableClasses() {
+
+    const all = [];
+
+
+    Object.keys(timetableData)
+        .forEach(function(day) {
+
+            (timetableData[day] || [])
+                .forEach(function(item) {
+
+                    all.push({
+                        day: day,
+                        item: item
+                    });
+
+                });
+
+        });
+
+
+    return all;
+
+}
+
+
+/* =========================================================
+   CLASS DETAILS FOR CHAT
+========================================================= */
+
+function classDetails(item, day) {
+
+    return (
+        "<b>" +
+        item.subject +
+        "</b>" +
+
+        "<br>📅 " +
+        day +
+
+        "<br>⏰ " +
+        item.time +
+
+        "<br>👨‍🏫 " +
+        item.faculty +
+
+        "<br>📍 " +
+        item.room +
+
+        "<br>📚 " +
+        item.type
+    );
+
+}
+
+
+/* =========================================================
+   CLEAN QUESTION
+========================================================= */
+
+function cleanQuestion(text) {
+
+    return text
+        .toLowerCase()
+        .replace(/[?,.!]/g, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+
+}
+
+
+/* =========================================================
+   SEND CHAT
+========================================================= */
+
+function sendChat() {
+
+    const input =
+        document.getElementById(
+            "chatInput"
+        );
+
+    const chatBody =
+        document.getElementById(
+            "chatBody"
+        );
+
+    if (!input || !chatBody) {
+        return;
+    }
+
+
+    const text =
+        input.value.trim();
+
+
+    if (!text) {
+        return;
+    }
+
+
+    /* USER MESSAGE */
+
+    const user =
+        document.createElement(
+            "div"
+        );
+
+    user.className =
+        "user-message";
+
+    user.innerText =
+        text;
+
+    chatBody.appendChild(
+        user
+    );
+
+    input.value = "";
+
+
+    chatBody.scrollTop =
+        chatBody.scrollHeight;
+
+
+    /* THINKING MESSAGE */
+
+    const bot =
+        document.createElement(
+            "div"
+        );
+
+    bot.className =
+        "bot-message";
+
+    bot.innerHTML =
+        "🤖 Thinking...";
+
+    chatBody.appendChild(
+        bot
+    );
+
+    chatBody.scrollTop =
+        chatBody.scrollHeight;
+
+
+    setTimeout(
+        function() {
+
+            const q =
+                cleanQuestion(text);
+
+            const all =
+                getAllTimetableClasses();
+
+            let response = "";
+
+
+            /* GREETING */
+
+            if (
+                q === "hi" ||
+                q === "hello" ||
+                q === "hey" ||
+                q.includes("good morning") ||
+                q.includes("good afternoon") ||
+                q.includes("good evening")
+            ) {
+
+                response =
+                    "👋 Hello! I'm your CampusConnect AI College Companion." +
+                    "<br><br>Ask me about your timetable, subjects, faculty, rooms, labs and classes.";
+
+            }
+
+
+            /* HELP */
+
+            else if (
+                q.includes("what can you do") ||
+                q.includes("how can you help") ||
+                q === "help" ||
+                q.includes("help me")
+            ) {
+
+                response =
+                    "🤖 I can help you with:" +
+                    "<br><br>📅 Timetable and daily schedule" +
+                    "<br>📚 Subjects and classes" +
+                    "<br>👨‍🏫 Faculty" +
+                    "<br>📍 Rooms and labs" +
+                    "<br>⏰ Class timings" +
+                    "<br>🔎 Finding a subject in your timetable";
+
+            }
+
+
+            /* FULL TIMETABLE */
+
+            else if (
+                q.includes("show my timetable") ||
+                q.includes("show timetable") ||
+                q.includes("full timetable") ||
+                q.includes("weekly timetable") ||
+                q.includes("whole timetable")
+            ) {
+
+                response =
+                    "📅 <b>Your Weekly Timetable</b>";
+
+
+                Object.keys(timetableData)
+                    .forEach(function(day) {
+
+                        response +=
+                            "<br><br><b>" +
+                            day +
+                            "</b>";
+
+
+                        (timetableData[day] || [])
+                            .forEach(function(item) {
+
+                                response +=
+                                    "<br>• " +
+                                    item.time +
+                                    " — " +
+                                    item.subject +
+                                    " — " +
+                                    item.room;
+
+                            });
+
+                    });
+
+            }
+
+
+            /* SPECIFIC DAY */
+
+            if (!response) {
+
+                const dayNames = [
+                    "Monday",
+                    "Tuesday",
+                    "Wednesday",
+                    "Thursday",
+                    "Friday",
+                    "Saturday"
+                ];
+
+
+                let requestedDay = null;
+
+
+                dayNames.some(
+                    function(day) {
+
+                        if (
+                            q.includes(
+                                day.toLowerCase()
+                            )
+                        ) {
+
+                            requestedDay =
+                                day;
+
+                            return true;
+
+                        }
+
+                        return false;
+
+                    }
+                );
+
+
+                if (requestedDay) {
+
+                    const classes =
+                        timetableData[
+                            requestedDay
+                        ] || [];
+
+
+                    response =
+                        "📅 <b>" +
+                        requestedDay +
+                        " Timetable</b>";
+
+
+                    if (classes.length) {
+
+                        classes.forEach(
+                            function(item) {
+
+                                response +=
+                                    "<br><br>" +
+                                    classDetails(
+                                        item,
+                                        requestedDay
+                                    );
+
+                            }
+                        );
+
+                    } else {
+
+                        response =
+                            "There are no classes scheduled on " +
+                            requestedDay +
+                            ".";
+
+                    }
+
+
+                    if (
+                        typeof selectDay ===
+                        "function"
+                    ) {
+
+                        selectDay(
+                            requestedDay
+                        );
+
+                    }
+
+                }
+
+            }
+
+
+            /* FIRST CLASS */
+
+            if (
+                !response &&
+                (
+                    q.includes("first class") ||
+                    q.includes("first lecture") ||
+                    q.includes("first period")
+                )
+            ) {
+
+                const classes =
+                    timetableData[
+                        selectedDay
+                    ] || [];
+
+
+                if (classes.length) {
+
+                    response =
+                        "⏰ Your first class on <b>" +
+                        selectedDay +
+                        "</b> is:<br><br>" +
+                        classDetails(
+                            classes[0],
+                            selectedDay
+                        );
+
+                } else {
+
+                    response =
+                        "There are no classes on " +
+                        selectedDay +
+                        ".";
+
+                }
+
+            }
+
+
+            /* LAST CLASS */
+
+            if (
+                !response &&
+                (
+                    q.includes("last class") ||
+                    q.includes("last lecture") ||
+                    q.includes("last period")
+                )
+            ) {
+
+                const classes =
+                    timetableData[
+                        selectedDay
+                    ] || [];
+
+
+                if (classes.length) {
+
+                    const last =
+                        classes[
+                            classes.length - 1
+                        ];
+
+
+                    response =
+                        "🏁 Your last class on <b>" +
+                        selectedDay +
+                        "</b> is:<br><br>" +
+                        classDetails(
+                            last,
+                            selectedDay
+                        );
+
+                }
+
+            }
+
+
+            /* NUMBER OF CLASSES */
+
+            if (
+                !response &&
+                (
+                    q.includes("how many classes") ||
+                    q.includes("number of classes") ||
+                    q.includes("how many periods")
+                )
+            ) {
+
+                const classes =
+                    timetableData[
+                        selectedDay
+                    ] || [];
+
+
+                response =
+                    "📊 You have <b>" +
+                    classes.length +
+                    "</b> scheduled classes on <b>" +
+                    selectedDay +
+                    "</b>.";
+
+            }
+
+
+            /* LABS */
+
+            if (
+                !response &&
+                (
+                    q.includes("lab") ||
+                    q.includes("laboratory") ||
+                    q.includes("practical")
+                )
+            ) {
+
+                const labs =
+                    all.filter(
+                        function(entry) {
+
+                            return (
+                                entry.item.type ===
+                                "Lab"
+                            );
+
+                        }
+                    );
+
+
+                if (labs.length) {
+
+                    response =
+                        "💻 <b>Your Lab Sessions</b>";
+
+
+                    labs.forEach(
+                        function(entry) {
+
+                            response +=
+                                "<br><br>" +
+                                classDetails(
+                                    entry.item,
+                                    entry.day
+                                );
+
+                        }
+                    );
+
+                } else {
+
+                    response =
+                        "There are no lab sessions in the timetable.";
+
+                }
+
+            }
+
+
+            /* SUBJECT / FACULTY / ROOM SEARCH */
+
+            if (!response) {
+
+                const stopWords = [
+                    "when",
+                    "where",
+                    "what",
+                    "who",
+                    "which",
+                    "tell",
+                    "show",
+                    "about",
+                    "class",
+                    "classes",
+                    "the",
+                    "my",
+                    "is",
+                    "are",
+                    "do",
+                    "have",
+                    "does",
+                    "this",
+                    "for",
+                    "me",
+                    "please",
+                    "can"
+                ];
+
+
+                const words =
+                    q.split(" ")
+                        .filter(
+                            function(word) {
+
+                                return (
+                                    word.length >= 3 &&
+                                    !stopWords.includes(
+                                        word
+                                    )
+                                );
+
+                            }
+                        );
+
+
+                const matches =
+                    all.filter(
+                        function(entry) {
+
+                            const item =
+                                entry.item;
+
+
+                            const searchable =
+                                (
+                                    item.subject +
+                                    " " +
+                                    item.faculty +
+                                    " " +
+                                    item.room +
+                                    " " +
+                                    item.type
+                                ).toLowerCase();
+
+
+                            return words.some(
+                                function(word) {
+
+                                    return searchable
+                                        .includes(word);
+
+                                }
+                            );
+
+                        }
+                    );
+
+
+                if (matches.length) {
+
+                    response =
+                        "🔎 <b>I found this in your timetable:</b>";
+
+
+                    matches.forEach(
+                        function(entry) {
+
+                            response +=
+                                "<br><br>" +
+                                classDetails(
+                                    entry.item,
+                                    entry.day
+                                );
+
+                        }
+                    );
+
+                }
+
+            }
+
+
+            /* PROJECT QUESTIONS */
+
+            if (
+                !response &&
+                (
+                    q.includes("campusconnect") ||
+                    q.includes("college portal") ||
+                    q.includes("this project") ||
+                    q === "project" ||
+                    q.includes("project about")
+                )
+            ) {
+
+                response =
+                    "🎓 <b>CampusConnect</b> is your college/student portal project." +
+                    "<br><br>This Timetable section lets students view classes, timings, subjects, faculty, rooms and lab sessions." +
+                    "<br><br>You can ask me questions about the timetable and schedule.";
+
+            }
+
+
+            /* FALLBACK */
+
+            if (!response) {
+
+                response =
+                    "🤔 I couldn't find that information in the current timetable." +
+                    "<br><br>Try asking about a subject, teacher, room, day, class time, lab, first class, last class or the CampusConnect project.";
+
+            }
+
+
+            bot.innerHTML =
+                response;
+
+
+            chatBody.scrollTop =
+                chatBody.scrollHeight;
+
+
+        },
+        450
+    );
+
+}
+
+
+/* =========================================================
+   ENTER KEY
+========================================================= */
+
+function handleChatKey(event) {
+
+    if (event.key === "Enter") {
+
+        event.preventDefault();
+
+        sendChat();
+
+    }
+
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+function showToast(message) {
+
+    const toast =
+        document.getElementById(
+            "toast"
+        );
+
+
+    toast.innerText =
+        message;
+
+
+    toast.classList.add(
+        "show"
+    );
+
+
+    setTimeout(
+        function() {
+
+            toast.classList.remove(
+                "show"
+            );
+
+        },
+        2500
+    );
+
+}
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+function confirmLogout() {
+
+    return confirm(
+        "Are you sure you want to logout?"
+    );
 
 }
 
