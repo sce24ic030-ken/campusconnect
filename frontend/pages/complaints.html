@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>CampusConnect | Complaints</title>
+<title>CampusConnect | Complaints & Grievances</title>
 
 <style>
 
-/* =========================
+/* =========================================================
    GLOBAL
-========================= */
+========================================================= */
 
 *{
     margin:0;
@@ -18,391 +20,529 @@
     box-sizing:border-box;
 }
 
-html,body{
+html,
+body{
     width:100%;
-    height:100%;
+    min-height:100%;
     font-family:"Segoe UI",Arial,sans-serif;
-    background:#f4f6ff;
-    color:#17203a;
-    overflow:hidden;
+    background:#f5f7ff;
+    color:#17213d;
 }
 
-button,
-input,
-textarea,
-select{
-    font-family:inherit;
+body{
+    overflow-x:hidden;
 }
 
-/* =========================
+
+/* =========================================================
    SIDEBAR
-========================= */
+========================================================= */
 
 .sidebar{
+    width:268px;
+    height:100vh;
+
     position:fixed;
     left:0;
     top:0;
-    bottom:0;
-
-    width:268px;
-    min-width:268px;
 
     background:linear-gradient(
         180deg,
-        #172a70 0%,
-        #28237d 48%,
-        #5520a7 100%
+        #172e79 0%,
+        #26277d 48%,
+        #5520a5 100%
     );
 
-    color:white;
+    color:#ffffff;
+
+    display:flex;
+    flex-direction:column;
+
+    z-index:100;
 
     overflow-y:auto;
     overflow-x:hidden;
 
-    z-index:1000;
-
-    padding-bottom:20px;
-
     scrollbar-width:thin;
-    scrollbar-color:rgba(255,255,255,.25) transparent;
+    scrollbar-color:rgba(255,255,255,0.35) transparent;
 }
 
-/* BRAND */
+.sidebar::-webkit-scrollbar{
+    width:7px;
+}
+
+.sidebar::-webkit-scrollbar-track{
+    background:transparent;
+}
+
+.sidebar::-webkit-scrollbar-thumb{
+    background:rgba(255,255,255,0.35);
+    border-radius:10px;
+}
+
+
+/* =========================================================
+   BRAND
+========================================================= */
 
 .brand{
-    height:120px;
+    height:144px;
+
+    padding:38px 26px 25px 26px;
 
     display:flex;
     align-items:center;
 
-    padding:22px 18px;
+    gap:16px;
 
-    border-bottom:1px solid rgba(255,255,255,.12);
+    border-bottom:1px solid rgba(255,255,255,0.12);
+
+    flex-shrink:0;
 }
 
-.logo-box{
+.brand-logo{
     width:52px;
     height:52px;
 
-    border-radius:16px;
+    min-width:52px;
+    min-height:52px;
+
+    border-radius:15px;
+
+    background:linear-gradient(
+        135deg,
+        #2aaef2 0%,
+        #6042f2 100%
+    );
 
     display:flex;
     align-items:center;
     justify-content:center;
 
-    font-size:28px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #24b8ff,
-            #7144f5
-        );
-
-    box-shadow:
-        0 10px 25px rgba(0,0,0,.20);
+    box-shadow:0 8px 22px rgba(0,0,0,0.12);
 }
 
-.brand-text{
-    margin-left:13px;
+.brand-logo span{
+    font-size:25px;
+    line-height:1;
 }
 
-.brand-title{
+.brand-text h1{
     font-size:21px;
     font-weight:800;
-    letter-spacing:-.5px;
+
+    letter-spacing:-0.7px;
+
+    color:#ffffff;
+
+    line-height:1.1;
+
+    white-space:nowrap;
 }
 
-.brand-subtitle{
-    font-size:12px;
-    opacity:.72;
-    margin-top:3px;
+.brand-text p{
+    margin-top:5px;
+
+    font-size:14px;
+    font-weight:400;
+
+    color:#c2c9e8;
+
+    line-height:1.2;
+
+    white-space:nowrap;
 }
 
-/* MENU */
 
-.menu{
-    padding:25px 14px;
+/* =========================================================
+   SIDEBAR CONTENT
+========================================================= */
+
+.sidebar-content{
+    padding:30px 14px 35px 14px;
 }
 
-.menu-title{
-    font-size:12px;
-    font-weight:700;
 
-    color:rgba(255,255,255,.52);
+/* =========================================================
+   SECTION TITLE
+========================================================= */
+
+.menu-title,
+.career-title{
+    padding:0 20px;
+
+    margin-bottom:18px;
+
+    color:#aeb5dc;
+
+    font-size:14px;
+
+    font-weight:800;
 
     letter-spacing:1px;
 
-    padding:0 11px 10px;
+    text-transform:uppercase;
 }
 
-.menu-section{
-    margin-top:20px;
+
+/* =========================================================
+   MENU
+========================================================= */
+
+.menu{
+    display:flex;
+    flex-direction:column;
+
+    gap:6px;
+
+    margin-bottom:32px;
 }
 
-.nav-item{
-    width:100%;
+
+/* =========================================================
+   MENU ITEM
+========================================================= */
+
+.menu-item{
+    height:60px;
+
+    padding:0 20px;
+
+    border-radius:15px;
 
     display:flex;
     align-items:center;
 
-    min-height:49px;
+    gap:15px;
 
-    padding:0 14px;
-
-    margin:5px 0;
-
-    border-radius:13px;
-
-    color:rgba(255,255,255,.84);
+    color:#e4e6f7;
 
     text-decoration:none;
 
-    transition:
-        transform .2s ease,
-        background .2s ease,
-        color .2s ease;
+    font-size:17px;
+
+    font-weight:700;
+
+    transition:all 0.2s ease;
 }
 
-.nav-item:hover{
-    background:rgba(255,255,255,.12);
+.menu-item .icon{
+    width:30px;
+    min-width:30px;
 
-    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-    transform:translateX(3px);
+    font-size:24px;
 }
 
-.nav-item.active{
-    color:white;
-
-    background:
-        linear-gradient(
-            90deg,
-            #22b9f5,
-            #6942f4
-        );
-
-    box-shadow:
-        0 9px 22px rgba(0,0,0,.18);
+.menu-item:hover{
+    background:rgba(255,255,255,0.10);
 }
 
-.nav-icon{
-    width:31px;
+.menu-item.active{
+    background:linear-gradient(
+        90deg,
+        #24a9ed,
+        #6240ef
+    );
 
-    font-size:20px;
+    color:#ffffff;
 
-    text-align:center;
-
-    margin-right:10px;
+    box-shadow:0 8px 20px rgba(65,70,220,0.25);
 }
 
-.nav-text{
-    font-size:15px;
-    font-weight:650;
-}
 
-.logout{
-    margin-top:14px;
+/* =========================================================
+   MAIN CONTENT
+========================================================= */
 
-    padding-top:15px;
-
-    border-top:
-        1px solid rgba(255,255,255,.13);
-}
-
-/* =========================
-   MAIN AREA
-========================= */
-
-.main-area{
+.main{
     margin-left:268px;
-    margin-right:286px;
 
-    width:auto;
-    height:100vh;
+    width:calc(100% - 268px);
 
-    overflow-y:auto;
-    overflow-x:hidden;
-
-    background:
-        linear-gradient(
-            180deg,
-            #f8f9ff,
-            #eef1fb
-        );
+    min-height:100vh;
 }
 
-/* =========================
-   HEADER
-========================= */
+
+/* =========================================================
+   TOP HEADER
+========================================================= */
 
 .top-header{
-    height:120px;
+    height:172px;
 
-    background:rgba(255,255,255,.96);
+    background:#ffffff;
 
     display:flex;
     align-items:center;
     justify-content:space-between;
 
-    padding:22px 28px;
+    padding:30px 28px 25px 32px;
 
-    border-bottom:1px solid #e9ebf5;
-
-    position:sticky;
-    top:0;
-
-    z-index:100;
+    border-bottom:1px solid #e9ecf6;
 }
 
 .header-left h1{
-    font-size:30px;
+    font-size:32px;
     line-height:1.05;
-    font-weight:800;
+    font-weight:850;
+    letter-spacing:-1.2px;
+    color:#18213e;
+    max-width:550px;
 }
-
 .header-left p{
-    margin-top:7px;
+    margin-top:10px;
 
-    color:#8990a7;
+    color:#8994b3;
 
-    font-size:14px;
+    font-size:17px;
+
+    font-weight:500;
 }
 
 .header-right{
     display:flex;
     align-items:center;
 
-    gap:18px;
+    gap:20px;
 }
 
-.time-box{
-    font-size:18px;
-    font-weight:750;
+.clock{
+    color:#5e6888;
 
-    color:#59617d;
+    font-size:23px;
+
+    font-weight:700;
+
+    white-space:nowrap;
 }
+
+
+/* =========================================================
+   NOTIFICATION
+========================================================= */
 
 .notification{
-    width:48px;
-    height:48px;
-
-    background:#fff;
+    width:58px;
+    height:58px;
 
     border-radius:50%;
+
+    background:#ffffff;
 
     display:flex;
     align-items:center;
     justify-content:center;
 
-    font-size:22px;
-
-    box-shadow:
-        0 5px 18px rgba(40,35,100,.10);
+    font-size:27px;
 
     position:relative;
 
-    cursor:pointer;
+    box-shadow:
+        0 8px 28px rgba(35,45,90,0.10);
 }
 
-.notification::after{
-    content:"";
-
-    width:8px;
-    height:8px;
+.notification-dot{
+    width:9px;
+    height:9px;
 
     border-radius:50%;
 
-    background:#ff4f8b;
+    background:#ff5790;
 
     position:absolute;
 
-    top:7px;
-    right:8px;
+    right:10px;
+    top:8px;
 }
 
-.profile-mini{
+
+/* =========================================================
+   PROFILE
+========================================================= */
+
+.profile{
     display:flex;
     align-items:center;
 
-    gap:10px;
+    gap:12px;
 }
 
-.profile-circle{
-    width:48px;
-    height:48px;
+.profile-avatar{
+    width:58px;
+    height:58px;
 
     border-radius:50%;
 
-    background:
-        linear-gradient(
-            135deg,
-            #25b8ee,
-            #466cf1
-        );
-
-    color:white;
+    background:linear-gradient(
+        135deg,
+        #2da9ee,
+        #397fe8
+    );
 
     display:flex;
     align-items:center;
     justify-content:center;
 
-    font-size:20px;
+    color:#ffffff;
+
+    font-size:21px;
+
     font-weight:800;
 }
 
-.profile-info strong{
-    display:block;
+.profile-info h3{
+    font-size:17px;
 
-    font-size:15px;
+    color:#1a2340;
+
+    font-weight:800;
+
+    line-height:1.2;
 }
 
-.profile-info span{
-    display:block;
+.profile-info p{
+    margin-top:4px;
 
-    color:#8d93a8;
+    font-size:14px;
 
-    font-size:12px;
+    color:#9aa3bd;
 }
 
-/* =========================
-   CONTENT
-========================= */
 
-.content{
-    padding:28px;
+/* =========================================================
+   PAGE AREA
+========================================================= */
+
+.page-content{
+    padding:34px 28px 50px 28px;
+
+    background:#f5f7ff;
+
+    min-height:calc(100vh - 172px);
 }
 
-/* =========================
-   HERO
-========================= */
 
-.hero{
-    min-height:180px;
+/* =========================================================
+   PAGE TITLE ROW
+========================================================= */
 
-    border-radius:22px;
-
-    padding:28px 30px;
-
+.section-header{
     display:flex;
-    align-items:center;
+
     justify-content:space-between;
 
-    color:white;
+    align-items:center;
 
-    background:
-        linear-gradient(
-            135deg,
-            #29277d,
-            #6736d4
-        );
+    margin-bottom:24px;
+}
 
-    box-shadow:
-        0 15px 35px rgba(61,45,150,.20);
+.section-title-area h2{
+    font-size:30px;
+
+    color:#18213e;
+
+    font-weight:850;
+
+    letter-spacing:-0.8px;
+}
+
+.section-title-area p{
+    margin-top:8px;
+
+    font-size:16px;
+
+    color:#8c96b3;
+}
+
+
+/* =========================================================
+   NEW COMPLAINT BUTTON
+========================================================= */
+
+.new-complaint-btn{
+    border:none;
+
+    padding:16px 27px;
+
+    border-radius:15px;
+
+    background:linear-gradient(
+        135deg,
+        #6637e8,
+        #7b35e9
+    );
+
+    color:#ffffff;
+
+    font-size:15px;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+    box-shadow:0 10px 24px rgba(103,53,226,0.24);
+
+    transition:0.2s ease;
+}
+
+.new-complaint-btn:hover{
+    transform:translateY(-2px);
+
+    box-shadow:0 13px 28px rgba(103,53,226,0.32);
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+    width:100%;
+
+    min-height:274px;
+
+    border-radius:24px;
+
+    background:linear-gradient(
+        110deg,
+        #23449f 0%,
+        #3e32c6 45%,
+        #7b32e4 100%
+    );
 
     position:relative;
 
     overflow:hidden;
+
+    padding:48px 46px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:28px;
+}
+
+.hero::before{
+    content:"";
+
+    position:absolute;
+
+    width:260px;
+    height:260px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,0.07);
+
+    right:-40px;
+    top:-115px;
 }
 
 .hero::after{
@@ -410,1341 +550,1063 @@ select{
 
     position:absolute;
 
-    width:250px;
-    height:250px;
+    width:220px;
+    height:220px;
 
     border-radius:50%;
 
-    right:-70px;
-    top:-90px;
+    background:rgba(255,255,255,0.06);
 
-    background:rgba(255,255,255,.08);
+    right:210px;
+    bottom:-150px;
 }
 
-.hero-text{
+.hero-content{
     position:relative;
-    z-index:2;
-}
 
-.hero-text small{
-    font-size:13px;
-    opacity:.72;
-}
-
-.hero-text h2{
-    font-size:28px;
-
-    margin:7px 0;
-}
-
-.hero-text p{
-    font-size:13px;
-    opacity:.82;
-}
-
-.hero-icon{
-    position:relative;
     z-index:2;
 
-    width:82px;
-    height:82px;
+    max-width:690px;
+}
 
-    border-radius:24px;
+.hero-content h3{
+    color:#ffffff;
+
+    font-size:30px;
+
+    font-weight:850;
+
+    letter-spacing:-0.6px;
+
+    margin-bottom:14px;
+}
+
+.hero-content p{
+    color:#e6e8ff;
+
+    font-size:16px;
+
+    line-height:1.65;
+
+    font-weight:500;
+}
+
+.hero-stats{
+    position:relative;
+
+    z-index:3;
 
     display:flex;
-    align-items:center;
-    justify-content:center;
 
-    font-size:42px;
+    gap:16px;
 
-    background:rgba(255,255,255,.13);
-
-    box-shadow:
-        0 10px 25px rgba(0,0,0,.12);
+    margin-left:25px;
 }
 
-/* =========================
-   SUMMARY
-========================= */
+.hero-stat{
+    width:160px;
+    height:136px;
 
-.summary-grid{
+    border-radius:19px;
+
+    background:rgba(255,255,255,0.12);
+
+    border:1px solid rgba(255,255,255,0.17);
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+}
+
+.hero-stat strong{
+    color:#ffffff;
+
+    font-size:39px;
+
+    line-height:1;
+
+    font-weight:850;
+}
+
+.hero-stat span{
+    color:#dddfff;
+
+    font-size:14px;
+
+    margin-top:9px;
+}
+
+
+/* =========================================================
+   STATS GRID
+========================================================= */
+
+.stats-grid{
     display:grid;
 
     grid-template-columns:
         repeat(4,1fr);
 
-    gap:18px;
+    gap:22px;
 
-    margin-top:22px;
+    margin-bottom:28px;
 }
 
-.summary-card{
-    background:white;
+.stat-card{
+    background:#ffffff;
 
-    border:1px solid #e6e8f2;
+    border-radius:20px;
 
-    border-radius:18px;
+    min-height:168px;
 
-    padding:20px;
+    padding:28px 30px;
+
+    position:relative;
 
     box-shadow:
-        0 8px 25px rgba(40,35,100,.06);
-
-    transition:.2s;
+        0 8px 28px rgba(34,48,100,0.06);
 }
 
-.summary-card:hover{
-    transform:translateY(-4px);
-
-    box-shadow:
-        0 14px 30px rgba(40,35,100,.11);
-}
-
-.summary-top{
+.stat-card-top{
     display:flex;
+
     justify-content:space-between;
-    align-items:center;
+
+    align-items:flex-start;
 }
 
-.summary-icon{
-    width:42px;
-    height:42px;
+.stat-card h4{
+    font-size:15px;
 
-    border-radius:13px;
+    color:#7784a8;
+
+    font-weight:800;
+
+    text-transform:uppercase;
+
+    letter-spacing:0.2px;
+
+    max-width:150px;
+}
+
+.stat-icon{
+    width:53px;
+    height:53px;
+
+    border-radius:15px;
+
+    background:#eff3ff;
 
     display:flex;
+
     align-items:center;
     justify-content:center;
-
-    font-size:21px;
-
-    background:#f0edff;
-}
-
-.summary-card h3{
-    margin-top:13px;
 
     font-size:25px;
 }
 
-.summary-card p{
-    margin-top:4px;
-
-    font-size:12px;
-
-    color:#9096ab;
-}
-
-/* =========================
-   SECTION HEADER
-========================= */
-
-.section-header{
-    margin-top:30px;
-
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-
-    gap:15px;
-}
-
-.section-header h2{
-    font-size:21px;
-}
-
-.section-header p{
-    color:#9298aa;
-
-    font-size:12px;
-
-    margin-top:4px;
-}
-
-/* =========================
-   CONTROLS
-========================= */
-
-.controls{
-    margin-top:18px;
-
-    display:flex;
-
-    gap:12px;
-
-    align-items:center;
-}
-
-.search-box{
-    flex:1;
-
-    height:46px;
-
-    background:white;
-
-    border:1px solid #e1e4ef;
-
-    border-radius:13px;
-
-    padding:0 15px;
-
-    outline:none;
-
-    font-size:13px;
-
-    color:#4f5871;
-}
-
-.search-box:focus{
-    border-color:#7650e8;
-
-    box-shadow:
-        0 0 0 3px rgba(118,80,232,.10);
-}
-
-.filter-select{
-    height:46px;
-
-    min-width:150px;
-
-    border:1px solid #e1e4ef;
-
-    background:white;
-
-    border-radius:13px;
-
-    padding:0 12px;
-
-    outline:none;
-
-    color:#626b84;
-
-    cursor:pointer;
-}
-
-.new-complaint-btn{
-    height:46px;
-
-    border:none;
-
-    border-radius:13px;
-
-    padding:0 18px;
-
-    color:white;
-
-    background:
-        linear-gradient(
-            135deg,
-            #6543e8,
-            #843de0
-        );
-
-    font-size:13px;
-
-    font-weight:700;
-
-    cursor:pointer;
-
-    box-shadow:
-        0 8px 18px rgba(101,67,232,.20);
-
-    transition:.2s;
-}
-
-.new-complaint-btn:hover{
-    transform:translateY(-2px);
-}
-
-/* =========================
-   COMPLAINT CARDS
-========================= */
-
-.complaint-list{
-    display:grid;
-
-    grid-template-columns:
-        repeat(2,1fr);
-
-    gap:18px;
-
-    margin-top:20px;
-
-    padding-bottom:30px;
-}
-
-.complaint-card{
-    background:white;
-
-    border:1px solid #e6e8f2;
-
-    border-radius:18px;
-
-    padding:20px;
-
-    box-shadow:
-        0 8px 25px rgba(40,35,100,.06);
-
-    transition:.2s;
-}
-
-.complaint-card:hover{
-    transform:translateY(-4px);
-
-    box-shadow:
-        0 15px 30px rgba(40,35,100,.11);
-}
-
-.complaint-top{
-    display:flex;
-
-    align-items:flex-start;
-
-    justify-content:space-between;
-}
-
-.complaint-icon{
-    width:52px;
-    height:52px;
-
-    border-radius:15px;
-
-    background:#f0edff;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    font-size:27px;
-}
-
-.status{
-    padding:6px 10px;
-
-    border-radius:20px;
-
-    font-size:10px;
-
-    font-weight:700;
-}
-
-.status.pending{
-    background:#fff4dc;
-    color:#c58215;
-}
-
-.status.progress{
-    background:#e8f2ff;
-    color:#3974c8;
-}
-
-.status.resolved{
-    background:#e6f9ef;
-    color:#2d9b66;
-}
-
-.status.rejected{
-    background:#ffe9ee;
-    color:#d55470;
-}
-
-.complaint-card h3{
+.stat-number{
     margin-top:17px;
 
-    font-size:16px;
+    font-size:38px;
 
-    color:#29314c;
+    line-height:1;
+
+    color:#3569da;
+
+    font-weight:850;
 }
 
-.complaint-category{
-    display:inline-block;
-
+.stat-sub{
     margin-top:8px;
 
-    padding:5px 9px;
+    color:#9ba5bf;
 
-    border-radius:20px;
-
-    background:#f0edff;
-
-    color:#684bd8;
-
-    font-size:10px;
-
-    font-weight:700;
+    font-size:13px;
 }
 
-.complaint-description{
-    margin-top:13px;
 
-    color:#777f96;
+/* =========================================================
+   COMPLAINT FORM CARD
+========================================================= */
 
-    font-size:11px;
-
-    line-height:1.6;
-
-    display:-webkit-box;
-    -webkit-line-clamp:2;
-    -webkit-box-orient:vertical;
-    overflow:hidden;
-}
-
-.complaint-info{
-    display:flex;
-
-    justify-content:space-between;
-
-    margin-top:16px;
-
-    padding-top:13px;
-
-    border-top:1px solid #edf0f6;
-}
-
-.complaint-info span{
-    font-size:10px;
-
-    color:#8c93a8;
-}
-
-.complaint-actions{
-    display:flex;
-
-    gap:8px;
-
-    margin-top:15px;
-}
-
-.details-btn,
-.track-btn{
-    flex:1;
-
-    height:36px;
-
-    border-radius:10px;
-
-    cursor:pointer;
-
-    font-size:11px;
-
-    font-weight:700;
-}
-
-.details-btn{
-    border:1px solid #dddff0;
-
-    background:white;
-
-    color:#684bd8;
-}
-
-.track-btn{
-    border:none;
-
-    color:white;
-
-    background:
-        linear-gradient(
-            135deg,
-            #6241e8,
-            #7b3ee0
-        );
-}
-
-.details-btn:hover,
-.track-btn:hover{
-    transform:translateY(-1px);
-}
-
-/* EMPTY */
-
-.empty-state{
-    display:none;
-
-    text-align:center;
-
-    background:white;
-
-    border:1px dashed #d9dced;
-
-    border-radius:18px;
-
-    padding:45px 20px;
-
-    color:#9298aa;
-
-    grid-column:1/-1;
-}
-
-.empty-state div{
-    font-size:40px;
-
-    margin-bottom:10px;
-}
-
-/* =========================
-   MODAL
-========================= */
-
-.modal-overlay{
-    display:none;
-
-    position:fixed;
-
-    inset:0;
-
-    background:rgba(19,23,54,.55);
-
-    backdrop-filter:blur(5px);
-
-    z-index:20000;
-
-    align-items:center;
-    justify-content:center;
-
-    padding:20px;
-}
-
-.modal{
-    width:100%;
-
-    max-width:540px;
-
-    background:white;
+.complaint-form-card{
+    background:#ffffff;
 
     border-radius:22px;
 
+    padding:30px;
+
+    margin-top:28px;
+
     box-shadow:
-        0 25px 70px rgba(0,0,0,.25);
+        0 8px 28px rgba(34,48,100,0.06);
 
-    overflow:hidden;
-
-    animation:modalIn .2s ease;
+    display:none;
 }
 
-@keyframes modalIn{
-
-    from{
-        opacity:0;
-        transform:translateY(15px) scale(.98);
-    }
-
-    to{
-        opacity:1;
-        transform:translateY(0) scale(1);
-    }
-}
-
-.modal-header{
-    padding:20px 22px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    color:white;
-
-    background:
-        linear-gradient(
-            135deg,
-            #29277d,
-            #7137d8
-        );
-}
-
-.modal-header h2{
-    font-size:19px;
-}
-
-.close-btn{
-    width:34px;
-    height:34px;
-
-    border:none;
-
-    border-radius:10px;
-
-    background:rgba(255,255,255,.13);
-
-    color:white;
-
-    font-size:19px;
-
-    cursor:pointer;
-}
-
-.modal-body{
-    padding:22px;
-}
-
-.form-group{
-    margin-bottom:16px;
-}
-
-.form-group label{
+.complaint-form-card.show{
     display:block;
+}
 
-    font-size:12px;
+.form-title{
+    font-size:25px;
 
-    font-weight:700;
+    color:#18213e;
 
-    color:#59617d;
+    font-weight:850;
 
     margin-bottom:7px;
 }
 
-.form-input,
-.form-select,
-.form-textarea{
+.form-subtitle{
+    color:#909ab6;
+
+    font-size:15px;
+
+    margin-bottom:25px;
+}
+
+.form-grid{
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:20px;
+}
+
+.form-group{
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+}
+
+.form-group.full{
+    grid-column:1 / -1;
+}
+
+.form-group label{
+    color:#4e5979;
+
+    font-size:14px;
+
+    font-weight:700;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea{
     width:100%;
 
-    border:1px solid #e0e3ef;
+    border:1px solid #dfe4f2;
 
-    border-radius:11px;
+    border-radius:12px;
 
-    padding:10px 12px;
+    padding:14px 15px;
 
     outline:none;
 
-    color:#5e667d;
+    font-family:inherit;
 
-    font-size:12px;
+    font-size:14px;
+
+    color:#29324d;
+
+    background:#fbfcff;
+
+    transition:0.2s;
 }
 
-.form-input,
-.form-select{
-    height:43px;
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{
+    border-color:#6840e8;
+
+    box-shadow:0 0 0 3px rgba(104,64,232,0.08);
+
+    background:#ffffff;
 }
 
-.form-textarea{
-    min-height:100px;
+.form-group textarea{
+    min-height:130px;
 
     resize:vertical;
 }
 
-.form-input:focus,
-.form-select:focus,
-.form-textarea:focus{
-    border-color:#7550e8;
-
-    box-shadow:
-        0 0 0 3px rgba(117,80,232,.08);
-}
-
-.modal-footer{
-    padding:15px 22px;
-
-    border-top:1px solid #eceef5;
+.form-actions{
+    margin-top:22px;
 
     display:flex;
 
     justify-content:flex-end;
 
-    gap:10px;
+    gap:12px;
 }
 
 .cancel-btn,
 .submit-btn{
-    height:40px;
+    border:none;
 
-    padding:0 17px;
+    padding:13px 22px;
 
-    border-radius:10px;
+    border-radius:12px;
+
+    font-size:14px;
+
+    font-weight:800;
 
     cursor:pointer;
-
-    font-size:12px;
-
-    font-weight:700;
 }
 
 .cancel-btn{
-    border:1px solid #dddfea;
+    background:#eef1f8;
 
-    background:white;
-
-    color:#687089;
+    color:#68728e;
 }
 
 .submit-btn{
-    border:none;
+    background:linear-gradient(
+        135deg,
+        #6637e8,
+        #7b35e9
+    );
 
-    color:white;
+    color:#ffffff;
 
-    background:
-        linear-gradient(
-            135deg,
-            #6543e8,
-            #843de0
-        );
+    box-shadow:0 7px 18px rgba(103,53,226,0.20);
 }
 
-/* DETAILS */
 
-.detail-row{
+/* =========================================================
+   RECENT COMPLAINTS
+========================================================= */
+
+.recent-card{
+    background:#ffffff;
+
+    border-radius:22px;
+
+    padding:30px;
+
+    margin-top:28px;
+
+    box-shadow:
+        0 8px 28px rgba(34,48,100,0.06);
+}
+
+.recent-header{
     display:flex;
 
     justify-content:space-between;
 
-    gap:20px;
+    align-items:center;
 
-    padding:11px 0;
-
-    border-bottom:1px solid #edf0f6;
+    margin-bottom:22px;
 }
 
-.detail-row:last-child{
-    border-bottom:none;
+.recent-header h3{
+    font-size:24px;
+
+    color:#18213e;
+
+    font-weight:850;
 }
 
-.detail-row span:first-child{
-    color:#8a91a5;
+.view-all{
+    color:#6840e8;
 
-    font-size:11px;
+    font-size:14px;
+
+    font-weight:800;
+
+    cursor:pointer;
 }
 
-.detail-row span:last-child{
-    color:#404963;
-
-    font-size:12px;
-
-    font-weight:650;
-
-    text-align:right;
-}
-
-/* =========================
-   CHATBOT
-========================= */
-
-.chatbot{
-    position:fixed;
-
-    top:18px;
-    right:18px;
-    bottom:18px;
-
-    width:268px;
-    min-width:268px;
-    max-width:268px;
-
-    background:white;
-
-    border-radius:22px;
-
-    border:1px solid #e5e6f2;
-
-    box-shadow:
-        0 15px 45px rgba(40,35,100,.15);
-
-    z-index:9999;
-
+.complaint-item{
     display:flex;
-    flex-direction:column;
 
-    overflow:hidden;
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:20px 0;
+
+    border-top:1px solid #edf0f7;
 }
 
-.chat-header{
-    min-height:82px;
-
-    flex-shrink:0;
-
-    padding:15px;
-
+.complaint-left{
     display:flex;
 
     align-items:center;
 
-    color:white;
-
-    background:
-        linear-gradient(
-            135deg,
-            #29277d,
-            #7137d8
-        );
+    gap:15px;
 }
 
-.robot-icon{
-    width:45px;
-    height:45px;
+.complaint-icon{
+    width:48px;
+    height:48px;
 
-    border-radius:14px;
+    border-radius:13px;
 
-    background:rgba(255,255,255,.15);
+    background:#f0f3ff;
 
     display:flex;
 
     align-items:center;
     justify-content:center;
 
-    font-size:24px;
-
-    margin-right:10px;
+    font-size:22px;
 }
 
-.chat-title strong{
-    display:block;
+.complaint-info h4{
+    color:#28314e;
 
     font-size:15px;
+
+    font-weight:800;
 }
 
-.chat-title span{
-    display:block;
+.complaint-info p{
+    margin-top:5px;
 
-    font-size:10px;
+    color:#9aa3bb;
 
-    margin-top:3px;
-
-    color:rgba(255,255,255,.78);
+    font-size:13px;
 }
 
-.online-dot{
-    display:inline-block;
-
-    width:7px;
-    height:7px;
-
-    background:#57e6a3;
-
-    border-radius:50%;
-
-    margin-right:4px;
-}
-
-.chat-body{
-    flex:1;
-
-    min-height:0;
-
-    padding:17px 14px;
-
-    overflow-y:auto;
-
-    background:
-        linear-gradient(
-            180deg,
-            #fafbff,
-            #f4f5fb
-        );
-}
-
-.bot-message{
-    background:white;
-
-    border:1px solid #e7e9f3;
-
-    border-radius:14px;
-
-    padding:12px;
-
-    margin-bottom:10px;
-
-    color:#65708d;
-
-    font-size:11px;
-
-    line-height:1.6;
-
-    box-shadow:
-        0 5px 15px rgba(40,35,100,.04);
-}
-
-.user-message{
-    background:
-        linear-gradient(
-            135deg,
-            #6241e8,
-            #7b3ee0
-        );
-
-    color:white;
-
-    padding:10px 12px;
-
-    border-radius:
-        14px 14px 4px 14px;
-
-    margin:
-        9px 0 9px 20px;
-
-    font-size:11px;
-
-    line-height:1.5;
-}
-
-.quick-buttons{
-    display:flex;
-
-    gap:5px;
-
-    flex-wrap:wrap;
-
-    padding:9px 14px;
-
-    background:white;
-
-    border-top:1px solid #eceef5;
-}
-
-.quick-btn{
-    border:1px solid #e0e3f0;
-
-    background:white;
-
-    color:#6b54d9;
+.status{
+    padding:8px 14px;
 
     border-radius:20px;
 
-    padding:7px 9px;
+    font-size:12px;
 
-    font-size:9px;
+    font-weight:800;
+}
+
+.status.pending{
+    color:#a06b00;
+
+    background:#fff4d8;
+}
+
+.status.progress{
+    color:#4771cb;
+
+    background:#e8f0ff;
+}
+
+.status.resolved{
+    color:#20845b;
+
+    background:#ddf7eb;
+}
+
+.chatbot{
+    position:fixed;
+
+    width:350px;
+    height:470px;
+
+    right:28px;
+    bottom:118px;
+
+    background:#ffffff;
+
+    border-radius:20px;
+
+    box-shadow:
+        0 20px 60px rgba(35,40,90,0.22);
+
+    overflow:hidden;
+
+    display:none;
+
+    flex-direction:column;
+
+    z-index:999;
+}
+
+
+
+/* =========================================================
+   CHATBOT PANEL
+========================================================= */
+
+.chatbot{
+    position:fixed;
+
+    width:350px;
+    height:470px;
+
+    right:28px;
+    bottom:118px;
+
+    background:#ffffff;
+
+    border-radius:20px;
+
+    box-shadow:
+        0 20px 60px rgba(35,40,90,0.22);
+
+    overflow:hidden;
+
+    display:none;
+
+    flex-direction:column;
+
+    z-index:999;
+}
+
+.chatbot.open{
+    display:flex;
+}
+
+.chat-header{
+    height:72px;
+
+    background:linear-gradient(
+        135deg,
+        #263caa,
+        #6937e5
+    );
+
+    color:#ffffff;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:0 18px;
+}
+
+.chat-avatar{
+    width:43px;
+    height:43px;
+
+    border-radius:50%;
+
+    background:#ffffff;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    font-size:23px;
+}
+
+.chat-title{
+    flex:1;
+}
+
+.chat-title h3{
+    font-size:15px;
+
+    font-weight:800;
+}
+
+.chat-title p{
+    font-size:11px;
+
+    margin-top:3px;
+
+    opacity:0.8;
+}
+
+.chat-close{
+    width:30px;
+    height:30px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,0.15);
+
+    color:#ffffff;
 
     cursor:pointer;
 
-    transition:.2s;
+    font-size:17px;
 }
 
-.quick-btn:hover{
-    background:#f3f0ff;
+.chat-messages{
+    flex:1;
+
+    padding:18px;
+
+    overflow-y:auto;
+
+    background:#f7f8fd;
 }
 
-.chat-footer{
-    flex-shrink:0;
+.bot-message{
+    max-width:85%;
 
-    padding:10px;
+    background:#ffffff;
 
-    background:white;
+    color:#4c5674;
+
+    padding:12px 14px;
+
+    border-radius:5px 15px 15px 15px;
+
+    box-shadow:0 3px 12px rgba(30,40,80,0.06);
+
+    font-size:13px;
+
+    line-height:1.5;
+
+    margin-bottom:12px;
+}
+
+.user-message{
+    max-width:85%;
+
+    margin-left:auto;
+
+    background:#6539df;
+
+    color:#ffffff;
+
+    padding:12px 14px;
+
+    border-radius:15px 5px 15px 15px;
+
+    font-size:13px;
+
+    line-height:1.5;
+
+    margin-bottom:12px;
+}
+
+.chat-input-area{
+    min-height:65px;
 
     border-top:1px solid #eceef5;
 
     display:flex;
 
-    gap:7px;
+    align-items:center;
+
+    gap:8px;
+
+    padding:10px;
 }
 
 .chat-input{
     flex:1;
 
-    min-width:0;
+    height:43px;
 
-    height:40px;
+    border:1px solid #e1e4ee;
 
-    border:1px solid #e1e4ef;
+    border-radius:22px;
 
-    border-radius:12px;
+    padding:0 15px;
 
     outline:none;
 
-    padding:0 11px;
+    font-family:inherit;
 
-    font-size:11px;
-
-    color:#555e78;
+    font-size:13px;
 }
 
-.send-btn{
-    width:40px;
-    height:40px;
+.chat-send{
+    width:43px;
+    height:43px;
 
     border:none;
 
-    border-radius:12px;
+    border-radius:50%;
 
-    color:white;
+    background:#6939e4;
 
-    background:
-        linear-gradient(
-            135deg,
-            #6543e8,
-            #843de0
-        );
+    color:#ffffff;
 
     cursor:pointer;
 
     font-size:17px;
-
-    transition:.2s;
 }
 
-.send-btn:hover{
-    transform:scale(1.04);
-}
 
-/* =========================
-   TOAST
-========================= */
-
-.toast{
-    position:fixed;
-
-    left:50%;
-    bottom:25px;
-
-    transform:
-        translateX(-50%)
-        translateY(80px);
-
-    background:#25244f;
-
-    color:white;
-
-    padding:12px 18px;
-
-    border-radius:12px;
-
-    font-size:12px;
-
-    opacity:0;
-
-    transition:.3s;
-
-    z-index:30000;
-
-    box-shadow:
-        0 12px 30px rgba(0,0,0,.20);
-}
-
-.toast.show{
-    opacity:1;
-
-    transform:
-        translateX(-50%)
-        translateY(0);
-}
-
-/* =========================
+/* =========================================================
    RESPONSIVE
-========================= */
+========================================================= */
 
-@media(max-width:1150px){
+@media(max-width:1200px){
 
-    .sidebar{
-        width:230px;
-        min-width:230px;
+    .hero{
+        padding:38px 32px;
     }
 
-    .main-area{
-        margin-left:230px;
-        margin-right:250px;
+    .hero-content{
+        max-width:58%;
     }
 
-    .chatbot{
-        width:232px;
-        min-width:232px;
-        max-width:232px;
-
-        right:10px;
+    .hero-stats{
+        gap:10px;
     }
 
-    .summary-grid{
-        grid-template-columns:repeat(2,1fr);
+    .hero-stat{
+        width:140px;
     }
 
-    .complaint-list{
-        grid-template-columns:1fr;
+    .stats-grid{
+        grid-template-columns:
+            repeat(2,1fr);
     }
 }
+
 
 @media(max-width:900px){
 
-    .chatbot{
-        display:none;
-    }
-
-    .main-area{
-        margin-right:0;
-    }
-
-    .complaint-list{
-        grid-template-columns:1fr;
-    }
-}
-
-@media(max-width:700px){
-
     .sidebar{
-        width:80px;
-        min-width:80px;
+        width:220px;
     }
 
-    .brand{
-        justify-content:center;
-        padding:15px;
+    .main{
+        margin-left:220px;
+
+        width:calc(100% - 220px);
     }
 
     .brand-text{
         display:none;
     }
 
-    .menu-title,
-    .nav-text{
+    .brand{
+        justify-content:center;
+        padding:30px 15px;
+    }
+
+    .hero{
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:25px;
+    }
+
+    .hero-content{
+        max-width:100%;
+    }
+
+    .hero-stats{
+        margin-left:0;
+    }
+
+    .header-right .clock{
         display:none;
     }
 
-    .nav-item{
-        justify-content:center;
-        padding:0;
+}
+
+
+@media(max-width:700px){
+
+    .sidebar{
+        position:relative;
+
+        width:100%;
+
+        height:auto;
+
+        min-height:auto;
     }
 
-    .nav-icon{
-        margin:0;
+    .brand-text{
+        display:block;
     }
 
-    .main-area{
-        margin-left:80px;
+    .brand{
+        justify-content:flex-start;
+    }
+
+    .main{
+        margin-left:0;
+
+        width:100%;
     }
 
     .top-header{
-        padding:18px;
+        height:auto;
+
+        min-height:130px;
+
+        padding:25px 20px;
+
+        align-items:flex-start;
     }
 
     .header-left h1{
-        font-size:23px;
+        font-size:29px;
+    }
+
+    .profile-info{
+        display:none;
+    }
+
+    .page-content{
+        padding:25px 18px;
+    }
+
+    .section-header{
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:18px;
+    }
+
+    .hero{
+        padding:30px 25px;
+    }
+
+    .hero-stats{
+        width:100%;
+
+        flex-direction:column;
+    }
+
+    .hero-stat{
+        width:100%;
+    }
+
+    .stats-grid{
+        grid-template-columns:1fr;
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .form-group.full{
+        grid-column:auto;
+    }
+
+    .chatbot{
+        width:calc(100% - 30px);
+
+        right:15px;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL SCREEN SIDEBAR MENU
+========================================================= */
+
+@media(max-width:500px){
+
+    .sidebar{
+        display:none;
+    }
+
+    .main{
+        width:100%;
+        margin-left:0;
     }
 
     .header-right{
         gap:8px;
     }
 
-    .time-box,
-    .profile-info{
-        display:none;
+    .notification{
+        width:48px;
+        height:48px;
     }
 
-    .content{
-        padding:18px;
+    .profile-avatar{
+        width:48px;
+        height:48px;
     }
 
-    .summary-grid{
-        grid-template-columns:1fr;
-    }
+    .chatbot-icon{
+        width:65px;
+        height:65px;
 
-    .controls{
-        flex-direction:column;
-        align-items:stretch;
-    }
+        right:20px;
+        bottom:20px;
 
-    .filter-select,
-    .new-complaint-btn{
-        width:100%;
-    }
-
-    .hero{
-        padding:22px;
-    }
-
-    .hero-text h2{
-        font-size:23px;
-    }
-
-    .hero-icon{
-        width:60px;
-        height:60px;
         font-size:30px;
     }
+
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+.toast{
+    position:fixed;
+
+    left:50%;
+
+    bottom:30px;
+
+    transform:translateX(-50%) translateY(100px);
+
+    background:#202943;
+
+    color:#ffffff;
+
+    padding:13px 22px;
+
+    border-radius:12px;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    opacity:0;
+
+    transition:0.3s ease;
+
+    z-index:2000;
+}
+
+.toast.show{
+    opacity:1;
+
+    transform:translateX(-50%) translateY(0);
 }
 
 </style>
+
 </head>
+
 
 <body>
 
-<!-- =========================
+
+<!-- =====================================================
      SIDEBAR
-========================= -->
+===================================================== -->
 
 <aside class="sidebar">
 
     <div class="brand">
 
-        <div class="logo-box">
-            🎓
+        <div class="brand-logo">
+            <span>🎓</span>
         </div>
 
         <div class="brand-text">
-
-            <div class="brand-title">
-                CampusConnect
-            </div>
-
-            <div class="brand-subtitle">
-                AI College Companion
-            </div>
-
+            <h1>CampusConnect</h1>
+            <p>AI College Companion</p>
         </div>
 
     </div>
 
 
-    <div class="menu">
+    <div class="sidebar-content">
 
         <div class="menu-title">
-            MAIN MENU
-        </div>
-
-        <a class="nav-item" href="../dashboard.html">
-            <span class="nav-icon">🏠</span>
-            <span class="nav-text">Dashboard</span>
-        </a>
-
-        <a class="nav-item" href="courses.html">
-
-    <span class="nav-icon">
-        📚
-    </span>
-
-    <span class="nav-text">
-        Courses
-    </span>
-
-</a>
-
-        <a class="nav-item" href="timetable.html">
-            <span class="nav-icon">🗓️</span>
-            <span class="nav-text">Timetable</span>
-        </a>
-
-        <a class="nav-item" href="assignments.html">
-            <span class="nav-icon">📝</span>
-            <span class="nav-text">Assignments</span>
-        </a>
-
-        <a class="nav-item" href="attendance.html">
-            <span class="nav-icon">📊</span>
-            <span class="nav-text">Attendance</span>
-        </a>
-
-        <a class="nav-item" href="academics.html">
-            <span class="nav-icon">🎓</span>
-            <span class="nav-text">Academics</span>
-        </a>
-
-        <a class="nav-item" href="faculty.html">
-            <span class="nav-icon">👨‍🏫</span>
-            <span class="nav-text">Faculty</span>
-        </a>
-
-
-        <div class="menu-section">
-
-            <div class="menu-title">
-                CAREER
-            </div>
-
-            <a class="nav-item" href="placement.html">
-                <span class="nav-icon">💼</span>
-                <span class="nav-text">Placement</span>
-            </a>
-
-            <a class="nav-item" href="results.html">
-                <span class="nav-icon">📈</span>
-                <span class="nav-text">Results</span>
-            </a>
-
+            Main Menu
         </div>
 
 
-        <div class="menu-section">
+        <nav class="menu">
 
-            <div class="menu-title">
-                CAMPUS
-            </div>
-
-            <a class="nav-item" href="documents.html">
-                <span class="nav-icon">📄</span>
-                <span class="nav-text">Documents</span>
+            <a href="dashboard.html" class="menu-item">
+                <span class="icon">🏠</span>
+                <span>Dashboard</span>
             </a>
 
-            <a class="nav-item active" href="complaints.html">
-                <span class="nav-icon">📢</span>
-                <span class="nav-text">Complaints</span>
+
+            <a href="courses.html" class="menu-item">
+                <span class="icon">📚</span>
+                <span>Courses</span>
             </a>
 
-            <a class="nav-item" href="feedback.html">
-                <span class="nav-icon">💬</span>
-                <span class="nav-text">Feedback</span>
+
+            <a href="timetable.html" class="menu-item">
+                <span class="icon">🗓️</span>
+                <span>Timetable</span>
             </a>
 
-            <a class="nav-item" href="lost-found.html">
-                <span class="nav-icon">🔎</span>
-                <span class="nav-text">Lost &amp; Found</span>
+
+            <a href="assignments.html" class="menu-item">
+                <span class="icon">📝</span>
+                <span>Assignments</span>
             </a>
 
-            <a class="nav-item" href="campus.html">
-                <span class="nav-icon">🏫</span>
-                <span class="nav-text">Campus</span>
+
+            <a href="attendance.html" class="menu-item">
+                <span class="icon">📊</span>
+                <span>Attendance</span>
             </a>
 
-            <a class="nav-item" href="events.html">
-                <span class="nav-icon">🎉</span>
-                <span class="nav-text">Events</span>
+
+            <a href="academics.html" class="menu-item">
+                <span class="icon">🎓</span>
+                <span>Academics</span>
             </a>
 
-            <a class="nav-item" href="exams.html">
-                <span class="nav-icon">📋</span>
-                <span class="nav-text">Exams</span>
+
+            <a href="faculty.html" class="menu-item">
+                <span class="icon">🧑‍🏫</span>
+                <span>Faculty</span>
             </a>
 
-            <a class="nav-item" href="notifications.html">
-                <span class="nav-icon">🔔</span>
-                <span class="nav-text">Notifications</span>
-            </a>
+        </nav>
 
+
+        <div class="career-title">
+            Career
         </div>
 
 
-        <div class="menu-section">
+        <nav class="menu">
 
-            <div class="menu-title">
-                ACCOUNT
-            </div>
-
-            <a class="nav-item" href="profile.html">
-                <span class="nav-icon">👤</span>
-                <span class="nav-text">Profile</span>
+            <a href="placement.html" class="menu-item">
+                <span class="icon">💼</span>
+                <span>Placement</span>
             </a>
 
-            <a class="nav-item" href="settings.html">
-                <span class="nav-icon">⚙️</span>
-                <span class="nav-text">Settings</span>
-            </a>
-
-            <a
-                class="nav-item logout"
-                href="#"
-                onclick="logoutUser(event)"
-            >
-                <span class="nav-icon">🚪</span>
-                <span class="nav-text">Logout</span>
-            </a>
-
-        </div>
+        </nav>
 
     </div>
 
 </aside>
 
 
-<!-- =========================
-     MAIN AREA
-========================= -->
 
-<main class="main-area">
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="main">
+
+
+    <!-- =================================================
+         HEADER
+    ================================================== -->
 
     <header class="top-header">
 
         <div class="header-left">
 
             <h1>
-                Complaints
+                Complaints<br>
+                &amp; Grievances
             </h1>
 
             <p>
-                Submit and track your campus complaints
+                Raise concerns and track your complaints
             </p>
 
         </div>
@@ -1752,32 +1614,33 @@ select{
 
         <div class="header-right">
 
-            <div class="time-box" id="clock">
-                00:00:00
+            <div class="clock" id="clock">
+                7:35:03 PM
             </div>
 
-            <div
-                class="notification"
-                onclick="showToast('You have new notifications 🔔')"
-            >
+
+            <div class="notification">
+
                 🔔
+
+                <span class="notification-dot"></span>
+
             </div>
 
-            <div class="profile-mini">
 
-                <div class="profile-circle">
-                    PB
+            <div class="profile">
+
+                <div class="profile-avatar">
+                    P
                 </div>
 
                 <div class="profile-info">
 
-                    <strong>
-                        Priya Bhavani
-                    </strong>
+                    <h3>Student</h3>
 
-                    <span>
-                        Student
-                    </span>
+                    <p>
+                        BCA · 5th Sem
+                    </p>
 
                 </div>
 
@@ -1788,205 +1651,34 @@ select{
     </header>
 
 
-    <section class="content">
+
+    <!-- =================================================
+         PAGE CONTENT
+    ================================================== -->
+
+    <section class="page-content">
 
 
-        <!-- HERO -->
-
-        <div class="hero">
-
-            <div class="hero-text">
-
-                <small>
-                    CAMPUS SUPPORT CENTER
-                </small>
-
-                <h2>
-                    Raise Your Concern 📢
-                </h2>
-
-                <p>
-                    Submit a complaint and track its progress
-                    until it is resolved.
-                </p>
-
-            </div>
-
-            <div class="hero-icon">
-                📢
-            </div>
-
-        </div>
-
-
-        <!-- SUMMARY -->
-
-        <div class="summary-grid">
-
-            <div class="summary-card">
-
-                <div class="summary-top">
-
-                    <span style="font-size:11px;color:#9298aa;">
-                        Total Complaints
-                    </span>
-
-                    <div class="summary-icon">
-                        📢
-                    </div>
-
-                </div>
-
-                <h3 id="totalComplaints">
-                    5
-                </h3>
-
-                <p>
-                    Complaints submitted
-                </p>
-
-            </div>
-
-
-            <div class="summary-card">
-
-                <div class="summary-top">
-
-                    <span style="font-size:11px;color:#9298aa;">
-                        Pending
-                    </span>
-
-                    <div class="summary-icon">
-                        ⏳
-                    </div>
-
-                </div>
-
-                <h3 id="pendingComplaints">
-                    2
-                </h3>
-
-                <p>
-                    Waiting for action
-                </p>
-
-            </div>
-
-
-            <div class="summary-card">
-
-                <div class="summary-top">
-
-                    <span style="font-size:11px;color:#9298aa;">
-                        In Progress
-                    </span>
-
-                    <div class="summary-icon">
-                        🔄
-                    </div>
-
-                </div>
-
-                <h3 id="progressComplaints">
-                    1
-                </h3>
-
-                <p>
-                    Being reviewed
-                </p>
-
-            </div>
-
-
-            <div class="summary-card">
-
-                <div class="summary-top">
-
-                    <span style="font-size:11px;color:#9298aa;">
-                        Resolved
-                    </span>
-
-                    <div class="summary-icon">
-                        ✅
-                    </div>
-
-                </div>
-
-                <h3 id="resolvedComplaints">
-                    2
-                </h3>
-
-                <p>
-                    Successfully resolved
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <!-- SECTION -->
+        <!-- SECTION HEADER -->
 
         <div class="section-header">
 
-            <div>
+            <div class="section-title-area">
 
                 <h2>
-                    My Complaints
+                    📢 Complaints Overview
                 </h2>
 
                 <p>
-                    View and track complaints submitted by you
+                    Submit your concerns and monitor their resolution status.
                 </p>
 
             </div>
-
-        </div>
-
-
-        <!-- CONTROLS -->
-
-        <div class="controls">
-
-            <input
-                class="search-box"
-                id="searchInput"
-                type="text"
-                placeholder="🔍 Search complaints..."
-            >
-
-
-            <select
-                class="filter-select"
-                id="statusFilter"
-            >
-
-                <option value="All">
-                    All Status
-                </option>
-
-                <option value="Pending">
-                    Pending
-                </option>
-
-                <option value="In Progress">
-                    In Progress
-                </option>
-
-                <option value="Resolved">
-                    Resolved
-                </option>
-
-                <option value="Rejected">
-                    Rejected
-                </option>
-
-            </select>
 
 
             <button
                 class="new-complaint-btn"
-                onclick="openComplaintModal()"
+                onclick="scrollToForm()"
             >
                 + New Complaint
             </button>
@@ -1994,463 +1686,534 @@ select{
         </div>
 
 
-        <!-- COMPLAINTS -->
 
-        <div
-            class="complaint-list"
-            id="complaintList"
-        >
+        <!-- =================================================
+             HERO
+        ================================================== -->
 
+        <div class="hero">
 
-            <!-- COMPLAINT 1 -->
-
-            <div
-                class="complaint-card"
-                data-status="Pending"
-                data-title="Classroom Projector Not Working"
-            >
-
-                <div class="complaint-top">
-
-                    <div class="complaint-icon">
-                        📽️
-                    </div>
-
-                    <span class="status pending">
-                        Pending
-                    </span>
-
-                </div>
+            <div class="hero-content">
 
                 <h3>
-                    Classroom Projector Not Working
+                    Your voice matters 💬
                 </h3>
 
-                <span class="complaint-category">
-                    Infrastructure
-                </span>
-
-                <p class="complaint-description">
-                    The projector in the computer lab is not
-                    working properly during lectures.
+                <p>
+                    Have an issue with academics, facilities, faculty or
+                    campus services? Submit a complaint and our college
+                    administration will review it. You can track every
+                    complaint directly from CampusConnect.
                 </p>
-
-                <div class="complaint-info">
-
-                    <span>
-                        ID: CC-1001
-                    </span>
-
-                    <span>
-                        12 Sep 2026
-                    </span>
-
-                </div>
-
-                <div class="complaint-actions">
-
-                    <button
-                        class="details-btn"
-                        onclick="viewComplaint('CC-1001','Classroom Projector Not Working','Infrastructure','Pending','12 Sep 2026')"
-                    >
-                        View Details
-                    </button>
-
-                    <button
-                        class="track-btn"
-                        onclick="trackComplaint('CC-1001')"
-                    >
-                        Track
-                    </button>
-
-                </div>
 
             </div>
 
 
-            <!-- COMPLAINT 2 -->
+            <div class="hero-stats">
 
-            <div
-                class="complaint-card"
-                data-status="In Progress"
-                data-title="Wi-Fi Connectivity Issue"
-            >
+                <div class="hero-stat">
 
-                <div class="complaint-top">
+                    <strong>4</strong>
 
-                    <div class="complaint-icon">
-                        📶
-                    </div>
+                    <span>
+                        Total Complaints
+                    </span>
 
-                    <span class="status progress">
+                </div>
+
+
+                <div class="hero-stat">
+
+                    <strong>1</strong>
+
+                    <span>
                         In Progress
                     </span>
 
                 </div>
 
-                <h3>
-                    Wi-Fi Connectivity Issue
-                </h3>
+            </div>
 
-                <span class="complaint-category">
-                    IT Support
-                </span>
+        </div>
 
-                <p class="complaint-description">
-                    Campus Wi-Fi disconnects frequently in the
-                    second floor study area.
-                </p>
 
-                <div class="complaint-info">
 
-                    <span>
-                        ID: CC-1002
-                    </span>
+        <!-- =================================================
+             STAT CARDS
+        ================================================== -->
 
-                    <span>
-                        10 Sep 2026
-                    </span>
+        <div class="stats-grid">
+
+
+            <div class="stat-card">
+
+                <div class="stat-card-top">
+
+                    <h4>
+                        Total Complaints
+                    </h4>
+
+                    <div class="stat-icon">
+                        📢
+                    </div>
 
                 </div>
 
-                <div class="complaint-actions">
+                <div class="stat-number">
+                    4
+                </div>
 
-                    <button
-                        class="details-btn"
-                        onclick="viewComplaint('CC-1002','Wi-Fi Connectivity Issue','IT Support','In Progress','10 Sep 2026')"
-                    >
-                        View Details
-                    </button>
-
-                    <button
-                        class="track-btn"
-                        onclick="trackComplaint('CC-1002')"
-                    >
-                        Track
-                    </button>
-
+                <div class="stat-sub">
+                    Complaints submitted
                 </div>
 
             </div>
 
 
-            <!-- COMPLAINT 3 -->
 
-            <div
-                class="complaint-card"
-                data-status="Resolved"
-                data-title="Library AC Problem"
-            >
+            <div class="stat-card">
 
-                <div class="complaint-top">
+                <div class="stat-card-top">
 
-                    <div class="complaint-icon">
-                        ❄️
-                    </div>
-
-                    <span class="status resolved">
-                        Resolved
-                    </span>
-
-                </div>
-
-                <h3>
-                    Library AC Problem
-                </h3>
-
-                <span class="complaint-category">
-                    Facilities
-                </span>
-
-                <p class="complaint-description">
-                    Air conditioning in the library reading hall
-                    was not functioning properly.
-                </p>
-
-                <div class="complaint-info">
-
-                    <span>
-                        ID: CC-1003
-                    </span>
-
-                    <span>
-                        06 Sep 2026
-                    </span>
-
-                </div>
-
-                <div class="complaint-actions">
-
-                    <button
-                        class="details-btn"
-                        onclick="viewComplaint('CC-1003','Library AC Problem','Facilities','Resolved','06 Sep 2026')"
-                    >
-                        View Details
-                    </button>
-
-                    <button
-                        class="track-btn"
-                        onclick="trackComplaint('CC-1003')"
-                    >
-                        Track
-                    </button>
-
-                </div>
-
-            </div>
-
-
-            <!-- COMPLAINT 4 -->
-
-            <div
-                class="complaint-card"
-                data-status="Pending"
-                data-title="Canteen Hygiene Concern"
-            >
-
-                <div class="complaint-top">
-
-                    <div class="complaint-icon">
-                        🍽️
-                    </div>
-
-                    <span class="status pending">
+                    <h4>
                         Pending
-                    </span>
+                    </h4>
 
-                </div>
-
-                <h3>
-                    Canteen Hygiene Concern
-                </h3>
-
-                <span class="complaint-category">
-                    Canteen
-                </span>
-
-                <p class="complaint-description">
-                    Requesting attention to cleanliness around
-                    the college canteen seating area.
-                </p>
-
-                <div class="complaint-info">
-
-                    <span>
-                        ID: CC-1004
-                    </span>
-
-                    <span>
-                        04 Sep 2026
-                    </span>
-
-                </div>
-
-                <div class="complaint-actions">
-
-                    <button
-                        class="details-btn"
-                        onclick="viewComplaint('CC-1004','Canteen Hygiene Concern','Canteen','Pending','04 Sep 2026')"
-                    >
-                        View Details
-                    </button>
-
-                    <button
-                        class="track-btn"
-                        onclick="trackComplaint('CC-1004')"
-                    >
-                        Track
-                    </button>
-
-                </div>
-
-            </div>
-
-
-            <!-- COMPLAINT 5 -->
-
-            <div
-                class="complaint-card"
-                data-status="Resolved"
-                data-title="Water Dispenser Issue"
-            >
-
-                <div class="complaint-top">
-
-                    <div class="complaint-icon">
-                        🚰
+                    <div class="stat-icon">
+                        ⏳
                     </div>
 
-                    <span class="status resolved">
-                        Resolved
-                    </span>
-
                 </div>
 
-                <h3>
-                    Water Dispenser Issue
-                </h3>
-
-                <span class="complaint-category">
-                    Facilities
-                </span>
-
-                <p class="complaint-description">
-                    Water dispenser near the seminar hall was
-                    not providing drinking water.
-                </p>
-
-                <div class="complaint-info">
-
-                    <span>
-                        ID: CC-1005
-                    </span>
-
-                    <span>
-                        01 Sep 2026
-                    </span>
-
+                <div class="stat-number">
+                    2
                 </div>
 
-                <div class="complaint-actions">
-
-                    <button
-                        class="details-btn"
-                        onclick="viewComplaint('CC-1005','Water Dispenser Issue','Facilities','Resolved','01 Sep 2026')"
-                    >
-                        View Details
-                    </button>
-
-                    <button
-                        class="track-btn"
-                        onclick="trackComplaint('CC-1005')"
-                    >
-                        Track
-                    </button>
-
+                <div class="stat-sub">
+                    Awaiting review
                 </div>
 
             </div>
 
 
-            <div
-                class="empty-state"
-                id="emptyState"
-            >
 
-                <div>
-                    📭
+            <div class="stat-card">
+
+                <div class="stat-card-top">
+
+                    <h4>
+                        In Progress
+                    </h4>
+
+                    <div class="stat-icon">
+                        🔄
+                    </div>
+
                 </div>
 
-                <strong>
-                    No complaints found
-                </strong>
+                <div class="stat-number">
+                    1
+                </div>
 
-                <p style="margin-top:6px;font-size:11px;">
-                    Try changing your search or status filter.
-                </p>
+                <div class="stat-sub">
+                    Being reviewed
+                </div>
+
+            </div>
+
+
+
+            <div class="stat-card">
+
+                <div class="stat-card-top">
+
+                    <h4>
+                        Resolved
+                    </h4>
+
+                    <div class="stat-icon">
+                        ✅
+                    </div>
+
+                </div>
+
+                <div class="stat-number">
+                    1
+                </div>
+
+                <div class="stat-sub">
+                    Successfully resolved
+                </div>
 
             </div>
 
         </div>
+
+
+
+        <!-- =================================================
+             NEW COMPLAINT FORM
+        ================================================== -->
+
+        <div
+            class="complaint-form-card"
+            id="complaintForm"
+        >
+
+            <div class="form-title">
+                Submit a New Complaint
+            </div>
+
+            <div class="form-subtitle">
+                Provide the details below so your concern can be reviewed.
+            </div>
+
+
+            <form onsubmit="submitComplaint(event)">
+
+                <div class="form-grid">
+
+
+                    <div class="form-group">
+
+                        <label for="category">
+                            Category
+                        </label>
+
+                        <select id="category" required>
+
+                            <option value="">
+                                Select category
+                            </option>
+
+                            <option>
+                                Academics
+                            </option>
+
+                            <option>
+                                Faculty
+                            </option>
+
+                            <option>
+                                Facilities
+                            </option>
+
+                            <option>
+                                Hostel
+                            </option>
+
+                            <option>
+                                Library
+                            </option>
+
+                            <option>
+                                Transport
+                            </option>
+
+                            <option>
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        <label for="subject">
+                            Subject
+                        </label>
+
+                        <input
+                            type="text"
+                            id="subject"
+                            placeholder="Enter complaint subject"
+                            required
+                        >
+
+                    </div>
+
+
+
+                    <div class="form-group full">
+
+                        <label for="description">
+                            Description
+                        </label>
+
+                        <textarea
+                            id="description"
+                            placeholder="Describe your concern..."
+                            required
+                        ></textarea>
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="form-actions">
+
+                    <button
+                        type="button"
+                        class="cancel-btn"
+                        onclick="closeForm()"
+                    >
+                        Cancel
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="submit-btn"
+                    >
+                        Submit Complaint
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+
+
+        <!-- =================================================
+             RECENT COMPLAINTS
+        ================================================== -->
+
+        <div class="recent-card">
+
+            <div class="recent-header">
+
+                <h3>
+                    Recent Complaints
+                </h3>
+
+                <span class="view-all">
+                    View All
+                </span>
+
+            </div>
+
+
+
+            <div class="complaint-item">
+
+                <div class="complaint-left">
+
+                    <div class="complaint-icon">
+                        📚
+                    </div>
+
+                    <div class="complaint-info">
+
+                        <h4>
+                            Library study room availability
+                        </h4>
+
+                        <p>
+                            Submitted on 20 Sep 2026 · Academic Facilities
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <span class="status pending">
+                    Pending
+                </span>
+
+            </div>
+
+
+
+            <div class="complaint-item">
+
+                <div class="complaint-left">
+
+                    <div class="complaint-icon">
+                        🏫
+                    </div>
+
+                    <div class="complaint-info">
+
+                        <h4>
+                            Classroom projector issue
+                        </h4>
+
+                        <p>
+                            Submitted on 18 Sep 2026 · Facilities
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <span class="status progress">
+                    In Progress
+                </span>
+
+            </div>
+
+
+
+            <div class="complaint-item">
+
+                <div class="complaint-left">
+
+                    <div class="complaint-icon">
+                        🚌
+                    </div>
+
+                    <div class="complaint-info">
+
+                        <h4>
+                            Bus timing concern
+                        </h4>
+
+                        <p>
+                            Submitted on 15 Sep 2026 · Transport
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <span class="status pending">
+                    Pending
+                </span>
+
+            </div>
+
+
+
+            <div class="complaint-item">
+
+                <div class="complaint-left">
+
+                    <div class="complaint-icon">
+                        👨‍🏫
+                    </div>
+
+                    <div class="complaint-info">
+
+                        <h4>
+                            Faculty consultation request
+                        </h4>
+
+                        <p>
+                            Submitted on 10 Sep 2026 · Faculty
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <span class="status resolved">
+                    Resolved
+                </span>
+
+            </div>
+
+        </div>
+
 
     </section>
 
 </main>
 
 
-<!-- =========================
-     CHATBOT
-========================= -->
 
-<aside class="chatbot">
+<!-- =====================================================
+     CHATBOT BUTTON
+===================================================== -->
+
+<button
+    class="chatbot-icon"
+    id="chatbotToggle"
+    onclick="toggleChatbot()"
+    aria-label="Open AI College Companion"
+>
+
+    🤖
+
+    <span class="chatbot-dot"></span>
+
+</button>
+
+
+
+<!-- =====================================================
+     CHATBOT
+===================================================== -->
+
+<aside
+    class="chatbot"
+    id="chatbot"
+>
 
     <div class="chat-header">
 
-        <div class="robot-icon">
+        <div class="chat-avatar">
             🤖
         </div>
 
         <div class="chat-title">
 
-            <strong>
-                CampusConnect AI
-            </strong>
+            <h3>
+                AI College Companion
+            </h3>
 
-            <span>
-                <span class="online-dot"></span>
-                College Companion
-            </span>
+            <p>
+                Online · Ready to help
+            </p>
 
         </div>
+
+        <button
+            class="chat-close"
+            onclick="toggleChatbot()"
+        >
+            ×
+        </button>
 
     </div>
 
 
     <div
-        class="chat-body"
-        id="chatBody"
+        class="chat-messages"
+        id="chatMessages"
     >
 
         <div class="bot-message">
 
-            Hi Priya! 👋<br><br>
-
-            I'm your
-            <strong>CampusConnect AI College Companion</strong>.
-            I can help you with complaints and campus support.
-
-        </div>
-
-        <div class="bot-message">
-
-            Try asking:<br><br>
-
-            • How many complaints do I have?<br>
-            • Show pending complaints<br>
-            • How do I submit a complaint?
+            Hi! 👋 I'm your CampusConnect AI assistant.
+            How can I help you with your complaints or college activities?
 
         </div>
 
     </div>
 
 
-    <div class="quick-buttons">
-
-        <button
-            class="quick-btn"
-            onclick="quickChat('How many complaints do I have?')"
-        >
-            My Complaints
-        </button>
-
-        <button
-            class="quick-btn"
-            onclick="quickChat('Show pending complaints')"
-        >
-            Pending
-        </button>
-
-        <button
-            class="quick-btn"
-            onclick="quickChat('How do I submit a complaint?')"
-        >
-            Submit
-        </button>
-
-    </div>
-
-
-    <div class="chat-footer">
+    <div class="chat-input-area">
 
         <input
             type="text"
             class="chat-input"
             id="chatInput"
-            placeholder="Ask CampusConnect AI..."
+            placeholder="Type your message..."
+            onkeydown="handleChatKey(event)"
         >
 
         <button
-            class="send-btn"
+            class="chat-send"
             onclick="sendMessage()"
         >
             ➤
@@ -2461,262 +2224,24 @@ select{
 </aside>
 
 
-<!-- =========================
-     NEW COMPLAINT MODAL
-========================= -->
 
-<div
-    class="modal-overlay"
-    id="complaintModal"
->
-
-    <div class="modal">
-
-        <div class="modal-header">
-
-            <h2>
-                Submit New Complaint
-            </h2>
-
-            <button
-                class="close-btn"
-                onclick="closeComplaintModal()"
-            >
-                ×
-            </button>
-
-        </div>
-
-
-        <div class="modal-body">
-
-            <div class="form-group">
-
-                <label>
-                    Complaint Title
-                </label>
-
-                <input
-                    class="form-input"
-                    id="complaintTitle"
-                    type="text"
-                    placeholder="Enter complaint title"
-                >
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    Category
-                </label>
-
-                <select
-                    class="form-select"
-                    id="complaintCategory"
-                >
-
-                    <option>
-                        Infrastructure
-                    </option>
-
-                    <option>
-                        IT Support
-                    </option>
-
-                    <option>
-                        Facilities
-                    </option>
-
-                    <option>
-                        Canteen
-                    </option>
-
-                    <option>
-                        Academic
-                    </option>
-
-                    <option>
-                        Transport
-                    </option>
-
-                    <option>
-                        Other
-                    </option>
-
-                </select>
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    Description
-                </label>
-
-                <textarea
-                    class="form-textarea"
-                    id="complaintDescription"
-                    placeholder="Describe your complaint..."
-                ></textarea>
-
-            </div>
-
-        </div>
-
-
-        <div class="modal-footer">
-
-            <button
-                class="cancel-btn"
-                onclick="closeComplaintModal()"
-            >
-                Cancel
-            </button>
-
-            <button
-                class="submit-btn"
-                onclick="submitComplaint()"
-            >
-                Submit Complaint
-            </button>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- =========================
-     DETAILS MODAL
-========================= -->
-
-<div
-    class="modal-overlay"
-    id="detailsModal"
->
-
-    <div class="modal">
-
-        <div class="modal-header">
-
-            <h2>
-                Complaint Details
-            </h2>
-
-            <button
-                class="close-btn"
-                onclick="closeDetailsModal()"
-            >
-                ×
-            </button>
-
-        </div>
-
-
-        <div class="modal-body">
-
-            <div class="detail-row">
-
-                <span>
-                    Complaint ID
-                </span>
-
-                <span id="detailId">
-                    -
-                </span>
-
-            </div>
-
-
-            <div class="detail-row">
-
-                <span>
-                    Title
-                </span>
-
-                <span id="detailTitle">
-                    -
-                </span>
-
-            </div>
-
-
-            <div class="detail-row">
-
-                <span>
-                    Category
-                </span>
-
-                <span id="detailCategory">
-                    -
-                </span>
-
-            </div>
-
-
-            <div class="detail-row">
-
-                <span>
-                    Status
-                </span>
-
-                <span id="detailStatus">
-                    -
-                </span>
-
-            </div>
-
-
-            <div class="detail-row">
-
-                <span>
-                    Submitted On
-                </span>
-
-                <span id="detailDate">
-                    -
-                </span>
-
-            </div>
-
-        </div>
-
-
-        <div class="modal-footer">
-
-            <button
-                class="cancel-btn"
-                onclick="closeDetailsModal()"
-            >
-                Close
-            </button>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- TOAST -->
+<!-- =====================================================
+     TOAST
+===================================================== -->
 
 <div
     class="toast"
     id="toast"
 >
-    Success
 </div>
+
 
 
 <script>
 
-/* =========================
+/* =========================================================
    CLOCK
-========================= */
+========================================================= */
 
 function updateClock(){
 
@@ -2724,24 +2249,26 @@ function updateClock(){
 
     let hours = now.getHours();
 
-    const minutes =
-        String(now.getMinutes()).padStart(2,"0");
+    const minutes = String(
+        now.getMinutes()
+    ).padStart(2,"0");
 
-    const seconds =
-        String(now.getSeconds()).padStart(2,"0");
+    const seconds = String(
+        now.getSeconds()
+    ).padStart(2,"0");
 
-    const ampm =
-        hours >= 12 ? "PM" : "AM";
+    const period = hours >= 12
+        ? "PM"
+        : "AM";
 
     hours = hours % 12;
 
-    hours = hours || 12;
-
-    hours =
-        String(hours).padStart(2,"0");
+    hours = hours
+        ? hours
+        : 12;
 
     document.getElementById("clock").textContent =
-        `${hours}:${minutes}:${seconds} ${ampm}`;
+        `${hours}:${minutes}:${seconds} ${period}`;
 }
 
 updateClock();
@@ -2749,223 +2276,87 @@ updateClock();
 setInterval(updateClock,1000);
 
 
-/* =========================
-   SEARCH + FILTER
-========================= */
+/* =========================================================
+   OPEN COMPLAINT FORM
+========================================================= */
 
-const searchInput =
-    document.getElementById("searchInput");
+function scrollToForm(){
 
-const statusFilter =
-    document.getElementById("statusFilter");
+    const form =
+        document.getElementById("complaintForm");
 
-const complaintCards =
-    document.querySelectorAll(".complaint-card");
+    form.classList.add("show");
 
-const emptyState =
-    document.getElementById("emptyState");
+    setTimeout(function(){
 
+        form.scrollIntoView({
+            behavior:"smooth",
+            block:"start"
+        });
 
-function filterComplaints(){
-
-    const search =
-        searchInput.value
-        .toLowerCase()
-        .trim();
-
-    const status =
-        statusFilter.value;
-
-    let visible = 0;
-
-
-    complaintCards.forEach(card => {
-
-        const title =
-            card.dataset.title.toLowerCase();
-
-        const cardStatus =
-            card.dataset.status;
-
-        const matchesSearch =
-            title.includes(search);
-
-        const matchesStatus =
-            status === "All" ||
-            cardStatus === status;
-
-
-        if(
-            matchesSearch &&
-            matchesStatus
-        ){
-
-            card.style.display = "";
-
-            visible++;
-
-        }else{
-
-            card.style.display = "none";
-
-        }
-
-    });
-
-
-    emptyState.style.display =
-        visible === 0 ? "block" : "none";
-}
-
-
-searchInput.addEventListener(
-    "input",
-    filterComplaints
-);
-
-statusFilter.addEventListener(
-    "change",
-    filterComplaints
-);
-
-
-/* =========================
-   NEW COMPLAINT
-========================= */
-
-function openComplaintModal(){
-
-    document.getElementById(
-        "complaintModal"
-    ).style.display = "flex";
-
-}
-
-function closeComplaintModal(){
-
-    document.getElementById(
-        "complaintModal"
-    ).style.display = "none";
+    },100);
 
 }
 
 
-function submitComplaint(){
+/* =========================================================
+   CLOSE FORM
+========================================================= */
 
-    const title =
-        document.getElementById(
-            "complaintTitle"
-        ).value.trim();
+function closeForm(){
+
+    document
+        .getElementById("complaintForm")
+        .classList.remove("show");
+
+}
+
+
+/* =========================================================
+   SUBMIT COMPLAINT
+========================================================= */
+
+function submitComplaint(event){
+
+    event.preventDefault();
+
+    const category =
+        document.getElementById("category").value;
+
+    const subject =
+        document.getElementById("subject").value.trim();
 
     const description =
-        document.getElementById(
-            "complaintDescription"
-        ).value.trim();
+        document.getElementById("description").value.trim();
 
 
-    if(!title){
+    if(
+        !category ||
+        !subject ||
+        !description
+    ){
 
         showToast(
-            "Please enter a complaint title"
+            "Please fill in all the fields."
         );
 
         return;
     }
 
 
-    if(!description){
-
-        showToast(
-            "Please describe your complaint"
-        );
-
-        return;
-    }
-
-
-    closeComplaintModal();
-
-
-    document.getElementById(
-        "complaintTitle"
-    ).value = "";
-
-    document.getElementById(
-        "complaintDescription"
-    ).value = "";
-
-
     showToast(
-        "Complaint submitted successfully! 📢"
+        "Complaint submitted successfully! ✓"
     );
 
-}
 
-
-/* =========================
-   DETAILS
-========================= */
-
-function viewComplaint(
-    id,
-    title,
-    category,
-    status,
-    date
-){
-
-    document.getElementById(
-        "detailId"
-    ).textContent = id;
-
-    document.getElementById(
-        "detailTitle"
-    ).textContent = title;
-
-    document.getElementById(
-        "detailCategory"
-    ).textContent = category;
-
-    document.getElementById(
-        "detailStatus"
-    ).textContent = status;
-
-    document.getElementById(
-        "detailDate"
-    ).textContent = date;
-
-
-    document.getElementById(
-        "detailsModal"
-    ).style.display = "flex";
-}
-
-
-function closeDetailsModal(){
-
-    document.getElementById(
-        "detailsModal"
-    ).style.display = "none";
+    event.target.reset();
 
 }
 
 
-/* =========================
-   TRACK
-========================= */
-
-function trackComplaint(id){
-
-    showToast(
-        `${id}: Complaint tracking updated 🔄`
-    );
-
-}
-
-
-/* =========================
+/* =========================================================
    TOAST
-========================= */
+========================================================= */
 
 let toastTimer;
 
@@ -2980,307 +2371,113 @@ function showToast(message){
 
     clearTimeout(toastTimer);
 
-    toastTimer =
-        setTimeout(() => {
+    toastTimer = setTimeout(function(){
 
-            toast.classList.remove("show");
+        toast.classList.remove("show");
 
-        },2500);
-}
-
-
-/* =========================
-   CHATBOT
-========================= */
-
-function addUserMessage(message){
-
-    const chatBody =
-        document.getElementById("chatBody");
-
-    const div =
-        document.createElement("div");
-
-    div.className =
-        "user-message";
-
-    div.textContent =
-        message;
-
-    chatBody.appendChild(div);
-
-    chatBody.scrollTop =
-        chatBody.scrollHeight;
-}
-
-
-function addBotMessage(message){
-
-    const chatBody =
-        document.getElementById("chatBody");
-
-    const div =
-        document.createElement("div");
-
-    div.className =
-        "bot-message";
-
-    div.innerHTML =
-        message;
-
-    chatBody.appendChild(div);
-
-    chatBody.scrollTop =
-        chatBody.scrollHeight;
-}
-
-
-function getBotResponse(message){
-
-    const text =
-        message.toLowerCase();
-
-
-    if(
-        text.includes("how many") ||
-        text.includes("complaints")
-    ){
-
-        return `
-            You currently have
-            <strong>5 complaints</strong>.
-            <br><br>
-            ⏳ 2 Pending<br>
-            🔄 1 In Progress<br>
-            ✅ 2 Resolved
-        `;
-
-    }
-
-
-    if(
-        text.includes("pending")
-    ){
-
-        return `
-            You have
-            <strong>2 pending complaints</strong>:
-            <br><br>
-            📽️ Classroom Projector Not Working<br>
-            🍽️ Canteen Hygiene Concern
-        `;
-
-    }
-
-
-    if(
-        text.includes("progress") ||
-        text.includes("review")
-    ){
-
-        return `
-            Your Wi-Fi Connectivity Issue
-            <strong>CC-1002</strong> is currently
-            <strong>In Progress</strong>. 🔄
-        `;
-
-    }
-
-
-    if(
-        text.includes("resolved")
-    ){
-
-        return `
-            You have
-            <strong>2 resolved complaints</strong>. ✅
-            <br><br>
-            Library AC Problem<br>
-            Water Dispenser Issue
-        `;
-
-    }
-
-
-    if(
-        text.includes("submit") ||
-        text.includes("new complaint")
-    ){
-
-        return `
-            To submit a complaint, click
-            <strong>+ New Complaint</strong>
-            at the top of the page. 📢
-        `;
-
-    }
-
-
-    if(
-        text.includes("hello") ||
-        text.includes("hi") ||
-        text.includes("help")
-    ){
-
-        return `
-            Hi! 👋 I can help you with:
-            <br><br>
-            📢 Complaints<br>
-            ⏳ Pending complaints<br>
-            🔄 Complaint tracking<br>
-            📝 Submitting a new complaint
-        `;
-
-    }
-
-
-    return `
-        I can help you with your complaints.
-        Try asking:
-        <br><br>
-        <strong>"Show pending complaints"</strong>
-    `;
+    },3000);
 
 }
 
+
+/* =========================================================
+   CHATBOT TOGGLE
+========================================================= */
+
+function toggleChatbot(){
+
+    const chatbot =
+        document.getElementById("chatbot");
+
+    chatbot.classList.toggle("open");
+
+}
+
+
+/* =========================================================
+   CHATBOT SEND
+========================================================= */
 
 function sendMessage(){
 
     const input =
         document.getElementById("chatInput");
 
+    const messages =
+        document.getElementById("chatMessages");
+
     const message =
         input.value.trim();
+
 
     if(!message){
         return;
     }
 
 
-    addUserMessage(message);
+    const userMessage =
+        document.createElement("div");
+
+    userMessage.className =
+        "user-message";
+
+    userMessage.textContent =
+        message;
+
+    messages.appendChild(
+        userMessage
+    );
+
 
     input.value = "";
 
 
-    setTimeout(() => {
+    setTimeout(function(){
 
-        addBotMessage(
-            getBotResponse(message)
+        const botMessage =
+            document.createElement("div");
+
+        botMessage.className =
+            "bot-message";
+
+        botMessage.textContent =
+            "Thanks for your message! I'm here to help with CampusConnect. 🤖";
+
+        messages.appendChild(
+            botMessage
         );
 
-    },400);
+
+        messages.scrollTop =
+            messages.scrollHeight;
+
+    },600);
+
+
+    messages.scrollTop =
+        messages.scrollHeight;
+
 }
 
 
-function quickChat(message){
+/* =========================================================
+   CHAT ENTER KEY
+========================================================= */
 
-    addUserMessage(message);
+function handleChatKey(event){
 
-    setTimeout(() => {
+    if(event.key === "Enter"){
 
-        addBotMessage(
-            getBotResponse(message)
-        );
+        event.preventDefault();
 
-    },300);
-}
-
-
-document
-    .getElementById("chatInput")
-    .addEventListener(
-        "keydown",
-        function(event){
-
-            if(event.key === "Enter"){
-
-                sendMessage();
-
-            }
-
-        }
-    );
-
-
-/* =========================
-   LOGOUT
-========================= */
-
-function logoutUser(event){
-
-    event.preventDefault();
-
-    const confirmed =
-        confirm(
-            "Are you sure you want to logout?"
-        );
-
-    if(confirmed){
-
-        window.location.href =
-            "../index.html";
+        sendMessage();
 
     }
 
 }
-
-
-/* =========================
-   OUTSIDE CLICK
-========================= */
-
-document
-    .getElementById("complaintModal")
-    .addEventListener(
-        "click",
-        function(event){
-
-            if(event.target === this){
-
-                closeComplaintModal();
-
-            }
-
-        }
-    );
-
-
-document
-    .getElementById("detailsModal")
-    .addEventListener(
-        "click",
-        function(event){
-
-            if(event.target === this){
-
-                closeDetailsModal();
-
-            }
-
-        }
-    );
-
-
-/* =========================
-   ESCAPE
-========================= */
-
-document.addEventListener(
-    "keydown",
-    function(event){
-
-        if(event.key === "Escape"){
-
-            closeComplaintModal();
-
-            closeDetailsModal();
-
-        }
-
-    }
-);
 
 </script>
+
 
 </body>
 </html>
