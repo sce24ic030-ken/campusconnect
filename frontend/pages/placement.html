@@ -13,17 +13,10 @@
     box-sizing:border-box;
 }
 
-html,body{
-    width:100%;
-    height:100%;
+body{
     font-family:"Segoe UI",Arial,sans-serif;
     background:#f4f6ff;
     color:#17203a;
-    overflow:hidden;
-}
-
-button,input,select{
-    font-family:inherit;
 }
 
 /* ================= SIDEBAR ================= */
@@ -32,151 +25,122 @@ button,input,select{
     position:fixed;
     left:0;
     top:0;
-    bottom:0;
     width:268px;
-    min-width:268px;
+    height:100vh;
     background:linear-gradient(180deg,#172a70 0%,#28237d 48%,#5520a7 100%);
     color:white;
     overflow-y:auto;
-    overflow-x:hidden;
     z-index:1000;
-    padding-bottom:20px;
-    scrollbar-width:thin;
-    scrollbar-color:rgba(255,255,255,.25) transparent;
 }
 
-.brand{
+.logo-area{
     height:120px;
+    padding:22px 18px;
     display:flex;
     align-items:center;
-    padding:22px 18px;
-    border-bottom:1px solid rgba(255,255,255,.12);
+    gap:14px;
+    border-bottom:1px solid rgba(255,255,255,.15);
 }
 
-.logo-box{
-    width:52px;
-    height:52px;
-    border-radius:16px;
+.logo-icon{
+    width:62px;
+    height:62px;
+    min-width:62px;
+    border-radius:18px;
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:28px;
-    background:linear-gradient(135deg,#24b8ff,#7144f5);
-    box-shadow:0 10px 25px rgba(0,0,0,.20);
+    font-size:30px;
+    background:linear-gradient(135deg,#24b5f5,#6344ef);
 }
 
-.brand-text{
-    margin-left:13px;
-}
-
-.brand-title{
+.logo-text h2{
     font-size:21px;
     font-weight:800;
-    letter-spacing:-.5px;
+    white-space:nowrap;
 }
 
-.brand-subtitle{
-    font-size:12px;
-    opacity:.72;
-    margin-top:3px;
-}
-
-.menu{
-    padding:25px 14px;
-}
-
-.menu-title{
-    font-size:12px;
-    font-weight:700;
-    color:rgba(255,255,255,.52);
-    letter-spacing:1px;
-    padding:0 11px 10px;
+.logo-text p{
+    margin-top:5px;
+    font-size:13px;
+    color:#c5c9e8;
+    white-space:nowrap;
 }
 
 .menu-section{
-    margin-top:20px;
+    padding:27px 16px 0;
+}
+
+.menu-title{
+    padding:0 18px 17px;
+    font-size:13px;
+    font-weight:800;
+    letter-spacing:1px;
+    color:#a9afd3;
 }
 
 .nav-item{
-    width:100%;
+    height:60px;
+    margin:0 5px 7px;
+    padding:0 16px;
     display:flex;
     align-items:center;
-    min-height:49px;
-    padding:0 14px;
-    margin:5px 0;
-    border-radius:13px;
-    color:rgba(255,255,255,.84);
+    gap:15px;
+    border-radius:15px;
+    color:#e5e6f6;
     text-decoration:none;
-    transition:transform .2s ease,background .2s ease,color .2s ease;
+    font-size:16px;
+    font-weight:700;
+    transition:.25s;
 }
 
 .nav-item:hover{
-    background:rgba(255,255,255,.12);
-    color:white;
-    transform:translateX(3px);
+    background:rgba(255,255,255,.10);
 }
 
 .nav-item.active{
+    background:linear-gradient(90deg,#24aef2,#5d3ff0);
     color:white;
-    background:linear-gradient(90deg,#22b9f5,#6942f4);
-    box-shadow:0 9px 22px rgba(0,0,0,.18);
+    box-shadow:0 8px 20px rgba(48,72,220,.35);
 }
 
 .nav-icon{
-    width:31px;
-    font-size:20px;
+    width:28px;
+    min-width:28px;
     text-align:center;
-    margin-right:10px;
-}
-
-.nav-text{
-    font-size:15px;
-    font-weight:650;
-}
-
-.logout{
-    margin-top:14px;
-    padding-top:15px;
-    border-top:1px solid rgba(255,255,255,.13);
+    font-size:21px;
 }
 
 /* ================= MAIN ================= */
 
 .main-area{
     margin-left:268px;
-    margin-right:286px;
-    width:auto;
-    height:100vh;
-    overflow-y:auto;
-    overflow-x:hidden;
-    background:linear-gradient(180deg,#f8f9ff,#eef1fb);
+    min-height:100vh;
+    background:linear-gradient(180deg,#f8f9ff 0%,#eef1fb 100%);
 }
 
 /* ================= HEADER ================= */
 
 .top-header{
     height:120px;
-    background:rgba(255,255,255,.96);
+    background:#fff;
     display:flex;
     align-items:center;
     justify-content:space-between;
-    padding:22px 28px;
-    border-bottom:1px solid #e9ebf5;
-    position:sticky;
-    top:0;
-    z-index:100;
+    padding:20px 28px;
+    border-bottom:1px solid #e7e9f3;
 }
 
 .header-left h1{
     font-size:30px;
-    line-height:1.05;
-    font-weight:800;
+    font-weight:900;
+    color:#17203a;
 }
 
 .header-left p{
     margin-top:7px;
-    color:#8990a7;
     font-size:14px;
+    color:#8992b1;
 }
 
 .header-right{
@@ -187,182 +151,222 @@ button,input,select{
 
 .time-box{
     font-size:18px;
-    font-weight:750;
-    color:#59617d;
+    font-weight:700;
+    color:#65708f;
 }
 
 .notification{
-    width:48px;
-    height:48px;
-    background:#fff;
+    position:relative;
+    width:58px;
+    height:58px;
+    background:white;
     border-radius:50%;
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:22px;
-    box-shadow:0 5px 18px rgba(40,35,100,.10);
-    position:relative;
+    font-size:25px;
+    box-shadow:0 8px 25px rgba(45,58,100,.10);
     cursor:pointer;
 }
 
 .notification::after{
     content:"";
-    width:8px;
-    height:8px;
-    border-radius:50%;
-    background:#ff4f8b;
     position:absolute;
     top:7px;
-    right:8px;
+    right:9px;
+    width:9px;
+    height:9px;
+    background:#ff4f91;
+    border-radius:50%;
 }
 
-.profile-mini{
+.profile{
     display:flex;
     align-items:center;
-    gap:10px;
+    gap:13px;
 }
 
 .profile-circle{
-    width:48px;
-    height:48px;
+    width:58px;
+    height:58px;
     border-radius:50%;
-    background:linear-gradient(135deg,#25b8ee,#466cf1);
+    background:linear-gradient(135deg,#28aef2,#5378ef);
     color:white;
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:20px;
+    font-size:22px;
     font-weight:800;
 }
 
 .profile-info strong{
     display:block;
-    font-size:15px;
+    font-size:16px;
 }
 
 .profile-info span{
     display:block;
-    color:#8d93a8;
-    font-size:12px;
+    margin-top:4px;
+    color:#9aa1ba;
+    font-size:14px;
 }
 
 /* ================= CONTENT ================= */
 
 .content{
-    padding:28px;
+    padding:20px 24px 35px;
+}
+
+.page-heading{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:18px;
+}
+
+.page-heading h2{
+    font-size:26px;
+    font-weight:900;
+}
+
+.page-heading p{
+    margin-top:6px;
+    color:#8992b1;
+    font-size:14px;
+}
+
+.primary-btn{
+    border:none;
+    padding:14px 22px;
+    border-radius:14px;
+    background:linear-gradient(135deg,#693fe8,#843de1);
+    color:white;
+    font-size:14px;
+    font-weight:800;
+    cursor:pointer;
 }
 
 /* ================= HERO ================= */
 
 .hero{
-    background:linear-gradient(135deg,#25277d,#6339d5);
+    min-height:190px;
+    padding:30px 32px;
     border-radius:22px;
-    padding:28px;
+    overflow:hidden;
     color:white;
+    background:linear-gradient(110deg,#214394,#3e27c9 55%,#7738df);
     display:flex;
-    justify-content:space-between;
     align-items:center;
-    box-shadow:0 15px 35px rgba(55,40,150,.18);
-    margin-bottom:25px;
+    justify-content:space-between;
+    margin-bottom:20px;
 }
 
-.hero h2{
-    font-size:26px;
-    margin-bottom:8px;
+.hero-text{
+    max-width:65%;
 }
 
-.hero p{
-    color:rgba(255,255,255,.75);
-    font-size:14px;
+.hero-text h2{
+    font-size:25px;
+    line-height:1.35;
+    font-weight:900;
+    margin-bottom:10px;
 }
 
-.hero-right{
-    text-align:right;
+.hero-text p{
+    font-size:13px;
+    line-height:1.65;
+    color:#e0e3ff;
 }
 
-.hero-number{
-    font-size:35px;
+.hero-stats{
+    display:flex;
+    gap:12px;
+}
+
+.hero-stat{
+    width:120px;
+    height:100px;
+    border-radius:18px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    background:rgba(255,255,255,.13);
+    border:1px solid rgba(255,255,255,.15);
+}
+
+.hero-stat strong{
+    font-size:28px;
+}
+
+.hero-stat span{
+    margin-top:5px;
+    font-size:12px;
+    color:#d9dcff;
+}
+
+/* ================= STATS ================= */
+
+.stats-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+    margin-bottom:20px;
+}
+
+.stat-card{
+    min-height:135px;
+    padding:19px;
+    background:white;
+    border-radius:18px;
+    box-shadow:0 8px 30px rgba(50,63,110,.06);
+}
+
+.stat-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.stat-label{
+    color:#7e88a9;
+    font-size:12px;
     font-weight:800;
 }
 
-.hero-label{
-    font-size:11px;
-    color:rgba(255,255,255,.7);
-}
-
-.hero-icon{
-    width:75px;
-    height:75px;
-    border-radius:22px;
-    background:rgba(255,255,255,.14);
+.stat-icon{
+    width:44px;
+    height:44px;
+    border-radius:14px;
+    background:#eef2ff;
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:40px;
+    font-size:22px;
 }
 
-/* ================= SUMMARY ================= */
-
-.summary-grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:16px;
-    margin-bottom:25px;
+.stat-number{
+    margin-top:10px;
+    font-size:28px;
+    font-weight:900;
+    color:#3264dc;
 }
 
-.summary-card{
-    background:white;
-    border:1px solid #e7e9f2;
-    border-radius:18px;
-    padding:20px;
-    box-shadow:0 7px 22px rgba(40,35,100,.06);
-    transition:.25s;
-}
-
-.summary-card:hover{
-    transform:translateY(-4px);
-    box-shadow:0 13px 30px rgba(40,35,100,.11);
-}
-
-.summary-icon{
-    width:42px;
-    height:42px;
-    border-radius:13px;
-    background:#f0edff;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:21px;
-    margin-bottom:13px;
-}
-
-.summary-card strong{
+.stat-card small{
     display:block;
-    font-size:24px;
-    color:#25275e;
-}
-
-.summary-card span{
-    color:#8c93aa;
-    font-size:12px;
-}
-
-/* ================= MAIN GRID ================= */
-
-.main-grid{
-    display:grid;
-    grid-template-columns:1.15fr .85fr;
-    gap:18px;
+    margin-top:2px;
+    color:#9aa2bc;
+    font-size:11px;
 }
 
 /* ================= SECTION ================= */
 
 .section-card{
     background:white;
-    border:1px solid #e6e8f1;
     border-radius:20px;
-    padding:22px;
-    box-shadow:0 7px 22px rgba(40,35,100,.06);
+    padding:20px;
+    box-shadow:0 8px 30px rgba(50,63,110,.06);
+    margin-bottom:20px;
 }
 
 .section-header{
@@ -373,158 +377,140 @@ button,input,select{
 }
 
 .section-header h3{
-    font-size:19px;
-    color:#25275e;
+    font-size:20px;
+    font-weight:900;
 }
 
 .section-header p{
-    color:#9399ad;
-    font-size:12px;
     margin-top:4px;
+    color:#9098b3;
+    font-size:13px;
 }
 
-/* ================= COMPANY CARDS ================= */
+/* ================= COMPANY ================= */
 
-.company-list{
+.filters{
     display:flex;
-    flex-direction:column;
-    gap:12px;
+    gap:8px;
+}
+
+.search,
+.select{
+    padding:11px 13px;
+    border:1px solid #e1e5f1;
+    border-radius:12px;
+    background:white;
+    outline:none;
+    font-size:13px;
+}
+
+.search{
+    width:210px;
+}
+
+.company-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:14px;
 }
 
 .company-card{
-    border:1px solid #e6e8f0;
-    border-radius:15px;
-    padding:15px;
+    border:1px solid #edf0f7;
+    border-radius:16px;
+    padding:16px;
     display:flex;
     align-items:center;
-    gap:13px;
-    cursor:pointer;
+    justify-content:space-between;
     transition:.25s;
 }
 
 .company-card:hover{
-    transform:translateX(3px);
-    border-color:#bdb2f3;
-    box-shadow:0 8px 22px rgba(55,40,150,.08);
+    transform:translateY(-3px);
+    box-shadow:0 10px 25px rgba(50,63,110,.08);
+}
+
+.company-left{
+    display:flex;
+    align-items:center;
+    gap:13px;
 }
 
 .company-logo{
     width:48px;
     height:48px;
-    min-width:48px;
     border-radius:14px;
-    background:linear-gradient(135deg,#24b8ff,#7044ee);
-    color:white;
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:18px;
-    font-weight:800;
+    background:#eef2ff;
+    font-size:22px;
 }
 
-.company-info{
-    flex:1;
-}
-
-.company-info h4{
-    color:#292b62;
-    font-size:14px;
-    margin-bottom:4px;
-}
-
-.company-info p{
-    color:#8d94aa;
-    font-size:10px;
-}
-
-.company-package{
-    text-align:right;
-}
-
-.company-package strong{
-    display:block;
-    color:#6246d2;
+.company-name{
+    font-weight:900;
     font-size:15px;
 }
 
-.company-package span{
-    color:#9a9fb2;
-    font-size:9px;
-}
-
-.arrow{
-    color:#7258dc;
-    font-size:18px;
-}
-
-/* ================= PLACEMENT PROCESS ================= */
-
-.process-list{
-    display:flex;
-    flex-direction:column;
-    gap:14px;
-}
-
-.process-item{
-    display:flex;
-    align-items:center;
-    gap:13px;
-}
-
-.process-icon{
-    width:42px;
-    height:42px;
-    min-width:42px;
-    border-radius:13px;
-    background:#f1efff;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:19px;
-}
-
-.process-info{
-    flex:1;
-}
-
-.process-info strong{
-    display:block;
-    color:#343866;
+.company-role{
+    margin-top:4px;
     font-size:12px;
-    margin-bottom:6px;
+    color:#929ab4;
 }
 
-.progress{
-    height:7px;
-    background:#edf0f7;
+.package{
+    text-align:right;
+}
+
+.package strong{
+    display:block;
+    color:#3163d8;
+    font-size:17px;
+}
+
+.package span{
+    font-size:11px;
+    color:#9ba3bb;
+}
+
+/* ================= BOTTOM ================= */
+
+.bottom-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+
+.progress-row{
+    margin-bottom:17px;
+}
+
+.progress-info{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:7px;
+    font-size:13px;
+    font-weight:700;
+}
+
+.progress-bar{
+    height:8px;
+    background:#edf0f8;
     border-radius:10px;
     overflow:hidden;
 }
 
-.progress-bar{
+.progress{
     height:100%;
     border-radius:10px;
-    background:linear-gradient(90deg,#25b8ee,#7044ee);
-}
-
-.process-percent{
-    color:#6952d1;
-    font-size:11px;
-    font-weight:700;
-}
-
-/* ================= UPCOMING ================= */
-
-.upcoming{
-    margin-top:18px;
+    background:linear-gradient(90deg,#3c7ae9,#7541e5);
 }
 
 .event-item{
     display:flex;
     align-items:center;
-    gap:12px;
-    padding:12px 0;
-    border-bottom:1px solid #eceef5;
+    gap:14px;
+    padding:13px 0;
+    border-bottom:1px solid #edf0f6;
 }
 
 .event-item:last-child{
@@ -532,10 +518,10 @@ button,input,select{
 }
 
 .event-date{
-    width:43px;
-    height:43px;
-    border-radius:12px;
-    background:#f1efff;
+    width:50px;
+    height:55px;
+    border-radius:13px;
+    background:#eef2ff;
     display:flex;
     flex-direction:column;
     align-items:center;
@@ -543,403 +529,219 @@ button,input,select{
 }
 
 .event-date strong{
-    color:#644bd0;
-    font-size:15px;
+    color:#3265dc;
+    font-size:18px;
 }
 
 .event-date span{
-    color:#9298ad;
-    font-size:8px;
-}
-
-.event-info{
-    flex:1;
+    color:#929bb8;
+    font-size:10px;
+    font-weight:800;
 }
 
 .event-info strong{
     display:block;
-    color:#353966;
-    font-size:12px;
+    font-size:14px;
 }
 
 .event-info span{
     display:block;
-    color:#9298ad;
-    font-size:10px;
-    margin-top:3px;
-}
-
-/* ================= BUTTON ================= */
-
-.primary-btn{
-    border:none;
-    background:linear-gradient(135deg,#6241e8,#843de0);
-    color:white;
-    padding:9px 14px;
-    border-radius:10px;
-    font-size:10px;
-    font-weight:700;
-    cursor:pointer;
-}
-
-.primary-btn:hover{
-    transform:translateY(-1px);
+    margin-top:4px;
+    color:#969eb8;
+    font-size:12px;
 }
 
 /* ================= CHATBOT ================= */
 
-.chatbot{
+.chatbot-button{
     position:fixed;
-    top:18px;
-    right:18px;
-    bottom:18px;
-    width:268px;
-    min-width:268px;
-    max-width:268px;
-    background:white;
-    border-radius:22px;
-    border:1px solid #e5e6f2;
-    box-shadow:0 15px 45px rgba(40,35,100,.15);
-    z-index:9999;
-    display:flex;
-    flex-direction:column;
-    overflow:hidden;
-}
-
-.chat-header{
-    min-height:82px;
-    flex-shrink:0;
-    padding:15px;
-    display:flex;
-    align-items:center;
+    right:24px;
+    bottom:24px;
+    width:64px;
+    height:64px;
+    border-radius:50%;
+    border:none;
+    background:linear-gradient(135deg,#653fe8,#843ce1);
+    box-shadow:0 12px 30px rgba(86,55,210,.35);
+    font-size:30px;
     color:white;
-    background:linear-gradient(135deg,#29277d,#7137d8);
-}
-
-.robot-icon{
-    width:45px;
-    height:45px;
-    border-radius:14px;
-    background:rgba(255,255,255,.15);
+    cursor:pointer;
+    z-index:9999;
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:24px;
-    margin-right:10px;
 }
 
-.chat-title strong{
-    display:block;
-    font-size:15px;
-}
-
-.chat-title span{
-    display:block;
-    font-size:10px;
-    margin-top:3px;
-    color:rgba(255,255,255,.78);
-}
-
-.online-dot{
-    display:inline-block;
-    width:7px;
-    height:7px;
-    background:#57e6a3;
+.chatbot-button::after{
+    content:"";
+    position:absolute;
+    width:12px;
+    height:12px;
+    top:4px;
+    right:4px;
     border-radius:50%;
-    margin-right:4px;
+    background:#ff4d91;
+    border:2px solid white;
+}
+
+.chat-window{
+    display:none;
+    position:fixed;
+    right:24px;
+    bottom:24px;
+    width:320px;
+    height:460px;
+    background:white;
+    border-radius:22px;
+    box-shadow:0 20px 55px rgba(40,35,100,.25);
+    overflow:hidden;
+    z-index:9998;
+}
+
+.chat-window.open{
+    display:flex;
+    flex-direction:column;
+}
+
+.chat-header{
+    padding:16px;
+    background:linear-gradient(135deg,#263b91,#713de0);
+    color:white;
+    display:flex;
+    align-items:center;
+    gap:11px;
+}
+
+.robot{
+    width:43px;
+    height:43px;
+    background:rgba(255,255,255,.15);
+    border-radius:13px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:23px;
+}
+
+.chat-header strong{
+    display:block;
+    font-size:14px;
+}
+
+.chat-header span{
+    display:block;
+    margin-top:3px;
+    font-size:11px;
+    color:#d9ddff;
 }
 
 .chat-body{
     flex:1;
-    min-height:0;
-    padding:17px 14px;
+    padding:16px;
     overflow-y:auto;
-    background:linear-gradient(180deg,#fafbff,#f4f5fb);
+    background:#f7f8fd;
 }
 
 .bot-message{
     background:white;
-    border:1px solid #e7e9f3;
+    padding:12px 14px;
     border-radius:14px;
-    padding:12px;
     margin-bottom:10px;
-    color:#65708d;
-    font-size:11px;
-    line-height:1.6;
-    box-shadow:0 5px 15px rgba(40,35,100,.04);
+    font-size:12px;
+    line-height:1.5;
+    box-shadow:0 4px 15px rgba(40,50,90,.05);
 }
 
 .user-message{
-    background:linear-gradient(135deg,#6241e8,#7b3ee0);
+    background:#5b42dd;
     color:white;
-    padding:10px 12px;
-    border-radius:14px 14px 4px 14px;
-    margin:9px 0 9px 20px;
-    font-size:11px;
-    line-height:1.5;
-}
-
-.quick-buttons{
-    display:flex;
-    gap:5px;
-    flex-wrap:wrap;
-    padding:9px 14px;
-    background:white;
-    border-top:1px solid #eceef5;
-}
-
-.quick-btn{
-    border:1px solid #e0e3f0;
-    background:white;
-    color:#6b54d9;
-    border-radius:20px;
-    padding:7px 9px;
-    font-size:9px;
-    cursor:pointer;
-    transition:.2s;
-}
-
-.quick-btn:hover{
-    background:#6843e7;
-    color:white;
+    padding:11px 14px;
+    border-radius:14px;
+    margin-bottom:10px;
+    margin-left:35px;
+    font-size:12px;
 }
 
 .chat-footer{
-    flex-shrink:0;
     padding:10px;
-    background:white;
-    border-top:1px solid #eceef5;
+    border-top:1px solid #e8eaf2;
     display:flex;
     gap:7px;
 }
 
 .chat-input{
     flex:1;
-    min-width:0;
-    height:40px;
-    border:1px solid #e1e4ef;
-    border-radius:12px;
+    border:1px solid #e0e4ef;
+    border-radius:11px;
+    padding:10px;
     outline:none;
-    padding:0 11px;
-    font-size:11px;
-    color:#555e78;
-}
-
-.send-btn{
-    width:40px;
-    height:40px;
-    border:none;
-    border-radius:12px;
-    color:white;
-    background:linear-gradient(135deg,#6543e8,#843de0);
-    cursor:pointer;
-    font-size:17px;
-}
-
-/* ================= MODAL ================= */
-
-.modal{
-    position:fixed;
-    inset:0;
-    background:rgba(17,20,60,.55);
-    display:none;
-    align-items:center;
-    justify-content:center;
-    z-index:20000;
-    padding:20px;
-}
-
-.modal.show{
-    display:flex;
-}
-
-.modal-box{
-    width:450px;
-    max-width:100%;
-    background:white;
-    border-radius:22px;
-    padding:25px;
-    box-shadow:0 25px 70px rgba(0,0,0,.25);
-    animation:pop .2s ease;
-}
-
-@keyframes pop{
-    from{
-        transform:scale(.9);
-        opacity:0;
-    }
-    to{
-        transform:scale(1);
-        opacity:1;
-    }
-}
-
-.modal-top{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:20px;
-}
-
-.modal-top h3{
-    color:#25275e;
-}
-
-.close-btn{
-    border:none;
-    background:#f1f2f8;
-    width:34px;
-    height:34px;
-    border-radius:10px;
-    cursor:pointer;
-    font-size:18px;
-}
-
-.modal-company{
-    display:flex;
-    align-items:center;
-    gap:15px;
-    padding:15px;
-    background:#f7f7ff;
-    border-radius:15px;
-    margin-bottom:16px;
-}
-
-.modal-logo{
-    width:60px;
-    height:60px;
-    border-radius:17px;
-    background:linear-gradient(135deg,#24b8ff,#7044ee);
-    color:white;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:20px;
-    font-weight:800;
-}
-
-.modal-company strong{
-    display:block;
-    color:#292b62;
-}
-
-.modal-company span{
-    display:block;
-    color:#8d94aa;
-    font-size:11px;
-    margin-top:4px;
-}
-
-.detail-row{
-    display:flex;
-    justify-content:space-between;
-    padding:12px 0;
-    border-bottom:1px solid #eceef5;
     font-size:12px;
 }
 
-.detail-row span{
-    color:#9298ac;
-}
-
-.detail-row strong{
-    color:#41476b;
-}
-
-.apply-btn{
-    width:100%;
-    margin-top:18px;
-    height:44px;
+.send-btn{
+    width:42px;
     border:none;
-    border-radius:12px;
+    border-radius:11px;
+    background:#633fe0;
     color:white;
-    font-weight:700;
     cursor:pointer;
-    background:linear-gradient(135deg,#6241e8,#843de0);
 }
 
 /* ================= TOAST ================= */
 
 .toast{
     position:fixed;
-    bottom:25px;
-    left:50%;
-    transform:translateX(-50%) translateY(80px);
-    background:#29275f;
+    right:24px;
+    top:24px;
+    background:#20294a;
     color:white;
-    padding:12px 20px;
-    border-radius:12px;
-    font-size:12px;
+    padding:13px 18px;
+    border-radius:11px;
     opacity:0;
+    transform:translateY(-10px);
+    pointer-events:none;
     transition:.3s;
-    z-index:30000;
+    z-index:10000;
+    font-size:13px;
 }
 
 .toast.show{
-    transform:translateX(-50%) translateY(0);
     opacity:1;
+    transform:translateY(0);
 }
 
 /* ================= RESPONSIVE ================= */
 
-@media(max-width:1150px){
+@media(max-width:1100px){
 
-    .sidebar{
-        width:230px;
-        min-width:230px;
-    }
-
-    .main-area{
-        margin-left:230px;
-        margin-right:250px;
-    }
-
-    .chatbot{
-        width:232px;
-        min-width:232px;
-        max-width:232px;
-        right:10px;
-    }
-
-    .summary-grid{
+    .stats-grid{
         grid-template-columns:repeat(2,1fr);
     }
 
-    .main-grid{
-        grid-template-columns:1fr;
-    }
-}
-
-@media(max-width:900px){
-
-    .chatbot{
+    .hero-stats{
         display:none;
     }
 
-    .main-area{
-        margin-right:0;
+    .hero-text{
+        max-width:100%;
     }
 }
 
-@media(max-width:700px){
+@media(max-width:800px){
 
     .sidebar{
-        width:80px;
-        min-width:80px;
+        width:75px;
     }
 
-    .brand{
-        justify-content:center;
-        padding:15px;
-    }
-
-    .brand-text{
-        display:none;
-    }
-
+    .logo-text,
     .menu-title,
     .nav-text{
         display:none;
+    }
+
+    .logo-area{
+        justify-content:center;
+        padding:15px;
     }
 
     .nav-item{
@@ -947,20 +749,8 @@ button,input,select{
         padding:0;
     }
 
-    .nav-icon{
-        margin:0;
-    }
-
     .main-area{
-        margin-left:80px;
-    }
-
-    .top-header{
-        padding:18px;
-    }
-
-    .header-left h1{
-        font-size:22px;
+        margin-left:75px;
     }
 
     .profile-info,
@@ -968,20 +758,47 @@ button,input,select{
         display:none;
     }
 
+    .bottom-grid,
+    .company-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:600px){
+
     .content{
         padding:18px;
     }
 
-    .summary-grid{
-        grid-template-columns:1fr 1fr;
-    }
-
-    .hero{
+    .top-header{
         padding:20px;
     }
 
-    .hero-icon{
-        display:none;
+    .stats-grid{
+        grid-template-columns:1fr;
+    }
+
+    .page-heading{
+        align-items:flex-start;
+        flex-direction:column;
+        gap:14px;
+    }
+
+    .filters{
+        width:100%;
+        flex-direction:column;
+    }
+
+    .search,
+    .select{
+        width:100%;
+    }
+
+    .chat-window{
+        width:calc(100% - 30px);
+        height:460px;
+        right:15px;
+        bottom:15px;
     }
 }
 </style>
@@ -989,39 +806,30 @@ button,input,select{
 
 <body>
 
-<!-- ================= SIDEBAR ================= -->
-
 <aside class="sidebar">
 
-    <div class="brand">
-        <div class="logo-box">🎓</div>
+    <div class="logo-area">
+        <div class="logo-icon">🎓</div>
 
-        <div class="brand-text">
-            <div class="brand-title">CampusConnect</div>
-            <div class="brand-subtitle">AI College Companion</div>
+        <div class="logo-text">
+            <h2>CampusConnect</h2>
+            <p>AI College Companion</p>
         </div>
     </div>
 
-    <div class="menu">
+    <div class="menu-section">
 
         <div class="menu-title">MAIN MENU</div>
 
-        <a class="nav-item" href="../dashboard.html">
+        <a class="nav-item" href="dashboard.html">
             <span class="nav-icon">🏠</span>
             <span class="nav-text">Dashboard</span>
         </a>
 
         <a class="nav-item" href="courses.html">
-
-    <span class="nav-icon">
-        📚
-    </span>
-
-    <span class="nav-text">
-        Courses
-    </span>
-
-</a>
+            <span class="nav-icon">📚</span>
+            <span class="nav-text">Courses</span>
+        </a>
 
         <a class="nav-item" href="timetable.html">
             <span class="nav-icon">🗓️</span>
@@ -1044,638 +852,522 @@ button,input,select{
         </a>
 
         <a class="nav-item" href="faculty.html">
-            <span class="nav-icon">👨‍🏫</span>
+            <span class="nav-icon">👩‍🏫</span>
             <span class="nav-text">Faculty</span>
         </a>
 
-        <div class="menu-section">
+    </div>
 
-            <div class="menu-title">CAREER</div>
+    <div class="menu-section">
 
-            <a class="nav-item active" href="placement.html">
-                <span class="nav-icon">💼</span>
-                <span class="nav-text">Placement</span>
-            </a>
+        <div class="menu-title">CAREER</div>
 
-            <a class="nav-item" href="results.html">
-                <span class="nav-icon">📈</span>
-                <span class="nav-text">Results</span>
-            </a>
+        <a class="nav-item active" href="placement.html">
+            <span class="nav-icon">💼</span>
+            <span class="nav-text">Placement</span>
+        </a>
 
-        </div>
+        <a class="nav-item" href="results.html">
+            <span class="nav-icon">🏆</span>
+            <span class="nav-text">Results</span>
+        </a>
 
-        <div class="menu-section">
+        <a class="nav-item" href="documents.html">
+            <span class="nav-icon">📁</span>
+            <span class="nav-text">Documents</span>
+        </a>
 
-            <div class="menu-title">CAMPUS</div>
+        <a class="nav-item" href="complaints.html">
+            <span class="nav-icon">📢</span>
+            <span class="nav-text">Complaints</span>
+        </a>
 
-            <a class="nav-item" href="documents.html">
-                <span class="nav-icon">📄</span>
-                <span class="nav-text">Documents</span>
-            </a>
+        <a class="nav-item" href="feedback.html">
+            <span class="nav-icon">💬</span>
+            <span class="nav-text">Feedback</span>
+        </a>
 
-            <a class="nav-item" href="complaints.html">
-                <span class="nav-icon">📢</span>
-                <span class="nav-text">Complaints</span>
-            </a>
+        <a class="nav-item" href="lost-found.html">
+            <span class="nav-icon">🔎</span>
+            <span class="nav-text">Lost & Found</span>
+        </a>
 
-            <a class="nav-item" href="feedback.html">
-                <span class="nav-icon">💬</span>
-                <span class="nav-text">Feedback</span>
-            </a>
+        <a class="nav-item" href="campus.html">
+            <span class="nav-icon">🏫</span>
+            <span class="nav-text">Campus</span>
+        </a>
 
-            <a class="nav-item" href="lost-found.html">
-                <span class="nav-icon">🔎</span>
-                <span class="nav-text">Lost & Found</span>
-            </a>
+        <a class="nav-item" href="events.html">
+            <span class="nav-icon">🎉</span>
+            <span class="nav-text">Events</span>
+        </a>
 
-            <a class="nav-item" href="campus.html">
-                <span class="nav-icon">🏫</span>
-                <span class="nav-text">Campus</span>
-            </a>
+        <a class="nav-item" href="exams.html">
+            <span class="nav-icon">📋</span>
+            <span class="nav-text">Exams</span>
+        </a>
 
-            <a class="nav-item" href="events.html">
-                <span class="nav-icon">🎉</span>
-                <span class="nav-text">Events</span>
-            </a>
+        <a class="nav-item" href="notifications.html">
+            <span class="nav-icon">🔔</span>
+            <span class="nav-text">Notifications</span>
+        </a>
 
-            <a class="nav-item" href="exams.html">
-                <span class="nav-icon">📋</span>
-                <span class="nav-text">Exams</span>
-            </a>
+    </div>
 
-            <a class="nav-item" href="notifications.html">
-                <span class="nav-icon">🔔</span>
-                <span class="nav-text">Notifications</span>
-            </a>
+    <div class="menu-section">
 
-        </div>
+        <div class="menu-title">ACCOUNT</div>
 
-        <div class="menu-section">
+        <a class="nav-item" href="profile.html">
+            <span class="nav-icon">👤</span>
+            <span class="nav-text">Profile</span>
+        </a>
 
-            <div class="menu-title">ACCOUNT</div>
-
-            <a class="nav-item" href="profile.html">
-                <span class="nav-icon">👤</span>
-                <span class="nav-text">Profile</span>
-            </a>
-
-            <a class="nav-item" href="settings.html">
-                <span class="nav-icon">⚙️</span>
-                <span class="nav-text">Settings</span>
-            </a>
-
-            <a class="nav-item logout"
-               href="#"
-               onclick="logoutUser(event)">
-                <span class="nav-icon">🚪</span>
-                <span class="nav-text">Logout</span>
-            </a>
-
-        </div>
+        <a class="nav-item" href="settings.html">
+            <span class="nav-icon">⚙️</span>
+            <span class="nav-text">Settings</span>
+        </a>
 
     </div>
 
 </aside>
 
 
-<!-- ================= MAIN ================= -->
-
 <main class="main-area">
 
-    <header class="top-header">
+<header class="top-header">
 
-        <div class="header-left">
-            <h1>Placement</h1>
-            <p>Build your career and explore placement opportunities</p>
+    <div class="header-left">
+        <h1>Placement</h1>
+        <p>Build your career and explore placement opportunities</p>
+    </div>
+
+    <div class="header-right">
+
+        <div class="time-box" id="clock"></div>
+
+        <div class="notification"
+             onclick="showToast('You have new placement notifications 🔔')">
+            🔔
         </div>
 
-        <div class="header-right">
+        <div class="profile">
 
-            <div class="time-box" id="clock">
-                00:00:00
-            </div>
+            <div class="profile-circle">P</div>
 
-            <div class="notification"
-                 onclick="showToast('You have new placement notifications 🔔')">
-                🔔
-            </div>
-
-            <div class="profile-mini">
-
-                <div class="profile-circle">
-                    P
-                </div>
-
-                <div class="profile-info">
-                    <strong>Priya Bhavani</strong>
-                    <span>Computer Science</span>
-                </div>
-
+            <div class="profile-info">
+                <strong>Student</strong>
+                <span>BCA • 5th Sem</span>
             </div>
 
         </div>
 
-    </header>
+    </div>
+
+</header>
 
 
-    <section class="content">
+<section class="content">
 
-        <!-- HERO -->
+<div class="page-heading">
 
-        <div class="hero">
+    <div>
+        <h2>💼 Placement Overview</h2>
 
-            <div>
-                <h2>Placement Journey 🚀</h2>
+        <p>
+            Explore companies, packages, upcoming drives and prepare for your career.
+        </p>
+    </div>
 
-                <p>
-                    Track your placement preparation, companies and upcoming opportunities.
-                </p>
+    <button class="primary-btn"
+            onclick="showToast('Placement directory opened')">
+        View Full Directory
+    </button>
+
+</div>
+
+
+<div class="hero">
+
+    <div class="hero-text">
+
+        <h2>
+            Placement opportunities are waiting for you 🤝
+        </h2>
+
+        <p>
+            Explore top companies, check salary packages, track upcoming
+            placement drives and improve your placement readiness.
+        </p>
+
+    </div>
+
+    <div class="hero-stats">
+
+        <div class="hero-stat">
+            <strong>4</strong>
+            <span>Companies</span>
+        </div>
+
+        <div class="hero-stat">
+            <strong>8 LPA</strong>
+            <span>Highest Package</span>
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="stats-grid">
+
+    <div class="stat-card">
+
+        <div class="stat-top">
+            <span class="stat-label">COMPANIES</span>
+            <div class="stat-icon">🏢</div>
+        </div>
+
+        <div class="stat-number">4</div>
+
+        <small>Hiring this season</small>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <div class="stat-top">
+            <span class="stat-label">HIGHEST PACKAGE</span>
+            <div class="stat-icon">💰</div>
+        </div>
+
+        <div class="stat-number">8 LPA</div>
+
+        <small>Current highest package</small>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <div class="stat-top">
+            <span class="stat-label">UPCOMING DRIVES</span>
+            <div class="stat-icon">📅</div>
+        </div>
+
+        <div class="stat-number">3</div>
+
+        <small>Scheduled drives</small>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <div class="stat-top">
+            <span class="stat-label">READINESS</span>
+            <div class="stat-icon">✅</div>
+        </div>
+
+        <div class="stat-number">75%</div>
+
+        <small>Placement preparation</small>
+
+    </div>
+
+</div>
+
+
+<div class="section-card">
+
+    <div class="section-header">
+
+        <div>
+            <h3>Company Directory</h3>
+            <p>Explore current placement opportunities</p>
+        </div>
+
+        <div class="filters">
+
+            <input
+                class="search"
+                id="companySearch"
+                type="text"
+                placeholder="Search company..."
+                onkeyup="searchCompanies()">
+
+            <select class="select">
+                <option>All Companies</option>
+                <option>IT Companies</option>
+                <option>Consulting</option>
+            </select>
+
+        </div>
+
+    </div>
+
+
+    <div class="company-grid" id="companyGrid">
+
+        <div class="company-card">
+
+            <div class="company-left">
+
+                <div class="company-logo">🏢</div>
+
+                <div>
+                    <div class="company-name">TCS</div>
+                    <div class="company-role">Software / IT Roles</div>
+                </div>
+
             </div>
 
-            <div class="hero-right">
-                <div class="hero-number">85%</div>
-                <div class="hero-label">Placement Readiness</div>
-            </div>
-
-            <div class="hero-icon">
-                💼
+            <div class="package">
+                <strong>7 LPA</strong>
+                <span>Package</span>
             </div>
 
         </div>
 
 
-        <!-- SUMMARY -->
+        <div class="company-card">
 
-        <div class="summary-grid">
+            <div class="company-left">
 
-            <div class="summary-card">
+                <div class="company-logo">💻</div>
 
-                <div class="summary-icon">
-                    🏢
+                <div>
+                    <div class="company-name">Infosys</div>
+                    <div class="company-role">Software / Technology</div>
                 </div>
-
-                <strong>24</strong>
-
-                <span>
-                    Companies Visited
-                </span>
 
             </div>
 
-
-            <div class="summary-card">
-
-                <div class="summary-icon">
-                    💼
-                </div>
-
-                <strong>8</strong>
-
-                <span>
-                    Eligible Companies
-                </span>
-
-            </div>
-
-
-            <div class="summary-card">
-
-                <div class="summary-icon">
-                    💰
-                </div>
-
-                <strong>12 LPA</strong>
-
-                <span>
-                    Highest Package
-                </span>
-
-            </div>
-
-
-            <div class="summary-card">
-
-                <div class="summary-icon">
-                    🎯
-                </div>
-
-                <strong>85%</strong>
-
-                <span>
-                    Readiness Score
-                </span>
-
+            <div class="package">
+                <strong>6.5 LPA</strong>
+                <span>Package</span>
             </div>
 
         </div>
 
 
-        <!-- MAIN GRID -->
+        <div class="company-card">
 
-        <div class="main-grid">
+            <div class="company-left">
 
-            <!-- COMPANIES -->
+                <div class="company-logo">🚀</div>
 
-            <div class="section-card">
-
-                <div class="section-header">
-
-                    <div>
-                        <h3>Top Placement Companies</h3>
-                        <p>Explore current placement opportunities</p>
-                    </div>
-
-                    <button
-                        class="primary-btn"
-                        onclick="showToast('Showing all placement companies')">
-                        View All
-                    </button>
-
-                </div>
-
-
-                <div class="company-list">
-
-
-                    <div class="company-card"
-                         onclick="openCompany(0)">
-
-                        <div class="company-logo">
-                            TCS
-                        </div>
-
-                        <div class="company-info">
-                            <h4>Tata Consultancy Services</h4>
-                            <p>Software Engineer • CSE</p>
-                        </div>
-
-                        <div class="company-package">
-                            <strong>7 LPA</strong>
-                            <span>Package</span>
-                        </div>
-
-                        <div class="arrow">
-                            →
-                        </div>
-
-                    </div>
-
-
-                    <div class="company-card"
-                         onclick="openCompany(1)">
-
-                        <div class="company-logo">
-                            INF
-                        </div>
-
-                        <div class="company-info">
-                            <h4>Infosys</h4>
-                            <p>Systems Engineer • CSE</p>
-                        </div>
-
-                        <div class="company-package">
-                            <strong>6.5 LPA</strong>
-                            <span>Package</span>
-                        </div>
-
-                        <div class="arrow">
-                            →
-                        </div>
-
-                    </div>
-
-
-                    <div class="company-card"
-                         onclick="openCompany(2)">
-
-                        <div class="company-logo">
-                            ACC
-                        </div>
-
-                        <div class="company-info">
-                            <h4>Accenture</h4>
-                            <p>Application Developer • CSE</p>
-                        </div>
-
-                        <div class="company-package">
-                            <strong>8 LPA</strong>
-                            <span>Package</span>
-                        </div>
-
-                        <div class="arrow">
-                            →
-                        </div>
-
-                    </div>
-
-
-                    <div class="company-card"
-                         onclick="openCompany(3)">
-
-                        <div class="company-logo">
-                            WIP
-                        </div>
-
-                        <div class="company-info">
-                            <h4>Wipro</h4>
-                            <p>Project Engineer • CSE</p>
-                        </div>
-
-                        <div class="company-package">
-                            <strong>6 LPA</strong>
-                            <span>Package</span>
-                        </div>
-
-                        <div class="arrow">
-                            →
-                        </div>
-
-                    </div>
-
-
+                <div>
+                    <div class="company-name">Accenture</div>
+                    <div class="company-role">Technology / Consulting</div>
                 </div>
 
             </div>
 
-
-            <!-- RIGHT COLUMN -->
-
-            <div>
-
-                <!-- PREPARATION -->
-
-                <div class="section-card">
-
-                    <div class="section-header">
-
-                        <div>
-                            <h3>Preparation</h3>
-                            <p>Your placement readiness</p>
-                        </div>
-
-                    </div>
-
-
-                    <div class="process-list">
-
-                        <div class="process-item">
-
-                            <div class="process-icon">
-                                💻
-                            </div>
-
-                            <div class="process-info">
-
-                                <strong>
-                                    Technical Skills
-                                </strong>
-
-                                <div class="progress">
-                                    <div
-                                        class="progress-bar"
-                                        style="width:90%">
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="process-percent">
-                                90%
-                            </div>
-
-                        </div>
-
-
-                        <div class="process-item">
-
-                            <div class="process-icon">
-                                🧠
-                            </div>
-
-                            <div class="process-info">
-
-                                <strong>
-                                    Aptitude
-                                </strong>
-
-                                <div class="progress">
-                                    <div
-                                        class="progress-bar"
-                                        style="width:82%">
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="process-percent">
-                                82%
-                            </div>
-
-                        </div>
-
-
-                        <div class="process-item">
-
-                            <div class="process-icon">
-                                🗣️
-                            </div>
-
-                            <div class="process-info">
-
-                                <strong>
-                                    Communication
-                                </strong>
-
-                                <div class="progress">
-                                    <div
-                                        class="progress-bar"
-                                        style="width:78%">
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="process-percent">
-                                78%
-                            </div>
-
-                        </div>
-
-
-                        <div class="process-item">
-
-                            <div class="process-icon">
-                                👔
-                            </div>
-
-                            <div class="process-info">
-
-                                <strong>
-                                    Interview Skills
-                                </strong>
-
-                                <div class="progress">
-                                    <div
-                                        class="progress-bar"
-                                        style="width:75%">
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="process-percent">
-                                75%
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <!-- UPCOMING -->
-
-                <div class="section-card upcoming">
-
-                    <div class="section-header">
-
-                        <div>
-                            <h3>Upcoming Drives</h3>
-                            <p>Important placement dates</p>
-                        </div>
-
-                    </div>
-
-
-                    <div class="event-item">
-
-                        <div class="event-date">
-                            <strong>18</strong>
-                            <span>SEP</span>
-                        </div>
-
-                        <div class="event-info">
-                            <strong>TCS Placement Drive</strong>
-                            <span>10:00 AM • Main Auditorium</span>
-                        </div>
-
-                    </div>
-
-
-                    <div class="event-item">
-
-                        <div class="event-date">
-                            <strong>21</strong>
-                            <span>SEP</span>
-                        </div>
-
-                        <div class="event-info">
-                            <strong>Infosys Recruitment</strong>
-                            <span>9:30 AM • Seminar Hall</span>
-                        </div>
-
-                    </div>
-
-
-                    <div class="event-item">
-
-                        <div class="event-date">
-                            <strong>25</strong>
-                            <span>SEP</span>
-                        </div>
-
-                        <div class="event-info">
-                            <strong>Accenture Drive</strong>
-                            <span>10:30 AM • Block B</span>
-                        </div>
-
-                    </div>
-
-                </div>
-
+            <div class="package">
+                <strong>8 LPA</strong>
+                <span>Package</span>
             </div>
 
         </div>
 
-    </section>
+
+        <div class="company-card">
+
+            <div class="company-left">
+
+                <div class="company-logo">🌐</div>
+
+                <div>
+                    <div class="company-name">Wipro</div>
+                    <div class="company-role">IT / Software</div>
+                </div>
+
+            </div>
+
+            <div class="package">
+                <strong>6 LPA</strong>
+                <span>Package</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="bottom-grid">
+
+<div class="section-card">
+
+    <div class="section-header">
+
+        <div>
+            <h3>Placement Preparation</h3>
+            <p>Track your preparation progress</p>
+        </div>
+
+    </div>
+
+
+    <div class="progress-row">
+
+        <div class="progress-info">
+            <span>Aptitude</span>
+            <span>80%</span>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress" style="width:80%"></div>
+        </div>
+
+    </div>
+
+
+    <div class="progress-row">
+
+        <div class="progress-info">
+            <span>Technical Skills</span>
+            <span>75%</span>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress" style="width:75%"></div>
+        </div>
+
+    </div>
+
+
+    <div class="progress-row">
+
+        <div class="progress-info">
+            <span>Communication</span>
+            <span>70%</span>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress" style="width:70%"></div>
+        </div>
+
+    </div>
+
+
+    <div class="progress-row">
+
+        <div class="progress-info">
+            <span>Interview Preparation</span>
+            <span>65%</span>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress" style="width:65%"></div>
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="section-card">
+
+    <div class="section-header">
+
+        <div>
+            <h3>Upcoming Drives</h3>
+            <p>Important placement dates</p>
+        </div>
+
+    </div>
+
+
+    <div class="event-item">
+
+        <div class="event-date">
+            <strong>18</strong>
+            <span>SEP</span>
+        </div>
+
+        <div class="event-info">
+            <strong>TCS Placement Drive</strong>
+            <span>10:00 AM • Main Auditorium</span>
+        </div>
+
+    </div>
+
+
+    <div class="event-item">
+
+        <div class="event-date">
+            <strong>21</strong>
+            <span>SEP</span>
+        </div>
+
+        <div class="event-info">
+            <strong>Infosys Recruitment</strong>
+            <span>9:30 AM • Seminar Hall</span>
+        </div>
+
+    </div>
+
+
+    <div class="event-item">
+
+        <div class="event-date">
+            <strong>25</strong>
+            <span>SEP</span>
+        </div>
+
+        <div class="event-info">
+            <strong>Accenture Drive</strong>
+            <span>10:30 AM • Block B</span>
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+</section>
 
 </main>
 
 
-<!-- ================= AI CHATBOT ================= -->
+<button
+    class="chatbot-button"
+    id="chatbotButton"
+    onclick="toggleChat()">
+    🤖
+</button>
 
-<aside class="chatbot">
+
+<div
+    class="chat-window"
+    id="chatWindow">
 
     <div class="chat-header">
 
-        <div class="robot-icon">
-            🤖
-        </div>
+        <div class="robot">🤖</div>
 
-        <div class="chat-title">
-
-            <strong>
-                CampusConnect AI
-            </strong>
-
-            <span>
-                <i class="online-dot"></i>
-                College Companion
-            </span>
-
+        <div>
+            <strong>CampusConnect AI</strong>
+            <span>● College Companion</span>
         </div>
 
     </div>
 
 
-    <div class="chat-body" id="chatBody">
+    <div
+        class="chat-body"
+        id="chatBody">
 
         <div class="bot-message">
-
-            Hi Priya! 👋<br><br>
-
-            I'm your
-            <b>CampusConnect AI College Companion</b>.
-
-            I can help you with placement preparation,
-            companies, packages and upcoming drives.
-
+            Hi! 👋<br><br>
+            I'm your <b>CampusConnect AI College Companion</b>.<br><br>
+            Ask me about placement preparation, companies, packages or upcoming drives.
         </div>
-
-
-        <div class="bot-message">
-
-            Try asking me:<br>
-
-            • Which company has the highest package?<br>
-            • How is my placement readiness?<br>
-            • When is the next drive?
-
-        </div>
-
-    </div>
-
-
-    <div class="quick-buttons">
-
-        <button
-            class="quick-btn"
-            onclick="quickChat('highest package')">
-            Highest Package
-        </button>
-
-        <button
-            class="quick-btn"
-            onclick="quickChat('readiness')">
-            Readiness
-        </button>
-
-        <button
-            class="quick-btn"
-            onclick="quickChat('next drive')">
-            Next Drive
-        </button>
 
     </div>
 
@@ -1687,7 +1379,7 @@ button,input,select{
             id="chatInput"
             class="chat-input"
             placeholder="Ask CampusConnect AI..."
-        >
+            onkeydown="handleEnter(event)">
 
         <button
             class="send-btn"
@@ -1697,253 +1389,39 @@ button,input,select{
 
     </div>
 
-</aside>
-
-
-<!-- ================= COMPANY MODAL ================= -->
-
-<div class="modal" id="companyModal">
-
-    <div class="modal-box">
-
-        <div class="modal-top">
-
-            <h3>Company Details</h3>
-
-            <button
-                class="close-btn"
-                onclick="closeModal()">
-                ×
-            </button>
-
-        </div>
-
-
-        <div class="modal-company">
-
-            <div
-                class="modal-logo"
-                id="modalLogo">
-                TCS
-            </div>
-
-            <div>
-
-                <strong id="modalName">
-                    Tata Consultancy Services
-                </strong>
-
-                <span id="modalRole">
-                    Software Engineer
-                </span>
-
-            </div>
-
-        </div>
-
-
-        <div class="detail-row">
-
-            <span>
-                Package
-            </span>
-
-            <strong id="modalPackage">
-                7 LPA
-            </strong>
-
-        </div>
-
-
-        <div class="detail-row">
-
-            <span>
-                Eligibility
-            </span>
-
-            <strong id="modalEligibility">
-                7.0 CGPA+
-            </strong>
-
-        </div>
-
-
-        <div class="detail-row">
-
-            <span>
-                Location
-            </span>
-
-            <strong id="modalLocation">
-                Bengaluru
-            </strong>
-
-        </div>
-
-
-        <div class="detail-row">
-
-            <span>
-                Drive Date
-            </span>
-
-            <strong id="modalDate">
-                18 Sep 2026
-            </strong>
-
-        </div>
-
-
-        <button
-            class="apply-btn"
-            onclick="applyCompany()">
-            🚀 Apply / Register
-        </button>
-
-    </div>
-
 </div>
 
 
-<div class="toast" id="toast">
-    Action completed
+<div
+    class="toast"
+    id="toast">
 </div>
 
 
 <script>
 
-/* ================= COMPANY DATA ================= */
-
-const companies = [
-
-    {
-        name:"Tata Consultancy Services",
-        logo:"TCS",
-        role:"Software Engineer",
-        package:"7 LPA",
-        eligibility:"7.0 CGPA+",
-        location:"Bengaluru",
-        date:"18 Sep 2026"
-    },
-
-    {
-        name:"Infosys",
-        logo:"INF",
-        role:"Systems Engineer",
-        package:"6.5 LPA",
-        eligibility:"6.5 CGPA+",
-        location:"Mysuru",
-        date:"21 Sep 2026"
-    },
-
-    {
-        name:"Accenture",
-        logo:"ACC",
-        role:"Application Developer",
-        package:"8 LPA",
-        eligibility:"7.0 CGPA+",
-        location:"Bengaluru",
-        date:"25 Sep 2026"
-    },
-
-    {
-        name:"Wipro",
-        logo:"WIP",
-        role:"Project Engineer",
-        package:"6 LPA",
-        eligibility:"6.5 CGPA+",
-        location:"Bengaluru",
-        date:"28 Sep 2026"
-    }
-
-];
-
-
-/* ================= CLOCK ================= */
+/* CLOCK */
 
 function updateClock(){
 
     const now = new Date();
 
-    let h = String(now.getHours()).padStart(2,"0");
-    let m = String(now.getMinutes()).padStart(2,"0");
-    let s = String(now.getSeconds()).padStart(2,"0");
-
     document.getElementById("clock").textContent =
-        `${h}:${m}:${s}`;
+        now.toLocaleTimeString(
+            "en-IN",
+            {
+                hour:"numeric",
+                minute:"2-digit",
+                second:"2-digit"
+            }
+        );
 }
-
-updateClock();
 
 setInterval(updateClock,1000);
+updateClock();
 
 
-/* ================= COMPANY MODAL ================= */
-
-function openCompany(index){
-
-    const company = companies[index];
-
-    document.getElementById("modalLogo").textContent =
-        company.logo;
-
-    document.getElementById("modalName").textContent =
-        company.name;
-
-    document.getElementById("modalRole").textContent =
-        company.role;
-
-    document.getElementById("modalPackage").textContent =
-        company.package;
-
-    document.getElementById("modalEligibility").textContent =
-        company.eligibility;
-
-    document.getElementById("modalLocation").textContent =
-        company.location;
-
-    document.getElementById("modalDate").textContent =
-        company.date;
-
-    document.getElementById("companyModal")
-        .classList.add("show");
-}
-
-
-function closeModal(){
-
-    document.getElementById("companyModal")
-        .classList.remove("show");
-}
-
-
-document.getElementById("companyModal")
-    .addEventListener("click",function(e){
-
-        if(e.target === this){
-            closeModal();
-        }
-
-    });
-
-
-/* ================= APPLY ================= */
-
-function applyCompany(){
-
-    const company =
-        document.getElementById("modalName").textContent;
-
-    closeModal();
-
-    showToast(
-        "Registration started for " + company + " 🚀"
-    );
-
-}
-
-
-/* ================= TOAST ================= */
+/* TOAST */
 
 function showToast(message){
 
@@ -1959,47 +1437,64 @@ function showToast(message){
         toast.classList.remove("show");
 
     },2500);
-
 }
 
 
-/* ================= CHATBOT ================= */
+/* SEARCH */
 
-function addBotMessage(message){
+function searchCompanies(){
 
-    const chatBody =
-        document.getElementById("chatBody");
+    const value =
+        document
+        .getElementById("companySearch")
+        .value
+        .toLowerCase();
 
-    const div =
-        document.createElement("div");
+    document
+    .querySelectorAll(".company-card")
+    .forEach(function(card){
 
-    div.className = "bot-message";
+        card.style.display =
+            card.textContent
+            .toLowerCase()
+            .includes(value)
+            ? "flex"
+            : "none";
 
-    div.innerHTML = message;
-
-    chatBody.appendChild(div);
-
-    chatBody.scrollTop =
-        chatBody.scrollHeight;
+    });
 }
 
 
-function addUserMessage(message){
+/* CHAT */
 
-    const chatBody =
-        document.getElementById("chatBody");
+function toggleChat(){
 
-    const div =
-        document.createElement("div");
+    const chat =
+        document.getElementById("chatWindow");
 
-    div.className = "user-message";
+    const button =
+        document.getElementById("chatbotButton");
 
-    div.textContent = message;
+    chat.classList.toggle("open");
 
-    chatBody.appendChild(div);
+    if(chat.classList.contains("open")){
 
-    chatBody.scrollTop =
-        chatBody.scrollHeight;
+        button.style.display = "none";
+
+    }else{
+
+        button.style.display = "flex";
+
+    }
+}
+
+
+function handleEnter(event){
+
+    if(event.key === "Enter"){
+        sendMessage();
+    }
+
 }
 
 
@@ -2013,161 +1508,107 @@ function sendMessage(){
 
     if(!message) return;
 
-    addUserMessage(message);
 
-    input.value = "";
+    const body =
+        document.getElementById("chatBody");
+
+
+    const user =
+        document.createElement("div");
+
+    user.className =
+        "user-message";
+
+    user.textContent =
+        message;
+
+    body.appendChild(user);
+
+
+    const text =
+        message.toLowerCase();
+
+    let reply =
+        "I can help you with placement companies, packages, preparation and upcoming drives.";
+
+
+    if(
+        text.includes("highest") ||
+        text.includes("package")
+    ){
+
+        reply =
+            "The highest package currently listed is 8 LPA.";
+
+    }
+    else if(
+        text.includes("readiness") ||
+        text.includes("prepared")
+    ){
+
+        reply =
+            "Your current placement readiness is 75%.";
+
+    }
+    else if(
+        text.includes("drive") ||
+        text.includes("upcoming")
+    ){
+
+        reply =
+            "Upcoming drives include TCS, Infosys and Accenture.";
+
+    }
+    else if(text.includes("tcs")){
+
+        reply =
+            "TCS currently has a listed package of 7 LPA.";
+
+    }
+    else if(text.includes("infosys")){
+
+        reply =
+            "Infosys currently has a listed package of 6.5 LPA.";
+
+    }
+    else if(text.includes("accenture")){
+
+        reply =
+            "Accenture currently has a listed package of 8 LPA.";
+
+    }
+    else if(text.includes("wipro")){
+
+        reply =
+            "Wipro currently has a listed package of 6 LPA.";
+
+    }
+
 
     setTimeout(function(){
 
-        const q = message.toLowerCase();
+        const bot =
+            document.createElement("div");
+
+        bot.className =
+            "bot-message";
+
+        bot.textContent =
+            reply;
+
+        body.appendChild(bot);
+
+        body.scrollTop =
+            body.scrollHeight;
+
+    },400);
 
 
-        if(
-            q.includes("highest") ||
-            q.includes("best package")
-        ){
+    input.value = "";
 
-            addBotMessage(
-                "💰 Currently, <b>Accenture</b> has the highest listed package at <b>8 LPA</b>."
-            );
-
-        }
-
-        else if(
-            q.includes("readiness") ||
-            q.includes("ready")
-        ){
-
-            addBotMessage(
-                "🎯 Your current placement readiness is <b>85%</b>. Technical skills are your strongest area at <b>90%</b>."
-            );
-
-        }
-
-        else if(
-            q.includes("next") ||
-            q.includes("drive")
-        ){
-
-            addBotMessage(
-                "📅 The next listed drive is <b>TCS</b> on <b>18 Sep 2026</b> at 10:00 AM."
-            );
-
-        }
-
-        else if(
-            q.includes("tcs")
-        ){
-
-            addBotMessage(
-                "🏢 <b>TCS</b> offers approximately <b>7 LPA</b> for the listed Software Engineer role."
-            );
-
-        }
-
-        else if(
-            q.includes("infosys")
-        ){
-
-            addBotMessage(
-                "🏢 <b>Infosys</b> offers approximately <b>6.5 LPA</b> for the listed Systems Engineer role."
-            );
-
-        }
-
-        else if(
-            q.includes("accenture")
-        ){
-
-            addBotMessage(
-                "🏢 <b>Accenture</b> offers approximately <b>8 LPA</b> for the listed Application Developer role."
-            );
-
-        }
-
-        else if(
-            q.includes("wipro")
-        ){
-
-            addBotMessage(
-                "🏢 <b>Wipro</b> offers approximately <b>6 LPA</b> for the listed Project Engineer role."
-            );
-
-        }
-
-        else if(
-            q.includes("skill") ||
-            q.includes("prepare") ||
-            q.includes("preparation")
-        ){
-
-            addBotMessage(
-                "🚀 Focus on <b>technical skills, aptitude, communication and interview preparation</b>. Your technical score is currently 90%."
-            );
-
-        }
-
-        else{
-
-            addBotMessage(
-                "🤖 I can help with <b>companies, packages, placement readiness and upcoming drives</b>. Try asking about the highest package."
-            );
-
-        }
-
-    },500);
+    body.scrollTop =
+        body.scrollHeight;
 }
-
-
-/* ================= QUICK CHAT ================= */
-
-function quickChat(text){
-
-    document.getElementById("chatInput").value =
-        text;
-
-    sendMessage();
-}
-
-
-document.getElementById("chatInput")
-    .addEventListener("keydown",function(e){
-
-        if(e.key === "Enter"){
-            sendMessage();
-        }
-
-    });
-
-
-/* ================= LOGOUT ================= */
-
-function logoutUser(event){
-
-    event.preventDefault();
-
-    const confirmLogout =
-        confirm("Are you sure you want to logout?");
-
-    if(confirmLogout){
-
-        window.location.href =
-            "../index.html";
-
-    }
-
-}
-
-
-/* ================= ESC ================= */
-
-document.addEventListener("keydown",function(e){
-
-    if(e.key === "Escape"){
-        closeModal();
-    }
-
-});
 
 </script>
 
