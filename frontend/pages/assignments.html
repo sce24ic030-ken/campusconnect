@@ -20,13 +20,13 @@
     box-sizing:border-box;
 }
 
-html,
-body{
+html,body{
     width:100%;
     height:100%;
     font-family:"Segoe UI",Arial,sans-serif;
     background:#f4f6ff;
     color:#17203a;
+    overflow:hidden;
 }
 
 button,
@@ -45,6 +45,7 @@ select{
     left:0;
     top:0;
     bottom:0;
+
     width:268px;
     min-width:268px;
 
@@ -63,7 +64,9 @@ select{
     padding-bottom:20px;
 
     scrollbar-width:thin;
-    scrollbar-color:rgba(255,255,255,.25) transparent;
+    scrollbar-color:
+        rgba(255,255,255,.25)
+        transparent;
 }
 
 
@@ -73,8 +76,10 @@ select{
 
 .brand{
     height:120px;
+
     display:flex;
     align-items:center;
+
     padding:22px 18px;
 
     border-bottom:
@@ -84,6 +89,7 @@ select{
 .logo-box{
     width:52px;
     height:52px;
+
     border-radius:16px;
 
     display:flex;
@@ -142,23 +148,23 @@ select{
 
 .nav-item{
     width:100%;
+
     display:flex;
     align-items:center;
 
     min-height:49px;
 
     padding:0 14px;
+
     margin:5px 0;
 
     border-radius:13px;
 
     color:rgba(255,255,255,.84);
+
     text-decoration:none;
 
-    transition:
-        transform .2s ease,
-        background .2s ease,
-        color .2s ease;
+    transition:.2s;
 }
 
 .nav-item:hover{
@@ -196,19 +202,17 @@ select{
 .logout{
     margin-top:14px;
     padding-top:15px;
-
     border-top:
         1px solid rgba(255,255,255,.13);
 }
 
 
 /* =========================================================
-   MAIN AREA
+   MAIN
 ========================================================= */
 
 .main-area{
     margin-left:268px;
-    margin-right:0;
 
     width:auto;
     height:100vh;
@@ -277,7 +281,8 @@ select{
     width:48px;
     height:48px;
 
-    background:#fff;
+    background:white;
+
     border-radius:50%;
 
     display:flex;
@@ -303,6 +308,7 @@ select{
     background:#ff4f8b;
 
     position:absolute;
+
     top:7px;
     right:8px;
 }
@@ -349,7 +355,7 @@ select{
 
 
 /* =========================================================
-   CONTENT
+   PAGE
 ========================================================= */
 
 .page-content{
@@ -357,16 +363,11 @@ select{
     width:100%;
 }
 
-
-/* =========================================================
-   PAGE HEADING
-========================================================= */
-
 .page-heading{
     display:flex;
     align-items:center;
     justify-content:space-between;
-    margin-bottom:18px;
+    margin-bottom:20px;
 }
 
 .page-heading h2{
@@ -387,7 +388,9 @@ select{
 
 .action-btn{
     border:none;
-    padding:11px 15px;
+
+    padding:11px 16px;
+
     border-radius:11px;
 
     cursor:pointer;
@@ -418,26 +421,31 @@ select{
 
 
 /* =========================================================
-   SUMMARY CARDS
+   SUMMARY
 ========================================================= */
 
 .summary-grid{
     display:grid;
+
     grid-template-columns:
         repeat(4,minmax(0,1fr));
 
-    gap:15px;
-    margin-bottom:18px;
+    gap:18px;
+
+    margin-bottom:20px;
 }
 
 .summary-card{
     background:white;
 
-    border:1px solid #e9ebf5;
+    border:
+        1px solid #e9ebf5;
+
     border-radius:17px;
 
-    padding:17px;
-    min-height:105px;
+    padding:18px;
+
+    min-height:120px;
 
     box-shadow:
         0 8px 25px rgba(40,35,100,.06);
@@ -481,6 +489,7 @@ select{
 
 .summary-number{
     font-size:25px;
+
     font-weight:800;
 
     color:#3063df;
@@ -502,19 +511,18 @@ select{
 .assignment-card{
     background:white;
 
-    border:1px solid #e9ebf5;
+    border:
+        1px solid #e9ebf5;
+
     border-radius:17px;
 
     box-shadow:
         0 8px 25px rgba(40,35,100,.06);
 
     overflow:hidden;
+
+    margin-bottom:20px;
 }
-
-
-/* =========================================================
-   CARD HEADER
-========================================================= */
 
 .card-header{
     padding:20px;
@@ -523,7 +531,9 @@ select{
         1px solid #edf0f6;
 
     display:flex;
+
     align-items:center;
+
     justify-content:space-between;
 }
 
@@ -554,10 +564,14 @@ select{
 
 .search-box{
     flex:1;
+
     min-width:120px;
+
     height:38px;
 
-    border:1px solid #e1e4ef;
+    border:
+        1px solid #e1e4ef;
+
     border-radius:10px;
 
     outline:none;
@@ -565,6 +579,7 @@ select{
     padding:0 12px;
 
     font-size:11px;
+
     color:#59617d;
 }
 
@@ -572,21 +587,26 @@ select{
     border-color:#7244e8;
 
     box-shadow:
-        0 0 0 3px rgba(114,68,232,.08);
+        0 0 0 3px
+        rgba(114,68,232,.08);
 }
 
 .filter-select{
     height:38px;
 
-    border:1px solid #e1e4ef;
+    border:
+        1px solid #e1e4ef;
+
     border-radius:10px;
 
     padding:0 10px;
 
     background:white;
+
     color:#68728d;
 
     font-size:11px;
+
     outline:none;
 }
 
@@ -635,6 +655,7 @@ select{
     background:#f0f3ff;
 
     display:flex;
+
     align-items:center;
     justify-content:center;
 
@@ -645,6 +666,7 @@ select{
     display:block;
 
     color:#17203a;
+
     font-size:14px;
 }
 
@@ -652,6 +674,7 @@ select{
     display:block;
 
     color:#9299ae;
+
     font-size:11px;
 
     margin-top:4px;
@@ -659,7 +682,9 @@ select{
 
 .assignment-right{
     display:flex;
+
     align-items:center;
+
     gap:10px;
 }
 
@@ -671,13 +696,20 @@ select{
     display:block;
 
     color:#59617d;
+
     font-size:11px;
 }
 
 .due-date span{
     color:#a0a6b8;
+
     font-size:9px;
 }
+
+
+/* =========================================================
+   STATUS
+========================================================= */
 
 .status{
     padding:6px 10px;
@@ -685,6 +717,7 @@ select{
     border-radius:20px;
 
     font-size:9px;
+
     font-weight:750;
 
     white-space:nowrap;
@@ -712,7 +745,7 @@ select{
 
 
 /* =========================================================
-   ITEM BUTTONS
+   BUTTONS
 ========================================================= */
 
 .item-actions{
@@ -722,9 +755,11 @@ select{
 }
 
 .small-btn{
-    border:1px solid #e0e3f0;
+    border:
+        1px solid #e0e3f0;
 
     background:white;
+
     color:#6845e9;
 
     border-radius:9px;
@@ -734,6 +769,7 @@ select{
     cursor:pointer;
 
     font-size:9px;
+
     font-weight:700;
 
     transition:.2s;
@@ -745,6 +781,7 @@ select{
 
 .submit-small{
     color:white;
+
     border-color:transparent;
 
     background:
@@ -779,196 +816,165 @@ select{
     display:block;
 
     color:#59617d;
+
     font-size:15px;
 
     margin-bottom:4px;
 }
 
+.empty-state p{
+    font-size:11px;
+}
+
 
 /* =========================================================
-   =========================================================
-   AI CHATBOT LAUNCHER
-   SAME STYLE / SIZE AS TIMETABLE
-   =========================================================
+   CHATBOT BUTTON
+   EXACT FACULTY STYLE
 ========================================================= */
 
-.chat-launcher{
+.chat-bubble{
 
     position:fixed;
 
     right:24px;
     bottom:24px;
 
-    width:72px;
-    height:72px;
+    width:64px;
+    height:64px;
+
+    min-width:64px;
+    min-height:64px;
 
     padding:0;
 
-    border:4px solid #ffffff;
+    border:none !important;
+    outline:none !important;
 
     border-radius:50%;
 
     background:
         linear-gradient(
-            145deg,
-            #6840ef 0%,
-            #8b35e5 55%,
-            #6d35d9 100%
+            135deg,
+            #6543e8,
+            #a855f7
         );
 
-    box-shadow:
-        0 0 0 1px rgba(117,70,235,.12),
-        0 10px 30px rgba(91,52,196,.38),
-        0 0 34px rgba(126,70,239,.30);
-
-    z-index:10000;
-
-    cursor:pointer;
-
     display:flex;
+
     align-items:center;
     justify-content:center;
 
-    transition:
-        transform .25s ease,
-        box-shadow .25s ease;
-}
+    font-size:30px;
 
-.chat-launcher:hover{
+    color:white;
 
-    transform:
-        translateY(-3px)
-        scale(1.04);
+    cursor:pointer;
 
     box-shadow:
-        0 0 0 1px rgba(117,70,235,.16),
-        0 14px 34px rgba(91,52,196,.45),
-        0 0 40px rgba(126,70,239,.40);
+        0 12px 30px
+        rgba(101,67,232,.45);
+
+    z-index:9998;
+
+    transition:
+        transform .2s ease;
+
+    appearance:none;
+    -webkit-appearance:none;
 }
 
-.chat-launcher:active{
-    transform:scale(.96);
+.chat-bubble:hover{
+    transform:scale(1.08);
 }
 
-.chat-launcher::before{
+.chat-bubble:focus,
+.chat-bubble:active{
+    outline:none !important;
+    border:none !important;
+}
+
+.chat-bubble::after{
 
     content:"";
 
     position:absolute;
 
-    inset:6px;
+    top:4px;
+    right:4px;
+
+    width:12px;
+    height:12px;
 
     border-radius:50%;
 
-    border:
-        1px solid
-        rgba(255,255,255,.20);
+    background:#ff4f8b;
 
-    pointer-events:none;
+    border:2px solid white;
 }
 
-.launcher-robot{
-
-    position:relative;
-
-    z-index:2;
-
-    font-size:34px;
-
-    line-height:1;
-
-    transform:translateY(1px);
-
-    filter:
-        drop-shadow(
-            0 3px 3px
-            rgba(44,22,112,.28)
-        );
-}
-
-.launcher-notification{
-
-    position:absolute;
-
-    top:-2px;
-    right:-1px;
-
-    width:19px;
-    height:19px;
-
-    border-radius:50%;
-
-    background:#ff3f8b;
-
-    border:3px solid #ffffff;
-
-    box-shadow:
-        0 3px 9px
-        rgba(75,26,107,.22);
-
-    z-index:4;
+.chat-bubble.hide{
+    display:none;
 }
 
 
 /* =========================================================
-   AI CHATBOT WINDOW
+   CHATBOT PANEL
+   EXACT FACULTY SIZE
 ========================================================= */
 
-.chatbot{
+.chatbot-panel{
 
     position:fixed;
 
     right:24px;
-    bottom:108px;
+    bottom:24px;
 
-    width:390px;
-    height:600px;
+    width:320px;
+    height:460px;
 
-    background:#ffffff;
-
-    border:
-        1px solid
-        rgba(103,70,220,.16);
+    background:white;
 
     border-radius:22px;
 
-    overflow:hidden;
-
-    display:flex;
-    flex-direction:column;
-
-    opacity:0;
-    visibility:hidden;
-
-    transform:
-        translateY(20px)
-        scale(.96);
-
-    pointer-events:none;
+    border:
+        1px solid #e5e6f2;
 
     box-shadow:
-        0 25px 70px rgba(48,34,113,.24),
-        0 8px 30px rgba(85,53,180,.12);
+        0 20px 55px
+        rgba(40,35,100,.25);
 
     z-index:9999;
 
-    transition:
-        opacity .25s ease,
-        visibility .25s ease,
-        transform .25s ease;
+    display:none;
+
+    flex-direction:column;
+
+    overflow:hidden;
+
+    animation:
+        panelIn .2s ease;
 }
 
-.chatbot.cc-open{
+.chatbot-panel.open{
+    display:flex;
+}
 
-    opacity:1;
+@keyframes panelIn{
 
-    visibility:visible;
+    from{
+        opacity:0;
+        transform:
+            translateY(20px)
+            scale(.96);
+    }
 
-    transform:
-        translateY(0)
-        scale(1);
+    to{
+        opacity:1;
+        transform:
+            translateY(0)
+            scale(1);
+    }
 
-    pointer-events:auto;
 }
 
 
@@ -978,144 +984,100 @@ select{
 
 .chat-header{
 
-    min-height:78px;
+    min-height:70px;
 
-    padding:13px 15px;
+    flex-shrink:0;
+
+    padding:14px;
 
     display:flex;
 
     align-items:center;
 
-    gap:11px;
+    justify-content:space-between;
 
     color:white;
 
     background:
         linear-gradient(
             135deg,
-            #5537d7,
-            #7139df 52%,
-            #8a39df
+            #29277d,
+            #7137d8
         );
+}
 
-    box-shadow:
-        0 5px 18px
-        rgba(77,48,170,.18);
-
-    flex-shrink:0;
+.chat-header-left{
+    display:flex;
+    align-items:center;
 }
 
 .robot-icon{
 
-    width:48px;
-    height:48px;
+    width:42px;
+    height:42px;
 
-    flex-shrink:0;
-
-    border-radius:15px;
+    border-radius:12px;
 
     background:
-        rgba(255,255,255,.17);
-
-    border:
-        1px solid
-        rgba(255,255,255,.22);
+        rgba(255,255,255,.15);
 
     display:flex;
 
     align-items:center;
     justify-content:center;
 
-    font-size:27px;
+    font-size:22px;
 
-    box-shadow:
-        inset 0 1px 0
-        rgba(255,255,255,.15);
-}
-
-.chat-title{
-
-    flex:1;
-    min-width:0;
+    margin-right:10px;
 }
 
 .chat-title strong{
-
     display:block;
-
-    font-size:15px;
-
-    font-weight:800;
-
-    letter-spacing:.1px;
+    font-size:14px;
 }
 
 .chat-title span{
+    display:block;
 
-    display:flex;
+    font-size:9px;
 
-    align-items:center;
-
-    gap:6px;
-
-    margin-top:4px;
-
-    font-size:10px;
+    margin-top:2px;
 
     color:
-        rgba(255,255,255,.82);
+        rgba(255,255,255,.78);
 }
 
 .online-dot{
 
+    display:inline-block;
+
     width:7px;
     height:7px;
 
+    background:#57e6a3;
+
     border-radius:50%;
 
-    background:#49ef9b;
-
-    display:inline-block;
-
-    box-shadow:
-        0 0 8px
-        rgba(73,239,155,.75);
+    margin-right:4px;
 }
 
-.chat-close{
+.close-chat{
 
-    width:32px;
-    height:32px;
+    width:30px;
+    height:30px;
 
     border:none;
 
-    border-radius:10px;
+    border-radius:50%;
 
     background:
-        rgba(255,255,255,.12);
+        rgba(255,255,255,.15);
 
     color:white;
 
-    font-size:24px;
-
-    line-height:1;
+    font-size:16px;
 
     cursor:pointer;
-
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-
-    transition:.2s;
-}
-
-.chat-close:hover{
-
-    background:
-        rgba(255,255,255,.23);
-
-    transform:rotate(90deg);
 }
 
 
@@ -1127,113 +1089,66 @@ select{
 
     flex:1;
 
-    overflow-y:auto;
+    min-height:0;
 
-    padding:18px 15px;
+    padding:14px;
+
+    overflow-y:auto;
 
     background:
         linear-gradient(
             180deg,
-            #f8f7ff 0%,
-            #ffffff 100%
+            #fafbff,
+            #f4f5fb
         );
-
-    scroll-behavior:smooth;
 }
-
-.chat-body::-webkit-scrollbar{
-    width:5px;
-}
-
-.chat-body::-webkit-scrollbar-thumb{
-
-    background:
-        rgba(104,69,233,.25);
-
-    border-radius:10px;
-}
-
-
-/* =========================================================
-   BOT MESSAGE
-========================================================= */
 
 .bot-message{
 
-    max-width:88%;
-
-    width:max-content;
-
-    margin-bottom:11px;
-
-    padding:11px 13px;
-
-    background:#ffffff;
+    background:white;
 
     border:
-        1px solid
-        #ebe8f8;
+        1px solid #e7e9f3;
 
-    border-radius:
-        15px
-        15px
-        15px
-        5px;
+    border-radius:14px;
 
-    color:#4f5873;
+    padding:12px;
 
-    font-size:12px;
+    margin-bottom:10px;
 
-    line-height:1.55;
+    color:#65708d;
+
+    font-size:11px;
+
+    line-height:1.6;
 
     box-shadow:
-        0 4px 13px
-        rgba(55,40,125,.06);
+        0 5px 15px
+        rgba(40,35,100,.04);
 }
-
-.bot-message strong{
-    color:#4e3bc2;
-}
-
-
-/* =========================================================
-   USER MESSAGE
-========================================================= */
 
 .user-message{
-
-    max-width:88%;
-
-    width:max-content;
-
-    margin-left:auto;
-
-    margin-bottom:11px;
-
-    padding:11px 13px;
 
     background:
         linear-gradient(
             135deg,
-            #6741e9,
-            #8139dc
+            #6241e8,
+            #7b3ee0
         );
 
     color:white;
 
-    border-radius:
-        15px
-        15px
-        5px
-        15px;
+    padding:10px 12px;
 
-    font-size:12px;
+    border-radius:
+        14px 14px 4px 14px;
+
+    margin:
+        9px 0 9px 20px;
+
+    font-size:11px;
 
     line-height:1.5;
-
-    box-shadow:
-        0 5px 15px
-        rgba(94,59,210,.18);
 }
 
 
@@ -1245,60 +1160,34 @@ select{
 
     display:flex;
 
-    gap:7px;
+    gap:5px;
 
-    padding:10px 12px;
+    flex-wrap:wrap;
 
-    background:#ffffff;
+    padding:9px 14px;
+
+    background:white;
 
     border-top:
-        1px solid
-        #eeeef5;
-
-    flex-shrink:0;
+        1px solid #eceef5;
 }
 
 .quick-btn{
 
-    flex:1;
-
-    min-width:0;
-
     border:
-        1px solid
-        #ddd8f6;
+        1px solid #e0e3f0;
 
-    background:#faf9ff;
+    background:white;
 
-    color:#6044d5;
+    color:#6b54d9;
 
-    border-radius:10px;
+    border-radius:20px;
 
-    padding:9px 5px;
+    padding:7px 9px;
+
+    font-size:9px;
 
     cursor:pointer;
-
-    font-size:10px;
-
-    font-weight:750;
-
-    transition:.2s;
-}
-
-.quick-btn:hover{
-
-    color:white;
-
-    background:
-        linear-gradient(
-            135deg,
-            #6741e9,
-            #8139dc
-        );
-
-    border-color:transparent;
-
-    transform:translateY(-1px);
 }
 
 
@@ -1308,69 +1197,46 @@ select{
 
 .chat-footer{
 
-    display:flex;
+    flex-shrink:0;
 
-    gap:8px;
+    padding:10px;
 
-    padding:11px 12px;
-
-    background:#ffffff;
+    background:white;
 
     border-top:
-        1px solid
-        #eeeef5;
+        1px solid #eceef5;
 
-    flex-shrink:0;
+    display:flex;
+
+    gap:7px;
 }
 
 .chat-input{
 
     flex:1;
 
-    height:43px;
-
     min-width:0;
 
+    height:40px;
+
     border:
-        1px solid
-        #dedbea;
+        1px solid #e1e4ef;
 
     border-radius:12px;
 
     outline:none;
 
-    padding:0 13px;
+    padding:0 11px;
 
-    color:#4e5670;
+    font-size:11px;
 
-    background:#fafaff;
-
-    font-size:12px;
-
-    transition:.2s;
-}
-
-.chat-input:focus{
-
-    border-color:#7650e8;
-
-    background:white;
-
-    box-shadow:
-        0 0 0 3px
-        rgba(118,80,232,.08);
-}
-
-.chat-input::placeholder{
-    color:#a1a5b6;
+    color:#555e78;
 }
 
 .send-btn{
 
-    width:43px;
-    height:43px;
-
-    flex-shrink:0;
+    width:40px;
+    height:40px;
 
     border:none;
 
@@ -1381,38 +1247,13 @@ select{
     background:
         linear-gradient(
             135deg,
-            #6540e8,
-            #8139dc
+            #6543e8,
+            #843de0
         );
 
     cursor:pointer;
 
-    font-size:18px;
-
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-
-    transition:.2s;
-
-    box-shadow:
-        0 5px 14px
-        rgba(102,63,220,.22);
-}
-
-.send-btn:hover{
-
-    transform:
-        translateY(-2px);
-
-    box-shadow:
-        0 8px 18px
-        rgba(102,63,220,.30);
-}
-
-.send-btn:active{
-    transform:scale(.94);
+    font-size:17px;
 }
 
 
@@ -1427,18 +1268,16 @@ select{
     inset:0;
 
     background:
-        rgba(24,25,55,.48);
+        rgba(20,25,65,.55);
 
     display:none;
 
     align-items:center;
     justify-content:center;
 
+    z-index:30000;
+
     padding:20px;
-
-    z-index:11000;
-
-    backdrop-filter:blur(4px);
 }
 
 .modal.show{
@@ -1447,21 +1286,17 @@ select{
 
 .modal-box{
 
-    width:min(500px,100%);
-
-    max-height:90vh;
-
-    overflow-y:auto;
+    width:min(500px,95%);
 
     background:white;
 
     border-radius:20px;
 
-    padding:22px;
+    padding:25px;
 
     box-shadow:
         0 25px 70px
-        rgba(30,25,80,.25);
+        rgba(20,25,70,.25);
 }
 
 .modal-top{
@@ -1472,45 +1307,38 @@ select{
 
     justify-content:space-between;
 
-    margin-bottom:18px;
+    margin-bottom:20px;
 }
 
 .modal-top h3{
-
-    color:#27304d;
-
-    font-size:18px;
+    font-size:19px;
 }
 
 .close-btn{
 
-    width:34px;
-    height:34px;
+    width:35px;
+    height:35px;
 
     border:none;
 
-    border-radius:10px;
+    border-radius:50%;
 
-    background:#f2f2fa;
+    background:#f0f2fa;
 
-    color:#626980;
-
-    font-size:22px;
+    color:#68728d;
 
     cursor:pointer;
-}
 
-.close-btn:hover{
-    background:#e8e5f8;
+    font-size:18px;
 }
 
 .detail-box{
 
-    padding:13px;
+    background:#f8f9ff;
 
-    background:#f8f8fd;
+    border-radius:14px;
 
-    border-radius:12px;
+    padding:15px;
 
     margin-bottom:10px;
 }
@@ -1521,22 +1349,16 @@ select{
 
     font-size:10px;
 
-    font-weight:700;
-
-    text-transform:uppercase;
-
-    letter-spacing:.5px;
-
-    margin-bottom:5px;
+    margin-bottom:3px;
 }
 
 .detail-value{
 
-    color:#4e5874;
+    color:#39425e;
 
     font-size:13px;
 
-    line-height:1.5;
+    font-weight:700;
 }
 
 .modal-buttons{
@@ -1547,7 +1369,7 @@ select{
 
     gap:8px;
 
-    margin-top:17px;
+    margin-top:15px;
 }
 
 .modal-btn{
@@ -1556,7 +1378,7 @@ select{
 
     border-radius:10px;
 
-    padding:10px 15px;
+    padding:10px 14px;
 
     cursor:pointer;
 
@@ -1567,9 +1389,9 @@ select{
 
 .modal-cancel{
 
-    background:#f0f1f7;
+    background:#f0f2fa;
 
-    color:#59617d;
+    color:#68728d;
 }
 
 .modal-submit{
@@ -1598,40 +1420,35 @@ select{
     bottom:25px;
 
     transform:
-        translate(-50%,20px);
+        translateX(-50%)
+        translateY(20px);
 
-    opacity:0;
-
-    visibility:hidden;
-
-    z-index:12000;
-
-    background:
-        #292c48;
+    background:#29277d;
 
     color:white;
 
     padding:12px 18px;
 
-    border-radius:11px;
+    border-radius:12px;
 
     font-size:12px;
 
-    box-shadow:
-        0 12px 30px
-        rgba(20,20,50,.22);
+    opacity:0;
 
-    transition:.25s;
+    pointer-events:none;
+
+    transition:.3s;
+
+    z-index:40000;
 }
 
 .toast.show{
 
     opacity:1;
 
-    visibility:visible;
-
     transform:
-        translate(-50%,0);
+        translateX(-50%)
+        translateY(0);
 }
 
 
@@ -1639,68 +1456,48 @@ select{
    RESPONSIVE
 ========================================================= */
 
-@media(max-width:1100px){
+@media(max-width:1150px){
+
+    .sidebar{
+        width:230px;
+        min-width:230px;
+    }
+
+    .main-area{
+        margin-left:230px;
+    }
 
     .summary-grid{
         grid-template-columns:
             repeat(2,minmax(0,1fr));
     }
 
-    .chatbot{
-        width:370px;
+    .chatbot-panel{
+        right:18px;
     }
+
+    .chat-bubble{
+        right:18px;
+    }
+
 }
 
-@media(max-width:850px){
-
-    .sidebar{
-        width:220px;
-        min-width:220px;
-    }
-
-    .main-area{
-        margin-left:220px;
-    }
-
-    .header-right .profile-info{
-        display:none;
-    }
-
-    .time-box{
-        display:none;
-    }
-}
 
 @media(max-width:700px){
 
     .sidebar{
-        width:75px;
-        min-width:75px;
-    }
-
-    .main-area{
-        margin-left:75px;
+        width:80px;
+        min-width:80px;
     }
 
     .brand{
         justify-content:center;
-        padding:15px 8px;
+        padding:15px;
     }
 
-    .brand-text{
-        display:none;
-    }
-
-    .logo-box{
-        width:48px;
-        height:48px;
-    }
-
-    .menu{
-        padding:18px 8px;
-    }
-
-    .menu-title{
+    .brand-text,
+    .menu-title,
+    .nav-text{
         display:none;
     }
 
@@ -1710,43 +1507,39 @@ select{
     }
 
     .nav-icon{
-        margin-right:0;
+        margin:0;
     }
 
-    .nav-text{
-        display:none;
-    }
-
-    .logout{
-        padding-top:10px;
+    .main-area{
+        margin-left:80px;
     }
 
     .top-header{
-        height:auto;
-        min-height:100px;
-        padding:18px;
+        padding:15px;
     }
 
     .header-left h1{
-        font-size:24px;
+        font-size:22px;
     }
 
-    .header-left p{
-        font-size:11px;
+    .header-left p,
+    .profile-info,
+    .time-box{
+        display:none;
     }
 
     .page-content{
         padding:15px;
     }
 
-    .summary-grid{
-        grid-template-columns:1fr 1fr;
-        gap:10px;
-    }
-
     .page-heading{
         align-items:flex-start;
-        gap:10px;
+        flex-direction:column;
+        gap:12px;
+    }
+
+    .summary-grid{
+        grid-template-columns:1fr;
     }
 
     .filters{
@@ -1754,69 +1547,77 @@ select{
     }
 
     .assignment-item{
-        grid-template-columns:43px 1fr;
+        grid-template-columns:
+            43px 1fr;
     }
 
     .assignment-right{
         grid-column:2;
-        flex-wrap:wrap;
+        justify-content:flex-start;
     }
 
-    .chatbot{
-
-        right:12px;
-        bottom:100px;
-
-        width:
-            calc(100vw - 24px);
-
-        height:
-            min(600px,calc(100vh - 125px));
-
-        border-radius:19px;
+    .due-date{
+        text-align:left;
     }
 
-    .chat-launcher{
-        right:18px;
-        bottom:18px;
+    .chatbot-panel{
+        width:92vw;
+
+        right:4vw;
+        left:4vw;
+
+        bottom:20px;
+
+        height:460px;
     }
+
+    .chat-bubble{
+        right:20px;
+        bottom:20px;
+    }
+
 }
 
-@media(max-width:450px){
 
-    .summary-grid{
-        grid-template-columns:1fr;
+/* =========================================================
+   PRINT
+========================================================= */
+
+@media print{
+
+    .sidebar,
+    .top-header,
+    .chat-bubble,
+    .chatbot-panel,
+    .header-actions,
+    .filters,
+    .item-actions{
+        display:none !important;
     }
 
-    .header-actions{
-        display:none;
+    .main-area{
+        margin:0;
+        width:100%;
+        height:auto;
+        overflow:visible;
     }
 
-    .profile-circle{
-        width:42px;
-        height:42px;
+    .page-content{
+        padding:20px;
     }
 
-    .notification{
-        width:42px;
-        height:42px;
+    .assignment-card,
+    .summary-card{
+        box-shadow:none;
     }
 
-    .chatbot{
-        bottom:100px;
+    body{
+        background:white;
     }
 
-    .quick-buttons{
-        gap:5px;
-    }
-
-    .quick-btn{
-        font-size:9px;
-    }
 }
 
 </style>
-
 </head>
 
 
@@ -1856,9 +1657,12 @@ select{
             MAIN MENU
         </div>
 
+
         <a class="nav-item" href="../dashboard.html">
 
-            <span class="nav-icon">🏠</span>
+            <span class="nav-icon">
+                🏠
+            </span>
 
             <span class="nav-text">
                 Dashboard
@@ -1893,7 +1697,10 @@ select{
         </a>
 
 
-        <a class="nav-item active" href="assignments.html">
+        <a
+            class="nav-item active"
+            href="assignments.html"
+        >
 
             <span class="nav-icon">
                 📝
@@ -1952,7 +1759,10 @@ select{
             </div>
 
 
-            <a class="nav-item" href="placement.html">
+            <a
+                class="nav-item"
+                href="placement.html"
+            >
 
                 <span class="nav-icon">
                     💼
@@ -1965,7 +1775,10 @@ select{
             </a>
 
 
-            <a class="nav-item" href="results.html">
+            <a
+                class="nav-item"
+                href="results.html"
+            >
 
                 <span class="nav-icon">
                     📈
@@ -1987,7 +1800,10 @@ select{
             </div>
 
 
-            <a class="nav-item" href="documents.html">
+            <a
+                class="nav-item"
+                href="documents.html"
+            >
 
                 <span class="nav-icon">
                     📄
@@ -2000,7 +1816,10 @@ select{
             </a>
 
 
-            <a class="nav-item" href="complaints.html">
+            <a
+                class="nav-item"
+                href="complaints.html"
+            >
 
                 <span class="nav-icon">
                     📢
@@ -2013,7 +1832,10 @@ select{
             </a>
 
 
-            <a class="nav-item" href="feedback.html">
+            <a
+                class="nav-item"
+                href="feedback.html"
+            >
 
                 <span class="nav-icon">
                     💬
@@ -2026,7 +1848,10 @@ select{
             </a>
 
 
-            <a class="nav-item" href="lost_found.html">
+            <a
+                class="nav-item"
+                href="lost_found.html"
+            >
 
                 <span class="nav-icon">
                     🔎
@@ -2039,7 +1864,10 @@ select{
             </a>
 
 
-            <a class="nav-item" href="campus.html">
+            <a
+                class="nav-item"
+                href="campus.html"
+            >
 
                 <span class="nav-icon">
                     🏫
@@ -2052,7 +1880,10 @@ select{
             </a>
 
 
-            <a class="nav-item" href="events.html">
+            <a
+                class="nav-item"
+                href="events.html"
+            >
 
                 <span class="nav-icon">
                     🎉
@@ -2065,7 +1896,10 @@ select{
             </a>
 
 
-            <a class="nav-item" href="exams.html">
+            <a
+                class="nav-item"
+                href="exams.html"
+            >
 
                 <span class="nav-icon">
                     📋
@@ -2078,7 +1912,10 @@ select{
             </a>
 
 
-            <a class="nav-item" href="notifications.html">
+            <a
+                class="nav-item"
+                href="notifications.html"
+            >
 
                 <span class="nav-icon">
                     🔔
@@ -2100,7 +1937,10 @@ select{
             </div>
 
 
-            <a class="nav-item" href="profile.html">
+            <a
+                class="nav-item"
+                href="profile.html"
+            >
 
                 <span class="nav-icon">
                     👤
@@ -2113,7 +1953,10 @@ select{
             </a>
 
 
-            <a class="nav-item" href="settings.html">
+            <a
+                class="nav-item"
+                href="settings.html"
+            >
 
                 <span class="nav-icon">
                     ⚙️
@@ -2222,12 +2065,10 @@ select{
     </header>
 
 
-    <!-- PAGE CONTENT -->
+    <!-- PAGE -->
 
     <div class="page-content">
 
-
-        <!-- PAGE HEADING -->
 
         <div class="page-heading">
 
@@ -2374,10 +2215,11 @@ select{
 
             </div>
 
+
         </section>
 
 
-        <!-- ASSIGNMENT CARD -->
+        <!-- ASSIGNMENT LIST -->
 
         <section class="assignment-card">
 
@@ -2398,8 +2240,6 @@ select{
 
             </div>
 
-
-            <!-- FILTERS -->
 
             <div class="filters">
 
@@ -2456,16 +2296,11 @@ select{
             </div>
 
 
-            <!-- LIST -->
-
             <div
                 class="assignment-list"
                 id="assignmentList"
-            >
-            </div>
+            ></div>
 
-
-            <!-- EMPTY -->
 
             <div
                 class="empty-state"
@@ -2486,6 +2321,7 @@ select{
 
             </div>
 
+
         </section>
 
     </div>
@@ -2494,71 +2330,65 @@ select{
 
 
 <!-- =====================================================
-     CHATBOT LAUNCHER
+     CHATBOT BUTTON
+     SAME AS FACULTY
 ===================================================== -->
 
 <button
-    class="chat-launcher"
-    id="chatLauncher"
+    class="chat-bubble"
+    id="chatBubble"
     onclick="toggleChatbot()"
-    title="Open AI College Companion"
     aria-label="Open AI College Companion"
+    title="AI College Companion"
 >
 
-    <span
-        class="launcher-robot"
-        aria-hidden="true"
-    >
-        🤖
-    </span>
-
-    <span
-        class="launcher-notification"
-        aria-hidden="true"
-    >
-    </span>
+    🤖
 
 </button>
 
 
 <!-- =====================================================
-     CHATBOT
+     CHATBOT PANEL
 ===================================================== -->
 
 <aside
-    class="chatbot"
+    class="chatbot-panel"
     id="chatbotPanel"
 >
 
+
     <div class="chat-header">
 
-        <div class="robot-icon">
-            🤖
-        </div>
+
+        <div class="chat-header-left">
+
+            <div class="robot-icon">
+                🤖
+            </div>
 
 
-        <div class="chat-title">
+            <div class="chat-title">
 
-            <strong>
-                AI College Companion
-            </strong>
+                <strong>
+                    AI College Companion
+                </strong>
 
-            <span>
+                <span>
 
-                <i class="online-dot"></i>
+                    <i class="online-dot"></i>
 
-                Online • Ready to help
+                    Online • Ready to help
 
-            </span>
+                </span>
+
+            </div>
 
         </div>
 
 
         <button
-            class="chat-close"
+            class="close-chat"
             onclick="toggleChatbot()"
-            aria-label="Close chatbot"
-            title="Close"
         >
             ×
         </button>
@@ -2622,8 +2452,8 @@ select{
     <div class="chat-footer">
 
         <input
-            id="chatInput"
             class="chat-input"
+            id="chatInput"
             type="text"
             placeholder="Ask your companion..."
             onkeydown="handleChatKey(event)"
@@ -2643,7 +2473,7 @@ select{
 
 
 <!-- =====================================================
-     DETAILS MODAL
+     MODAL
 ===================================================== -->
 
 <div
@@ -2651,6 +2481,7 @@ select{
     id="assignmentModal"
     onclick="closeModalOutside(event)"
 >
+
 
     <div class="modal-box">
 
@@ -2660,6 +2491,7 @@ select{
             <h3 id="modalTitle">
                 Assignment Details
             </h3>
+
 
             <button
                 class="close-btn"
@@ -2674,13 +2506,14 @@ select{
         <div class="detail-box">
 
             <div class="detail-label">
-                Subject
+                SUBJECT
             </div>
 
             <div
                 class="detail-value"
                 id="modalSubject"
             >
+                --
             </div>
 
         </div>
@@ -2689,13 +2522,14 @@ select{
         <div class="detail-box">
 
             <div class="detail-label">
-                Description
+                ASSIGNMENT
             </div>
 
             <div
                 class="detail-value"
-                id="modalDescription"
+                id="modalAssignment"
             >
+                --
             </div>
 
         </div>
@@ -2704,13 +2538,14 @@ select{
         <div class="detail-box">
 
             <div class="detail-label">
-                Due Date
+                FACULTY
             </div>
 
             <div
                 class="detail-value"
-                id="modalDueDate"
+                id="modalFaculty"
             >
+                --
             </div>
 
         </div>
@@ -2719,13 +2554,30 @@ select{
         <div class="detail-box">
 
             <div class="detail-label">
-                Status
+                DUE DATE
+            </div>
+
+            <div
+                class="detail-value"
+                id="modalDue"
+            >
+                --
+            </div>
+
+        </div>
+
+
+        <div class="detail-box">
+
+            <div class="detail-label">
+                STATUS
             </div>
 
             <div
                 class="detail-value"
                 id="modalStatus"
             >
+                --
             </div>
 
         </div>
@@ -2740,9 +2592,11 @@ select{
                 Close
             </button>
 
+
             <button
                 class="modal-btn modal-submit"
-                onclick="submitFromModal()"
+                id="modalSubmitBtn"
+                onclick="submitCurrentAssignment()"
             >
                 Submit Assignment
             </button>
@@ -2754,18 +2608,103 @@ select{
 </div>
 
 
-<!-- =====================================================
-     TOAST
-===================================================== -->
+<!-- TOAST -->
 
 <div
     class="toast"
     id="toast"
 >
+    Done
 </div>
 
 
 <script>
+
+/* =========================================================
+   ASSIGNMENT DATA
+========================================================= */
+
+const assignments = [
+
+    {
+        id:1,
+        subject:"Database Management System",
+        title:"Database Management System Assignment",
+        faculty:"Prof. Sharma",
+        due:"25 Sept 2026",
+        status:"Pending",
+        icon:"🗄️"
+    },
+
+    {
+        id:2,
+        subject:"Web Programming",
+        title:"Web Programming Project",
+        faculty:"Prof. Priya",
+        due:"27 Sept 2026",
+        status:"New",
+        icon:"💻"
+    },
+
+    {
+        id:3,
+        subject:"Software Engineering",
+        title:"Software Development Life Cycle",
+        faculty:"Prof. Kumar",
+        due:"29 Sept 2026",
+        status:"Pending",
+        icon:"⚙️"
+    },
+
+    {
+        id:4,
+        subject:"Computer Networks",
+        title:"Network Topologies Report",
+        faculty:"Prof. Rao",
+        due:"20 Sept 2026",
+        status:"Submitted",
+        icon:"🌐"
+    },
+
+    {
+        id:5,
+        subject:"Mathematics",
+        title:"Discrete Mathematics Problems",
+        faculty:"Prof. Mehta",
+        due:"18 Sept 2026",
+        status:"Overdue",
+        icon:"📐"
+    }
+
+];
+
+
+let currentAssignment = null;
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+window.addEventListener(
+    "load",
+    function(){
+
+        updateClock();
+
+        setInterval(
+            updateClock,
+            1000
+        );
+
+        populateSubjects();
+
+        updateSummary();
+
+        renderAssignments();
+
+    }
+);
 
 
 /* =========================================================
@@ -2774,518 +2713,59 @@ select{
 
 function updateClock(){
 
-    const clock =
-        document.getElementById("clock");
+    const now =
+        new Date();
 
-    if(!clock) return;
+    let hours =
+        now.getHours();
 
-    const now = new Date();
+    const minutes =
+        String(
+            now.getMinutes()
+        ).padStart(2,"0");
 
-    clock.textContent =
-        now.toLocaleTimeString(
-            [],
-            {
-                hour:"numeric",
-                minute:"2-digit"
-            }
-        );
-}
+    const ampm =
+        hours >= 12
+            ? "PM"
+            : "AM";
 
-updateClock();
+    hours =
+        hours % 12 || 12;
 
-setInterval(
-    updateClock,
-    1000
-);
-
-
-/* =========================================================
-   LOGOUT
-========================================================= */
-
-function confirmLogout(){
-
-    return confirm(
-        "Are you sure you want to logout?"
-    );
+    document.getElementById(
+        "clock"
+    ).textContent =
+        hours +
+        ":" +
+        minutes +
+        " " +
+        ampm;
 
 }
 
 
 /* =========================================================
-   TOAST
+   SUBJECTS
 ========================================================= */
 
-function showToast(message){
-
-    const toast =
-        document.getElementById("toast");
-
-    if(!toast) return;
-
-    toast.textContent =
-        message;
-
-    toast.classList.add("show");
-
-    setTimeout(
-        () => {
-
-            toast.classList.remove("show");
-
-        },
-        2500
-    );
-
-}
-
-
-/* =========================================================
-   ASSIGNMENTS DATA
-========================================================= */
-
-const assignments = [
-
-    {
-        id:1,
-
-        title:
-            "Database Management System Assignment",
-
-        subject:
-            "Database Management System",
-
-        description:
-            "Complete the DBMS assignment and submit it through the portal.",
-
-        dueDate:
-            "2026-09-25",
-
-        status:
-            "Pending",
-
-        icon:
-            "🗄️"
-    },
-
-
-    {
-        id:2,
-
-        title:
-            "Web Programming Project",
-
-        subject:
-            "Web Programming",
-
-        description:
-            "Create and submit the required web programming project.",
-
-        dueDate:
-            "2026-09-27",
-
-        status:
-            "New",
-
-        icon:
-            "💻"
-    },
-
-
-    {
-        id:3,
-
-        title:
-            "Software Engineering Report",
-
-        subject:
-            "Software Engineering",
-
-        description:
-            "Prepare the software engineering report and submit it.",
-
-        dueDate:
-            "2026-09-22",
-
-        status:
-            "Pending",
-
-        icon:
-            "⚙️"
-    },
-
-
-    {
-        id:4,
-
-        title:
-            "Computer Networks Assignment",
-
-        subject:
-            "Computer Networks",
-
-        description:
-            "Complete the computer networks assignment.",
-
-        dueDate:
-            "2026-09-20",
-
-        status:
-            "Overdue",
-
-        icon:
-            "🌐"
-    },
-
-
-    {
-        id:5,
-
-        title:
-            "Mathematics Assignment",
-
-        subject:
-            "Mathematics",
-
-        description:
-            "Solve and submit the mathematics assignment.",
-
-        dueDate:
-            "2026-09-29",
-
-        status:
-            "Submitted",
-
-        icon:
-            "📐"
-    }
-
-];
-
-
-/* =========================================================
-   RENDER ASSIGNMENTS
-========================================================= */
-
-function renderAssignments(){
-
-    const list =
-        document.getElementById(
-            "assignmentList"
-        );
-
-    const empty =
-        document.getElementById(
-            "emptyState"
-        );
-
-    const search =
-        document.getElementById(
-            "searchInput"
-        );
-
-    const subject =
-        document.getElementById(
-            "subjectFilter"
-        );
-
-    const status =
-        document.getElementById(
-            "statusFilter"
-        );
-
-
-    if(!list) return;
-
-
-    const searchText =
-        search
-        ? search.value.toLowerCase().trim()
-        : "";
-
-
-    const subjectValue =
-        subject
-        ? subject.value
-        : "all";
-
-
-    const statusValue =
-        status
-        ? status.value
-        : "all";
-
-
-    const filtered =
-        assignments.filter(
-            assignment => {
-
-                const matchesSearch =
-
-                    assignment.title
-                        .toLowerCase()
-                        .includes(searchText)
-
-                    ||
-
-                    assignment.subject
-                        .toLowerCase()
-                        .includes(searchText);
-
-
-                const matchesSubject =
-
-                    subjectValue === "all"
-
-                    ||
-
-                    assignment.subject ===
-                    subjectValue;
-
-
-                const matchesStatus =
-
-                    statusValue === "all"
-
-                    ||
-
-                    assignment.status ===
-                    statusValue;
-
-
-                return (
-                    matchesSearch &&
-                    matchesSubject &&
-                    matchesStatus
-                );
-
-            }
-        );
-
-
-    list.innerHTML = "";
-
-
-    filtered.forEach(
-        assignment => {
-
-            const item =
-                document.createElement(
-                    "div"
-                );
-
-            item.className =
-                "assignment-item";
-
-
-            item.innerHTML = `
-
-                <div class="assignment-icon">
-                    ${assignment.icon}
-                </div>
-
-
-                <div class="assignment-info">
-
-                    <strong>
-                        ${assignment.title}
-                    </strong>
-
-                    <span>
-                        ${assignment.subject}
-                    </span>
-
-                </div>
-
-
-                <div class="assignment-right">
-
-                    <div class="due-date">
-
-                        <strong>
-                            ${formatDate(assignment.dueDate)}
-                        </strong>
-
-                        <span>
-                            Due date
-                        </span>
-
-                    </div>
-
-
-                    <span
-                        class="status status-${assignment.status.toLowerCase()}"
-                    >
-                        ${assignment.status}
-                    </span>
-
-
-                    <div class="item-actions">
-
-                        <button
-                            class="small-btn"
-                            onclick="viewAssignment(${assignment.id})"
-                        >
-                            View
-                        </button>
-
-
-                        ${
-                            assignment.status !== "Submitted"
-
-                            ?
-
-                            `
-                            <button
-                                class="small-btn submit-small"
-                                onclick="submitAssignment(${assignment.id})"
-                            >
-                                Submit
-                            </button>
-                            `
-
-                            :
-
-                            ""
-                        }
-
-                    </div>
-
-                </div>
-
-            `;
-
-
-            list.appendChild(item);
-
-        }
-    );
-
-
-    if(empty){
-
-        empty.style.display =
-            filtered.length === 0
-            ? "block"
-            : "none";
-
-    }
-
-
-    updateSummary();
-
-}
-
-
-/* =========================================================
-   FORMAT DATE
-========================================================= */
-
-function formatDate(dateString){
-
-    const date =
-        new Date(
-            dateString + "T00:00:00"
-        );
-
-    return date.toLocaleDateString(
-        "en-IN",
-        {
-            day:"2-digit",
-            month:"short",
-            year:"numeric"
-        }
-    );
-
-}
-
-
-/* =========================================================
-   SUMMARY
-========================================================= */
-
-function updateSummary(){
-
-    const total =
-        document.getElementById(
-            "totalCount"
-        );
-
-    const pending =
-        document.getElementById(
-            "pendingCount"
-        );
-
-    const submitted =
-        document.getElementById(
-            "submittedCount"
-        );
-
-    const overdue =
-        document.getElementById(
-            "overdueCount"
-        );
-
-
-    if(total)
-
-        total.textContent =
-            assignments.length;
-
-
-    if(pending)
-
-        pending.textContent =
-            assignments.filter(
-                a =>
-                    a.status === "Pending"
-            ).length;
-
-
-    if(submitted)
-
-        submitted.textContent =
-            assignments.filter(
-                a =>
-                    a.status === "Submitted"
-            ).length;
-
-
-    if(overdue)
-
-        overdue.textContent =
-            assignments.filter(
-                a =>
-                    a.status === "Overdue"
-            ).length;
-
-}
-
-
-/* =========================================================
-   SUBJECT FILTER
-========================================================= */
-
-function loadSubjects(){
+function populateSubjects(){
 
     const select =
         document.getElementById(
             "subjectFilter"
         );
 
-    if(!select) return;
-
-
-    const subjects = [
-
-        ...new Set(
-            assignments.map(
-                a => a.subject
+    const subjects =
+        [
+            ...new Set(
+                assignments.map(
+                    item =>
+                        item.subject
+                )
             )
-        )
+        ];
 
-    ];
-
+    subjects.sort();
 
     subjects.forEach(
         subject => {
@@ -3312,76 +2792,372 @@ function loadSubjects(){
 
 
 /* =========================================================
-   VIEW ASSIGNMENT
+   SUMMARY
 ========================================================= */
 
-function viewAssignment(id){
-
-    const assignment =
-        assignments.find(
-            a => a.id === id
-        );
-
-    if(!assignment) return;
-
+function updateSummary(){
 
     document.getElementById(
-        "modalTitle"
+        "totalCount"
     ).textContent =
-        assignment.title;
+        assignments.length;
 
 
     document.getElementById(
-        "modalSubject"
+        "pendingCount"
     ).textContent =
-        assignment.subject;
+        assignments.filter(
+            item =>
+                item.status ===
+                "Pending"
+        ).length;
 
 
     document.getElementById(
-        "modalDescription"
+        "submittedCount"
     ).textContent =
-        assignment.description;
+        assignments.filter(
+            item =>
+                item.status ===
+                "Submitted"
+        ).length;
 
 
     document.getElementById(
-        "modalDueDate"
+        "overdueCount"
     ).textContent =
-        formatDate(
-            assignment.dueDate
-        );
-
-
-    document.getElementById(
-        "modalStatus"
-    ).textContent =
-        assignment.status;
-
-
-    document.getElementById(
-        "assignmentModal"
-    ).classList.add("show");
-
-
-    window.currentAssignmentId =
-        id;
+        assignments.filter(
+            item =>
+                item.status ===
+                "Overdue"
+        ).length;
 
 }
 
 
 /* =========================================================
-   CLOSE MODAL
+   RENDER
+========================================================= */
+
+function renderAssignments(){
+
+    const list =
+        document.getElementById(
+            "assignmentList"
+        );
+
+    const empty =
+        document.getElementById(
+            "emptyState"
+        );
+
+    const search =
+        document.getElementById(
+            "searchInput"
+        )
+        .value
+        .toLowerCase()
+        .trim();
+
+    const subject =
+        document.getElementById(
+            "subjectFilter"
+        ).value;
+
+    const status =
+        document.getElementById(
+            "statusFilter"
+        ).value;
+
+
+    list.innerHTML = "";
+
+
+    const filtered =
+        assignments.filter(
+            item => {
+
+                const searchMatch =
+
+                    item.title
+                        .toLowerCase()
+                        .includes(search)
+
+                    ||
+
+                    item.subject
+                        .toLowerCase()
+                        .includes(search)
+
+                    ||
+
+                    item.faculty
+                        .toLowerCase()
+                        .includes(search);
+
+
+                const subjectMatch =
+                    subject === "all" ||
+                    item.subject === subject;
+
+
+                const statusMatch =
+                    status === "all" ||
+                    item.status === status;
+
+
+                return (
+                    searchMatch &&
+                    subjectMatch &&
+                    statusMatch
+                );
+
+            }
+        );
+
+
+    if(
+        filtered.length === 0
+    ){
+
+        empty.style.display =
+            "block";
+
+        return;
+
+    }
+
+
+    empty.style.display =
+        "none";
+
+
+    filtered.forEach(
+        item => {
+
+            const row =
+                document.createElement(
+                    "div"
+                );
+
+            row.className =
+                "assignment-item";
+
+
+            let statusClass =
+                "status-pending";
+
+
+            if(
+                item.status ===
+                "Submitted"
+            ){
+
+                statusClass =
+                    "status-submitted";
+
+            }
+
+            else if(
+                item.status ===
+                "Overdue"
+            ){
+
+                statusClass =
+                    "status-overdue";
+
+            }
+
+            else if(
+                item.status ===
+                "New"
+            ){
+
+                statusClass =
+                    "status-new";
+
+            }
+
+
+            row.innerHTML = `
+
+                <div class="assignment-icon">
+                    ${item.icon}
+                </div>
+
+
+                <div class="assignment-info">
+
+                    <strong>
+                        ${item.title}
+                    </strong>
+
+                    <span>
+                        ${item.subject}
+                        •
+                        ${item.faculty}
+                    </span>
+
+                </div>
+
+
+                <div class="assignment-right">
+
+                    <div class="due-date">
+
+                        <strong>
+                            ${item.due}
+                        </strong>
+
+                        <span>
+                            Due date
+                        </span>
+
+                    </div>
+
+
+                    <div class="status ${statusClass}">
+                        ${item.status}
+                    </div>
+
+
+                    <div class="item-actions">
+
+                        <button
+                            class="small-btn"
+                            onclick="openDetails(${item.id})"
+                        >
+                            View
+                        </button>
+
+
+                        ${
+                            item.status !== "Submitted"
+
+                            ?
+
+                            `
+                            <button
+                                class="small-btn submit-small"
+                                onclick="submitAssignment(${item.id})"
+                            >
+                                Submit
+                            </button>
+                            `
+
+                            :
+
+                            ""
+
+                        }
+
+                    </div>
+
+                </div>
+
+            `;
+
+
+            list.appendChild(
+                row
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   VIEW
+========================================================= */
+
+function openDetails(id){
+
+    const item =
+        assignments.find(
+            assignment =>
+                assignment.id === id
+        );
+
+
+    if(!item){
+        return;
+    }
+
+
+    currentAssignment =
+        item;
+
+
+    document.getElementById(
+        "modalTitle"
+    ).textContent =
+        item.title;
+
+
+    document.getElementById(
+        "modalSubject"
+    ).textContent =
+        item.subject;
+
+
+    document.getElementById(
+        "modalAssignment"
+    ).textContent =
+        item.title;
+
+
+    document.getElementById(
+        "modalFaculty"
+    ).textContent =
+        item.faculty;
+
+
+    document.getElementById(
+        "modalDue"
+    ).textContent =
+        item.due;
+
+
+    document.getElementById(
+        "modalStatus"
+    ).textContent =
+        item.status;
+
+
+    const button =
+        document.getElementById(
+            "modalSubmitBtn"
+        );
+
+
+    button.style.display =
+        item.status === "Submitted"
+            ? "none"
+            : "block";
+
+
+    document.getElementById(
+        "assignmentModal"
+    ).classList.add(
+        "show"
+    );
+
+}
+
+
+/* =========================================================
+   MODAL
 ========================================================= */
 
 function closeModal(){
 
-    const modal =
-        document.getElementById(
-            "assignmentModal"
-        );
-
-    if(modal)
-
-        modal.classList.remove("show");
+    document.getElementById(
+        "assignmentModal"
+    ).classList.remove(
+        "show"
+    );
 
 }
 
@@ -3389,8 +3165,10 @@ function closeModal(){
 function closeModalOutside(event){
 
     if(
-        event.target.id ===
-        "assignmentModal"
+        event.target ===
+        document.getElementById(
+            "assignmentModal"
+        )
     ){
 
         closeModal();
@@ -3401,26 +3179,30 @@ function closeModalOutside(event){
 
 
 /* =========================================================
-   SUBMIT ASSIGNMENT
+   SUBMIT
 ========================================================= */
 
 function submitAssignment(id){
 
-    const assignment =
+    const item =
         assignments.find(
-            a => a.id === id
+            assignment =>
+                assignment.id === id
         );
 
-    if(!assignment) return;
+
+    if(!item){
+        return;
+    }
 
 
     if(
-        assignment.status ===
+        item.status ===
         "Submitted"
     ){
 
         showToast(
-            "This assignment is already submitted."
+            "Already submitted."
         );
 
         return;
@@ -3428,9 +3210,11 @@ function submitAssignment(id){
     }
 
 
-    assignment.status =
+    item.status =
         "Submitted";
 
+
+    updateSummary();
 
     renderAssignments();
 
@@ -3442,94 +3226,76 @@ function submitAssignment(id){
 }
 
 
-/* =========================================================
-   SUBMIT FROM MODAL
-========================================================= */
+function submitCurrentAssignment(){
 
-function submitFromModal(){
-
-    if(
-        window.currentAssignmentId
-    ){
-
-        submitAssignment(
-            window.currentAssignmentId
-        );
-
-        closeModal();
-
+    if(!currentAssignment){
+        return;
     }
+
+
+    submitAssignment(
+        currentAssignment.id
+    );
+
+
+    closeModal();
 
 }
 
 
 /* =========================================================
-   CHATBOT OPEN / CLOSE
+   CHATBOT
 ========================================================= */
 
 function toggleChatbot(){
 
-    const chatbot =
+    const panel =
         document.getElementById(
             "chatbotPanel"
         );
 
-    const launcher =
+    const bubble =
         document.getElementById(
-            "chatLauncher"
+            "chatBubble"
         );
 
 
-    if(!chatbot) return;
-
-
-    chatbot.classList.toggle(
-        "cc-open"
-    );
-
-
     if(
-        chatbot.classList.contains(
-            "cc-open"
+        panel.classList.contains(
+            "open"
         )
     ){
 
-        if(launcher){
+        panel.classList.remove(
+            "open"
+        );
 
-            launcher.setAttribute(
-                "aria-label",
-                "Close AI College Companion"
-            );
-
-        }
-
-        setTimeout(
-            () => {
-
-                const input =
-                    document.getElementById(
-                        "chatInput"
-                    );
-
-                if(input)
-                    input.focus();
-
-            },
-            250
+        bubble.classList.remove(
+            "hide"
         );
 
     }
 
     else{
 
-        if(launcher){
+        panel.classList.add(
+            "open"
+        );
 
-            launcher.setAttribute(
-                "aria-label",
-                "Open AI College Companion"
-            );
+        bubble.classList.add(
+            "hide"
+        );
 
-        }
+        setTimeout(
+            function(){
+
+                document.getElementById(
+                    "chatInput"
+                ).focus();
+
+            },
+            100
+        );
 
     }
 
@@ -3540,21 +3306,12 @@ function toggleChatbot(){
    QUICK CHAT
 ========================================================= */
 
-function quickChat(message){
+function quickChat(text){
 
-    const input =
-        document.getElementById(
-            "chatInput"
-        );
-
-
-    if(input){
-
-        input.value =
-            message;
-
-    }
-
+    document.getElementById(
+        "chatInput"
+    ).value =
+        text;
 
     sendChat();
 
@@ -3562,440 +3319,7 @@ function quickChat(message){
 
 
 /* =========================================================
-   ADD CHAT MESSAGE
-========================================================= */
-
-function addChatMessage(
-    message,
-    type
-){
-
-    const body =
-        document.getElementById(
-            "chatBody"
-        );
-
-
-    if(!body) return;
-
-
-    const div =
-        document.createElement(
-            "div"
-        );
-
-
-    div.className =
-        type === "user"
-        ? "user-message"
-        : "bot-message";
-
-
-    div.innerHTML =
-        message;
-
-
-    body.appendChild(div);
-
-
-    body.scrollTop =
-        body.scrollHeight;
-
-}
-
-
-/* =========================================================
-   CHATBOT ANSWERS
-========================================================= */
-
-function getChatbotAnswer(question){
-
-    const q =
-        question
-        .toLowerCase()
-        .trim();
-
-
-    /* PENDING */
-
-    if(
-        q.includes("pending")
-        ||
-        q.includes("incomplete")
-    ){
-
-        const pending =
-            assignments.filter(
-                a =>
-                    a.status === "Pending"
-            );
-
-
-        if(pending.length === 0){
-
-            return `
-                ✅ You have no pending assignments.
-            `;
-
-        }
-
-
-        return `
-
-            <strong>
-                ⏳ Pending assignments:
-            </strong>
-
-            <br><br>
-
-            ${
-                pending
-                .map(
-                    a =>
-                    `• ${a.title}<br>
-                     &nbsp;&nbsp;Due: ${formatDate(a.dueDate)}`
-                )
-                .join("<br>")
-            }
-
-        `;
-
-    }
-
-
-    /* OVERDUE */
-
-    if(
-        q.includes("overdue")
-        ||
-        q.includes("late")
-    ){
-
-        const overdue =
-            assignments.filter(
-                a =>
-                    a.status === "Overdue"
-            );
-
-
-        if(overdue.length === 0){
-
-            return `
-                ✅ You have no overdue assignments.
-            `;
-
-        }
-
-
-        return `
-
-            <strong>
-                ⚠️ Overdue assignments:
-            </strong>
-
-            <br><br>
-
-            ${
-                overdue
-                .map(
-                    a =>
-                    `• ${a.title}<br>
-                     &nbsp;&nbsp;Due: ${formatDate(a.dueDate)}`
-                )
-                .join("<br>")
-            }
-
-        `;
-
-    }
-
-
-    /* SUBMITTED */
-
-    if(
-        q.includes("submitted")
-        ||
-        q.includes("completed")
-    ){
-
-        const submitted =
-            assignments.filter(
-                a =>
-                    a.status === "Submitted"
-            );
-
-
-        return `
-
-            <strong>
-                ✅ Submitted assignments:
-            </strong>
-
-            <br><br>
-
-            ${
-                submitted.length
-
-                ?
-
-                submitted
-                .map(
-                    a =>
-                        `• ${a.title}`
-                )
-                .join("<br>")
-
-                :
-
-                "No assignments have been submitted yet."
-            }
-
-        `;
-
-    }
-
-
-    /* NEXT DEADLINE */
-
-    if(
-        q.includes("next deadline")
-        ||
-        q.includes("next due")
-        ||
-        q.includes("deadline")
-    ){
-
-        const upcoming =
-
-            assignments
-
-            .filter(
-                a =>
-                    a.status !== "Submitted"
-            )
-
-            .sort(
-                (a,b) =>
-                    new Date(a.dueDate)
-                    -
-                    new Date(b.dueDate)
-            );
-
-
-        if(!upcoming.length){
-
-            return `
-                🎉 You have no upcoming assignment deadlines.
-            `;
-
-        }
-
-
-        const next =
-            upcoming[0];
-
-
-        return `
-
-            <strong>
-                📅 Your next deadline:
-            </strong>
-
-            <br><br>
-
-            ${next.title}
-
-            <br>
-
-            <strong>
-                Subject:
-            </strong>
-
-            ${next.subject}
-
-            <br>
-
-            <strong>
-                Due:
-            </strong>
-
-            ${formatDate(next.dueDate)}
-
-            <br>
-
-            <strong>
-                Status:
-            </strong>
-
-            ${next.status}
-
-        `;
-
-    }
-
-
-    /* TOTAL */
-
-    if(
-        q.includes("how many")
-        ||
-        q.includes("total assignments")
-        ||
-        q.includes("number of assignments")
-    ){
-
-        return `
-
-            📝 You have
-            <strong>
-                ${assignments.length}
-            </strong>
-            assignments in total.
-
-        `;
-
-    }
-
-
-    /* HELP */
-
-    if(
-        q.includes("help")
-        ||
-        q === "hi"
-        ||
-        q === "hello"
-        ||
-        q.includes("what can you do")
-    ){
-
-        return `
-
-            👋 I can help you with:
-
-            <br><br>
-
-            • Pending assignments
-            <br>
-
-            • Overdue assignments
-            <br>
-
-            • Submitted assignments
-            <br>
-
-            • Next deadline
-            <br>
-
-            • Assignment subjects
-            <br>
-
-            • Assignment status
-            <br>
-
-            • Total assignment count
-
-        `;
-
-    }
-
-
-    /* SPECIFIC ASSIGNMENT */
-
-    const matched =
-        assignments.find(
-            a =>
-
-                q.includes(
-                    a.title
-                    .toLowerCase()
-                )
-
-                ||
-
-                q.includes(
-                    a.subject
-                    .toLowerCase()
-                )
-        );
-
-
-    if(matched){
-
-        return `
-
-            <strong>
-                📝 ${matched.title}
-            </strong>
-
-            <br><br>
-
-            <strong>
-                Subject:
-            </strong>
-
-            ${matched.subject}
-
-            <br>
-
-            <strong>
-                Due:
-            </strong>
-
-            ${formatDate(matched.dueDate)}
-
-            <br>
-
-            <strong>
-                Status:
-            </strong>
-
-            ${matched.status}
-
-            <br><br>
-
-            ${matched.description}
-
-        `;
-
-    }
-
-
-    /* DEFAULT */
-
-    return `
-
-        🤖 I can help you with your
-        assignments, deadlines and
-        submission status.
-
-        <br><br>
-
-        Try asking:
-
-        <br>
-
-        • "Show my pending assignments"
-
-        <br>
-
-        • "Show my overdue assignments"
-
-        <br>
-
-        • "What is my next deadline?"
-
-        <br>
-
-        • "Show submitted assignments"
-
-    `;
-
-}
-
-
-/* =========================================================
-   SEND CHAT
+   CHAT
 ========================================================= */
 
 function sendChat(){
@@ -4005,20 +3329,35 @@ function sendChat(){
             "chatInput"
         );
 
-
-    if(!input) return;
-
-
-    const question =
+    const text =
         input.value.trim();
 
 
-    if(!question) return;
+    if(!text){
+        return;
+    }
 
 
-    addChatMessage(
-        question,
-        "user"
+    const body =
+        document.getElementById(
+            "chatBody"
+        );
+
+
+    const user =
+        document.createElement(
+            "div"
+        );
+
+    user.className =
+        "user-message";
+
+    user.textContent =
+        text;
+
+
+    body.appendChild(
+        user
     );
 
 
@@ -4026,29 +3365,159 @@ function sendChat(){
 
 
     setTimeout(
-        () => {
+        function(){
 
-            const answer =
-                getChatbotAnswer(
-                    question
+            const bot =
+                document.createElement(
+                    "div"
                 );
 
+            bot.className =
+                "bot-message";
 
-            addChatMessage(
-                answer,
-                "bot"
+
+            const lower =
+                text.toLowerCase();
+
+
+            let response =
+                "😊 I can help you with assignments, deadlines and submissions.";
+
+
+            if(
+                lower.includes(
+                    "pending"
+                )
+            ){
+
+                const pending =
+                    assignments.filter(
+                        item =>
+                            item.status ===
+                            "Pending"
+                    );
+
+
+                response =
+                    pending.length
+
+                    ?
+
+                    "📝 You have " +
+                    pending.length +
+                    " pending assignment" +
+                    (
+                        pending.length > 1
+                            ? "s"
+                            : ""
+                    ) +
+                    "."
+
+                    :
+
+                    "🎉 You have no pending assignments.";
+
+            }
+
+
+            else if(
+                lower.includes(
+                    "overdue"
+                )
+            ){
+
+                const overdue =
+                    assignments.filter(
+                        item =>
+                            item.status ===
+                            "Overdue"
+                    );
+
+
+                response =
+                    overdue.length
+
+                    ?
+
+                    "⚠️ You have " +
+                    overdue.length +
+                    " overdue assignment" +
+                    (
+                        overdue.length > 1
+                            ? "s"
+                            : ""
+                    ) +
+                    "."
+
+                    :
+
+                    "🎉 You have no overdue assignments.";
+
+            }
+
+
+            else if(
+                lower.includes(
+                    "submitted"
+                )
+            ){
+
+                const submitted =
+                    assignments.filter(
+                        item =>
+                            item.status ===
+                            "Submitted"
+                    ).length;
+
+
+                response =
+                    "✅ You have submitted " +
+                    submitted +
+                    " assignment" +
+                    (
+                        submitted !== 1
+                            ? "s"
+                            : ""
+                    ) +
+                    ".";
+
+            }
+
+
+            else if(
+                lower.includes(
+                    "deadline"
+                )
+                ||
+                lower.includes(
+                    "due"
+                )
+            ){
+
+                response =
+                    "⏰ Your upcoming assignment deadlines are shown in the Assignment List above.";
+
+            }
+
+
+            bot.textContent =
+                response;
+
+
+            body.appendChild(
+                bot
             );
 
+
+            body.scrollTop =
+                body.scrollHeight;
+
         },
-        250
+        400
     );
 
 }
 
-
-/* =========================================================
-   ENTER KEY
-========================================================= */
 
 function handleChatKey(event){
 
@@ -4056,8 +3525,6 @@ function handleChatKey(event){
         event.key ===
         "Enter"
     ){
-
-        event.preventDefault();
 
         sendChat();
 
@@ -4067,16 +3534,90 @@ function handleChatKey(event){
 
 
 /* =========================================================
-   START PAGE
+   TOAST
 ========================================================= */
 
-loadSubjects();
+function showToast(message){
 
-renderAssignments();
+    const toast =
+        document.getElementById(
+            "toast"
+        );
 
+
+    toast.textContent =
+        message;
+
+
+    toast.classList.add(
+        "show"
+    );
+
+
+    setTimeout(
+        function(){
+
+            toast.classList.remove(
+                "show"
+            );
+
+        },
+        2500
+    );
+
+}
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+function confirmLogout(){
+
+    return confirm(
+        "Are you sure you want to logout?"
+    );
+
+}
+
+
+/* =========================================================
+   ESC
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(
+            event.key ===
+            "Escape"
+        ){
+
+            closeModal();
+
+            document
+                .getElementById(
+                    "chatbotPanel"
+                )
+                .classList.remove(
+                    "open"
+                );
+
+            document
+                .getElementById(
+                    "chatBubble"
+                )
+                .classList.remove(
+                    "hide"
+                );
+
+        }
+
+    }
+);
 
 </script>
 
 </body>
-
 </html>
