@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,9 +9,9 @@
 
 <style>
 
-/* =========================
+/* =========================================================
    GLOBAL
-========================= */
+========================================================= */
 
 *{
     margin:0;
@@ -20,34 +21,30 @@
 
 html,body{
     width:100%;
-    height:100%;
+    min-height:100%;
+}
+
+body{
     font-family:"Segoe UI",Arial,sans-serif;
     background:#f4f6ff;
     color:#17203a;
-    overflow:hidden;
 }
 
-button,
-input,
-textarea,
-select{
-    font-family:inherit;
-}
 
-/* =========================
-   SIDEBAR
-========================= */
+/* =========================================================
+   SIDEBAR - SAME AS FACULTY
+========================================================= */
 
 .sidebar{
     position:fixed;
     left:0;
     top:0;
-    bottom:0;
 
-    width:268px;
-    min-width:268px;
+    width:320px;
+    height:100vh;
 
-    background:linear-gradient(
+    background:
+    linear-gradient(
         180deg,
         #172a70 0%,
         #28237d 48%,
@@ -55,302 +52,464 @@ select{
     );
 
     color:white;
+
     overflow-y:auto;
     overflow-x:hidden;
-    z-index:1000;
-    padding-bottom:20px;
 
-    scrollbar-width:thin;
-    scrollbar-color:rgba(255,255,255,.25) transparent;
+    z-index:1000;
 }
 
-.brand{
-    height:120px;
+
+/* scrollbar */
+
+.sidebar::-webkit-scrollbar{
+    width:7px;
+}
+
+.sidebar::-webkit-scrollbar-track{
+    background:rgba(255,255,255,.05);
+}
+
+.sidebar::-webkit-scrollbar-thumb{
+    background:rgba(255,255,255,.25);
+    border-radius:10px;
+}
+
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.logo-area{
+    height:144px;
+
+    padding:22px 26px;
+
     display:flex;
     align-items:center;
-    padding:22px 18px;
-    border-bottom:1px solid rgba(255,255,255,.12);
+
+    gap:15px;
+
+    border-bottom:1px solid rgba(255,255,255,.15);
+
+    width:100%;
 }
 
-.logo-box{
-    width:52px;
-    height:52px;
-    border-radius:16px;
+.logo-icon{
+    width:62px;
+    height:62px;
+
+    min-width:62px;
+
+    border-radius:18px;
+
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:28px;
 
-    background:linear-gradient(
+    font-size:30px;
+
+    background:
+    linear-gradient(
         135deg,
-        #24b8ff,
-        #7144f5
+        #24b5f5,
+        #6344ef
     );
-
-    box-shadow:0 10px 25px rgba(0,0,0,.20);
 }
 
-.brand-text{
-    margin-left:13px;
+.logo-text{
+    min-width:0;
 }
 
-.brand-title{
+.logo-text h2{
     font-size:21px;
+
     font-weight:800;
-    letter-spacing:-.5px;
+
+    white-space:nowrap;
+
+    letter-spacing:-.4px;
 }
 
-.brand-subtitle{
-    font-size:12px;
-    opacity:.72;
-    margin-top:3px;
+.logo-text p{
+    margin-top:5px;
+
+    font-size:14px;
+
+    color:#c5c9e8;
+
+    white-space:nowrap;
 }
 
-.menu{
-    padding:25px 14px;
+
+/* =========================================================
+   MENU
+========================================================= */
+
+.menu-section{
+    padding:27px 16px 0;
 }
 
 .menu-title{
-    font-size:12px;
-    font-weight:700;
-    color:rgba(255,255,255,.52);
+    padding:0 18px 17px;
+
+    font-size:13px;
+
+    font-weight:800;
+
     letter-spacing:1px;
-    padding:0 11px 10px;
+
+    color:#a9afd3;
 }
 
-.menu-section{
-    margin-top:20px;
-}
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
 
 .nav-item{
-    width:100%;
-    display:flex;
-    align-items:center;
-    min-height:49px;
-    padding:0 14px;
-    margin:5px 0;
-    border-radius:13px;
+    height:60px;
 
-    color:rgba(255,255,255,.84);
+    margin:0 5px 7px;
+
+    padding:0 16px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    border-radius:15px;
+
+    color:#e5e6f6;
+
     text-decoration:none;
 
-    transition:
-        transform .2s ease,
-        background .2s ease,
-        color .2s ease;
+    font-size:17px;
+
+    font-weight:700;
+
+    transition:.25s;
+
+    width:calc(100% - 10px);
 }
 
 .nav-item:hover{
-    background:rgba(255,255,255,.12);
-    color:white;
-    transform:translateX(3px);
+    background:rgba(255,255,255,.10);
 }
 
 .nav-item.active{
-    color:white;
-
-    background:linear-gradient(
+    background:
+    linear-gradient(
         90deg,
-        #22b9f5,
-        #6942f4
+        #24aef2,
+        #5d3ff0
     );
 
-    box-shadow:0 9px 22px rgba(0,0,0,.18);
+    color:white;
+
+    box-shadow:
+    0 8px 20px rgba(48,72,220,.35);
 }
 
 .nav-icon{
-    width:31px;
-    font-size:20px;
+    width:28px;
+
+    min-width:28px;
+
     text-align:center;
-    margin-right:10px;
+
+    font-size:21px;
 }
 
 .nav-text{
-    font-size:15px;
-    font-weight:650;
+    white-space:nowrap;
 }
 
-.logout{
-    margin-top:14px;
-    padding-top:15px;
-    border-top:1px solid rgba(255,255,255,.13);
+
+/* logout */
+
+.logout-item{
+    margin-bottom:30px;
 }
 
-/* =========================
-   MAIN
-========================= */
+.logout-item:hover{
+    background:rgba(255,85,110,.15);
+}
+
+
+/* =========================================================
+   MAIN AREA
+========================================================= */
 
 .main-area{
-    margin-left:268px;
-    margin-right:286px;
+    margin-left:320px;
 
-    width:auto;
-    height:100vh;
+    min-height:100vh;
 
-    overflow-y:auto;
-    overflow-x:hidden;
-
-    background:linear-gradient(
+    background:
+    linear-gradient(
         180deg,
-        #f8f9ff,
-        #eef1fb
+        #f8f9ff 0%,
+        #eef1fb 100%
     );
 }
 
-/* =========================
+
+/* =========================================================
    HEADER
-========================= */
+========================================================= */
 
 .top-header{
-    height:120px;
+    height:144px;
 
-    background:rgba(255,255,255,.96);
+    background:white;
 
     display:flex;
+
     align-items:center;
+
     justify-content:space-between;
 
-    padding:22px 28px;
+    padding:25px 34px;
 
-    border-bottom:1px solid #e9ebf5;
-
-    position:sticky;
-    top:0;
-    z-index:100;
+    border-bottom:1px solid #e7e9f3;
 }
 
 .header-left h1{
-    font-size:30px;
+    font-size:38px;
+
     line-height:1.05;
-    font-weight:800;
+
+    font-weight:900;
+
+    color:#17203a;
+
+    letter-spacing:-1px;
 }
 
 .header-left p{
-    margin-top:7px;
-    color:#8990a7;
-    font-size:14px;
+    margin-top:9px;
+
+    font-size:18px;
+
+    color:#8992b1;
 }
 
 .header-right{
     display:flex;
+
     align-items:center;
-    gap:18px;
+
+    gap:20px;
 }
 
 .time-box{
     font-size:18px;
-    font-weight:750;
-    color:#59617d;
+
+    font-weight:700;
+
+    color:#65708f;
 }
 
 .notification{
-    width:48px;
-    height:48px;
-    background:#fff;
+    position:relative;
+
+    width:58px;
+    height:58px;
+
+    background:white;
+
     border-radius:50%;
 
     display:flex;
+
     align-items:center;
+
     justify-content:center;
 
-    font-size:22px;
+    font-size:25px;
 
     box-shadow:
-        0 5px 18px rgba(40,35,100,.10);
+    0 8px 25px rgba(45,58,100,.10);
 
-    position:relative;
     cursor:pointer;
 }
 
 .notification::after{
     content:"";
 
-    width:8px;
-    height:8px;
-    border-radius:50%;
-
-    background:#ff4f8b;
-
     position:absolute;
+
     top:7px;
-    right:8px;
+    right:9px;
+
+    width:9px;
+    height:9px;
+
+    background:#ff4f91;
+
+    border-radius:50%;
 }
 
-.profile-mini{
+.profile{
     display:flex;
+
     align-items:center;
-    gap:10px;
+
+    gap:13px;
 }
 
 .profile-circle{
-    width:48px;
-    height:48px;
+    width:58px;
+    height:58px;
 
     border-radius:50%;
 
-    background:linear-gradient(
+    background:
+    linear-gradient(
         135deg,
-        #25b8ee,
-        #466cf1
+        #28aef2,
+        #5378ef
     );
 
     color:white;
 
     display:flex;
+
     align-items:center;
     justify-content:center;
 
-    font-size:20px;
+    font-size:22px;
+
     font-weight:800;
 }
 
 .profile-info strong{
     display:block;
-    font-size:15px;
+
+    font-size:18px;
 }
 
 .profile-info span{
     display:block;
-    color:#8d93a8;
-    font-size:12px;
+
+    margin-top:4px;
+
+    color:#9aa1ba;
+
+    font-size:14px;
 }
 
-/* =========================
+
+/* =========================================================
    CONTENT
-========================= */
+========================================================= */
 
 .content{
-    padding:28px;
+    padding:26px 30px 40px;
 }
 
-/* =========================
-   HERO
-========================= */
-
-.hero{
-    min-height:180px;
-
-    border-radius:22px;
-
-    padding:28px 30px;
-
+.page-heading{
     display:flex;
-    align-items:center;
+
     justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:25px;
+}
+
+.page-heading h2{
+    font-size:30px;
+
+    font-weight:900;
+}
+
+.page-heading p{
+    margin-top:7px;
+
+    color:#8992b1;
+
+    font-size:17px;
+}
+
+.primary-btn{
+    border:none;
+
+    padding:15px 24px;
+
+    border-radius:15px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #693fe8,
+        #843de1
+    );
 
     color:white;
 
-    background:linear-gradient(
-        135deg,
-        #29277d,
-        #6736d4
-    );
+    font-size:16px;
+
+    font-weight:800;
+
+    cursor:pointer;
 
     box-shadow:
-        0 15px 35px rgba(61,45,150,.20);
+    0 10px 25px rgba(105,63,232,.20);
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+    min-height:230px;
+
+    padding:36px 45px;
+
+    border-radius:24px;
+
+    overflow:hidden;
+
+    color:white;
+
+    background:
+    linear-gradient(
+        110deg,
+        #214394,
+        #3e27c9 55%,
+        #7738df
+    );
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    margin-bottom:24px;
 
     position:relative;
-    overflow:hidden;
+}
+
+.hero::before{
+    content:"";
+
+    position:absolute;
+
+    width:260px;
+    height:260px;
+
+    right:-70px;
+    top:-110px;
+
+    background:rgba(255,255,255,.08);
+
+    border-radius:50%;
 }
 
 .hero::after{
@@ -358,192 +517,240 @@ select{
 
     position:absolute;
 
-    width:250px;
-    height:250px;
+    width:220px;
+    height:220px;
+
+    right:160px;
+    bottom:-170px;
+
+    background:rgba(255,255,255,.07);
 
     border-radius:50%;
-
-    right:-70px;
-    top:-90px;
-
-    background:rgba(255,255,255,.08);
 }
 
 .hero-text{
-    position:relative;
-    z-index:2;
-}
+    max-width:66%;
 
-.hero-text small{
-    font-size:13px;
-    opacity:.72;
+    position:relative;
+
+    z-index:2;
 }
 
 .hero-text h2{
-    font-size:28px;
-    margin:7px 0;
+    font-size:29px;
+
+    line-height:1.35;
+
+    font-weight:900;
+
+    margin-bottom:12px;
 }
 
 .hero-text p{
-    font-size:13px;
-    opacity:.82;
+    font-size:17px;
+
+    line-height:1.7;
+
+    color:#e0e3ff;
 }
 
-.hero-icon{
+.hero-stats{
+    display:flex;
+
+    gap:16px;
+
     position:relative;
+
     z-index:2;
+}
 
-    width:82px;
-    height:82px;
+.hero-stat{
+    width:185px;
+    height:115px;
 
-    border-radius:24px;
+    border-radius:20px;
 
     display:flex;
-    align-items:center;
-    justify-content:center;
 
-    font-size:42px;
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
 
     background:rgba(255,255,255,.13);
 
-    box-shadow:
-        0 10px 25px rgba(0,0,0,.12);
+    border:1px solid rgba(255,255,255,.18);
 }
 
-/* =========================
-   FEEDBACK SUMMARY
-========================= */
+.hero-stat strong{
+    font-size:36px;
+}
 
-.summary-grid{
+.hero-stat span{
+    margin-top:5px;
+
+    font-size:15px;
+
+    color:#d9dcff;
+}
+
+
+/* =========================================================
+   STATS
+========================================================= */
+
+.stats-grid{
     display:grid;
 
     grid-template-columns:
-        repeat(4,1fr);
+    repeat(4,1fr);
 
-    gap:18px;
+    gap:24px;
 
-    margin-top:22px;
+    margin-bottom:24px;
 }
 
-.summary-card{
+.stat-card{
+    min-height:155px;
+
+    padding:25px;
+
     background:white;
 
-    border:1px solid #e6e8f2;
-
-    border-radius:18px;
-
-    padding:20px;
+    border-radius:20px;
 
     box-shadow:
-        0 8px 25px rgba(40,35,100,.06);
-
-    transition:.2s;
+    0 8px 30px rgba(50,63,110,.06);
 }
 
-.summary-card:hover{
-    transform:translateY(-4px);
-
-    box-shadow:
-        0 14px 30px rgba(40,35,100,.11);
-}
-
-.summary-top{
+.stat-top{
     display:flex;
+
+    align-items:center;
+
     justify-content:space-between;
-    align-items:center;
 }
 
-.summary-icon{
-    width:42px;
-    height:42px;
+.stat-label{
+    color:#7e88a9;
 
-    border-radius:13px;
+    font-size:14px;
+
+    font-weight:800;
+}
+
+.stat-icon{
+    width:48px;
+    height:48px;
+
+    border-radius:15px;
+
+    background:#eef2ff;
 
     display:flex;
+
     align-items:center;
+
     justify-content:center;
 
-    font-size:21px;
-
-    background:#f0edff;
+    font-size:24px;
 }
 
-.summary-card h3{
-    margin-top:13px;
-    font-size:25px;
+.stat-number{
+    margin-top:15px;
+
+    font-size:32px;
+
+    font-weight:900;
+
+    color:#3264dc;
 }
 
-.summary-card p{
-    margin-top:4px;
+.stat-card small{
+    display:block;
 
-    font-size:12px;
+    margin-top:3px;
 
-    color:#9096ab;
+    color:#9aa2bc;
+
+    font-size:13px;
 }
 
-/* =========================
-   FEEDBACK AREA
-========================= */
 
-.feedback-section{
-    margin-top:28px;
+/* =========================================================
+   FEEDBACK SECTION
+========================================================= */
 
-    display:grid;
-
-    grid-template-columns:
-        1.1fr .9fr;
-
-    gap:20px;
-
-    padding-bottom:30px;
-}
-
-.feedback-card,
-.rating-card{
+.section-card{
     background:white;
-
-    border:1px solid #e6e8f2;
 
     border-radius:20px;
 
     padding:24px;
 
     box-shadow:
-        0 8px 25px rgba(40,35,100,.06);
+    0 8px 30px rgba(50,63,110,.06);
+
+    margin-bottom:24px;
 }
 
-.feedback-card h2,
-.rating-card h2{
-    font-size:20px;
+.section-header{
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    margin-bottom:20px;
 }
 
-.feedback-card > p,
-.rating-card > p{
-    margin-top:6px;
+.section-header h3{
+    font-size:21px;
 
-    color:#9298aa;
-
-    font-size:12px;
+    font-weight:900;
 }
 
-/* =========================
-   FORM
-========================= */
+.section-header p{
+    margin-top:5px;
+
+    color:#9098b3;
+
+    font-size:14px;
+}
+
+
+/* =========================================================
+   FEEDBACK FORM
+========================================================= */
+
+.feedback-grid{
+    display:grid;
+
+    grid-template-columns:
+    1fr 1fr;
+
+    gap:20px;
+}
 
 .form-group{
-    margin-top:18px;
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+}
+
+.form-group.full{
+    grid-column:1 / -1;
 }
 
 .form-group label{
-    display:block;
+    font-size:13px;
 
-    margin-bottom:7px;
+    font-weight:800;
 
-    color:#59617d;
-
-    font-size:12px;
-
-    font-weight:700;
+    color:#65708f;
 }
 
 .form-input,
@@ -551,475 +758,376 @@ select{
 .form-textarea{
     width:100%;
 
-    border:1px solid #e0e3ef;
+    border:1px solid #e1e5f1;
 
-    border-radius:12px;
+    border-radius:13px;
+
+    padding:13px 14px;
 
     outline:none;
 
-    color:#5e667d;
+    font-family:inherit;
 
-    font-size:12px;
+    font-size:14px;
+
+    color:#17203a;
 
     background:white;
-}
-
-.form-input,
-.form-select{
-    height:44px;
-
-    padding:0 12px;
-}
-
-.form-textarea{
-    min-height:105px;
-
-    padding:12px;
-
-    resize:vertical;
 }
 
 .form-input:focus,
 .form-select:focus,
 .form-textarea:focus{
-    border-color:#7550e8;
+    border-color:#6a42e7;
 
     box-shadow:
-        0 0 0 3px rgba(117,80,232,.08);
+    0 0 0 3px rgba(106,66,231,.08);
 }
 
-/* RATING */
+.form-textarea{
+    min-height:120px;
 
-.rating-title{
-    margin-top:20px;
-
-    color:#59617d;
-
-    font-size:12px;
-
-    font-weight:700;
+    resize:vertical;
 }
 
-.stars{
+
+/* =========================================================
+   RATING
+========================================================= */
+
+.rating-box{
     display:flex;
 
-    gap:7px;
+    align-items:center;
 
-    margin-top:10px;
+    gap:8px;
 }
 
 .star{
-    width:42px;
-    height:42px;
+    border:none;
 
-    border:1px solid #e0e3ef;
+    background:#eef2ff;
 
-    background:white;
+    width:43px;
+    height:43px;
 
     border-radius:12px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
 
     font-size:21px;
 
     cursor:pointer;
 
     transition:.2s;
-
-    filter:grayscale(1);
 }
 
 .star:hover{
     transform:translateY(-2px);
 
-    background:#f5f1ff;
-
-    filter:grayscale(0);
+    background:#e4e9ff;
 }
 
 .star.selected{
-    background:#fff4cf;
-
-    border-color:#f0c95b;
-
-    filter:grayscale(0);
-
-    transform:translateY(-2px);
+    background:#fff1bd;
 }
 
-.rating-value{
-    margin-top:10px;
 
-    color:#7450dc;
+/* =========================================================
+   FEEDBACK LIST
+========================================================= */
+
+.feedback-list{
+    display:flex;
+
+    flex-direction:column;
+
+    gap:13px;
+}
+
+.feedback-item{
+    padding:17px;
+
+    border:1px solid #edf0f7;
+
+    border-radius:16px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+}
+
+.feedback-left{
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+}
+
+.feedback-icon{
+    width:48px;
+    height:48px;
+
+    border-radius:14px;
+
+    background:#eef2ff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:22px;
+}
+
+.feedback-title{
+    font-size:15px;
+
+    font-weight:900;
+}
+
+.feedback-description{
+    margin-top:4px;
+
+    color:#929ab4;
 
     font-size:12px;
-
-    font-weight:700;
 }
 
-/* CHECKBOXES */
+.feedback-rating{
+    font-size:14px;
 
-.feedback-options{
-    margin-top:20px;
+    font-weight:800;
 
-    display:grid;
-
-    grid-template-columns:
-        repeat(2,1fr);
-
-    gap:9px;
+    color:#3264dc;
 }
 
-.option{
-    border:1px solid #e5e7f0;
 
-    border-radius:11px;
+/* =========================================================
+   BUTTON
+========================================================= */
 
-    padding:10px;
+.submit-btn{
+    margin-top:5px;
 
-    font-size:11px;
-
-    color:#687089;
-
-    cursor:pointer;
-
-    transition:.2s;
-}
-
-.option:hover{
-    border-color:#8062e8;
-
-    background:#f7f4ff;
-}
-
-.option input{
-    margin-right:6px;
-}
-
-/* BUTTON */
-
-.submit-feedback{
-    width:100%;
-
-    height:45px;
-
-    margin-top:20px;
+    padding:14px 24px;
 
     border:none;
 
-    border-radius:12px;
+    border-radius:13px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #693fe8,
+        #843de1
+    );
 
     color:white;
 
-    background:linear-gradient(
+    font-size:14px;
+
+    font-weight:800;
+
+    cursor:pointer;
+}
+
+
+/* =========================================================
+   CHATBOT - SAME AS FACULTY
+========================================================= */
+
+.chatbot-button{
+    position:fixed;
+
+    right:24px;
+    bottom:24px;
+
+    width:76px;
+    height:76px;
+
+    border-radius:50%;
+
+    border:none;
+
+    background:
+    linear-gradient(
         135deg,
-        #6543e8,
-        #843de0
+        #653fe8,
+        #843ce1
     );
 
-    font-size:13px;
+    box-shadow:
+    0 12px 30px rgba(86,55,210,.35);
 
-    font-weight:700;
+    font-size:34px;
+
+    color:white;
 
     cursor:pointer;
 
-    box-shadow:
-        0 8px 18px rgba(101,67,232,.20);
+    z-index:9999;
 
-    transition:.2s;
-}
-
-.submit-feedback:hover{
-    transform:translateY(-2px);
-}
-
-/* =========================
-   RECENT FEEDBACK
-========================= */
-
-.recent-section{
-    margin-top:2px;
-
-    padding-bottom:30px;
-}
-
-.recent-section h2{
-    font-size:20px;
-}
-
-.recent-section > p{
-    color:#9298aa;
-
-    font-size:12px;
-
-    margin-top:5px;
-}
-
-.recent-list{
-    display:grid;
-
-    grid-template-columns:
-        repeat(2,1fr);
-
-    gap:16px;
-
-    margin-top:17px;
-}
-
-.recent-card{
-    background:white;
-
-    border:1px solid #e6e8f2;
-
-    border-radius:17px;
-
-    padding:18px;
-
-    box-shadow:
-        0 7px 22px rgba(40,35,100,.05);
-}
-
-.recent-top{
     display:flex;
 
-    justify-content:space-between;
-
     align-items:center;
+
+    justify-content:center;
 }
 
-.recent-subject{
-    font-size:13px;
+.chatbot-button::after{
+    content:"";
 
-    font-weight:750;
+    position:absolute;
 
-    color:#343c58;
+    width:14px;
+    height:14px;
+
+    top:3px;
+    right:3px;
+
+    border-radius:50%;
+
+    background:#ff4d91;
+
+    border:3px solid white;
 }
 
-.recent-date{
-    font-size:10px;
 
-    color:#999fb0;
-}
+/* =========================================================
+   CHAT WINDOW
+========================================================= */
 
-.small-stars{
-    margin-top:9px;
+.chat-window{
+    display:none;
 
-    letter-spacing:2px;
-
-    font-size:14px;
-}
-
-.recent-card p{
-    margin-top:8px;
-
-    color:#777f96;
-
-    font-size:11px;
-
-    line-height:1.55;
-}
-
-/* =========================
-   CHATBOT
-========================= */
-
-.chatbot{
     position:fixed;
 
-    top:18px;
-    right:18px;
-    bottom:18px;
+    right:24px;
+    bottom:24px;
 
-    width:268px;
-    min-width:268px;
-    max-width:268px;
+    width:350px;
+    height:480px;
 
     background:white;
 
     border-radius:22px;
 
-    border:1px solid #e5e6f2;
-
     box-shadow:
-        0 15px 45px rgba(40,35,100,.15);
-
-    z-index:9999;
-
-    display:flex;
-    flex-direction:column;
+    0 20px 55px rgba(40,35,100,.25);
 
     overflow:hidden;
+
+    z-index:9998;
+}
+
+.chat-window.open{
+    display:flex;
+
+    flex-direction:column;
 }
 
 .chat-header{
-    min-height:82px;
+    padding:17px;
 
-    flex-shrink:0;
-
-    padding:15px;
-
-    display:flex;
-    align-items:center;
+    background:
+    linear-gradient(
+        135deg,
+        #263b91,
+        #713de0
+    );
 
     color:white;
 
-    background:linear-gradient(
-        135deg,
-        #29277d,
-        #7137d8
-    );
+    display:flex;
+
+    align-items:center;
+
+    gap:11px;
 }
 
-.robot-icon{
+.robot{
     width:45px;
     height:45px;
 
-    border-radius:14px;
-
     background:rgba(255,255,255,.15);
 
+    border-radius:13px;
+
     display:flex;
+
     align-items:center;
+
     justify-content:center;
 
     font-size:24px;
-
-    margin-right:10px;
 }
 
-.chat-title strong{
+.chat-header strong{
     display:block;
+
     font-size:15px;
 }
 
-.chat-title span{
+.chat-header span{
     display:block;
-
-    font-size:10px;
 
     margin-top:3px;
 
-    color:rgba(255,255,255,.78);
-}
+    font-size:11px;
 
-.online-dot{
-    display:inline-block;
-
-    width:7px;
-    height:7px;
-
-    background:#57e6a3;
-
-    border-radius:50%;
-
-    margin-right:4px;
+    color:#d9ddff;
 }
 
 .chat-body{
     flex:1;
 
-    min-height:0;
-
-    padding:17px 14px;
+    padding:16px;
 
     overflow-y:auto;
 
-    background:linear-gradient(
-        180deg,
-        #fafbff,
-        #f4f5fb
-    );
+    background:#f7f8fd;
 }
 
 .bot-message{
     background:white;
 
-    border:1px solid #e7e9f3;
+    padding:12px 14px;
 
     border-radius:14px;
 
-    padding:12px;
-
     margin-bottom:10px;
 
-    color:#65708d;
+    font-size:12px;
 
-    font-size:11px;
-
-    line-height:1.6;
+    line-height:1.5;
 
     box-shadow:
-        0 5px 15px rgba(40,35,100,.04);
+    0 4px 15px rgba(40,50,90,.05);
 }
 
 .user-message{
-    background:linear-gradient(
-        135deg,
-        #6241e8,
-        #7b3ee0
-    );
+    background:#5b42dd;
 
     color:white;
 
-    padding:10px 12px;
+    padding:11px 14px;
 
-    border-radius:
-        14px 14px 4px 14px;
+    border-radius:14px;
 
-    margin:
-        9px 0 9px 20px;
+    margin-bottom:10px;
 
-    font-size:11px;
+    margin-left:35px;
 
-    line-height:1.5;
-}
-
-.quick-buttons{
-    display:flex;
-
-    gap:5px;
-
-    flex-wrap:wrap;
-
-    padding:9px 14px;
-
-    background:white;
-
-    border-top:1px solid #eceef5;
-}
-
-.quick-btn{
-    border:1px solid #e0e3f0;
-
-    background:white;
-
-    color:#6b54d9;
-
-    border-radius:20px;
-
-    padding:7px 9px;
-
-    font-size:9px;
-
-    cursor:pointer;
-
-    transition:.2s;
-}
-
-.quick-btn:hover{
-    background:#f3f0ff;
+    font-size:12px;
 }
 
 .chat-footer{
-    flex-shrink:0;
-
     padding:10px;
 
-    background:white;
-
-    border-top:1px solid #eceef5;
+    border-top:1px solid #e8eaf2;
 
     display:flex;
 
@@ -1029,399 +1137,534 @@ select{
 .chat-input{
     flex:1;
 
-    min-width:0;
+    border:1px solid #e0e4ef;
 
-    height:40px;
+    border-radius:11px;
 
-    border:1px solid #e1e4ef;
-
-    border-radius:12px;
+    padding:10px;
 
     outline:none;
 
-    padding:0 11px;
-
-    font-size:11px;
-
-    color:#555e78;
+    font-size:12px;
 }
 
 .send-btn{
-    width:40px;
-    height:40px;
+    width:42px;
 
     border:none;
 
-    border-radius:12px;
+    border-radius:11px;
+
+    background:#633fe0;
 
     color:white;
 
-    background:linear-gradient(
-        135deg,
-        #6543e8,
-        #843de0
-    );
-
     cursor:pointer;
-
-    font-size:17px;
-
-    transition:.2s;
 }
 
-/* =========================
+
+/* =========================================================
    TOAST
-========================= */
+========================================================= */
 
 .toast{
     position:fixed;
 
-    left:50%;
-    bottom:25px;
+    right:24px;
+    top:24px;
 
-    transform:
-        translateX(-50%)
-        translateY(80px);
-
-    background:#25244f;
+    background:#20294a;
 
     color:white;
 
-    padding:12px 18px;
+    padding:13px 18px;
 
-    border-radius:12px;
-
-    font-size:12px;
+    border-radius:11px;
 
     opacity:0;
 
+    transform:translateY(-10px);
+
+    pointer-events:none;
+
     transition:.3s;
 
-    z-index:30000;
+    z-index:10000;
 
-    box-shadow:
-        0 12px 30px rgba(0,0,0,.20);
+    font-size:13px;
 }
 
 .toast.show{
     opacity:1;
 
-    transform:
-        translateX(-50%)
-        translateY(0);
+    transform:translateY(0);
 }
 
-/* =========================
+
+/* =========================================================
    RESPONSIVE
-========================= */
+========================================================= */
 
-@media(max-width:1150px){
+@media(max-width:1200px){
 
     .sidebar{
-        width:230px;
-        min-width:230px;
+        width:290px;
     }
 
     .main-area{
-        margin-left:230px;
-        margin-right:250px;
+        margin-left:290px;
     }
 
-    .chatbot{
-        width:232px;
-        min-width:232px;
-        max-width:232px;
-        right:10px;
+    .stats-grid{
+        grid-template-columns:
+        repeat(2,1fr);
     }
 
-    .summary-grid{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .feedback-section{
-        grid-template-columns:1fr;
-    }
-
-    .recent-list{
-        grid-template-columns:1fr;
-    }
-}
-
-@media(max-width:900px){
-
-    .chatbot{
+    .hero-stats{
         display:none;
     }
 
-    .main-area{
-        margin-right:0;
+    .hero-text{
+        max-width:100%;
     }
 }
 
-@media(max-width:700px){
+
+@media(max-width:850px){
 
     .sidebar{
-        width:80px;
-        min-width:80px;
+        width:78px;
     }
 
-    .brand{
-        justify-content:center;
-        padding:15px;
-    }
-
-    .brand-text{
-        display:none;
-    }
-
+    .logo-text,
     .menu-title,
     .nav-text{
         display:none;
     }
 
+    .logo-area{
+        justify-content:center;
+
+        padding:15px;
+    }
+
     .nav-item{
         justify-content:center;
+
         padding:0;
     }
 
-    .nav-icon{
-        margin:0;
-    }
-
     .main-area{
-        margin-left:80px;
+        margin-left:78px;
     }
 
-    .top-header{
-        padding:18px;
-    }
-
-    .header-left h1{
-        font-size:23px;
-    }
-
-    .header-right{
-        gap:8px;
-    }
-
-    .time-box,
-    .profile-info{
+    .profile-info,
+    .time-box{
         display:none;
     }
+
+    .feedback-grid{
+        grid-template-columns:1fr;
+    }
+
+    .form-group.full{
+        grid-column:auto;
+    }
+}
+
+
+@media(max-width:650px){
 
     .content{
         padding:18px;
     }
 
-    .summary-grid{
+    .top-header{
+        padding:20px;
+    }
+
+    .header-left h1{
+        font-size:30px;
+    }
+
+    .header-left p{
+        font-size:14px;
+    }
+
+    .stats-grid{
         grid-template-columns:1fr;
     }
 
-    .feedback-options{
-        grid-template-columns:1fr;
+    .page-heading{
+        align-items:flex-start;
+
+        flex-direction:column;
+
+        gap:14px;
     }
 
     .hero{
-        padding:22px;
+        padding:28px;
     }
 
     .hero-text h2{
         font-size:23px;
     }
 
-    .hero-icon{
-        width:60px;
-        height:60px;
-        font-size:30px;
+    .hero-text p{
+        font-size:14px;
+    }
+
+    .chat-window{
+        width:calc(100% - 30px);
+
+        height:460px;
+
+        right:15px;
+
+        bottom:15px;
+    }
+
+    .chatbot-button{
+        width:68px;
+        height:68px;
+
+        right:18px;
+        bottom:18px;
     }
 }
 
 </style>
 </head>
 
+
 <body>
 
-<!-- =========================
+
+<!-- =====================================================
      SIDEBAR
-========================= -->
+===================================================== -->
 
 <aside class="sidebar">
 
-    <div class="brand">
 
-        <div class="logo-box">
+    <!-- LOGO -->
+
+    <div class="logo-area">
+
+        <div class="logo-icon">
             🎓
         </div>
 
-        <div class="brand-text">
+        <div class="logo-text">
 
-            <div class="brand-title">
-                CampusConnect
-            </div>
+            <h2>CampusConnect</h2>
 
-            <div class="brand-subtitle">
-                AI College Companion
-            </div>
+            <p>AI College Companion</p>
 
         </div>
 
     </div>
 
 
-    <div class="menu">
+
+    <!-- =================================================
+         MAIN MENU
+    ================================================= -->
+
+    <div class="menu-section">
 
         <div class="menu-title">
             MAIN MENU
         </div>
 
-        <a class="nav-item" href="../dashboard.html">
+
+        <a class="nav-item"
+           href="dashboard.html">
+
             <span class="nav-icon">🏠</span>
-            <span class="nav-text">Dashboard</span>
+
+            <span class="nav-text">
+                Dashboard
+            </span>
+
         </a>
 
-        <a class="nav-item" href="courses.html">
 
-    <span class="nav-icon">
-        📚
-    </span>
+        <a class="nav-item"
+           href="courses.html">
 
-    <span class="nav-text">
-        Courses
-    </span>
+            <span class="nav-icon">📚</span>
 
-</a>
+            <span class="nav-text">
+                Courses
+            </span>
 
-        <a class="nav-item" href="timetable.html">
+        </a>
+
+
+        <a class="nav-item"
+           href="timetable.html">
+
             <span class="nav-icon">🗓️</span>
-            <span class="nav-text">Timetable</span>
+
+            <span class="nav-text">
+                Timetable
+            </span>
+
         </a>
 
-        <a class="nav-item" href="assignments.html">
+
+        <a class="nav-item"
+           href="assignments.html">
+
             <span class="nav-icon">📝</span>
-            <span class="nav-text">Assignments</span>
+
+            <span class="nav-text">
+                Assignments
+            </span>
+
         </a>
 
-        <a class="nav-item" href="attendance.html">
+
+        <a class="nav-item"
+           href="attendance.html">
+
             <span class="nav-icon">📊</span>
-            <span class="nav-text">Attendance</span>
+
+            <span class="nav-text">
+                Attendance
+            </span>
+
         </a>
 
-        <a class="nav-item" href="academics.html">
+
+        <a class="nav-item"
+           href="academics.html">
+
             <span class="nav-icon">🎓</span>
-            <span class="nav-text">Academics</span>
+
+            <span class="nav-text">
+                Academics
+            </span>
+
         </a>
 
-        <a class="nav-item" href="faculty.html">
-            <span class="nav-icon">👨‍🏫</span>
-            <span class="nav-text">Faculty</span>
+
+        <a class="nav-item"
+           href="faculty.html">
+
+            <span class="nav-icon">👩‍🏫</span>
+
+            <span class="nav-text">
+                Faculty
+            </span>
+
+        </a>
+
+    </div>
+
+
+
+    <!-- =================================================
+         CAREER
+    ================================================= -->
+
+    <div class="menu-section">
+
+        <div class="menu-title">
+            CAREER
+        </div>
+
+
+        <a class="nav-item"
+           href="placement.html">
+
+            <span class="nav-icon">💼</span>
+
+            <span class="nav-text">
+                Placement
+            </span>
+
         </a>
 
 
-        <div class="menu-section">
+        <a class="nav-item"
+           href="results.html">
 
-            <div class="menu-title">
-                CAREER
-            </div>
+            <span class="nav-icon">🏆</span>
 
-            <a class="nav-item" href="placement.html">
-                <span class="nav-icon">💼</span>
-                <span class="nav-text">Placement</span>
-            </a>
+            <span class="nav-text">
+                Results
+            </span>
 
-            <a class="nav-item" href="results.html">
-                <span class="nav-icon">📈</span>
-                <span class="nav-text">Results</span>
-            </a>
+        </a>
 
+
+        <a class="nav-item"
+           href="documents.html">
+
+            <span class="nav-icon">📁</span>
+
+            <span class="nav-text">
+                Documents
+            </span>
+
+        </a>
+
+
+        <a class="nav-item"
+           href="complaints.html">
+
+            <span class="nav-icon">📢</span>
+
+            <span class="nav-text">
+                Complaints
+            </span>
+
+        </a>
+
+
+        <!-- ACTIVE FEEDBACK -->
+
+        <a class="nav-item active"
+           href="feedback.html">
+
+            <span class="nav-icon">💬</span>
+
+            <span class="nav-text">
+                Feedback
+            </span>
+
+        </a>
+
+
+        <a class="nav-item"
+           href="lost-found.html">
+
+            <span class="nav-icon">🔎</span>
+
+            <span class="nav-text">
+                Lost &amp; Found
+            </span>
+
+        </a>
+
+
+        <a class="nav-item"
+           href="campus.html">
+
+            <span class="nav-icon">🏫</span>
+
+            <span class="nav-text">
+                Campus
+            </span>
+
+        </a>
+
+
+        <a class="nav-item"
+           href="events.html">
+
+            <span class="nav-icon">🎉</span>
+
+            <span class="nav-text">
+                Events
+            </span>
+
+        </a>
+
+
+        <a class="nav-item"
+           href="exams.html">
+
+            <span class="nav-icon">📋</span>
+
+            <span class="nav-text">
+                Exams
+            </span>
+
+        </a>
+
+
+        <a class="nav-item"
+           href="notifications.html">
+
+            <span class="nav-icon">🔔</span>
+
+            <span class="nav-text">
+                Notifications
+            </span>
+
+        </a>
+
+    </div>
+
+
+
+    <!-- =================================================
+         ACCOUNT
+    ================================================= -->
+
+    <div class="menu-section">
+
+        <div class="menu-title">
+            ACCOUNT
         </div>
 
 
-        <div class="menu-section">
+        <a class="nav-item"
+           href="profile.html">
 
-            <div class="menu-title">
-                CAMPUS
-            </div>
+            <span class="nav-icon">👤</span>
 
-            <a class="nav-item" href="documents.html">
-                <span class="nav-icon">📄</span>
-                <span class="nav-text">Documents</span>
-            </a>
+            <span class="nav-text">
+                Profile
+            </span>
 
-            <a class="nav-item" href="complaints.html">
-                <span class="nav-icon">📢</span>
-                <span class="nav-text">Complaints</span>
-            </a>
-
-            <a class="nav-item active" href="feedback.html">
-                <span class="nav-icon">💬</span>
-                <span class="nav-text">Feedback</span>
-            </a>
-
-            <a class="nav-item" href="lost-found.html">
-                <span class="nav-icon">🔎</span>
-                <span class="nav-text">Lost &amp; Found</span>
-            </a>
-
-            <a class="nav-item" href="campus.html">
-                <span class="nav-icon">🏫</span>
-                <span class="nav-text">Campus</span>
-            </a>
-
-            <a class="nav-item" href="events.html">
-                <span class="nav-icon">🎉</span>
-                <span class="nav-text">Events</span>
-            </a>
-
-            <a class="nav-item" href="exams.html">
-                <span class="nav-icon">📋</span>
-                <span class="nav-text">Exams</span>
-            </a>
-
-            <a class="nav-item" href="notifications.html">
-                <span class="nav-icon">🔔</span>
-                <span class="nav-text">Notifications</span>
-            </a>
-
-        </div>
+        </a>
 
 
-        <div class="menu-section">
+        <a class="nav-item"
+           href="settings.html">
 
-            <div class="menu-title">
-                ACCOUNT
-            </div>
+            <span class="nav-icon">⚙️</span>
 
-            <a class="nav-item" href="profile.html">
-                <span class="nav-icon">👤</span>
-                <span class="nav-text">Profile</span>
-            </a>
+            <span class="nav-text">
+                Settings
+            </span>
 
-            <a class="nav-item" href="settings.html">
-                <span class="nav-icon">⚙️</span>
-                <span class="nav-text">Settings</span>
-            </a>
+        </a>
 
-            <a
-                class="nav-item logout"
-                href="#"
-                onclick="logoutUser(event)"
-            >
-                <span class="nav-icon">🚪</span>
-                <span class="nav-text">Logout</span>
-            </a>
 
-        </div>
+        <a class="nav-item logout-item"
+           href="login.html"
+           onclick="return logoutUser()">
+
+            <span class="nav-icon">🚪</span>
+
+            <span class="nav-text">
+                Logout
+            </span>
+
+        </a>
 
     </div>
 
 </aside>
 
 
-<!-- =========================
-     MAIN AREA
-========================= -->
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
 
 <main class="main-area">
+
+
+    <!-- =================================================
+         HEADER
+    ================================================= -->
 
     <header class="top-header">
 
@@ -1432,7 +1675,7 @@ select{
             </h1>
 
             <p>
-                Share your thoughts and help improve CampusConnect
+                Share your experience and help us improve CampusConnect
             </p>
 
         </div>
@@ -1440,31 +1683,33 @@ select{
 
         <div class="header-right">
 
-            <div class="time-box" id="clock">
-                00:00:00
+            <div class="time-box"
+                 id="clock">
             </div>
 
-            <div
-                class="notification"
-                onclick="showToast('You have new notifications 🔔')"
-            >
+
+            <div class="notification"
+                 onclick="showToast('You have new notifications 🔔')">
+
                 🔔
+
             </div>
 
-            <div class="profile-mini">
+
+            <div class="profile">
 
                 <div class="profile-circle">
-                    PB
+                    P
                 </div>
 
                 <div class="profile-info">
 
                     <strong>
-                        Priya Bhavani
+                        Student
                     </strong>
 
                     <span>
-                        Student
+                        BCA • 5th Sem
                     </span>
 
                 </div>
@@ -1476,201 +1721,274 @@ select{
     </header>
 
 
+
+    <!-- =================================================
+         CONTENT
+    ================================================= -->
+
     <section class="content">
 
 
-        <!-- HERO -->
+        <!-- PAGE HEADING -->
+
+        <div class="page-heading">
+
+            <div>
+
+                <h2>
+                    💬 Feedback Overview
+                </h2>
+
+                <p>
+                    Tell us about your experience and suggestions.
+                </p>
+
+            </div>
+
+
+            <button class="primary-btn"
+                    onclick="scrollToFeedback()">
+
+                + Give Feedback
+
+            </button>
+
+        </div>
+
+
+
+        <!-- =================================================
+             HERO
+        ================================================= -->
 
         <div class="hero">
 
             <div class="hero-text">
 
-                <small>
-                    YOUR VOICE MATTERS
-                </small>
-
                 <h2>
-                    Help Us Improve CampusConnect 💬
+                    Your feedback helps us improve 💙
                 </h2>
 
                 <p>
-                    Share your experience, suggestions and ideas
-                    to make your college experience better.
+                    Share your thoughts about academics, faculty,
+                    campus facilities and your overall CampusConnect
+                    experience. Every suggestion helps make your
+                    college experience better.
                 </p>
 
             </div>
 
-            <div class="hero-icon">
-                💬
+
+            <div class="hero-stats">
+
+                <div class="hero-stat">
+
+                    <strong>
+                        4.5
+                    </strong>
+
+                    <span>
+                        Your Rating
+                    </span>
+
+                </div>
+
+
+                <div class="hero-stat">
+
+                    <strong>
+                        3
+                    </strong>
+
+                    <span>
+                        Feedback Given
+                    </span>
+
+                </div>
+
             </div>
 
         </div>
 
 
-        <!-- SUMMARY -->
 
-        <div class="summary-grid">
+        <!-- =================================================
+             STATS
+        ================================================= -->
 
-            <div class="summary-card">
+        <div class="stats-grid">
 
-                <div class="summary-top">
 
-                    <span style="font-size:11px;color:#9298aa;">
-                        Feedback Given
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <span class="stat-label">
+                        FEEDBACK GIVEN
                     </span>
 
-                    <div class="summary-icon">
+                    <div class="stat-icon">
                         💬
                     </div>
 
                 </div>
 
-                <h3 id="feedbackCount">
-                    6
-                </h3>
+                <div class="stat-number">
+                    3
+                </div>
 
-                <p>
+                <small>
                     Total feedback submitted
-                </p>
+                </small>
 
             </div>
 
 
-            <div class="summary-card">
 
-                <div class="summary-top">
+            <div class="stat-card">
 
-                    <span style="font-size:11px;color:#9298aa;">
-                        Average Rating
+                <div class="stat-top">
+
+                    <span class="stat-label">
+                        AVERAGE RATING
                     </span>
 
-                    <div class="summary-icon">
+                    <div class="stat-icon">
                         ⭐
                     </div>
 
                 </div>
 
-                <h3>
+                <div class="stat-number">
                     4.5
-                </h3>
+                </div>
 
-                <p>
-                    Your average rating
-                </p>
+                <small>
+                    Out of 5.0
+                </small>
 
             </div>
 
 
-            <div class="summary-card">
 
-                <div class="summary-top">
+            <div class="stat-card">
 
-                    <span style="font-size:11px;color:#9298aa;">
-                        Suggestions
+                <div class="stat-top">
+
+                    <span class="stat-label">
+                        RESPONDED
                     </span>
 
-                    <div class="summary-icon">
-                        💡
+                    <div class="stat-icon">
+                        ✅
                     </div>
 
                 </div>
 
-                <h3>
-                    3
-                </h3>
+                <div class="stat-number">
+                    2
+                </div>
 
-                <p>
-                    Ideas shared
-                </p>
+                <small>
+                    Feedback reviewed
+                </small>
 
             </div>
 
 
-            <div class="summary-card">
 
-                <div class="summary-top">
+            <div class="stat-card">
 
-                    <span style="font-size:11px;color:#9298aa;">
-                        Impact
+                <div class="stat-top">
+
+                    <span class="stat-label">
+                        PENDING
                     </span>
 
-                    <div class="summary-icon">
-                        🚀
+                    <div class="stat-icon">
+                        ⏳
                     </div>
 
                 </div>
 
-                <h3>
-                    High
-                </h3>
+                <div class="stat-number">
+                    1
+                </div>
 
-                <p>
-                    Your feedback helps us
-                </p>
+                <small>
+                    Awaiting review
+                </small>
 
             </div>
 
         </div>
 
 
-        <!-- FEEDBACK FORM -->
 
-        <div class="feedback-section">
+        <!-- =================================================
+             GIVE FEEDBACK
+        ================================================= -->
+
+        <div class="section-card"
+             id="feedbackFormSection">
+
+            <div class="section-header">
+
+                <div>
+
+                    <h3>
+                        Give Your Feedback
+                    </h3>
+
+                    <p>
+                        Tell us how we can improve your college experience.
+                    </p>
+
+                </div>
+
+            </div>
 
 
-            <div class="feedback-card">
-
-                <h2>
-                    Submit Feedback
-                </h2>
-
-                <p>
-                    Tell us about your experience.
-                </p>
+            <div class="feedback-grid">
 
 
                 <div class="form-group">
 
                     <label>
-                        Feedback Type
+                        Feedback Category
                     </label>
 
-                    <select
-                        class="form-select"
-                        id="feedbackType"
-                    >
+                    <select class="form-select"
+                            id="category">
 
-                        <option value="General">
-                            General Feedback
+                        <option>
+                            Select category
                         </option>
 
-                        <option value="Academics">
+                        <option>
                             Academics
                         </option>
 
-                        <option value="Faculty">
+                        <option>
                             Faculty
                         </option>
 
-                        <option value="Campus">
+                        <option>
                             Campus Facilities
                         </option>
 
-                        <option value="Events">
-                            Events
-                        </option>
-
-                        <option value="Placement">
+                        <option>
                             Placement
                         </option>
 
-                        <option value="CampusConnect">
-                            CampusConnect App
+                        <option>
+                            CampusConnect
                         </option>
 
                     </select>
 
                 </div>
+
 
 
                 <div class="form-group">
@@ -1680,16 +1998,60 @@ select{
                     </label>
 
                     <input
-                        type="text"
                         class="form-input"
-                        id="feedbackSubject"
-                        placeholder="Enter feedback subject"
-                    >
+                        id="subject"
+                        type="text"
+                        placeholder="Enter feedback subject">
 
                 </div>
 
 
-                <div class="form-group">
+
+                <div class="form-group full">
+
+                    <label>
+                        Your Rating
+                    </label>
+
+                    <div class="rating-box">
+
+                        <button class="star"
+                                onclick="selectRating(1)"
+                                id="star1">
+                            ⭐
+                        </button>
+
+                        <button class="star"
+                                onclick="selectRating(2)"
+                                id="star2">
+                            ⭐
+                        </button>
+
+                        <button class="star"
+                                onclick="selectRating(3)"
+                                id="star3">
+                            ⭐
+                        </button>
+
+                        <button class="star"
+                                onclick="selectRating(4)"
+                                id="star4">
+                            ⭐
+                        </button>
+
+                        <button class="star"
+                                onclick="selectRating(5)"
+                                id="star5">
+                            ⭐
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="form-group full">
 
                     <label>
                         Your Feedback
@@ -1697,149 +2059,21 @@ select{
 
                     <textarea
                         class="form-textarea"
-                        id="feedbackMessage"
-                        placeholder="Write your feedback or suggestion..."
-                    ></textarea>
+                        id="feedbackText"
+                        placeholder="Write your feedback or suggestion..."></textarea>
 
                 </div>
 
 
-                <button
-                    class="submit-feedback"
-                    onclick="submitFeedback()"
-                >
-                    Submit Feedback
-                </button>
 
-            </div>
+                <div class="form-group full">
 
+                    <button class="submit-btn"
+                            onclick="submitFeedback()">
 
-            <!-- RATING -->
+                        Submit Feedback
 
-            <div class="rating-card">
-
-                <h2>
-                    Rate Your Experience ⭐
-                </h2>
-
-                <p>
-                    How satisfied are you with CampusConnect?
-                </p>
-
-
-                <div class="rating-title">
-                    Overall Experience
-                </div>
-
-
-                <div class="stars">
-
-                    <button
-                        class="star"
-                        data-rating="1"
-                        onclick="selectRating(1)"
-                    >
-                        ⭐
                     </button>
-
-                    <button
-                        class="star"
-                        data-rating="2"
-                        onclick="selectRating(2)"
-                    >
-                        ⭐
-                    </button>
-
-                    <button
-                        class="star"
-                        data-rating="3"
-                        onclick="selectRating(3)"
-                    >
-                        ⭐
-                    </button>
-
-                    <button
-                        class="star"
-                        data-rating="4"
-                        onclick="selectRating(4)"
-                    >
-                        ⭐
-                    </button>
-
-                    <button
-                        class="star"
-                        data-rating="5"
-                        onclick="selectRating(5)"
-                    >
-                        ⭐
-                    </button>
-
-                </div>
-
-
-                <div
-                    class="rating-value"
-                    id="ratingValue"
-                >
-                    Select a rating
-                </div>
-
-
-                <div class="rating-title">
-                    What can we improve?
-                </div>
-
-
-                <div class="feedback-options">
-
-                    <label class="option">
-                        <input type="checkbox" value="Performance">
-                        Performance
-                    </label>
-
-                    <label class="option">
-                        <input type="checkbox" value="Design">
-                        Design
-                    </label>
-
-                    <label class="option">
-                        <input type="checkbox" value="Features">
-                        Features
-                    </label>
-
-                    <label class="option">
-                        <input type="checkbox" value="Navigation">
-                        Navigation
-                    </label>
-
-                    <label class="option">
-                        <input type="checkbox" value="Chatbot">
-                        AI Chatbot
-                    </label>
-
-                    <label class="option">
-                        <input type="checkbox" value="Mobile">
-                        Mobile Experience
-                    </label>
-
-                </div>
-
-
-                <div
-                    style="
-                    margin-top:22px;
-                    padding:15px;
-                    border-radius:13px;
-                    background:#f6f3ff;
-                    color:#6e6790;
-                    font-size:11px;
-                    line-height:1.6;
-                    "
-                >
-
-                    💡 <strong>Tip:</strong>
-                    Honest feedback helps the CampusConnect
-                    team improve the student experience.
 
                 </div>
 
@@ -1848,104 +2082,173 @@ select{
         </div>
 
 
-        <!-- RECENT FEEDBACK -->
 
-        <div class="recent-section">
+        <!-- =================================================
+             PREVIOUS FEEDBACK
+        ================================================= -->
 
-            <h2>
-                Recent Feedback
-            </h2>
+        <div class="section-card">
 
-            <p>
-                Your recently submitted feedback
-            </p>
+            <div class="section-header">
 
+                <div>
 
-            <div class="recent-list">
-
-
-                <div class="recent-card">
-
-                    <div class="recent-top">
-
-                        <span class="recent-subject">
-                            CampusConnect App
-                        </span>
-
-                        <span class="recent-date">
-                            12 Sep 2026
-                        </span>
-
-                    </div>
-
-                    <div class="small-stars">
-                        ⭐⭐⭐⭐⭐
-                    </div>
+                    <h3>
+                        Previous Feedback
+                    </h3>
 
                     <p>
-                        The new dashboard design is clean
-                        and easy to navigate.
+                        View your submitted feedback
                     </p>
 
                 </div>
 
+            </div>
 
-                <div class="recent-card">
 
-                    <div class="recent-top">
+            <div class="feedback-list">
 
-                        <span class="recent-subject">
-                            Library Facilities
-                        </span>
 
-                        <span class="recent-date">
-                            08 Sep 2026
-                        </span>
+                <div class="feedback-item">
+
+                    <div class="feedback-left">
+
+                        <div class="feedback-icon">
+                            🎓
+                        </div>
+
+                        <div>
+
+                            <div class="feedback-title">
+                                Academics
+                            </div>
+
+                            <div class="feedback-description">
+                                Feedback submitted about academic services
+                            </div>
+
+                        </div>
 
                     </div>
 
-                    <div class="small-stars">
-                        ⭐⭐⭐⭐☆
-                    </div>
 
-                    <p>
-                        Library facilities are good, but more
-                        study spaces would be helpful.
-                    </p>
+                    <div class="feedback-rating">
+                        ⭐ 5.0
+                    </div>
 
                 </div>
 
+
+
+                <div class="feedback-item">
+
+                    <div class="feedback-left">
+
+                        <div class="feedback-icon">
+                            👩‍🏫
+                        </div>
+
+                        <div>
+
+                            <div class="feedback-title">
+                                Faculty
+                            </div>
+
+                            <div class="feedback-description">
+                                Feedback about faculty interaction
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="feedback-rating">
+                        ⭐ 4.5
+                    </div>
+
+                </div>
+
+
+
+                <div class="feedback-item">
+
+                    <div class="feedback-left">
+
+                        <div class="feedback-icon">
+                            🏫
+                        </div>
+
+                        <div>
+
+                            <div class="feedback-title">
+                                Campus Facilities
+                            </div>
+
+                            <div class="feedback-description">
+                                Feedback about campus facilities
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="feedback-rating">
+                        ⭐ 4.0
+                    </div>
+
+                </div>
 
             </div>
 
         </div>
+
 
     </section>
 
 </main>
 
 
-<!-- =========================
-     CHATBOT
-========================= -->
 
-<aside class="chatbot">
+<!-- =====================================================
+     CHATBOT BUTTON
+===================================================== -->
+
+<button
+    class="chatbot-button"
+    id="chatbotButton"
+    onclick="toggleChat()">
+
+    🤖
+
+</button>
+
+
+
+<!-- =====================================================
+     CHAT WINDOW
+===================================================== -->
+
+<div
+    class="chat-window"
+    id="chatWindow">
+
 
     <div class="chat-header">
 
-        <div class="robot-icon">
+        <div class="robot">
             🤖
         </div>
 
-        <div class="chat-title">
+        <div>
 
             <strong>
                 CampusConnect AI
             </strong>
 
             <span>
-                <span class="online-dot"></span>
-                College Companion
+                ● College Companion
             </span>
 
         </div>
@@ -1953,248 +2256,97 @@ select{
     </div>
 
 
+
     <div
         class="chat-body"
-        id="chatBody"
-    >
+        id="chatBody">
 
         <div class="bot-message">
 
-            Hi Priya! 👋<br><br>
+            Hi! 👋
+
+            <br><br>
 
             I'm your
-            <strong>CampusConnect AI College Companion</strong>.
-            I can help you with feedback and suggestions.
+            <b>CampusConnect AI College Companion</b>.
 
-        </div>
+            <br><br>
 
-        <div class="bot-message">
-
-            You can ask me:<br><br>
-
-            • How do I submit feedback?<br>
-            • What is my rating?<br>
-            • Why is feedback important?
+            Ask me about feedback, academics,
+            faculty, campus facilities or
+            CampusConnect.
 
         </div>
 
     </div>
 
-
-    <div class="quick-buttons">
-
-        <button
-            class="quick-btn"
-            onclick="quickChat('How do I submit feedback?')"
-        >
-            Submit
-        </button>
-
-        <button
-            class="quick-btn"
-            onclick="quickChat('What is my rating?')"
-        >
-            My Rating
-        </button>
-
-        <button
-            class="quick-btn"
-            onclick="quickChat('Why is feedback important?')"
-        >
-            Why Feedback?
-        </button>
-
-    </div>
 
 
     <div class="chat-footer">
 
         <input
             type="text"
-            class="chat-input"
             id="chatInput"
+            class="chat-input"
             placeholder="Ask CampusConnect AI..."
-        >
+            onkeydown="handleEnter(event)">
+
 
         <button
             class="send-btn"
-            onclick="sendMessage()"
-        >
+            onclick="sendMessage()">
+
             ➤
+
         </button>
 
     </div>
 
-</aside>
+</div>
 
 
-<!-- TOAST -->
+
+<!-- =====================================================
+     TOAST
+===================================================== -->
 
 <div
     class="toast"
-    id="toast"
->
-    Success
+    id="toast">
 </div>
+
 
 
 <script>
 
-/* =========================
+/* =========================================================
    CLOCK
-========================= */
+========================================================= */
 
 function updateClock(){
 
     const now = new Date();
 
-    let hours = now.getHours();
-
-    const minutes =
-        String(now.getMinutes()).padStart(2,"0");
-
-    const seconds =
-        String(now.getSeconds()).padStart(2,"0");
-
-    const ampm =
-        hours >= 12 ? "PM" : "AM";
-
-    hours = hours % 12;
-
-    hours = hours || 12;
-
-    hours =
-        String(hours).padStart(2,"0");
-
     document.getElementById("clock").textContent =
-        `${hours}:${minutes}:${seconds} ${ampm}`;
+        now.toLocaleTimeString(
+            "en-IN",
+            {
+                hour:"numeric",
+                minute:"2-digit",
+                second:"2-digit"
+            }
+        );
 }
-
-updateClock();
 
 setInterval(updateClock,1000);
 
-
-/* =========================
-   RATING
-========================= */
-
-let selectedRating = 0;
+updateClock();
 
 
-function selectRating(rating){
 
-    selectedRating = rating;
-
-    const stars =
-        document.querySelectorAll(".star");
-
-    stars.forEach(star => {
-
-        const value =
-            Number(star.dataset.rating);
-
-        if(value <= rating){
-
-            star.classList.add("selected");
-
-        }else{
-
-            star.classList.remove("selected");
-
-        }
-
-    });
-
-
-    const labels = [
-        "",
-        "1/5 - Needs Improvement",
-        "2/5 - Fair",
-        "3/5 - Good",
-        "4/5 - Very Good",
-        "5/5 - Excellent!"
-    ];
-
-    document.getElementById(
-        "ratingValue"
-    ).textContent = labels[rating];
-}
-
-
-/* =========================
-   SUBMIT FEEDBACK
-========================= */
-
-function submitFeedback(){
-
-    const subject =
-        document.getElementById(
-            "feedbackSubject"
-        ).value.trim();
-
-    const message =
-        document.getElementById(
-            "feedbackMessage"
-        ).value.trim();
-
-
-    if(selectedRating === 0){
-
-        showToast(
-            "Please select a rating ⭐"
-        );
-
-        return;
-    }
-
-
-    if(!subject){
-
-        showToast(
-            "Please enter a feedback subject"
-        );
-
-        return;
-    }
-
-
-    if(!message){
-
-        showToast(
-            "Please write your feedback"
-        );
-
-        return;
-    }
-
-
-    document.getElementById(
-        "feedbackSubject"
-    ).value = "";
-
-    document.getElementById(
-        "feedbackMessage"
-    ).value = "";
-
-
-    document.getElementById(
-        "feedbackCount"
-    ).textContent = "7";
-
-
-    showToast(
-        "Feedback submitted successfully! 💬"
-    );
-
-}
-
-
-/* =========================
+/* =========================================================
    TOAST
-========================= */
-
-let toastTimer;
+========================================================= */
 
 function showToast(message){
 
@@ -2205,158 +2357,207 @@ function showToast(message){
 
     toast.classList.add("show");
 
-    clearTimeout(toastTimer);
+    setTimeout(function(){
 
-    toastTimer =
-        setTimeout(() => {
+        toast.classList.remove("show");
 
-            toast.classList.remove("show");
-
-        },2500);
+    },2500);
 }
 
 
-/* =========================
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+function logoutUser(){
+
+    showToast("Logging out...");
+
+    setTimeout(function(){
+
+        window.location.href = "login.html";
+
+    },800);
+
+    return false;
+}
+
+
+
+/* =========================================================
+   SCROLL TO FEEDBACK
+========================================================= */
+
+function scrollToFeedback(){
+
+    document
+    .getElementById("feedbackFormSection")
+    .scrollIntoView({
+        behavior:"smooth"
+    });
+
+}
+
+
+
+/* =========================================================
+   RATING
+========================================================= */
+
+let selectedRating = 0;
+
+function selectRating(rating){
+
+    selectedRating = rating;
+
+    for(let i=1;i<=5;i++){
+
+        const star =
+            document.getElementById("star"+i);
+
+        if(i <= rating){
+
+            star.classList.add("selected");
+
+        }else{
+
+            star.classList.remove("selected");
+
+        }
+
+    }
+
+}
+
+
+
+/* =========================================================
+   SUBMIT FEEDBACK
+========================================================= */
+
+function submitFeedback(){
+
+    const category =
+        document.getElementById("category").value;
+
+    const subject =
+        document.getElementById("subject").value.trim();
+
+    const feedback =
+        document.getElementById("feedbackText").value.trim();
+
+
+    if(category === "Select category"){
+
+        showToast("Please select a feedback category.");
+
+        return;
+
+    }
+
+
+    if(!subject){
+
+        showToast("Please enter a subject.");
+
+        return;
+
+    }
+
+
+    if(selectedRating === 0){
+
+        showToast("Please select a rating.");
+
+        return;
+
+    }
+
+
+    if(!feedback){
+
+        showToast("Please write your feedback.");
+
+        return;
+
+    }
+
+
+    showToast("Feedback submitted successfully! 💙");
+
+
+    document.getElementById("subject").value = "";
+
+    document.getElementById("feedbackText").value = "";
+
+    document.getElementById("category").value =
+        "Select category";
+
+    selectedRating = 0;
+
+
+    for(let i=1;i<=5;i++){
+
+        document
+        .getElementById("star"+i)
+        .classList.remove("selected");
+
+    }
+
+}
+
+
+
+/* =========================================================
    CHATBOT
-========================= */
+========================================================= */
 
-function addUserMessage(message){
+function toggleChat(){
 
-    const chatBody =
-        document.getElementById("chatBody");
+    const chat =
+        document.getElementById("chatWindow");
 
-    const div =
-        document.createElement("div");
+    const button =
+        document.getElementById("chatbotButton");
 
-    div.className =
-        "user-message";
 
-    div.textContent =
-        message;
+    chat.classList.toggle("open");
 
-    chatBody.appendChild(div);
 
-    chatBody.scrollTop =
-        chatBody.scrollHeight;
+    if(chat.classList.contains("open")){
+
+        button.style.display = "none";
+
+    }else{
+
+        button.style.display = "flex";
+
+    }
+
 }
 
 
-function addBotMessage(message){
 
-    const chatBody =
-        document.getElementById("chatBody");
+/* =========================================================
+   ENTER KEY
+========================================================= */
 
-    const div =
-        document.createElement("div");
+function handleEnter(event){
 
-    div.className =
-        "bot-message";
+    if(event.key === "Enter"){
 
-    div.innerHTML =
-        message;
+        sendMessage();
 
-    chatBody.appendChild(div);
+    }
 
-    chatBody.scrollTop =
-        chatBody.scrollHeight;
 }
 
 
-function getBotResponse(message){
 
-    const text =
-        message.toLowerCase();
-
-
-    if(
-        text.includes("submit") ||
-        text.includes("give feedback")
-    ){
-
-        return `
-            To submit feedback, select a rating,
-            enter your feedback subject and write
-            your message. Then click
-            <strong>Submit Feedback</strong>. 💬
-        `;
-
-    }
-
-
-    if(
-        text.includes("rating") ||
-        text.includes("rate")
-    ){
-
-        return `
-            Your current average rating is
-            <strong>4.5 ⭐</strong>.
-            <br><br>
-            You can select 1 to 5 stars when submitting
-            new feedback.
-        `;
-
-    }
-
-
-    if(
-        text.includes("important") ||
-        text.includes("why")
-    ){
-
-        return `
-            Feedback helps the college understand
-            student needs and improve facilities,
-            academics and the CampusConnect experience. 💡
-        `;
-
-    }
-
-
-    if(
-        text.includes("how many") ||
-        text.includes("feedback")
-    ){
-
-        return `
-            You have submitted
-            <strong>6 feedback entries</strong>
-            so far.
-            <br><br>
-            Your average rating is
-            <strong>4.5 ⭐</strong>.
-        `;
-
-    }
-
-
-    if(
-        text.includes("hello") ||
-        text.includes("hi") ||
-        text.includes("help")
-    ){
-
-        return `
-            Hi! 👋 I can help you with:
-            <br><br>
-            💬 Submitting feedback<br>
-            ⭐ Ratings<br>
-            💡 Suggestions<br>
-            📊 Your feedback history
-        `;
-
-    }
-
-
-    return `
-        I can help you with feedback.
-        Try asking:
-        <br><br>
-        <strong>"How do I submit feedback?"</strong>
-    `;
-
-}
-
+/* =========================================================
+   SEND MESSAGE
+========================================================= */
 
 function sendMessage(){
 
@@ -2366,79 +2567,107 @@ function sendMessage(){
     const message =
         input.value.trim();
 
-    if(!message){
-        return;
+
+    if(!message) return;
+
+
+    const body =
+        document.getElementById("chatBody");
+
+
+    const user =
+        document.createElement("div");
+
+    user.className =
+        "user-message";
+
+    user.textContent =
+        message;
+
+    body.appendChild(user);
+
+
+    const text =
+        message.toLowerCase();
+
+
+    let reply =
+        "I can help you with feedback, ratings, academics, faculty and CampusConnect.";
+
+
+    if(
+        text.includes("feedback") ||
+        text.includes("suggestion")
+    ){
+
+        reply =
+            "You can submit your feedback using the Give Feedback section on this page.";
+
+    }
+
+    else if(
+        text.includes("rating") ||
+        text.includes("rate")
+    ){
+
+        reply =
+            "You can give a rating from 1 to 5 stars before submitting your feedback.";
+
+    }
+
+    else if(text.includes("faculty")){
+
+        reply =
+            "You can share your experience about faculty through the Feedback page.";
+
+    }
+
+    else if(text.includes("academic")){
+
+        reply =
+            "You can select Academics as the feedback category and describe your experience.";
+
+    }
+
+    else if(
+        text.includes("campus") ||
+        text.includes("facility")
+    ){
+
+        reply =
+            "You can submit suggestions about campus facilities through this feedback form.";
+
     }
 
 
-    addUserMessage(message);
+    setTimeout(function(){
+
+        const bot =
+            document.createElement("div");
+
+        bot.className =
+            "bot-message";
+
+        bot.textContent =
+            reply;
+
+        body.appendChild(bot);
+
+        body.scrollTop =
+            body.scrollHeight;
+
+    },400);
+
 
     input.value = "";
 
-
-    setTimeout(() => {
-
-        addBotMessage(
-            getBotResponse(message)
-        );
-
-    },400);
-}
-
-
-function quickChat(message){
-
-    addUserMessage(message);
-
-    setTimeout(() => {
-
-        addBotMessage(
-            getBotResponse(message)
-        );
-
-    },300);
-}
-
-
-document
-    .getElementById("chatInput")
-    .addEventListener(
-        "keydown",
-        function(event){
-
-            if(event.key === "Enter"){
-
-                sendMessage();
-
-            }
-
-        }
-    );
-
-
-/* =========================
-   LOGOUT
-========================= */
-
-function logoutUser(event){
-
-    event.preventDefault();
-
-    const confirmed =
-        confirm(
-            "Are you sure you want to logout?"
-        );
-
-    if(confirmed){
-
-        window.location.href =
-            "../index.html";
-
-    }
+    body.scrollTop =
+        body.scrollHeight;
 
 }
 
 </script>
 
 </body>
+
 </html>
