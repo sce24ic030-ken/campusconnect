@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,10 +8,20 @@
 <title>CampusConnect | Placement</title>
 
 <style>
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
+}
+
+html,body{
+    width:100%;
+    min-height:100%;
 }
 
 body{
@@ -19,39 +30,89 @@ body{
     color:#17203a;
 }
 
-/* ================= SIDEBAR ================= */
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
 
 .sidebar{
     position:fixed;
     left:0;
     top:0;
-    width:268px;
+    width:270px;
+    min-width:270px;
+    max-width:270px;
     height:100vh;
-    background:linear-gradient(180deg,#172a70 0%,#28237d 48%,#5520a7 100%);
+    background:
+
+    linear-gradient(
+        180deg,
+        #172a70 0%,
+        #28237d 48%,
+        #5520a7 100%
+    );
+
     color:white;
     overflow-y:auto;
     z-index:1000;
 }
 
+
+/* scrollbar */
+
+.sidebar::-webkit-scrollbar{
+    width:7px;
+}
+
+.sidebar::-webkit-scrollbar-track{
+    background:rgba(255,255,255,.05);
+}
+
+.sidebar::-webkit-scrollbar-thumb{
+    background:rgba(255,255,255,.25);
+    border-radius:10px;
+}
+
+
+/* =========================================================
+   LOGO
+========================================================= */
+
 .logo-area{
     height:120px;
-    padding:22px 18px;
+    padding:22px 16px;
+
     display:flex;
     align-items:center;
-    gap:14px;
+    gap:12px;
+
     border-bottom:1px solid rgba(255,255,255,.15);
 }
 
 .logo-icon{
-    width:62px;
-    height:62px;
-    min-width:62px;
+    width:60px;
+    height:60px;
+    min-width:60px;
+
     border-radius:18px;
+
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:30px;
-    background:linear-gradient(135deg,#24b5f5,#6344ef);
+
+    font-size:29px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #24b5f5,
+        #6344ef
+    );
+}
+
+.logo-text{
+    flex:1;
+    min-width:0;
 }
 
 .logo-text h2{
@@ -67,30 +128,44 @@ body{
     white-space:nowrap;
 }
 
+
+/* =========================================================
+   MENU
+========================================================= */
+
 .menu-section{
     padding:27px 16px 0;
 }
 
 .menu-title{
     padding:0 18px 17px;
+
     font-size:13px;
     font-weight:800;
     letter-spacing:1px;
+
     color:#a9afd3;
 }
 
 .nav-item{
     height:60px;
+
     margin:0 5px 7px;
     padding:0 16px;
+
     display:flex;
     align-items:center;
+
     gap:15px;
+
     border-radius:15px;
+
     color:#e5e6f6;
     text-decoration:none;
+
     font-size:16px;
     font-weight:700;
+
     transition:.25s;
 }
 
@@ -99,35 +174,76 @@ body{
 }
 
 .nav-item.active{
-    background:linear-gradient(90deg,#24aef2,#5d3ff0);
+    background:
+    linear-gradient(
+        90deg,
+        #24aef2,
+        #5d3ff0
+    );
+
     color:white;
-    box-shadow:0 8px 20px rgba(48,72,220,.35);
+
+    box-shadow:
+    0 8px 20px rgba(48,72,220,.35);
 }
 
 .nav-icon{
     width:28px;
     min-width:28px;
+
     text-align:center;
+
     font-size:21px;
 }
 
-/* ================= MAIN ================= */
-
-.main-area{
-    margin-left:268px;
-    min-height:100vh;
-    background:linear-gradient(180deg,#f8f9ff 0%,#eef1fb 100%);
+.nav-text{
+    white-space:nowrap;
 }
 
-/* ================= HEADER ================= */
+
+/* logout */
+
+.logout-item{
+    margin-bottom:30px;
+}
+
+.logout-item:hover{
+    background:rgba(255,85,110,.15);
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.main-area{
+    margin-left:270px;
+    min-height:100vh;
+
+    background:
+    linear-gradient(
+        180deg,
+        #f8f9ff 0%,
+        #eef1fb 100%
+    );
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
 
 .top-header{
     height:120px;
-    background:#fff;
+
+    background:white;
+
     display:flex;
     align-items:center;
     justify-content:space-between;
+
     padding:20px 28px;
+
     border-bottom:1px solid #e7e9f3;
 }
 
@@ -139,6 +255,7 @@ body{
 
 .header-left p{
     margin-top:7px;
+
     font-size:14px;
     color:#8992b1;
 }
@@ -150,33 +267,46 @@ body{
 }
 
 .time-box{
-    font-size:18px;
+    font-size:16px;
     font-weight:700;
     color:#65708f;
 }
 
 .notification{
     position:relative;
+
     width:58px;
     height:58px;
+
     background:white;
+
     border-radius:50%;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     font-size:25px;
-    box-shadow:0 8px 25px rgba(45,58,100,.10);
+
+    box-shadow:
+    0 8px 25px rgba(45,58,100,.10);
+
     cursor:pointer;
 }
 
 .notification::after{
     content:"";
+
     position:absolute;
+
     top:7px;
     right:9px;
+
     width:9px;
     height:9px;
+
     background:#ff4f91;
+
     border-radius:50%;
 }
 
@@ -189,29 +319,44 @@ body{
 .profile-circle{
     width:58px;
     height:58px;
+
     border-radius:50%;
-    background:linear-gradient(135deg,#28aef2,#5378ef);
+
+    background:
+    linear-gradient(
+        135deg,
+        #28aef2,
+        #5378ef
+    );
+
     color:white;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     font-size:22px;
     font-weight:800;
 }
 
 .profile-info strong{
     display:block;
-    font-size:16px;
+    font-size:18px;
 }
 
 .profile-info span{
     display:block;
+
     margin-top:4px;
+
     color:#9aa1ba;
     font-size:14px;
 }
 
-/* ================= CONTENT ================= */
+
+/* =========================================================
+   CONTENT
+========================================================= */
 
 .content{
     padding:20px 24px 35px;
@@ -221,6 +366,7 @@ body{
     display:flex;
     justify-content:space-between;
     align-items:center;
+
     margin-bottom:18px;
 }
 
@@ -231,33 +377,61 @@ body{
 
 .page-heading p{
     margin-top:6px;
+
     color:#8992b1;
     font-size:14px;
 }
 
 .primary-btn{
     border:none;
+
     padding:14px 22px;
+
     border-radius:14px;
-    background:linear-gradient(135deg,#693fe8,#843de1);
+
+    background:
+    linear-gradient(
+        135deg,
+        #693fe8,
+        #843de1
+    );
+
     color:white;
+
     font-size:14px;
     font-weight:800;
+
     cursor:pointer;
 }
 
-/* ================= HERO ================= */
+
+/* =========================================================
+   HERO
+========================================================= */
 
 .hero{
     min-height:190px;
+
     padding:30px 32px;
+
     border-radius:22px;
+
     overflow:hidden;
+
     color:white;
-    background:linear-gradient(110deg,#214394,#3e27c9 55%,#7738df);
+
+    background:
+    linear-gradient(
+        110deg,
+        #214394,
+        #3e27c9 55%,
+        #7738df
+    );
+
     display:flex;
     align-items:center;
     justify-content:space-between;
+
     margin-bottom:20px;
 }
 
@@ -268,13 +442,16 @@ body{
 .hero-text h2{
     font-size:25px;
     line-height:1.35;
+
     font-weight:900;
+
     margin-bottom:10px;
 }
 
 .hero-text p{
     font-size:13px;
     line-height:1.65;
+
     color:#e0e3ff;
 }
 
@@ -286,12 +463,17 @@ body{
 .hero-stat{
     width:120px;
     height:100px;
+
     border-radius:18px;
+
     display:flex;
     flex-direction:column;
+
     align-items:center;
     justify-content:center;
+
     background:rgba(255,255,255,.13);
+
     border:1px solid rgba(255,255,255,.15);
 }
 
@@ -301,25 +483,38 @@ body{
 
 .hero-stat span{
     margin-top:5px;
+
     font-size:12px;
     color:#d9dcff;
 }
 
-/* ================= STATS ================= */
+
+/* =========================================================
+   STATS
+========================================================= */
 
 .stats-grid{
     display:grid;
-    grid-template-columns:repeat(4,1fr);
+
+    grid-template-columns:
+    repeat(4,1fr);
+
     gap:18px;
+
     margin-bottom:20px;
 }
 
 .stat-card{
     min-height:135px;
+
     padding:19px;
+
     background:white;
+
     border-radius:18px;
-    box-shadow:0 8px 30px rgba(50,63,110,.06);
+
+    box-shadow:
+    0 8px 30px rgba(50,63,110,.06);
 }
 
 .stat-top{
@@ -330,6 +525,7 @@ body{
 
 .stat-label{
     color:#7e88a9;
+
     font-size:12px;
     font-weight:800;
 }
@@ -337,35 +533,52 @@ body{
 .stat-icon{
     width:44px;
     height:44px;
+
     border-radius:14px;
+
     background:#eef2ff;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     font-size:22px;
 }
 
 .stat-number{
     margin-top:10px;
+
     font-size:28px;
     font-weight:900;
+
     color:#3264dc;
 }
 
 .stat-card small{
     display:block;
+
     margin-top:2px;
+
     color:#9aa2bc;
+
     font-size:11px;
 }
 
-/* ================= SECTION ================= */
+
+/* =========================================================
+   SECTION
+========================================================= */
 
 .section-card{
     background:white;
+
     border-radius:20px;
+
     padding:20px;
-    box-shadow:0 8px 30px rgba(50,63,110,.06);
+
+    box-shadow:
+    0 8px 30px rgba(50,63,110,.06);
+
     margin-bottom:20px;
 }
 
@@ -373,6 +586,7 @@ body{
     display:flex;
     align-items:center;
     justify-content:space-between;
+
     margin-bottom:18px;
 }
 
@@ -383,11 +597,15 @@ body{
 
 .section-header p{
     margin-top:4px;
+
     color:#9098b3;
     font-size:13px;
 }
 
-/* ================= COMPANY ================= */
+
+/* =========================================================
+   COMPANY
+========================================================= */
 
 .filters{
     display:flex;
@@ -397,10 +615,15 @@ body{
 .search,
 .select{
     padding:11px 13px;
+
     border:1px solid #e1e5f1;
+
     border-radius:12px;
+
     background:white;
+
     outline:none;
+
     font-size:13px;
 }
 
@@ -410,39 +633,53 @@ body{
 
 .company-grid{
     display:grid;
-    grid-template-columns:repeat(2,1fr);
+
+    grid-template-columns:
+    repeat(2,1fr);
+
     gap:14px;
 }
 
 .company-card{
     border:1px solid #edf0f7;
+
     border-radius:16px;
+
     padding:16px;
+
     display:flex;
     align-items:center;
     justify-content:space-between;
+
     transition:.25s;
 }
 
 .company-card:hover{
     transform:translateY(-3px);
-    box-shadow:0 10px 25px rgba(50,63,110,.08);
+
+    box-shadow:
+    0 10px 25px rgba(50,63,110,.08);
 }
 
 .company-left{
     display:flex;
     align-items:center;
+
     gap:13px;
 }
 
 .company-logo{
     width:48px;
     height:48px;
+
     border-radius:14px;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     background:#eef2ff;
+
     font-size:22px;
 }
 
@@ -453,6 +690,7 @@ body{
 
 .company-role{
     margin-top:4px;
+
     font-size:12px;
     color:#929ab4;
 }
@@ -463,7 +701,9 @@ body{
 
 .package strong{
     display:block;
+
     color:#3163d8;
+
     font-size:17px;
 }
 
@@ -472,11 +712,17 @@ body{
     color:#9ba3bb;
 }
 
-/* ================= BOTTOM ================= */
+
+/* =========================================================
+   BOTTOM
+========================================================= */
 
 .bottom-grid{
     display:grid;
-    grid-template-columns:1fr 1fr;
+
+    grid-template-columns:
+    1fr 1fr;
+
     gap:20px;
 }
 
@@ -487,29 +733,44 @@ body{
 .progress-info{
     display:flex;
     justify-content:space-between;
+
     margin-bottom:7px;
+
     font-size:13px;
     font-weight:700;
 }
 
 .progress-bar{
     height:8px;
+
     background:#edf0f8;
+
     border-radius:10px;
+
     overflow:hidden;
 }
 
 .progress{
     height:100%;
+
     border-radius:10px;
-    background:linear-gradient(90deg,#3c7ae9,#7541e5);
+
+    background:
+    linear-gradient(
+        90deg,
+        #3c7ae9,
+        #7541e5
+    );
 }
 
 .event-item{
     display:flex;
     align-items:center;
+
     gap:14px;
+
     padding:13px 0;
+
     border-bottom:1px solid #edf0f6;
 }
 
@@ -520,10 +781,14 @@ body{
 .event-date{
     width:50px;
     height:55px;
+
     border-radius:13px;
+
     background:#eef2ff;
+
     display:flex;
     flex-direction:column;
+
     align-items:center;
     justify-content:center;
 }
@@ -535,6 +800,7 @@ body{
 
 .event-date span{
     color:#929bb8;
+
     font-size:10px;
     font-weight:800;
 }
@@ -546,27 +812,49 @@ body{
 
 .event-info span{
     display:block;
+
     margin-top:4px;
+
     color:#969eb8;
     font-size:12px;
 }
 
-/* ================= CHATBOT ================= */
+
+/* =========================================================
+   CHATBOT - SAME SIZE ON EVERY PAGE
+========================================================= */
 
 .chatbot-button{
     position:fixed;
+
     right:24px;
     bottom:24px;
+
     width:64px;
     height:64px;
+
     border-radius:50%;
+
     border:none;
-    background:linear-gradient(135deg,#653fe8,#843ce1);
-    box-shadow:0 12px 30px rgba(86,55,210,.35);
+
+    background:
+    linear-gradient(
+        135deg,
+        #653fe8,
+        #843ce1
+    );
+
+    box-shadow:
+    0 12px 30px rgba(86,55,210,.35);
+
     font-size:30px;
+
     color:white;
+
     cursor:pointer;
+
     z-index:9999;
+
     display:flex;
     align-items:center;
     justify-content:center;
@@ -574,27 +862,47 @@ body{
 
 .chatbot-button::after{
     content:"";
+
     position:absolute;
+
     width:12px;
     height:12px;
+
     top:4px;
     right:4px;
+
     border-radius:50%;
+
     background:#ff4d91;
+
     border:2px solid white;
 }
 
+
+/* =========================================================
+   CHAT WINDOW
+========================================================= */
+
 .chat-window{
     display:none;
+
     position:fixed;
+
     right:24px;
     bottom:24px;
+
     width:320px;
     height:460px;
+
     background:white;
+
     border-radius:22px;
-    box-shadow:0 20px 55px rgba(40,35,100,.25);
+
+    box-shadow:
+    0 20px 55px rgba(40,35,100,.25);
+
     overflow:hidden;
+
     z-index:9998;
 }
 
@@ -605,21 +913,34 @@ body{
 
 .chat-header{
     padding:16px;
-    background:linear-gradient(135deg,#263b91,#713de0);
+
+    background:
+    linear-gradient(
+        135deg,
+        #263b91,
+        #713de0
+    );
+
     color:white;
+
     display:flex;
     align-items:center;
+
     gap:11px;
 }
 
 .robot{
     width:43px;
     height:43px;
+
     background:rgba(255,255,255,.15);
+
     border-radius:13px;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     font-size:23px;
 }
 
@@ -630,92 +951,142 @@ body{
 
 .chat-header span{
     display:block;
+
     margin-top:3px;
+
     font-size:11px;
+
     color:#d9ddff;
 }
 
 .chat-body{
     flex:1;
+
     padding:16px;
+
     overflow-y:auto;
+
     background:#f7f8fd;
 }
 
 .bot-message{
     background:white;
+
     padding:12px 14px;
+
     border-radius:14px;
+
     margin-bottom:10px;
+
     font-size:12px;
     line-height:1.5;
-    box-shadow:0 4px 15px rgba(40,50,90,.05);
+
+    box-shadow:
+    0 4px 15px rgba(40,50,90,.05);
 }
 
 .user-message{
     background:#5b42dd;
+
     color:white;
+
     padding:11px 14px;
+
     border-radius:14px;
+
     margin-bottom:10px;
+
     margin-left:35px;
+
     font-size:12px;
 }
 
 .chat-footer{
     padding:10px;
+
     border-top:1px solid #e8eaf2;
+
     display:flex;
+
     gap:7px;
 }
 
 .chat-input{
     flex:1;
+
     border:1px solid #e0e4ef;
+
     border-radius:11px;
+
     padding:10px;
+
     outline:none;
+
     font-size:12px;
 }
 
 .send-btn{
     width:42px;
+
     border:none;
+
     border-radius:11px;
+
     background:#633fe0;
+
     color:white;
+
     cursor:pointer;
 }
 
-/* ================= TOAST ================= */
+
+/* =========================================================
+   TOAST
+========================================================= */
 
 .toast{
     position:fixed;
+
     right:24px;
     top:24px;
+
     background:#20294a;
+
     color:white;
+
     padding:13px 18px;
+
     border-radius:11px;
+
     opacity:0;
+
     transform:translateY(-10px);
+
     pointer-events:none;
+
     transition:.3s;
+
     z-index:10000;
+
     font-size:13px;
 }
 
 .toast.show{
     opacity:1;
+
     transform:translateY(0);
 }
 
-/* ================= RESPONSIVE ================= */
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
 
 @media(max-width:1100px){
 
     .stats-grid{
-        grid-template-columns:repeat(2,1fr);
+        grid-template-columns:
+        repeat(2,1fr);
     }
 
     .hero-stats{
@@ -726,6 +1097,7 @@ body{
         max-width:100%;
     }
 }
+
 
 @media(max-width:800px){
 
@@ -764,6 +1136,7 @@ body{
     }
 }
 
+
 @media(max-width:600px){
 
     .content{
@@ -780,12 +1153,15 @@ body{
 
     .page-heading{
         align-items:flex-start;
+
         flex-direction:column;
+
         gap:14px;
     }
 
     .filters{
         width:100%;
+
         flex-direction:column;
     }
 
@@ -796,136 +1172,319 @@ body{
 
     .chat-window{
         width:calc(100% - 30px);
+
         height:460px;
+
         right:15px;
         bottom:15px;
     }
 }
+
 </style>
 </head>
 
+
 <body>
+
+
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
 
 <aside class="sidebar">
 
+    <!-- LOGO -->
+
     <div class="logo-area">
-        <div class="logo-icon">🎓</div>
+
+        <div class="logo-icon">
+            🎓
+        </div>
 
         <div class="logo-text">
+
             <h2>CampusConnect</h2>
+
             <p>AI College Companion</p>
+
         </div>
+
     </div>
+
+
+    <!-- MAIN MENU -->
 
     <div class="menu-section">
 
-        <div class="menu-title">MAIN MENU</div>
+        <div class="menu-title">
+            MAIN MENU
+        </div>
 
-        <a class="nav-item" href="dashboard.html">
+
+        <a class="nav-item"
+           href="dashboard.html">
+
             <span class="nav-icon">🏠</span>
-            <span class="nav-text">Dashboard</span>
+
+            <span class="nav-text">
+                Dashboard
+            </span>
+
         </a>
 
-        <a class="nav-item" href="courses.html">
+
+        <a class="nav-item"
+           href="courses.html">
+
             <span class="nav-icon">📚</span>
-            <span class="nav-text">Courses</span>
+
+            <span class="nav-text">
+                Courses
+            </span>
+
         </a>
 
-        <a class="nav-item" href="timetable.html">
+
+        <a class="nav-item"
+           href="timetable.html">
+
             <span class="nav-icon">🗓️</span>
-            <span class="nav-text">Timetable</span>
+
+            <span class="nav-text">
+                Timetable
+            </span>
+
         </a>
 
-        <a class="nav-item" href="assignments.html">
+
+        <a class="nav-item"
+           href="assignments.html">
+
             <span class="nav-icon">📝</span>
-            <span class="nav-text">Assignments</span>
+
+            <span class="nav-text">
+                Assignments
+            </span>
+
         </a>
 
-        <a class="nav-item" href="attendance.html">
+
+        <a class="nav-item"
+           href="attendance.html">
+
             <span class="nav-icon">📊</span>
-            <span class="nav-text">Attendance</span>
+
+            <span class="nav-text">
+                Attendance
+            </span>
+
         </a>
 
-        <a class="nav-item" href="academics.html">
+
+        <a class="nav-item"
+           href="academics.html">
+
             <span class="nav-icon">🎓</span>
-            <span class="nav-text">Academics</span>
+
+            <span class="nav-text">
+                Academics
+            </span>
+
         </a>
 
-        <a class="nav-item" href="faculty.html">
+
+        <a class="nav-item"
+           href="faculty.html">
+
             <span class="nav-icon">👩‍🏫</span>
-            <span class="nav-text">Faculty</span>
+
+            <span class="nav-text">
+                Faculty
+            </span>
+
         </a>
 
     </div>
 
+
+
+    <!-- CAREER -->
+
     <div class="menu-section">
 
-        <div class="menu-title">CAREER</div>
+        <div class="menu-title">
+            CAREER
+        </div>
 
-        <a class="nav-item active" href="placement.html">
+
+        <!-- ACTIVE PLACEMENT -->
+
+        <a class="nav-item active"
+           href="placement.html">
+
             <span class="nav-icon">💼</span>
-            <span class="nav-text">Placement</span>
+
+            <span class="nav-text">
+                Placement
+            </span>
+
         </a>
 
-        <a class="nav-item" href="results.html">
+
+        <a class="nav-item"
+           href="results.html">
+
             <span class="nav-icon">🏆</span>
-            <span class="nav-text">Results</span>
+
+            <span class="nav-text">
+                Results
+            </span>
+
         </a>
 
-        <a class="nav-item" href="documents.html">
+
+        <a class="nav-item"
+           href="documents.html">
+
             <span class="nav-icon">📁</span>
-            <span class="nav-text">Documents</span>
+
+            <span class="nav-text">
+                Documents
+            </span>
+
         </a>
 
-        <a class="nav-item" href="complaints.html">
+
+        <a class="nav-item"
+           href="complaints.html">
+
             <span class="nav-icon">📢</span>
-            <span class="nav-text">Complaints</span>
+
+            <span class="nav-text">
+                Complaints
+            </span>
+
         </a>
 
-        <a class="nav-item" href="feedback.html">
+
+        <a class="nav-item"
+           href="feedback.html">
+
             <span class="nav-icon">💬</span>
-            <span class="nav-text">Feedback</span>
+
+            <span class="nav-text">
+                Feedback
+            </span>
+
         </a>
 
-        <a class="nav-item" href="lost-found.html">
+
+        <a class="nav-item"
+           href="lost-found.html">
+
             <span class="nav-icon">🔎</span>
-            <span class="nav-text">Lost & Found</span>
+
+            <span class="nav-text">
+                Lost & Found
+            </span>
+
         </a>
 
-        <a class="nav-item" href="campus.html">
+
+        <a class="nav-item"
+           href="campus.html">
+
             <span class="nav-icon">🏫</span>
-            <span class="nav-text">Campus</span>
+
+            <span class="nav-text">
+                Campus
+            </span>
+
         </a>
 
-        <a class="nav-item" href="events.html">
+
+        <a class="nav-item"
+           href="events.html">
+
             <span class="nav-icon">🎉</span>
-            <span class="nav-text">Events</span>
+
+            <span class="nav-text">
+                Events
+            </span>
+
         </a>
 
-        <a class="nav-item" href="exams.html">
+
+        <a class="nav-item"
+           href="exams.html">
+
             <span class="nav-icon">📋</span>
-            <span class="nav-text">Exams</span>
+
+            <span class="nav-text">
+                Exams
+            </span>
+
         </a>
 
-        <a class="nav-item" href="notifications.html">
+
+        <a class="nav-item"
+           href="notifications.html">
+
             <span class="nav-icon">🔔</span>
-            <span class="nav-text">Notifications</span>
+
+            <span class="nav-text">
+                Notifications
+            </span>
+
         </a>
 
     </div>
 
+
+
+    <!-- ACCOUNT -->
+
     <div class="menu-section">
 
-        <div class="menu-title">ACCOUNT</div>
+        <div class="menu-title">
+            ACCOUNT
+        </div>
 
-        <a class="nav-item" href="profile.html">
+
+        <a class="nav-item"
+           href="profile.html">
+
             <span class="nav-icon">👤</span>
-            <span class="nav-text">Profile</span>
+
+            <span class="nav-text">
+                Profile
+            </span>
+
         </a>
 
-        <a class="nav-item" href="settings.html">
+
+        <a class="nav-item"
+           href="settings.html">
+
             <span class="nav-icon">⚙️</span>
-            <span class="nav-text">Settings</span>
+
+            <span class="nav-text">
+                Settings
+            </span>
+
+        </a>
+
+
+        <a class="nav-item logout-item"
+           href="login.html"
+           onclick="return logoutUser()">
+
+            <span class="nav-icon">🚪</span>
+
+            <span class="nav-text">
+                Logout
+            </span>
+
         </a>
 
     </div>
@@ -933,31 +1492,62 @@ body{
 </aside>
 
 
+
+<!-- =====================================================
+     MAIN AREA
+===================================================== -->
+
 <main class="main-area">
+
+
+<!-- HEADER -->
 
 <header class="top-header">
 
     <div class="header-left">
-        <h1>Placement</h1>
-        <p>Build your career and explore placement opportunities</p>
+
+        <h1>
+            Placement
+        </h1>
+
+        <p>
+            Build your career and explore placement opportunities
+        </p>
+
     </div>
+
 
     <div class="header-right">
 
-        <div class="time-box" id="clock"></div>
+        <div class="time-box"
+             id="clock">
+        </div>
+
 
         <div class="notification"
              onclick="showToast('You have new placement notifications 🔔')">
+
             🔔
+
         </div>
+
 
         <div class="profile">
 
-            <div class="profile-circle">P</div>
+            <div class="profile-circle">
+                P
+            </div>
 
             <div class="profile-info">
-                <strong>Student</strong>
-                <span>BCA • 5th Sem</span>
+
+                <strong>
+                    Student
+                </strong>
+
+                <span>
+                    BCA • 5th Sem
+                </span>
+
             </div>
 
         </div>
@@ -967,25 +1557,43 @@ body{
 </header>
 
 
+
+<!-- =====================================================
+     CONTENT
+===================================================== -->
+
 <section class="content">
+
+
+<!-- PAGE HEADING -->
 
 <div class="page-heading">
 
     <div>
-        <h2>💼 Placement Overview</h2>
+
+        <h2>
+            💼 Placement Overview
+        </h2>
 
         <p>
             Explore companies, packages, upcoming drives and prepare for your career.
         </p>
+
     </div>
+
 
     <button class="primary-btn"
             onclick="showToast('Placement directory opened')">
+
         View Full Directory
+
     </button>
 
 </div>
 
+
+
+<!-- HERO -->
 
 <div class="hero">
 
@@ -1002,91 +1610,169 @@ body{
 
     </div>
 
+
     <div class="hero-stats">
 
         <div class="hero-stat">
-            <strong>4</strong>
-            <span>Companies</span>
+
+            <strong>
+                4
+            </strong>
+
+            <span>
+                Companies
+            </span>
+
         </div>
 
+
         <div class="hero-stat">
-            <strong>8 LPA</strong>
-            <span>Highest Package</span>
+
+            <strong>
+                8 LPA
+            </strong>
+
+            <span>
+                Highest Package
+            </span>
+
         </div>
 
     </div>
 
 </div>
 
+
+
+<!-- STATS -->
 
 <div class="stats-grid">
 
+
     <div class="stat-card">
 
         <div class="stat-top">
-            <span class="stat-label">COMPANIES</span>
-            <div class="stat-icon">🏢</div>
+
+            <span class="stat-label">
+                COMPANIES
+            </span>
+
+            <div class="stat-icon">
+                🏢
+            </div>
+
         </div>
 
-        <div class="stat-number">4</div>
+        <div class="stat-number">
+            4
+        </div>
 
-        <small>Hiring this season</small>
+        <small>
+            Hiring this season
+        </small>
 
     </div>
 
 
+
     <div class="stat-card">
 
         <div class="stat-top">
-            <span class="stat-label">HIGHEST PACKAGE</span>
-            <div class="stat-icon">💰</div>
+
+            <span class="stat-label">
+                HIGHEST PACKAGE
+            </span>
+
+            <div class="stat-icon">
+                💰
+            </div>
+
         </div>
 
-        <div class="stat-number">8 LPA</div>
+        <div class="stat-number">
+            8 LPA
+        </div>
 
-        <small>Current highest package</small>
+        <small>
+            Current highest package
+        </small>
 
     </div>
 
 
+
     <div class="stat-card">
 
         <div class="stat-top">
-            <span class="stat-label">UPCOMING DRIVES</span>
-            <div class="stat-icon">📅</div>
+
+            <span class="stat-label">
+                UPCOMING DRIVES
+            </span>
+
+            <div class="stat-icon">
+                📅
+            </div>
+
         </div>
 
-        <div class="stat-number">3</div>
+        <div class="stat-number">
+            3
+        </div>
 
-        <small>Scheduled drives</small>
+        <small>
+            Scheduled drives
+        </small>
 
     </div>
 
 
+
     <div class="stat-card">
 
         <div class="stat-top">
-            <span class="stat-label">READINESS</span>
-            <div class="stat-icon">✅</div>
+
+            <span class="stat-label">
+                READINESS
+            </span>
+
+            <div class="stat-icon">
+                ✅
+            </div>
+
         </div>
 
-        <div class="stat-number">75%</div>
+        <div class="stat-number">
+            75%
+        </div>
 
-        <small>Placement preparation</small>
+        <small>
+            Placement preparation
+        </small>
 
     </div>
 
 </div>
 
+
+
+<!-- COMPANY DIRECTORY -->
 
 <div class="section-card">
 
     <div class="section-header">
 
         <div>
-            <h3>Company Directory</h3>
-            <p>Explore current placement opportunities</p>
+
+            <h3>
+                Company Directory
+            </h3>
+
+            <p>
+                Explore current placement opportunities
+            </p>
+
         </div>
+
 
         <div class="filters">
 
@@ -1097,10 +1783,21 @@ body{
                 placeholder="Search company..."
                 onkeyup="searchCompanies()">
 
+
             <select class="select">
-                <option>All Companies</option>
-                <option>IT Companies</option>
-                <option>Consulting</option>
+
+                <option>
+                    All Companies
+                </option>
+
+                <option>
+                    IT Companies
+                </option>
+
+                <option>
+                    Consulting
+                </option>
+
             </select>
 
         </div>
@@ -1108,87 +1805,161 @@ body{
     </div>
 
 
-    <div class="company-grid" id="companyGrid">
+
+    <div class="company-grid"
+         id="companyGrid">
+
 
         <div class="company-card">
 
             <div class="company-left">
 
-                <div class="company-logo">🏢</div>
+                <div class="company-logo">
+                    🏢
+                </div>
 
                 <div>
-                    <div class="company-name">TCS</div>
-                    <div class="company-role">Software / IT Roles</div>
+
+                    <div class="company-name">
+                        TCS
+                    </div>
+
+                    <div class="company-role">
+                        Software / IT Roles
+                    </div>
+
                 </div>
 
             </div>
 
+
             <div class="package">
-                <strong>7 LPA</strong>
-                <span>Package</span>
+
+                <strong>
+                    7 LPA
+                </strong>
+
+                <span>
+                    Package
+                </span>
+
             </div>
 
         </div>
 
 
+
         <div class="company-card">
 
             <div class="company-left">
 
-                <div class="company-logo">💻</div>
+                <div class="company-logo">
+                    💻
+                </div>
 
                 <div>
-                    <div class="company-name">Infosys</div>
-                    <div class="company-role">Software / Technology</div>
+
+                    <div class="company-name">
+                        Infosys
+                    </div>
+
+                    <div class="company-role">
+                        Software / Technology
+                    </div>
+
                 </div>
 
             </div>
 
+
             <div class="package">
-                <strong>6.5 LPA</strong>
-                <span>Package</span>
+
+                <strong>
+                    6.5 LPA
+                </strong>
+
+                <span>
+                    Package
+                </span>
+
             </div>
 
         </div>
 
 
+
         <div class="company-card">
 
             <div class="company-left">
 
-                <div class="company-logo">🚀</div>
+                <div class="company-logo">
+                    🚀
+                </div>
 
                 <div>
-                    <div class="company-name">Accenture</div>
-                    <div class="company-role">Technology / Consulting</div>
+
+                    <div class="company-name">
+                        Accenture
+                    </div>
+
+                    <div class="company-role">
+                        Technology / Consulting
+                    </div>
+
                 </div>
 
             </div>
 
+
             <div class="package">
-                <strong>8 LPA</strong>
-                <span>Package</span>
+
+                <strong>
+                    8 LPA
+                </strong>
+
+                <span>
+                    Package
+                </span>
+
             </div>
 
         </div>
 
 
+
         <div class="company-card">
 
             <div class="company-left">
 
-                <div class="company-logo">🌐</div>
+                <div class="company-logo">
+                    🌐
+                </div>
 
                 <div>
-                    <div class="company-name">Wipro</div>
-                    <div class="company-role">IT / Software</div>
+
+                    <div class="company-name">
+                        Wipro
+                    </div>
+
+                    <div class="company-role">
+                        IT / Software
+                    </div>
+
                 </div>
 
             </div>
 
+
             <div class="package">
-                <strong>6 LPA</strong>
-                <span>Package</span>
+
+                <strong>
+                    6 LPA
+                </strong>
+
+                <span>
+                    Package
+                </span>
+
             </div>
 
         </div>
@@ -1197,163 +1968,306 @@ body{
 
 </div>
 
+
+
+<!-- BOTTOM -->
 
 <div class="bottom-grid">
 
-<div class="section-card">
 
-    <div class="section-header">
+    <!-- PREPARATION -->
 
-        <div>
-            <h3>Placement Preparation</h3>
-            <p>Track your preparation progress</p>
+    <div class="section-card">
+
+        <div class="section-header">
+
+            <div>
+
+                <h3>
+                    Placement Preparation
+                </h3>
+
+                <p>
+                    Track your preparation progress
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="progress-row">
+
+            <div class="progress-info">
+
+                <span>
+                    Aptitude
+                </span>
+
+                <span>
+                    80%
+                </span>
+
+            </div>
+
+            <div class="progress-bar">
+
+                <div
+                    class="progress"
+                    style="width:80%">
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="progress-row">
+
+            <div class="progress-info">
+
+                <span>
+                    Technical Skills
+                </span>
+
+                <span>
+                    75%
+                </span>
+
+            </div>
+
+            <div class="progress-bar">
+
+                <div
+                    class="progress"
+                    style="width:75%">
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="progress-row">
+
+            <div class="progress-info">
+
+                <span>
+                    Communication
+                </span>
+
+                <span>
+                    70%
+                </span>
+
+            </div>
+
+            <div class="progress-bar">
+
+                <div
+                    class="progress"
+                    style="width:70%">
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="progress-row">
+
+            <div class="progress-info">
+
+                <span>
+                    Interview Preparation
+                </span>
+
+                <span>
+                    65%
+                </span>
+
+            </div>
+
+            <div class="progress-bar">
+
+                <div
+                    class="progress"
+                    style="width:65%">
+                </div>
+
+            </div>
+
         </div>
 
     </div>
 
 
-    <div class="progress-row">
 
-        <div class="progress-info">
-            <span>Aptitude</span>
-            <span>80%</span>
+    <!-- UPCOMING DRIVES -->
+
+    <div class="section-card">
+
+        <div class="section-header">
+
+            <div>
+
+                <h3>
+                    Upcoming Drives
+                </h3>
+
+                <p>
+                    Important placement dates
+                </p>
+
+            </div>
+
         </div>
 
-        <div class="progress-bar">
-            <div class="progress" style="width:80%"></div>
+
+
+        <div class="event-item">
+
+            <div class="event-date">
+
+                <strong>
+                    18
+                </strong>
+
+                <span>
+                    SEP
+                </span>
+
+            </div>
+
+            <div class="event-info">
+
+                <strong>
+                    TCS Placement Drive
+                </strong>
+
+                <span>
+                    10:00 AM • Main Auditorium
+                </span>
+
+            </div>
+
         </div>
 
-    </div>
 
 
-    <div class="progress-row">
+        <div class="event-item">
 
-        <div class="progress-info">
-            <span>Technical Skills</span>
-            <span>75%</span>
+            <div class="event-date">
+
+                <strong>
+                    21
+                </strong>
+
+                <span>
+                    SEP
+                </span>
+
+            </div>
+
+            <div class="event-info">
+
+                <strong>
+                    Infosys Recruitment
+                </strong>
+
+                <span>
+                    9:30 AM • Seminar Hall
+                </span>
+
+            </div>
+
         </div>
 
-        <div class="progress-bar">
-            <div class="progress" style="width:75%"></div>
-        </div>
-
-    </div>
 
 
-    <div class="progress-row">
+        <div class="event-item">
 
-        <div class="progress-info">
-            <span>Communication</span>
-            <span>70%</span>
-        </div>
+            <div class="event-date">
 
-        <div class="progress-bar">
-            <div class="progress" style="width:70%"></div>
-        </div>
+                <strong>
+                    25
+                </strong>
 
-    </div>
+                <span>
+                    SEP
+                </span>
 
+            </div>
 
-    <div class="progress-row">
+            <div class="event-info">
 
-        <div class="progress-info">
-            <span>Interview Preparation</span>
-            <span>65%</span>
-        </div>
+                <strong>
+                    Accenture Drive
+                </strong>
 
-        <div class="progress-bar">
-            <div class="progress" style="width:65%"></div>
+                <span>
+                    10:30 AM • Block B
+                </span>
+
+            </div>
+
         </div>
 
     </div>
 
 </div>
 
-
-<div class="section-card">
-
-    <div class="section-header">
-
-        <div>
-            <h3>Upcoming Drives</h3>
-            <p>Important placement dates</p>
-        </div>
-
-    </div>
-
-
-    <div class="event-item">
-
-        <div class="event-date">
-            <strong>18</strong>
-            <span>SEP</span>
-        </div>
-
-        <div class="event-info">
-            <strong>TCS Placement Drive</strong>
-            <span>10:00 AM • Main Auditorium</span>
-        </div>
-
-    </div>
-
-
-    <div class="event-item">
-
-        <div class="event-date">
-            <strong>21</strong>
-            <span>SEP</span>
-        </div>
-
-        <div class="event-info">
-            <strong>Infosys Recruitment</strong>
-            <span>9:30 AM • Seminar Hall</span>
-        </div>
-
-    </div>
-
-
-    <div class="event-item">
-
-        <div class="event-date">
-            <strong>25</strong>
-            <span>SEP</span>
-        </div>
-
-        <div class="event-info">
-            <strong>Accenture Drive</strong>
-            <span>10:30 AM • Block B</span>
-        </div>
-
-    </div>
-
-</div>
-
-</div>
 
 </section>
 
 </main>
 
 
+
+<!-- =====================================================
+     CHATBOT BUTTON
+===================================================== -->
+
 <button
     class="chatbot-button"
     id="chatbotButton"
     onclick="toggleChat()">
+
     🤖
+
 </button>
 
+
+
+<!-- =====================================================
+     CHAT WINDOW
+===================================================== -->
 
 <div
     class="chat-window"
     id="chatWindow">
 
+
     <div class="chat-header">
 
-        <div class="robot">🤖</div>
+        <div class="robot">
+            🤖
+        </div>
 
         <div>
-            <strong>CampusConnect AI</strong>
-            <span>● College Companion</span>
+
+            <strong>
+                CampusConnect AI
+            </strong>
+
+            <span>
+                ● College Companion
+            </span>
+
         </div>
 
     </div>
@@ -1364,9 +2278,20 @@ body{
         id="chatBody">
 
         <div class="bot-message">
-            Hi! 👋<br><br>
-            I'm your <b>CampusConnect AI College Companion</b>.<br><br>
-            Ask me about placement preparation, companies, packages or upcoming drives.
+
+            Hi! 👋
+            <br><br>
+
+            I'm your
+            <b>
+                CampusConnect AI College Companion
+            </b>.
+
+            <br><br>
+
+            Ask me about placement preparation,
+            companies, packages or upcoming drives.
+
         </div>
 
     </div>
@@ -1381,10 +2306,13 @@ body{
             placeholder="Ask CampusConnect AI..."
             onkeydown="handleEnter(event)">
 
+
         <button
             class="send-btn"
             onclick="sendMessage()">
+
             ➤
+
         </button>
 
     </div>
@@ -1392,15 +2320,21 @@ body{
 </div>
 
 
+
+<!-- TOAST -->
+
 <div
     class="toast"
     id="toast">
 </div>
 
 
+
 <script>
 
-/* CLOCK */
+/* =========================================================
+   CLOCK
+========================================================= */
 
 function updateClock(){
 
@@ -1418,10 +2352,14 @@ function updateClock(){
 }
 
 setInterval(updateClock,1000);
+
 updateClock();
 
 
-/* TOAST */
+
+/* =========================================================
+   TOAST
+========================================================= */
 
 function showToast(message){
 
@@ -1440,7 +2378,29 @@ function showToast(message){
 }
 
 
-/* SEARCH */
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+function logoutUser(){
+
+    showToast("Logging out...");
+
+    setTimeout(function(){
+
+        window.location.href = "login.html";
+
+    },800);
+
+    return false;
+}
+
+
+
+/* =========================================================
+   COMPANY SEARCH
+========================================================= */
 
 function searchCompanies(){
 
@@ -1449,6 +2409,7 @@ function searchCompanies(){
         .getElementById("companySearch")
         .value
         .toLowerCase();
+
 
     document
     .querySelectorAll(".company-card")
@@ -1465,7 +2426,10 @@ function searchCompanies(){
 }
 
 
-/* CHAT */
+
+/* =========================================================
+   CHAT
+========================================================= */
 
 function toggleChat(){
 
@@ -1475,7 +2439,9 @@ function toggleChat(){
     const button =
         document.getElementById("chatbotButton");
 
+
     chat.classList.toggle("open");
+
 
     if(chat.classList.contains("open")){
 
@@ -1489,13 +2455,17 @@ function toggleChat(){
 }
 
 
+
 function handleEnter(event){
 
     if(event.key === "Enter"){
+
         sendMessage();
+
     }
 
 }
+
 
 
 function sendMessage(){
@@ -1503,8 +2473,10 @@ function sendMessage(){
     const input =
         document.getElementById("chatInput");
 
+
     const message =
         input.value.trim();
+
 
     if(!message) return;
 
@@ -1516,17 +2488,21 @@ function sendMessage(){
     const user =
         document.createElement("div");
 
+
     user.className =
         "user-message";
 
+
     user.textContent =
         message;
+
 
     body.appendChild(user);
 
 
     const text =
         message.toLowerCase();
+
 
     let reply =
         "I can help you with placement companies, packages, preparation and upcoming drives.";
@@ -1541,6 +2517,7 @@ function sendMessage(){
             "The highest package currently listed is 8 LPA.";
 
     }
+
     else if(
         text.includes("readiness") ||
         text.includes("prepared")
@@ -1550,6 +2527,7 @@ function sendMessage(){
             "Your current placement readiness is 75%.";
 
     }
+
     else if(
         text.includes("drive") ||
         text.includes("upcoming")
@@ -1559,24 +2537,28 @@ function sendMessage(){
             "Upcoming drives include TCS, Infosys and Accenture.";
 
     }
+
     else if(text.includes("tcs")){
 
         reply =
             "TCS currently has a listed package of 7 LPA.";
 
     }
+
     else if(text.includes("infosys")){
 
         reply =
             "Infosys currently has a listed package of 6.5 LPA.";
 
     }
+
     else if(text.includes("accenture")){
 
         reply =
             "Accenture currently has a listed package of 8 LPA.";
 
     }
+
     else if(text.includes("wipro")){
 
         reply =
@@ -1590,13 +2572,17 @@ function sendMessage(){
         const bot =
             document.createElement("div");
 
+
         bot.className =
             "bot-message";
+
 
         bot.textContent =
             reply;
 
+
         body.appendChild(bot);
+
 
         body.scrollTop =
             body.scrollHeight;
@@ -1608,9 +2594,11 @@ function sendMessage(){
 
     body.scrollTop =
         body.scrollHeight;
+
 }
 
 </script>
 
 </body>
+
 </html>
