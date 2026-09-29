@@ -1,31 +1,46 @@
 from flask import Flask, jsonify
 from flask_cors import CORS
 
-from config import Config
+from routes.auth import auth_bp
 
 
-def create_app():
-    app = Flask(__name__)
-    app.config.from_object(Config)
+# =========================================================
+# CREATE FLASK APPLICATION
+# =========================================================
 
-    CORS(app)
+app = Flask(__name__)
 
-    @app.get("/")
-    def home():
-        return jsonify({
-            "message": "AI College Companion backend is running"
-        })
+# Allow your frontend HTML/JavaScript to communicate
+# with the Flask backend.
+CORS(app)
 
-    @app.get("/api/health")
-    def health_check():
-        return jsonify({
-            "status": "ok",
-            "service": "AI College Companion API"
-        })
 
-    return app
+# =========================================================
+# REGISTER ROUTES
+# =========================================================
 
+app.register_blueprint(auth_bp)
+
+
+# =========================================================
+# HOME / HEALTH CHECK
+# =========================================================
+
+@app.route("/", methods=["GET"])
+def home():
+    return jsonify({
+        "success": True,
+        "message": "CampusConnect Backend is running!"
+    })
+
+
+# =========================================================
+# START SERVER
+# =========================================================
 
 if __name__ == "__main__":
-    app = create_app()
-    app.run(debug=True, port=5000)
+    app.run(
+        host="127.0.0.1",
+        port=5000,
+        debug=True
+    )
