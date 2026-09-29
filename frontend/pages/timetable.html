@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -12,39 +13,45 @@
    GLOBAL
 ========================================================= */
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
 html,
-body {
-    width: 100%;
-    height: 100%;
-    font-family: "Segoe UI", Arial, sans-serif;
-    background: #f4f6ff;
-    color: #17203a;
+body{
+    width:100%;
+    height:100%;
+
+    font-family:"Segoe UI",Arial,sans-serif;
+
+    background:#f4f6ff;
+    color:#17203a;
+
+    overflow:hidden;
 }
 
 button,
 input,
-select {
-    font-family: inherit;
+select{
+    font-family:inherit;
 }
 
+
 /* =========================================================
-   SIDEBAR
+   SIDEBAR - SAME AS FACULTY / COURSES
 ========================================================= */
 
-.sidebar {
-    position: fixed;
-    left: 0;
-    top: 0;
-    bottom: 0;
+.sidebar{
+    position:fixed;
 
-    width: 268px;
-    min-width: 268px;
+    left:0;
+    top:0;
+    bottom:0;
+
+    width:268px;
+    min-width:268px;
 
     background:
         linear-gradient(
@@ -54,45 +61,47 @@ select {
             #5520a7 100%
         );
 
-    color: white;
+    color:white;
 
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow-y:auto;
+    overflow-x:hidden;
 
-    z-index: 1000;
+    z-index:1000;
 
-    padding-bottom: 20px;
+    padding-bottom:20px;
 
-    scrollbar-width: thin;
-    scrollbar-color: rgba(255,255,255,.25) transparent;
+    scrollbar-width:thin;
+    scrollbar-color:rgba(255,255,255,.25) transparent;
 }
+
 
 /* =========================================================
-   LOGO
+   BRAND
 ========================================================= */
 
-.brand {
-    height: 120px;
+.brand{
+    height:120px;
 
-    display: flex;
-    align-items: center;
+    display:flex;
+    align-items:center;
 
-    padding: 22px 18px;
+    padding:22px 18px;
 
-    border-bottom: 1px solid rgba(255,255,255,.12);
+    border-bottom:
+        1px solid rgba(255,255,255,.12);
 }
 
-.logo-box {
-    width: 52px;
-    height: 52px;
+.logo-box{
+    width:52px;
+    height:52px;
 
-    border-radius: 16px;
+    border-radius:16px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-    font-size: 28px;
+    font-size:28px;
 
     background:
         linear-gradient(
@@ -105,62 +114,63 @@ select {
         0 10px 25px rgba(0,0,0,.20);
 }
 
-.brand-text {
-    margin-left: 13px;
+.brand-text{
+    margin-left:13px;
 }
 
-.brand-title {
-    font-size: 21px;
-    font-weight: 800;
-    letter-spacing: -.5px;
+.brand-title{
+    font-size:21px;
+    font-weight:800;
+    letter-spacing:-.5px;
 }
 
-.brand-subtitle {
-    font-size: 12px;
-    opacity: .72;
-    margin-top: 3px;
+.brand-subtitle{
+    font-size:12px;
+    opacity:.72;
+    margin-top:3px;
 }
+
 
 /* =========================================================
    MENU
 ========================================================= */
 
-.menu {
-    padding: 25px 14px;
+.menu{
+    padding:25px 14px;
 }
 
-.menu-title {
-    font-size: 12px;
-    font-weight: 700;
+.menu-title{
+    font-size:12px;
+    font-weight:700;
 
-    color: rgba(255,255,255,.52);
+    color:rgba(255,255,255,.52);
 
-    letter-spacing: 1px;
+    letter-spacing:1px;
 
-    padding: 0 11px 10px;
+    padding:0 11px 10px;
 }
 
-.menu-section {
-    margin-top: 20px;
+.menu-section{
+    margin-top:20px;
 }
 
-.nav-item {
-    width: 100%;
+.nav-item{
+    width:100%;
 
-    display: flex;
-    align-items: center;
+    display:flex;
+    align-items:center;
 
-    min-height: 49px;
+    min-height:49px;
 
-    padding: 0 14px;
+    padding:0 14px;
 
-    margin: 5px 0;
+    margin:5px 0;
 
-    border-radius: 13px;
+    border-radius:13px;
 
-    color: rgba(255,255,255,.84);
+    color:rgba(255,255,255,.84);
 
-    text-decoration: none;
+    text-decoration:none;
 
     transition:
         transform .2s ease,
@@ -168,15 +178,16 @@ select {
         color .2s ease;
 }
 
-.nav-item:hover {
-    background: rgba(255,255,255,.12);
-    color: white;
+.nav-item:hover{
+    background:rgba(255,255,255,.12);
 
-    transform: translateX(3px);
+    color:white;
+
+    transform:translateX(3px);
 }
 
-.nav-item.active {
-    color: white;
+.nav-item.active{
+    color:white;
 
     background:
         linear-gradient(
@@ -189,47 +200,43 @@ select {
         0 9px 22px rgba(0,0,0,.18);
 }
 
-.nav-icon {
-    width: 31px;
+.nav-icon{
+    width:31px;
 
-    font-size: 20px;
+    font-size:20px;
 
-    text-align: center;
+    text-align:center;
 
-    margin-right: 10px;
+    margin-right:10px;
 }
 
-.nav-text {
-    font-size: 15px;
-    font-weight: 650;
+.nav-text{
+    font-size:15px;
+    font-weight:650;
 }
 
-/* =========================================================
-   LOGOUT
-========================================================= */
+.logout{
+    margin-top:14px;
 
-.logout {
-    margin-top: 14px;
-
-    padding-top: 15px;
+    padding-top:15px;
 
     border-top:
         1px solid rgba(255,255,255,.13);
 }
 
+
 /* =========================================================
    MAIN AREA
 ========================================================= */
 
-.main-area {
-    margin-left: 268px;
-    margin-right: 0px;
+.main-area{
+    margin-left:268px;
 
-    width: auto;
-    height: 100vh;
+    width:auto;
+    height:100vh;
 
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow-y:auto;
+    overflow-x:hidden;
 
     background:
         linear-gradient(
@@ -239,107 +246,112 @@ select {
         );
 }
 
+
 /* =========================================================
    TOP HEADER
 ========================================================= */
 
-.top-header {
-    height: 120px;
+.top-header{
+    height:120px;
 
     background:
         rgba(255,255,255,.96);
 
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
 
-    padding: 22px 28px;
+    padding:22px 28px;
 
     border-bottom:
         1px solid #e9ebf5;
 
-    position: sticky;
-    top: 0;
+    position:sticky;
 
-    z-index: 100;
+    top:0;
+
+    z-index:100;
 }
 
-.header-left h1 {
-    font-size: 30px;
-    line-height: 1.05;
-    font-weight: 800;
+.header-left h1{
+    font-size:30px;
+
+    line-height:1.05;
+
+    font-weight:800;
 }
 
-.header-left p {
-    margin-top: 7px;
+.header-left p{
+    margin-top:7px;
 
-    color: #8990a7;
+    color:#8990a7;
 
-    font-size: 14px;
+    font-size:14px;
 }
 
-.header-right {
-    display: flex;
-    align-items: center;
+.header-right{
+    display:flex;
+    align-items:center;
 
-    gap: 18px;
+    gap:18px;
 }
 
-.time-box {
-    font-size: 18px;
-    font-weight: 750;
+.time-box{
+    font-size:18px;
 
-    color: #59617d;
+    font-weight:750;
+
+    color:#59617d;
 }
 
-.notification {
-    width: 48px;
-    height: 48px;
+.notification{
+    width:48px;
+    height:48px;
 
-    background: #fff;
+    background:#fff;
 
-    border-radius: 50%;
+    border-radius:50%;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-    font-size: 22px;
+    font-size:22px;
 
     box-shadow:
         0 5px 18px rgba(40,35,100,.10);
 
-    position: relative;
+    position:relative;
 }
 
-.notification::after {
-    content: "";
+.notification::after{
+    content:"";
 
-    width: 8px;
-    height: 8px;
+    width:8px;
+    height:8px;
 
-    border-radius: 50%;
+    border-radius:50%;
 
-    background: #ff4f8b;
+    background:#ff4f8b;
 
-    position: absolute;
+    position:absolute;
 
-    top: 7px;
-    right: 8px;
+    top:7px;
+    right:8px;
 }
 
-.profile-mini {
-    display: flex;
-    align-items: center;
+.profile-mini{
+    display:flex;
+    align-items:center;
 
-    gap: 10px;
+    gap:10px;
 }
 
-.profile-circle {
-    width: 48px;
-    height: 48px;
+.profile-circle{
+    width:48px;
+    height:48px;
 
-    border-radius: 50%;
+    border-radius:50%;
 
     background:
         linear-gradient(
@@ -348,97 +360,103 @@ select {
             #466cf1
         );
 
-    color: white;
+    color:white;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-    font-size: 20px;
-    font-weight: 800;
+    font-size:20px;
+
+    font-weight:800;
 }
 
-.profile-info strong {
-    display: block;
+.profile-info strong{
+    display:block;
 
-    font-size: 15px;
+    font-size:15px;
 }
 
-.profile-info span {
-    display: block;
+.profile-info span{
+    display:block;
 
-    color: #8d93a8;
+    color:#8d93a8;
 
-    font-size: 12px;
+    font-size:12px;
 }
+
 
 /* =========================================================
    PAGE CONTENT
 ========================================================= */
 
-.page-content {
-    padding: 20px 24px 35px;
+.page-content{
+    padding:20px 24px 35px;
 
-    width: 100%;
+    width:100%;
 }
+
+.page-heading{
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    margin-bottom:20px;
+}
+
+.page-heading h2{
+    font-size:24px;
+
+    font-weight:800;
+}
+
+.page-heading p{
+    color:#8990a7;
+
+    font-size:13px;
+
+    margin-top:5px;
+}
+
 
 /* =========================================================
-   PAGE TITLE
+   BUTTONS
 ========================================================= */
 
-.page-heading {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    margin-bottom: 18px;
+.header-actions{
+    display:flex;
+    gap:9px;
 }
 
-.page-heading h2 {
-    font-size: 24px;
-    font-weight: 800;
+.action-btn{
+    border:none;
+
+    padding:11px 15px;
+
+    border-radius:11px;
+
+    cursor:pointer;
+
+    font-size:12px;
+
+    font-weight:700;
+
+    transition:.2s;
 }
 
-.page-heading p {
-    color: #8990a7;
-    font-size: 13px;
+.print-btn{
+    color:#6845e9;
 
-    margin-top: 5px;
+    background:white;
+
+    border:
+        1px solid #e2e5f1;
 }
 
-/* =========================================================
-   ACTION BUTTONS
-========================================================= */
-
-.header-actions {
-    display: flex;
-    gap: 9px;
-}
-
-.action-btn {
-    border: none;
-
-    padding: 11px 15px;
-
-    border-radius: 11px;
-
-    cursor: pointer;
-
-    font-size: 12px;
-    font-weight: 700;
-
-    transition: .2s;
-}
-
-.print-btn {
-    color: #6845e9;
-    background: white;
-
-    border: 1px solid #e2e5f1;
-}
-
-.today-btn {
-    color: white;
+.today-btn{
+    color:white;
 
     background:
         linear-gradient(
@@ -448,220 +466,233 @@ select {
         );
 }
 
-.action-btn:hover {
-    transform: translateY(-2px);
+.action-btn:hover{
+    transform:translateY(-2px);
 
     box-shadow:
         0 8px 20px rgba(40,35,100,.12);
 }
 
+
 /* =========================================================
    SUMMARY CARDS
 ========================================================= */
 
-.summary-grid {
-    display: grid;
+.summary-grid{
+    display:grid;
 
     grid-template-columns:
-        repeat(4, minmax(0,1fr));
+        repeat(4,minmax(0,1fr));
 
-    gap: 15px;
+    gap:18px;
 
-    margin-bottom: 18px;
+    margin-bottom:20px;
 }
 
-.summary-card {
-    background: white;
+.summary-card{
+    background:white;
 
-    border: 1px solid #e9ebf5;
+    border:
+        1px solid #e9ebf5;
 
-    border-radius: 17px;
+    border-radius:17px;
 
-    padding: 17px;
+    padding:18px;
 
-    min-height: 105px;
+    min-height:120px;
 
     box-shadow:
         0 8px 25px rgba(40,35,100,.06);
 
-    transition: .2s;
+    transition:.2s;
 }
 
-.summary-card:hover {
-    transform: translateY(-3px);
+.summary-card:hover{
+    transform:translateY(-3px);
 
     box-shadow:
         0 13px 30px rgba(40,35,100,.10);
 }
 
-.summary-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.summary-top{
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
 }
 
-.summary-title {
-    color: #7f88a5;
+.summary-title{
+    color:#7f88a5;
 
-    font-size: 12px;
-    font-weight: 650;
+    font-size:12px;
+
+    font-weight:650;
 }
 
-.summary-icon {
-    width: 38px;
-    height: 38px;
+.summary-icon{
+    width:38px;
+    height:38px;
 
-    border-radius: 12px;
+    border-radius:12px;
 
-    background: #f0f3ff;
+    background:#f0f3ff;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-    font-size: 19px;
+    font-size:19px;
 }
 
-.summary-number {
-    font-size: 25px;
+.summary-number{
+    font-size:25px;
 
-    font-weight: 800;
+    font-weight:800;
 
-    color: #3063df;
+    color:#3063df;
 
-    margin-top: 9px;
+    margin-top:9px;
 }
 
-.summary-small {
-    color: #9aa2b9;
+.summary-small{
+    color:#9aa2b9;
 
-    font-size: 10px;
+    font-size:10px;
 
-    margin-top: 2px;
+    margin-top:2px;
 }
+
 
 /* =========================================================
    TIMETABLE CARD
 ========================================================= */
 
-.timetable-card {
-    background: white;
+.timetable-card{
+    background:white;
 
-    border: 1px solid #e9ebf5;
+    border:
+        1px solid #e9ebf5;
 
-    border-radius: 17px;
+    border-radius:17px;
 
     box-shadow:
         0 8px 25px rgba(40,35,100,.06);
 
-    overflow: hidden;
+    overflow:hidden;
+
+    margin-bottom:20px;
 }
+
+.timetable-header{
+    padding:20px;
+
+    border-bottom:
+        1px solid #edf0f6;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+}
+
+.timetable-header h3{
+    font-size:17px;
+}
+
+.timetable-header p{
+    color:#9299ae;
+
+    font-size:11px;
+
+    margin-top:4px;
+}
+
 
 /* =========================================================
-   TIMETABLE HEADER
+   SUBJECT FILTER
 ========================================================= */
 
-.timetable-header {
-    padding: 20px;
-
-    border-bottom: 1px solid #edf0f6;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.filter-box{
+    display:flex;
+    gap:8px;
 }
 
-.timetable-header h3 {
-    font-size: 17px;
+.filter-box select{
+    height:37px;
+
+    border:
+        1px solid #e1e4ef;
+
+    border-radius:10px;
+
+    padding:0 10px;
+
+    color:#68728d;
+
+    background:white;
+
+    outline:none;
+
+    font-size:11px;
 }
 
-.timetable-header p {
-    color: #9299ae;
-
-    font-size: 11px;
-
-    margin-top: 4px;
+.filter-box select:focus{
+    border-color:#7244e8;
 }
 
-/* =========================================================
-   FILTER
-========================================================= */
-
-.filter-box {
-    display: flex;
-    gap: 8px;
-}
-
-.filter-box select {
-    height: 37px;
-
-    border: 1px solid #e1e4ef;
-
-    border-radius: 10px;
-
-    padding: 0 10px;
-
-    color: #68728d;
-
-    background: white;
-
-    outline: none;
-
-    font-size: 11px;
-}
-
-.filter-box select:focus {
-    border-color: #7244e8;
-}
 
 /* =========================================================
    DAY TABS
 ========================================================= */
 
-.day-tabs {
-    display: flex;
+.day-tabs{
+    display:flex;
 
-    gap: 7px;
+    gap:7px;
 
-    padding: 15px 20px;
+    padding:15px 20px;
 
-    overflow-x: auto;
+    overflow-x:auto;
 
     border-bottom:
         1px solid #edf0f6;
 }
 
-.day-tab {
-    border: 1px solid #e0e3f0;
+.day-tab{
+    border:
+        1px solid #e0e3f0;
 
-    background: white;
+    background:white;
 
-    color: #737c96;
+    color:#737c96;
 
-    border-radius: 20px;
+    border-radius:20px;
 
-    padding: 8px 15px;
+    padding:8px 15px;
 
-    cursor: pointer;
+    cursor:pointer;
 
-    font-size: 11px;
+    font-size:11px;
 
-    font-weight: 700;
+    font-weight:700;
 
-    white-space: nowrap;
+    white-space:nowrap;
 
-    transition: .2s;
+    transition:.2s;
 }
 
-.day-tab:hover {
-    background: #f0edff;
-    color: #6845e9;
+.day-tab:hover{
+    background:#f0edff;
+
+    color:#6845e9;
 }
 
-.day-tab.active {
-    color: white;
+.day-tab.active{
+    color:white;
 
-    border-color: transparent;
+    border-color:transparent;
 
     background:
         linear-gradient(
@@ -674,292 +705,284 @@ select {
         0 6px 16px rgba(80,60,210,.18);
 }
 
+
 /* =========================================================
    CLASS LIST
 ========================================================= */
 
-.class-list {
-    padding: 5px 20px 20px;
+.class-list{
+    padding:5px 20px 20px;
 }
 
-.class-item {
-    display: grid;
+.class-item{
+    display:grid;
 
-    grid-template-columns: 100px 1fr auto;
+    grid-template-columns:
+        100px 1fr auto;
 
-    align-items: center;
+    align-items:center;
 
-    gap: 15px;
+    gap:15px;
 
-    padding: 17px 5px;
+    padding:17px 5px;
 
     border-bottom:
         1px solid #f0f1f7;
 
-    cursor: pointer;
+    cursor:pointer;
 
-    transition: .2s;
+    transition:.2s;
 }
 
-.class-item:last-child {
-    border-bottom: none;
+.class-item:last-child{
+    border-bottom:none;
 }
 
-.class-item:hover {
-    background: #fafaff;
+.class-item:hover{
+    background:#fafaff;
 
-    transform: translateX(3px);
+    transform:translateX(3px);
 }
 
-.class-time {
-    color: #6845e9;
+.class-time{
+    color:#6845e9;
 
-    font-size: 13px;
+    font-size:13px;
 
-    font-weight: 750;
+    font-weight:750;
 }
 
-.class-main {
-    display: flex;
-    align-items: center;
+.class-main{
+    display:flex;
 
-    gap: 12px;
+    align-items:center;
+
+    gap:12px;
 }
 
-.subject-icon {
-    width: 43px;
-    height: 43px;
+.subject-icon{
+    width:43px;
+    height:43px;
 
-    border-radius: 13px;
+    border-radius:13px;
 
-    background: #f0f3ff;
+    background:#f0f3ff;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display:flex;
 
-    font-size: 20px;
+    align-items:center;
+    justify-content:center;
 
-    flex-shrink: 0;
+    font-size:20px;
+
+    flex-shrink:0;
 }
 
-.subject-info strong {
-    display: block;
+.subject-info strong{
+    display:block;
 
-    font-size: 14px;
+    font-size:14px;
 
-    color: #17203a;
+    color:#17203a;
 }
 
-.subject-info span {
-    display: block;
+.subject-info span{
+    display:block;
 
-    color: #9299ae;
+    color:#9299ae;
 
-    font-size: 11px;
+    font-size:11px;
 
-    margin-top: 4px;
+    margin-top:4px;
 }
 
-.class-status {
-    padding: 6px 10px;
+.class-status{
+    padding:6px 10px;
 
-    border-radius: 20px;
+    border-radius:20px;
 
-    font-size: 9px;
+    font-size:9px;
 
-    font-weight: 750;
+    font-weight:750;
 }
 
-.status-class {
-    background: #edf8ff;
-    color: #238acb;
+.status-class{
+    background:#edf8ff;
+
+    color:#238acb;
 }
 
-.status-lab {
-    background: #f3edff;
-    color: #7040df;
+.status-lab{
+    background:#f3edff;
+
+    color:#7040df;
 }
 
-.status-break {
-    background: #fff4e8;
-    color: #d9812d;
-}
 
 /* =========================================================
-   EMPTY
+   EMPTY STATE
 ========================================================= */
 
-.empty-state {
-    text-align: center;
+.empty-state{
+    display:none;
 
-    padding: 45px 20px;
+    text-align:center;
 
-    color: #8990a7;
+    padding:55px 20px;
 
-    display: none;
+    color:#8990a7;
 }
 
-.empty-state div {
-    font-size: 40px;
+.empty-state div{
+    font-size:48px;
 
-    margin-bottom: 10px;
+    margin-bottom:10px;
 }
 
-.empty-state strong {
-    display: block;
+.empty-state strong{
+    display:block;
 
-    color: #59617d;
+    color:#59617d;
 
-    font-size: 15px;
+    font-size:15px;
+
+    margin-bottom:5px;
 }
+
+.empty-state p{
+    font-size:11px;
+}
+
 
 /* =========================================================
-   AI CHATBOT — SAME STYLE AS COURSES PAGE
+   FLOATING CHATBOT
+   SAME SIZE AS FACULTY / COURSES
 ========================================================= */
 
-.chatbot {
-    position: fixed;
-    right: 25px;
-    bottom: 25px;
-    width: 320px;
-    height: 560px;
-    max-width: calc(100vw - 40px);
-    max-height: calc(100vh - 40px);
-    background: white;
-    border-radius: 20px;
-    border: 1px solid #e5e7ef;
-    box-shadow: 0 15px 45px rgba(40,35,100,.15);
-    z-index: 9999;
-    display: none;
-    flex-direction: column;
-    overflow: hidden;
-}
+.chat-bubble{
+    position:fixed;
 
-.chatbot.cc-open {
-    display: flex;
-}
+    right:24px;
+    bottom:24px;
 
-/* =========================================================
-   CHATBOT FLOATING ICON
-========================================================= */
+    width:64px;
+    height:64px;
 
-.chat-launcher {
-    position: fixed;
-    right: 24px;
-    bottom: 24px;
+    border:none;
 
-    width: 78px;
-    height: 78px;
-    padding: 0;
-
-    border: 4px solid #ffffff;
-    border-radius: 50%;
+    border-radius:50%;
 
     background:
         linear-gradient(
-            145deg,
-            #6840ef 0%,
-            #8b35e5 55%,
-            #6d35d9 100%
+            135deg,
+            #6543e8,
+            #a855f7
         );
 
+    color:white;
+
+    font-size:30px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    cursor:pointer;
+
     box-shadow:
-        0 0 0 1px rgba(117,70,235,.12),
-        0 10px 30px rgba(91,52,196,.38),
-        0 0 34px rgba(126,70,239,.30);
+        0 12px 28px rgba(101,67,232,.35);
 
-    z-index: 10000;
+    z-index:9998;
 
-    cursor: pointer;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    transition:
-        transform .25s ease,
-        box-shadow .25s ease;
+    transition:.2s;
 }
 
-.chat-launcher::before {
-    content: "";
+.chat-bubble:hover{
+    transform:scale(1.06);
+}
 
-    position: absolute;
 
-    inset: 7px;
+/* =========================================================
+   RED DOT ON CHATBOT
+========================================================= */
 
-    border-radius: 50%;
+.chat-bubble::after{
+    content:"";
+
+    position:absolute;
+
+    top:2px;
+    right:2px;
+
+    width:13px;
+    height:13px;
+
+    background:#ff4f6d;
 
     border:
-        1px solid rgba(255,255,255,.20);
+        3px solid #f4f6ff;
 
-    pointer-events: none;
-}
-
-.chat-launcher .launcher-robot {
-    position: relative;
-
-    z-index: 2;
-
-    font-size: 38px;
-
-    line-height: 1;
-
-    transform: translateY(1px);
-
-    filter:
-        drop-shadow(
-            0 3px 3px rgba(44,22,112,.28)
-        );
-}
-
-.chat-launcher .launcher-notification {
-    position: absolute;
-
-    top: -2px;
-    right: -1px;
-
-    width: 22px;
-    height: 22px;
-
-    border-radius: 50%;
-
-    background: #ff3f8b;
-
-    border: 4px solid #ffffff;
+    border-radius:50%;
 
     box-shadow:
-        0 3px 9px rgba(75,26,107,.22);
-
-    z-index: 4;
+        0 2px 6px rgba(255,79,109,.35);
 }
 
-.chat-launcher:hover {
-    transform:
-        translateY(-4px)
-        scale(1.04);
+
+/* =========================================================
+   CHATBOT PANEL
+========================================================= */
+
+.chatbot-panel{
+    position:fixed;
+
+    right:24px;
+    bottom:24px;
+
+    width:320px;
+    height:460px;
+
+    background:white;
+
+    border-radius:22px;
+
+    border:
+        1px solid #e5e6f2;
 
     box-shadow:
-        0 0 0 1px rgba(117,70,235,.14),
-        0 14px 34px rgba(91,52,196,.44),
-        0 0 40px rgba(126,70,239,.34);
+        0 15px 45px rgba(40,35,100,.15);
+
+    z-index:9999;
+
+    display:none;
+
+    flex-direction:column;
+
+    overflow:hidden;
 }
 
-.chat-launcher:active {
-    transform:
-        translateY(-1px)
-        scale(.98);
+.chatbot-panel.show{
+    display:flex;
 }
+
 
 /* =========================================================
    CHAT HEADER
 ========================================================= */
 
-.chat-header {
-    min-height: 78px;
+.chat-header{
+    min-height:82px;
 
-    padding: 14px 15px;
+    flex-shrink:0;
+
+    padding:15px;
+
+    display:flex;
+
+    align-items:center;
+
+    color:white;
 
     background:
         linear-gradient(
@@ -967,565 +990,590 @@ select {
             #29277d,
             #7137d8
         );
-
-    color: white;
-
-    display: flex;
-    align-items: center;
-
-    gap: 11px;
 }
 
-.robot-icon {
-    width: 44px;
-    height: 44px;
+.robot-icon{
+    width:45px;
+    height:45px;
 
-    border-radius: 14px;
+    border-radius:14px;
 
     background:
-        rgba(255,255,255,.18);
+        rgba(255,255,255,.15);
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display:flex;
 
-    font-size: 25px;
+    align-items:center;
+    justify-content:center;
 
-    flex-shrink: 0;
+    font-size:24px;
+
+    margin-right:10px;
 }
 
-.chat-title {
-    min-width: 0;
-    flex: 1;
+.chat-title strong{
+    display:block;
+
+    font-size:15px;
 }
 
-.chat-title strong {
-    display: block;
+.chat-title span{
+    display:block;
 
-    font-size: 14px;
+    font-size:10px;
 
-    font-weight: 800;
-}
-
-.chat-title span {
-    display: flex;
-    align-items: center;
-
-    gap: 5px;
-
-    margin-top: 4px;
-
-    font-size: 9px;
+    margin-top:3px;
 
     color:
         rgba(255,255,255,.78);
 }
 
-.online-dot {
-    width: 6px;
-    height: 6px;
+.online-dot{
+    display:inline-block;
 
-    border-radius: 50%;
+    width:7px;
+    height:7px;
 
-    background: #5ff39c;
+    background:#57e6a3;
 
-    display: inline-block;
+    border-radius:50%;
+
+    margin-right:4px;
 }
 
-.chat-close {
-    width: 30px;
-    height: 30px;
+.chat-close{
+    margin-left:auto;
 
-    border: none;
+    width:32px;
+    height:32px;
 
-    border-radius: 50%;
+    border:none;
+
+    border-radius:50%;
 
     background:
-        rgba(255,255,255,.13);
+        rgba(255,255,255,.15);
 
-    color: white;
+    color:white;
 
-    font-size: 22px;
+    font-size:18px;
 
-    line-height: 1;
-
-    cursor: pointer;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    transition: .2s;
+    cursor:pointer;
 }
 
-.chat-close:hover {
-    background:
-        rgba(255,255,255,.24);
-
-    transform: rotate(90deg);
-}
 
 /* =========================================================
    CHAT BODY
 ========================================================= */
 
-.chat-body {
-    flex: 1;
+.chat-body{
+    flex:1;
 
-    padding: 15px;
+    min-height:0;
 
-    overflow-y: auto;
+    padding:17px 14px;
 
-    background:
-        #f8f8fd;
-
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 10px;
-
-    scrollbar-width: thin;
-}
-
-.bot-message {
-    align-self: flex-start;
-
-    max-width: 88%;
-
-    padding: 10px 12px;
-
-    border-radius:
-        13px 13px 13px 4px;
-
-    background: white;
-
-    border:
-        1px solid #e8e8f1;
-
-    color: #4e5670;
-
-    font-size: 11px;
-
-    line-height: 1.55;
-
-    box-shadow:
-        0 3px 10px rgba(40,35,100,.05);
-}
-
-.user-message {
-    align-self: flex-end;
-
-    max-width: 82%;
-
-    padding: 10px 12px;
-
-    border-radius:
-        13px 13px 4px 13px;
+    overflow-y:auto;
 
     background:
         linear-gradient(
-            135deg,
-            #6845e9,
-            #8d3fdb
+            180deg,
+            #fafbff,
+            #f4f5fb
         );
+}
 
-    color: white;
+.bot-message{
+    background:white;
 
-    font-size: 11px;
+    border:
+        1px solid #e7e9f3;
 
-    line-height: 1.5;
+    border-radius:14px;
+
+    padding:12px;
+
+    margin-bottom:10px;
+
+    color:#65708d;
+
+    font-size:11px;
+
+    line-height:1.6;
 
     box-shadow:
-        0 5px 14px rgba(80,55,190,.15);
+        0 5px 15px rgba(40,35,100,.04);
 }
+
+.user-message{
+    background:
+        linear-gradient(
+            135deg,
+            #6241e8,
+            #7b3ee0
+        );
+
+    color:white;
+
+    padding:10px 12px;
+
+    border-radius:
+        14px 14px 4px 14px;
+
+    margin:
+        9px 0 9px 20px;
+
+    font-size:11px;
+
+    line-height:1.5;
+}
+
 
 /* =========================================================
    QUICK BUTTONS
 ========================================================= */
 
-.quick-buttons {
-    padding: 9px 11px;
+.quick-buttons{
+    display:flex;
 
-    display: flex;
+    gap:5px;
 
-    gap: 6px;
+    flex-wrap:wrap;
 
-    flex-wrap: wrap;
+    padding:9px 14px;
 
-    background: white;
+    background:white;
 
     border-top:
-        1px solid #ececf3;
+        1px solid #eceef5;
 }
 
-.quick-btn {
+.quick-btn{
     border:
-        1px solid #dedff0;
+        1px solid #e0e3f0;
 
-    background: white;
+    background:white;
 
-    color: #6845e9;
+    color:#6b54d9;
 
-    border-radius: 18px;
+    border-radius:20px;
 
-    padding: 7px 10px;
+    padding:7px 9px;
 
-    font-size: 9px;
+    font-size:9px;
 
-    font-weight: 700;
+    cursor:pointer;
 
-    cursor: pointer;
-
-    transition: .2s;
+    transition:.2s;
 }
 
-.quick-btn:hover {
-    background: #f3f0ff;
-
-    border-color: #cfc5ff;
-
-    transform: translateY(-1px);
+.quick-btn:hover{
+    background:#f0edff;
 }
+
 
 /* =========================================================
-   CHAT FOOTER
+   CHAT INPUT
 ========================================================= */
 
-.chat-footer {
-    min-height: 54px;
+.chat-footer{
+    flex-shrink:0;
 
-    padding: 8px 10px;
+    padding:10px;
 
-    display: flex;
-
-    align-items: center;
-
-    gap: 7px;
-
-    background: white;
+    background:white;
 
     border-top:
-        1px solid #ececf3;
+        1px solid #eceef5;
+
+    display:flex;
+
+    gap:7px;
 }
 
-.chat-input {
-    flex: 1;
+.chat-input{
+    flex:1;
 
-    height: 38px;
+    min-width:0;
+
+    height:40px;
 
     border:
-        1px solid #e1e2ed;
+        1px solid #e1e4ef;
 
-    border-radius: 12px;
+    border-radius:12px;
 
-    outline: none;
+    outline:none;
 
-    padding: 0 11px;
+    padding:0 11px;
 
-    font-size: 11px;
+    font-size:11px;
 
-    color: #4e5670;
-
-    background: #fafaff;
+    color:#555e78;
 }
 
-.chat-input:focus {
-    border-color: #7044e8;
+.chat-input:focus{
+    border-color:#7244e8;
 
-    background: white;
+    box-shadow:
+        0 0 0 3px rgba(114,68,232,.08);
 }
 
-.chat-input::placeholder {
-    color: #a0a5b7;
-}
+.send-btn{
+    width:40px;
+    height:40px;
 
-.send-btn {
-    width: 38px;
-    height: 38px;
+    border:none;
 
-    border: none;
+    border-radius:12px;
 
-    border-radius: 12px;
-
-    color: white;
+    color:white;
 
     background:
         linear-gradient(
             135deg,
-            #6046ec,
-            #843bda
+            #6543e8,
+            #843de0
         );
 
-    cursor: pointer;
+    cursor:pointer;
 
-    font-size: 17px;
+    font-size:17px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    transition: .2s;
+    transition:.2s;
 }
 
-.send-btn:hover {
-    transform: scale(1.05);
-
-    box-shadow:
-        0 5px 15px rgba(90,60,200,.22);
+.send-btn:hover{
+    transform:scale(1.05);
 }
 
-/* =========================================================
-   RESPONSIVE CHATBOT
-========================================================= */
-
-@media (max-width: 600px) {
-
-    .chatbot {
-        right: 12px;
-        bottom: 12px;
-
-        width: calc(100vw - 24px);
-
-        height: min(560px, calc(100vh - 24px));
-    }
-
-    .chat-launcher {
-        right: 16px;
-        bottom: 16px;
-
-        width: 72px;
-        height: 72px;
-    }
-
-    .chat-launcher .launcher-robot {
-        font-size: 34px;
-    }
-
-    .chat-launcher .launcher-notification {
-        width: 20px;
-        height: 20px;
-    }
-}
 
 /* =========================================================
    MODAL
 ========================================================= */
 
-.modal-overlay {
-    position: fixed;
+.modal{
+    position:fixed;
 
-    inset: 0;
+    inset:0;
 
     background:
-        rgba(15,20,55,.48);
+        rgba(20,25,65,.55);
 
-    backdrop-filter:
-        blur(4px);
+    display:none;
 
-    z-index: 20000;
+    align-items:center;
+    justify-content:center;
 
-    display: none;
+    z-index:30000;
 
-    align-items: center;
-    justify-content: center;
-
-    padding: 20px;
+    padding:20px;
 }
 
-.modal-overlay.show {
-    display: flex;
+.modal.show{
+    display:flex;
 }
 
-.modal {
-    width: 500px;
-    max-width: 100%;
+.modal-box{
+    width:min(480px,95%);
 
-    max-height: 90vh;
+    background:white;
 
-    overflow-y: auto;
+    border-radius:20px;
 
-    background: white;
-
-    border-radius: 20px;
+    padding:25px;
 
     box-shadow:
-        0 25px 70px rgba(20,25,80,.25);
+        0 25px 70px rgba(20,25,70,.25);
+
+    animation:
+        modalIn .2s ease;
 }
 
-.modal-header {
-    padding: 20px;
+@keyframes modalIn{
 
-    background:
-        linear-gradient(
-            135deg,
-            #29277d,
-            #7137d8
-        );
+    from{
+        opacity:0;
+        transform:
+            translateY(15px)
+            scale(.97);
+    }
 
-    color: white;
+    to{
+        opacity:1;
+        transform:
+            translateY(0)
+            scale(1);
+    }
 
-    display: flex;
-
-    justify-content: space-between;
-    align-items: center;
 }
 
-.modal-header h3 {
-    font-size: 18px;
+.modal-top{
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    margin-bottom:20px;
 }
 
-.modal-close {
-    width: 32px;
-    height: 32px;
-
-    border: none;
-
-    border-radius: 50%;
-
-    background:
-        rgba(255,255,255,.15);
-
-    color: white;
-
-    cursor: pointer;
-
-    font-size: 20px;
+.modal-top h3{
+    font-size:19px;
 }
 
-.modal-body {
-    padding: 20px;
+.close-btn{
+    width:35px;
+    height:35px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#f0f2fa;
+
+    color:#68728d;
+
+    cursor:pointer;
+
+    font-size:18px;
 }
 
-.detail-row {
-    display: flex;
+.detail-box{
+    background:#f8f9ff;
 
-    align-items: center;
+    border-radius:14px;
 
-    gap: 13px;
+    padding:15px;
 
-    padding: 12px 0;
-
-    border-bottom:
-        1px solid #f0f1f6;
+    margin-bottom:10px;
 }
 
-.detail-row:last-child {
-    border-bottom: none;
+.detail-label{
+    color:#9299ae;
+
+    font-size:10px;
+
+    margin-bottom:3px;
 }
 
-.detail-icon {
-    width: 40px;
-    height: 40px;
+.detail-value{
+    color:#39425e;
 
-    border-radius: 12px;
+    font-size:13px;
 
-    background: #f1f3ff;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-size: 18px;
+    font-weight:700;
 }
 
-.detail-info span {
-    display: block;
-
-    color: #999fb2;
-
-    font-size: 10px;
-
-    margin-bottom: 3px;
-}
-
-.detail-info strong {
-    display: block;
-
-    color: #303750;
-
-    font-size: 13px;
-}
 
 /* =========================================================
    TOAST
 ========================================================= */
 
-.toast {
-    position: fixed;
+.toast{
+    position:fixed;
 
-    left: 50%;
-    bottom: 25px;
+    left:50%;
 
-    transform:
-        translate(-50%, 20px);
-
-    background:
-        #252a4b;
-
-    color: white;
-
-    padding: 11px 18px;
-
-    border-radius: 10px;
-
-    font-size: 11px;
-
-    opacity: 0;
-
-    pointer-events: none;
-
-    transition: .25s;
-
-    z-index: 30000;
-}
-
-.toast.show {
-    opacity: 1;
+    bottom:25px;
 
     transform:
-        translate(-50%, 0);
+        translateX(-50%)
+        translateY(20px);
+
+    background:#29277d;
+
+    color:white;
+
+    padding:12px 18px;
+
+    border-radius:12px;
+
+    font-size:12px;
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transition:.25s;
+
+    z-index:40000;
 }
+
+.toast.show{
+    opacity:1;
+
+    transform:
+        translateX(-50%)
+        translateY(0);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:1150px){
+
+    .sidebar{
+        width:230px;
+        min-width:230px;
+    }
+
+    .main-area{
+        margin-left:230px;
+    }
+
+    .summary-grid{
+        grid-template-columns:
+            repeat(2,minmax(0,1fr));
+    }
+
+    .chatbot-panel{
+        right:18px;
+    }
+
+}
+
+
+@media(max-width:700px){
+
+    .sidebar{
+        width:80px;
+        min-width:80px;
+    }
+
+    .brand{
+        justify-content:center;
+        padding:15px;
+    }
+
+    .brand-text,
+    .menu-title,
+    .nav-text{
+        display:none;
+    }
+
+    .nav-item{
+        justify-content:center;
+        padding:0;
+    }
+
+    .nav-icon{
+        margin:0;
+    }
+
+    .main-area{
+        margin-left:80px;
+    }
+
+    .top-header{
+        padding:15px;
+    }
+
+    .header-left h1{
+        font-size:22px;
+    }
+
+    .header-left p,
+    .profile-info,
+    .time-box{
+        display:none;
+    }
+
+    .page-content{
+        padding:15px;
+    }
+
+    .page-heading{
+        align-items:flex-start;
+
+        flex-direction:column;
+
+        gap:12px;
+    }
+
+    .summary-grid{
+        grid-template-columns:1fr;
+    }
+
+    .timetable-header{
+        align-items:flex-start;
+
+        flex-direction:column;
+
+        gap:12px;
+    }
+
+    .class-item{
+        grid-template-columns:
+            75px 1fr;
+    }
+
+    .class-status{
+        display:none;
+    }
+
+    .chatbot-panel{
+        width:92vw;
+
+        right:4vw;
+        left:4vw;
+
+        bottom:20px;
+
+        height:460px;
+    }
+
+}
+
 
 /* =========================================================
    PRINT
 ========================================================= */
 
-@media print {
+@media print{
 
     .sidebar,
     .top-header,
+    .chat-bubble,
+    .chatbot-panel,
     .header-actions,
     .day-tabs,
-    .chatbot,
-    .chat-launcher {
-        display: none !important;
+    .filter-box{
+        display:none !important;
     }
 
-    .main-area {
-        margin-left: 0;
+    .main-area{
+        margin:0;
 
-        height: auto;
+        width:100%;
 
-        overflow: visible;
+        height:auto;
 
-        background: white;
+        overflow:visible;
     }
 
-    .page-content {
-        padding: 0;
+    .page-content{
+        padding:20px;
     }
 
     .timetable-card,
-    .summary-card {
-        box-shadow: none;
+    .summary-card{
+        box-shadow:none;
     }
+
+    body{
+        background:white;
+    }
+
 }
 
 </style>
 </head>
 
 <body>
+
 
 <!-- =====================================================
      SIDEBAR
@@ -1554,133 +1602,156 @@ select {
     </div>
 
 
-    <nav class="menu">
+    <div class="menu">
 
         <div class="menu-title">
             MAIN MENU
         </div>
 
 
+        <a class="nav-item" href="../dashboard.html">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-text">Dashboard</span>
+        </a>
+
+
+        <a class="nav-item" href="courses.html">
+            <span class="nav-icon">📚</span>
+            <span class="nav-text">Courses</span>
+        </a>
+
+
+        <a class="nav-item active" href="timetable.html">
+            <span class="nav-icon">🗓️</span>
+            <span class="nav-text">Timetable</span>
+        </a>
+
+
+        <a class="nav-item" href="assignments.html">
+            <span class="nav-icon">📝</span>
+            <span class="nav-text">Assignments</span>
+        </a>
+
+
+        <a class="nav-item" href="attendance.html">
+            <span class="nav-icon">📊</span>
+            <span class="nav-text">Attendance</span>
+        </a>
+
+
+        <a class="nav-item" href="academics.html">
+            <span class="nav-icon">🎓</span>
+            <span class="nav-text">Academics</span>
+        </a>
+
+
+        <a class="nav-item" href="faculty.html">
+            <span class="nav-icon">👨‍🏫</span>
+            <span class="nav-text">Faculty</span>
+        </a>
+
+
         <div class="menu-section">
 
-            <a href="dashboard.html" class="nav-item">
+            <div class="menu-title">
+                CAREER
+            </div>
 
-                <span class="nav-icon">🏠</span>
-
-                <span class="nav-text">
-                    Dashboard
-                </span>
-
+            <a class="nav-item" href="placement.html">
+                <span class="nav-icon">💼</span>
+                <span class="nav-text">Placement</span>
             </a>
 
-
-            <a href="courses.html" class="nav-item">
-
-                <span class="nav-icon">📚</span>
-
-                <span class="nav-text">
-                    Courses
-                </span>
-
-            </a>
-
-
-            <a href="timetable.html" class="nav-item active">
-
-                <span class="nav-icon">📅</span>
-
-                <span class="nav-text">
-                    Timetable
-                </span>
-
-            </a>
-
-
-            <a href="assignments.html" class="nav-item">
-
-                <span class="nav-icon">📝</span>
-
-                <span class="nav-text">
-                    Assignments
-                </span>
-
-            </a>
-
-
-            <a href="attendance.html" class="nav-item">
-
-                <span class="nav-icon">📊</span>
-
-                <span class="nav-text">
-                    Attendance
-                </span>
-
-            </a>
-
-
-            <a href="results.html" class="nav-item">
-
-                <span class="nav-icon">🏆</span>
-
-                <span class="nav-text">
-                    Results
-                </span>
-
+            <a class="nav-item" href="results.html">
+                <span class="nav-icon">📈</span>
+                <span class="nav-text">Results</span>
             </a>
 
         </div>
 
 
-        <div class="menu-title menu-section">
-            STUDENT
+        <div class="menu-section">
+
+            <div class="menu-title">
+                CAMPUS
+            </div>
+
+            <a class="nav-item" href="documents.html">
+                <span class="nav-icon">📄</span>
+                <span class="nav-text">Documents</span>
+            </a>
+
+            <a class="nav-item" href="complaints.html">
+                <span class="nav-icon">📢</span>
+                <span class="nav-text">Complaints</span>
+            </a>
+
+            <a class="nav-item" href="feedback.html">
+                <span class="nav-icon">💬</span>
+                <span class="nav-text">Feedback</span>
+            </a>
+
+            <a class="nav-item" href="lost_found.html">
+                <span class="nav-icon">🔎</span>
+                <span class="nav-text">Lost &amp; Found</span>
+            </a>
+
+            <a class="nav-item" href="campus.html">
+                <span class="nav-icon">🏫</span>
+                <span class="nav-text">Campus</span>
+            </a>
+
+            <a class="nav-item" href="events.html">
+                <span class="nav-icon">🎉</span>
+                <span class="nav-text">Events</span>
+            </a>
+
+            <a class="nav-item" href="exams.html">
+                <span class="nav-icon">📋</span>
+                <span class="nav-text">Exams</span>
+            </a>
+
+            <a class="nav-item" href="notifications.html">
+                <span class="nav-icon">🔔</span>
+                <span class="nav-text">Notifications</span>
+            </a>
+
         </div>
 
 
-        <div>
+        <div class="menu-section">
 
-            <a href="profile.html" class="nav-item">
+            <div class="menu-title">
+                ACCOUNT
+            </div>
 
+            <a class="nav-item" href="profile.html">
                 <span class="nav-icon">👤</span>
-
-                <span class="nav-text">
-                    Profile
-                </span>
-
+                <span class="nav-text">Profile</span>
             </a>
 
-
-            <a href="settings.html" class="nav-item">
-
+            <a class="nav-item" href="settings.html">
                 <span class="nav-icon">⚙️</span>
-
-                <span class="nav-text">
-                    Settings
-                </span>
-
+                <span class="nav-text">Settings</span>
             </a>
 
 
             <div class="logout">
 
                 <a
-                    href="login.html"
                     class="nav-item"
+                    href="../index.html"
                     onclick="return confirmLogout()"
                 >
-
                     <span class="nav-icon">🚪</span>
-
-                    <span class="nav-text">
-                        Logout
-                    </span>
-
+                    <span class="nav-text">Logout</span>
                 </a>
 
             </div>
 
         </div>
 
-    </nav>
+    </div>
 
 </aside>
 
@@ -1692,15 +1763,14 @@ select {
 <main class="main-area">
 
 
-    <!-- =================================================
-         TOP HEADER
-    ================================================= -->
+    <!-- HEADER -->
 
     <header class="top-header">
 
         <div class="header-left">
 
             <h1>
+                Student<br>
                 Timetable
             </h1>
 
@@ -1713,8 +1783,11 @@ select {
 
         <div class="header-right">
 
-            <div class="time-box" id="currentTime">
-                09:00 AM
+            <div
+                class="time-box"
+                id="clock"
+            >
+                6:00 PM
             </div>
 
 
@@ -1736,7 +1809,7 @@ select {
                     </strong>
 
                     <span>
-                        Semester 4
+                        BCA • 5th Sem
                     </span>
 
                 </div>
@@ -1748,23 +1821,23 @@ select {
     </header>
 
 
-    <!-- =================================================
-         PAGE CONTENT
-    ================================================= -->
+    <!-- PAGE CONTENT -->
 
-    <section class="page-content">
+    <div class="page-content">
 
+
+        <!-- PAGE HEADING -->
 
         <div class="page-heading">
 
             <div>
 
                 <h2>
-                    Weekly Schedule
+                    🗓️ My Timetable
                 </h2>
 
                 <p>
-                    Select a day to view your classes
+                    Select a day to view your scheduled classes.
                 </p>
 
             </div>
@@ -1773,18 +1846,17 @@ select {
             <div class="header-actions">
 
                 <button
+                    class="action-btn today-btn"
+                    onclick="goToday()"
+                >
+                    Today
+                </button>
+
+                <button
                     class="action-btn print-btn"
                     onclick="printTimetable()"
                 >
                     🖨 Print
-                </button>
-
-
-                <button
-                    class="action-btn today-btn"
-                    onclick="goToToday()"
-                >
-                    📅 Today
                 </button>
 
             </div>
@@ -1792,35 +1864,34 @@ select {
         </div>
 
 
-        <!-- =================================================
-             SUMMARY CARDS
-        ================================================= -->
+        <!-- SUMMARY -->
 
-        <div class="summary-grid">
+        <section class="summary-grid">
+
 
             <div class="summary-card">
 
                 <div class="summary-top">
 
                     <div class="summary-title">
-                        Total Classes
+                        TODAY'S CLASSES
                     </div>
 
                     <div class="summary-icon">
-                        📚
+                        🗓️
                     </div>
 
                 </div>
 
                 <div
                     class="summary-number"
-                    id="totalClasses"
+                    id="todayCount"
                 >
-                    17
+                    0
                 </div>
 
                 <div class="summary-small">
-                    This week
+                    Scheduled classes
                 </div>
 
             </div>
@@ -1831,63 +1902,7 @@ select {
                 <div class="summary-top">
 
                     <div class="summary-title">
-                        Lab Sessions
-                    </div>
-
-                    <div class="summary-icon">
-                        💻
-                    </div>
-
-                </div>
-
-                <div
-                    class="summary-number"
-                    id="totalLabs"
-                >
-                    6
-                </div>
-
-                <div class="summary-small">
-                    Practical classes
-                </div>
-
-            </div>
-
-
-            <div class="summary-card">
-
-                <div class="summary-top">
-
-                    <div class="summary-title">
-                        Subjects
-                    </div>
-
-                    <div class="summary-icon">
-                        📖
-                    </div>
-
-                </div>
-
-                <div
-                    class="summary-number"
-                    id="totalSubjects"
-                >
-                    6
-                </div>
-
-                <div class="summary-small">
-                    Unique subjects
-                </div>
-
-            </div>
-
-
-            <div class="summary-card">
-
-                <div class="summary-top">
-
-                    <div class="summary-title">
-                        Weekly Hours
+                        FIRST CLASS
                     </div>
 
                     <div class="summary-icon">
@@ -1898,25 +1913,80 @@ select {
 
                 <div
                     class="summary-number"
-                    id="weeklyHours"
+                    id="firstClass"
                 >
-                    17
+                    --
                 </div>
 
                 <div class="summary-small">
-                    Scheduled periods
+                    Start time
                 </div>
 
             </div>
 
-        </div>
+
+            <div class="summary-card">
+
+                <div class="summary-top">
+
+                    <div class="summary-title">
+                        LAB SESSIONS
+                    </div>
+
+                    <div class="summary-icon">
+                        💻
+                    </div>
+
+                </div>
+
+                <div
+                    class="summary-number"
+                    id="labCount"
+                >
+                    0
+                </div>
+
+                <div class="summary-small">
+                    Practical sessions
+                </div>
+
+            </div>
 
 
-        <!-- =================================================
-             TIMETABLE CARD
-        ================================================= -->
+            <div class="summary-card">
 
-        <div class="timetable-card">
+                <div class="summary-top">
+
+                    <div class="summary-title">
+                        WEEKLY CLASSES
+                    </div>
+
+                    <div class="summary-icon">
+                        📚
+                    </div>
+
+                </div>
+
+                <div
+                    class="summary-number"
+                    id="weeklyCount"
+                >
+                    0
+                </div>
+
+                <div class="summary-small">
+                    Total scheduled
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- TIMETABLE -->
+
+        <section class="timetable-card">
 
 
             <div class="timetable-header">
@@ -1924,11 +1994,11 @@ select {
                 <div>
 
                     <h3>
-                        Class Schedule
+                        Weekly Schedule
                     </h3>
 
                     <p id="selectedDayText">
-                        Monday's classes
+                        Monday schedule
                     </p>
 
                 </div>
@@ -1936,18 +2006,15 @@ select {
 
                 <div class="filter-box">
 
-                    <select id="typeFilter">
+                    <select
+                        id="subjectFilter"
+                        onchange="renderTimetable()"
+                    >
+
                         <option value="all">
-                            All Types
+                            All Subjects
                         </option>
 
-                        <option value="Class">
-                            Classes
-                        </option>
-
-                        <option value="Lab">
-                            Labs
-                        </option>
                     </select>
 
                 </div>
@@ -1955,9 +2022,7 @@ select {
             </div>
 
 
-            <!-- =================================================
-                 DAY TABS
-            ================================================= -->
+            <!-- DAY BUTTONS -->
 
             <div class="day-tabs">
 
@@ -2012,9 +2077,7 @@ select {
             </div>
 
 
-            <!-- =================================================
-                 CLASS LIST
-            ================================================= -->
+            <!-- CLASS LIST -->
 
             <div
                 class="class-list"
@@ -2022,13 +2085,15 @@ select {
             ></div>
 
 
+            <!-- EMPTY -->
+
             <div
                 class="empty-state"
                 id="emptyState"
             >
 
                 <div>
-                    📭
+                    📚
                 </div>
 
                 <strong>
@@ -2036,53 +2101,42 @@ select {
                 </strong>
 
                 <p>
-                    There are no classes matching your filter.
+                    There are no classes matching this filter.
                 </p>
 
             </div>
 
-        </div>
 
-    </section>
+        </section>
+
+    </div>
 
 </main>
 
 
 <!-- =====================================================
-     AI CHATBOT BUTTON
+     FLOATING CHATBOT BUTTON
 ===================================================== -->
 
 <button
-    class="chat-launcher"
-    id="chatLauncher"
-    onclick="toggleChatbot()"
-    title="Open AI College Companion"
+    class="chat-bubble"
+    id="chatBubble"
+    onclick="toggleChat()"
     aria-label="Open AI College Companion"
 >
-
-    <span
-        class="launcher-robot"
-        aria-hidden="true"
-    >
-        🤖
-    </span>
-
-    <span
-        class="launcher-notification"
-        aria-hidden="true"
-    ></span>
-
+    🤖
 </button>
 
 
 <!-- =====================================================
-     AI CHATBOT
+     CHATBOT PANEL
 ===================================================== -->
 
 <aside
-    class="chatbot"
+    class="chatbot-panel"
     id="chatbotPanel"
 >
+
 
     <div class="chat-header">
 
@@ -2097,7 +2151,7 @@ select {
             </strong>
 
             <span>
-                <span class="online-dot"></span>
+                <i class="online-dot"></i>
                 Online • Ready to help
             </span>
 
@@ -2106,8 +2160,7 @@ select {
 
         <button
             class="chat-close"
-            onclick="toggleChatbot()"
-            aria-label="Close AI College Companion"
+            onclick="toggleChat()"
         >
             ×
         </button>
@@ -2123,18 +2176,19 @@ select {
         <div class="bot-message">
 
             👋 Hi! I'm your
-            <b>AI College Companion</b>.
+            <strong>AI College Companion.</strong>
+
+            <br><br>
+
+            I can help you understand your timetable,
+            classes, subjects and schedule.
 
         </div>
 
 
         <div class="bot-message">
 
-            I can help you with your
-            <b>timetable, subjects, faculty,
-            rooms, labs and class timings.</b>
-
-            Ask me anything about your schedule!
+            What would you like to know today? 😊
 
         </div>
 
@@ -2147,28 +2201,21 @@ select {
             class="quick-btn"
             onclick="quickChat('Show my timetable')"
         >
-            📅 My timetable
+            Today's timetable
         </button>
 
         <button
             class="quick-btn"
-            onclick="quickChat('Show Monday')"
+            onclick="quickChat('What is my first class?')"
         >
-            Monday
+            First class
         </button>
 
         <button
             class="quick-btn"
             onclick="quickChat('Show my labs')"
         >
-            💻 My labs
-        </button>
-
-        <button
-            class="quick-btn"
-            onclick="quickChat('What can you do')"
-        >
-            Help
+            My labs
         </button>
 
     </div>
@@ -2177,9 +2224,9 @@ select {
     <div class="chat-footer">
 
         <input
-            type="text"
             id="chatInput"
             class="chat-input"
+            type="text"
             placeholder="Ask your companion..."
             onkeydown="handleChatKey(event)"
         >
@@ -2187,7 +2234,6 @@ select {
         <button
             class="send-btn"
             onclick="sendChat()"
-            aria-label="Send message"
         >
             ➤
         </button>
@@ -2202,21 +2248,23 @@ select {
 ===================================================== -->
 
 <div
-    class="modal-overlay"
+    class="modal"
     id="classModal"
     onclick="closeModalOutside(event)"
 >
 
-    <div class="modal">
 
-        <div class="modal-header">
+    <div class="modal-box">
 
-            <h3>
+
+        <div class="modal-top">
+
+            <h3 id="modalTitle">
                 Class Details
             </h3>
 
             <button
-                class="modal-close"
+                class="close-btn"
                 onclick="closeModal()"
             >
                 ×
@@ -2225,27 +2273,131 @@ select {
         </div>
 
 
-        <div
-            class="modal-body"
-            id="modalBody"
-        ></div>
+        <div class="detail-box">
+
+            <div class="detail-label">
+                SUBJECT
+            </div>
+
+            <div
+                class="detail-value"
+                id="modalSubject"
+            >
+                --
+            </div>
+
+        </div>
+
+
+        <div class="detail-box">
+
+            <div class="detail-label">
+                TIME
+            </div>
+
+            <div
+                class="detail-value"
+                id="modalTime"
+            >
+                --
+            </div>
+
+        </div>
+
+
+        <div class="detail-box">
+
+            <div class="detail-label">
+                FACULTY
+            </div>
+
+            <div
+                class="detail-value"
+                id="modalFaculty"
+            >
+                --
+            </div>
+
+        </div>
+
+
+        <div class="detail-box">
+
+            <div class="detail-label">
+                ROOM
+            </div>
+
+            <div
+                class="detail-value"
+                id="modalRoom"
+            >
+                --
+            </div>
+
+        </div>
+
+
+        <div class="detail-box">
+
+            <div class="detail-label">
+                TYPE
+            </div>
+
+            <div
+                class="detail-value"
+                id="modalType"
+            >
+                --
+            </div>
+
+        </div>
+
 
     </div>
 
 </div>
 
 
-<!-- =====================================================
-     TOAST
-===================================================== -->
+<!-- TOAST -->
 
 <div
     class="toast"
     id="toast"
-></div>
+>
+    Done
+</div>
 
 
 <script>
+
+/* =========================================================
+   CHATBOT TOGGLE
+========================================================= */
+
+function toggleChat(){
+
+    const panel =
+        document.getElementById("chatbotPanel");
+
+    const bubble =
+        document.getElementById("chatBubble");
+
+    const isOpen =
+        panel.classList.toggle("show");
+
+    bubble.style.display =
+        isOpen ? "none" : "flex";
+
+    if(isOpen){
+
+        document
+            .getElementById("chatInput")
+            .focus();
+
+    }
+
+}
+
 
 /* =========================================================
    TIMETABLE DATA
@@ -2253,262 +2405,337 @@ select {
 
 const timetableData = {
 
-    Monday: [
-
+    Monday:[
         {
-            time: "09:00 AM",
-            subject: "Database Management System",
-            faculty: "Prof. Sharma",
-            room: "Room 204",
-            type: "Class",
-            icon: "🗄️"
+            time:"09:00 AM",
+            subject:"Database Management System",
+            faculty:"Prof. Sharma",
+            room:"Room 204",
+            type:"Class",
+            icon:"🗄️"
         },
 
         {
-            time: "11:00 AM",
-            subject: "Web Programming",
-            faculty: "Prof. Priya",
-            room: "Lab 2",
-            type: "Lab",
-            icon: "💻"
+            time:"11:00 AM",
+            subject:"Web Programming",
+            faculty:"Prof. Priya",
+            room:"Lab 2",
+            type:"Lab",
+            icon:"💻"
         },
 
         {
-            time: "02:00 PM",
-            subject: "Software Engineering",
-            faculty: "Prof. Kumar",
-            room: "Room 305",
-            type: "Class",
-            icon: "⚙️"
+            time:"02:00 PM",
+            subject:"Software Engineering",
+            faculty:"Prof. Kumar",
+            room:"Room 305",
+            type:"Class",
+            icon:"⚙️"
         }
-
     ],
 
 
-    Tuesday: [
-
+    Tuesday:[
         {
-            time: "09:00 AM",
-            subject: "Computer Networks",
-            faculty: "Prof. Rao",
-            room: "Room 201",
-            type: "Class",
-            icon: "🌐"
+            time:"09:00 AM",
+            subject:"Computer Networks",
+            faculty:"Prof. Rao",
+            room:"Room 201",
+            type:"Class",
+            icon:"🌐"
         },
 
         {
-            time: "11:00 AM",
-            subject: "Database Management System",
-            faculty: "Prof. Sharma",
-            room: "Lab 1",
-            type: "Lab",
-            icon: "🗄️"
+            time:"11:00 AM",
+            subject:"Database Management System",
+            faculty:"Prof. Sharma",
+            room:"Lab 1",
+            type:"Lab",
+            icon:"🗄️"
         },
 
         {
-            time: "02:00 PM",
-            subject: "Mathematics",
-            faculty: "Prof. Mehta",
-            room: "Room 103",
-            type: "Class",
-            icon: "📐"
+            time:"02:00 PM",
+            subject:"Mathematics",
+            faculty:"Prof. Mehta",
+            room:"Room 103",
+            type:"Class",
+            icon:"📐"
         }
-
     ],
 
 
-    Wednesday: [
-
+    Wednesday:[
         {
-            time: "09:00 AM",
-            subject: "Web Programming",
-            faculty: "Prof. Priya",
-            room: "Lab 2",
-            type: "Lab",
-            icon: "💻"
+            time:"09:00 AM",
+            subject:"Web Programming",
+            faculty:"Prof. Priya",
+            room:"Lab 2",
+            type:"Lab",
+            icon:"💻"
         },
 
         {
-            time: "11:00 AM",
-            subject: "Software Engineering",
-            faculty: "Prof. Kumar",
-            room: "Room 305",
-            type: "Class",
-            icon: "⚙️"
+            time:"11:00 AM",
+            subject:"Software Engineering",
+            faculty:"Prof. Kumar",
+            room:"Room 305",
+            type:"Class",
+            icon:"⚙️"
         },
 
         {
-            time: "02:00 PM",
-            subject: "Computer Networks",
-            faculty: "Prof. Rao",
-            room: "Room 201",
-            type: "Class",
-            icon: "🌐"
+            time:"02:00 PM",
+            subject:"Computer Networks",
+            faculty:"Prof. Rao",
+            room:"Room 201",
+            type:"Class",
+            icon:"🌐"
         }
-
     ],
 
 
-    Thursday: [
-
+    Thursday:[
         {
-            time: "09:00 AM",
-            subject: "Mathematics",
-            faculty: "Prof. Mehta",
-            room: "Room 103",
-            type: "Class",
-            icon: "📐"
+            time:"09:00 AM",
+            subject:"Mathematics",
+            faculty:"Prof. Mehta",
+            room:"Room 103",
+            type:"Class",
+            icon:"📐"
         },
 
         {
-            time: "11:00 AM",
-            subject: "Database Management System",
-            faculty: "Prof. Sharma",
-            room: "Room 204",
-            type: "Class",
-            icon: "🗄️"
+            time:"11:00 AM",
+            subject:"Database Management System",
+            faculty:"Prof. Sharma",
+            room:"Room 204",
+            type:"Class",
+            icon:"🗄️"
         },
 
         {
-            time: "02:00 PM",
-            subject: "Web Programming",
-            faculty: "Prof. Priya",
-            room: "Lab 2",
-            type: "Lab",
-            icon: "💻"
+            time:"02:00 PM",
+            subject:"Web Programming",
+            faculty:"Prof. Priya",
+            room:"Lab 2",
+            type:"Lab",
+            icon:"💻"
         }
-
     ],
 
 
-    Friday: [
-
+    Friday:[
         {
-            time: "09:00 AM",
-            subject: "Software Engineering",
-            faculty: "Prof. Kumar",
-            room: "Room 305",
-            type: "Class",
-            icon: "⚙️"
+            time:"09:00 AM",
+            subject:"Software Engineering",
+            faculty:"Prof. Kumar",
+            room:"Room 305",
+            type:"Class",
+            icon:"⚙️"
         },
 
         {
-            time: "11:00 AM",
-            subject: "Computer Networks",
-            faculty: "Prof. Rao",
-            room: "Room 201",
-            type: "Class",
-            icon: "🌐"
+            time:"11:00 AM",
+            subject:"Computer Networks",
+            faculty:"Prof. Rao",
+            room:"Room 201",
+            type:"Class",
+            icon:"🌐"
         },
 
         {
-            time: "02:00 PM",
-            subject: "Web Programming",
-            faculty: "Prof. Priya",
-            room: "Lab 2",
-            type: "Lab",
-            icon: "💻"
+            time:"02:00 PM",
+            subject:"Web Programming",
+            faculty:"Prof. Priya",
+            room:"Lab 2",
+            type:"Lab",
+            icon:"💻"
         }
-
     ],
 
 
-    Saturday: [
-
+    Saturday:[
         {
-            time: "09:00 AM",
-            subject: "Database Management System",
-            faculty: "Prof. Sharma",
-            room: "Room 204",
-            type: "Class",
-            icon: "🗄️"
+            time:"09:00 AM",
+            subject:"Database Management System",
+            faculty:"Prof. Sharma",
+            room:"Room 204",
+            type:"Class",
+            icon:"🗄️"
         },
 
         {
-            time: "11:00 AM",
-            subject: "Mathematics",
-            faculty: "Prof. Mehta",
-            room: "Room 103",
-            type: "Class",
-            icon: "📐"
+            time:"11:00 AM",
+            subject:"Mathematics",
+            faculty:"Prof. Mehta",
+            room:"Room 103",
+            type:"Class",
+            icon:"📐"
         }
-
     ]
 
 };
 
 
+/* =========================================================
+   CURRENT DAY
+========================================================= */
+
 let selectedDay = "Monday";
 
 
 /* =========================================================
-   CURRENT TIME
+   PAGE LOAD
 ========================================================= */
 
-function updateCurrentTime() {
+window.addEventListener(
+    "load",
+    function(){
 
-    const timeElement =
-        document.getElementById("currentTime");
+        updateClock();
 
-    if (!timeElement) return;
+        setInterval(
+            updateClock,
+            1000
+        );
 
-    const now = new Date();
+        populateSubjects();
 
-    let hours = now.getHours();
+        renderTimetable();
+
+        updateWeeklyStats();
+
+    }
+);
+
+
+/* =========================================================
+   CLOCK
+========================================================= */
+
+function updateClock(){
+
+    const now =
+        new Date();
+
+    let hours =
+        now.getHours();
 
     const minutes =
-        String(now.getMinutes()).padStart(2, "0");
-
-    const seconds =
-        String(now.getSeconds()).padStart(2, "0");
+        String(
+            now.getMinutes()
+        ).padStart(2,"0");
 
     const ampm =
-        hours >= 12 ? "PM" : "AM";
+        hours >= 12
+            ? "PM"
+            : "AM";
 
     hours =
         hours % 12 || 12;
 
-    timeElement.innerText =
-        `${String(hours).padStart(2, "0")}:${minutes}:${seconds} ${ampm}`;
+    document.getElementById(
+        "clock"
+    ).innerText =
+        hours +
+        ":" +
+        minutes +
+        " " +
+        ampm;
+
 }
 
 
-updateCurrentTime();
+/* =========================================================
+   SUBJECT FILTER
+========================================================= */
 
-setInterval(updateCurrentTime, 1000);
+function populateSubjects(){
+
+    const select =
+        document.getElementById(
+            "subjectFilter"
+        );
+
+    const subjects =
+        new Set();
+
+    Object.values(
+        timetableData
+    ).forEach(
+        day => {
+
+            day.forEach(
+                item => {
+
+                    subjects.add(
+                        item.subject
+                    );
+
+                }
+            );
+
+        }
+    );
+
+
+    [...subjects]
+        .sort()
+        .forEach(
+            subject => {
+
+                const option =
+                    document.createElement(
+                        "option"
+                    );
+
+                option.value =
+                    subject;
+
+                option.textContent =
+                    subject;
+
+                select.appendChild(
+                    option
+                );
+
+            }
+        );
+
+}
 
 
 /* =========================================================
    SELECT DAY
 ========================================================= */
 
-function selectDay(day) {
+function selectDay(day){
 
-    selectedDay = day;
+    selectedDay =
+        day;
 
     document
-        .querySelectorAll(".day-tab")
-        .forEach(function(tab) {
+        .querySelectorAll(
+            ".day-tab"
+        )
+        .forEach(
+            button => {
 
-            tab.classList.toggle(
-                "active",
-                tab.dataset.day === day
-            );
+                button.classList.toggle(
+                    "active",
+                    button.dataset.day === day
+                );
 
-        });
-
-
-    const selectedText =
-        document.getElementById(
-            "selectedDayText"
+            }
         );
 
-    if (selectedText) {
 
-        selectedText.innerText =
-            day + "'s classes";
-
-    }
+    document.getElementById(
+        "selectedDayText"
+    ).textContent =
+        day +
+        " schedule";
 
 
     renderTimetable();
@@ -2520,427 +2747,208 @@ function selectDay(day) {
    RENDER TIMETABLE
 ========================================================= */
 
-function renderTimetable() {
+function renderTimetable(){
 
-    const classList =
-        document.getElementById("classList");
+    const list =
+        document.getElementById(
+            "classList"
+        );
 
-    const emptyState =
-        document.getElementById("emptyState");
-
-    const typeFilter =
-        document.getElementById("typeFilter");
-
-
-    if (!classList) return;
-
+    const empty =
+        document.getElementById(
+            "emptyState"
+        );
 
     const filter =
-        typeFilter
-            ? typeFilter.value
-            : "all";
+        document.getElementById(
+            "subjectFilter"
+        ).value;
+
+
+    list.innerHTML = "";
 
 
     let classes =
-        timetableData[selectedDay] || [];
+        timetableData[
+            selectedDay
+        ] || [];
 
 
-    if (filter !== "all") {
+    if(filter !== "all"){
 
         classes =
-            classes.filter(function(item) {
-
-                return item.type === filter;
-
-            });
+            classes.filter(
+                item =>
+                    item.subject === filter
+            );
 
     }
 
 
-    classList.innerHTML = "";
+    if(classes.length === 0){
 
+        empty.style.display =
+            "block";
 
-    if (!classes.length) {
-
-        if (emptyState) {
-            emptyState.style.display = "block";
-        }
+        updateDayStats([]);
 
         return;
 
     }
 
 
-    if (emptyState) {
-        emptyState.style.display = "none";
-    }
+    empty.style.display =
+        "none";
 
 
-    classes.forEach(function(item) {
+    classes.forEach(
+        item => {
 
-        const card =
-            document.createElement("div");
-
-        card.className =
-            "class-item";
-
-
-        card.innerHTML = `
-
-            <div class="class-time">
-                ${item.time}
-            </div>
-
-
-            <div class="class-main">
-
-                <div class="subject-icon">
-                    ${item.icon}
-                </div>
-
-
-                <div class="subject-info">
-
-                    <strong>
-                        ${item.subject}
-                    </strong>
-
-                    <span>
-                        ${item.faculty} • ${item.room}
-                    </span>
-
-                </div>
-
-            </div>
-
-
-            <div
-                class="class-status ${
-                    item.type === "Lab"
-                        ? "status-lab"
-                        : "status-class"
-                }"
-            >
-                ${item.type}
-            </div>
-
-        `;
-
-
-        card.addEventListener(
-            "click",
-            function() {
-
-                openClassModal(
-                    item,
-                    selectedDay
+            const row =
+                document.createElement(
+                    "div"
                 );
 
-            }
-        );
+            row.className =
+                "class-item";
 
 
-        classList.appendChild(card);
+            row.onclick =
+                function(){
 
-    });
+                    openClassModal(
+                        item
+                    );
 
-}
+                };
 
 
-/* =========================================================
-   FILTER
-========================================================= */
+            const statusClass =
+                item.type === "Lab"
+                    ? "status-lab"
+                    : "status-class";
 
-const typeFilter =
-    document.getElementById("typeFilter");
 
-if (typeFilter) {
+            row.innerHTML = `
 
-    typeFilter.addEventListener(
-        "change",
-        renderTimetable
+                <div class="class-time">
+                    ${item.time}
+                </div>
+
+
+                <div class="class-main">
+
+                    <div class="subject-icon">
+                        ${item.icon}
+                    </div>
+
+
+                    <div class="subject-info">
+
+                        <strong>
+                            ${item.subject}
+                        </strong>
+
+                        <span>
+                            ${item.room}
+                            •
+                            ${item.faculty}
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="class-status ${statusClass}">
+                    ${item.type}
+                </div>
+
+            `;
+
+
+            list.appendChild(
+                row
+            );
+
+        }
+    );
+
+
+    updateDayStats(
+        classes
     );
 
 }
 
 
 /* =========================================================
-   INITIAL RENDER
+   DAY STATS
 ========================================================= */
 
-renderTimetable();
+function updateDayStats(
+    classes
+){
+
+    document.getElementById(
+        "todayCount"
+    ).textContent =
+        classes.length;
+
+
+    document.getElementById(
+        "firstClass"
+    ).textContent =
+        classes.length
+            ? classes[0].time
+            : "--";
+
+
+    document.getElementById(
+        "labCount"
+    ).textContent =
+        classes.filter(
+            item =>
+                item.type === "Lab"
+        ).length;
+
+}
 
 
 /* =========================================================
-   SUMMARY
+   WEEKLY STATS
 ========================================================= */
 
-function updateSummary() {
+function updateWeeklyStats(){
 
-    let totalClasses = 0;
+    let total = 0;
 
-    let totalLabs = 0;
 
-    const subjects = new Set();
+    Object.values(
+        timetableData
+    ).forEach(
+        day => {
 
-
-    Object.keys(timetableData)
-        .forEach(function(day) {
-
-            timetableData[day]
-                .forEach(function(item) {
-
-                    totalClasses++;
-
-                    if (item.type === "Lab") {
-                        totalLabs++;
-                    }
-
-                    subjects.add(item.subject);
-
-                });
-
-        });
-
-
-    const totalClassesElement =
-        document.getElementById("totalClasses");
-
-    const totalLabsElement =
-        document.getElementById("totalLabs");
-
-    const totalSubjectsElement =
-        document.getElementById("totalSubjects");
-
-    const weeklyHoursElement =
-        document.getElementById("weeklyHours");
-
-
-    if (totalClassesElement) {
-        totalClassesElement.innerText =
-            totalClasses;
-    }
-
-    if (totalLabsElement) {
-        totalLabsElement.innerText =
-            totalLabs;
-    }
-
-    if (totalSubjectsElement) {
-        totalSubjectsElement.innerText =
-            subjects.size;
-    }
-
-    if (weeklyHoursElement) {
-        weeklyHoursElement.innerText =
-            totalClasses;
-    }
-
-}
-
-
-updateSummary();
-
-
-/* =========================================================
-   CLASS MODAL
-========================================================= */
-
-function openClassModal(item, day) {
-
-    const modal =
-        document.getElementById("classModal");
-
-    const body =
-        document.getElementById("modalBody");
-
-    if (!modal || !body) return;
-
-
-    body.innerHTML = `
-
-        <div class="detail-row">
-
-            <div class="detail-icon">
-                📚
-            </div>
-
-            <div class="detail-info">
-
-                <span>
-                    Subject
-                </span>
-
-                <strong>
-                    ${item.subject}
-                </strong>
-
-            </div>
-
-        </div>
-
-
-        <div class="detail-row">
-
-            <div class="detail-icon">
-                📅
-            </div>
-
-            <div class="detail-info">
-
-                <span>
-                    Day
-                </span>
-
-                <strong>
-                    ${day}
-                </strong>
-
-            </div>
-
-        </div>
-
-
-        <div class="detail-row">
-
-            <div class="detail-icon">
-                ⏰
-            </div>
-
-            <div class="detail-info">
-
-                <span>
-                    Time
-                </span>
-
-                <strong>
-                    ${item.time}
-                </strong>
-
-            </div>
-
-        </div>
-
-
-        <div class="detail-row">
-
-            <div class="detail-icon">
-                👨‍🏫
-            </div>
-
-            <div class="detail-info">
-
-                <span>
-                    Faculty
-                </span>
-
-                <strong>
-                    ${item.faculty}
-                </strong>
-
-            </div>
-
-        </div>
-
-
-        <div class="detail-row">
-
-            <div class="detail-icon">
-                📍
-            </div>
-
-            <div class="detail-info">
-
-                <span>
-                    Room
-                </span>
-
-                <strong>
-                    ${item.room}
-                </strong>
-
-            </div>
-
-        </div>
-
-
-        <div class="detail-row">
-
-            <div class="detail-icon">
-                ${
-                    item.type === "Lab"
-                        ? "💻"
-                        : "🏫"
-                }
-            </div>
-
-            <div class="detail-info">
-
-                <span>
-                    Type
-                </span>
-
-                <strong>
-                    ${item.type}
-                </strong>
-
-            </div>
-
-        </div>
-
-    `;
-
-
-    modal.classList.add("show");
-
-}
-
-
-function closeModal() {
-
-    const modal =
-        document.getElementById("classModal");
-
-    if (modal) {
-        modal.classList.remove("show");
-    }
-
-}
-
-
-function closeModalOutside(event) {
-
-    if (
-        event.target &&
-        event.target.id === "classModal"
-    ) {
-
-        closeModal();
-
-    }
-
-}
-
-
-document.addEventListener(
-    "keydown",
-    function(event) {
-
-        if (event.key === "Escape") {
-
-            closeModal();
+            total +=
+                day.length;
 
         }
+    );
 
-    }
-);
+
+    document.getElementById(
+        "weeklyCount"
+    ).textContent =
+        total;
+
+}
 
 
 /* =========================================================
-   TODAY
+   TODAY BUTTON
 ========================================================= */
 
-function goToToday() {
+function goToday(){
 
     const days = [
         "Sunday",
@@ -2954,21 +2962,26 @@ function goToToday() {
 
 
     const today =
-        days[new Date().getDay()];
+        days[
+            new Date().getDay()
+        ];
 
 
-    if (timetableData[today]) {
+    if(timetableData[today]){
 
-        selectDay(today);
-
-        showToast(
-            "Showing today's timetable"
+        selectDay(
+            today
         );
 
-    } else {
+    }
+    else{
+
+        selectDay(
+            "Monday"
+        );
 
         showToast(
-            "No classes are scheduled today"
+            "No Saturday/Sunday classes. Showing Monday."
         );
 
     }
@@ -2980,9 +2993,127 @@ function goToToday() {
    PRINT
 ========================================================= */
 
-function printTimetable() {
+function printTimetable(){
 
     window.print();
+
+}
+
+
+/* =========================================================
+   CLASS MODAL
+========================================================= */
+
+function openClassModal(
+    item
+){
+
+    document.getElementById(
+        "modalTitle"
+    ).textContent =
+        item.subject;
+
+
+    document.getElementById(
+        "modalSubject"
+    ).textContent =
+        item.subject;
+
+
+    document.getElementById(
+        "modalTime"
+    ).textContent =
+        selectedDay +
+        " • " +
+        item.time;
+
+
+    document.getElementById(
+        "modalFaculty"
+    ).textContent =
+        item.faculty;
+
+
+    document.getElementById(
+        "modalRoom"
+    ).textContent =
+        item.room;
+
+
+    document.getElementById(
+        "modalType"
+    ).textContent =
+        item.type;
+
+
+    document.getElementById(
+        "classModal"
+    ).classList.add(
+        "show"
+    );
+
+}
+
+
+function closeModal(){
+
+    document.getElementById(
+        "classModal"
+    ).classList.remove(
+        "show"
+    );
+
+}
+
+
+function closeModalOutside(
+    event
+){
+
+    if(
+        event.target ===
+        document.getElementById(
+            "classModal"
+        )
+    ){
+
+        closeModal();
+
+    }
+
+}
+
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(
+            event.key === "Escape"
+        ){
+
+            closeModal();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   QUICK CHAT
+========================================================= */
+
+function quickChat(
+    text
+){
+
+    document.getElementById(
+        "chatInput"
+    ).value =
+        text;
+
+    sendChat();
 
 }
 
@@ -2991,194 +3122,27 @@ function printTimetable() {
    CHATBOT
 ========================================================= */
 
-function toggleChatbot() {
+function sendChat(){
 
-    const chatbot =
+    const input =
         document.getElementById(
-            "chatbotPanel"
+            "chatInput"
         );
 
-    const launcher =
-        document.getElementById(
-            "chatLauncher"
-        );
+    const text =
+        input.value.trim();
 
-    if (!chatbot || !launcher) {
+
+    if(!text){
         return;
     }
 
-
-    chatbot.classList.toggle(
-        "cc-open"
-    );
-
-
-    if (
-        chatbot.classList.contains(
-            "cc-open"
-        )
-    ) {
-
-        launcher.style.display =
-            "none";
-
-
-        const input =
-            document.getElementById(
-                "chatInput"
-            );
-
-
-        if (input) {
-
-            setTimeout(
-                function() {
-
-                    input.focus();
-
-                },
-                150
-            );
-
-        }
-
-    } else {
-
-        launcher.style.display =
-            "flex";
-
-    }
-
-}
-
-
-/* =========================================================
-   CHAT QUICK BUTTON
-========================================================= */
-
-function quickChat(text) {
-
-    const input =
-        document.getElementById(
-            "chatInput"
-        );
-
-    if (!input) return;
-
-
-    input.value = text;
-
-    sendChat();
-
-}
-
-
-/* =========================================================
-   GET ALL TIMETABLE CLASSES
-========================================================= */
-
-function getAllTimetableClasses() {
-
-    const all = [];
-
-
-    Object.keys(timetableData)
-        .forEach(function(day) {
-
-            (timetableData[day] || [])
-                .forEach(function(item) {
-
-                    all.push({
-                        day: day,
-                        item: item
-                    });
-
-                });
-
-        });
-
-
-    return all;
-
-}
-
-
-/* =========================================================
-   CLASS DETAILS FOR CHAT
-========================================================= */
-
-function classDetails(item, day) {
-
-    return (
-        "<b>" +
-        item.subject +
-        "</b>" +
-
-        "<br>📅 " +
-        day +
-
-        "<br>⏰ " +
-        item.time +
-
-        "<br>👨‍🏫 " +
-        item.faculty +
-
-        "<br>📍 " +
-        item.room +
-
-        "<br>📚 " +
-        item.type
-    );
-
-}
-
-
-/* =========================================================
-   CLEAN QUESTION
-========================================================= */
-
-function cleanQuestion(text) {
-
-    return text
-        .toLowerCase()
-        .replace(/[?,.!]/g, " ")
-        .replace(/\s+/g, " ")
-        .trim();
-
-}
-
-
-/* =========================================================
-   SEND CHAT
-========================================================= */
-
-function sendChat() {
-
-    const input =
-        document.getElementById(
-            "chatInput"
-        );
 
     const chatBody =
         document.getElementById(
             "chatBody"
         );
 
-    if (!input || !chatBody) {
-        return;
-    }
-
-
-    const text =
-        input.value.trim();
-
-
-    if (!text) {
-        return;
-    }
-
-
-    /* USER MESSAGE */
 
     const user =
         document.createElement(
@@ -3191,256 +3155,129 @@ function sendChat() {
     user.innerText =
         text;
 
+
     chatBody.appendChild(
         user
     );
 
-    input.value = "";
 
+    input.value =
+        "";
 
-    chatBody.scrollTop =
-        chatBody.scrollHeight;
-
-
-    /* THINKING MESSAGE */
-
-    const bot =
-        document.createElement(
-            "div"
-        );
-
-    bot.className =
-        "bot-message";
-
-    bot.innerHTML =
-        "🤖 Thinking...";
-
-    chatBody.appendChild(
-        bot
-    );
 
     chatBody.scrollTop =
         chatBody.scrollHeight;
 
 
     setTimeout(
-        function() {
+        function(){
 
-            const q =
-                cleanQuestion(text);
-
-            const all =
-                getAllTimetableClasses();
-
-            let response = "";
-
-
-            /* GREETING */
-
-            if (
-                q === "hi" ||
-                q === "hello" ||
-                q === "hey" ||
-                q.includes("good morning") ||
-                q.includes("good afternoon") ||
-                q.includes("good evening")
-            ) {
-
-                response =
-                    "👋 Hello! I'm your CampusConnect AI College Companion." +
-                    "<br><br>Ask me about your timetable, subjects, faculty, rooms, labs and classes.";
-
-            }
-
-
-            /* HELP */
-
-            else if (
-                q.includes("what can you do") ||
-                q.includes("how can you help") ||
-                q === "help" ||
-                q.includes("help me")
-            ) {
-
-                response =
-                    "🤖 I can help you with:" +
-                    "<br><br>📅 Timetable and daily schedule" +
-                    "<br>📚 Subjects and classes" +
-                    "<br>👨‍🏫 Faculty" +
-                    "<br>📍 Rooms and labs" +
-                    "<br>⏰ Class timings" +
-                    "<br>🔎 Finding a subject in your timetable";
-
-            }
-
-
-            /* FULL TIMETABLE */
-
-            else if (
-                q.includes("show my timetable") ||
-                q.includes("show timetable") ||
-                q.includes("full timetable") ||
-                q.includes("weekly timetable") ||
-                q.includes("whole timetable")
-            ) {
-
-                response =
-                    "📅 <b>Your Weekly Timetable</b>";
-
-
-                Object.keys(timetableData)
-                    .forEach(function(day) {
-
-                        response +=
-                            "<br><br><b>" +
-                            day +
-                            "</b>";
-
-
-                        (timetableData[day] || [])
-                            .forEach(function(item) {
-
-                                response +=
-                                    "<br>• " +
-                                    item.time +
-                                    " — " +
-                                    item.subject +
-                                    " — " +
-                                    item.room;
-
-                            });
-
-                    });
-
-            }
-
-
-            /* SPECIFIC DAY */
-
-            if (!response) {
-
-                const dayNames = [
-                    "Monday",
-                    "Tuesday",
-                    "Wednesday",
-                    "Thursday",
-                    "Friday",
-                    "Saturday"
-                ];
-
-
-                let requestedDay = null;
-
-
-                dayNames.some(
-                    function(day) {
-
-                        if (
-                            q.includes(
-                                day.toLowerCase()
-                            )
-                        ) {
-
-                            requestedDay =
-                                day;
-
-                            return true;
-
-                        }
-
-                        return false;
-
-                    }
+            const bot =
+                document.createElement(
+                    "div"
                 );
 
-
-                if (requestedDay) {
-
-                    const classes =
-                        timetableData[
-                            requestedDay
-                        ] || [];
+            bot.className =
+                "bot-message";
 
 
-                    response =
-                        "📅 <b>" +
-                        requestedDay +
-                        " Timetable</b>";
+            const lower =
+                text.toLowerCase();
 
 
-                    if (classes.length) {
-
-                        classes.forEach(
-                            function(item) {
-
-                                response +=
-                                    "<br><br>" +
-                                    classDetails(
-                                        item,
-                                        requestedDay
-                                    );
-
-                            }
-                        );
-
-                    } else {
-
-                        response =
-                            "There are no classes scheduled on " +
-                            requestedDay +
-                            ".";
-
-                    }
+            let response =
+                "I can help you with your timetable, classes and schedule.";
 
 
-                    if (
-                        typeof selectDay ===
-                        "function"
-                    ) {
+            if(
+                lower.includes(
+                    "timetable"
+                ) ||
+                lower.includes(
+                    "schedule"
+                )
+            ){
 
-                        selectDay(
-                            requestedDay
-                        );
-
-                    }
-
-                }
+                response =
+                    "📅 You are currently viewing your weekly timetable. Use the day buttons above to switch between Monday and Saturday.";
 
             }
 
 
-            /* FIRST CLASS */
-
-            if (
-                !response &&
-                (
-                    q.includes("first class") ||
-                    q.includes("first lecture") ||
-                    q.includes("first period")
+            else if(
+                lower.includes(
+                    "first"
+                ) &&
+                lower.includes(
+                    "class"
                 )
-            ) {
+            ){
 
                 const classes =
                     timetableData[
                         selectedDay
-                    ] || [];
+                    ];
 
 
-                if (classes.length) {
+                response =
+                    classes &&
+                    classes.length
+
+                    ? "⏰ Your first class on " +
+                      selectedDay +
+                      " starts at " +
+                      classes[0].time +
+                      " — " +
+                      classes[0].subject +
+                      "."
+
+                    : "There are no classes scheduled.";
+
+            }
+
+
+            else if(
+                lower.includes(
+                    "lab"
+                )
+            ){
+
+                const labs =
+                    timetableData[
+                        selectedDay
+                    ].filter(
+                        item =>
+                            item.type === "Lab"
+                    );
+
+
+                if(labs.length){
 
                     response =
-                        "⏰ Your first class on <b>" +
+                        "💻 Your " +
                         selectedDay +
-                        "</b> is:<br><br>" +
-                        classDetails(
-                            classes[0],
-                            selectedDay
-                        );
+                        " lab session" +
+                        (
+                            labs.length > 1
+                                ? "s are"
+                                : " is"
+                        ) +
+                        ": " +
+                        labs
+                            .map(
+                                item =>
+                                    item.subject +
+                                    " at " +
+                                    item.time
+                            )
+                            .join(", ") +
+                        ".";
 
-                } else {
+                }
+                else{
 
                     response =
-                        "There are no classes on " +
+                        "There are no lab sessions on " +
                         selectedDay +
                         ".";
 
@@ -3449,262 +3286,109 @@ function sendChat() {
             }
 
 
-            /* LAST CLASS */
-
-            if (
-                !response &&
-                (
-                    q.includes("last class") ||
-                    q.includes("last lecture") ||
-                    q.includes("last period")
+            else if(
+                lower.includes(
+                    "monday"
                 )
-            ) {
+            ){
 
-                const classes =
-                    timetableData[
-                        selectedDay
-                    ] || [];
-
-
-                if (classes.length) {
-
-                    const last =
-                        classes[
-                            classes.length - 1
-                        ];
-
-
-                    response =
-                        "🏁 Your last class on <b>" +
-                        selectedDay +
-                        "</b> is:<br><br>" +
-                        classDetails(
-                            last,
-                            selectedDay
-                        );
-
-                }
-
-            }
-
-
-            /* NUMBER OF CLASSES */
-
-            if (
-                !response &&
-                (
-                    q.includes("how many classes") ||
-                    q.includes("number of classes") ||
-                    q.includes("how many periods")
-                )
-            ) {
-
-                const classes =
-                    timetableData[
-                        selectedDay
-                    ] || [];
-
+                selectDay(
+                    "Monday"
+                );
 
                 response =
-                    "📊 You have <b>" +
-                    classes.length +
-                    "</b> scheduled classes on <b>" +
-                    selectedDay +
-                    "</b>.";
+                    "📅 I've opened your Monday timetable.";
 
             }
 
 
-            /* LABS */
-
-            if (
-                !response &&
-                (
-                    q.includes("lab") ||
-                    q.includes("laboratory") ||
-                    q.includes("practical")
+            else if(
+                lower.includes(
+                    "tuesday"
                 )
-            ) {
+            ){
 
-                const labs =
-                    all.filter(
-                        function(entry) {
-
-                            return (
-                                entry.item.type ===
-                                "Lab"
-                            );
-
-                        }
-                    );
-
-
-                if (labs.length) {
-
-                    response =
-                        "💻 <b>Your Lab Sessions</b>";
-
-
-                    labs.forEach(
-                        function(entry) {
-
-                            response +=
-                                "<br><br>" +
-                                classDetails(
-                                    entry.item,
-                                    entry.day
-                                );
-
-                        }
-                    );
-
-                } else {
-
-                    response =
-                        "There are no lab sessions in the timetable.";
-
-                }
-
-            }
-
-
-            /* SUBJECT / FACULTY / ROOM SEARCH */
-
-            if (!response) {
-
-                const stopWords = [
-                    "when",
-                    "where",
-                    "what",
-                    "who",
-                    "which",
-                    "tell",
-                    "show",
-                    "about",
-                    "class",
-                    "classes",
-                    "the",
-                    "my",
-                    "is",
-                    "are",
-                    "do",
-                    "have",
-                    "does",
-                    "this",
-                    "for",
-                    "me",
-                    "please",
-                    "can"
-                ];
-
-
-                const words =
-                    q.split(" ")
-                        .filter(
-                            function(word) {
-
-                                return (
-                                    word.length >= 3 &&
-                                    !stopWords.includes(
-                                        word
-                                    )
-                                );
-
-                            }
-                        );
-
-
-                const matches =
-                    all.filter(
-                        function(entry) {
-
-                            const item =
-                                entry.item;
-
-
-                            const searchable =
-                                (
-                                    item.subject +
-                                    " " +
-                                    item.faculty +
-                                    " " +
-                                    item.room +
-                                    " " +
-                                    item.type
-                                ).toLowerCase();
-
-
-                            return words.some(
-                                function(word) {
-
-                                    return searchable
-                                        .includes(word);
-
-                                }
-                            );
-
-                        }
-                    );
-
-
-                if (matches.length) {
-
-                    response =
-                        "🔎 <b>I found this in your timetable:</b>";
-
-
-                    matches.forEach(
-                        function(entry) {
-
-                            response +=
-                                "<br><br>" +
-                                classDetails(
-                                    entry.item,
-                                    entry.day
-                                );
-
-                        }
-                    );
-
-                }
-
-            }
-
-
-            /* PROJECT QUESTIONS */
-
-            if (
-                !response &&
-                (
-                    q.includes("campusconnect") ||
-                    q.includes("college portal") ||
-                    q.includes("this project") ||
-                    q === "project" ||
-                    q.includes("project about")
-                )
-            ) {
+                selectDay(
+                    "Tuesday"
+                );
 
                 response =
-                    "🎓 <b>CampusConnect</b> is your college/student portal project." +
-                    "<br><br>This Timetable section lets students view classes, timings, subjects, faculty, rooms and lab sessions." +
-                    "<br><br>You can ask me questions about the timetable and schedule.";
+                    "📅 I've opened your Tuesday timetable.";
 
             }
 
 
-            /* FALLBACK */
+            else if(
+                lower.includes(
+                    "wednesday"
+                )
+            ){
 
-            if (!response) {
+                selectDay(
+                    "Wednesday"
+                );
 
                 response =
-                    "🤔 I couldn't find that information in the current timetable." +
-                    "<br><br>Try asking about a subject, teacher, room, day, class time, lab, first class, last class or the CampusConnect project.";
+                    "📅 I've opened your Wednesday timetable.";
 
             }
 
 
-            bot.innerHTML =
+            else if(
+                lower.includes(
+                    "thursday"
+                )
+            ){
+
+                selectDay(
+                    "Thursday"
+                );
+
+                response =
+                    "📅 I've opened your Thursday timetable.";
+
+            }
+
+
+            else if(
+                lower.includes(
+                    "friday"
+                )
+            ){
+
+                selectDay(
+                    "Friday"
+                );
+
+                response =
+                    "📅 I've opened your Friday timetable.";
+
+            }
+
+
+            else if(
+                lower.includes(
+                    "saturday"
+                )
+            ){
+
+                selectDay(
+                    "Saturday"
+                );
+
+                response =
+                    "📅 I've opened your Saturday timetable.";
+
+            }
+
+
+            bot.innerText =
                 response;
+
+
+            chatBody.appendChild(
+                bot
+            );
 
 
             chatBody.scrollTop =
@@ -3722,11 +3406,13 @@ function sendChat() {
    ENTER KEY
 ========================================================= */
 
-function handleChatKey(event) {
+function handleChatKey(
+    event
+){
 
-    if (event.key === "Enter") {
-
-        event.preventDefault();
+    if(
+        event.key === "Enter"
+    ){
 
         sendChat();
 
@@ -3739,7 +3425,9 @@ function handleChatKey(event) {
    TOAST
 ========================================================= */
 
-function showToast(message) {
+function showToast(
+    message
+){
 
     const toast =
         document.getElementById(
@@ -3757,7 +3445,7 @@ function showToast(message) {
 
 
     setTimeout(
-        function() {
+        function(){
 
             toast.classList.remove(
                 "show"
@@ -3774,7 +3462,7 @@ function showToast(message) {
    LOGOUT
 ========================================================= */
 
-function confirmLogout() {
+function confirmLogout(){
 
     return confirm(
         "Are you sure you want to logout?"
