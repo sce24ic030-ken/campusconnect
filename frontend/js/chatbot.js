@@ -888,19 +888,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /* ---------------------------------------------------------
        10. VOICE INPUT — tap the mic and speak your question
-       Injects a microphone button into the chat footer on every
-       page. Uses the browser Web Speech API; the button is only
-       added when the browser can actually do speech recognition
-       (Chrome / Edge / Android — not Firefox).
+       Records a short clip, hands it to the backend (NVIDIA
+       hosted Whisper over gRPC), drops the transcript into the
+       box and sends it. Recognition happens server-side, so the
+       mic works in every modern browser — Firefox included.
     --------------------------------------------------------- */
 
     function setupVoiceInput() {
-        var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-        if (!SR) { return; }
-
         var footer = document.querySelector(".chat-footer");
-        var inputEl = document.getElementById("chatInput");
-        if (!footer || !inputEl || document.getElementById("chatMic")) { return; }
+        if (!footer || document.getElementById("chatMic")) { return; }
+
+        var Ctx = window.AudioContext || window.webkitAudioContext;
+        var media = navigator.mediaDevices;
+        if (!Ctx || !media || !media.getUserMedia) { return; }
 
         if (!document.getElementById("ccVoiceStyle")) {
             var vs = document.createElement("style");
@@ -910,6 +910,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 "font-size:15px;line-height:1;color:#6543e8;background:#efeaff;transition:.2s;padding:0}" +
                 ".chat-mic:hover{background:#e2d9ff}" +
                 ".chat-mic.recording{color:#fff;background:#e8484d;animation:ccPulse 1.1s infinite}" +
+                ".chat-mic.working{color:#6543e8;background:#efeaff;opacity:.7}" +
                 "@keyframes ccPulse{0%{box-shadow:0 0 0 0 rgba(232,72,77,.55)}" +
                 "70%{box-shadow:0 0 0 9px rgba(232,72,77,0)}100%{box-shadow:0 0 0 0 rgba(232,72,77,0)}}";
             document.head.appendChild(vs);
@@ -934,50 +935,186 @@ document.addEventListener("DOMContentLoaded", function () {
             if (sbcs.borderRadius) { mic.style.borderRadius = sbcs.borderRadius; }
         }
 
-        var recog = new SR();
-        recog.lang = "en-IN";
-        recog.interimResults = true;
-        recog.continuous = false;
-        recog.maxAlternatives = 1;
+        var state = "idle";          /* idle | recording | working */
+        var ctx = null, stream = null, source = null, processor = null, mute = null;
+        var chunks = [], total = 0, sampleRate = 16000;
+        var autoStop = null;
+        var MAX_MS = 30000;
 
-        var listening = false;
-        var errored = false;
-
-        function setListening(on) {
-            listening = on;
-            mic.classList.toggle("recording", on);
-            mic.textContent = on ? "🔴" : "🎤";
-            mic.title = on ? "Listening… tap to stop" : "Speak your question";
+        function setState(next) {
+            state = next;
+            mic.classList.toggle("recording", next === "recording");
+            mic.classList.toggle("working", next === "working");
+            mic.textContent = next === "recording" ? "🔴" : (next === "working" ? "…" : "🎤");
+            mic.title = next === "recording" ? "Listening… tap to stop"
+                      : next === "working" ? "Transcribing…"
+                      : "Speak your question";
+            mic.disabled = (next === "working");
         }
 
-        recog.onstart = function () { errored = false; setListening(true); };
-        recog.onresult = function (event) {
-            var text = "";
-            for (var i = 0; i < event.results.length; i++) {
-                text += event.results[i][0].transcript;
+        function cleanup() {
+            if (autoStop) { clearTimeout(autoStop); autoStop = null; }
+            try { if (processor) { processor.disconnect(); } } catch (e) { /* ignore */ }
+            try { if (source) { source.disconnect(); } } catch (e) { /* ignore */ }
+            try { if (mute) { mute.disconnect(); } } catch (e) { /* ignore */ }
+            try { if (stream) { stream.getTracks().forEach(function (t) { t.stop(); }); } } catch (e) { /* ignore */ }
+            try { if (ctx && ctx.state !== "closed") { ctx.close(); } } catch (e) { /* ignore */ }
+            ctx = stream = source = processor = mute = null;
+            chunks = []; total = 0;
+        }
+
+        function mergeChunks() {
+            var out = new Float32Array(total);
+            var off = 0;
+            for (var i = 0; i < chunks.length; i++) { out.set(chunks[i], off); off += chunks[i].length; }
+            return out;
+        }
+
+        function resample(data, from, to) {
+            if (from === to) { return data; }
+            var ratio = from / to;
+            var len = Math.max(1, Math.round(data.length / ratio));
+            var out = new Float32Array(len);
+            for (var i = 0; i < len; i++) {
+                var pos = i * ratio;
+                var idx = Math.floor(pos);
+                var frac = pos - idx;
+                var a = data[idx] || 0;
+                var b = data[idx + 1] || 0;
+                out[i] = a + (b - a) * frac;
             }
-            inputEl.value = text.trim();
-        };
-        recog.onerror = function (event) {
-            errored = true;
-            setListening(false);
-            var err = event && event.error;
-            if (err === "not-allowed" || err === "service-not-allowed") {
-                appendBot("🎤 I couldn't reach your microphone. Please allow microphone " +
-                          "access for this page, then tap the mic again.");
+            return out;
+        }
+
+        /* 16-bit mono PCM WAV — the format the ASR endpoint expects */
+        function encodeWav(samples, rate) {
+            var buf = new ArrayBuffer(44 + samples.length * 2);
+            var view = new DataView(buf);
+            function str(off, s) { for (var i = 0; i < s.length; i++) { view.setUint8(off + i, s.charCodeAt(i)); } }
+            str(0, "RIFF");
+            view.setUint32(4, 36 + samples.length * 2, true);
+            str(8, "WAVE");
+            str(12, "fmt ");
+            view.setUint32(16, 16, true);
+            view.setUint16(20, 1, true);        /* PCM */
+            view.setUint16(22, 1, true);        /* mono */
+            view.setUint32(24, rate, true);
+            view.setUint32(28, rate * 2, true); /* byte rate */
+            view.setUint16(32, 2, true);        /* block align */
+            view.setUint16(34, 16, true);       /* bits per sample */
+            str(36, "data");
+            view.setUint32(40, samples.length * 2, true);
+            var off = 44;
+            for (var i = 0; i < samples.length; i++) {
+                var s = Math.max(-1, Math.min(1, samples[i]));
+                view.setInt16(off, s < 0 ? s * 0x8000 : s * 0x7FFF, true);
+                off += 2;
             }
-        };
-        recog.onend = function () {
-            setListening(false);
-            var text = (inputEl.value || "").trim();
-            /* hands-free: once you stop talking, send what was heard */
-            if (!errored && text) { window.sendChat(); }
-            errored = false;
-        };
+            return new Blob([view], { type: "audio/wav" });
+        }
+
+        function transcribe(blob) {
+            var fd = new FormData();
+            fd.append("file", blob, "voice.wav");
+
+            var headers = {};
+            var token = null;
+            try { token = localStorage.getItem("token"); } catch (e) { /* ignore */ }
+            if (token) { headers["Authorization"] = "Bearer " + token; }
+
+            var ctrl = ("AbortController" in window) ? new AbortController() : null;
+            var timer = setTimeout(function () { if (ctrl) { ctrl.abort(); } }, 60000);
+
+            return fetch(apiBase() + "/api/chatbot/transcribe", {
+                method: "POST",
+                headers: headers,
+                body: fd,
+                signal: ctrl ? ctrl.signal : undefined
+            }).then(function (r) {
+                clearTimeout(timer);
+                return r.json();
+            }).then(function (j) {
+                if (j && j.success && j.data && typeof j.data.text === "string") {
+                    return { ok: true, text: j.data.text.trim() };
+                }
+                return { ok: false };
+            }).catch(function () {
+                clearTimeout(timer);
+                return { ok: false, network: true };
+            });
+        }
+
+        function start() {
+            media.getUserMedia({ audio: true }).then(function (s) {
+                stream = s;
+                ctx = new Ctx({ sampleRate: 16000 });
+                sampleRate = ctx.sampleRate || 16000;
+                if (ctx.state === "suspended") { ctx.resume(); }
+
+                source = ctx.createMediaStreamSource(s);
+                processor = ctx.createScriptProcessor(4096, 1, 1);
+                mute = ctx.createGain();
+                mute.gain.value = 0;               /* never echo the mic to the speakers */
+                processor.onaudioprocess = function (e) {
+                    var ch = e.inputBuffer.getChannelData(0);
+                    chunks.push(new Float32Array(ch));
+                    total += ch.length;
+                };
+                source.connect(processor);
+                processor.connect(mute);
+                mute.connect(ctx.destination);
+
+                setState("recording");
+                autoStop = setTimeout(function () { stop(); }, MAX_MS);
+            }).catch(function (err) {
+                cleanup();
+                setState("idle");
+                var denied = err && (err.name === "NotAllowedError" || err.name === "SecurityError");
+                appendBot(denied
+                    ? "🎤 I need microphone permission to hear you. Please allow the mic for " +
+                      "this page, then tap again."
+                    : "🎤 I couldn't reach your microphone. Check that one is connected, then " +
+                      "tap again.");
+            });
+        }
+
+        function stop() {
+            if (state !== "recording") { return; }
+            var rate = sampleRate;
+            var pcm = mergeChunks();
+            cleanup();
+            setState("working");
+
+            if (!pcm.length) {
+                setState("idle");
+                appendBot("🎤 I didn't hear anything — please try again.");
+                return;
+            }
+
+            var samples = (rate === 16000) ? pcm : resample(pcm, rate, 16000);
+            var blob = encodeWav(samples, 16000);
+
+            showTyping();
+            transcribe(blob).then(function (res) {
+                hideTyping();
+                setState("idle");
+                if (res.ok && res.text) {
+                    sendText(res.text);        /* hands-free: speak, then it asks */
+                } else if (res.ok) {
+                    appendBot("🎤 I couldn't make out any words — please try again.");
+                } else if (res.network) {
+                    appendBot("🎤 I couldn't reach the voice service. Please check your " +
+                              "connection and try again.");
+                } else {
+                    appendBot("🎤 Voice input isn't available right now — you can type your " +
+                              "question instead.");
+                }
+            });
+        }
 
         mic.addEventListener("click", function () {
-            if (listening) { try { recog.stop(); } catch (e) { /* ignore */ } return; }
-            try { recog.start(); } catch (e) { /* already running */ }
+            if (state === "recording") { stop(); }
+            else if (state === "idle") { start(); }
         });
 
         if (sendBtn) { footer.insertBefore(mic, sendBtn); }

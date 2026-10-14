@@ -78,6 +78,29 @@ class Config:
     # gpt-oss is a reasoning model; "low" keeps replies responsive.
     CHATBOT_REASONING_EFFORT = os.getenv("CHATBOT_REASONING_EFFORT", "low")
 
+    # -----------------------------------------------------
+    # VOICE INPUT (speech-to-text)
+    # Runs server-side via NVIDIA's hosted speech NIM (gRPC) so the
+    # microphone works in every browser. Reuses NVIDIA_API_KEY above.
+    # -----------------------------------------------------
+    ASR_ENABLED = os.getenv("ASR_ENABLED", "true").lower() in ("1", "true", "yes")
+
+    # NVCF hosted endpoint + the function (model) to call.
+    # whisper-large-v3 is the model NVIDIA hosts here; the function-id
+    # selects it. See https://build.nvidia.com/openai/whisper-large-v3
+    ASR_SERVER = os.getenv("ASR_SERVER", "grpc.nvcf.nvidia.com:443")
+    ASR_FUNCTION_ID = os.getenv(
+        "ASR_FUNCTION_ID", "b702f636-f60c-4a3d-a6f4-f3568c13bd7d"
+    )
+    # Optional model override; normally left empty so the function-id
+    # (ASR_FUNCTION_ID) chooses the model.
+    ASR_MODEL = os.getenv("ASR_MODEL", "")
+    ASR_LANGUAGE = os.getenv("ASR_LANGUAGE", "en")
+    ASR_TIMEOUT = int(os.getenv("ASR_TIMEOUT", "45"))
+
+    # Largest upload we accept for one clip (bytes). ~8 MB ≈ a few minutes.
+    ASR_MAX_BYTES = int(os.getenv("ASR_MAX_BYTES", str(8 * 1024 * 1024)))
+
 
 class DevelopmentConfig(Config):
     # Respect FLASK_DEBUG so the auto-reloader can be switched off.

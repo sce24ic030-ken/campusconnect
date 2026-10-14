@@ -10,6 +10,7 @@ from database.db import query_all, query_one, execute
 from utils.helpers import success, error, get_json
 from utils.security import optional_token, token_required
 from services.chatbot_service import generate_reply
+from services import asr_service
 
 chatbot_bp = Blueprint(
     "chatbot",
@@ -96,6 +97,44 @@ def send_message():
         current_app.logger.warning("Chatbot DB error: %s", exc)
         reply, intent = generate_reply(getattr(request, "user_id", None), message, page_hint=page)
         return success({"reply": reply, "intent": intent})
+
+
+# =========================================================
+# VOICE INPUT — TRANSCRIBE AN AUDIO CLIP
+# The browser records a short clip and posts it here; we relay
+# it to NVIDIA's hosted speech NIM over gRPC and hand the text
+# straight back to the chat widget.
+# =========================================================
+
+@chatbot_bp.route("/transcribe", methods=["POST"])
+@optional_token
+def transcribe_audio():
+    if not asr_service.available():
+        return error("Voice input is not available on this server", 503)
+
+    upload = request.files.get("file")
+    if upload is None:
+        return error("file is required", 400)
+
+    audio = upload.read()
+    if not audio:
+        return error("Empty audio clip", 400)
+
+    if len(audio) > current_app.config["ASR_MAX_BYTES"]:
+        return error("Audio clip is too large", 413)
+
+    if _rate_limited():
+        return error("Rate limit exceeded. Please wait a moment before speaking again.", 429)
+
+    language = (request.form.get("language") or "").strip() or None
+
+    try:
+        text = asr_service.transcribe(audio, language=language)
+    except Exception as exc:  # noqa: BLE001 - gRPC/network/model errors
+        current_app.logger.warning("ASR error: %s", exc)
+        return error("Could not transcribe the audio", 502)
+
+    return success({"text": text})
 
 
 # =========================================================

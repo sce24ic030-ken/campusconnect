@@ -1690,12 +1690,56 @@ function hideMessage(){
 
 
 /* ==========================================
-   LOGIN
-=========================================== */
+   LOGIN - BACKEND CONNECTION
+========================================== */
+
+function startSession(token,user,remember){
+
+    const target = remember === false ? sessionStorage : localStorage;
+
+    target.setItem("token", token || "");
+
+    target.setItem(
+        "campusconnect_user",
+        JSON.stringify(user)
+    );
+
+    // The keys every other page reads (dashboard, academics, admin).
+    localStorage.setItem("campusConnectLoggedIn", "true");
+
+    localStorage.setItem(
+        "campusConnectUser",
+        user.name || user.email || ""
+    );
+
+    localStorage.setItem(
+        "campusConnectUserEmail",
+        user.email || ""
+    );
+
+    localStorage.setItem(
+        "campusConnectRole",
+        user.role || "student"
+    );
+
+    if(user.course){
+
+        localStorage.setItem("campusConnectProgram", user.course);
+
+    }
+
+    if(user.semester){
+
+        localStorage.setItem("campusConnectSemester", user.semester);
+
+    }
+
+}
+
 
 document
 .getElementById("loginForm")
-.addEventListener("submit",function(e){
+.addEventListener("submit", async function(e){
 
     e.preventDefault();
 
@@ -1703,7 +1747,7 @@ document
         document.getElementById("loginEmail").value.trim();
 
     const password =
-        document.getElementById("loginPassword").value.trim();
+        document.getElementById("loginPassword").value;
 
 
     if(!email || !password){
@@ -1717,30 +1761,94 @@ document
     }
 
 
-    // Save login status
-    localStorage.setItem(
-        "campusConnectLoggedIn",
-        "true"
-    );
-
-    localStorage.setItem(
-        "campusConnectUser",
-        email
-    );
-
-
     showMessage(
-        "Login successful! Redirecting...",
+        "Signing you in...",
         "success"
     );
 
 
-    // Open Dashboard
-    setTimeout(function(){
+    try{
 
-        window.location.href = "dashboard.html";
+        const response = await fetch(
+            (window.CC_API_BASE || "") + "/api/auth/login",
+            {
+                method: "POST",
 
-    },800);
+                headers:{
+                    "Content-Type":"application/json"
+                },
+
+                body: JSON.stringify({
+
+                    email: email,
+                    password: password
+
+                })
+            }
+        );
+
+
+        const data = await response.json();
+
+
+        if(response.ok && data.success){
+
+            const user = data.user || {};
+
+            const role =
+                String(user.role || "student").toLowerCase();
+
+            const remember =
+                document.querySelector(".remember input");
+
+            startSession(
+                data.token,
+                user,
+                !remember || remember.checked
+            );
+
+
+            showMessage(
+                role === "admin"
+                    ? "Admin sign-in successful! Opening the admin console..."
+                    : "Login successful! Redirecting...",
+                "success"
+            );
+
+
+            const destination =
+                role === "admin"
+                    ? "pages/admin.html"
+                    : "dashboard.html";
+
+
+            setTimeout(function(){
+
+                window.location.href = destination;
+
+            },800);
+
+        }
+        else{
+
+            showMessage(
+                data.message || "Invalid email or password.",
+                "error"
+            );
+
+        }
+
+    }
+    catch(error){
+
+        console.error("LOGIN ERROR:", error);
+
+        showMessage(
+            "Cannot connect to CampusConnect backend.",
+            "error"
+        );
+
+    }
 
 });
 
