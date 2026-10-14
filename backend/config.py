@@ -34,11 +34,28 @@ class Config:
 
     # -----------------------------------------------------
     # MYSQL DATABASE
+    # Managed MySQL hosts (Aiven, etc.) use a non-default port and
+    # require TLS, so all of that is configurable from the env.
     # -----------------------------------------------------
     DB_HOST = os.getenv("DB_HOST", "localhost")
+    DB_PORT = int(os.getenv("DB_PORT", "3306"))
     DB_USER = os.getenv("DB_USER", "root")
     DB_PASSWORD = os.getenv("DB_PASSWORD", "")
     DB_NAME = os.getenv("DB_NAME", "campusconnect")
+
+    # Path to the provider's CA certificate (e.g. Aiven's ca.pem).
+    # When set, the connection requires TLS and verifies the server.
+    DB_SSL_CA = os.getenv("DB_SSL_CA", "").strip()
+
+    # Force TLS on/off. Empty means "decide automatically":
+    # on for any host other than localhost/127.0.0.1, off otherwise.
+    DB_SSL = os.getenv("DB_SSL", "").strip().lower()
+
+    # The app normally creates its own database on first run.
+    # Managed providers give you an existing database, so skip it.
+    DB_SKIP_CREATE = os.getenv("DB_SKIP_CREATE", "").strip().lower() in (
+        "1", "true", "yes",
+    )
 
     # -----------------------------------------------------
     # CORS

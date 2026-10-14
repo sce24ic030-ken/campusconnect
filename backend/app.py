@@ -3,10 +3,11 @@
 # Flask application entry point
 # =========================================================
 
+import os
 from datetime import date, datetime, time, timedelta
 from decimal import Decimal
 
-from flask import Flask, jsonify
+from flask import Flask, abort, jsonify, send_from_directory
 from flask.json.provider import DefaultJSONProvider
 from flask_cors import CORS
 
@@ -117,14 +118,45 @@ def create_app():
         app.register_blueprint(blueprint)
 
     # -----------------------------------------------------
-    # HOME / HEALTH CHECK
+    # HEALTH CHECK (used by Render and by the frontend)
     # -----------------------------------------------------
+    @app.route("/api/health", methods=["GET"])
+    def health():
+        return jsonify({
+            "success": True,
+            "message": "CampusConnect backend is running!"
+        })
+
+    # -----------------------------------------------------
+    # FRONTEND
+    # Served by this same service so the API is same-origin:
+    # no CORS setup and no hardcoded host in the frontend.
+    # -----------------------------------------------------
+    frontend_dir = os.path.join(
+        os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+        "frontend",
+    )
+
     @app.route("/", methods=["GET"])
     def home():
+        if os.path.isfile(os.path.join(frontend_dir, "index.html")):
+            return send_from_directory(frontend_dir, "index.html")
+
+        # Fallback so the API still works if the frontend isn't shipped.
         return jsonify({
             "success": True,
             "message": "CampusConnect Backend is running!"
         })
+
+    @app.route("/<path:filename>", methods=["GET"])
+    def frontend_file(filename):
+        if os.path.isdir(frontend_dir):
+            target = os.path.join(frontend_dir, filename)
+
+            if os.path.isfile(target):
+                return send_from_directory(frontend_dir, filename)
+
+        abort(404)
 
     # -----------------------------------------------------
     # ERROR HANDLERS
@@ -162,8 +194,10 @@ app = create_app()
 
 if __name__ == "__main__":
     app.run(
-        host="127.0.0.1",
-        port=5000,
+        # Honour HOST/PORT so the same entry point works locally and
+        # behind a container/PaaS that injects a port.
+        host=os.getenv("HOST", "127.0.0.1"),
+        port=int(os.getenv("PORT", "5000")),
         debug=app.config.get("DEBUG", True),
         # The chatbot streams from NVIDIA and can take a while; threading
         # keeps one slow request from blocking every other API call.

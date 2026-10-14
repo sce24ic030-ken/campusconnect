@@ -321,6 +321,10 @@ document.addEventListener("DOMContentLoaded", function () {
     var offlineUntil = 0;
 
     function apiBase() {
+        /* Prefer the shared resolver (js/api-base.js) when present. */
+        if (typeof window.CC_API_BASE === "string") {
+            return window.CC_API_BASE;
+        }
         var custom = null;
         try { custom = localStorage.getItem("cc_api_base"); } catch (e) { /* ignore */ }
         if (custom) { return custom.replace(/\/+$/, ""); }

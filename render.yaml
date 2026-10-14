@@ -1,0 +1,82 @@
+# =========================================================
+# Render Blueprint — CampusConnect
+#
+# One web service serves BOTH the Flask API and the static
+# frontend (see app.py), so there is no CORS setup and no
+# hardcoded hostname anywhere.
+#
+# Deploy: Render Dashboard -> New -> Blueprint -> pick this repo.
+# Secrets (DB_*, NVIDIA_API_KEY) are left as "sync: false" so
+# Render prompts for them instead of storing them in the repo.
+# =========================================================
+
+services:
+  - type: web
+    name: campusconnect
+    runtime: python
+    plan: free # 512 MB; sleeps after ~15 min idle, first hit is slow
+    region: singapore
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT --workers 2 --threads 4 --timeout 120
+    healthCheckPath: /api/health
+    autoDeployTrigger: commit
+
+    envVars:
+      # ---- Runtime ----
+      - key: PYTHON_VERSION
+        value: "3.12.7"
+      - key: FLASK_ENV
+        value: production
+      - key: FLASK_DEBUG
+        value: "False"
+
+      # ---- App secrets (generated once, then stable) ----
+      - key: SECRET_KEY
+        generateValue: true
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_EXPIRY_HOURS
+        value: "24"
+
+      # ---- MySQL (Aiven) — fill these in the Render dashboard ----
+      - key: DB_HOST
+        sync: false
+      - key: DB_PORT
+        sync: false
+      - key: DB_USER
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: DB_NAME
+        value: defaultdb
+      # Aiven requires TLS. Set DB_SSL_CA to a committed ca.pem path
+      # if you want full certificate verification.
+      - key: DB_SSL
+        value: "true"
+      - key: DB_SSL_CA
+        value: ""
+      # Never run CREATE DATABASE against a managed host.
+      - key: DB_SKIP_CREATE
+        value: "true"
+
+      # ---- Chatbot (NVIDIA NIM) ----
+      - key: NVIDIA_API_KEY
+        sync: false
+      - key: CHATBOT_BASE_URL
+        value: https://integrate.api.nvidia.com/v1
+      - key: CHATBOT_MODEL
+        value: openai/gpt-oss-20b
+      - key: CHATBOT_MAX_TOKENS
+        value: "1024"
+      - key: CHATBOT_TEMPERATURE
+        value: "0.6"
+      - key: CHATBOT_TIMEOUT
+        value: "30"
+      - key: CHATBOT_REASONING_EFFORT
+        value: low
+
+      # ---- CORS ----
+      # Same-origin in production, so this can stay restrictive.
+      - key: CORS_ORIGINS
+        value: "*"

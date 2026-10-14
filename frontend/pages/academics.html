@@ -1964,6 +1964,9 @@ input {
 
 <body>
 
+<!-- Single source of truth for the backend URL (see ../js/api-base.js) -->
+<script src="../js/api-base.js"></script>
+
 <div class="welcome-screen" id="welcomeScreen">
 
     <div class="welcome-box">
@@ -2839,7 +2842,7 @@ function handleChatKey(event) {
    Flask API + MySQL Database Connection
 ========================================== */
 
-const API_URL = "http://127.0.0.1:5000/api/courses";
+const API_URL = (window.CC_API_BASE || "") + "/api/courses";
 
 let SUBJECTS = [];
 let SEMESTERS = [];
