@@ -2275,6 +2275,23 @@ input {
             </button>
 
         </div>
+        <!-- STUDENT PROGRAMME CONTEXT -->
+
+        <section class="cc-ctx" id="ccContextBar" hidden>
+
+            <div class="cc-ctx-main">
+
+                <span class="cc-ctx-eyebrow">Your programme</span>
+
+                <strong class="cc-ctx-program" id="ccCtxProgram">—</strong>
+
+                <small class="cc-ctx-tagline" id="ccCtxTagline"></small>
+
+            </div>
+
+            <div class="cc-ctx-pills" id="ccCtxSemesters"></div>
+
+        </section>
 
         <!-- HERO BANNER -->
 
@@ -2845,6 +2862,261 @@ function handleChatKey(event) {
 
 const API_URL = (window.CC_API_BASE || "") + "/api/courses";
 
+/* ==========================================
+   STUDENT PROGRAMME CONTEXT
+
+   BCA / BBA / B.Com each carry their own accent
+   colour, tagline and curriculum. Everything on
+   this page is scoped to the signed-in student.
+========================================== */
+
+const PROGRAM_LABELS = {
+    BCA: "BCA",
+    BBA: "BBA",
+    BCOM: "B.Com"
+};
+
+function programLabel(code) {
+
+    const key = String(code || "")
+        .toUpperCase()
+        .replace(/[^A-Z]/g, "");
+
+    return PROGRAM_LABELS[key] || code || "All Programs";
+}
+
+function ccSession() {
+
+    return window.CC || null;
+}
+
+function signedInStudent() {
+
+    const cc = ccSession();
+
+    if (!cc || typeof cc.user !== "function") {
+
+        return null;
+
+    }
+
+    return cc.user();
+}
+
+function studentProgram() {
+
+    const cc = ccSession();
+
+    if (!signedInStudent() || !cc || typeof cc.program !== "function") {
+
+        return "";
+
+    }
+
+    return cc.program() || "";
+}
+
+function studentSemester() {
+
+    const cc = ccSession();
+
+    if (!signedInStudent() || !cc || typeof cc.semester !== "function") {
+
+        return null;
+
+    }
+
+    return cc.semester();
+}
+
+function coursesUrl() {
+
+    const program = studentProgram();
+
+    return program
+        ? API_URL + "?program=" + encodeURIComponent(program)
+        : API_URL;
+}
+
+function injectContextStyles() {
+
+    if (document.getElementById("cc-academics-context-style")) {
+
+        return;
+
+    }
+
+    const style = document.createElement("style");
+
+    style.id = "cc-academics-context-style";
+
+    style.textContent = `
+        #ccContextBar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            flex-wrap: wrap;
+            margin: 0 0 22px;
+            padding: 18px 22px;
+            border-radius: 16px;
+            background: var(--cc-accent-soft, #eaf0ff);
+            border: 1px solid rgba(15, 23, 42, 0.07);
+            border-left: 5px solid var(--cc-accent, #3b6ef6);
+        }
+        #ccContextBar[hidden] { display: none; }
+        #ccContextBar .cc-ctx-main {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            min-width: 220px;
+        }
+        #ccContextBar .cc-ctx-eyebrow {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .09em;
+            text-transform: uppercase;
+            color: var(--cc-accent-dark, #1f47b8);
+        }
+        #ccContextBar .cc-ctx-program { font-size: 20px; }
+        #ccContextBar .cc-ctx-tagline { color: #5b6478; }
+        .cc-ctx-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+        .cc-ctx-pill {
+            border: 1px solid var(--cc-accent, #3b6ef6);
+            background: #fff;
+            color: var(--cc-accent-dark, #1f47b8);
+            border-radius: 999px;
+            padding: 7px 14px;
+            font-size: 12.5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background .15s ease, color .15s ease;
+        }
+        .cc-ctx-pill:hover { background: var(--cc-accent-soft, #eaf0ff); }
+        .cc-ctx-pill.active {
+            background: var(--cc-accent, #3b6ef6);
+            color: #fff;
+        }
+        #subjectGrid.cc-semester-grouped { display: block; }
+        .cc-sem-block { margin-bottom: 28px; }
+        .cc-sem-block:last-child { margin-bottom: 0; }
+        .cc-sem-head {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin: 0 0 14px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--cc-accent-soft, #eaf0ff);
+        }
+        .cc-sem-head h4 { margin: 0; font-size: 16px; }
+        .cc-sem-head h4::before {
+            content: "";
+            display: inline-block;
+            width: 9px;
+            height: 9px;
+            margin-right: 9px;
+            border-radius: 3px;
+            background: var(--cc-accent, #3b6ef6);
+            vertical-align: middle;
+        }
+        .cc-sem-meta {
+            color: #6b7280;
+            font-size: 12.5px;
+            font-weight: 600;
+        }
+    `;
+
+    document.head.appendChild(style);
+}
+
+function renderProgramContext() {
+
+    const bar = document.getElementById("ccContextBar");
+
+    if (!bar) {
+
+        return;
+
+    }
+
+    const cc = ccSession();
+    const program = studentProgram();
+
+    if (!signedInStudent() || !program || !cc ||
+        typeof cc.programInfo !== "function") {
+
+        bar.hidden = true;
+
+        return;
+
+    }
+
+    const info = cc.programInfo() || {};
+
+    const programNode = document.getElementById("ccCtxProgram");
+
+    if (programNode) {
+
+        programNode.textContent = info.label || programLabel(program);
+
+    }
+
+    const taglineNode = document.getElementById("ccCtxTagline");
+
+    if (taglineNode) {
+
+        taglineNode.textContent = info.tagline ||
+            "Your subjects, grouped by semester.";
+
+    }
+
+    const pills = document.getElementById("ccCtxSemesters");
+
+    if (pills) {
+
+        pills.innerHTML = SEMESTERS.map(function (item) {
+
+            return '<button type="button" class="cc-ctx-pill"'
+                + ' data-semester="' + item.semester + '">'
+                + 'Sem ' + item.semester + '</button>';
+        }).join("");
+
+        pills.querySelectorAll(".cc-ctx-pill").forEach(function (pill) {
+
+            pill.addEventListener("click", function () {
+
+                document.getElementById("semesterFilter").value =
+                    pill.dataset.semester;
+
+                renderSubjects();
+
+                markActivePill();
+
+            });
+        });
+    }
+
+    bar.hidden = false;
+
+    markActivePill();
+}
+
+function markActivePill() {
+
+    const current = document.getElementById("semesterFilter").value;
+
+    document.querySelectorAll(".cc-ctx-pill").forEach(function (pill) {
+
+        pill.classList.toggle(
+            "active",
+            pill.dataset.semester === current
+        );
+    });
+}
+
+
 let SUBJECTS = [];
 let SEMESTERS = [];
 
@@ -2988,7 +3260,7 @@ async function loadCourses() {
     `;
 
     try {
-        const response = await fetch(API_URL, {
+        const response = await fetch(coursesUrl(), {
             method: "GET",
             headers: {
                 "Accept": "application/json"
@@ -3016,6 +3288,8 @@ async function loadCourses() {
         renderStatistics();
         renderSubjects();
         renderSemesters();
+
+        renderProgramContext();
 
         showToast(
             "Courses loaded successfully: " + SUBJECTS.length
@@ -3091,8 +3365,9 @@ function populateFilters() {
     const programFilter = document.getElementById("programFilter");
     const semesterFilter = document.getElementById("semesterFilter");
 
-    const selectedProgram = programFilter.value;
-    const selectedSemester = semesterFilter.value;
+    const previousProgram = programFilter.value;
+
+    const previousSemester = semesterFilter.value;
 
     const programs = [
         ...new Set(
@@ -3114,7 +3389,7 @@ function populateFilters() {
         <option value="">All Programs</option>
         ${programs.map(program => `
             <option value="${escapeHTML(program)}">
-                ${escapeHTML(program)}
+                ${escapeHTML(programLabel(program))}
             </option>
         `).join("")}
     `;
@@ -3128,14 +3403,44 @@ function populateFilters() {
         `).join("")}
     `;
 
-    if (programs.includes(selectedProgram)) {
-        programFilter.value = selectedProgram;
+    /* Default to the signed-in student's own programme and semester,
+       keep whatever they picked after that. */
+
+    const ownProgram = studentProgram();
+    const ownSemester = studentSemester();
+
+    let chosenProgram = previousProgram;
+
+    if (!chosenProgram && ownProgram && programs.includes(ownProgram)) {
+
+        chosenProgram = ownProgram;
+
+    }
+
+    if (programs.includes(chosenProgram)) {
+
+        programFilter.value = chosenProgram;
+
+    }
+
+    let chosenSemester = previousSemester;
+
+    if (!chosenSemester && ownSemester !== null) {
+
+        chosenSemester = String(ownSemester);
+
     }
 
     if (semesters.some(
-        semester => String(semester) === selectedSemester
+        semester => String(semester) === chosenSemester
     )) {
-        semesterFilter.value = selectedSemester;
+
+        semesterFilter.value = chosenSemester;
+
+    } else {
+
+        semesterFilter.value = "";
+
     }
 }
 
@@ -3247,11 +3552,84 @@ function getFilteredSubjects() {
    DISPLAY COURSES
 ========================================== */
 
+function subjectCardHtml(subject) {
+
+    const initial = subject.name.charAt(0).toUpperCase();
+
+    const details = [
+        subject.code,
+        subject.semester !== null
+            ? "Semester " + subject.semester
+            : ""
+    ].filter(Boolean).join(" • ");
+
+    const tags = [
+        subject.type,
+        subject.credits !== null
+            ? subject.credits + " Credits"
+            : ""
+    ].filter(Boolean);
+
+    const score = subject.grade
+        ? subject.grade
+        : subject.marks !== null
+            ? subject.marks
+            : "—";
+
+    const scoreLabel = subject.grade
+        ? "GRADE"
+        : subject.marks !== null
+            ? "MARKS"
+            : "RESULT";
+
+    return `
+        <article class="subject-card"
+                 data-course-id="${escapeHTML(subject.id)}"
+                 tabindex="0"
+                 role="button"
+                 aria-label="View ${escapeHTML(subject.name)} details">
+
+            <div class="subject-icon">
+                ${escapeHTML(initial)}
+            </div>
+
+            <div class="subject-info">
+
+                <strong>
+                    ${escapeHTML(subject.name)}
+                </strong>
+
+                <span>
+                    ${escapeHTML(details || "Course details")}
+                </span>
+
+                <div class="subject-meta">
+                    ${tags.map(tag => `
+                        <span class="subject-tag">
+                            ${escapeHTML(tag)}
+                        </span>
+                    `).join("")}
+                </div>
+
+            </div>
+
+            <div class="subject-score">
+                <strong>${escapeHTML(score)}</strong>
+                <span>${escapeHTML(scoreLabel)}</span>
+            </div>
+
+        </article>
+    `;
+}
+
 function renderSubjects() {
     const subjectGrid = document.getElementById("subjectGrid");
     const filteredSubjects = getFilteredSubjects();
 
     if (filteredSubjects.length === 0) {
+
+        subjectGrid.classList.remove("cc-semester-grouped");
+
         subjectGrid.innerHTML = `
             <div class="empty-note">
                 ${
@@ -3265,93 +3643,103 @@ function renderSubjects() {
         return;
     }
 
-    subjectGrid.innerHTML = filteredSubjects.map(function (subject) {
-        const initial = subject.name.charAt(0).toUpperCase();
+    /* Group semester-wise so a student always reads their own
+       programme one semester at a time. */
 
-        const details = [
-            subject.code,
-            subject.program,
-            subject.semester !== null
-                ? "Semester " + subject.semester
-                : ""
-        ].filter(Boolean).join(" • ");
+    const order = [];
+    const groups = {};
 
-        const tags = [
-            subject.type,
-            subject.credits !== null
-                ? subject.credits + " Credits"
-                : ""
-        ].filter(Boolean);
+    filteredSubjects.forEach(function (subject) {
 
-        const score = subject.grade
-            ? subject.grade
-            : subject.marks !== null
-                ? subject.marks
-                : "—";
+        const key = subject.semester === null
+            ? "unscheduled"
+            : String(subject.semester);
 
-        const scoreLabel = subject.grade
-            ? "GRADE"
-            : subject.marks !== null
-                ? "MARKS"
-                : "RESULT";
+        if (!groups[key]) {
+
+            groups[key] = [];
+
+            order.push(key);
+
+        }
+
+        groups[key].push(subject);
+
+    });
+
+    order.sort(function (a, b) {
+
+        if (a === "unscheduled") { return 1; }
+        if (b === "unscheduled") { return -1; }
+
+        return Number(a) - Number(b);
+
+    });
+
+    subjectGrid.classList.add("cc-semester-grouped");
+
+    subjectGrid.innerHTML = order.map(function (key) {
+
+        const heading = key === "unscheduled"
+            ? "Semester not set"
+            : "Semester " + key;
+
+        const credits = groups[key].reduce(
+            (sum, subject) => sum + (subject.credits || 0),
+            0
+        );
+
+        const meta = groups[key].length +
+            (groups[key].length === 1 ? " course" : " courses") +
+            (credits ? " • " + credits + " credits" : "");
 
         return `
-            <article class="subject-card"
-                     data-course-id="${escapeHTML(subject.id)}"
-                     tabindex="0"
-                     role="button"
-                     aria-label="View ${escapeHTML(subject.name)} details">
+            <section class="cc-sem-block"
+                     data-semester="${escapeHTML(key)}">
 
-                <div class="subject-icon">
-                    ${escapeHTML(initial)}
-                </div>
+                <header class="cc-sem-head">
 
-                <div class="subject-info">
+                    <h4>${escapeHTML(heading)}</h4>
 
-                    <strong>
-                        ${escapeHTML(subject.name)}
-                    </strong>
-
-                    <span>
-                        ${escapeHTML(details || "Course details")}
+                    <span class="cc-sem-meta">
+                        ${escapeHTML(meta)}
                     </span>
 
-                    <div class="subject-meta">
-                        ${tags.map(tag => `
-                            <span class="subject-tag">
-                                ${escapeHTML(tag)}
-                            </span>
-                        `).join("")}
-                    </div>
+                </header>
 
+                <div class="subject-grid">
+                    ${groups[key].map(subjectCardHtml).join("")}
                 </div>
 
-                <div class="subject-score">
-                    <strong>${escapeHTML(score)}</strong>
-                    <span>${escapeHTML(scoreLabel)}</span>
-                </div>
-
-            </article>
+            </section>
         `;
     }).join("");
 
     subjectGrid.querySelectorAll(".subject-card").forEach(function (card) {
+
         function openDetails() {
+
             const subject = SUBJECTS.find(
                 item => String(item.id) === card.dataset.courseId
             );
 
             if (subject) {
+
                 showCourseDetails(subject);
+
             }
         }
 
         card.addEventListener("click", openDetails);
 
         card.addEventListener("keydown", function (event) {
+
             if (event.key === "Enter" || event.key === " ") {
+
                 event.preventDefault();
+
                 openDetails();
+
             }
         });
     });
@@ -3503,7 +3891,13 @@ document.getElementById("programFilter").addEventListener(
 
 document.getElementById("semesterFilter").addEventListener(
     "change",
-    renderSubjects
+    function () {
+
+        renderSubjects();
+
+        markActivePill();
+
+    }
 );
 
 document.getElementById("refreshBtn").addEventListener(
@@ -3514,16 +3908,26 @@ document.getElementById("refreshBtn").addEventListener(
 document.getElementById("totalCoursesCard").addEventListener(
     "click",
     function () {
+
         document.getElementById("courseSearch").value = "";
-        document.getElementById("programFilter").value = "";
-        document.getElementById("semesterFilter").value = "";
+
+        document.getElementById("programFilter").value =
+            studentProgram() || "";
+
+        const ownSemester = studentSemester();
+
+        document.getElementById("semesterFilter").value =
+            ownSemester !== null ? String(ownSemester) : "";
 
         renderSubjects();
+
+        markActivePill();
 
         document.getElementById("coursesSection").scrollIntoView({
             behavior: "smooth",
             block: "start"
         });
+
     }
 );
 
@@ -3560,6 +3964,23 @@ document.addEventListener("keydown", function (event) {
 /* ==========================================
    INITIALIZE ACADEMICS PAGE
 ========================================== */
+
+/* Programme-theme first, then the data. */
+
+injectContextStyles();
+
+(function applyProgramTheme() {
+
+    const cc = ccSession();
+
+    if (cc && typeof cc.applyTheme === "function" &&
+        signedInStudent()) {
+
+        cc.applyTheme();
+
+    }
+
+})();
 
 loadCourses();
 </script>

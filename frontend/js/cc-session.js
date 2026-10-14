@@ -252,6 +252,80 @@
         return (inPages() ? "" : "pages/") + name;
     }
 
+    /* ---------- role-aware navigation ---------- */
+
+    /* Pages that only make sense for a student. Admins work from the
+       admin console instead, so these are removed from their sidebar. */
+    var STUDENT_ONLY = [
+        "dashboard.html",
+        "timetable.html",
+        "assignments.html",
+        "attendance.html",
+        "academics.html",
+        "documents.html",
+        "lost_found.html",
+        "exams.html"
+    ];
+
+    /* Sections of the admin console. Keep in sync with
+       frontend/pages/admin.html. */
+    var ADMIN_SECTIONS = [
+        { hash: "overview", icon: "\uD83D\uDCCA", label: "Overview" },
+        { hash: "users", icon: "\uD83D\uDC65", label: "Students & Users" }
+    ];
+
+    function baseName(href) {
+        return String(href || "")
+            .split("#")[0]
+            .split("?")[0]
+            .split("/")
+            .pop()
+            .toLowerCase();
+    }
+
+    function decorateNavForAdmin() {
+        var menu = document.querySelector(".menu");
+        if (!menu) { return; }
+
+        /* The console builds its own sidebar. */
+        if (/admin\.html$/i.test(window.location.pathname)) { return; }
+
+        Array.prototype.slice
+            .call(menu.querySelectorAll("a.nav-item"))
+            .forEach(function (link) {
+                if (STUDENT_ONLY.indexOf(baseName(link.getAttribute("href"))) === -1) {
+                    return;
+                }
+
+                var section = link.closest ? link.closest(".menu-section") : null;
+
+                if (link.parentNode) { link.parentNode.removeChild(link); }
+
+                /* Drop a section that is now empty. */
+                if (section && section.parentNode &&
+                    !section.querySelector("a.nav-item")) {
+                    section.parentNode.removeChild(section);
+                }
+            });
+
+        var group = document.createElement("div");
+        group.className = "menu-section";
+        group.setAttribute("data-cc-admin-nav", "1");
+
+        var inner = '<div class="menu-title">ADMINISTRATION</div>';
+
+        ADMIN_SECTIONS.forEach(function (item) {
+            inner += '<a class="nav-item" href="' + pageUrl("admin.html") +
+                "#" + item.hash + '">' +
+                '<span class="nav-icon">' + item.icon + '</span>' +
+                '<span class="nav-text">' + escapeHtml(item.label) + '</span>' +
+                '</a>';
+        });
+
+        group.innerHTML = inner;
+        menu.insertBefore(group, menu.firstChild);
+    }
+
     /* ---------- topbar ---------- */
 
     var CSS = [
@@ -319,13 +393,13 @@
         if (strong) { strong.textContent = u.name || "Student"; }
 
         var spans = mini.querySelectorAll(".profile-info span");
+        var spans = mini.querySelectorAll(".profile-info span");
         if (spans.length) {
-            spans[0].textContent = info.label;
+            spans[0].textContent = isAdmin() ? "CampusConnect" : info.label;
             if (spans.length > 1) {
                 spans[1].textContent = isAdmin() ? "Administrator" : "Student";
             }
         }
-
         mini.style.cursor = "pointer";
         if (!mini.getAttribute("data-cc-bound")) {
             mini.setAttribute("data-cc-bound", "1");
@@ -475,6 +549,9 @@
     function boot() {
         try { injectStyles(); } catch (e) { /* never break a page over styles */ }
         try { initTopbar(); } catch (e) { /* never break a page over the topbar */ }
+        try {
+            if (isAdmin()) { decorateNavForAdmin(); }
+        } catch (e) { /* never break a page over the navigation */ }
     }
 
     try { injectStyles(); } catch (e) { /* head may not exist yet; boot() retries */ }

@@ -1,0 +1,2789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CampusConnect | Admin Console</title>
+
+<style>
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #f4f6ff;
+    color: #17203a;
+    overflow: hidden;
+}
+
+button,
+input {
+    font-family: inherit;
+}
+
+
+/* =========================================================
+   APP
+========================================================= */
+
+.app {
+    width: 100%;
+    height: 100vh;
+}
+
+
+/* =========================================================
+   LEFT SIDEBAR
+========================================================= */
+
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+
+    width: 268px;
+    min-width: 268px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #172a70 0%,
+            #28237d 48%,
+            #5520a7 100%
+        );
+
+    color: white;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    z-index: 1000;
+
+    padding-bottom: 20px;
+
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255,255,255,.25) transparent;
+}
+
+
+/* LOGO */
+
+.brand {
+    height: 120px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 22px 18px;
+
+    border-bottom: 1px solid rgba(255,255,255,.12);
+}
+
+.logo-box {
+    width: 52px;
+    height: 52px;
+
+    border-radius: 16px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 28px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #24b8ff,
+            #7144f5
+        );
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,.20);
+}
+
+.brand-text {
+    margin-left: 13px;
+}
+
+.brand-title {
+    font-size: 21px;
+    font-weight: 800;
+    letter-spacing: -.5px;
+}
+
+.brand-subtitle {
+    font-size: 12px;
+    opacity: .72;
+    margin-top: 3px;
+}
+
+
+/* MENU */
+
+.menu {
+    padding: 25px 14px;
+}
+
+.menu-title {
+    font-size: 12px;
+    font-weight: 700;
+
+    color: rgba(255,255,255,.52);
+
+    letter-spacing: 1px;
+
+    padding: 0 11px 10px;
+}
+
+.menu-section {
+    margin-top: 20px;
+}
+
+
+.nav-item {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+
+    min-height: 49px;
+
+    padding: 0 14px;
+
+    margin: 5px 0;
+
+    border-radius: 13px;
+
+    color: rgba(255,255,255,.84);
+
+    text-decoration: none;
+
+    transition:
+        transform .2s ease,
+        background .2s ease,
+        color .2s ease;
+}
+
+.nav-item:hover {
+    background: rgba(255,255,255,.12);
+    color: white;
+    transform: translateX(3px);
+}
+
+.nav-item.active {
+    color: white;
+
+    background:
+        linear-gradient(
+            90deg,
+            #22b9f5,
+            #6942f4
+        );
+
+    box-shadow:
+        0 9px 22px rgba(0,0,0,.18);
+}
+
+.nav-icon {
+    width: 31px;
+    font-size: 20px;
+    text-align: center;
+    margin-right: 10px;
+}
+
+.nav-text {
+    font-size: 15px;
+    font-weight: 650;
+}
+
+
+/* LOGOUT */
+
+.logout {
+    margin-top: 14px;
+    padding-top: 15px;
+
+    border-top: 1px solid rgba(255,255,255,.13);
+}
+
+
+/* =========================================================
+   MAIN AREA
+========================================================= */
+
+.main-area {
+    margin-left: 268px;
+    margin-right: 0;
+
+    width: auto;
+
+    height: 100vh;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    background:
+        linear-gradient(
+            180deg,
+            #f8f9ff,
+            #eef1fb
+        );
+}
+
+
+/* =========================================================
+   TOP HEADER
+========================================================= */
+
+.top-header {
+    height: 120px;
+
+    background: rgba(255,255,255,.96);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 22px 28px;
+
+    border-bottom: 1px solid #e9ebf5;
+
+    position: sticky;
+    top: 0;
+
+    z-index: 100;
+}
+
+.header-left h1 {
+    font-size: 30px;
+    line-height: 1.05;
+    font-weight: 800;
+}
+
+.header-left p {
+    margin-top: 7px;
+    color: #8990a7;
+    font-size: 14px;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.time-box {
+    font-size: 18px;
+    font-weight: 750;
+    color: #59617d;
+}
+
+.notification {
+    width: 48px;
+    height: 48px;
+
+    background: #fff;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 22px;
+
+    box-shadow: 0 5px 18px rgba(40,35,100,.10);
+
+    position: relative;
+}
+
+.notification::after {
+    content: "";
+
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+
+    background: #ff4f8b;
+
+    position: absolute;
+    top: 7px;
+    right: 8px;
+}
+
+.profile-mini {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.profile-circle {
+    width: 48px;
+    height: 48px;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #25b8ee,
+            #466cf1
+        );
+
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.profile-info strong {
+    display: block;
+    font-size: 15px;
+}
+
+.profile-info span {
+    display: block;
+    color: #8d93a8;
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   DASHBOARD CONTENT
+========================================================= */
+
+.dashboard-content {
+    padding: 20px 24px 35px;
+
+    width: 100%;
+}
+
+
+/* =========================================================
+   WELCOME HERO
+========================================================= */
+
+.welcome-banner {
+    width: 100%;
+    min-height: 255px;
+
+    border-radius: 20px;
+
+    padding: 30px 38px;
+
+    position: relative;
+    overflow: hidden;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            120deg,
+            #19398d,
+            #4828c8 55%,
+            #7738dd
+        );
+
+    box-shadow:
+        0 14px 35px rgba(55,44,150,.20);
+
+    display: flex;
+    align-items: center;
+}
+
+.welcome-banner::before {
+    content: "";
+
+    position: absolute;
+
+    width: 350px;
+    height: 350px;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,.07);
+
+    right: 40px;
+    top: -150px;
+}
+
+.welcome-banner::after {
+    content: "";
+
+    position: absolute;
+
+    width: 300px;
+    height: 300px;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,.05);
+
+    right: -70px;
+    bottom: -160px;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+
+    max-width: 65%;
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 8px;
+
+    background: rgba(255,255,255,.13);
+
+    padding: 9px 15px;
+
+    border-radius: 30px;
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.hero-content h2 {
+    font-size: 37px;
+    line-height: 1.15;
+
+    margin-top: 18px;
+}
+
+.hero-content p {
+    font-size: 15px;
+    line-height: 1.65;
+
+    margin-top: 10px;
+
+    max-width: 580px;
+
+    color: rgba(255,255,255,.86);
+}
+
+.date-pill {
+    display: inline-flex;
+
+    margin-top: 17px;
+
+    padding: 10px 15px;
+
+    border-radius: 30px;
+
+    background: rgba(255,255,255,.12);
+
+    font-size: 13px;
+    font-weight: 650;
+}
+
+
+/* HERO ICON */
+
+.hero-art {
+    position: absolute;
+
+    right: 65px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 190px;
+    height: 170px;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    z-index: 2;
+}
+
+.hero-cap {
+    font-size: 67px;
+
+    filter:
+        drop-shadow(
+            0 12px 8px rgba(0,0,0,.25)
+        );
+}
+
+.hero-books {
+    font-size: 65px;
+    margin-top: -18px;
+}
+
+
+/* =========================================================
+   STAT CARDS
+========================================================= */
+
+.stats-grid {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 18px;
+
+    margin-top: 20px;
+}
+
+.stat-card {
+    background: white;
+
+    border: 1px solid #e9ebf5;
+
+    border-radius: 17px;
+
+    padding: 20px;
+
+    min-height: 145px;
+
+    box-shadow:
+        0 8px 25px rgba(40,35,100,.06);
+
+    cursor: pointer;
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 15px 35px rgba(40,35,100,.12);
+}
+
+.stat-top {
+    display: flex;
+    justify-content: space-between;
+}
+
+.stat-title {
+    color: #7f88a5;
+    font-size: 14px;
+    font-weight: 650;
+}
+
+.stat-icon {
+    width: 43px;
+    height: 43px;
+
+    border-radius: 13px;
+
+    background: #f0f3ff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 21px;
+}
+
+.stat-number {
+    font-size: 31px;
+    font-weight: 800;
+
+    margin-top: 11px;
+
+    color: #3063df;
+}
+
+.green {
+    color: #18a871;
+}
+
+.stat-small {
+    color: #9aa2b9;
+    font-size: 12px;
+}
+
+.progress {
+    width: 100%;
+    height: 7px;
+
+    background: #edf0f7;
+
+    border-radius: 10px;
+
+    margin-top: 10px;
+
+    overflow: hidden;
+}
+
+.progress span {
+    display: block;
+
+    width: 87%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #24aaf1,
+            #7641f2
+        );
+
+    border-radius: 10px;
+}
+
+
+/* =========================================================
+   TWO COLUMN MIDDLE CONTENT
+========================================================= */
+
+.middle-grid {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.2fr)
+        minmax(0, .8fr);
+
+    gap: 18px;
+
+    margin-top: 20px;
+}
+
+.content-card {
+    background: white;
+
+    border: 1px solid #e9ebf5;
+
+    border-radius: 17px;
+
+    padding: 20px;
+
+    box-shadow:
+        0 8px 25px rgba(40,35,100,.06);
+}
+
+.card-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 15px;
+}
+
+.card-heading h3 {
+    font-size: 17px;
+}
+
+.view-link {
+    color: #6845e9;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    text-decoration: none;
+}
+
+
+/* TIMETABLE */
+
+.class-row {
+    display: flex;
+    align-items: center;
+
+    padding: 13px 0;
+
+    border-bottom: 1px solid #f0f1f7;
+}
+
+.class-row:last-child {
+    border-bottom: none;
+}
+
+.class-time {
+    width: 90px;
+
+    color: #6845e9;
+
+    font-size: 13px;
+    font-weight: 750;
+}
+
+.class-info strong {
+    display: block;
+    font-size: 14px;
+}
+
+.class-info span {
+    color: #9299ae;
+    font-size: 12px;
+}
+
+
+/* EVENTS */
+
+.event-row {
+    display: flex;
+    align-items: center;
+
+    padding: 10px 0;
+
+    border-bottom: 1px solid #f0f1f7;
+}
+
+.event-row:last-child {
+    border-bottom: none;
+}
+
+.event-date {
+    width: 48px;
+    height: 48px;
+
+    border-radius: 12px;
+
+    background: #f0f3ff;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    margin-right: 12px;
+}
+
+.event-date strong {
+    color: #315bd5;
+    font-size: 16px;
+}
+
+.event-date span {
+    color: #8b94ad;
+    font-size: 10px;
+}
+
+.event-info strong {
+    display: block;
+    font-size: 13px;
+}
+
+.event-info span {
+    color: #959caf;
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   CAMPUS PHOTO SECTION
+========================================================= */
+
+.campus-section {
+    margin-top: 20px;
+}
+
+.section-title {
+    font-size: 19px;
+    font-weight: 800;
+
+    margin-bottom: 14px;
+}
+
+.photo-grid {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(5, minmax(0, 1fr));
+
+    gap: 13px;
+}
+
+.photo-card {
+    height: 145px;
+
+    border-radius: 16px;
+
+    overflow: hidden;
+
+    position: relative;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 7px 20px rgba(30,35,90,.10);
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
+}
+
+.photo-card:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 15px 30px rgba(30,35,90,.16);
+}
+
+.photo-card img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition: transform .4s ease;
+}
+
+.photo-card:hover img {
+    transform: scale(1.08);
+}
+
+.photo-overlay {
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    padding: 35px 12px 12px;
+
+    background:
+        linear-gradient(
+            transparent,
+            rgba(0,0,0,.72)
+        );
+
+    color: white;
+}
+
+.photo-overlay strong {
+    font-size: 13px;
+}
+
+.photo-overlay span {
+    display: block;
+
+    font-size: 10px;
+
+    opacity: .8;
+
+    margin-top: 2px;
+}
+
+
+/* =========================================================
+   RIGHT CHATBOT
+========================================================= */
+
+.chatbot {
+    position: fixed;
+
+    top: auto;
+    right: 24px;
+    bottom: 100px;
+
+    width: 350px;
+    min-width: 0;
+    max-width: calc(100vw - 40px);
+
+    height: 500px;
+    max-height: calc(100vh - 140px);
+
+    background: white;
+
+    border-radius: 18px;
+
+    border: 1px solid #e5e6f2;
+
+    box-shadow:
+        0 24px 60px rgba(40,35,100,.22);
+
+    z-index: 9999;
+
+    display: none;
+    flex-direction: column;
+
+    overflow: hidden;
+}
+
+.chatbot.open {
+    display: flex;
+}
+
+
+/* FLOATING LAUNCHER */
+
+.chat-bubble {
+    position: fixed;
+
+    right: 24px;
+    bottom: 24px;
+
+    width: 60px;
+    height: 60px;
+
+    border: none;
+    border-radius: 50%;
+
+    background:
+        linear-gradient(135deg, #6436d8, #7b4bea);
+
+    color: #fff;
+    font-size: 26px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 10px 26px rgba(100,54,216,.45);
+
+    z-index: 9998;
+
+    transition: .25s;
+}
+
+.chat-bubble:hover {
+    transform: scale(1.08);
+}
+
+
+/* CLOSE BUTTON */
+
+.close-chat {
+    margin-left: auto;
+
+    background: rgba(255,255,255,.18);
+
+    border: none;
+    color: #fff;
+
+    font-size: 20px;
+
+    width: 30px;
+    height: 30px;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+    line-height: 1;
+}
+
+
+/* CHAT HEADER */
+
+.chat-header {
+    min-height: 82px;
+
+    flex-shrink: 0;
+
+    padding: 15px;
+
+    display: flex;
+    align-items: center;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #29277d,
+            #7137d8
+        );
+}
+
+.robot-icon {
+    width: 45px;
+    height: 45px;
+
+    border-radius: 14px;
+
+    background: rgba(255,255,255,.15);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 24px;
+
+    margin-right: 10px;
+}
+
+.chat-title strong {
+    display: block;
+    font-size: 15px;
+}
+
+.chat-title span {
+    display: block;
+
+    font-size: 10px;
+
+    margin-top: 3px;
+
+    color: rgba(255,255,255,.78);
+}
+
+.online-dot {
+    display: inline-block;
+
+    width: 7px;
+    height: 7px;
+
+    background: #57e6a3;
+
+    border-radius: 50%;
+
+    margin-right: 4px;
+}
+
+
+/* CHAT BODY */
+
+.chat-body {
+    flex: 1;
+
+    min-height: 0;
+
+    padding: 17px 14px;
+
+    overflow-y: auto;
+
+    background:
+        linear-gradient(
+            180deg,
+            #fafbff,
+            #f4f5fb
+        );
+}
+
+.bot-message {
+    background: white;
+
+    border: 1px solid #e7e9f3;
+
+    border-radius: 14px;
+
+    padding: 12px;
+
+    margin-bottom: 10px;
+
+    color: #65708d;
+
+    font-size: 11px;
+
+    line-height: 1.6;
+
+    box-shadow:
+        0 5px 15px rgba(40,35,100,.04);
+}
+
+.user-message {
+    background:
+        linear-gradient(
+            135deg,
+            #6241e8,
+            #7b3ee0
+        );
+
+    color: white;
+
+    padding: 10px 12px;
+
+    border-radius: 14px 14px 4px 14px;
+
+    margin: 9px 0 9px 20px;
+
+    font-size: 11px;
+
+    line-height: 1.5;
+}
+
+
+/* QUICK BUTTONS */
+
+.quick-buttons {
+    display: flex;
+
+    gap: 5px;
+
+    flex-wrap: wrap;
+
+    padding: 9px 14px;
+
+    background: white;
+
+    border-top: 1px solid #eceef5;
+}
+
+.quick-btn {
+    border: 1px solid #e0e3f0;
+
+    background: white;
+
+    color: #6b54d9;
+
+    border-radius: 20px;
+
+    padding: 7px 9px;
+
+    font-size: 9px;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.quick-btn:hover {
+    background: #f0edff;
+}
+
+
+/* CHAT INPUT */
+
+.chat-footer {
+    flex-shrink: 0;
+
+    padding: 10px;
+
+    background: white;
+
+    border-top: 1px solid #eceef5;
+
+    display: flex;
+
+    gap: 7px;
+}
+
+.chat-input {
+    flex: 1;
+
+    min-width: 0;
+
+    height: 40px;
+
+    border: 1px solid #e1e4ef;
+
+    border-radius: 12px;
+
+    outline: none;
+
+    padding: 0 11px;
+
+    font-size: 11px;
+
+    color: #555e78;
+}
+
+.chat-input:focus {
+    border-color: #7244e8;
+
+    box-shadow:
+        0 0 0 3px rgba(114,68,232,.08);
+}
+
+.send-btn {
+    width: 40px;
+    height: 40px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6543e8,
+            #843de0
+        );
+
+    cursor: pointer;
+
+    font-size: 17px;
+
+    transition: .2s;
+}
+
+.send-btn:hover {
+    transform: scale(1.05);
+}
+
+
+/* =========================================================
+   WELCOME SCREEN
+========================================================= */
+
+.welcome-screen {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 20000;
+
+    background:
+        linear-gradient(
+            135deg,
+            #142867,
+            #3a218e 55%,
+            #722bd4
+        );
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    transition:
+        opacity .5s ease,
+        visibility .5s ease;
+}
+
+.welcome-screen.hide {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.welcome-box {
+    width: min(650px, 90%);
+
+    text-align: center;
+
+    color: white;
+
+    padding: 35px;
+}
+
+.big-logo {
+    width: 85px;
+    height: 85px;
+
+    border-radius: 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 auto 22px;
+
+    font-size: 43px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #25b9f4,
+            #7941f4
+        );
+
+    box-shadow:
+        0 18px 45px rgba(0,0,0,.25);
+}
+
+.welcome-box h1 {
+    font-size: 45px;
+    font-weight: 850;
+}
+
+.welcome-box h1 span {
+    color: #6ee4ff;
+}
+
+.welcome-box p {
+    font-size: 16px;
+
+    line-height: 1.7;
+
+    color: rgba(255,255,255,.78);
+
+    margin-top: 12px;
+}
+
+.enter-btn {
+    margin-top: 27px;
+
+    border: none;
+
+    padding: 14px 28px;
+
+    border-radius: 30px;
+
+    font-size: 14px;
+
+    font-weight: 750;
+
+    color: #3d2490;
+
+    background: white;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 12px 30px rgba(0,0,0,.20);
+
+    transition: .25s;
+}
+
+.enter-btn:hover {
+    transform: translateY(-3px) scale(1.02);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1150px) {
+
+    .sidebar {
+        width: 230px;
+        min-width: 230px;
+    }
+
+    .main-area {
+        margin-left: 230px;
+        margin-right: 0;
+    }
+
+    .chatbot {
+        width: 320px;
+        max-width: calc(100vw - 40px);
+
+        right: 12px;
+    }
+
+    .chat-bubble {
+        right: 12px;
+    }
+
+    .photo-grid {
+        grid-template-columns:
+            repeat(3, minmax(0,1fr));
+    }
+}
+
+
+@media (max-width: 900px) {
+
+    .main-area {
+        margin-right: 0;
+    }
+
+    .chatbot {
+        right: 12px;
+    }
+
+    .chat-bubble {
+        right: 12px;
+    }
+}
+
+
+@media (max-width: 700px) {
+
+    .sidebar {
+        width: 80px;
+        min-width: 80px;
+    }
+
+    .brand {
+        justify-content: center;
+        padding: 15px;
+    }
+
+    .brand-text {
+        display: none;
+    }
+
+    .menu-title,
+    .nav-text {
+        display: none;
+    }
+
+    .nav-item {
+        justify-content: center;
+        padding: 0;
+    }
+
+    .nav-icon {
+        margin: 0;
+    }
+
+    .main-area {
+        margin-left: 80px;
+    }
+
+    .stats-grid,
+    .middle-grid,
+    .photo-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-content {
+        max-width: 100%;
+    }
+
+    .hero-art {
+        display: none;
+    }
+}
+
+
+/* =========================================================
+   ADMIN CONSOLE - additions only (everything above is shared
+   with the student pages so the look stays identical)
+========================================================= */
+
+/* Overview tiles here are read-only (the student dashboard's own
+   tiles are clickable), so drop the hand cursor. Every other card
+   property is inherited unchanged. */
+.stats-grid .stat-card {
+    cursor: default;
+}
+
+.admin-section-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 18px;
+    flex-wrap: wrap;
+
+    margin-bottom: 18px;
+}
+
+.admin-section-head h2 {
+    font-size: 24px;
+    font-weight: 800;
+    color: #17203a;
+}
+
+.admin-section-head p {
+    margin-top: 5px;
+    font-size: 13.5px;
+    color: #8990a7;
+}
+
+.admin-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.admin-toolbar input,
+.admin-toolbar select {
+    font-family: inherit;
+
+    padding: 11px 14px;
+
+    border: 1px solid #e2e6f2;
+    border-radius: 12px;
+
+    background: #fbfcff;
+
+    font-size: 13.5px;
+    color: #17203a;
+
+    outline: none;
+}
+
+.admin-toolbar input {
+    width: 260px;
+}
+
+.admin-toolbar input:focus,
+.admin-toolbar select:focus,
+.admin-form input:focus,
+.admin-form select:focus {
+    border-color: #7b8ff5;
+    box-shadow: 0 0 0 3px rgba(108,79,240,.14);
+}
+
+.admin-card {
+    background: #fff;
+
+    border: 1px solid #e9ebf5;
+    border-radius: 17px;
+
+    box-shadow: 0 8px 25px rgba(40,35,100,.06);
+
+    overflow: auto;
+}
+
+.admin-table {
+    width: 100%;
+    min-width: 940px;
+
+    border-collapse: collapse;
+}
+
+.admin-table th {
+    text-align: left;
+
+    padding: 14px 16px;
+
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+
+    color: #8990a7;
+
+    border-bottom: 1px solid #eef1f6;
+    white-space: nowrap;
+}
+
+.admin-table td {
+    padding: 13px 16px;
+
+    font-size: 13.5px;
+    color: #17203a;
+
+    border-bottom: 1px solid #f4f6fb;
+
+    vertical-align: middle;
+}
+
+.admin-table tr:last-child td {
+    border-bottom: 0;
+}
+
+.admin-table tbody tr:hover td {
+    background: #fafbff;
+}
+
+.admin-empty {
+    padding: 30px;
+    text-align: center;
+
+    font-size: 13px;
+    color: #8990a7;
+}
+
+.admin-muted {
+    color: #b6bccd;
+}
+
+.admin-actions {
+    white-space: nowrap;
+}
+
+.admin-badge {
+    display: inline-block;
+
+    padding: 4px 11px;
+    border-radius: 999px;
+
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .03em;
+    text-transform: capitalize;
+}
+
+.admin-badge.student { background: #eaf0ff; color: #1f47b8; }
+.admin-badge.faculty { background: #fff4e5; color: #a86400; }
+.admin-badge.admin   { background: #fdecef; color: #c0264a; }
+
+.admin-btn {
+    font-family: inherit;
+
+    border: 0;
+    border-radius: 12px;
+
+    padding: 11px 16px;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    color: #fff;
+
+    background: linear-gradient(135deg, #24aaf1, #7641f2);
+
+    box-shadow: 0 8px 20px rgba(40,35,100,.18);
+
+    cursor: pointer;
+
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.admin-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 26px rgba(40,35,100,.24);
+}
+
+.admin-btn.ghost {
+    color: #59617d;
+
+    background: #fff;
+
+    border: 1px solid #e2e6f2;
+
+    box-shadow: 0 5px 16px rgba(40,35,100,.06);
+}
+
+.admin-btn.sm {
+    padding: 7px 12px;
+    border-radius: 10px;
+    font-size: 12px;
+}
+
+.admin-btn.danger {
+    color: #c0264a;
+
+    background: #fff6f8;
+
+    border: 1px solid #f6d3da;
+
+    box-shadow: none;
+}
+
+.admin-btn:disabled {
+    opacity: .65;
+    cursor: default;
+    transform: none;
+}
+
+.admin-loading-row {
+    grid-column: 1 / -1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    padding: 34px;
+
+    font-size: 13px;
+    color: #8990a7;
+}
+
+.admin-spinner {
+    width: 20px;
+    height: 20px;
+
+    border: 3px solid #e9ecf7;
+    border-top-color: #7641f2;
+
+    border-radius: 50%;
+
+    animation: admin-spin .7s linear infinite;
+}
+
+@keyframes admin-spin {
+    to { transform: rotate(360deg); }
+}
+
+.admin-modal {
+    position: fixed;
+
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 22px;
+
+    background: rgba(23,32,58,.42);
+
+    z-index: 3000;
+}
+
+.admin-modal[hidden] {
+    display: none;
+}
+
+.admin-modal-box {
+    width: 100%;
+    max-width: 620px;
+    max-height: 88vh;
+
+    background: #fff;
+
+    border-radius: 20px;
+
+    box-shadow: 0 30px 60px rgba(23,32,58,.28);
+
+    overflow: auto;
+}
+
+.admin-modal-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 14px;
+
+    padding: 20px 22px;
+
+    border-bottom: 1px solid #eef1f6;
+}
+
+.admin-modal-top h3 {
+    font-size: 18px;
+    font-weight: 800;
+    color: #17203a;
+}
+
+.admin-modal-top small {
+    display: block;
+    margin-top: 3px;
+
+    font-size: 12px;
+    color: #8990a7;
+}
+
+.admin-modal-close {
+    width: 36px;
+    height: 36px;
+
+    flex-shrink: 0;
+
+    border: 0;
+    border-radius: 11px;
+
+    background: #f2f4fb;
+    color: #59617d;
+
+    font-size: 15px;
+
+    cursor: pointer;
+}
+
+.admin-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+
+    padding: 20px 22px;
+}
+
+.admin-form .full {
+    grid-column: 1 / -1;
+}
+
+.admin-form label {
+    display: block;
+
+    margin-bottom: 6px;
+
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+
+    color: #8990a7;
+}
+
+.admin-form input,
+.admin-form select {
+    width: 100%;
+
+    font-family: inherit;
+
+    padding: 11px 13px;
+
+    border: 1px solid #e2e6f2;
+    border-radius: 12px;
+
+    background: #fbfcff;
+
+    font-size: 14px;
+    color: #17203a;
+
+    outline: none;
+}
+
+.admin-form-foot {
+    grid-column: 1 / -1;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 12px;
+
+    margin-top: 4px;
+}
+
+.admin-hint {
+    font-size: 12px;
+    color: #8990a7;
+}
+
+.admin-toasts {
+    position: fixed;
+
+    right: 22px;
+    bottom: 22px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    z-index: 4000;
+}
+
+.admin-toast {
+    max-width: 340px;
+
+    padding: 12px 16px;
+
+    border-radius: 13px;
+
+    background: #17203a;
+    color: #fff;
+
+    font-size: 13px;
+
+    box-shadow: 0 16px 32px rgba(23,32,58,.26);
+
+    transition: opacity .35s ease;
+}
+
+.admin-toast.ok  { background: #0f7b52; }
+.admin-toast.err { background: #b3202f; }
+
+@media (max-width: 900px) {
+
+    .admin-form {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-toolbar input {
+        width: 100%;
+    }
+}
+</style>
+<script src="../js/api-base.js"></script>
+<script src="../js/cc-session.js"></script>
+<script>
+/* Early guard so guests and students never see the admin shell. */
+(function () {
+    var C = window.CC;
+    if (!C) { return; }
+    if (!C.token()) { location.replace("../index.html"); return; }
+    if (!C.isAdmin()) { location.replace("../dashboard.html"); }
+})();
+</script>
+</head>
+<body>
+
+<div class="app">
+
+
+<!-- =====================================================
+     LEFT SIDEBAR
+===================================================== -->
+
+<aside class="sidebar">
+
+    <div class="brand">
+
+        <div class="logo-box">
+            &#127891;
+        </div>
+
+        <div class="brand-text">
+
+            <div class="brand-title">
+                CampusConnect
+            </div>
+
+            <div class="brand-subtitle">
+                Admin Console
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="menu">
+
+
+        <div class="menu-title">
+            ADMINISTRATION
+        </div>
+
+
+        <a class="nav-item active" href="admin.html#overview" data-view="overview">
+            <span class="nav-icon">&#128202;</span>
+            <span class="nav-text">Overview</span>
+        </a>
+
+
+        <a class="nav-item" href="admin.html#users" data-view="users">
+            <span class="nav-icon">&#128101;</span>
+            <span class="nav-text">Students &amp; Users</span>
+        </a>
+
+
+
+        <div class="menu-section">
+
+            <div class="menu-title">
+                ACADEMICS
+            </div>
+
+            <a class="nav-item" href="courses.html">
+                <span class="nav-icon">&#128218;</span>
+                <span class="nav-text">Courses</span>
+            </a>
+
+            <a class="nav-item" href="faculty.html">
+                <span class="nav-icon">&#128104;</span>
+                <span class="nav-text">Faculty</span>
+            </a>
+
+        </div>
+
+
+
+        <div class="menu-section">
+
+            <div class="menu-title">
+                CAREER
+            </div>
+
+            <a class="nav-item" href="placement.html">
+                <span class="nav-icon">&#128188;</span>
+                <span class="nav-text">Placement</span>
+            </a>
+
+            <a class="nav-item" href="results.html">
+                <span class="nav-icon">&#128200;</span>
+                <span class="nav-text">Results</span>
+            </a>
+
+        </div>
+
+
+
+        <div class="menu-section">
+
+            <div class="menu-title">
+                CAMPUS
+            </div>
+
+            <a class="nav-item" href="complaints.html">
+                <span class="nav-icon">&#128226;</span>
+                <span class="nav-text">Complaints</span>
+            </a>
+
+            <a class="nav-item" href="feedback.html">
+                <span class="nav-icon">&#128172;</span>
+                <span class="nav-text">Feedback</span>
+            </a>
+
+            <a class="nav-item" href="campus.html">
+                <span class="nav-icon">&#127979;</span>
+                <span class="nav-text">Campus</span>
+            </a>
+
+            <a class="nav-item" href="events.html">
+                <span class="nav-icon">&#127881;</span>
+                <span class="nav-text">Events</span>
+            </a>
+
+            <a class="nav-item" href="notifications.html">
+                <span class="nav-icon">&#128276;</span>
+                <span class="nav-text">Notifications</span>
+            </a>
+
+        </div>
+
+
+
+        <div class="menu-section">
+
+            <div class="menu-title">
+                ACCOUNT
+            </div>
+
+            <a class="nav-item" href="profile.html">
+                <span class="nav-icon">&#128100;</span>
+                <span class="nav-text">Profile</span>
+            </a>
+
+            <a class="nav-item" href="settings.html">
+                <span class="nav-icon">&#9881;</span>
+                <span class="nav-text">Settings</span>
+            </a>
+
+            <div class="logout">
+
+                <a class="nav-item"
+                   href="../index.html"
+                   onclick="return confirmLogout()">
+
+                    <span class="nav-icon">&#128682;</span>
+                    <span class="nav-text">Logout</span>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</aside>
+
+
+<!-- =====================================================
+     MIDDLE AREA
+===================================================== -->
+
+<main class="main-area">
+
+
+    <header class="top-header">
+
+        <div class="header-left">
+
+            <h1>
+                Admin<br>
+                Console
+            </h1>
+
+            <p>
+                Manage students, staff, courses and campus data
+            </p>
+
+        </div>
+
+
+        <div class="header-right">
+
+            <div class="time-box" id="clock">
+                6:00 PM
+            </div>
+
+            <div class="notification">
+                &#128276;
+            </div>
+
+
+            <div class="profile-mini">
+
+                <div class="profile-circle">
+                    A
+                </div>
+
+                <div class="profile-info">
+
+                    <strong>
+                        Administrator
+                    </strong>
+
+                    <span>
+                        CampusConnect
+                    </span>
+
+                    <span>
+                        Administrator
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <div class="dashboard-content">
+
+
+        <!-- =====================================
+             VIEW: OVERVIEW
+        ====================================== -->
+
+        <section id="view-overview">
+
+            <div class="admin-section-head">
+
+                <div>
+                    <h2>Campus Overview</h2>
+                    <p>Live figures from the CampusConnect database</p>
+                </div>
+
+                <button class="admin-btn ghost"
+                        type="button"
+                        id="statsRefresh">
+                    &#8635; Refresh
+                </button>
+
+            </div>
+
+
+            <div class="stats-grid" id="adminStats">
+
+                <div class="admin-loading-row">
+                    <div class="admin-spinner"></div>
+                    <div>Loading campus statistics...</div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             VIEW: STUDENTS AND USERS
+        ====================================== -->
+
+        <section id="view-users" hidden>
+
+            <div class="admin-section-head">
+
+                <div>
+                    <h2>Students &amp; Users</h2>
+                    <p id="usersCount">Loading accounts...</p>
+                </div>
+
+                <div class="admin-toolbar">
+
+                    <input id="userSearch"
+                           type="text"
+                           autocomplete="off"
+                           placeholder="Search name, email, ID...">
+
+                    <select id="userRole">
+                        <option value="">All roles</option>
+                        <option value="student">Students</option>
+                        <option value="faculty">Faculty</option>
+                        <option value="admin">Admins</option>
+                    </select>
+
+                    <button class="admin-btn ghost"
+                            type="button"
+                            id="usersRefresh">
+                        &#8635; Refresh
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="admin-card">
+
+                <table class="admin-table">
+
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Student ID</th>
+                            <th>Course</th>
+                            <th>Sem</th>
+                            <th>Phone</th>
+                            <th>Role</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="usersBody">
+                        <tr>
+                            <td colspan="9" class="admin-empty">
+                                Loading users...
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+    </div>
+
+</main>
+
+</div>
+
+
+<!-- =====================================================
+     EDIT USER MODAL
+===================================================== -->
+
+<div class="admin-modal" id="userModal" hidden>
+
+    <div class="admin-modal-box"
+         role="dialog"
+         aria-modal="true"
+         aria-labelledby="userModalTitle">
+
+        <div class="admin-modal-top">
+
+            <div>
+                <h3 id="userModalTitle">Edit user</h3>
+                <small id="userModalSub"></small>
+            </div>
+
+            <button class="admin-modal-close"
+                    type="button"
+                    id="userModalClose"
+                    aria-label="Close">
+                &#10005;
+            </button>
+
+        </div>
+
+
+        <div class="admin-form">
+
+            <div class="full">
+                <label for="fName">Full name</label>
+                <input id="fName" type="text" autocomplete="off">
+            </div>
+
+            <div class="full">
+                <label for="fEmail">Email</label>
+                <input id="fEmail" type="email" autocomplete="off">
+            </div>
+
+            <div>
+                <label for="fStudentId">Student ID</label>
+                <input id="fStudentId" type="text" autocomplete="off">
+            </div>
+
+            <div>
+                <label for="fPhone">Phone</label>
+                <input id="fPhone" type="text" autocomplete="off">
+            </div>
+
+            <div>
+                <label for="fCourse">Course</label>
+                <select id="fCourse">
+                    <option value="">Not set</option>
+                    <option value="BCA">BCA - Computer Applications</option>
+                    <option value="BBA">BBA - Business Administration</option>
+                    <option value="BCOM">B.Com - Bachelor of Commerce</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="fSemester">Semester</label>
+                <select id="fSemester">
+                    <option value="">Not set</option>
+                    <option value="1">Semester 1</option>
+                    <option value="2">Semester 2</option>
+                    <option value="3">Semester 3</option>
+                    <option value="4">Semester 4</option>
+                    <option value="5">Semester 5</option>
+                    <option value="6">Semester 6</option>
+                </select>
+            </div>
+
+            <div class="full">
+                <label for="fRole">Role</label>
+                <select id="fRole">
+                    <option value="student">Student</option>
+                    <option value="faculty">Faculty</option>
+                    <option value="admin">Administrator</option>
+                </select>
+            </div>
+
+            <div class="admin-form-foot">
+
+                <span class="admin-hint" id="userModalHint"></span>
+
+                <div class="admin-actions">
+                    <button class="admin-btn ghost"
+                            type="button"
+                            id="userModalCancel">
+                        Cancel
+                    </button>
+
+                    <button class="admin-btn"
+                            type="button"
+                            id="userModalSave">
+                        Save changes
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="admin-toasts" id="adminToasts"></div>
+
+<script>
+/* =========================================================
+   CAMPUSCONNECT ADMIN CONSOLE  (phase 1: Overview + Users)
+   Uses the shared session layer (window.CC) for auth and API.
+========================================================= */
+
+(function () {
+    "use strict";
+
+    var CC = window.CC;
+    if (!CC) { return; }
+
+    function $(id) { return document.getElementById(id); }
+
+    /* ---------- feedback ---------- */
+
+    function toast(text, kind) {
+        var box = $("adminToasts");
+        if (!box) { return; }
+
+        var el = document.createElement("div");
+        el.className = "admin-toast" + (kind ? " " + kind : "");
+        el.textContent = text;
+        box.appendChild(el);
+
+        setTimeout(function () { el.style.opacity = "0"; }, 2600);
+        setTimeout(function () {
+            if (el.parentNode) { el.parentNode.removeChild(el); }
+        }, 3050);
+    }
+
+    function num(value) {
+        return (value === null || value === undefined || value === "") ?
+            "0" : String(value);
+    }
+
+    /* =====================================================
+       VIEW ROUTING  (#overview / #users)
+    ===================================================== */
+
+    var VIEWS = ["overview", "users"];
+
+    function showView(name) {
+        if (VIEWS.indexOf(name) === -1) { name = "overview"; }
+
+        VIEWS.forEach(function (v) {
+            var el = $("view-" + v);
+            if (el) { el.hidden = (v !== name); }
+        });
+
+        Array.prototype.forEach.call(
+            document.querySelectorAll(".nav-item[data-view]"),
+            function (link) {
+                link.classList.toggle(
+                    "active",
+                    link.getAttribute("data-view") === name
+                );
+            }
+        );
+
+        if (name === "users" && !usersLoaded) { loadUsers(); }
+    }
+
+    /* =====================================================
+       OVERVIEW
+    ===================================================== */
+
+    var STAT_CARDS = [
+        { key: "total_users",        icon: "\uD83D\uDC65", label: "Total Users",        hint: "Every account in the portal" },
+        { key: "total_students",     icon: "\uD83C\uDF93", label: "Students",           tone: "green", hint: "Accounts with the student role" },
+        { key: "total_courses",      icon: "\uD83D\uDCDA", label: "Courses",            hint: "Across BCA, BBA and B.Com" },
+        { key: "total_events",       icon: "\uD83C\uDF89", label: "Events",             tone: "green", hint: "Published to the campus calendar" },
+        { key: "total_placements",   icon: "\uD83D\uDCBC", label: "Placements",         hint: "Open opportunities" },
+        { key: "total_applications", icon: "\uD83D\uDCC8", label: "Applications",       tone: "green", hint: "Submitted by students" },
+        { key: "pending_complaints", icon: "\uD83D\uDCE2", label: "Pending Complaints", hint: "Waiting for a response" },
+        { key: "total_feedback",     icon: "\uD83D\uDCAC", label: "Feedback",           tone: "green", hint: "Responses received" },
+        { key: "open_lost_found",    icon: "\uD83D\uDD0E", label: "Open Lost & Found",  hint: "Items not yet resolved" }
+    ];
+
+    function loadStats() {
+        var grid = $("adminStats");
+        if (!grid) { return; }
+
+        grid.innerHTML = '<div class="admin-loading-row">' +
+            '<div class="admin-spinner"></div>' +
+            '<div>Loading campus statistics...</div></div>';
+
+        CC.api("/api/admin/stats").then(function (res) {
+            if (!res.ok || !res.data || !res.data.success) {
+                grid.innerHTML = '<p class="admin-empty">' +
+                    'Could not load statistics.</p>';
+                toast("Could not load statistics", "err");
+                return;
+            }
+
+            var data = res.data.data || {};
+
+            grid.innerHTML = STAT_CARDS.map(function (card) {
+                return '<div class="stat-card">' +
+                        '<div class="stat-top">' +
+                            '<div class="stat-title">' + card.label + '</div>' +
+                            '<div class="stat-icon">' + card.icon + '</div>' +
+                        '</div>' +
+                        '<div class="stat-number' + (card.tone === "green" ? " green" : "") + '">' + num(data[card.key]) + '</div>' +
+                        '<div class="stat-small">' + card.hint + '</div>' +
+                    '</div>';
+            }).join("");
+        }).catch(function () {
+            grid.innerHTML = '<p class="admin-empty">' +
+                'Cannot reach the CampusConnect backend.</p>';
+            toast("Cannot reach the CampusConnect backend", "err");
+        });
+    }
+
+    /* =====================================================
+       USERS
+    ===================================================== */
+
+    var users = [];
+    var usersLoaded = false;
+    var editing = null;
+
+    function roleBadge(role) {
+        var r = String(role || "student").toLowerCase();
+        if (["student", "faculty", "admin"].indexOf(r) === -1) { r = "student"; }
+        return '<span class="admin-badge ' + r + '">' + r + '</span>';
+    }
+
+    function loadUsers() {
+        var body = $("usersBody");
+        if (!body) { return; }
+
+        usersLoaded = true;
+
+        body.innerHTML = '<tr><td colspan="9" class="admin-empty">' +
+            'Loading accounts...</td></tr>';
+
+        CC.api("/api/admin/users").then(function (res) {
+            if (!res.ok || !res.data || !res.data.success) {
+                body.innerHTML = '<tr><td colspan="9" class="admin-empty">' +
+                    'Could not load accounts.</td></tr>';
+                toast("Could not load accounts", "err");
+                return;
+            }
+
+            users = res.data.data || [];
+            renderUsers();
+
+        }).catch(function () {
+            body.innerHTML = '<tr><td colspan="9" class="admin-empty">' +
+                'Cannot reach the CampusConnect backend.</td></tr>';
+        });
+    }
+
+    function filteredUsers() {
+        var search = $("userSearch") ? $("userSearch").value.trim().toLowerCase() : "";
+        var role = $("userRole") ? $("userRole").value : "";
+
+        return users.filter(function (u) {
+            if (role && String(u.role || "").toLowerCase() !== role) { return false; }
+            if (!search) { return true; }
+
+            var haystack = [u.name, u.email, u.student_id, u.course, u.phone, u.semester]
+                .map(function (v) {
+                    return String(v === null || v === undefined ? "" : v);
+                })
+                .join(" ")
+                .toLowerCase();
+
+            return haystack.indexOf(search) !== -1;
+        });
+    }
+
+    function renderUsers() {
+        var body = $("usersBody");
+        if (!body) { return; }
+
+        var rows = filteredUsers();
+
+        var count = $("usersCount");
+        if (count) {
+            count.textContent = rows.length + " of " + users.length +
+                " accounts (all roles)";
+        }
+
+        if (!rows.length) {
+            body.innerHTML = '<tr><td colspan="9" class="admin-empty">' +
+                'No accounts match your filters.</td></tr>';
+            return;
+        }
+
+        body.innerHTML = rows.map(function (u) {
+            return '<tr>' +
+                '<td>#' + CC.escapeHtml(u.id) + '</td>' +
+                '<td><strong>' + CC.escapeHtml(u.name) + '</strong></td>' +
+                '<td>' + CC.escapeHtml(u.email) + '</td>' +
+                '<td>' + CC.escapeHtml(u.student_id) + '</td>' +
+                '<td>' + CC.escapeHtml(u.course) + '</td>' +
+                '<td>' + CC.escapeHtml(u.semester) + '</td>' +
+                '<td>' + (u.phone ?
+                    CC.escapeHtml(u.phone) :
+                    '<span class="admin-muted">-</span>') + '</td>' +
+                '<td>' + roleBadge(u.role) + '</td>' +
+                '<td class="admin-actions">' +
+                    '<button class="admin-btn ghost sm" type="button" ' +
+                        'data-edit="' + CC.escapeHtml(u.id) + '">Edit</button> ' +
+                    '<button class="admin-btn ghost sm danger" type="button" ' +
+                        'data-delete="' + CC.escapeHtml(u.id) + '">Delete</button>' +
+                '</td>' +
+            '</tr>';
+        }).join("");
+    }
+
+    function findUser(id) {
+        var wanted = String(id);
+        for (var k = 0; k < users.length; k++) {
+            if (String(users[k].id) === wanted) { return users[k]; }
+        }
+        return null;
+    }
+
+    /* ---------- edit modal ---------- */
+
+    function openEdit(id) {
+        var u = findUser(id);
+        if (!u) { return; }
+
+        editing = u;
+
+        $("fName").value = u.name || "";
+        $("fEmail").value = u.email || "";
+        $("fStudentId").value = u.student_id || "";
+        $("fPhone").value = u.phone || "";
+        $("fCourse").value = u.course || "";
+        $("fSemester").value = (u.semester === null || u.semester === undefined) ?
+            "" : String(u.semester);
+        $("fRole").value = String(u.role || "student").toLowerCase();
+
+        $("userModalTitle").textContent = u.name || ("Account #" + u.id);
+        $("userModalSub").textContent = "Account #" + u.id +
+            (u.email ? " - " + u.email : "");
+
+        $("userModal").hidden = false;
+        $("fName").focus();
+    }
+
+    function closeEdit() {
+        editing = null;
+        $("userModal").hidden = true;
+    }
+
+    function saveEdit() {
+        if (!editing) { return; }
+
+        var name = $("fName").value.trim();
+        var email = $("fEmail").value.trim();
+
+        if (!name) { toast("Name cannot be empty", "err"); $("fName").focus(); return; }
+        if (!email) { toast("Email cannot be empty", "err"); $("fEmail").focus(); return; }
+
+        var payload = {
+            name: name,
+            email: email,
+            student_id: $("fStudentId").value.trim(),
+            phone: $("fPhone").value.trim(),
+            course: $("fCourse").value,
+            semester: $("fSemester").value,
+            role: $("fRole").value
+        };
+
+        var btn = $("userModalSave");
+        btn.disabled = true;
+        btn.textContent = "Saving...";
+
+        CC.api("/api/students/" + encodeURIComponent(editing.id), {
+            method: "PUT",
+            body: payload
+        }).then(function (res) {
+            $("userModalSave").disabled = false;
+            $("userModalSave").textContent = "Save changes";
+
+            if (!res.ok || !res.data || !res.data.success) {
+                toast(
+                    (res.data && (res.data.message || res.data.error)) ||
+                    "Could not save changes",
+                    "err"
+                );
+                return;
+            }
+
+            var updated = res.data.data || payload;
+            var wanted = String(editing.id);
+
+            users = users.map(function (u) {
+                return String(u.id) === wanted ? updated : u;
+            });
+
+            closeEdit();
+            renderUsers();
+            loadStats();
+            toast("Saved " + (updated.name || "account"), "ok");
+
+        }).catch(function () {
+            var btn2 = $("userModalSave");
+            btn2.disabled = false;
+            btn2.textContent = "Save changes";
+            toast("Cannot reach the CampusConnect backend", "err");
+        });
+    }
+
+    /* ---------- delete ---------- */
+
+    function deleteUser(id) {
+        var u = findUser(id) || {};
+        var me = CC.user() || {};
+
+        if (String(me.id) === String(id)) {
+            toast("You cannot delete your own admin account", "err");
+            return;
+        }
+
+        var question = "Delete " + (u.name || "this account") +
+            " (" + (u.email || "") + ")?\nThis cannot be undone.";
+
+        if (!window.confirm(question)) { return; }
+
+        CC.api("/api/admin/users/" + encodeURIComponent(id), {
+            method: "DELETE"
+        }).then(function (res) {
+            if (!res.ok || !res.data || !res.data.success) {
+                toast(
+                    (res.data && (res.data.message || res.data.error)) ||
+                    "Could not delete account",
+                    "err"
+                );
+                return;
+            }
+
+            var wanted = String(id);
+            users = users.filter(function (row) {
+                return String(row.id) !== wanted;
+            });
+
+            renderUsers();
+            loadStats();
+            toast("Deleted " + (u.name || "account"), "ok");
+
+        }).catch(function () {
+            toast("Cannot reach the CampusConnect backend", "err");
+        });
+    }
+
+    /* =====================================================
+       CLOCK (same behaviour as the other pages)
+    ===================================================== */
+
+    function updateClock() {
+        var el = $("clock");
+        if (!el) { return; }
+
+        var now = new Date();
+        var hours = now.getHours();
+        var minutes = String(now.getMinutes()).padStart(2, "0");
+        var ampm = hours >= 12 ? "PM" : "AM";
+
+        hours = hours % 12 || 12;
+
+        el.innerText = hours + ":" + minutes + " " + ampm;
+    }
+
+    /* =====================================================
+       INIT
+    ===================================================== */
+
+    function init() {
+        updateClock();
+        setInterval(updateClock, 30000);
+
+        Array.prototype.forEach.call(
+            document.querySelectorAll(".nav-item[data-view]"),
+            function (link) {
+                link.addEventListener("click", function () {
+                    showView(link.getAttribute("data-view"));
+                });
+            }
+        );
+
+        window.addEventListener("hashchange", function () {
+            showView(location.hash.replace("#", ""));
+        });
+
+        var refresh = $("statsRefresh");
+        if (refresh) { refresh.addEventListener("click", loadStats); }
+
+        var search = $("userSearch");
+        if (search) { search.addEventListener("input", renderUsers); }
+
+        var role = $("userRole");
+        if (role) { role.addEventListener("change", renderUsers); }
+
+        var userRefresh = $("usersRefresh");
+        if (userRefresh) { userRefresh.addEventListener("click", loadUsers); }
+
+        var body = $("usersBody");
+        if (body) {
+            body.addEventListener("click", function (event) {
+                var target = event.target;
+                if (!target || !target.getAttribute) { return; }
+
+                var editId = target.getAttribute("data-edit");
+                if (editId) { openEdit(editId); return; }
+
+                var deleteId = target.getAttribute("data-delete");
+                if (deleteId) { deleteUser(deleteId); }
+            });
+        }
+
+        $("userModalClose").addEventListener("click", closeEdit);
+        $("userModalCancel").addEventListener("click", closeEdit);
+        $("userModalSave").addEventListener("click", saveEdit);
+
+        $("userModal").addEventListener("click", function (event) {
+            if (event.target === $("userModal")) { closeEdit(); }
+        });
+
+        document.addEventListener("keydown", function (event) {
+            if (event.key === "Escape" && !$("userModal").hidden) { closeEdit(); }
+        });
+
+        loadStats();
+        showView(location.hash.replace("#", ""));
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", init);
+    } else {
+        init();
+    }
+
+})();
+</script>
+<script src="../js/chatbot.js"></script>
+</body>
+</html>

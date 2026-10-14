@@ -309,6 +309,7 @@ label{display:block;font-size:14px;font-weight:700;color:#4b3fc4;margin-bottom:8
 (function(){
   const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
   const DASHBOARD = "dashboard.html";           // page opened after sign-in
+  const ADMIN_CONSOLE = "pages/admin.html";     // page opened when an admin signs in
   const store = {
     users: () => { try { return JSON.parse(localStorage.getItem("cc_users")) || []; } catch(e){ return []; } },
     save: u => localStorage.setItem("cc_users", JSON.stringify(u)),
@@ -399,11 +400,11 @@ label{display:block;font-size:14px;font-weight:700;color:#4b3fc4;margin-bottom:8
     if (user.semester) { localStorage.setItem("campusConnectSemester", user.semester); }
   }
 
-  function success(title, text, user, remember){
+  function success(title, text, user, remember, dest){
     const s = JSON.stringify({ name: user.name, sid: user.sid, email: user.email, course: user.course, sem: user.sem, at: Date.now() });
     (remember === false ? sessionStorage : localStorage).setItem("cc_session", s);
     $("#mTitle").textContent = title; $("#mText").textContent = text; $("#modal").classList.add("show");
-    setTimeout(() => location.href = DASHBOARD, 2200);
+    setTimeout(() => location.href = dest || DASHBOARD, 2200);
   }
 
   /* ---------- backend helpers ---------- */
@@ -499,11 +500,16 @@ label{display:block;font-size:14px;font-weight:700;color:#4b3fc4;margin-bottom:8
 
         startSession(res.data.token, user, remember);
 
+        const role = String(user.role || "student").toLowerCase();
+        const dest = role === "admin" ? ADMIN_CONSOLE : DASHBOARD;
+
         success(
           "Welcome back!",
-          "Signed in as " + (user.email || user.name || "student") + ". Loading your dashboard...",
+          "Signed in as " + (user.email || user.name || "student") + ". " +
+            (role === "admin" ? "Opening the admin console..." : "Loading your dashboard..."),
           { name: user.name, sid: user.student_id, email: user.email, course: user.course, sem: user.semester },
-          remember
+          remember,
+          dest
         );
       })
       .catch(function () {

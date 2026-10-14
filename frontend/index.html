@@ -686,6 +686,38 @@ body{
         0 0 0 3px rgba(100,78,230,.08);
 }
 
+select.input{
+
+    -webkit-appearance:none;
+
+    -moz-appearance:none;
+
+    appearance:none;
+
+    cursor:pointer;
+
+}
+
+
+.select-box::after{
+
+    content:"\25BE";
+
+    position:absolute;
+
+    right:16px;
+    top:50%;
+
+    transform:translateY(-50%);
+
+    font-size:11px;
+
+    color:#8b98bf;
+
+    pointer-events:none;
+
+}
+
 .eye{
     position:absolute;
 
@@ -1413,6 +1445,81 @@ footer span{
         </div>
 
 
+        <div class="group">
+
+            <label class="label">
+                Course
+            </label>
+
+            <div class="input-box select-box">
+
+                <span class="input-icon">
+                    🎓
+                </span>
+
+                <select
+                    id="registerCourse"
+                    class="input"
+                    required>
+
+                    <option value="" disabled selected>
+                        Select your course
+                    </option>
+
+                    <option value="BCA">
+                        BCA - Bachelor of Computer Applications
+                    </option>
+
+                    <option value="BBA">
+                        BBA - Bachelor of Business Administration
+                    </option>
+
+                    <option value="BCOM">
+                        B.Com - Bachelor of Commerce
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <div class="group">
+
+            <label class="label">
+                Semester
+            </label>
+
+            <div class="input-box select-box">
+
+                <span class="input-icon">
+                    📚
+                </span>
+
+                <select
+                    id="registerSemester"
+                    class="input"
+                    required>
+
+                    <option value="" disabled selected>
+                        Select semester
+                    </option>
+
+                    <option value="1">Semester 1</option>
+                    <option value="2">Semester 2</option>
+                    <option value="3">Semester 3</option>
+                    <option value="4">Semester 4</option>
+                    <option value="5">Semester 5</option>
+                    <option value="6">Semester 6</option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
         <button
             type="submit"
             class="sign-btn">
@@ -1610,55 +1717,30 @@ document
     }
 
 
-    // ---- Real authentication against the backend ----
-    const API_BASE = (window.CC_API_BASE || "");
-    const submitBtn = document.querySelector("#loginForm button[type='submit']");
-    if (submitBtn) { submitBtn.disabled = true; }
+    // Save login status
+    localStorage.setItem(
+        "campusConnectLoggedIn",
+        "true"
+    );
 
-    showMessage("Signing in...", "success");
+    localStorage.setItem(
+        "campusConnectUser",
+        email
+    );
 
-    fetch(API_BASE + "/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: email, password: password })
-    })
-    .then(function (response) {
-        return response.json()
-            .catch(function () { return {}; })
-            .then(function (data) { return { ok: response.ok, data: data }; });
-    })
-    .then(function (result) {
-        if (!result.ok || !result.data || !result.data.success) {
-            throw new Error(
-                (result.data && (result.data.message || result.data.error)) ||
-                "Invalid email or password."
-            );
-        }
 
-        const user = result.data.user || {};
+    showMessage(
+        "Login successful! Redirecting...",
+        "success"
+    );
 
-        // Session shared with the chatbot and the rest of the app.
-        localStorage.setItem("token", result.data.token);
-        localStorage.setItem("campusconnect_user", JSON.stringify(user));
-        // Kept for the existing page logic.
-        localStorage.setItem("campusConnectLoggedIn", "true");
-        localStorage.setItem("campusConnectUser", user.name || email);
-        localStorage.setItem("campusConnectUserEmail", user.email || email);
-        localStorage.setItem("campusConnectRole", user.role || "student");
 
-        showMessage("Login successful! Redirecting...", "success");
+    // Open Dashboard
+    setTimeout(function(){
 
-        setTimeout(function () {
-            window.location.href = "dashboard.html";
-        }, 700);
-    })
-    .catch(function (error) {
-        if (submitBtn) { submitBtn.disabled = false; }
-        showMessage(
-            error.message || "Cannot reach the CampusConnect backend.",
-            "error"
-        );
-    });
+        window.location.href = "dashboard.html";
+
+    },800);
 
 });
 
@@ -1694,6 +1776,16 @@ document
         .getElementById("registerPassword")
         .value;
 
+    const course =
+        document
+        .getElementById("registerCourse")
+        .value;
+
+    const semester =
+        document
+        .getElementById("registerSemester")
+        .value;
+
 
     if(!name || !email || !password){
 
@@ -1703,6 +1795,18 @@ document
         );
 
         return;
+    }
+
+
+    if(!course || !semester){
+
+        showMessage(
+            "Please select your course and semester.",
+            "error"
+        );
+
+        return;
+
     }
 
 
@@ -1727,6 +1831,8 @@ document
 
                     name: name,
                     email: email,
+                    course: course,
+                    semester: parseInt(semester, 10),
                     password: password
 
                 })
@@ -1738,6 +1844,18 @@ document
 
 
         if(response.ok && data.success){
+
+            // Remember the programme so Academics opens on the right course.
+
+            localStorage.setItem(
+                "campusConnectProgram",
+                course
+            );
+
+            localStorage.setItem(
+                "campusConnectSemester",
+                semester
+            );
 
             showMessage(
                 "Registration successful! You can now login.",
@@ -1818,7 +1936,6 @@ function googleLogin(){
 
 </script>
 
-<script src="js/cc-session.js"></script>
 <script src="js/chatbot.js"></script>
 </body>
 </html>
