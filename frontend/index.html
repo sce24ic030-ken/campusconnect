@@ -1610,30 +1610,55 @@ document
     }
 
 
-    // Save login status
-    localStorage.setItem(
-        "campusConnectLoggedIn",
-        "true"
-    );
+    // ---- Real authentication against the backend ----
+    const API_BASE = (window.CC_API_BASE || "");
+    const submitBtn = document.querySelector("#loginForm button[type='submit']");
+    if (submitBtn) { submitBtn.disabled = true; }
 
-    localStorage.setItem(
-        "campusConnectUser",
-        email
-    );
+    showMessage("Signing in...", "success");
 
+    fetch(API_BASE + "/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: email, password: password })
+    })
+    .then(function (response) {
+        return response.json()
+            .catch(function () { return {}; })
+            .then(function (data) { return { ok: response.ok, data: data }; });
+    })
+    .then(function (result) {
+        if (!result.ok || !result.data || !result.data.success) {
+            throw new Error(
+                (result.data && (result.data.message || result.data.error)) ||
+                "Invalid email or password."
+            );
+        }
 
-    showMessage(
-        "Login successful! Redirecting...",
-        "success"
-    );
+        const user = result.data.user || {};
 
+        // Session shared with the chatbot and the rest of the app.
+        localStorage.setItem("token", result.data.token);
+        localStorage.setItem("campusconnect_user", JSON.stringify(user));
+        // Kept for the existing page logic.
+        localStorage.setItem("campusConnectLoggedIn", "true");
+        localStorage.setItem("campusConnectUser", user.name || email);
+        localStorage.setItem("campusConnectUserEmail", user.email || email);
+        localStorage.setItem("campusConnectRole", user.role || "student");
 
-    // Open Dashboard
-    setTimeout(function(){
+        showMessage("Login successful! Redirecting...", "success");
 
-        window.location.href = "dashboard.html";
-
-    },800);
+        setTimeout(function () {
+            window.location.href = "dashboard.html";
+        }, 700);
+    })
+    .catch(function (error) {
+        if (submitBtn) { submitBtn.disabled = false; }
+        showMessage(
+            error.message || "Cannot reach the CampusConnect backend.",
+            "error"
+        );
+    });
 
 });
 
