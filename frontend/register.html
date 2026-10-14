@@ -158,6 +158,7 @@ label{display:block;font-size:14px;font-weight:700;color:#4b3fc4;margin-bottom:8
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 :focus-visible{outline:3px solid rgba(108,79,240,.45);outline-offset:2px}
 </style>
+<script src="js/api-base.js"></script>
 </head>
 <body>
 <!-- SVG icon sprite -->
@@ -254,15 +255,16 @@ label{display:block;font-size:14px;font-weight:700;color:#4b3fc4;margin-bottom:8
           <div class="field"><svg class="i"><use href="#i-book"/></svg>
             <select id="course" name="course" required>
               <option value="" disabled selected>Select your course</option>
-              <option>B.Tech – Computer Science</option><option>B.Tech – Electronics</option><option>B.Tech – Mechanical</option><option>B.Tech – Civil</option>
-              <option>BCA</option><option>MCA</option><option>B.Sc</option><option>B.Com</option><option>BBA</option><option>MBA</option>
+              <option value="BCA">BCA - Bachelor of Computer Applications</option>
+              <option value="BBA">BBA - Bachelor of Business Administration</option>
+              <option value="BCOM">B.Com - Bachelor of Commerce</option>
             </select><svg class="chev" viewBox="0 0 24 24"><use href="#i-chev"/></svg></div><div class="err"></div></div>
         <div class="grp"><label for="sem">Semester</label>
           <div class="field"><svg class="i"><use href="#i-cal"/></svg>
             <select id="sem" name="sem" required>
               <option value="" disabled selected>Select semester</option>
-              <option>Semester 1</option><option>Semester 2</option><option>Semester 3</option><option>Semester 4</option>
-              <option>Semester 5</option><option>Semester 6</option><option>Semester 7</option><option>Semester 8</option>
+              <option value="1">Semester 1</option><option value="2">Semester 2</option><option value="3">Semester 3</option>
+              <option value="4">Semester 4</option><option value="5">Semester 5</option><option value="6">Semester 6</option>
             </select><svg class="chev" viewBox="0 0 24 24"><use href="#i-chev"/></svg></div><div class="err"></div></div>
         <div class="grp"><label for="pass">Password</label>
           <div class="field"><svg class="i"><use href="#i-lock"/></svg><input id="pass" name="pass" type="password" placeholder="Create a password" autocomplete="new-password">
@@ -381,45 +383,133 @@ label{display:block;font-size:14px;font-weight:700;color:#4b3fc4;margin-bottom:8
   });
 
   /* ---------- loading helper ---------- */
-  function busy(btn, on){ btn.classList.toggle("loading", on); btn.disabled = on; }
+  function busy(btn, on){ if (!btn) return; btn.classList.toggle("loading", on); btn.disabled = on; }
+
+  /* ---------- session ---------- */
+  function startSession(token, user, remember){
+    const target = (remember === false ? sessionStorage : localStorage);
+    target.setItem("token", token);
+    target.setItem("campusconnect_user", JSON.stringify(user));
+    // Kept for the rest of the app (dashboard, chatbot, academics).
+    localStorage.setItem("campusConnectLoggedIn", "true");
+    localStorage.setItem("campusConnectUser", user.name || user.email || "");
+    localStorage.setItem("campusConnectUserEmail", user.email || "");
+    localStorage.setItem("campusConnectRole", user.role || "student");
+    if (user.course) { localStorage.setItem("campusConnectProgram", user.course); }
+    if (user.semester) { localStorage.setItem("campusConnectSemester", user.semester); }
+  }
+
   function success(title, text, user, remember){
     const s = JSON.stringify({ name: user.name, sid: user.sid, email: user.email, course: user.course, sem: user.sem, at: Date.now() });
     (remember === false ? sessionStorage : localStorage).setItem("cc_session", s);
     $("#mTitle").textContent = title; $("#mText").textContent = text; $("#modal").classList.add("show");
-    setTimeout(() => location.href = DASHBOARD, 2400);
+    setTimeout(() => location.href = DASHBOARD, 2200);
+  }
+
+  /* ---------- backend helpers ---------- */
+  function apiPost(path, body){
+    const base = (window.CC_API_BASE || "");
+    return fetch(base + path, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body)
+    }).then(function (r) {
+      return r.json().catch(function () { return {}; }).then(function (d) {
+        return { ok: r.ok && d.success !== false, status: r.status, data: d };
+      });
+    });
+  }
+
+  function fieldError(id, msg){
+    const g = $("#" + id).closest(".grp");
+    if (!g) { return; }
+    g.classList.add("has-err");
+    const e = g.querySelector(".err");
+    if (e) { e.textContent = msg; }
   }
 
   /* ---------- register ---------- */
-  $("#registerForm").addEventListener("submit", e => {
+  $("#registerForm").addEventListener("submit", function (e) {
     e.preventDefault();
+
     const ids = ["name","sid","email","phone","course","sem","pass","cpass"];
-    const bad = ids.filter(id => !check(document.getElementById(id)));
+    const bad = ids.filter(function (id) { return !check(document.getElementById(id)); });
     if (bad.length){ document.getElementById(bad[0]).focus(); toast("Please fix the highlighted fields", "error"); return; }
-    const user = {}; ids.forEach(id => user[id] = document.getElementById(id).value.trim());
-    const users = store.users();
-    if (users.some(u => u.sid.toLowerCase() === user.sid.toLowerCase())){ $("#sid").closest(".grp").classList.add("has-err"); $("#sid").closest(".grp").querySelector(".err").textContent = "This Student ID is already registered"; return toast("Student ID already registered – try signing in", "error"); }
-    if (users.some(u => u.email.toLowerCase() === user.email.toLowerCase())){ $("#email").closest(".grp").classList.add("has-err"); $("#email").closest(".grp").querySelector(".err").textContent = "This email is already registered"; return toast("Email already registered – try signing in", "error"); }
+
+    const payload = {
+      name: $("#name").value.trim(),
+      student_id: $("#sid").value.trim(),
+      email: $("#email").value.trim(),
+      phone: $("#phone").value.trim(),
+      course: $("#course").value,
+      semester: parseInt($("#sem").value, 10),
+      password: $("#pass").value
+    };
+
     busy($("#regBtn"), true);
-    setTimeout(() => {
-      users.push({ name:user.name, sid:user.sid, email:user.email, phone:user.phone, course:user.course, sem:user.sem, pass:enc(user.pass) });
-      store.save(users); busy($("#regBtn"), false);
-      success("Account created!", "Welcome, " + user.name.split(" ")[0] + "! Taking you to your dashboard…", user);
-    }, 900);
+
+    apiPost("/api/auth/register", payload)
+      .then(function (res) {
+        busy($("#regBtn"), false);
+
+        if (!res.ok) {
+          const msg = res.data.message || "Registration failed";
+          if (/email/i.test(msg)) { fieldError("email", msg); }
+          else if (/student/i.test(msg)) { fieldError("sid", msg); }
+          toast(msg, "error");
+          return;
+        }
+
+        toast("Account created - please sign in", "success");
+        $("#registerForm").reset();
+        $("#lid").value = payload.email;
+        go("login");
+      })
+      .catch(function () {
+        busy($("#regBtn"), false);
+        toast("Cannot reach the CampusConnect backend", "error");
+      });
   });
 
   /* ---------- login ---------- */
-  $("#loginForm").addEventListener("submit", e => {
+  $("#loginForm").addEventListener("submit", function (e) {
     e.preventDefault();
-    const a = check($("#lid")), b = check($("#lpass")); if (!a || !b) return;
-    const id = $("#lid").value.trim().toLowerCase(), pw = enc($("#lpass").value);
+
+    if (!check($("#lid")) || !check($("#lpass"))) { return; }
+
     busy($("#logBtn"), true);
-    setTimeout(() => {
-      busy($("#logBtn"), false);
-      const u = store.users().find(x => x.sid.toLowerCase() === id || x.email.toLowerCase() === id);
-      if (!u){ return toast("No account found – please register first", "error"); }
-      if (u.pass !== pw){ const g = $("#lpass").closest(".grp"); g.classList.add("has-err"); g.querySelector(".err").textContent = "Incorrect password"; return toast("Incorrect password", "error"); }
-      success("Signed in!", "Welcome back, " + u.name.split(" ")[0] + "! Loading your dashboard…", u, $("#remember").checked);
-    }, 800);
+
+    apiPost("/api/auth/login", {
+      email: $("#lid").value.trim(),
+      password: $("#lpass").value
+    })
+      .then(function (res) {
+        busy($("#logBtn"), false);
+
+        if (!res.ok || !res.data.success) {
+          const msg = res.data.message || "Invalid credentials";
+          fieldError("lpass", msg);
+          toast(msg, "error");
+          return;
+        }
+
+        const user = res.data.user || {};
+        const rem = $("#remember");
+        const remember = rem ? rem.checked : true;
+
+        startSession(res.data.token, user, remember);
+
+        success(
+          "Welcome back!",
+          "Signed in as " + (user.email || user.name || "student") + ". Loading your dashboard...",
+          { name: user.name, sid: user.student_id, email: user.email, course: user.course, sem: user.semester },
+          remember
+        );
+      })
+      .catch(function () {
+        busy($("#logBtn"), false);
+        toast("Cannot reach the CampusConnect backend", "error");
+      });
   });
 
   /* ---------- extras ---------- */

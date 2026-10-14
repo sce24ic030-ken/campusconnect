@@ -20,7 +20,16 @@ PROFILE_SELECT = (
     "role, profile_image, created_at FROM users"
 )
 
-EDITABLE = {"name", "student_id", "course", "semester", "phone", "profile_image"}
+# Fields a student may change on their own profile. Identity and academic
+# placement fields (student_id, course, semester, role) are managed by an
+# administrator instead.
+EDITABLE = {"name", "phone", "profile_image"}
+
+# Fields an administrator may change on any user record.
+ADMIN_EDITABLE = {
+    "name", "email", "student_id", "course", "semester", "phone",
+    "profile_image", "role",
+}
 
 
 # =========================================================
@@ -103,3 +112,43 @@ def get_student(user_id):
 
     except mysql.connector.Error as exc:
         return error("Could not load student", 500, details=str(exc))
+
+
+@students_bp.route("/<int:user_id>", methods=["PUT"])
+@admin_required
+def update_student(user_id):
+    """Administrators can edit any student record."""
+
+    data = get_json()
+
+    fields = {key: data[key] for key in ADMIN_EDITABLE if key in data}
+
+    if not fields:
+        return error("No valid fields to update", 400)
+
+    if "semester" in fields and fields["semester"] not in (None, ""):
+        try:
+            fields["semester"] = int(fields["semester"])
+        except (TypeError, ValueError):
+            return error("Semester must be a number", 400)
+
+    set_clause = ", ".join(f"{key} = %s" for key in fields)
+
+    try:
+        execute(
+            f"UPDATE users SET {set_clause} WHERE id = %s",
+            (*fields.values(), user_id)
+        )
+
+        user = query_one(PROFILE_SELECT + " WHERE id = %s", (user_id,))
+
+        if not user:
+            return error("Student not found", 404)
+
+        return success(user, message="Student updated")
+
+    except mysql.connector.Error as exc:
+        if exc.errno == 1062:
+            return error("That student ID or email is already in use", 409)
+
+        return error("Could not update student", 500, details=str(exc))

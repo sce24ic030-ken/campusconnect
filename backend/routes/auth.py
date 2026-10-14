@@ -209,9 +209,9 @@ def login():
                 role,
                 profile_image
             FROM users
-            WHERE email = %s
+            WHERE email = %s OR student_id = %s
             """,
-            (email,)
+            (email, email)
         )
 
         user = cursor.fetchone()
