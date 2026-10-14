@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -14,45 +12,50 @@
    GLOBAL
 ========================================================= */
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 html,
-body{
-    width:100%;
-    height:100%;
-
-    font-family:"Segoe UI",Arial,sans-serif;
-
-    background:#f4f6ff;
-    color:#17203a;
-
-    overflow:hidden;
+body {
+    width: 100%;
+    height: 100%;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #f4f6ff;
+    color: #17203a;
+    overflow: hidden;
 }
 
 button,
-input,
-select{
-    font-family:inherit;
+input {
+    font-family: inherit;
 }
 
 
 /* =========================================================
-   SIDEBAR
+   APP
 ========================================================= */
 
-.sidebar{
-    position:fixed;
+.app {
+    width: 100%;
+    height: 100vh;
+}
 
-    left:0;
-    top:0;
-    bottom:0;
 
-    width:268px;
-    min-width:268px;
+/* =========================================================
+   LEFT SIDEBAR
+========================================================= */
+
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+
+    width: 268px;
+    min-width: 268px;
 
     background:
         linear-gradient(
@@ -62,39 +65,44 @@ select{
             #5520a7 100%
         );
 
-    color:white;
+    color: white;
 
-    overflow-y:auto;
-    overflow-x:hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
 
-    z-index:1000;
+    z-index: 1000;
 
-    padding-bottom:20px;
+    padding-bottom: 20px;
+
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255,255,255,.25) transparent;
 }
 
-.brand{
-    height:120px;
 
-    display:flex;
-    align-items:center;
+/* LOGO */
 
-    padding:22px 18px;
+.brand {
+    height: 120px;
 
-    border-bottom:
-        1px solid rgba(255,255,255,.12);
+    display: flex;
+    align-items: center;
+
+    padding: 22px 18px;
+
+    border-bottom: 1px solid rgba(255,255,255,.12);
 }
 
-.logo-box{
-    width:52px;
-    height:52px;
+.logo-box {
+    width: 52px;
+    height: 52px;
 
-    border-radius:16px;
+    border-radius: 16px;
 
-    display:flex;
-    align-items:center;
-    justify-content:center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    font-size:28px;
+    font-size: 28px;
 
     background:
         linear-gradient(
@@ -102,80 +110,82 @@ select{
             #24b8ff,
             #7144f5
         );
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,.20);
 }
 
-.brand-text{
-    margin-left:13px;
+.brand-text {
+    margin-left: 13px;
 }
 
-.brand-title{
-    font-size:21px;
-    font-weight:800;
-
-    letter-spacing:-.5px;
+.brand-title {
+    font-size: 21px;
+    font-weight: 800;
+    letter-spacing: -.5px;
 }
 
-.brand-subtitle{
-    font-size:12px;
-
-    opacity:.72;
-
-    margin-top:3px;
+.brand-subtitle {
+    font-size: 12px;
+    opacity: .72;
+    margin-top: 3px;
 }
 
-.menu{
-    padding:25px 14px;
+
+/* MENU */
+
+.menu {
+    padding: 25px 14px;
 }
 
-.menu-title{
-    font-size:12px;
-    font-weight:700;
+.menu-title {
+    font-size: 12px;
+    font-weight: 700;
 
-    color:
-        rgba(255,255,255,.52);
+    color: rgba(255,255,255,.52);
 
-    letter-spacing:1px;
+    letter-spacing: 1px;
 
-    padding:0 11px 10px;
+    padding: 0 11px 10px;
 }
 
-.menu-section{
-    margin-top:20px;
+.menu-section {
+    margin-top: 20px;
 }
 
-.nav-item{
-    width:100%;
 
-    display:flex;
-    align-items:center;
+.nav-item {
+    width: 100%;
 
-    min-height:49px;
+    display: flex;
+    align-items: center;
 
-    padding:0 14px;
+    min-height: 49px;
 
-    margin:5px 0;
+    padding: 0 14px;
 
-    border-radius:13px;
+    margin: 5px 0;
 
-    color:
-        rgba(255,255,255,.84);
+    border-radius: 13px;
 
-    text-decoration:none;
+    color: rgba(255,255,255,.84);
 
-    transition:.2s;
+    text-decoration: none;
+
+    transition:
+        transform .2s ease,
+        background .2s ease,
+        color .2s ease;
 }
 
-.nav-item:hover{
-    background:
-        rgba(255,255,255,.12);
-
-    color:white;
-
-    transform:translateX(3px);
+.nav-item:hover {
+    background: rgba(255,255,255,.12);
+    color: white;
+    transform: translateX(3px);
 }
 
-.nav-item.active{
-    color:white;
+.nav-item.active {
+    color: white;
 
     background:
         linear-gradient(
@@ -185,48 +195,46 @@ select{
         );
 
     box-shadow:
-        0 9px 22px
-        rgba(0,0,0,.18);
+        0 9px 22px rgba(0,0,0,.18);
 }
 
-.nav-icon{
-    width:31px;
-
-    font-size:20px;
-
-    text-align:center;
-
-    margin-right:10px;
+.nav-icon {
+    width: 31px;
+    font-size: 20px;
+    text-align: center;
+    margin-right: 10px;
 }
 
-.nav-text{
-    font-size:15px;
-
-    font-weight:650;
+.nav-text {
+    font-size: 15px;
+    font-weight: 650;
 }
 
-.logout{
-    margin-top:14px;
 
-    padding-top:15px;
+/* LOGOUT */
 
-    border-top:
-        1px solid rgba(255,255,255,.13);
+.logout {
+    margin-top: 14px;
+    padding-top: 15px;
+
+    border-top: 1px solid rgba(255,255,255,.13);
 }
 
 
 /* =========================================================
-   MAIN
+   MAIN AREA
 ========================================================= */
 
-.main-area{
-    margin-left:268px;
+.main-area {
+    margin-left: 268px;
+    margin-right: 0;
 
-    width:auto;
-    height:100vh;
+    width: auto;
 
-    overflow-y:auto;
-    overflow-x:hidden;
+    height: 100vh;
+
+    overflow-y: auto;
+    overflow-x: hidden;
 
     background:
         linear-gradient(
@@ -238,118 +246,96 @@ select{
 
 
 /* =========================================================
-   HEADER
+   TOP HEADER
 ========================================================= */
 
-.top-header{
-    height:120px;
+.top-header {
+    height: 120px;
 
-    background:
-        rgba(255,255,255,.96);
+    background: rgba(255,255,255,.96);
 
-    display:flex;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-    align-items:center;
+    padding: 22px 28px;
 
-    justify-content:space-between;
+    border-bottom: 1px solid #e9ebf5;
 
-    padding:22px 28px;
+    position: sticky;
+    top: 0;
 
-    border-bottom:
-        1px solid #e9ebf5;
-
-    position:sticky;
-
-    top:0;
-
-    z-index:100;
+    z-index: 100;
 }
 
-.header-left h1{
-    font-size:30px;
-
-    line-height:1.05;
-
-    font-weight:800;
+.header-left h1 {
+    font-size: 30px;
+    line-height: 1.05;
+    font-weight: 800;
 }
 
-.header-left p{
-    margin-top:7px;
-
-    color:#8990a7;
-
-    font-size:14px;
+.header-left p {
+    margin-top: 7px;
+    color: #8990a7;
+    font-size: 14px;
 }
 
-.header-right{
-    display:flex;
-
-    align-items:center;
-
-    gap:18px;
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 18px;
 }
 
-.time-box{
-    font-size:18px;
-
-    font-weight:750;
-
-    color:#59617d;
+.time-box {
+    font-size: 18px;
+    font-weight: 750;
+    color: #59617d;
 }
 
-.notification{
-    width:48px;
-    height:48px;
+.notification {
+    width: 48px;
+    height: 48px;
 
-    background:white;
+    background: #fff;
+    border-radius: 50%;
 
-    border-radius:50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    display:flex;
+    font-size: 22px;
 
-    align-items:center;
-    justify-content:center;
+    box-shadow: 0 5px 18px rgba(40,35,100,.10);
 
-    font-size:22px;
-
-    box-shadow:
-        0 5px 18px
-        rgba(40,35,100,.10);
-
-    position:relative;
-
-    cursor:pointer;
+    position: relative;
 }
 
-.notification::after{
-    content:"";
+.notification::after {
+    content: "";
 
-    width:8px;
-    height:8px;
+    width: 8px;
+    height: 8px;
 
-    border-radius:50%;
+    border-radius: 50%;
 
-    background:#ff4f8b;
+    background: #ff4f8b;
 
-    position:absolute;
-
-    top:7px;
-    right:8px;
+    position: absolute;
+    top: 7px;
+    right: 8px;
 }
 
-.profile-mini{
-    display:flex;
-
-    align-items:center;
-
-    gap:10px;
+.profile-mini {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-.profile-circle{
-    width:48px;
-    height:48px;
+.profile-circle {
+    width: 48px;
+    height: 48px;
 
-    border-radius:50%;
+    border-radius: 50%;
 
     background:
         linear-gradient(
@@ -358,862 +344,664 @@ select{
             #466cf1
         );
 
-    color:white;
+    color: white;
 
-    display:flex;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    align-items:center;
-    justify-content:center;
-
-    font-size:20px;
-
-    font-weight:800;
+    font-size: 20px;
+    font-weight: 800;
 }
 
-.profile-info strong{
-    display:block;
-
-    font-size:15px;
+.profile-info strong {
+    display: block;
+    font-size: 15px;
 }
 
-.profile-info span{
-    display:block;
-
-    color:#8d93a8;
-
-    font-size:12px;
-
-    margin-top:1px;
+.profile-info span {
+    display: block;
+    color: #8d93a8;
+    font-size: 12px;
 }
 
 
 /* =========================================================
-   CONTENT
+   DASHBOARD CONTENT
 ========================================================= */
 
-.page-content{
-    padding:20px 24px 35px;
-}
+.dashboard-content {
+    padding: 20px 24px 35px;
 
-.page-heading{
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    margin-bottom:20px;
-}
-
-.page-heading h2{
-    font-size:24px;
-
-    font-weight:800;
-}
-
-.page-heading p{
-    color:#8990a7;
-
-    font-size:13px;
-
-    margin-top:5px;
+    width: 100%;
 }
 
 
 /* =========================================================
-   HERO
+   WELCOME HERO
 ========================================================= */
 
-.academic-hero{
-    width:100%;
+.welcome-banner {
+    width: 100%;
+    min-height: 255px;
 
-    min-height:190px;
+    border-radius: 20px;
 
-    border-radius:20px;
+    padding: 30px 38px;
 
-    padding:28px 32px;
+    position: relative;
+    overflow: hidden;
 
-    color:white;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    position:relative;
-
-    overflow:hidden;
-
-    margin-bottom:20px;
+    color: white;
 
     background:
         linear-gradient(
-            110deg,
+            120deg,
             #19398d,
             #4828c8 55%,
             #7738dd
         );
 
     box-shadow:
-        0 15px 35px
-        rgba(48,40,150,.20);
+        0 14px 35px rgba(55,44,150,.20);
+
+    display: flex;
+    align-items: center;
 }
 
-.academic-hero::before{
-    content:"";
+.welcome-banner::before {
+    content: "";
 
-    position:absolute;
+    position: absolute;
 
-    width:300px;
-    height:300px;
+    width: 350px;
+    height: 350px;
 
-    border-radius:50%;
+    border-radius: 50%;
 
-    right:-100px;
-    top:-170px;
+    background: rgba(255,255,255,.07);
 
-    background:
-        rgba(255,255,255,.08);
+    right: 40px;
+    top: -150px;
 }
 
-.academic-hero::after{
-    content:"";
+.welcome-banner::after {
+    content: "";
 
-    position:absolute;
+    position: absolute;
 
-    width:230px;
-    height:230px;
+    width: 300px;
+    height: 300px;
 
-    border-radius:50%;
+    border-radius: 50%;
 
-    right:170px;
-    bottom:-180px;
+    background: rgba(255,255,255,.05);
 
-    background:
-        rgba(35,190,235,.10);
+    right: -70px;
+    bottom: -160px;
 }
 
-.hero-content{
-    position:relative;
+.hero-content {
+    position: relative;
+    z-index: 2;
 
-    z-index:2;
+    max-width: 65%;
 }
 
-.hero-small{
-    font-size:11px;
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
 
-    font-weight:700;
+    gap: 8px;
 
-    color:
-        rgba(255,255,255,.75);
+    background: rgba(255,255,255,.13);
 
-    margin-bottom:8px;
+    padding: 9px 15px;
+
+    border-radius: 30px;
+
+    font-size: 13px;
+    font-weight: 700;
 }
 
-.hero-content h2{
-    font-size:27px;
+.hero-content h2 {
+    font-size: 37px;
+    line-height: 1.15;
 
-    font-weight:800;
-
-    margin-bottom:8px;
+    margin-top: 18px;
 }
 
-.hero-content p{
-    font-size:12px;
+.hero-content p {
+    font-size: 15px;
+    line-height: 1.65;
 
-    color:
-        rgba(255,255,255,.76);
+    margin-top: 10px;
 
-    line-height:1.6;
+    max-width: 580px;
 
-    max-width:650px;
+    color: rgba(255,255,255,.86);
 }
 
-.hero-cgpa{
-    position:relative;
+.date-pill {
+    display: inline-flex;
 
-    z-index:2;
+    margin-top: 17px;
 
-    text-align:center;
+    padding: 10px 15px;
 
-    min-width:130px;
+    border-radius: 30px;
+
+    background: rgba(255,255,255,.12);
+
+    font-size: 13px;
+    font-weight: 650;
 }
 
-.hero-cgpa strong{
-    display:block;
 
-    font-size:38px;
+/* HERO ICON */
 
-    font-weight:800;
+.hero-art {
+    position: absolute;
+
+    right: 65px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 190px;
+    height: 170px;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    z-index: 2;
 }
 
-.hero-cgpa span{
-    display:block;
+.hero-cap {
+    font-size: 67px;
 
-    font-size:10px;
+    filter:
+        drop-shadow(
+            0 12px 8px rgba(0,0,0,.25)
+        );
+}
 
-    color:
-        rgba(255,255,255,.72);
+.hero-books {
+    font-size: 65px;
+    margin-top: -18px;
 }
 
 
 /* =========================================================
-   SUMMARY CARDS
+   STAT CARDS
 ========================================================= */
 
-.summary-grid{
-    display:grid;
+.stats-grid {
+    width: 100%;
+
+    display: grid;
 
     grid-template-columns:
-        repeat(4,minmax(0,1fr));
+        repeat(3, minmax(0, 1fr));
 
-    gap:18px;
+    gap: 18px;
 
-    margin-bottom:20px;
+    margin-top: 20px;
 }
 
-.summary-card{
-    background:white;
+.stat-card {
+    background: white;
 
-    border:
-        1px solid #e9ebf5;
+    border: 1px solid #e9ebf5;
 
-    border-radius:17px;
+    border-radius: 17px;
 
-    padding:18px;
+    padding: 20px;
 
-    min-height:120px;
+    min-height: 145px;
 
     box-shadow:
-        0 8px 25px
-        rgba(40,35,100,.06);
+        0 8px 25px rgba(40,35,100,.06);
 
-    transition:.2s;
-}
-
-.summary-card:hover{
-    transform:translateY(-3px);
-
-    box-shadow:
-        0 13px 30px
-        rgba(40,35,100,.10);
-}
-
-.summary-top{
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-}
-
-.summary-title{
-    color:#7f88a5;
-
-    font-size:12px;
-
-    font-weight:700;
-}
-
-.summary-icon{
-    width:38px;
-    height:38px;
-
-    border-radius:12px;
-
-    background:#f0f3ff;
-
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-
-    font-size:19px;
-}
-
-.summary-number{
-    font-size:25px;
-
-    font-weight:800;
-
-    margin-top:9px;
-}
-
-.blue{
-    color:#3265df;
-}
-
-.purple{
-    color:#7041df;
-}
-
-.orange{
-    color:#e4871b;
-}
-
-.green{
-    color:#13a65d;
-}
-
-.summary-small{
-    color:#9aa2b9;
-
-    font-size:10px;
-
-    margin-top:2px;
-}
-
-
-/* =========================================================
-   MAIN CARD
-========================================================= */
-
-.content-card{
-    background:white;
-
-    border:
-        1px solid #e9ebf5;
-
-    border-radius:17px;
-
-    padding:20px;
-
-    box-shadow:
-        0 8px 25px
-        rgba(40,35,100,.06);
-
-    margin-bottom:20px;
-}
-
-.card-heading{
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    gap:10px;
-
-    margin-bottom:15px;
-}
-
-.card-heading h3{
-    font-size:17px;
-
-    font-weight:800;
-}
-
-.card-heading p{
-    color:#9299ae;
-
-    font-size:11px;
-
-    margin-top:4px;
-}
-
-.semester-filter{
-    height:38px;
-
-    min-width:145px;
-
-    padding:0 12px;
-
-    border:
-        1px solid #e0e3ef;
-
-    border-radius:10px;
-
-    background:white;
-
-    color:#69728d;
-
-    font-size:11px;
-
-    outline:none;
-
-    cursor:pointer;
-}
-
-
-/* =========================================================
-   SEMESTER GRID
-========================================================= */
-
-.semester-grid{
-    display:grid;
-
-    grid-template-columns:
-        repeat(2,minmax(0,1fr));
-
-    gap:16px;
-}
-
-.semester-card{
-    border:
-        1px solid #e7e9f1;
-
-    border-radius:16px;
-
-    padding:18px;
-
-    background:white;
-
-    cursor:pointer;
-
-    transition:.2s;
-}
-
-.semester-card:hover{
-    transform:translateY(-3px);
-
-    border-color:#c9c0f5;
-
-    box-shadow:
-        0 10px 25px
-        rgba(50,40,150,.08);
-}
-
-.semester-top{
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    margin-bottom:15px;
-}
-
-.semester-left{
-    display:flex;
-
-    align-items:center;
-
-    gap:11px;
-}
-
-.semester-icon{
-    width:44px;
-    height:44px;
-
-    border-radius:13px;
-
-    background:#f0efff;
-
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-
-    font-size:20px;
-}
-
-.semester-info strong{
-    display:block;
-
-    font-size:13px;
-
-    font-weight:800;
-
-    color:#30365b;
-}
-
-.semester-info span{
-    display:block;
-
-    font-size:10px;
-
-    color:#9298ad;
-
-    margin-top:3px;
-}
-
-.sgpa-box{
-    text-align:right;
-}
-
-.sgpa-box strong{
-    display:block;
-
-    font-size:22px;
-
-    color:#6546d5;
-
-    font-weight:800;
-}
-
-.sgpa-box span{
-    display:block;
-
-    font-size:9px;
-
-    color:#999fb1;
-}
-
-.progress-track{
-    height:8px;
-
-    width:100%;
-
-    border-radius:20px;
-
-    background:#eceef5;
-
-    overflow:hidden;
-}
-
-.progress-fill{
-    height:100%;
-
-    border-radius:20px;
-
-    background:
-        linear-gradient(
-            90deg,
-            #25b8ef,
-            #6844ec
-        );
-}
-
-.semester-bottom{
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    margin-top:11px;
-}
-
-.semester-credit{
-    font-size:10px;
-
-    color:#8e95aa;
-}
-
-.view-semester{
-    font-size:10px;
-
-    font-weight:700;
-
-    color:#6846df;
-}
-
-
-/* =========================================================
-   PERFORMANCE SECTION
-========================================================= */
-
-.performance-grid{
-    display:grid;
-
-    grid-template-columns:
-        1.35fr .65fr;
-
-    gap:18px;
-}
-
-.performance-box{
-    border:
-        1px solid #e9ebf5;
-
-    border-radius:15px;
-
-    padding:18px;
-
-    background:#fff;
-}
-
-.performance-box h4{
-    font-size:14px;
-
-    margin-bottom:13px;
-}
-
-.performance-row{
-    display:grid;
-
-    grid-template-columns:
-        1fr 70px;
-
-    align-items:center;
-
-    gap:15px;
-
-    margin-bottom:14px;
-}
-
-.performance-row:last-child{
-    margin-bottom:0;
-}
-
-.performance-label{
-    font-size:10px;
-
-    color:#7e87a1;
-
-    margin-bottom:6px;
-}
-
-.performance-track{
-    height:7px;
-
-    background:#edf0f6;
-
-    border-radius:20px;
-
-    overflow:hidden;
-}
-
-.performance-fill{
-    height:100%;
-
-    border-radius:20px;
-
-    background:
-        linear-gradient(
-            90deg,
-            #25b8ef,
-            #7044ee
-        );
-}
-
-.performance-value{
-    text-align:right;
-
-    font-size:12px;
-
-    font-weight:800;
-
-    color:#5542bd;
-}
-
-.cgpa-box{
-    min-height:100%;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    flex-direction:column;
-
-    text-align:center;
-
-    background:
-        linear-gradient(
-            135deg,
-            #f7f5ff,
-            #eef8ff
-        );
-}
-
-.cgpa-circle{
-    width:115px;
-    height:115px;
-
-    border-radius:50%;
-
-    background:
-        conic-gradient(
-            #6844ec 0deg 309.6deg,
-            #e8e9f4 309.6deg 360deg
-        );
-
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-
-    position:relative;
-
-    margin-bottom:10px;
-}
-
-.cgpa-circle::after{
-    content:"";
-
-    position:absolute;
-
-    width:85px;
-    height:85px;
-
-    border-radius:50%;
-
-    background:white;
-}
-
-.cgpa-text{
-    position:relative;
-
-    z-index:2;
-}
-
-.cgpa-text strong{
-    display:block;
-
-    font-size:23px;
-
-    color:#5940c7;
-}
-
-.cgpa-text span{
-    font-size:9px;
-
-    color:#9097ac;
-}
-
-.cgpa-box p{
-    font-size:10px;
-
-    color:#8d94a8;
-
-    max-width:180px;
-
-    line-height:1.5;
-}
-
-
-/* =========================================================
-   CHATBOT FLOATING BUTTON
-========================================================= */
-
-.chat-bubble{
-    position:fixed;
-
-    right:24px;
-    bottom:24px;
-
-    width:64px;
-    height:64px;
-
-    min-width:64px;
-    min-height:64px;
-
-    padding:0;
-
-    border:none !important;
-
-    outline:none !important;
-
-    border-radius:50%;
-
-    background:
-        linear-gradient(
-            135deg,
-            #6543e8,
-            #a855f7
-        );
-
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-
-    font-size:30px;
-
-    color:white;
-
-    cursor:pointer;
-
-    box-shadow:
-        0 12px 30px
-        rgba(101,67,232,.45);
-
-    z-index:9998;
+    cursor: pointer;
 
     transition:
-        transform .2s ease;
-
-    appearance:none;
+        transform .2s ease,
+        box-shadow .2s ease;
 }
 
-.chat-bubble:hover{
-    transform:scale(1.08);
+.stat-card:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 15px 35px rgba(40,35,100,.12);
 }
 
-.chat-bubble:focus,
-.chat-bubble:active{
-    outline:none !important;
-
-    border:none !important;
+.stat-top {
+    display: flex;
+    justify-content: space-between;
 }
 
-.chat-bubble::after{
-    content:"";
-
-    position:absolute;
-
-    top:4px;
-    right:4px;
-
-    width:12px;
-    height:12px;
-
-    border-radius:50%;
-
-    background:#ff4f8b;
-
-    border:2px solid white;
+.stat-title {
+    color: #7f88a5;
+    font-size: 14px;
+    font-weight: 650;
 }
 
-.chat-bubble.hide{
-    display:none;
+.stat-icon {
+    width: 43px;
+    height: 43px;
+
+    border-radius: 13px;
+
+    background: #f0f3ff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 21px;
+}
+
+.stat-number {
+    font-size: 31px;
+    font-weight: 800;
+
+    margin-top: 11px;
+
+    color: #3063df;
+}
+
+.green {
+    color: #18a871;
+}
+
+.stat-small {
+    color: #9aa2b9;
+    font-size: 12px;
+}
+
+.progress {
+    width: 100%;
+    height: 7px;
+
+    background: #edf0f7;
+
+    border-radius: 10px;
+
+    margin-top: 10px;
+
+    overflow: hidden;
+}
+
+.progress span {
+    display: block;
+
+    width: 87%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #24aaf1,
+            #7641f2
+        );
+
+    border-radius: 10px;
 }
 
 
 /* =========================================================
-   CHATBOT PANEL
+   TWO COLUMN MIDDLE CONTENT
 ========================================================= */
 
-.chatbot-panel{
-    position:fixed;
+.middle-grid {
+    display: grid;
 
-    right:24px;
-    bottom:24px;
+    grid-template-columns:
+        minmax(0, 1.2fr)
+        minmax(0, .8fr);
 
-    width:320px;
-    height:460px;
+    gap: 18px;
 
-    background:white;
+    margin-top: 20px;
+}
 
-    border-radius:22px;
+.content-card {
+    background: white;
 
-    border:
-        1px solid #e5e6f2;
+    border: 1px solid #e9ebf5;
+
+    border-radius: 17px;
+
+    padding: 20px;
 
     box-shadow:
-        0 20px 55px
-        rgba(40,35,100,.25);
-
-    z-index:9999;
-
-    display:none;
-
-    flex-direction:column;
-
-    overflow:hidden;
+        0 8px 25px rgba(40,35,100,.06);
 }
 
-.chatbot-panel.open{
-    display:flex;
+.card-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 15px;
 }
 
-.chat-header{
-    min-height:70px;
+.card-heading h3 {
+    font-size: 17px;
+}
 
-    flex-shrink:0;
+.view-link {
+    color: #6845e9;
 
-    padding:14px;
+    font-size: 12px;
+    font-weight: 700;
 
-    display:flex;
+    text-decoration: none;
+}
 
-    align-items:center;
 
-    justify-content:space-between;
+/* TIMETABLE */
 
-    color:white;
+.class-row {
+    display: flex;
+    align-items: center;
+
+    padding: 13px 0;
+
+    border-bottom: 1px solid #f0f1f7;
+}
+
+.class-row:last-child {
+    border-bottom: none;
+}
+
+.class-time {
+    width: 90px;
+
+    color: #6845e9;
+
+    font-size: 13px;
+    font-weight: 750;
+}
+
+.class-info strong {
+    display: block;
+    font-size: 14px;
+}
+
+.class-info span {
+    color: #9299ae;
+    font-size: 12px;
+}
+
+
+/* EVENTS */
+
+.event-row {
+    display: flex;
+    align-items: center;
+
+    padding: 10px 0;
+
+    border-bottom: 1px solid #f0f1f7;
+}
+
+.event-row:last-child {
+    border-bottom: none;
+}
+
+.event-date {
+    width: 48px;
+    height: 48px;
+
+    border-radius: 12px;
+
+    background: #f0f3ff;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    margin-right: 12px;
+}
+
+.event-date strong {
+    color: #315bd5;
+    font-size: 16px;
+}
+
+.event-date span {
+    color: #8b94ad;
+    font-size: 10px;
+}
+
+.event-info strong {
+    display: block;
+    font-size: 13px;
+}
+
+.event-info span {
+    color: #959caf;
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   CAMPUS PHOTO SECTION
+========================================================= */
+
+.campus-section {
+    margin-top: 20px;
+}
+
+.section-title {
+    font-size: 19px;
+    font-weight: 800;
+
+    margin-bottom: 14px;
+}
+
+.photo-grid {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(5, minmax(0, 1fr));
+
+    gap: 13px;
+}
+
+.photo-card {
+    height: 145px;
+
+    border-radius: 16px;
+
+    overflow: hidden;
+
+    position: relative;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 7px 20px rgba(30,35,90,.10);
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
+}
+
+.photo-card:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 15px 30px rgba(30,35,90,.16);
+}
+
+.photo-card img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition: transform .4s ease;
+}
+
+.photo-card:hover img {
+    transform: scale(1.08);
+}
+
+.photo-overlay {
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    padding: 35px 12px 12px;
+
+    background:
+        linear-gradient(
+            transparent,
+            rgba(0,0,0,.72)
+        );
+
+    color: white;
+}
+
+.photo-overlay strong {
+    font-size: 13px;
+}
+
+.photo-overlay span {
+    display: block;
+
+    font-size: 10px;
+
+    opacity: .8;
+
+    margin-top: 2px;
+}
+
+
+/* =========================================================
+   RIGHT CHATBOT
+========================================================= */
+
+.chatbot {
+    position: fixed;
+
+    top: auto;
+    right: 24px;
+    bottom: 100px;
+
+    width: 350px;
+    min-width: 0;
+    max-width: calc(100vw - 40px);
+
+    height: 500px;
+    max-height: calc(100vh - 140px);
+
+    background: white;
+
+    border-radius: 18px;
+
+    border: 1px solid #e5e6f2;
+
+    box-shadow:
+        0 24px 60px rgba(40,35,100,.22);
+
+    z-index: 9999;
+
+    display: none;
+    flex-direction: column;
+
+    overflow: hidden;
+}
+
+.chatbot.open {
+    display: flex;
+}
+
+
+/* FLOATING LAUNCHER */
+
+.chat-bubble {
+    position: fixed;
+
+    right: 24px;
+    bottom: 24px;
+
+    width: 60px;
+    height: 60px;
+
+    border: none;
+    border-radius: 50%;
+
+    background:
+        linear-gradient(135deg, #6436d8, #7b4bea);
+
+    color: #fff;
+    font-size: 26px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 10px 26px rgba(100,54,216,.45);
+
+    z-index: 9998;
+
+    transition: .25s;
+}
+
+.chat-bubble:hover {
+    transform: scale(1.08);
+}
+
+
+/* CLOSE BUTTON */
+
+.close-chat {
+    margin-left: auto;
+
+    background: rgba(255,255,255,.18);
+
+    border: none;
+    color: #fff;
+
+    font-size: 20px;
+
+    width: 30px;
+    height: 30px;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+    line-height: 1;
+}
+
+
+/* CHAT HEADER */
+
+.chat-header {
+    min-height: 82px;
+
+    flex-shrink: 0;
+
+    padding: 15px;
+
+    display: flex;
+    align-items: center;
+
+    color: white;
 
     background:
         linear-gradient(
@@ -1223,87 +1011,62 @@ select{
         );
 }
 
-.chat-header-left{
-    display:flex;
+.robot-icon {
+    width: 45px;
+    height: 45px;
 
-    align-items:center;
+    border-radius: 14px;
+
+    background: rgba(255,255,255,.15);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 24px;
+
+    margin-right: 10px;
 }
 
-.robot-icon{
-    width:42px;
-    height:42px;
-
-    border-radius:12px;
-
-    background:
-        rgba(255,255,255,.15);
-
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-
-    font-size:22px;
-
-    margin-right:10px;
+.chat-title strong {
+    display: block;
+    font-size: 15px;
 }
 
-.chat-title strong{
-    display:block;
+.chat-title span {
+    display: block;
 
-    font-size:14px;
+    font-size: 10px;
+
+    margin-top: 3px;
+
+    color: rgba(255,255,255,.78);
 }
 
-.chat-title span{
-    display:block;
+.online-dot {
+    display: inline-block;
 
-    font-size:9px;
+    width: 7px;
+    height: 7px;
 
-    margin-top:2px;
+    background: #57e6a3;
 
-    color:
-        rgba(255,255,255,.78);
+    border-radius: 50%;
+
+    margin-right: 4px;
 }
 
-.online-dot{
-    display:inline-block;
 
-    width:7px;
-    height:7px;
+/* CHAT BODY */
 
-    background:#57e6a3;
+.chat-body {
+    flex: 1;
 
-    border-radius:50%;
+    min-height: 0;
 
-    margin-right:4px;
-}
+    padding: 17px 14px;
 
-.close-chat{
-    width:30px;
-    height:30px;
-
-    border:none;
-
-    border-radius:50%;
-
-    background:
-        rgba(255,255,255,.15);
-
-    color:white;
-
-    font-size:16px;
-
-    cursor:pointer;
-}
-
-.chat-body{
-    flex:1;
-
-    min-height:0;
-
-    padding:14px;
-
-    overflow-y:auto;
+    overflow-y: auto;
 
     background:
         linear-gradient(
@@ -1313,30 +1076,28 @@ select{
         );
 }
 
-.bot-message{
-    background:white;
+.bot-message {
+    background: white;
 
-    border:
-        1px solid #e7e9f3;
+    border: 1px solid #e7e9f3;
 
-    border-radius:14px;
+    border-radius: 14px;
 
-    padding:12px;
+    padding: 12px;
 
-    margin-bottom:10px;
+    margin-bottom: 10px;
 
-    color:#65708d;
+    color: #65708d;
 
-    font-size:11px;
+    font-size: 11px;
 
-    line-height:1.6;
+    line-height: 1.6;
 
     box-shadow:
-        0 5px 15px
-        rgba(40,35,100,.04);
+        0 5px 15px rgba(40,35,100,.04);
 }
 
-.user-message{
+.user-message {
     background:
         linear-gradient(
             135deg,
@@ -1344,98 +1105,111 @@ select{
             #7b3ee0
         );
 
-    color:white;
+    color: white;
 
-    padding:10px 12px;
+    padding: 10px 12px;
 
-    border-radius:
-        14px 14px 4px 14px;
+    border-radius: 14px 14px 4px 14px;
 
-    margin:
-        9px 0 9px 20px;
+    margin: 9px 0 9px 20px;
 
-    font-size:11px;
+    font-size: 11px;
 
-    line-height:1.5;
+    line-height: 1.5;
 }
 
-.quick-buttons{
-    display:flex;
 
-    gap:5px;
+/* QUICK BUTTONS */
 
-    flex-wrap:wrap;
+.quick-buttons {
+    display: flex;
 
-    padding:9px 14px;
+    gap: 5px;
 
-    background:white;
+    flex-wrap: wrap;
 
-    border-top:
-        1px solid #eceef5;
+    padding: 9px 14px;
+
+    background: white;
+
+    border-top: 1px solid #eceef5;
 }
 
-.quick-btn{
-    border:
-        1px solid #e0e3f0;
+.quick-btn {
+    border: 1px solid #e0e3f0;
 
-    background:white;
+    background: white;
 
-    color:#6b54d9;
+    color: #6b54d9;
 
-    border-radius:20px;
+    border-radius: 20px;
 
-    padding:7px 9px;
+    padding: 7px 9px;
 
-    font-size:9px;
+    font-size: 9px;
 
-    cursor:pointer;
+    cursor: pointer;
+
+    transition: .2s;
 }
 
-.chat-footer{
-    flex-shrink:0;
-
-    padding:10px;
-
-    background:white;
-
-    border-top:
-        1px solid #eceef5;
-
-    display:flex;
-
-    gap:7px;
+.quick-btn:hover {
+    background: #f0edff;
 }
 
-.chat-input{
-    flex:1;
 
-    min-width:0;
+/* CHAT INPUT */
 
-    height:40px;
+.chat-footer {
+    flex-shrink: 0;
 
-    border:
-        1px solid #e1e4ef;
+    padding: 10px;
 
-    border-radius:12px;
+    background: white;
 
-    outline:none;
+    border-top: 1px solid #eceef5;
 
-    padding:0 11px;
+    display: flex;
 
-    font-size:11px;
-
-    color:#555e78;
+    gap: 7px;
 }
 
-.send-btn{
-    width:40px;
-    height:40px;
+.chat-input {
+    flex: 1;
 
-    border:none;
+    min-width: 0;
 
-    border-radius:12px;
+    height: 40px;
 
-    color:white;
+    border: 1px solid #e1e4ef;
+
+    border-radius: 12px;
+
+    outline: none;
+
+    padding: 0 11px;
+
+    font-size: 11px;
+
+    color: #555e78;
+}
+
+.chat-input:focus {
+    border-color: #7244e8;
+
+    box-shadow:
+        0 0 0 3px rgba(114,68,232,.08);
+}
+
+.send-btn {
+    width: 40px;
+    height: 40px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    color: white;
 
     background:
         linear-gradient(
@@ -1444,243 +1218,135 @@ select{
             #843de0
         );
 
-    cursor:pointer;
+    cursor: pointer;
 
-    font-size:17px;
+    font-size: 17px;
+
+    transition: .2s;
+}
+
+.send-btn:hover {
+    transform: scale(1.05);
 }
 
 
 /* =========================================================
-   MODAL
+   WELCOME SCREEN
 ========================================================= */
 
-.modal{
-    position:fixed;
+.welcome-screen {
+    position: fixed;
 
-    inset:0;
+    inset: 0;
 
-    background:
-        rgba(18,20,60,.55);
-
-    display:none;
-
-    align-items:center;
-    justify-content:center;
-
-    z-index:20000;
-
-    padding:20px;
-}
-
-.modal.show{
-    display:flex;
-}
-
-.modal-box{
-    width:520px;
-
-    max-width:100%;
-
-    max-height:90vh;
-
-    overflow-y:auto;
-
-    background:white;
-
-    border-radius:22px;
-
-    padding:24px;
-
-    box-shadow:
-        0 25px 70px
-        rgba(0,0,0,.25);
-}
-
-.modal-header{
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    margin-bottom:18px;
-}
-
-.modal-header h3{
-    font-size:18px;
-
-    color:#25275e;
-}
-
-.modal-close{
-    width:34px;
-    height:34px;
-
-    border:none;
-
-    border-radius:10px;
-
-    background:#f0f1f7;
-
-    font-size:18px;
-
-    cursor:pointer;
-}
-
-.modal-summary{
-    display:grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
-    gap:10px;
-
-    margin-bottom:18px;
-}
-
-.modal-stat{
-    padding:13px;
-
-    border-radius:12px;
-
-    background:#f7f7ff;
-
-    text-align:center;
-}
-
-.modal-stat strong{
-    display:block;
-
-    color:#5e47ca;
-
-    font-size:20px;
-}
-
-.modal-stat span{
-    display:block;
-
-    color:#9298ad;
-
-    font-size:9px;
-
-    margin-top:3px;
-}
-
-.modal-table{
-    width:100%;
-
-    border-collapse:collapse;
-}
-
-.modal-table th{
-    background:#f7f8fc;
-
-    color:#9298ad;
-
-    font-size:10px;
-
-    padding:11px 8px;
-
-    text-align:left;
-}
-
-.modal-table td{
-    padding:11px 8px;
-
-    border-bottom:
-        1px solid #eceef5;
-
-    color:#59617d;
-
-    font-size:10px;
-}
-
-.grade{
-    display:inline-flex;
-
-    min-width:28px;
-
-    height:24px;
-
-    align-items:center;
-    justify-content:center;
-
-    border-radius:7px;
-
-    background:#eeeaff;
-
-    color:#6245ce;
-
-    font-weight:800;
-}
-
-.modal-bottom{
-    width:100%;
-
-    height:42px;
-
-    margin-top:17px;
-
-    border:none;
-
-    border-radius:11px;
+    z-index: 20000;
 
     background:
         linear-gradient(
             135deg,
-            #6241e8,
-            #843de0
+            #142867,
+            #3a218e 55%,
+            #722bd4
         );
 
-    color:white;
+    display: flex;
 
-    font-size:11px;
+    align-items: center;
 
-    font-weight:700;
+    justify-content: center;
 
-    cursor:pointer;
+    transition:
+        opacity .5s ease,
+        visibility .5s ease;
 }
 
-
-/* =========================================================
-   TOAST
-========================================================= */
-
-.toast{
-    position:fixed;
-
-    left:50%;
-    bottom:25px;
-
-    transform:
-        translateX(-50%)
-        translateY(20px);
-
-    background:#29277d;
-
-    color:white;
-
-    padding:12px 18px;
-
-    border-radius:12px;
-
-    font-size:12px;
-
-    opacity:0;
-
-    pointer-events:none;
-
-    transition:.3s;
-
-    z-index:40000;
+.welcome-screen.hide {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
 }
 
-.toast.show{
-    opacity:1;
+.welcome-box {
+    width: min(650px, 90%);
 
-    transform:
-        translateX(-50%)
-        translateY(0);
+    text-align: center;
+
+    color: white;
+
+    padding: 35px;
+}
+
+.big-logo {
+    width: 85px;
+    height: 85px;
+
+    border-radius: 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 auto 22px;
+
+    font-size: 43px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #25b9f4,
+            #7941f4
+        );
+
+    box-shadow:
+        0 18px 45px rgba(0,0,0,.25);
+}
+
+.welcome-box h1 {
+    font-size: 45px;
+    font-weight: 850;
+}
+
+.welcome-box h1 span {
+    color: #6ee4ff;
+}
+
+.welcome-box p {
+    font-size: 16px;
+
+    line-height: 1.7;
+
+    color: rgba(255,255,255,.78);
+
+    margin-top: 12px;
+}
+
+.enter-btn {
+    margin-top: 27px;
+
+    border: none;
+
+    padding: 14px 28px;
+
+    border-radius: 30px;
+
+    font-size: 14px;
+
+    font-weight: 750;
+
+    color: #3d2490;
+
+    background: white;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 12px 30px rgba(0,0,0,.20);
+
+    transition: .25s;
+}
+
+.enter-btn:hover {
+    transform: translateY(-3px) scale(1.02);
 }
 
 
@@ -1688,139 +1354,649 @@ select{
    RESPONSIVE
 ========================================================= */
 
-@media(max-width:1150px){
+@media (max-width: 1150px) {
 
-    .sidebar{
-        width:230px;
-        min-width:230px;
+    .sidebar {
+        width: 230px;
+        min-width: 230px;
     }
 
-    .main-area{
-        margin-left:230px;
+    .main-area {
+        margin-left: 230px;
+        margin-right: 0;
     }
 
-    .summary-grid{
+    .chatbot {
+        width: 320px;
+        max-width: calc(100vw - 40px);
+
+        right: 12px;
+    }
+
+    .chat-bubble {
+        right: 12px;
+    }
+
+    .photo-grid {
         grid-template-columns:
-            repeat(2,minmax(0,1fr));
+            repeat(3, minmax(0,1fr));
     }
-
 }
 
-@media(max-width:900px){
 
-    .performance-grid{
-        grid-template-columns:1fr;
+@media (max-width: 900px) {
+
+    .main-area {
+        margin-right: 0;
     }
 
+    .chatbot {
+        right: 12px;
+    }
+
+    .chat-bubble {
+        right: 12px;
+    }
 }
 
-@media(max-width:700px){
 
-    .sidebar{
-        width:80px;
-        min-width:80px;
+@media (max-width: 700px) {
+
+    .sidebar {
+        width: 80px;
+        min-width: 80px;
     }
 
-    .brand{
-        justify-content:center;
-        padding:15px;
+    .brand {
+        justify-content: center;
+        padding: 15px;
     }
 
-    .brand-text,
+    .brand-text {
+        display: none;
+    }
+
     .menu-title,
-    .nav-text{
-        display:none;
+    .nav-text {
+        display: none;
     }
 
-    .nav-item{
-        justify-content:center;
-        padding:0;
+    .nav-item {
+        justify-content: center;
+        padding: 0;
     }
 
-    .nav-icon{
-        margin:0;
+    .nav-icon {
+        margin: 0;
     }
 
-    .main-area{
-        margin-left:80px;
+    .main-area {
+        margin-left: 80px;
     }
 
-    .top-header{
-        padding:15px;
+    .stats-grid,
+    .middle-grid,
+    .photo-grid {
+        grid-template-columns: 1fr;
     }
 
-    .header-left h1{
-        font-size:22px;
+    .hero-content {
+        max-width: 100%;
     }
 
-    .header-left p,
-    .profile-info,
-    .time-box{
-        display:none;
+    .hero-art {
+        display: none;
     }
+}
 
-    .page-content{
-        padding:15px;
+
+/* ===== ACADEMICS CONTENT STYLES ===== */
+/* PAGE CONTENT */
+
+.page-content{
+    padding:20px 24px 35px;
+    width:100%;
+}
+
+.page-heading{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:20px;
+}
+
+.page-heading h2{
+    font-size:24px;
+    font-weight:800;
+}
+
+.page-heading p{
+    margin-top:6px;
+    color:#8990a7;
+    font-size:13px;
+}
+
+.heading-btn{
+    border:none;
+    border-radius:11px;
+    padding:11px 16px;
+    color:white;
+    font-size:12px;
+    font-weight:700;
+    cursor:pointer;
+    background:linear-gradient(135deg,#6543e8,#843de0);
+    box-shadow:0 8px 20px rgba(85,50,190,.25);
+    transition:.2s;
+}
+
+.heading-btn:hover{
+    transform:translateY(-2px);
+}
+
+/* HERO */
+
+.academic-hero{
+    width:100%;
+    min-height:190px;
+    border-radius:20px;
+    padding:28px 32px;
+    color:white;
+    background:linear-gradient(120deg,#19398d,#4828c8 55%,#7738dd);
+    box-shadow:0 14px 35px rgba(55,44,150,.20);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:20px;
+    position:relative;
+    overflow:hidden;
+}
+
+.academic-hero::before{
+    content:"";
+    position:absolute;
+    width:260px;
+    height:260px;
+    border-radius:50%;
+    right:-80px;
+    top:-110px;
+    background:rgba(255,255,255,.08);
+}
+
+.academic-hero::after{
+    content:"";
+    position:absolute;
+    width:150px;
+    height:150px;
+    border-radius:50%;
+    right:150px;
+    bottom:-100px;
+    background:rgba(255,255,255,.05);
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+}
+
+.hero-content h3{
+    font-size:23px;
+    font-weight:800;
+    margin-bottom:8px;
+}
+
+.hero-content p{
+    font-size:12px;
+    color:rgba(255,255,255,.76);
+    max-width:520px;
+    line-height:1.7;
+}
+
+.hero-action{
+    position:relative;
+    z-index:2;
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.stat-box{
+    min-width:110px;
+    padding:17px 20px;
+    border-radius:15px;
+    background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.15);
+    text-align:center;
+    backdrop-filter:blur(5px);
+}
+
+.stat-box strong{
+    display:block;
+    font-size:30px;
+    font-weight:800;
+}
+
+.stat-box span{
+    display:block;
+    font-size:10px;
+    margin-top:4px;
+    color:rgba(255,255,255,.72);
+}
+
+/* SUMMARY CARDS */
+
+.summary-grid{
+    width:100%;
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:18px;
+    margin-bottom:20px;
+}
+
+.summary-card{
+    background:white;
+    border:1px solid #e9ebf5;
+    border-radius:17px;
+    padding:18px;
+    min-height:120px;
+    box-shadow:0 8px 25px rgba(40,35,100,.06);
+    transition:.2s;
+    cursor:pointer;
+}
+
+.summary-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 15px 35px rgba(40,35,100,.12);
+}
+
+.summary-top{
+    display:flex;
+    justify-content:space-between;
+}
+
+.summary-title{
+    color:#7f88a5;
+    font-size:12px;
+    font-weight:700;
+}
+
+.summary-icon{
+    width:43px;
+    height:43px;
+    border-radius:13px;
+    background:#f0f3ff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:21px;
+}
+
+.summary-number{
+    font-size:27px;
+    font-weight:800;
+    margin-top:9px;
+    color:#3063df;
+}
+
+.summary-small{
+    color:#9aa2b9;
+    font-size:10px;
+    margin-top:2px;
+}
+
+/* CONTENT CARD */
+
+.content-card{
+    background:white;
+    border:1px solid #e9ebf5;
+    border-radius:17px;
+    padding:20px;
+    box-shadow:0 8px 25px rgba(40,35,100,.06);
+    margin-bottom:20px;
+}
+
+.card-heading{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:15px;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.card-heading h3{
+    font-size:17px;
+}
+
+.card-tools{
+    display:flex;
+    gap:8px;
+    align-items:center;
+}
+
+.search-box{
+    height:38px;
+    border:1px solid #e1e4ef;
+    border-radius:10px;
+    padding:0 12px;
+    color:#39425e;
+    background:white;
+    outline:none;
+    font-size:11px;
+    min-width:170px;
+    transition:.2s;
+}
+
+.search-box:focus{
+    border-color:#a99bf0;
+}
+
+.filter-select{
+    height:38px;
+    border:1px solid #e1e4ef;
+    border-radius:10px;
+    padding:0 11px;
+    color:#68728d;
+    background:white;
+    outline:none;
+    font-size:11px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.filter-select:hover{
+    border-color:#c9cee4;
+}
+
+/* SUBJECT GRID */
+
+.subject-grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:14px;
+}
+
+.subject-card{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding:16px;
+    border:1px solid #eceef5;
+    border-radius:15px;
+    background:#fafbff;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.subject-card:hover{
+    transform:translateY(-3px);
+    box-shadow:0 10px 25px rgba(40,35,100,.08);
+    border-color:#dcd6fb;
+}
+
+.subject-icon{
+    width:54px;
+    height:54px;
+    border-radius:16px;
+    background:linear-gradient(135deg,#25b8ee,#7144f5);
+    color:white;
+    font-weight:800;
+    font-size:22px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+}
+
+.subject-info{
+    flex:1;
+    min-width:0;
+}
+
+.subject-info strong{
+    display:block;
+    font-size:13.5px;
+    color:#27304b;
+}
+
+.subject-info span{
+    display:block;
+    margin-top:3px;
+    color:#9aa2b9;
+    font-size:10.5px;
+}
+
+.subject-meta{
+    display:flex;
+    gap:6px;
+    margin-top:8px;
+    flex-wrap:wrap;
+}
+
+.subject-tag{
+    padding:4px 9px;
+    border-radius:20px;
+    background:#edf8ff;
+    color:#238acb;
+    font-size:9px;
+    font-weight:700;
+}
+
+.subject-score{
+    text-align:center;
+    flex-shrink:0;
+}
+
+.subject-score strong{
+    display:block;
+    color:#3063df;
+    font-size:15px;
+}
+
+.subject-score span{
+    font-size:8.5px;
+    color:#9aa2b9;
+    font-weight:700;
+}
+
+.empty-note{
+    padding:25px 5px;
+    text-align:center;
+    color:#9aa2b9;
+    font-size:12px;
+    grid-column:1/-1;
+}
+
+/* SEMESTER BREAKDOWN */
+
+.semester-grid{
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:12px;
+}
+
+.semester-card{
+    padding:15px;
+    border:1px solid #eceef5;
+    border-radius:13px;
+    background:#fafbff;
+    transition:.2s;
+    cursor:pointer;
+}
+
+.semester-card:hover{
+    transform:translateY(-3px);
+    box-shadow:0 8px 20px rgba(40,35,100,.08);
+}
+
+.semester-card span{
+    display:block;
+    color:#9299ae;
+    font-size:10px;
+}
+
+.semester-card strong{
+    display:block;
+    margin-top:5px;
+    color:#39425e;
+    font-size:19px;
+}
+
+.semester-card small{
+    display:block;
+    margin-top:3px;
+    color:#9aa2b9;
+    font-size:9px;
+}
+
+/* MODAL */
+
+.modal-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(16,21,52,.45);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    z-index:10000;
+}
+
+.modal-overlay.show{
+    display:flex;
+}
+
+.modal-box{
+    width:100%;
+    max-width:430px;
+    padding:25px;
+    border-radius:20px;
+    background:white;
+    box-shadow:0 20px 60px rgba(0,0,0,.2);
+    animation:panelIn .2s ease;
+}
+
+.modal-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:18px;
+}
+
+.modal-top h3{
+    font-size:19px;
+}
+
+.modal-close{
+    width:33px;
+    height:33px;
+    border:none;
+    border-radius:50%;
+    background:#f0f1fa;
+    color:#626a85;
+    font-size:20px;
+    cursor:pointer;
+}
+
+.modal-body{
+    color:#66708b;
+    font-size:13px;
+    line-height:1.8;
+}
+
+.modal-body strong{
+    color:#303955;
+}
+
+/* TOAST */
+
+.toast{
+    position:fixed;
+    top:140px;
+    right:25px;
+    z-index:11000;
+    padding:14px 20px;
+    background:#222d62;
+    color:white;
+    border-radius:12px;
+    box-shadow:0 10px 30px rgba(0,0,0,.15);
+    font-size:12px;
+    opacity:0;
+    pointer-events:none;
+    transform:translateY(-10px);
+    transition:.25s;
+    max-width:calc(100vw - 30px);
+}
+
+.toast.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* LOADING INDICATOR */
+
+.loading-message{
+    grid-column:1/-1;
+    padding:35px 10px;
+    text-align:center;
+    color:#858da7;
+    font-size:13px;
+}
+
+.loading-spinner{
+    display:inline-block;
+    width:25px;
+    height:25px;
+    border:3px solid #e5e0ff;
+    border-top-color:#6543e8;
+    border-radius:50%;
+    animation:spin .8s linear infinite;
+    margin-bottom:10px;
+}
+
+@keyframes spin{
+    to{
+        transform:rotate(360deg);
     }
-
-    .academic-hero{
-        flex-direction:column;
-
-        align-items:flex-start;
-
-        gap:20px;
-
-        padding:22px;
-    }
-
-    .hero-cgpa{
-        align-self:center;
-    }
-
-    .summary-grid{
-        grid-template-columns:1fr;
-    }
-
-    .semester-grid{
-        grid-template-columns:1fr;
-    }
-
-    .card-heading{
-        align-items:flex-start;
-
-        flex-direction:column;
-    }
-
-    .semester-filter{
-        width:100%;
-    }
-
-    .chatbot-panel{
-        width:92vw;
-
-        right:4vw;
-        left:4vw;
-
-        height:460px;
-    }
-
-    .chat-bubble{
-        right:20px;
-        bottom:20px;
-    }
-
 }
 
 </style>
-
 </head>
-
 
 <body>
 
+<div class="welcome-screen" id="welcomeScreen">
+
+    <div class="welcome-box">
+
+        <div class="big-logo">
+            🎓
+        </div>
+
+        <h1>
+            Welcome to
+            <span>CampusConnect</span>
+        </h1>
+
+        <p>
+            Your AI-powered college companion.
+            Manage academics, timetable, assignments,
+            attendance, campus activities and career
+            opportunities from one place.
+        </p>
+
+        <button class="enter-btn" onclick="enterDashboard()">
+            Enter Student Dashboard →
+        </button>
+
+    </div>
+
+</div>
+
+<div class="app">
+
 
 <!-- =====================================================
-     SIDEBAR
+     LEFT SIDEBAR
 ===================================================== -->
 
 <aside class="sidebar">
@@ -1848,72 +2024,55 @@ select{
 
     <div class="menu">
 
+
+        <!-- MAIN MENU -->
+
         <div class="menu-title">
             MAIN MENU
         </div>
 
 
-        <a
-            class="nav-item"
-            href="../dashboard.html"
-        >
+        <a class="nav-item" href="../dashboard.html">
             <span class="nav-icon">🏠</span>
             <span class="nav-text">Dashboard</span>
         </a>
 
+        <a class="nav-item" href="courses.html">
 
-        <a
-            class="nav-item"
-            href="courses.html"
-        >
             <span class="nav-icon">📚</span>
             <span class="nav-text">Courses</span>
         </a>
 
 
-        <a
-            class="nav-item"
-            href="timetable.html"
-        >
+        <a class="nav-item" href="timetable.html">
             <span class="nav-icon">🗓️</span>
             <span class="nav-text">Timetable</span>
         </a>
 
 
-        <a
-            class="nav-item"
-            href="assignments.html"
-        >
+        <a class="nav-item" href="assignments.html">
             <span class="nav-icon">📝</span>
             <span class="nav-text">Assignments</span>
         </a>
 
 
-        <a
-            class="nav-item"
-            href="attendance.html"
-        >
+        <a class="nav-item" href="attendance.html">
             <span class="nav-icon">📊</span>
             <span class="nav-text">Attendance</span>
         </a>
 
 
-        <a
-            class="nav-item active"
-            href="academics.html"
-        >
+        <a class="nav-item active" href="academics.html">
             <span class="nav-icon">🎓</span>
             <span class="nav-text">Academics</span>
         </a>
 
 
-        <a
-            class="nav-item"
-            href="faculty.html"
-        >
+        <a class="nav-item" href="faculty.html">
             <span class="nav-icon">👨‍🏫</span>
             <span class="nav-text">Faculty</span>
         </a>
+
 
 
         <!-- CAREER -->
@@ -1925,24 +2084,19 @@ select{
             </div>
 
 
-            <a
-                class="nav-item"
-                href="placement.html"
-            >
+            <a class="nav-item" href="placement.html">
                 <span class="nav-icon">💼</span>
                 <span class="nav-text">Placement</span>
             </a>
 
 
-            <a
-                class="nav-item"
-                href="results.html"
-            >
+            <a class="nav-item" href="results.html">
                 <span class="nav-icon">📈</span>
                 <span class="nav-text">Results</span>
             </a>
 
         </div>
+
 
 
         <!-- CAMPUS -->
@@ -1954,78 +2108,55 @@ select{
             </div>
 
 
-            <a
-                class="nav-item"
-                href="documents.html"
-            >
+            <a class="nav-item" href="documents.html">
                 <span class="nav-icon">📄</span>
                 <span class="nav-text">Documents</span>
             </a>
 
 
-            <a
-                class="nav-item"
-                href="complaints.html"
-            >
+            <a class="nav-item" href="complaints.html">
                 <span class="nav-icon">📢</span>
                 <span class="nav-text">Complaints</span>
             </a>
 
 
-            <a
-                class="nav-item"
-                href="feedback.html"
-            >
+            <a class="nav-item" href="feedback.html">
                 <span class="nav-icon">💬</span>
                 <span class="nav-text">Feedback</span>
             </a>
 
 
-            <a
-                class="nav-item"
-                href="lost-found.html"
-            >
+            <a class="nav-item" href="lost_found.html">
                 <span class="nav-icon">🔎</span>
-                <span class="nav-text">Lost &amp; Found</span>
+                <span class="nav-text">Lost & Found</span>
             </a>
 
 
-            <a
-                class="nav-item"
-                href="campus.html"
-            >
+            <a class="nav-item" href="campus.html">
                 <span class="nav-icon">🏫</span>
                 <span class="nav-text">Campus</span>
             </a>
 
 
-            <a
-                class="nav-item"
-                href="events.html"
-            >
+            <a class="nav-item" href="events.html">
                 <span class="nav-icon">🎉</span>
                 <span class="nav-text">Events</span>
             </a>
 
 
-            <a
-                class="nav-item"
-                href="exams.html"
-            >
+            <a class="nav-item" href="exams.html">
                 <span class="nav-icon">📋</span>
                 <span class="nav-text">Exams</span>
             </a>
 
 
-            <a
-                class="nav-item"
-                href="notifications.html"
-            >
+            <a class="nav-item" href="notifications.html">
                 <span class="nav-icon">🔔</span>
                 <span class="nav-text">Notifications</span>
             </a>
 
         </div>
+
 
 
         <!-- ACCOUNT -->
@@ -2037,19 +2168,13 @@ select{
             </div>
 
 
-            <a
-                class="nav-item"
-                href="profile.html"
-            >
+            <a class="nav-item" href="profile.html">
                 <span class="nav-icon">👤</span>
                 <span class="nav-text">Profile</span>
             </a>
 
 
-            <a
-                class="nav-item"
-                href="settings.html"
-            >
+            <a class="nav-item" href="settings.html">
                 <span class="nav-icon">⚙️</span>
                 <span class="nav-text">Settings</span>
             </a>
@@ -2057,13 +2182,13 @@ select{
 
             <div class="logout">
 
-                <a
-                    class="nav-item"
-                    href="../index.html"
-                    onclick="return confirm('Are you sure you want to logout?')"
-                >
+                <a class="nav-item"
+                   href="../index.html"
+                   onclick="return confirmLogout()">
+
                     <span class="nav-icon">🚪</span>
                     <span class="nav-text">Logout</span>
+
                 </a>
 
             </div>
@@ -2073,11 +2198,6 @@ select{
     </div>
 
 </aside>
-
-
-<!-- =====================================================
-     MAIN
-===================================================== -->
 
 <main class="main-area">
 
@@ -2089,12 +2209,11 @@ select{
         <div class="header-left">
 
             <h1>
-                Student<br>
                 Academics
             </h1>
 
             <p>
-                Track your academic progress, performance and semester results
+                Manage your courses and academic progress
             </p>
 
         </div>
@@ -2102,18 +2221,11 @@ select{
 
         <div class="header-right">
 
-            <div
-                class="time-box"
-                id="clock"
-            >
-                10:00 PM
+            <div class="time-box" id="clock">
+                6:00 PM
             </div>
 
-
-            <div
-                class="notification"
-                onclick="showToast('You have new academic notifications 🔔')"
-            >
+            <div class="notification">
                 🔔
             </div>
 
@@ -2146,1404 +2258,434 @@ select{
 
     </header>
 
+    <section class="page-content">
 
-    <!-- PAGE -->
+        <div class="page-heading">
 
-    <div class="page-content">
+            <div>
+                <h2>Academic Overview</h2>
+                <p>Everything you need to stay on top of your studies.</p>
+            </div>
 
+            <button class="heading-btn" id="refreshBtn">
+                ↻ Refresh Courses
+            </button>
 
-        <!-- HERO -->
+        </div>
+
+        <!-- HERO BANNER -->
 
         <section class="academic-hero">
 
             <div class="hero-content">
-
-                <div class="hero-small">
-                    ✨ Academic Performance
-                </div>
-
-                <h2>
-                    Keep building your academic journey 🎓
-                </h2>
+                <h3>Welcome to Your Learning Space 🎓</h3>
 
                 <p>
-                    Monitor your CGPA, semester performance, credits
-                    and academic progress from one place.
+                    Explore your subjects, review course details and track
+                    your academic journey in one place. Your course list
+                    is loaded from the CampusConnect database.
                 </p>
-
             </div>
 
+            <div class="hero-action">
 
-            <div class="hero-cgpa">
+                <div class="stat-box">
+                    <strong id="heroCourseCount">—</strong>
+                    <span>TOTAL COURSES</span>
+                </div>
 
-                <strong>
-                    8.6
-                </strong>
-
-                <span>
-                    CURRENT CGPA
-                </span>
+                <div class="stat-box">
+                    <strong id="heroSemesterCount">—</strong>
+                    <span>SEMESTERS</span>
+                </div>
 
             </div>
 
         </section>
 
-
-        <!-- SUMMARY -->
+        <!-- SUMMARY CARDS -->
 
         <section class="summary-grid">
 
-
-            <div class="summary-card">
-
+            <div class="summary-card" id="totalCoursesCard">
                 <div class="summary-top">
-
-                    <span class="summary-title">
-                        CURRENT CGPA
-                    </span>
-
-                    <div class="summary-icon">
-                        🎓
-                    </div>
-
+                    <div class="summary-title">Total Courses</div>
+                    <div class="summary-icon">📚</div>
                 </div>
 
-                <div class="summary-number purple">
-                    8.6
-                </div>
-
-                <div class="summary-small">
-                    Overall academic performance
-                </div>
-
+                <div class="summary-number" id="totalCourses">—</div>
+                <div class="summary-small">Courses from database</div>
             </div>
 
-
             <div class="summary-card">
-
                 <div class="summary-top">
-
-                    <span class="summary-title">
-                        BEST SGPA
-                    </span>
-
-                    <div class="summary-icon">
-                        ⭐
-                    </div>
-
+                    <div class="summary-title">Total Credits</div>
+                    <div class="summary-icon">⭐</div>
                 </div>
 
-                <div class="summary-number blue">
-                    8.6
-                </div>
-
-                <div class="summary-small">
-                    Highest semester SGPA
-                </div>
-
+                <div class="summary-number" id="totalCredits">—</div>
+                <div class="summary-small">Credits available in course records</div>
             </div>
 
-
             <div class="summary-card">
-
                 <div class="summary-top">
-
-                    <span class="summary-title">
-                        CREDITS EARNED
-                    </span>
-
-                    <div class="summary-icon">
-                        📚
-                    </div>
-
+                    <div class="summary-title">Completed Courses</div>
+                    <div class="summary-icon">✅</div>
                 </div>
 
-                <div class="summary-number orange">
-                    84
-                </div>
-
-                <div class="summary-small">
-                    Credits completed so far
-                </div>
-
+                <div class="summary-number" id="completedCourses">—</div>
+                <div class="summary-small">Based on available completion data</div>
             </div>
 
-
             <div class="summary-card">
-
                 <div class="summary-top">
-
-                    <span class="summary-title">
-                        BACKLOGS
-                    </span>
-
-                    <div class="summary-icon">
-                        ✅
-                    </div>
-
+                    <div class="summary-title">Average GPA</div>
+                    <div class="summary-icon">📈</div>
                 </div>
 
-                <div class="summary-number green">
-                    0
-                </div>
-
-                <div class="summary-small">
-                    No pending backlogs
-                </div>
-
+                <div class="summary-number" id="averageGpa">—</div>
+                <div class="summary-small">Based on GPA data, if available</div>
             </div>
 
         </section>
 
+        <!-- SUBJECT LIST -->
 
-        <!-- SEMESTER PERFORMANCE -->
-
-        <section class="content-card">
+        <section class="content-card" id="coursesSection">
 
             <div class="card-heading">
 
                 <div>
-
-                    <h3>
-                        Semester Performance
-                    </h3>
-
-                    <p>
-                        Click any semester to view detailed subject marks and grades.
-                    </p>
-
+                    <h3>📘 My Courses</h3>
                 </div>
 
+                <div class="card-tools">
 
-                <select
-                    class="semester-filter"
-                    id="semesterFilter"
-                    onchange="filterSemesters()"
-                >
+                    <input
+                        type="search"
+                        class="search-box"
+                        id="courseSearch"
+                        placeholder="Search courses..."
+                        aria-label="Search courses"
+                    >
 
-                    <option value="all">
-                        All Semesters
-                    </option>
+                    <select
+                        class="filter-select"
+                        id="programFilter"
+                        aria-label="Filter by program"
+                    >
+                        <option value="">All Programs</option>
+                    </select>
 
-                    <option value="1">
-                        Semester 1
-                    </option>
+                    <select
+                        class="filter-select"
+                        id="semesterFilter"
+                        aria-label="Filter by semester"
+                    >
+                        <option value="">All Semesters</option>
+                    </select>
 
-                    <option value="2">
-                        Semester 2
-                    </option>
-
-                    <option value="3">
-                        Semester 3
-                    </option>
-
-                    <option value="4">
-                        Semester 4
-                    </option>
-
-                </select>
+                </div>
 
             </div>
 
+            <div class="subject-grid" id="subjectGrid">
 
-            <div class="semester-grid">
-
-
-                <!-- SEM 1 -->
-
-                <div
-                    class="semester-card"
-                    data-semester="1"
-                    onclick="openSemester(0)"
-                >
-
-                    <div class="semester-top">
-
-                        <div class="semester-left">
-
-                            <div class="semester-icon">
-                                📘
-                            </div>
-
-                            <div class="semester-info">
-
-                                <strong>
-                                    Semester 1
-                                </strong>
-
-                                <span>
-                                    2024 - 2025
-                                </span>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="sgpa-box">
-
-                            <strong>
-                                8.1
-                            </strong>
-
-                            <span>
-                                SGPA
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="progress-track">
-
-                        <div
-                            class="progress-fill"
-                            style="width:81%"
-                        ></div>
-
-                    </div>
-
-
-                    <div class="semester-bottom">
-
-                        <span class="semester-credit">
-                            📚 21 Credits
-                        </span>
-
-                        <span class="view-semester">
-                            View Details →
-                        </span>
-
-                    </div>
-
+                <div class="loading-message">
+                    <div class="loading-spinner"></div>
+                    <div>Loading courses from database...</div>
                 </div>
-
-
-                <!-- SEM 2 -->
-
-                <div
-                    class="semester-card"
-                    data-semester="2"
-                    onclick="openSemester(1)"
-                >
-
-                    <div class="semester-top">
-
-                        <div class="semester-left">
-
-                            <div class="semester-icon">
-                                📗
-                            </div>
-
-                            <div class="semester-info">
-
-                                <strong>
-                                    Semester 2
-                                </strong>
-
-                                <span>
-                                    2024 - 2025
-                                </span>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="sgpa-box">
-
-                            <strong>
-                                8.3
-                            </strong>
-
-                            <span>
-                                SGPA
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="progress-track">
-
-                        <div
-                            class="progress-fill"
-                            style="width:83%"
-                        ></div>
-
-                    </div>
-
-
-                    <div class="semester-bottom">
-
-                        <span class="semester-credit">
-                            📚 21 Credits
-                        </span>
-
-                        <span class="view-semester">
-                            View Details →
-                        </span>
-
-                    </div>
-
-                </div>
-
-
-                <!-- SEM 3 -->
-
-                <div
-                    class="semester-card"
-                    data-semester="3"
-                    onclick="openSemester(2)"
-                >
-
-                    <div class="semester-top">
-
-                        <div class="semester-left">
-
-                            <div class="semester-icon">
-                                📙
-                            </div>
-
-                            <div class="semester-info">
-
-                                <strong>
-                                    Semester 3
-                                </strong>
-
-                                <span>
-                                    2025 - 2026
-                                </span>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="sgpa-box">
-
-                            <strong>
-                                8.5
-                            </strong>
-
-                            <span>
-                                SGPA
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="progress-track">
-
-                        <div
-                            class="progress-fill"
-                            style="width:85%"
-                        ></div>
-
-                    </div>
-
-
-                    <div class="semester-bottom">
-
-                        <span class="semester-credit">
-                            📚 21 Credits
-                        </span>
-
-                        <span class="view-semester">
-                            View Details →
-                        </span>
-
-                    </div>
-
-                </div>
-
-
-                <!-- SEM 4 -->
-
-                <div
-                    class="semester-card"
-                    data-semester="4"
-                    onclick="openSemester(3)"
-                >
-
-                    <div class="semester-top">
-
-                        <div class="semester-left">
-
-                            <div class="semester-icon">
-                                📕
-                            </div>
-
-                            <div class="semester-info">
-
-                                <strong>
-                                    Semester 4
-                                </strong>
-
-                                <span>
-                                    2025 - 2026
-                                </span>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="sgpa-box">
-
-                            <strong>
-                                8.6
-                            </strong>
-
-                            <span>
-                                SGPA
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="progress-track">
-
-                        <div
-                            class="progress-fill"
-                            style="width:86%"
-                        ></div>
-
-                    </div>
-
-
-                    <div class="semester-bottom">
-
-                        <span class="semester-credit">
-                            📚 21 Credits
-                        </span>
-
-                        <span class="view-semester">
-                            View Details →
-                        </span>
-
-                    </div>
-
-                </div>
-
 
             </div>
 
         </section>
 
-
-        <!-- ACADEMIC OVERVIEW -->
+        <!-- SEMESTER OVERVIEW -->
 
         <section class="content-card">
 
             <div class="card-heading">
-
-                <div>
-
-                    <h3>
-                        Academic Overview
-                    </h3>
-
-                    <p>
-                        Your semester-wise academic progress.
-                    </p>
-
-                </div>
-
+                <h3>📊 Semester Overview</h3>
             </div>
 
+            <div class="semester-grid" id="semesterGrid">
 
-            <div class="performance-grid">
-
-
-                <div class="performance-box">
-
-                    <h4>
-                        SGPA Progress
-                    </h4>
-
-
-                    <div class="performance-row">
-
-                        <div>
-
-                            <div class="performance-label">
-                                Semester 1
-                            </div>
-
-                            <div class="performance-track">
-
-                                <div
-                                    class="performance-fill"
-                                    style="width:81%"
-                                ></div>
-
-                            </div>
-
-                        </div>
-
-                        <div class="performance-value">
-                            8.1
-                        </div>
-
-                    </div>
-
-
-                    <div class="performance-row">
-
-                        <div>
-
-                            <div class="performance-label">
-                                Semester 2
-                            </div>
-
-                            <div class="performance-track">
-
-                                <div
-                                    class="performance-fill"
-                                    style="width:83%"
-                                ></div>
-
-                            </div>
-
-                        </div>
-
-                        <div class="performance-value">
-                            8.3
-                        </div>
-
-                    </div>
-
-
-                    <div class="performance-row">
-
-                        <div>
-
-                            <div class="performance-label">
-                                Semester 3
-                            </div>
-
-                            <div class="performance-track">
-
-                                <div
-                                    class="performance-fill"
-                                    style="width:85%"
-                                ></div>
-
-                            </div>
-
-                        </div>
-
-                        <div class="performance-value">
-                            8.5
-                        </div>
-
-                    </div>
-
-
-                    <div class="performance-row">
-
-                        <div>
-
-                            <div class="performance-label">
-                                Semester 4
-                            </div>
-
-                            <div class="performance-track">
-
-                                <div
-                                    class="performance-fill"
-                                    style="width:86%"
-                                ></div>
-
-                            </div>
-
-                        </div>
-
-                        <div class="performance-value">
-                            8.6
-                        </div>
-
-                    </div>
-
+                <div class="empty-note">
+                    Semester information will appear here.
                 </div>
-
-
-                <div class="performance-box cgpa-box">
-
-                    <div class="cgpa-circle">
-
-                        <div class="cgpa-text">
-
-                            <strong>
-                                8.6
-                            </strong>
-
-                            <span>
-                                CGPA
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                    <p>
-                        Your current overall academic performance
-                        across completed semesters.
-                    </p>
-
-                </div>
-
 
             </div>
 
         </section>
 
-
-    </div>
+    </section>
 
 </main>
 
-
 <!-- =====================================================
-     CHATBOT BUTTON
+     RIGHT AI CHATBOT
 ===================================================== -->
 
-<button
-    class="chat-bubble"
-    id="chatBubble"
-    onclick="toggleChatbot()"
-    aria-label="Open AI College Companion"
->
-    🤖
-</button>
+<button class="chat-bubble" id="chatBubble" onclick="openChatPanel()" aria-label="Open AI College Companion">🤖</button>
+
+<aside class="chatbot" id="chatbotPanel">
 
 
-<!-- =====================================================
-     CHATBOT PANEL
-===================================================== -->
-
-<aside
-    class="chatbot-panel"
-    id="chatbotPanel"
->
-
+    <!-- CHAT HEADER -->
 
     <div class="chat-header">
 
-        <div class="chat-header-left">
+        <div class="robot-icon">
+            🤖
+        </div>
 
-            <div class="robot-icon">
-                🤖
-            </div>
+        <div class="chat-title">
 
-            <div class="chat-title">
+            <strong>
+                AI College Companion
+            </strong>
 
-                <strong>
-                    AI College Companion
-                </strong>
-
-                <span>
-                    <i class="online-dot"></i>
-                    Online • Ready to help
-                </span>
-
-            </div>
+            <span>
+                <i class="online-dot"></i>
+                Online • Ready to help
+            </span>
 
         </div>
 
-
-        <button
-            class="close-chat"
-            onclick="toggleChatbot()"
-        >
-            ×
-        </button>
+        <button class="close-chat" onclick="closeChatPanel()" aria-label="Close assistant">×</button>
 
     </div>
 
 
-    <div
-        class="chat-body"
-        id="chatBody"
-    >
+
+    <!-- CHAT BODY -->
+
+    <div class="chat-body" id="chatBody">
 
         <div class="bot-message">
 
             👋 Hi! I'm your
             <strong>AI College Companion.</strong>
 
-            <br><br>
-
-            I can help you with your
-            <strong>CGPA, SGPA, credits,
-            backlogs and semester performance.</strong>
+            I can help you with your timetable,
+            assignments, attendance, academics,
+            placements and campus activities.
 
         </div>
 
 
         <div class="bot-message">
 
-            Try asking:
-
-            <br><br>
-
-            • What is my CGPA?<br>
-            • Which semester is best?<br>
-            • How many credits do I have?<br>
-            • Do I have any backlogs?
+            What would you like to know today? 😊
 
         </div>
 
     </div>
 
 
+
+    <!-- QUICK BUTTONS -->
+
     <div class="quick-buttons">
 
-        <button
-            class="quick-btn"
-            onclick="quickChat('My CGPA')"
-        >
-            My CGPA
+        <button class="quick-btn"
+                onclick="quickChat('Show my timetable')">
+            Today's timetable
         </button>
 
-
-        <button
-            class="quick-btn"
-            onclick="quickChat('Best semester')"
-        >
-            Best Semester
+        <button class="quick-btn"
+                onclick="quickChat('Show my attendance')">
+            My attendance
         </button>
 
-
-        <button
-            class="quick-btn"
-            onclick="quickChat('Backlogs')"
-        >
-            Backlogs
+        <button class="quick-btn"
+                onclick="quickChat('Show my assignments')">
+            Assignments
         </button>
 
     </div>
 
 
+
+    <!-- INPUT -->
+
     <div class="chat-footer">
 
         <input
-            class="chat-input"
             id="chatInput"
+            class="chat-input"
             type="text"
             placeholder="Ask your companion..."
             onkeydown="handleChatKey(event)"
         >
 
-
         <button
             class="send-btn"
-            onclick="sendChat()"
-        >
+            onclick="sendChat()">
             ➤
         </button>
 
     </div>
 
+
 </aside>
 
 
-<!-- =====================================================
-     SEMESTER MODAL
-===================================================== -->
+</div>
 
-<div
-    class="modal"
-    id="semesterModal"
->
+<div class="modal-overlay" id="courseModal">
 
     <div class="modal-box">
 
+        <div class="modal-top">
+            <h3 id="modalTitle">Course Details</h3>
 
-        <div class="modal-header">
-
-            <h3 id="modalTitle">
-                Semester Results
-            </h3>
-
-            <button
-                class="modal-close"
-                onclick="closeModal()"
-            >
+            <button class="modal-close" id="modalClose" aria-label="Close modal">
                 ×
             </button>
-
         </div>
 
-
-        <div class="modal-summary">
-
-
-            <div class="modal-stat">
-
-                <strong id="modalSGPA">
-                    8.1
-                </strong>
-
-                <span>
-                    SGPA
-                </span>
-
-            </div>
-
-
-            <div class="modal-stat">
-
-                <strong id="modalCredits">
-                    21
-                </strong>
-
-                <span>
-                    Credits
-                </span>
-
-            </div>
-
-
-            <div class="modal-stat">
-
-                <strong id="modalPercentage">
-                    81%
-                </strong>
-
-                <span>
-                    Percentage
-                </span>
-
-            </div>
-
-
-        </div>
-
-
-        <table class="modal-table">
-
-            <thead>
-
-                <tr>
-
-                    <th>
-                        Subject
-                    </th>
-
-                    <th>
-                        Marks
-                    </th>
-
-                    <th>
-                        Grade
-                    </th>
-
-                </tr>
-
-            </thead>
-
-
-            <tbody id="modalSubjects">
-            </tbody>
-
-        </table>
-
-
-        <button
-            class="modal-bottom"
-            onclick="closeModal()"
-        >
-            Close
-        </button>
+        <div class="modal-body" id="modalBody"></div>
 
     </div>
 
 </div>
 
+<!-- TOAST MESSAGE -->
 
-<!-- =====================================================
-     TOAST
-===================================================== -->
-
-<div
-    class="toast"
-    id="toast"
->
-    Action completed
-</div>
-
+<div class="toast" id="toast"></div>
 
 <script>
 
+
 /* =========================================================
-   SEMESTER DATA
+   WELCOME SCREEN
 ========================================================= */
 
-const semesters = [
+function enterDashboard() {
 
-    {
-        name:"Semester 1",
+    const screen =
+        document.getElementById("welcomeScreen");
 
-        year:"2024 - 2025",
+    screen.classList.add("hide");
 
-        sgpa:"8.1",
-
-        credits:"21",
-
-        percentage:"81%",
-
-        subjects:[
-            [
-                "Programming in C",
-                "84",
-                "A"
-            ],
-
-            [
-                "Mathematics",
-                "78",
-                "B"
-            ],
-
-            [
-                "Digital Electronics",
-                "82",
-                "A"
-            ],
-
-            [
-                "Data Structures",
-                "86",
-                "A"
-            ],
-
-            [
-                "Computer Fundamentals",
-                "80",
-                "A"
-            ]
-        ]
-
-    },
+    sessionStorage.setItem(
+        "campusWelcomeShown",
+        "true"
+    );
+}
 
 
-    {
-        name:"Semester 2",
+/* =========================================================
+   SHOW WELCOME ONLY ON NEW SESSION
+========================================================= */
 
-        year:"2024 - 2025",
+window.addEventListener("load", function() {
 
-        sgpa:"8.3",
+    const shown =
+        sessionStorage.getItem(
+            "campusWelcomeShown"
+        );
 
-        credits:"21",
+    if (shown === "true") {
 
-        percentage:"83%",
-
-        subjects:[
-            [
-                "Object Oriented Programming",
-                "87",
-                "A"
-            ],
-
-            [
-                "Database Systems",
-                "90",
-                "A"
-            ],
-
-            [
-                "Operating Systems",
-                "82",
-                "B"
-            ],
-
-            [
-                "Mathematics II",
-                "80",
-                "A"
-            ],
-
-            [
-                "Web Technology",
-                "85",
-                "A"
-            ]
-        ]
-
-    },
-
-
-    {
-        name:"Semester 3",
-
-        year:"2025 - 2026",
-
-        sgpa:"8.5",
-
-        credits:"21",
-
-        percentage:"85%",
-
-        subjects:[
-            [
-                "Database Management System",
-                "92",
-                "A"
-            ],
-
-            [
-                "Software Engineering",
-                "87",
-                "A"
-            ],
-
-            [
-                "Computer Networks",
-                "82",
-                "B"
-            ],
-
-            [
-                "Artificial Intelligence",
-                "80",
-                "A"
-            ],
-
-            [
-                "Web Programming",
-                "90",
-                "A"
-            ]
-        ]
-
-    },
-
-
-    {
-        name:"Semester 4",
-
-        year:"2025 - 2026",
-
-        sgpa:"8.6",
-
-        credits:"21",
-
-        percentage:"86%",
-
-        subjects:[
-            [
-                "Database Management System",
-                "92",
-                "A"
-            ],
-
-            [
-                "Web Programming",
-                "90",
-                "A"
-            ],
-
-            [
-                "Software Engineering",
-                "87",
-                "A"
-            ],
-
-            [
-                "Computer Networks",
-                "82",
-                "B"
-            ],
-
-            [
-                "Mathematics",
-                "78",
-                "B"
-            ]
-        ]
+        document
+            .getElementById("welcomeScreen")
+            .classList.add("hide");
 
     }
 
-];
+    updateClock();
+
+    setInterval(updateClock, 1000);
+
+});
 
 
 /* =========================================================
    CLOCK
 ========================================================= */
 
-function updateClock(){
+function updateClock() {
 
-    const now =
-        new Date();
+    const now = new Date();
 
-    let hours =
-        now.getHours();
+    let hours = now.getHours();
 
-    const minutes =
-        String(
-            now.getMinutes()
-        ).padStart(2,"0");
+    let minutes =
+        String(now.getMinutes()).padStart(2, "0");
 
-    const seconds =
-        String(
-            now.getSeconds()
-        ).padStart(2,"0");
-
-    const ampm =
-        hours >= 12
-            ? "PM"
-            : "AM";
+    let ampm = hours >= 12 ? "PM" : "AM";
 
     hours =
         hours % 12 || 12;
 
-    document.getElementById(
-        "clock"
-    ).textContent =
-        `${hours}:${minutes}:${seconds} ${ampm}`;
+    document.getElementById("clock").innerText =
+        hours + ":" + minutes + " " + ampm;
 
 }
 
-updateClock();
 
-setInterval(
-    updateClock,
-    1000
-);
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+function openPage(page) {
+
+    window.location.href = page;
+
+}
 
 
 /* =========================================================
-   FILTER SEMESTERS
+   LOGOUT
 ========================================================= */
 
-function filterSemesters(){
+function confirmLogout() {
 
-    const selected =
-        document.getElementById(
-            "semesterFilter"
-        ).value;
-
-
-    const cards =
-        document.querySelectorAll(
-            ".semester-card"
-        );
-
-
-    cards.forEach(
-        card => {
-
-            if(
-                selected === "all" ||
-                card.dataset.semester === selected
-            ){
-
-                card.style.display =
-                    "block";
-
-            }else{
-
-                card.style.display =
-                    "none";
-
-            }
-
-        }
+    return confirm(
+        "Are you sure you want to logout?"
     );
 
 }
 
 
 /* =========================================================
-   OPEN SEMESTER
+   CAMPUS PHOTO BUTTONS
 ========================================================= */
 
-function openSemester(index){
+function campusMessage(place) {
 
-    const semester =
-        semesters[index];
+    const chatBody =
+        document.getElementById("chatBody");
 
+    const user =
+        document.createElement("div");
 
-    document.getElementById(
-        "modalTitle"
-    ).textContent =
-        semester.name +
-        " Results";
+    user.className =
+        "user-message";
 
+    user.innerText =
+        "Tell me about the " + place;
 
-    document.getElementById(
-        "modalSGPA"
-    ).textContent =
-        semester.sgpa;
+    chatBody.appendChild(user);
 
 
-    document.getElementById(
-        "modalCredits"
-    ).textContent =
-        semester.credits;
+    const bot =
+        document.createElement("div");
 
+    bot.className =
+        "bot-message";
 
-    document.getElementById(
-        "modalPercentage"
-    ).textContent =
-        semester.percentage;
+    bot.innerText =
+        "Sure! I can help you with information about the "
+        + place
+        + ". This section can later be connected to your college backend.";
 
+    chatBody.appendChild(bot);
 
-    const tbody =
-        document.getElementById(
-            "modalSubjects"
-        );
-
-
-    tbody.innerHTML = "";
-
-
-    semester.subjects.forEach(
-        subject => {
-
-            const row =
-                document.createElement(
-                    "tr"
-                );
-
-
-            row.innerHTML = `
-
-                <td>
-                    ${subject[0]}
-                </td>
-
-                <td>
-                    ${subject[1]} / 100
-                </td>
-
-                <td>
-
-                    <span class="grade">
-                        ${subject[2]}
-                    </span>
-
-                </td>
-
-            `;
-
-
-            tbody.appendChild(
-                row
-            );
-
-        }
-    );
-
-
-    document.getElementById(
-        "semesterModal"
-    ).classList.add(
-        "show"
-    );
-
-}
-
-
-/* =========================================================
-   CLOSE MODAL
-========================================================= */
-
-function closeModal(){
-
-    document.getElementById(
-        "semesterModal"
-    ).classList.remove(
-        "show"
-    );
-
-}
-
-
-/* =========================================================
-   MODAL OUTSIDE CLICK
-========================================================= */
-
-document.getElementById(
-    "semesterModal"
-).addEventListener(
-    "click",
-    function(event){
-
-        if(
-            event.target === this
-        ){
-
-            closeModal();
-
-        }
-
-    }
-);
-
-
-/* =========================================================
-   CHATBOT
-========================================================= */
-
-function toggleChatbot(){
-
-    const panel =
-        document.getElementById(
-            "chatbotPanel"
-        );
-
-    const bubble =
-        document.getElementById(
-            "chatBubble"
-        );
-
-
-    if(
-        panel.classList.contains(
-            "open"
-        )
-    ){
-
-        panel.classList.remove(
-            "open"
-        );
-
-        bubble.classList.remove(
-            "hide"
-        );
-
-    }else{
-
-        panel.classList.add(
-            "open"
-        );
-
-        bubble.classList.add(
-            "hide"
-        );
-
-        setTimeout(
-            function(){
-
-                document.getElementById(
-                    "chatInput"
-                ).focus();
-
-            },
-            100
-        );
-
-    }
+    chatBody.scrollTop =
+        chatBody.scrollHeight;
 
 }
 
@@ -3552,11 +2694,9 @@ function toggleChatbot(){
    QUICK CHAT
 ========================================================= */
 
-function quickChat(text){
+function quickChat(text) {
 
-    document.getElementById(
-        "chatInput"
-    ).value =
+    document.getElementById("chatInput").value =
         text;
 
     sendChat();
@@ -3565,204 +2705,112 @@ function quickChat(text){
 
 
 /* =========================================================
-   CHAT RESPONSE
-========================================================= */
-
-function getResponse(question){
-
-    const q =
-        question.toLowerCase();
-
-
-    if(
-        q.includes("cgpa") ||
-        q.includes("overall")
-    ){
-
-        return (
-            "🎓 Your current CGPA is " +
-            "<strong>8.6</strong>."
-        );
-
-    }
-
-
-    if(
-        q.includes("best") ||
-        q.includes("highest")
-    ){
-
-        return (
-            "⭐ Your highest SGPA is " +
-            "<strong>8.6</strong>, " +
-            "from Semester 4."
-        );
-
-    }
-
-
-    if(
-        q.includes("backlog")
-    ){
-
-        return (
-            "✅ You currently have " +
-            "<strong>0 backlogs</strong>."
-        );
-
-    }
-
-
-    if(
-        q.includes("credit")
-    ){
-
-        return (
-            "📚 You have earned " +
-            "<strong>84 credits</strong> so far."
-        );
-
-    }
-
-
-    if(
-        q.includes("semester 1") ||
-        q.includes("sem 1")
-    ){
-
-        return (
-            "📘 Semester 1 SGPA is " +
-            "<strong>8.1</strong>."
-        );
-
-    }
-
-
-    if(
-        q.includes("semester 2") ||
-        q.includes("sem 2")
-    ){
-
-        return (
-            "📗 Semester 2 SGPA is " +
-            "<strong>8.3</strong>."
-        );
-
-    }
-
-
-    if(
-        q.includes("semester 3") ||
-        q.includes("sem 3")
-    ){
-
-        return (
-            "📙 Semester 3 SGPA is " +
-            "<strong>8.5</strong>."
-        );
-
-    }
-
-
-    if(
-        q.includes("semester 4") ||
-        q.includes("sem 4")
-    ){
-
-        return (
-            "📕 Semester 4 SGPA is " +
-            "<strong>8.6</strong>."
-        );
-
-    }
-
-
-    return (
-        "🤖 I can help you with " +
-        "<strong>CGPA, SGPA, credits, " +
-        "backlogs and semester results.</strong>"
-    );
-
-}
-
-
-/* =========================================================
    SEND CHAT
 ========================================================= */
 
-function sendChat(){
+function sendChat() {
 
     const input =
-        document.getElementById(
-            "chatInput"
-        );
-
+        document.getElementById("chatInput");
 
     const text =
         input.value.trim();
 
-
-    if(!text){
-
+    if (!text) {
         return;
-
     }
 
 
-    const body =
-        document.getElementById(
-            "chatBody"
-        );
+    const chatBody =
+        document.getElementById("chatBody");
 
+
+    /* USER */
 
     const user =
-        document.createElement(
-            "div"
-        );
-
+        document.createElement("div");
 
     user.className =
         "user-message";
 
-    user.textContent =
+    user.innerText =
         text;
 
-
-    body.appendChild(
-        user
-    );
+    chatBody.appendChild(user);
 
 
     input.value = "";
 
 
-    setTimeout(
-        function(){
+    /* TEMPORARY BOT RESPONSE */
 
-            const bot =
-                document.createElement(
-                    "div"
-                );
+    setTimeout(function() {
 
+        const bot =
+            document.createElement("div");
 
-            bot.className =
-                "bot-message";
+        bot.className =
+            "bot-message";
 
-            bot.innerHTML =
-                getResponse(text);
+        let response =
+            "I received your question. "
+            + "Once your backend AI is connected, "
+            + "I will provide real student-specific information.";
 
-
-            body.appendChild(
-                bot
-            );
+        const lower =
+            text.toLowerCase();
 
 
-            body.scrollTop =
-                body.scrollHeight;
+        if (lower.includes("timetable")) {
 
-        },
-        350
-    );
+            response =
+                "📅 Your timetable is available. "
+                + "Click the Timetable section in the left navigation "
+                + "to view all your classes.";
+
+        }
+
+        else if (
+            lower.includes("attendance")
+        ) {
+
+            response =
+                "📊 Your current overall attendance is 87%. "
+                + "You can open Attendance from the left navigation "
+                + "for detailed subject-wise information.";
+
+        }
+
+        else if (
+            lower.includes("assignment")
+        ) {
+
+            response =
+                "📝 You can view your assignments by opening "
+                + "the Assignments section from the left navigation.";
+
+        }
+
+        else if (
+            lower.includes("event")
+        ) {
+
+            response =
+                "🎉 Upcoming events include Tech Talk, "
+                + "Cultural Fest and Career Guidance.";
+
+        }
+
+
+        bot.innerText =
+            response;
+
+        chatBody.appendChild(bot);
+
+        chatBody.scrollTop =
+            chatBody.scrollHeight;
+
+    }, 500);
 
 }
 
@@ -3771,11 +2819,9 @@ function sendChat(){
    ENTER KEY
 ========================================================= */
 
-function handleChatKey(event){
+function handleChatKey(event) {
 
-    if(
-        event.key === "Enter"
-    ){
+    if (event.key === "Enter") {
 
         sendChat();
 
@@ -3783,93 +2829,736 @@ function handleChatKey(event){
 
 }
 
+</script>
 
-/* =========================================================
-   TOAST
-========================================================= */
+<script src="../js/chatbot.js"></script>
 
-let toastTimer;
+<script>
+/* ==========================================
+   CAMPUSCONNECT ACADEMICS
+   Flask API + MySQL Database Connection
+========================================== */
 
+const API_URL = "http://127.0.0.1:5000/api/courses";
 
-function showToast(message){
+let SUBJECTS = [];
+let SEMESTERS = [];
 
-    const toast =
-        document.getElementById(
-            "toast"
-        );
+/* ==========================================
+   HELPER FUNCTIONS
+========================================== */
 
+function getValue(row, keys, fallback = "") {
+    for (const key of keys) {
+        if (
+            row[key] !== undefined &&
+            row[key] !== null &&
+            row[key] !== ""
+        ) {
+            return row[key];
+        }
+    }
 
-    toast.textContent =
-        message;
-
-
-    toast.classList.add(
-        "show"
-    );
-
-
-    clearTimeout(
-        toastTimer
-    );
-
-
-    toastTimer =
-        setTimeout(
-            function(){
-
-                toast.classList.remove(
-                    "show"
-                );
-
-            },
-            2500
-        );
-
+    return fallback;
 }
 
+function escapeHTML(value) {
+    return String(value ?? "").replace(/[&<>"']/g, function (char) {
+        const entities = {
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#39;"
+        };
 
-/* =========================================================
-   ESC KEY
-========================================================= */
+        return entities[char];
+    });
+}
 
-document.addEventListener(
-    "keydown",
-    function(event){
+function toNumber(value) {
+    if (value === null || value === undefined || value === "") {
+        return null;
+    }
 
-        if(
-            event.key === "Escape"
-        ){
+    const number = Number(value);
 
-            closeModal();
+    return Number.isFinite(number) ? number : null;
+}
 
+function showToast(message) {
+    const toast = document.getElementById("toast");
 
-            const panel =
-                document.getElementById(
-                    "chatbotPanel"
-                );
+    toast.textContent = message;
+    toast.classList.add("show");
 
+    clearTimeout(window.toastTimer);
 
-            const bubble =
-                document.getElementById(
-                    "chatBubble"
-                );
+    window.toastTimer = setTimeout(function () {
+        toast.classList.remove("show");
+    }, 3000);
+}
 
+/* ==========================================
+   NORMALIZE DATABASE RECORDS
+========================================== */
 
-            panel.classList.remove(
-                "open"
+function normalizeCourse(row, index) {
+    return {
+        id: getValue(
+            row,
+            ["course_id", "id", "subject_id"],
+            index + 1
+        ),
+
+        name: getValue(
+            row,
+            ["course_name", "subject_name", "name", "title"],
+            "Unnamed Course"
+        ),
+
+        code: getValue(
+            row,
+            ["course_code", "subject_code", "code"],
+            ""
+        ),
+
+        program: String(
+            getValue(row, ["program", "course_program"], "")
+        ).toUpperCase(),
+
+        semester: toNumber(
+            getValue(row, ["semester", "semester_number"], null)
+        ),
+
+        credits: toNumber(
+            getValue(row, ["credits", "credit"], null)
+        ),
+
+        type: getValue(
+            row,
+            ["course_type", "subject_type", "type", "category"],
+            "Course"
+        ),
+
+        faculty: getValue(
+            row,
+            ["faculty_name", "faculty", "teacher_name"],
+            ""
+        ),
+
+        marks: toNumber(
+            getValue(row, ["marks", "total_marks", "score"], null)
+        ),
+
+        grade: getValue(
+            row,
+            ["grade", "letter_grade"],
+            ""
+        ),
+
+        gpa: toNumber(
+            getValue(row, ["gpa", "sgpa"], null)
+        ),
+
+        status: getValue(
+            row,
+            ["status", "completion_status"],
+            ""
+        )
+    };
+}
+
+/* ==========================================
+   LOAD COURSES FROM FLASK BACKEND
+========================================== */
+
+async function loadCourses() {
+    const subjectGrid = document.getElementById("subjectGrid");
+
+    subjectGrid.innerHTML = `
+        <div class="loading-message">
+            <div class="loading-spinner"></div>
+            <div>Loading courses from database...</div>
+        </div>
+    `;
+
+    try {
+        const response = await fetch(API_URL, {
+            method: "GET",
+            headers: {
+                "Accept": "application/json"
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error(
+                "Backend returned HTTP " + response.status
             );
-
-            bubble.classList.remove(
-                "hide"
-            );
-
         }
 
+        const data = await response.json();
+
+        if (!Array.isArray(data)) {
+            throw new Error(
+                data.error || "Unexpected response from backend."
+            );
+        }
+
+        SUBJECTS = data.map(normalizeCourse);
+
+        buildSemesterList();
+        populateFilters();
+        renderStatistics();
+        renderSubjects();
+        renderSemesters();
+
+        showToast(
+            "Courses loaded successfully: " + SUBJECTS.length
+        );
+
+    } catch (error) {
+        console.error("Course loading error:", error);
+
+        SUBJECTS = [];
+
+        renderStatistics();
+
+        subjectGrid.innerHTML = `
+            <div class="empty-note">
+                <strong>Unable to load courses.</strong>
+                <br><br>
+                Please make sure your Flask backend is running.
+                <br><br>
+                API: ${escapeHTML(API_URL)}
+                <br><br>
+                <button class="heading-btn"
+                        onclick="loadCourses()">
+                    Try Again
+                </button>
+            </div>
+        `;
+
+        renderSemesters();
+
+        showToast("Could not connect to the backend.");
+    }
+}
+
+/* ==========================================
+   BUILD SEMESTER LIST FROM DATABASE
+========================================== */
+
+function buildSemesterList() {
+    const semesterNumbers = [
+        ...new Set(
+            SUBJECTS
+                .map(subject => subject.semester)
+                .filter(semester => semester !== null)
+        )
+    ].sort((a, b) => a - b);
+
+    SEMESTERS = semesterNumbers.map(function (semester) {
+        const semesterCourses = SUBJECTS.filter(
+            subject => subject.semester === semester
+        );
+
+        const gpas = semesterCourses
+            .map(subject => subject.gpa)
+            .filter(gpa => gpa !== null);
+
+        const averageGpa = gpas.length
+            ? gpas.reduce((sum, value) => sum + value, 0) / gpas.length
+            : null;
+
+        return {
+            semester: semester,
+            count: semesterCourses.length,
+            gpa: averageGpa
+        };
+    });
+}
+
+/* ==========================================
+   POPULATE PROGRAM AND SEMESTER FILTERS
+========================================== */
+
+function populateFilters() {
+    const programFilter = document.getElementById("programFilter");
+    const semesterFilter = document.getElementById("semesterFilter");
+
+    const selectedProgram = programFilter.value;
+    const selectedSemester = semesterFilter.value;
+
+    const programs = [
+        ...new Set(
+            SUBJECTS
+                .map(subject => subject.program)
+                .filter(Boolean)
+        )
+    ].sort();
+
+    const semesters = [
+        ...new Set(
+            SUBJECTS
+                .map(subject => subject.semester)
+                .filter(semester => semester !== null)
+        )
+    ].sort((a, b) => a - b);
+
+    programFilter.innerHTML = `
+        <option value="">All Programs</option>
+        ${programs.map(program => `
+            <option value="${escapeHTML(program)}">
+                ${escapeHTML(program)}
+            </option>
+        `).join("")}
+    `;
+
+    semesterFilter.innerHTML = `
+        <option value="">All Semesters</option>
+        ${semesters.map(semester => `
+            <option value="${semester}">
+                Semester ${semester}
+            </option>
+        `).join("")}
+    `;
+
+    if (programs.includes(selectedProgram)) {
+        programFilter.value = selectedProgram;
+    }
+
+    if (semesters.some(
+        semester => String(semester) === selectedSemester
+    )) {
+        semesterFilter.value = selectedSemester;
+    }
+}
+
+/* ==========================================
+   CALCULATE SUMMARY STATISTICS
+========================================== */
+
+function renderStatistics() {
+    const totalCourses = SUBJECTS.length;
+
+    const totalCredits = SUBJECTS.reduce(
+        (sum, subject) => sum + (subject.credits ?? 0),
+        0
+    );
+
+    const completedCourses = SUBJECTS.filter(function (subject) {
+        const status = String(subject.status).toLowerCase();
+
+        return [
+            "completed",
+            "complete",
+            "passed",
+            "done"
+        ].includes(status);
+    }).length;
+
+    const gpas = SUBJECTS
+        .map(subject => subject.gpa)
+        .filter(gpa => gpa !== null);
+
+    const averageGpa = gpas.length
+        ? gpas.reduce((sum, value) => sum + value, 0) / gpas.length
+        : null;
+
+    document.getElementById("totalCourses").textContent =
+        totalCourses;
+
+    document.getElementById("totalCredits").textContent =
+        SUBJECTS.some(subject => subject.credits !== null)
+            ? totalCredits
+            : "—";
+
+    document.getElementById("completedCourses").textContent =
+        SUBJECTS.some(subject => subject.status !== "")
+            ? completedCourses
+            : "—";
+
+    document.getElementById("averageGpa").textContent =
+        averageGpa !== null
+            ? averageGpa.toFixed(2)
+            : "—";
+
+    document.getElementById("heroCourseCount").textContent =
+        totalCourses;
+
+    document.getElementById("heroSemesterCount").textContent =
+        new Set(
+            SUBJECTS
+                .map(subject => subject.semester)
+                .filter(semester => semester !== null)
+        ).size;
+}
+
+/* ==========================================
+   FILTER COURSES
+========================================== */
+
+function getFilteredSubjects() {
+    const search = document
+        .getElementById("courseSearch")
+        .value
+        .trim()
+        .toLowerCase();
+
+    const selectedProgram =
+        document.getElementById("programFilter").value;
+
+    const selectedSemester =
+        document.getElementById("semesterFilter").value;
+
+    return SUBJECTS.filter(function (subject) {
+        const searchableText = [
+            subject.name,
+            subject.code,
+            subject.program,
+            subject.type,
+            subject.faculty
+        ].join(" ").toLowerCase();
+
+        const matchesSearch = searchableText.includes(search);
+
+        const matchesProgram =
+            !selectedProgram ||
+            subject.program === selectedProgram;
+
+        const matchesSemester =
+            !selectedSemester ||
+            String(subject.semester) === selectedSemester;
+
+        return (
+            matchesSearch &&
+            matchesProgram &&
+            matchesSemester
+        );
+    });
+}
+
+/* ==========================================
+   DISPLAY COURSES
+========================================== */
+
+function renderSubjects() {
+    const subjectGrid = document.getElementById("subjectGrid");
+    const filteredSubjects = getFilteredSubjects();
+
+    if (filteredSubjects.length === 0) {
+        subjectGrid.innerHTML = `
+            <div class="empty-note">
+                ${
+                    SUBJECTS.length === 0
+                        ? "No courses are available in the database."
+                        : "No courses match your search or filters."
+                }
+            </div>
+        `;
+
+        return;
+    }
+
+    subjectGrid.innerHTML = filteredSubjects.map(function (subject) {
+        const initial = subject.name.charAt(0).toUpperCase();
+
+        const details = [
+            subject.code,
+            subject.program,
+            subject.semester !== null
+                ? "Semester " + subject.semester
+                : ""
+        ].filter(Boolean).join(" • ");
+
+        const tags = [
+            subject.type,
+            subject.credits !== null
+                ? subject.credits + " Credits"
+                : ""
+        ].filter(Boolean);
+
+        const score = subject.grade
+            ? subject.grade
+            : subject.marks !== null
+                ? subject.marks
+                : "—";
+
+        const scoreLabel = subject.grade
+            ? "GRADE"
+            : subject.marks !== null
+                ? "MARKS"
+                : "RESULT";
+
+        return `
+            <article class="subject-card"
+                     data-course-id="${escapeHTML(subject.id)}"
+                     tabindex="0"
+                     role="button"
+                     aria-label="View ${escapeHTML(subject.name)} details">
+
+                <div class="subject-icon">
+                    ${escapeHTML(initial)}
+                </div>
+
+                <div class="subject-info">
+
+                    <strong>
+                        ${escapeHTML(subject.name)}
+                    </strong>
+
+                    <span>
+                        ${escapeHTML(details || "Course details")}
+                    </span>
+
+                    <div class="subject-meta">
+                        ${tags.map(tag => `
+                            <span class="subject-tag">
+                                ${escapeHTML(tag)}
+                            </span>
+                        `).join("")}
+                    </div>
+
+                </div>
+
+                <div class="subject-score">
+                    <strong>${escapeHTML(score)}</strong>
+                    <span>${escapeHTML(scoreLabel)}</span>
+                </div>
+
+            </article>
+        `;
+    }).join("");
+
+    subjectGrid.querySelectorAll(".subject-card").forEach(function (card) {
+        function openDetails() {
+            const subject = SUBJECTS.find(
+                item => String(item.id) === card.dataset.courseId
+            );
+
+            if (subject) {
+                showCourseDetails(subject);
+            }
+        }
+
+        card.addEventListener("click", openDetails);
+
+        card.addEventListener("keydown", function (event) {
+            if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                openDetails();
+            }
+        });
+    });
+}
+
+/* ==========================================
+   COURSE DETAILS MODAL
+========================================== */
+
+function showCourseDetails(subject) {
+    document.getElementById("modalTitle").textContent =
+        subject.name;
+
+    const details = [
+        ["Course ID", subject.id],
+        ["Course Code", subject.code],
+        ["Program", subject.program],
+        [
+            "Semester",
+            subject.semester !== null
+                ? subject.semester
+                : "Not available"
+        ],
+        [
+            "Credits",
+            subject.credits !== null
+                ? subject.credits
+                : "Not available"
+        ],
+        ["Course Type", subject.type],
+        [
+            "Faculty",
+            subject.faculty || "Not available"
+        ],
+        [
+            "Marks",
+            subject.marks !== null
+                ? subject.marks
+                : "Not available"
+        ],
+        [
+            "Grade",
+            subject.grade || "Not available"
+        ],
+        [
+            "GPA",
+            subject.gpa !== null
+                ? subject.gpa
+                : "Not available"
+        ]
+    ];
+
+    document.getElementById("modalBody").innerHTML =
+        details.map(function ([label, value]) {
+            return `
+                <div>
+                    <strong>${escapeHTML(label)}:</strong>
+                    ${escapeHTML(value)}
+                </div>
+            `;
+        }).join("");
+
+    document.getElementById("courseModal").classList.add("show");
+}
+
+/* ==========================================
+   SEMESTER CARDS
+========================================== */
+
+function renderSemesters() {
+    const semesterGrid = document.getElementById("semesterGrid");
+
+    if (SEMESTERS.length === 0) {
+        semesterGrid.innerHTML = `
+            <div class="empty-note">
+                No semester information is available in the course records.
+            </div>
+        `;
+
+        return;
+    }
+
+    semesterGrid.innerHTML = SEMESTERS.map(function (semester) {
+        return `
+            <article class="semester-card"
+                     data-semester="${semester.semester}"
+                     tabindex="0"
+                     role="button">
+
+                <span>SEMESTER ${semester.semester}</span>
+
+                <strong>
+                    ${
+                        semester.gpa !== null
+                            ? semester.gpa.toFixed(2)
+                            : semester.count + " Courses"
+                    }
+                </strong>
+
+                <small>
+                    ${
+                        semester.gpa !== null
+                            ? semester.count + " courses • Average GPA"
+                            : "GPA not available"
+                    }
+                </small>
+
+            </article>
+        `;
+    }).join("");
+
+    semesterGrid.querySelectorAll(".semester-card").forEach(function (card) {
+        function filterSemester() {
+            document.getElementById("semesterFilter").value =
+                card.dataset.semester;
+
+            renderSubjects();
+
+            document.getElementById("coursesSection").scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+        }
+
+        card.addEventListener("click", filterSemester);
+
+        card.addEventListener("keydown", function (event) {
+            if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                filterSemester();
+            }
+        });
+    });
+}
+
+/* ==========================================
+   SEARCH AND FILTER EVENTS
+========================================== */
+
+document.getElementById("courseSearch").addEventListener(
+    "input",
+    renderSubjects
+);
+
+document.getElementById("programFilter").addEventListener(
+    "change",
+    renderSubjects
+);
+
+document.getElementById("semesterFilter").addEventListener(
+    "change",
+    renderSubjects
+);
+
+document.getElementById("refreshBtn").addEventListener(
+    "click",
+    loadCourses
+);
+
+document.getElementById("totalCoursesCard").addEventListener(
+    "click",
+    function () {
+        document.getElementById("courseSearch").value = "";
+        document.getElementById("programFilter").value = "";
+        document.getElementById("semesterFilter").value = "";
+
+        renderSubjects();
+
+        document.getElementById("coursesSection").scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
     }
 );
 
+/* ==========================================
+   MODAL EVENTS
+========================================== */
+
+document.getElementById("modalClose").addEventListener(
+    "click",
+    function () {
+        document.getElementById("courseModal").classList.remove("show");
+    }
+);
+
+document.getElementById("courseModal").addEventListener(
+    "click",
+    function (event) {
+        if (event.target.id === "courseModal") {
+            event.currentTarget.classList.remove("show");
+        }
+    }
+);
+
+document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+        document.getElementById("courseModal").classList.remove("show");
+    }
+});
+
+
+
+
+
+/* ==========================================
+   INITIALIZE ACADEMICS PAGE
+========================================== */
+
+loadCourses();
 </script>
 
 </body>
-
 </html>

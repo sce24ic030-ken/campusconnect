@@ -1,125 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>CampusConnect | Results</title>
 
 <style>
-
-/* =========================================================
-   GLOBAL
-========================================================= */
-
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
 }
 
-html,
-body{
+html,body{
     width:100%;
     height:100%;
-}
-
-body{
     font-family:"Segoe UI",Arial,sans-serif;
     background:#f4f6ff;
     color:#17203a;
     overflow:hidden;
 }
 
-button,
-input,
-select{
+button,input,select{
     font-family:inherit;
 }
 
-
-/* =========================================================
-   SIDEBAR — FACULTY STYLE
-========================================================= */
+/* =====================================================
+   SIDEBAR - SAME AS FACULTY
+===================================================== */
 
 .sidebar{
     position:fixed;
     left:0;
     top:0;
     bottom:0;
-
     width:268px;
     min-width:268px;
-
-    background:
-    linear-gradient(
+    background:linear-gradient(
         180deg,
         #172a70 0%,
         #28237d 48%,
         #5520a7 100%
     );
-
     color:white;
-
     overflow-y:auto;
     overflow-x:hidden;
-
     z-index:1000;
-
     padding-bottom:20px;
+    scrollbar-width:thin;
+    scrollbar-color:rgba(255,255,255,.25) transparent;
 }
 
 .brand{
     height:120px;
-
-    padding:22px 18px;
-
     display:flex;
     align-items:center;
-
-    border-bottom:
-    1px solid rgba(255,255,255,.15);
+    padding:22px 18px;
+    border-bottom:1px solid rgba(255,255,255,.12);
 }
 
 .logo-box{
     width:52px;
     height:52px;
-
-    flex-shrink:0;
-
     border-radius:16px;
-
     display:flex;
     align-items:center;
     justify-content:center;
-
-    font-size:27px;
-
-    background:
-    linear-gradient(
-        135deg,
-        #24b8ff,
-        #7144f5
-    );
+    font-size:28px;
+    background:linear-gradient(135deg,#24b8ff,#7144f5);
+    box-shadow:0 10px 25px rgba(0,0,0,.20);
 }
 
 .brand-text{
-    margin-left:12px;
+    margin-left:13px;
 }
 
 .brand-title{
     font-size:21px;
     font-weight:800;
-    line-height:1.1;
+    letter-spacing:-.5px;
 }
 
 .brand-subtitle{
-    margin-top:4px;
-
     font-size:12px;
-
-    color:#c5c9e8;
+    opacity:.72;
+    margin-top:3px;
 }
 
 .menu{
@@ -127,14 +92,11 @@ select{
 }
 
 .menu-title{
-    padding:0 11px 10px;
-
     font-size:12px;
     font-weight:700;
-
-    letter-spacing:1px;
-
     color:rgba(255,255,255,.52);
+    letter-spacing:1px;
+    padding:0 11px 10px;
 }
 
 .menu-section{
@@ -143,50 +105,41 @@ select{
 
 .nav-item{
     width:100%;
-    min-height:49px;
-
-    padding:0 14px;
-
-    margin:5px 0;
-
     display:flex;
     align-items:center;
-
+    min-height:49px;
+    padding:0 14px;
+    margin:5px 0;
     border-radius:13px;
-
-    color:#e5e6f6;
-
+    color:rgba(255,255,255,.84);
     text-decoration:none;
-
-    transition:.2s;
+    transition:
+        transform .2s ease,
+        background .2s ease,
+        color .2s ease;
 }
 
 .nav-item:hover{
-    background:rgba(255,255,255,.10);
+    background:rgba(255,255,255,.12);
+    color:white;
+    transform:translateX(3px);
 }
 
 .nav-item.active{
-    background:
-    linear-gradient(
+    color:white;
+    background:linear-gradient(
         90deg,
         #22b9f5,
         #6942f4
     );
-
-    color:white;
-
-    box-shadow:
-    0 8px 20px rgba(48,72,220,.35);
+    box-shadow:0 9px 22px rgba(0,0,0,.18);
 }
 
 .nav-icon{
     width:31px;
-
-    margin-right:10px;
-
-    text-align:center;
-
     font-size:20px;
+    text-align:center;
+    margin-right:10px;
 }
 
 .nav-text{
@@ -196,192 +149,141 @@ select{
 
 .logout{
     margin-top:14px;
-
     padding-top:15px;
-
-    border-top:
-    1px solid rgba(255,255,255,.15);
+    border-top:1px solid rgba(255,255,255,.13);
 }
 
-
-/* =========================================================
+/* =====================================================
    MAIN AREA
-========================================================= */
+===================================================== */
 
 .main-area{
     margin-left:268px;
-
     width:auto;
     height:100vh;
-
     overflow-y:auto;
     overflow-x:hidden;
-
-    background:
-    linear-gradient(
+    background:linear-gradient(
         180deg,
         #f8f9ff,
         #eef1fb
     );
 }
 
-
-/* =========================================================
-   HEADER
-========================================================= */
+/* =====================================================
+   HEADER - SAME AS FACULTY
+===================================================== */
 
 .top-header{
     height:120px;
-
-    position:sticky;
-    top:0;
-
-    z-index:100;
-
+    background:rgba(255,255,255,.96);
     display:flex;
     align-items:center;
     justify-content:space-between;
-
     padding:22px 28px;
-
-    background:
-    rgba(255,255,255,.96);
-
-    border-bottom:
-    1px solid #e7e9f3;
+    border-bottom:1px solid #e9ebf5;
+    position:sticky;
+    top:0;
+    z-index:100;
 }
 
 .header-left h1{
     font-size:30px;
     line-height:1.05;
-
     font-weight:800;
-
-    color:#17203a;
 }
 
 .header-left p{
     margin-top:7px;
-
+    color:#8990a7;
     font-size:14px;
-
-    color:#8992b1;
 }
 
 .header-right{
     display:flex;
     align-items:center;
-
     gap:18px;
 }
 
 .time-box{
     font-size:18px;
     font-weight:750;
-
-    color:#65708f;
+    color:#59617d;
 }
 
 .notification{
-    position:relative;
-
     width:48px;
     height:48px;
-
+    background:#fff;
     border-radius:50%;
-
     display:flex;
     align-items:center;
     justify-content:center;
-
-    background:white;
-
     font-size:22px;
-
+    box-shadow:0 5px 18px rgba(40,35,100,.10);
+    position:relative;
     cursor:pointer;
+    transition:.2s;
+}
 
-    box-shadow:
-    0 8px 25px rgba(45,58,100,.10);
+.notification:hover{
+    transform:scale(1.06);
 }
 
 .notification::after{
     content:"";
-
-    position:absolute;
-
-    top:5px;
-    right:6px;
-
     width:8px;
     height:8px;
-
     border-radius:50%;
-
-    background:#ff4f91;
+    background:#ff4f8b;
+    position:absolute;
+    top:7px;
+    right:8px;
 }
 
-.profile{
+.profile-mini{
     display:flex;
     align-items:center;
-
     gap:10px;
 }
 
 .profile-circle{
     width:48px;
     height:48px;
-
     border-radius:50%;
-
+    background:linear-gradient(135deg,#25b8ee,#466cf1);
+    color:white;
     display:flex;
     align-items:center;
     justify-content:center;
-
-    color:white;
-
-    font-size:19px;
+    font-size:20px;
     font-weight:800;
-
-    background:
-    linear-gradient(
-        135deg,
-        #28aef2,
-        #5378ef
-    );
 }
 
 .profile-info strong{
     display:block;
-
-    font-size:14px;
+    font-size:15px;
 }
 
 .profile-info span{
     display:block;
-
-    margin-top:3px;
-
-    color:#9299b2;
-
+    color:#8d93a8;
     font-size:12px;
 }
 
-
-/* =========================================================
-   PAGE CONTENT
-========================================================= */
+/* =====================================================
+   CONTENT
+===================================================== */
 
 .page-content{
     padding:20px 24px 35px;
+    width:100%;
 }
 
 .page-heading{
     display:flex;
     align-items:center;
     justify-content:space-between;
-
-    gap:15px;
-
     margin-bottom:20px;
 }
 
@@ -391,90 +293,77 @@ select{
 }
 
 .page-heading p{
-    margin-top:5px;
-
+    margin-top:6px;
+    color:#8990a7;
     font-size:13px;
-
-    color:#8992b1;
 }
 
 .heading-btn{
     border:none;
-
-    padding:11px 16px;
-
     border-radius:11px;
-
+    padding:11px 16px;
     color:white;
-
     font-size:12px;
     font-weight:700;
-
     cursor:pointer;
-
-    background:
-    linear-gradient(
+    background:linear-gradient(
         135deg,
-        #633fe0,
-        #843de1
+        #6543e8,
+        #843de0
     );
-
-    box-shadow:
-    0 8px 18px rgba(101,63,226,.20);
+    box-shadow:0 8px 20px rgba(85,50,190,.25);
+    transition:.2s;
 }
 
+.heading-btn:hover{
+    transform:translateY(-2px);
+}
 
-/* =========================================================
-   HERO
-========================================================= */
+/* =====================================================
+   HERO - SAME FACULTY STYLE
+===================================================== */
 
-.results-hero{
-    position:relative;
-
+.faculty-hero{
     width:100%;
-    min-height:180px;
-
-    padding:28px 32px;
-
-    margin-bottom:20px;
-
+    min-height:190px;
     border-radius:20px;
-
-    overflow:hidden;
-
+    padding:28px 32px;
     color:white;
-
-    background:
-    linear-gradient(
-        110deg,
+    background:linear-gradient(
+        120deg,
         #19398d,
         #4828c8 55%,
         #7738dd
     );
-
-    box-shadow:
-    0 12px 30px rgba(45,48,110,.14);
-
+    box-shadow:0 14px 35px rgba(55,44,150,.20);
     display:flex;
     align-items:center;
     justify-content:space-between;
+    margin-bottom:20px;
+    position:relative;
+    overflow:hidden;
 }
 
-.results-hero::before{
+.faculty-hero::before{
     content:"";
-
     position:absolute;
-
-    width:270px;
-    height:270px;
-
-    right:-70px;
-    top:-130px;
-
+    width:260px;
+    height:260px;
     border-radius:50%;
+    right:-80px;
+    top:-110px;
+    background:rgba(255,255,255,.08);
+}
 
-    background:
-    rgba(255,255,255,.08);
+.faculty-hero::after{
+    content:"";
+    position:absolute;
+    width:150px;
+    height:150px;
+    border-radius:50%;
+    right:150px;
+    bottom:-100px;
+    background:rgba(255,255,255,.05);
 }
 
 .hero-content{
@@ -482,420 +371,627 @@ select{
     z-index:2;
 }
 
-.hero-content h2{
-    font-size:26px;
+.hero-content h3{
+    font-size:23px;
     font-weight:800;
-
     margin-bottom:8px;
 }
 
 .hero-content p{
-    font-size:14px;
-
-    color:#e0e3ff;
+    font-size:12px;
+    color:rgba(255,255,255,.76);
+    max-width:520px;
+    line-height:1.7;
 }
 
-.hero-result{
+.hero-action{
     position:relative;
     z-index:2;
-
-    text-align:center;
-
-    min-width:130px;
+    display:flex;
+    align-items:center;
+    gap:12px;
 }
 
-.hero-result strong{
-    display:block;
+.stat-box{
+    min-width:110px;
+    padding:17px 20px;
+    border-radius:15px;
+    background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.15);
+    text-align:center;
+    backdrop-filter:blur(5px);
+}
 
-    font-size:34px;
+.stat-box strong{
+    display:block;
+    font-size:30px;
     font-weight:800;
 }
 
-.hero-result span{
-    font-size:11px;
-
-    color:#d9dcff;
+.stat-box span{
+    display:block;
+    font-size:10px;
+    margin-top:4px;
+    color:rgba(255,255,255,.72);
 }
 
-
-/* =========================================================
-   SUMMARY CARDS
-========================================================= */
+/* =====================================================
+   SUMMARY CARDS - SAME AS FACULTY
+===================================================== */
 
 .summary-grid{
+    width:100%;
     display:grid;
-
-    grid-template-columns:
-    repeat(4,1fr);
-
+    grid-template-columns:repeat(4,minmax(0,1fr));
     gap:18px;
-
     margin-bottom:20px;
 }
 
 .summary-card{
-    min-height:120px;
-
-    padding:18px;
-
     background:white;
-
-    border:
-    1px solid #e9ebf5;
-
+    border:1px solid #e9ebf5;
     border-radius:17px;
-
-    box-shadow:
-    0 8px 24px rgba(50,63,110,.05);
-
+    padding:18px;
+    min-height:120px;
+    box-shadow:0 8px 25px rgba(40,35,100,.06);
     transition:.2s;
+    cursor:pointer;
 }
 
 .summary-card:hover{
-    transform:translateY(-2px);
-
-    box-shadow:
-    0 12px 28px rgba(50,63,110,.08);
+    transform:translateY(-4px);
+    box-shadow:0 15px 35px rgba(40,35,100,.12);
 }
 
 .summary-top{
     display:flex;
-    align-items:center;
     justify-content:space-between;
 }
 
-.summary-label{
+.summary-title{
+    color:#7f88a5;
     font-size:12px;
-    font-weight:750;
-
-    color:#7e88a9;
+    font-weight:700;
 }
 
 .summary-icon{
-    width:42px;
-    height:42px;
-
+    width:43px;
+    height:43px;
     border-radius:13px;
-
+    background:#f0f3ff;
     display:flex;
     align-items:center;
     justify-content:center;
-
-    background:#eef2ff;
-
-    font-size:20px;
+    font-size:21px;
 }
 
 .summary-number{
-    margin-top:12px;
-
-    font-size:28px;
+    font-size:27px;
     font-weight:800;
-
-    color:#3264dc;
+    margin-top:9px;
+    color:#3063df;
 }
 
-.summary-card small{
-    display:block;
-
+.summary-small{
+    color:#9aa2b9;
+    font-size:10px;
     margin-top:2px;
-
-    font-size:11px;
-
-    color:#9aa2bc;
 }
 
-
-/* =========================================================
-   RESULTS CARD
-========================================================= */
+/* =====================================================
+   CONTENT CARD
+===================================================== */
 
 .content-card{
     background:white;
-
-    border:
-    1px solid #e9ebf5;
-
+    border:1px solid #e9ebf5;
     border-radius:17px;
-
     padding:20px;
-
+    box-shadow:0 8px 25px rgba(40,35,100,.06);
     margin-bottom:20px;
-
-    box-shadow:
-    0 8px 24px rgba(50,63,110,.05);
 }
 
 .card-heading{
     display:flex;
-    align-items:center;
     justify-content:space-between;
-
-    gap:10px;
-
-    flex-wrap:wrap;
-
+    align-items:center;
     margin-bottom:15px;
+    gap:10px;
+    flex-wrap:wrap;
 }
 
 .card-heading h3{
-    font-size:19px;
-
-    font-weight:800;
+    font-size:17px;
 }
 
-.card-heading p{
-    margin-top:4px;
-
-    font-size:12px;
-
-    color:#929ab4;
+.card-tools{
+    display:flex;
+    gap:8px;
+    align-items:center;
 }
 
 .filter-select{
-    height:42px;
-
-    padding:0 13px;
-
-    border:
-    1px solid #e1e5f1;
-
-    border-radius:11px;
-
-    outline:none;
-
+    height:38px;
+    border:1px solid #e1e4ef;
+    border-radius:10px;
+    padding:0 11px;
+    color:#68728d;
     background:white;
-
-    color:#687390;
-
-    font-size:12px;
-
+    outline:none;
+    font-size:11px;
     cursor:pointer;
-}
-
-
-/* =========================================================
-   SEMESTER CARDS
-========================================================= */
-
-.semester-grid{
-    display:grid;
-
-    grid-template-columns:
-    repeat(2,1fr);
-
-    gap:14px;
-
-    margin-bottom:20px;
-}
-
-.semester-card{
-    padding:17px;
-
-    border:
-    1px solid #edf0f7;
-
-    border-radius:15px;
-
-    cursor:pointer;
-
     transition:.2s;
 }
 
-.semester-card:hover{
-    transform:translateY(-2px);
-
-    box-shadow:
-    0 8px 22px rgba(50,63,110,.07);
-
-    border-color:#cfc7f4;
+.filter-select:hover{
+    border-color:#c9cee4;
 }
 
-.semester-top{
-    display:flex;
+/* =====================================================
+   RESULTS CARDS
+===================================================== */
 
-    align-items:center;
-    justify-content:space-between;
-
-    margin-bottom:14px;
+.results-grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:14px;
 }
 
-.semester-left{
+.result-card{
     display:flex;
     align-items:center;
-
-    gap:11px;
+    gap:14px;
+    padding:16px;
+    border:1px solid #eceef5;
+    border-radius:15px;
+    background:#fafbff;
+    cursor:pointer;
+    transition:.2s;
 }
 
-.semester-icon{
-    width:44px;
-    height:44px;
+.result-card:hover{
+    transform:translateY(-3px);
+    box-shadow:0 10px 25px rgba(40,35,100,.08);
+    border-color:#dcd6fb;
+}
 
-    border-radius:13px;
-
+.result-icon{
+    width:54px;
+    height:54px;
+    border-radius:16px;
+    background:linear-gradient(135deg,#25b8ee,#7144f5);
+    color:white;
     display:flex;
     align-items:center;
     justify-content:center;
-
-    background:#eef2ff;
-
-    font-size:20px;
+    font-size:23px;
+    flex-shrink:0;
 }
 
-.semester-name strong{
-    display:block;
-
-    font-size:14px;
-
-    font-weight:800;
+.result-info{
+    flex:1;
+    min-width:0;
 }
 
-.semester-name span{
+.result-info strong{
     display:block;
+    font-size:13.5px;
+    color:#27304b;
+}
 
+.result-info span{
+    display:block;
     margin-top:3px;
-
-    font-size:10px;
-
-    color:#929ab4;
+    color:#9aa2b9;
+    font-size:10.5px;
 }
 
-.sgpa{
-    text-align:right;
+.result-meta{
+    display:flex;
+    gap:6px;
+    margin-top:8px;
+    flex-wrap:wrap;
 }
 
-.sgpa strong{
-    display:block;
-
-    font-size:21px;
-
-    color:#6244d6;
-}
-
-.sgpa span{
-    display:block;
-
+.result-tag{
+    padding:4px 9px;
+    border-radius:20px;
+    background:#edf8ff;
+    color:#238acb;
     font-size:9px;
-
-    color:#999fb5;
-}
-
-.progress{
-    width:100%;
-    height:8px;
-
-    border-radius:10px;
-
-    overflow:hidden;
-
-    background:#edf0f8;
-}
-
-.progress-bar{
-    height:100%;
-
-    border-radius:10px;
-
-    background:
-    linear-gradient(
-        90deg,
-        #24b8f1,
-        #7044ee
-    );
-}
-
-
-/* =========================================================
-   TABLE
-========================================================= */
-
-.table-wrapper{
-    width:100%;
-
-    overflow-x:auto;
-}
-
-.results-table{
-    width:100%;
-
-    border-collapse:collapse;
-}
-
-.results-table th{
-    padding:12px;
-
-    text-align:left;
-
-    font-size:10px;
-
-    font-weight:750;
-
-    color:#8790ac;
-
-    background:#f8f9fd;
-}
-
-.results-table td{
-    padding:13px 12px;
-
-    border-bottom:
-    1px solid #edf0f6;
-
-    font-size:12px;
-
-    color:#66708e;
-}
-
-.results-table tr:last-child td{
-    border-bottom:none;
-}
-
-.subject{
-    color:#202b4b !important;
-
     font-weight:700;
 }
 
-.grade{
-    display:inline-flex;
+.grade-box{
+    width:60px;
+    text-align:center;
+    flex-shrink:0;
+    padding:9px 6px;
+    border-radius:13px;
+    background:#f0f3ff;
+}
 
-    min-width:32px;
-    height:28px;
-
-    align-items:center;
-    justify-content:center;
-
-    border-radius:8px;
-
-    background:#eef2ff;
-
-    color:#6244d6;
-
-    font-size:11px;
-
+.grade-box strong{
+    display:block;
+    color:#3063df;
+    font-size:21px;
     font-weight:800;
 }
 
+.grade-box span{
+    display:block;
+    color:#9aa2b9;
+    font-size:8.5px;
+    margin-top:3px;
+}
 
-/* =========================================================
+/* =====================================================
+   PERFORMANCE CARDS
+===================================================== */
+
+.performance-grid{
+    display:grid;
+    grid-template-columns:repeat(5,minmax(0,1fr));
+    gap:12px;
+}
+
+.performance-card{
+    padding:15px;
+    border:1px solid #eceef5;
+    border-radius:13px;
+    background:#fafbff;
+    transition:.2s;
+    cursor:pointer;
+}
+
+.performance-card:hover{
+    transform:translateY(-3px);
+    box-shadow:0 8px 20px rgba(40,35,100,.08);
+}
+
+.performance-card > span{
+    display:block;
+    color:#9299ae;
+    font-size:10px;
+}
+
+.performance-card > strong{
+    display:block;
+    margin-top:5px;
+    color:#39425e;
+    font-size:23px;
+}
+
+.performance-card small{
+    display:block;
+    margin-top:6px;
+    color:#9aa2b9;
+    font-size:9px;
+}
+
+.performance-bar{
+    height:7px;
+    background:#e9ecf7;
+    border-radius:20px;
+    margin-top:10px;
+    overflow:hidden;
+}
+
+.performance-bar i{
+    display:block;
+    height:100%;
+    border-radius:20px;
+    background:linear-gradient(
+        90deg,
+        #22b9f5,
+        #6942f4
+    );
+}
+
+.empty-note{
+    padding:25px 5px;
+    text-align:center;
+    color:#9aa2b9;
+    font-size:12px;
+    grid-column:1/-1;
+}
+
+/* =====================================================
+   CHATBOT - EXACT FACULTY STYLE
+===================================================== */
+
+.chat-bubble{
+    position:fixed;
+    right:24px;
+    bottom:24px;
+    width:64px;
+    height:64px;
+    border-radius:50%;
+    background:linear-gradient(
+        135deg,
+        #6543e8,
+        #a855f7
+    );
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:30px;
+    color:white;
+    border:none;
+    cursor:pointer;
+    box-shadow:0 12px 30px rgba(101,67,232,.45);
+    z-index:9998;
+    transition:transform .2s ease;
+}
+
+.chat-bubble:hover{
+    transform:scale(1.08);
+}
+
+.chat-bubble::after{
+    content:"";
+    position:absolute;
+    top:4px;
+    right:4px;
+    width:12px;
+    height:12px;
+    border-radius:50%;
+    background:#ff4f8b;
+    border:2px solid white;
+}
+
+.chat-bubble.hide{
+    display:none;
+}
+
+.chatbot-panel{
+    position:fixed;
+    right:24px;
+    bottom:24px;
+    width:320px;
+    height:460px;
+    background:white;
+    border-radius:22px;
+    border:1px solid #e5e6f2;
+    box-shadow:0 20px 55px rgba(40,35,100,.25);
+    z-index:9999;
+    display:none;
+    flex-direction:column;
+    overflow:hidden;
+    animation:panelIn .2s ease;
+}
+
+.chatbot-panel.open{
+    display:flex;
+}
+
+@keyframes panelIn{
+    from{
+        opacity:0;
+        transform:translateY(20px) scale(.96);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+.chat-header{
+    min-height:70px;
+    flex-shrink:0;
+    padding:14px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    color:white;
+    background:linear-gradient(
+        135deg,
+        #29277d,
+        #7137d8
+    );
+}
+
+.chat-header-left{
+    display:flex;
+    align-items:center;
+}
+
+.robot-icon{
+    width:42px;
+    height:42px;
+    border-radius:12px;
+    background:rgba(255,255,255,.15);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+    margin-right:10px;
+}
+
+.chat-title strong{
+    display:block;
+    font-size:14px;
+}
+
+.chat-title span{
+    display:block;
+    font-size:9px;
+    margin-top:2px;
+    color:rgba(255,255,255,.78);
+}
+
+.online-dot{
+    display:inline-block;
+    width:7px;
+    height:7px;
+    background:#57e6a3;
+    border-radius:50%;
+    margin-right:4px;
+}
+
+.close-chat{
+    width:30px;
+    height:30px;
+    border:none;
+    border-radius:50%;
+    background:rgba(255,255,255,.15);
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.chat-body{
+    flex:1;
+    min-height:0;
+    padding:14px;
+    overflow-y:auto;
+    background:linear-gradient(
+        180deg,
+        #fafbff,
+        #f4f5fb
+    );
+}
+
+.bot-message{
+    background:white;
+    border:1px solid #e7e9f3;
+    border-radius:14px;
+    padding:11px;
+    margin-bottom:9px;
+    color:#65708d;
+    font-size:11px;
+    line-height:1.55;
+    box-shadow:0 5px 15px rgba(40,35,100,.04);
+}
+
+.user-message{
+    background:linear-gradient(
+        135deg,
+        #6241e8,
+        #7b3ee0
+    );
+    color:white;
+    padding:9px 12px;
+    border-radius:14px 14px 4px 14px;
+    margin:8px 0 8px 25px;
+    font-size:11px;
+    line-height:1.5;
+}
+
+.typing{
+    display:flex;
+    gap:4px;
+    width:52px;
+    padding:12px;
+    background:white;
+    border:1px solid #e7e9f3;
+    border-radius:14px;
+    margin-bottom:9px;
+}
+
+.typing i{
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:#b9bed4;
+    animation:blink 1s infinite;
+}
+
+.typing i:nth-child(2){
+    animation-delay:.2s;
+}
+
+.typing i:nth-child(3){
+    animation-delay:.4s;
+}
+
+@keyframes blink{
+    0%,100%{opacity:.3;}
+    50%{opacity:1;}
+}
+
+.quick-buttons{
+    display:flex;
+    gap:5px;
+    flex-wrap:wrap;
+    padding:8px 12px;
+    background:white;
+    border-top:1px solid #eceef5;
+}
+
+.quick-btn{
+    border:1px solid #e0e3f0;
+    background:white;
+    color:#6b54d9;
+    border-radius:20px;
+    padding:6px 9px;
+    font-size:9px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.quick-btn:hover{
+    background:#f0edff;
+}
+
+.chat-footer{
+    flex-shrink:0;
+    padding:10px;
+    background:white;
+    border-top:1px solid #eceef5;
+    display:flex;
+    gap:7px;
+}
+
+.chat-input{
+    flex:1;
+    min-width:0;
+    height:38px;
+    border:1px solid #e1e4ef;
+    border-radius:12px;
+    outline:none;
+    padding:0 11px;
+    font-size:11px;
+    color:#555e78;
+}
+
+.chat-input:focus{
+    border-color:#a99bf0;
+}
+
+.send-btn{
+    width:38px;
+    height:38px;
+    border:none;
+    border-radius:12px;
+    color:white;
+    background:linear-gradient(
+        135deg,
+        #6543e8,
+        #843de0
+    );
+    cursor:pointer;
+    font-size:16px;
+    transition:.2s;
+}
+
+.send-btn:hover{
+    transform:scale(1.05);
+}
+
+/* =====================================================
    MODAL
-========================================================= */
+===================================================== */
 
 .modal{
     position:fixed;
-
     inset:0;
-
+    background:rgba(20,25,65,.55);
     display:none;
     align-items:center;
     justify-content:center;
-
+    z-index:30000;
     padding:20px;
-
-    background:
-    rgba(20,24,60,.55);
-
-    z-index:20000;
 }
 
 .modal.show{
@@ -903,456 +999,127 @@ select{
 }
 
 .modal-box{
-    width:520px;
-    max-width:100%;
-
-    max-height:85vh;
-
+    width:min(500px,95%);
+    max-height:88vh;
     overflow-y:auto;
-
-    padding:24px;
-
     background:white;
-
     border-radius:20px;
-
-    box-shadow:
-    0 25px 70px rgba(0,0,0,.25);
+    padding:25px;
+    box-shadow:0 25px 70px rgba(20,25,70,.25);
+    animation:modalIn .2s ease;
 }
 
-.modal-header{
-    display:flex;
+@keyframes modalIn{
+    from{
+        opacity:0;
+        transform:translateY(15px) scale(.97);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
 
+.modal-top{
+    display:flex;
     align-items:center;
     justify-content:space-between;
-
-    margin-bottom:18px;
+    margin-bottom:20px;
 }
 
-.modal-header h3{
-    font-size:20px;
+.modal-top h3{
+    font-size:19px;
 }
 
 .close-btn{
-    width:36px;
-    height:36px;
-
+    width:35px;
+    height:35px;
     border:none;
-
-    border-radius:10px;
-
-    background:#f0f2f8;
-
-    cursor:pointer;
-
-    font-size:20px;
-}
-
-.modal-summary{
-    display:grid;
-
-    grid-template-columns:
-    repeat(3,1fr);
-
-    gap:10px;
-
-    margin-bottom:18px;
-}
-
-.modal-stat{
-    padding:13px;
-
-    text-align:center;
-
-    border-radius:12px;
-
-    background:#f7f8fd;
-}
-
-.modal-stat strong{
-    display:block;
-
-    font-size:20px;
-
-    color:#6244d6;
-}
-
-.modal-stat span{
-    display:block;
-
-    margin-top:3px;
-
-    font-size:9px;
-
-    color:#929ab4;
-}
-
-.modal-table{
-    width:100%;
-
-    border-collapse:collapse;
-}
-
-.modal-table th,
-.modal-table td{
-    padding:10px 7px;
-
-    text-align:left;
-
-    border-bottom:
-    1px solid #edf0f6;
-
-    font-size:11px;
-}
-
-.modal-table th{
-    color:#8b93aa;
-}
-
-.modal-table td{
-    color:#5d6682;
-}
-
-.modal-close{
-    width:100%;
-
-    height:42px;
-
-    margin-top:18px;
-
-    border:none;
-
-    border-radius:11px;
-
-    color:white;
-
-    font-size:12px;
-    font-weight:700;
-
-    cursor:pointer;
-
-    background:
-    linear-gradient(
-        135deg,
-        #633fe0,
-        #843de1
-    );
-}
-
-
-/* =========================================================
-   CHATBOT — SAME FLOATING STYLE AS FACULTY
-========================================================= */
-
-.chat-bubble{
-    position:fixed;
-
-    right:24px;
-    bottom:24px;
-
-    width:64px;
-    height:64px;
-
-    border:none;
-
     border-radius:50%;
+    background:#f0f2fa;
+    color:#68728d;
+    cursor:pointer;
+    font-size:18px;
+}
 
-    background:
-    linear-gradient(
+.modal-content{
+    color:#68728d;
+    font-size:12px;
+    line-height:1.7;
+}
+
+.modal-content p{
+    margin-bottom:6px;
+}
+
+.tip-box{
+    margin-top:12px;
+    padding:11px 13px;
+    border-radius:12px;
+    background:#f4f2ff;
+    color:#5d4fbe;
+    font-size:11px;
+    line-height:1.6;
+}
+
+.modal-buttons{
+    display:flex;
+    justify-content:flex-end;
+    gap:8px;
+    margin-top:18px;
+}
+
+.modal-btn{
+    border:none;
+    border-radius:10px;
+    padding:10px 15px;
+    cursor:pointer;
+    font-size:11px;
+    font-weight:700;
+}
+
+.modal-cancel{
+    background:#f0f2fa;
+    color:#68728d;
+}
+
+.modal-ok{
+    background:linear-gradient(
         135deg,
         #6543e8,
-        #a855f7
+        #843de0
     );
-
     color:white;
-
-    font-size:30px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    cursor:pointer;
-
-    box-shadow:
-    0 14px 30px rgba(86,55,210,.30);
-
-    z-index:9998;
-
-    transition:.2s;
 }
 
-/* RED DOT */
-
-.chat-bubble::after{
-    content:"";
-
-    position:absolute;
-
-    top:2px;
-    right:2px;
-
-    width:13px;
-    height:13px;
-
-    border-radius:50%;
-
-    background:#ff4f6d;
-
-    border:3px solid #f4f6ff;
-
-    box-shadow:
-    0 2px 6px rgba(255,79,109,.35);
-}
-
-.chat-bubble:hover{
-    transform:scale(1.05);
-}
-
-
-/* =========================================================
-   CHATBOT PANEL
-========================================================= */
-
-.chatbot-panel{
-    position:fixed;
-
-    right:24px;
-    bottom:24px;
-
-    width:320px;
-    height:460px;
-
-    display:none;
-    flex-direction:column;
-
-    background:white;
-
-    border:
-    1px solid #e7e9f3;
-
-    border-radius:22px;
-
-    overflow:hidden;
-
-    box-shadow:
-    0 20px 50px rgba(36,43,85,.20);
-
-    z-index:9999;
-}
-
-.chatbot-panel.open{
-    display:flex;
-}
-
-.chat-header{
-    padding:16px;
-
-    display:flex;
-    align-items:center;
-
-    gap:11px;
-
-    color:white;
-
-    background:
-    linear-gradient(
-        135deg,
-        #263b91,
-        #713de0
-    );
-}
-
-.chat-robot{
-    width:42px;
-    height:42px;
-
-    border-radius:13px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    font-size:23px;
-
-    background:
-    rgba(255,255,255,.15);
-}
-
-.chat-header strong{
-    display:block;
-
-    font-size:14px;
-}
-
-.chat-header span{
-    display:block;
-
-    margin-top:3px;
-
-    font-size:10px;
-
-    color:#d9ddff;
-}
-
-.chat-body{
-    flex:1;
-
-    padding:15px;
-
-    overflow-y:auto;
-
-    background:#f7f8fd;
-}
-
-.bot-message{
-    padding:11px 13px;
-
-    margin-bottom:10px;
-
-    border-radius:13px;
-
-    background:white;
-
-    font-size:12px;
-
-    line-height:1.5;
-
-    box-shadow:
-    0 4px 15px rgba(40,50,90,.05);
-}
-
-.user-message{
-    padding:11px 13px;
-
-    margin-bottom:10px;
-    margin-left:35px;
-
-    border-radius:13px;
-
-    background:#5b42dd;
-
-    color:white;
-
-    font-size:12px;
-}
-
-.quick-buttons{
-    display:flex;
-
-    flex-wrap:wrap;
-
-    gap:6px;
-
-    padding:8px 12px;
-
-    background:white;
-
-    border-top:
-    1px solid #e8eaf2;
-}
-
-.quick-btn{
-    border:
-    1px solid #dddff0;
-
-    background:white;
-
-    color:#6543df;
-
-    padding:7px 9px;
-
-    border-radius:15px;
-
-    font-size:9px;
-
-    cursor:pointer;
-}
-
-.chat-footer{
-    padding:10px;
-
-    display:flex;
-
-    gap:7px;
-
-    border-top:
-    1px solid #e8eaf2;
-}
-
-.chat-input{
-    flex:1;
-
-    min-width:0;
-
-    padding:10px 11px;
-
-    border:
-    1px solid #e0e4ef;
-
-    border-radius:10px;
-
-    outline:none;
-
-    font-size:11px;
-}
-
-.send-btn{
-    width:40px;
-
-    border:none;
-
-    border-radius:10px;
-
-    background:#633fe0;
-
-    color:white;
-
-    cursor:pointer;
-}
-
-
-/* =========================================================
+/* =====================================================
    TOAST
-========================================================= */
+===================================================== */
 
 .toast{
     position:fixed;
-
-    right:24px;
-    top:140px;
-
-    padding:12px 17px;
-
-    border-radius:11px;
-
+    left:50%;
+    bottom:25px;
+    transform:translateX(-50%) translateY(20px);
+    background:#29277d;
     color:white;
-
-    background:#20294a;
-
+    padding:12px 18px;
+    border-radius:12px;
     font-size:12px;
-
     opacity:0;
-
     pointer-events:none;
-
-    transform:translateY(-10px);
-
     transition:.3s;
-
-    z-index:30000;
+    z-index:40000;
 }
 
 .toast.show{
     opacity:1;
-
-    transform:translateY(0);
+    transform:translateX(-50%) translateY(0);
 }
 
-
-/* =========================================================
+/* =====================================================
    RESPONSIVE
-========================================================= */
+===================================================== */
 
 @media(max-width:1150px){
 
@@ -1366,22 +1133,12 @@ select{
     }
 
     .summary-grid{
-        grid-template-columns:
-        repeat(2,1fr);
+        grid-template-columns:repeat(2,minmax(0,1fr));
     }
 
-}
-
-@media(max-width:800px){
-
-    .semester-grid{
-        grid-template-columns:1fr;
+    .performance-grid{
+        grid-template-columns:repeat(3,minmax(0,1fr));
     }
-
-    .hero-result{
-        display:none;
-    }
-
 }
 
 @media(max-width:700px){
@@ -1391,14 +1148,9 @@ select{
         min-width:80px;
     }
 
-    .main-area{
-        margin-left:80px;
-    }
-
     .brand{
         justify-content:center;
-
-        padding:20px 10px;
+        padding:15px;
     }
 
     .brand-text,
@@ -1409,143 +1161,122 @@ select{
 
     .nav-item{
         justify-content:center;
-
         padding:0;
     }
 
     .nav-icon{
-        margin-right:0;
+        margin:0;
     }
 
-    .profile-info,
-    .time-box{
-        display:none;
-    }
-
-    .page-content{
-        padding:18px;
+    .main-area{
+        margin-left:80px;
     }
 
     .summary-grid{
         grid-template-columns:1fr;
     }
 
-    .page-heading{
-        align-items:flex-start;
-
+    .faculty-hero{
         flex-direction:column;
+        align-items:flex-start;
+        gap:20px;
     }
 
-    .results-hero{
-        padding:24px;
+    .results-grid{
+        grid-template-columns:1fr;
+    }
+
+    .performance-grid{
+        grid-template-columns:repeat(2,minmax(0,1fr));
     }
 
     .chatbot-panel{
         width:92vw;
-
         right:4vw;
         left:4vw;
-
-        bottom:20px;
     }
 
-}
+    .page-heading{
+        align-items:flex-start;
+        flex-direction:column;
+        gap:14px;
+    }
 
+    .card-tools{
+        width:100%;
+    }
+
+    .filter-select{
+        flex:1;
+    }
+}
 </style>
 </head>
 
-
 <body>
 
-
-<!-- =========================================================
+<!-- =====================================================
      SIDEBAR
-========================================================= -->
+===================================================== -->
 
 <aside class="sidebar">
 
     <div class="brand">
-
-        <div class="logo-box">
-            🎓
-        </div>
+        <div class="logo-box">🎓</div>
 
         <div class="brand-text">
-
-            <div class="brand-title">
-                CampusConnect
-            </div>
-
-            <div class="brand-subtitle">
-                AI College Companion
-            </div>
-
+            <div class="brand-title">CampusConnect</div>
+            <div class="brand-subtitle">AI College Companion</div>
         </div>
-
     </div>
 
+    <div class="menu">
 
-    <nav class="menu">
-
-        <div class="menu-title">
-            MAIN MENU
-        </div>
-
+        <div class="menu-title">MAIN MENU</div>
 
         <a class="nav-item" href="../dashboard.html">
             <span class="nav-icon">🏠</span>
             <span class="nav-text">Dashboard</span>
         </a>
 
-
         <a class="nav-item" href="courses.html">
             <span class="nav-icon">📚</span>
             <span class="nav-text">Courses</span>
         </a>
-
 
         <a class="nav-item" href="timetable.html">
             <span class="nav-icon">🗓️</span>
             <span class="nav-text">Timetable</span>
         </a>
 
-
         <a class="nav-item" href="assignments.html">
             <span class="nav-icon">📝</span>
             <span class="nav-text">Assignments</span>
         </a>
-
 
         <a class="nav-item" href="attendance.html">
             <span class="nav-icon">📊</span>
             <span class="nav-text">Attendance</span>
         </a>
 
-
         <a class="nav-item" href="academics.html">
             <span class="nav-icon">🎓</span>
             <span class="nav-text">Academics</span>
         </a>
 
-
         <a class="nav-item" href="faculty.html">
-            <span class="nav-icon">👩‍🏫</span>
+            <span class="nav-icon">👨‍🏫</span>
             <span class="nav-text">Faculty</span>
         </a>
 
-
         <div class="menu-section">
 
-            <div class="menu-title">
-                CAREER
-            </div>
-
+            <div class="menu-title">CAREER</div>
 
             <a class="nav-item" href="placement.html">
                 <span class="nav-icon">💼</span>
                 <span class="nav-text">Placement</span>
             </a>
-
 
             <a class="nav-item active" href="results.html">
                 <span class="nav-icon">📈</span>
@@ -1554,55 +1285,44 @@ select{
 
         </div>
 
-
         <div class="menu-section">
 
-            <div class="menu-title">
-                CAMPUS
-            </div>
-
+            <div class="menu-title">CAMPUS</div>
 
             <a class="nav-item" href="documents.html">
                 <span class="nav-icon">📄</span>
                 <span class="nav-text">Documents</span>
             </a>
 
-
             <a class="nav-item" href="complaints.html">
                 <span class="nav-icon">📢</span>
                 <span class="nav-text">Complaints</span>
             </a>
-
 
             <a class="nav-item" href="feedback.html">
                 <span class="nav-icon">💬</span>
                 <span class="nav-text">Feedback</span>
             </a>
 
-
-            <a class="nav-item" href="lost-found.html">
+            <a class="nav-item" href="lost_found.html">
                 <span class="nav-icon">🔎</span>
-                <span class="nav-text">Lost & Found</span>
+                <span class="nav-text">Lost &amp; Found</span>
             </a>
-
 
             <a class="nav-item" href="campus.html">
                 <span class="nav-icon">🏫</span>
                 <span class="nav-text">Campus</span>
             </a>
 
-
             <a class="nav-item" href="events.html">
                 <span class="nav-icon">🎉</span>
                 <span class="nav-text">Events</span>
             </a>
 
-
             <a class="nav-item" href="exams.html">
                 <span class="nav-icon">📋</span>
                 <span class="nav-text">Exams</span>
             </a>
-
 
             <a class="nav-item" href="notifications.html">
                 <span class="nav-icon">🔔</span>
@@ -1611,779 +1331,397 @@ select{
 
         </div>
 
-
         <div class="menu-section">
 
-            <div class="menu-title">
-                ACCOUNT
-            </div>
-
+            <div class="menu-title">ACCOUNT</div>
 
             <a class="nav-item" href="profile.html">
                 <span class="nav-icon">👤</span>
                 <span class="nav-text">Profile</span>
             </a>
 
-
             <a class="nav-item" href="settings.html">
                 <span class="nav-icon">⚙️</span>
                 <span class="nav-text">Settings</span>
             </a>
 
-
-            <a
-                class="nav-item logout"
-                href="#"
-                onclick="logoutUser(event)">
-
-                <span class="nav-icon">🚪</span>
-                <span class="nav-text">Logout</span>
-
-            </a>
+            <div class="logout">
+                <a class="nav-item" href="../index.html" onclick="return confirmLogout()">
+                    <span class="nav-icon">🚪</span>
+                    <span class="nav-text">Logout</span>
+                </a>
+            </div>
 
         </div>
 
-    </nav>
+    </div>
 
 </aside>
 
 
-
-<!-- =========================================================
-     MAIN
-========================================================= -->
+<!-- =====================================================
+     MAIN AREA
+===================================================== -->
 
 <main class="main-area">
 
+    <header class="top-header">
 
-<header class="top-header">
+        <div class="header-left">
+            <h1>Academic<br>Results</h1>
+            <p>View your semester results, marks and academic performance</p>
+        </div>
 
-    <div class="header-left">
+        <div class="header-right">
 
-        <h1>
-            Results
-        </h1>
+            <div class="time-box" id="clock">
+                6:00 PM
+            </div>
 
-        <p>
-            View your semester results and academic performance
-        </p>
+            <div class="notification" onclick="showNotifications()">
+                🔔
+            </div>
+
+            <div class="profile-mini">
+
+                <div class="profile-circle">
+                    P
+                </div>
+
+                <div class="profile-info">
+                    <strong>Student</strong>
+                    <span>BCA &bull; 5th Sem</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <div class="page-content">
+
+        <div class="page-heading">
+
+            <div>
+                <h2>📈 Results Overview</h2>
+
+                <p>
+                    Check semester-wise marks, grades, SGPA and your overall academic performance.
+                </p>
+            </div>
+
+            <button
+                class="heading-btn"
+                onclick="downloadResults()">
+                Download Results
+            </button>
+
+        </div>
+
+
+        <!-- HERO -->
+
+        <section class="faculty-hero">
+
+            <div class="hero-content">
+
+                <h3 id="heroTitle">
+                    Your academic performance at a glance 🎓
+                </h3>
+
+                <p id="heroText">
+                    Review your latest semester results, subject-wise marks and grade points.
+                    Select a semester below to explore your performance.
+                </p>
+
+            </div>
+
+            <div class="hero-action">
+
+                <div class="stat-box">
+                    <strong id="currentSGPA">0.0</strong>
+                    <span>Current SGPA</span>
+                </div>
+
+                <div class="stat-box">
+                    <strong id="overallCGPA">0.0</strong>
+                    <span>Overall CGPA</span>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- SUMMARY CARDS -->
+
+        <section class="summary-grid">
+
+            <div
+                class="summary-card"
+                onclick="showSummary('credits')">
+
+                <div class="summary-top">
+
+                    <div class="summary-title">
+                        TOTAL CREDITS
+                    </div>
+
+                    <div class="summary-icon">
+                        🎓
+                    </div>
+
+                </div>
+
+                <div
+                    class="summary-number"
+                    id="statCredits">
+                    0
+                </div>
+
+                <div class="summary-small">
+                    Credits completed
+                </div>
+
+            </div>
+
+
+            <div
+                class="summary-card"
+                onclick="showSummary('subjects')">
+
+                <div class="summary-top">
+
+                    <div class="summary-title">
+                        SUBJECTS
+                    </div>
+
+                    <div class="summary-icon">
+                        📚
+                    </div>
+
+                </div>
+
+                <div
+                    class="summary-number"
+                    id="statSubjects">
+                    0
+                </div>
+
+                <div class="summary-small">
+                    Current semester
+                </div>
+
+            </div>
+
+
+            <div
+                class="summary-card"
+                onclick="showSummary('passed')">
+
+                <div class="summary-top">
+
+                    <div class="summary-title">
+                        PASSED
+                    </div>
+
+                    <div class="summary-icon">
+                        ✅
+                    </div>
+
+                </div>
+
+                <div
+                    class="summary-number"
+                    id="statPassed">
+                    0
+                </div>
+
+                <div class="summary-small">
+                    Subjects cleared
+                </div>
+
+            </div>
+
+
+            <div
+                class="summary-card"
+                onclick="showSummary('percentage')">
+
+                <div class="summary-top">
+
+                    <div class="summary-title">
+                        PERCENTAGE
+                    </div>
+
+                    <div class="summary-icon">
+                        ⭐
+                    </div>
+
+                </div>
+
+                <div
+                    class="summary-number"
+                    id="statPercentage">
+                    0%
+                </div>
+
+                <div class="summary-small">
+                    Current semester
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- RESULTS -->
+
+        <section class="content-card">
+
+            <div class="card-heading">
+
+                <h3>
+                    Semester Results
+                </h3>
+
+                <div class="card-tools">
+
+                    <select
+                        class="filter-select"
+                        id="semesterFilter"
+                        onchange="renderResults()">
+
+                        <option value="all">
+                            All Semesters
+                        </option>
+
+                    </select>
+
+
+                    <select
+                        class="filter-select"
+                        id="gradeFilter"
+                        onchange="renderResults()">
+
+                        <option value="all">
+                            All Grades
+                        </option>
+
+                        <option value="O">
+                            O Grade
+                        </option>
+
+                        <option value="A+">
+                            A+ Grade
+                        </option>
+
+                        <option value="A">
+                            A Grade
+                        </option>
+
+                        <option value="B+">
+                            B+ Grade
+                        </option>
+
+                        <option value="B">
+                            B Grade
+                        </option>
+
+                        <option value="C">
+                            C Grade
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+            <div
+                class="results-grid"
+                id="resultsList">
+            </div>
+
+        </section>
+
+
+        <!-- PERFORMANCE -->
+
+        <section class="content-card">
+
+            <div class="card-heading">
+
+                <h3>
+                    Semester Performance
+                </h3>
+
+                <button
+                    class="filter-select"
+                    onclick="showPerformance()">
+                    View Details
+                </button>
+
+            </div>
+
+            <div
+                class="performance-grid"
+                id="performanceGrid">
+            </div>
+
+        </section>
 
     </div>
 
-
-    <div class="header-right">
-
-        <div
-            class="time-box"
-            id="clock">
-        </div>
+</main>
 
 
-        <div
-            class="notification"
-            onclick="showToast('You have new result notifications 🔔')">
+<!-- =====================================================
+     CHATBOT
+===================================================== -->
 
-            🔔
+<button
+    class="chat-bubble"
+    id="chatBubble"
+    onclick="openChatPanel()">
+    🤖
+</button>
 
-        </div>
 
+<div
+    class="chatbot-panel"
+    id="chatbotPanel">
 
-        <div class="profile">
+    <div class="chat-header">
 
-            <div class="profile-circle">
-                P
+        <div class="chat-header-left">
+
+            <div class="robot-icon">
+                🤖
             </div>
 
-            <div class="profile-info">
+            <div class="chat-title">
 
                 <strong>
-                    Student
+                    AI College Companion
                 </strong>
 
                 <span>
-                    BCA • 5th Sem
+                    <i class="online-dot"></i>
+                    Online • Ready to help
                 </span>
 
             </div>
 
         </div>
 
-    </div>
-
-</header>
-
-
-
-<section class="page-content">
-
-
-<!-- PAGE HEADING -->
-
-<div class="page-heading">
-
-    <div>
-
-        <h2>
-            📈 Academic Results
-        </h2>
-
-        <p>
-            Track your semester performance, SGPA and overall CGPA.
-        </p>
-
-    </div>
-
-
-    <button
-        class="heading-btn"
-        onclick="showToast('Your result information is up to date')">
-
-        Result Summary
-
-    </button>
-
-</div>
-
-
-
-<!-- HERO -->
-
-<div class="results-hero">
-
-    <div class="hero-content">
-
-        <h2>
-            Your Academic Performance 🎓
-        </h2>
-
-        <p>
-            Review your semester results, grades, credits and academic progress.
-        </p>
-
-    </div>
-
-
-    <div class="hero-result">
-
-        <strong>
-            8.6
-        </strong>
-
-        <span>
-            Current CGPA
-        </span>
-
-    </div>
-
-</div>
-
-
-
-<!-- SUMMARY -->
-
-<div class="summary-grid">
-
-
-    <div class="summary-card">
-
-        <div class="summary-top">
-
-            <span class="summary-label">
-                CURRENT CGPA
-            </span>
-
-            <div class="summary-icon">
-                🎓
-            </div>
-
-        </div>
-
-        <div class="summary-number">
-            8.6
-        </div>
-
-        <small>
-            Overall academic performance
-        </small>
-
-    </div>
-
-
-
-    <div class="summary-card">
-
-        <div class="summary-top">
-
-            <span class="summary-label">
-                BEST SGPA
-            </span>
-
-            <div class="summary-icon">
-                ⭐
-            </div>
-
-        </div>
-
-        <div class="summary-number">
-            8.6
-        </div>
-
-        <small>
-            Highest semester score
-        </small>
-
-    </div>
-
-
-
-    <div class="summary-card">
-
-        <div class="summary-top">
-
-            <span class="summary-label">
-                CREDITS EARNED
-            </span>
-
-            <div class="summary-icon">
-                📚
-            </div>
-
-        </div>
-
-        <div class="summary-number">
-            84
-        </div>
-
-        <small>
-            Completed credits
-        </small>
-
-    </div>
-
-
-
-    <div class="summary-card">
-
-        <div class="summary-top">
-
-            <span class="summary-label">
-                BACKLOGS
-            </span>
-
-            <div class="summary-icon">
-                ✅
-            </div>
-
-        </div>
-
-        <div class="summary-number">
-            0
-        </div>
-
-        <small>
-            No pending subjects
-        </small>
-
-    </div>
-
-</div>
-
-
-
-<!-- SEMESTER RESULTS -->
-
-<div class="content-card">
-
-    <div class="card-heading">
-
-        <div>
-
-            <h3>
-                Semester Performance
-            </h3>
-
-            <p>
-                Click a semester to view detailed marks and grades.
-            </p>
-
-        </div>
-
-
-        <select
-            class="filter-select"
-            id="semesterFilter"
-            onchange="filterSemester()">
-
-            <option value="all">
-                All Semesters
-            </option>
-
-            <option value="1">
-                Semester 1
-            </option>
-
-            <option value="2">
-                Semester 2
-            </option>
-
-            <option value="3">
-                Semester 3
-            </option>
-
-            <option value="4">
-                Semester 4
-            </option>
-
-        </select>
-
-    </div>
-
-
-
-    <div
-        class="semester-grid"
-        id="semesterList">
-
-
-        <!-- SEMESTER 1 -->
-
-        <div
-            class="semester-card"
-            data-semester="1"
-            onclick="openSemester(0)">
-
-            <div class="semester-top">
-
-                <div class="semester-left">
-
-                    <div class="semester-icon">
-                        📘
-                    </div>
-
-                    <div class="semester-name">
-
-                        <strong>
-                            Semester 1
-                        </strong>
-
-                        <span>
-                            2024 - 2025
-                        </span>
-
-                    </div>
-
-                </div>
-
-
-                <div class="sgpa">
-
-                    <strong>
-                        8.1
-                    </strong>
-
-                    <span>
-                        SGPA
-                    </span>
-
-                </div>
-
-            </div>
-
-
-            <div class="progress">
-
-                <div
-                    class="progress-bar"
-                    style="width:81%">
-                </div>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- SEMESTER 2 -->
-
-        <div
-            class="semester-card"
-            data-semester="2"
-            onclick="openSemester(1)">
-
-            <div class="semester-top">
-
-                <div class="semester-left">
-
-                    <div class="semester-icon">
-                        📗
-                    </div>
-
-                    <div class="semester-name">
-
-                        <strong>
-                            Semester 2
-                        </strong>
-
-                        <span>
-                            2024 - 2025
-                        </span>
-
-                    </div>
-
-                </div>
-
-
-                <div class="sgpa">
-
-                    <strong>
-                        8.3
-                    </strong>
-
-                    <span>
-                        SGPA
-                    </span>
-
-                </div>
-
-            </div>
-
-
-            <div class="progress">
-
-                <div
-                    class="progress-bar"
-                    style="width:83%">
-                </div>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- SEMESTER 3 -->
-
-        <div
-            class="semester-card"
-            data-semester="3"
-            onclick="openSemester(2)">
-
-            <div class="semester-top">
-
-                <div class="semester-left">
-
-                    <div class="semester-icon">
-                        📙
-                    </div>
-
-                    <div class="semester-name">
-
-                        <strong>
-                            Semester 3
-                        </strong>
-
-                        <span>
-                            2025 - 2026
-                        </span>
-
-                    </div>
-
-                </div>
-
-
-                <div class="sgpa">
-
-                    <strong>
-                        8.5
-                    </strong>
-
-                    <span>
-                        SGPA
-                    </span>
-
-                </div>
-
-            </div>
-
-
-            <div class="progress">
-
-                <div
-                    class="progress-bar"
-                    style="width:85%">
-                </div>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- SEMESTER 4 -->
-
-        <div
-            class="semester-card"
-            data-semester="4"
-            onclick="openSemester(3)">
-
-            <div class="semester-top">
-
-                <div class="semester-left">
-
-                    <div class="semester-icon">
-                        📕
-                    </div>
-
-                    <div class="semester-name">
-
-                        <strong>
-                            Semester 4
-                        </strong>
-
-                        <span>
-                            2025 - 2026
-                        </span>
-
-                    </div>
-
-                </div>
-
-
-                <div class="sgpa">
-
-                    <strong>
-                        8.6
-                    </strong>
-
-                    <span>
-                        SGPA
-                    </span>
-
-                </div>
-
-            </div>
-
-
-            <div class="progress">
-
-                <div
-                    class="progress-bar"
-                    style="width:86%">
-                </div>
-
-            </div>
-
-        </div>
-
-
-    </div>
-
-
-
-    <!-- SUBJECT RESULTS -->
-
-    <div class="table-wrapper">
-
-        <table class="results-table">
-
-            <thead>
-
-                <tr>
-
-                    <th>
-                        SUBJECT
-                    </th>
-
-                    <th>
-                        MARKS
-                    </th>
-
-                    <th>
-                        GRADE
-                    </th>
-
-                    <th>
-                        CREDITS
-                    </th>
-
-                </tr>
-
-            </thead>
-
-
-            <tbody>
-
-
-                <tr>
-
-                    <td class="subject">
-                        Database Management System
-                    </td>
-
-                    <td>
-                        92 / 100
-                    </td>
-
-                    <td>
-                        <span class="grade">
-                            A
-                        </span>
-                    </td>
-
-                    <td>
-                        4
-                    </td>
-
-                </tr>
-
-
-                <tr>
-
-                    <td class="subject">
-                        Web Programming
-                    </td>
-
-                    <td>
-                        90 / 100
-                    </td>
-
-                    <td>
-                        <span class="grade">
-                            A
-                        </span>
-                    </td>
-
-                    <td>
-                        4
-                    </td>
-
-                </tr>
-
-
-                <tr>
-
-                    <td class="subject">
-                        Software Engineering
-                    </td>
-
-                    <td>
-                        87 / 100
-                    </td>
-
-                    <td>
-                        <span class="grade">
-                            A
-                        </span>
-                    </td>
-
-                    <td>
-                        4
-                    </td>
-
-                </tr>
-
-
-                <tr>
-
-                    <td class="subject">
-                        Computer Networks
-                    </td>
-
-                    <td>
-                        82 / 100
-                    </td>
-
-                    <td>
-                        <span class="grade">
-                            B
-                        </span>
-                    </td>
-
-                    <td>
-                        4
-                    </td>
-
-                </tr>
-
-
-                <tr>
-
-                    <td class="subject">
-                        Mathematics
-                    </td>
-
-                    <td>
-                        78 / 100
-                    </td>
-
-                    <td>
-                        <span class="grade">
-                            B
-                        </span>
-                    </td>
-
-                    <td>
-                        4
-                    </td>
-
-                </tr>
-
-
-            </tbody>
-
-        </table>
-
-    </div>
-
-</div>
-
-
-</section>
-
-</main>
-
-
-
-<!-- =========================================================
-     CHATBOT FLOATING BUTTON
-========================================================= -->
-
-<button
-    class="chat-bubble"
-    onclick="toggleChat()">
-
-    🤖
-
-</button>
-
-
-
-<!-- =========================================================
-     CHATBOT PANEL
-========================================================= -->
-
-<div
-    class="chatbot-panel"
-    id="chatbotPanel">
-
-
-    <div class="chat-header">
-
-        <div class="chat-robot">
-            🤖
-        </div>
-
-        <div>
-
-            <strong>
-                CampusConnect AI
-            </strong>
-
-            <span>
-                ● College Companion
-            </span>
-
-        </div>
+        <button
+            class="close-chat"
+            onclick="closeChatPanel()">
+            ×
+        </button>
 
     </div>
 
@@ -2393,27 +1731,9 @@ select{
         id="chatBody">
 
         <div class="bot-message">
-
-            Hi! 👋<br><br>
-
-            I'm your
-            <b>CampusConnect AI College Companion</b>.
-
-            I can help you understand your
-            <b>SGPA, CGPA, credits, backlogs and semester results.</b>
-
-        </div>
-
-
-        <div class="bot-message">
-
-            Try asking me:<br><br>
-
-            • What is my CGPA?<br>
-            • Which semester is best?<br>
-            • How many credits do I have?<br>
-            • Do I have any backlogs?
-
+            👋 Hi! I'm your
+            <strong>AI College Companion.</strong>
+            Ask me about your SGPA, CGPA, marks, grades or semester results.
         </div>
 
     </div>
@@ -2423,28 +1743,26 @@ select{
 
         <button
             class="quick-btn"
-            onclick="quickChat('CGPA')">
-
+            onclick="quickChat('What is my CGPA?')">
             My CGPA
-
         </button>
-
 
         <button
             class="quick-btn"
-            onclick="quickChat('best semester')">
-
-            Best Semester
-
+            onclick="quickChat('Show my latest result')">
+            Latest Result
         </button>
-
 
         <button
             class="quick-btn"
-            onclick="quickChat('backlogs')">
+            onclick="quickChat('Which subjects did I pass?')">
+            Passed Subjects
+        </button>
 
-            Backlogs
-
+        <button
+            class="quick-btn"
+            onclick="quickChat('Show my SGPA')">
+            My SGPA
         </button>
 
     </div>
@@ -2453,18 +1771,16 @@ select{
     <div class="chat-footer">
 
         <input
-            type="text"
             id="chatInput"
             class="chat-input"
-            placeholder="Ask CampusConnect AI..."
-        >
+            type="text"
+            placeholder="Ask your companion..."
+            onkeydown="handleChatKey(event)">
 
         <button
             class="send-btn"
-            onclick="sendMessage()">
-
+            onclick="sendChat()">
             ➤
-
         </button>
 
     </div>
@@ -2472,756 +1788,1317 @@ select{
 </div>
 
 
-
-<!-- =========================================================
-     RESULT MODAL
-========================================================= -->
+<!-- =====================================================
+     MODAL
+===================================================== -->
 
 <div
     class="modal"
-    id="resultModal">
-
+    id="resultsModal"
+    onclick="closeModalOutside(event)">
 
     <div class="modal-box">
 
-
-        <div class="modal-header">
+        <div class="modal-top">
 
             <h3 id="modalTitle">
-                Semester 1 Results
+                📈 Result Details
             </h3>
-
 
             <button
                 class="close-btn"
                 onclick="closeModal()">
-
                 ×
-
             </button>
 
         </div>
 
-
-        <div class="modal-summary">
-
-
-            <div class="modal-stat">
-
-                <strong id="modalSGPA">
-                    8.1
-                </strong>
-
-                <span>
-                    SGPA
-                </span>
-
-            </div>
-
-
-            <div class="modal-stat">
-
-                <strong id="modalCredits">
-                    21
-                </strong>
-
-                <span>
-                    Credits
-                </span>
-
-            </div>
-
-
-            <div class="modal-stat">
-
-                <strong id="modalPercentage">
-                    81%
-                </strong>
-
-                <span>
-                    Percentage
-                </span>
-
-            </div>
-
+        <div
+            class="modal-content"
+            id="modalContent">
         </div>
 
+        <div class="modal-buttons">
 
-        <table class="modal-table">
+            <button
+                class="modal-btn modal-cancel"
+                onclick="closeModal()">
+                Close
+            </button>
 
-            <thead>
+            <button
+                class="modal-btn modal-ok"
+                onclick="downloadResults()">
+                Download Results
+            </button>
 
-                <tr>
-
-                    <th>
-                        Subject
-                    </th>
-
-                    <th>
-                        Marks
-                    </th>
-
-                    <th>
-                        Grade
-                    </th>
-
-                </tr>
-
-            </thead>
-
-
-            <tbody id="modalSubjects">
-            </tbody>
-
-        </table>
-
-
-        <button
-            class="modal-close"
-            onclick="closeModal()">
-
-            Close
-
-        </button>
+        </div>
 
     </div>
 
 </div>
 
 
+<!-- TOAST -->
 
 <div
     class="toast"
     id="toast">
-
+    Done
 </div>
-
 
 
 <script>
 
-/* =========================================================
-   SEMESTER DATA
-========================================================= */
+/* =====================================================
+   RESULTS DATA
+===================================================== */
 
-const semesters = [
+const RESULTS = [
 
     {
-        name:"Semester 1",
-        year:"2024 - 2025",
-        sgpa:"8.1",
-        credits:"21",
-        percentage:"81%",
-        subjects:[
-            ["Programming in C","84","A"],
-            ["Mathematics","78","B"],
-            ["Digital Electronics","82","A"],
-            ["Data Structures","86","A"],
-            ["Computer Fundamentals","80","A"]
-        ]
+        semester:"1st Semester",
+        subject:"Programming in C",
+        code:"BCA101",
+        marks:88,
+        max:100,
+        grade:"A+",
+        gradePoint:9,
+        credits:4
+    },
+
+    {
+        semester:"1st Semester",
+        subject:"Digital Fundamentals",
+        code:"BCA102",
+        marks:82,
+        max:100,
+        grade:"A",
+        gradePoint:8,
+        credits:4
+    },
+
+    {
+        semester:"1st Semester",
+        subject:"Mathematics I",
+        code:"BCA103",
+        marks:76,
+        max:100,
+        grade:"A",
+        gradePoint:8,
+        credits:4
+    },
+
+    {
+        semester:"1st Semester",
+        subject:"English",
+        code:"BCA104",
+        marks:91,
+        max:100,
+        grade:"O",
+        gradePoint:10,
+        credits:3
+    },
+
+    {
+        semester:"1st Semester",
+        subject:"Computer Fundamentals Lab",
+        code:"BCA105",
+        marks:94,
+        max:100,
+        grade:"O",
+        gradePoint:10,
+        credits:2
     },
 
 
     {
-        name:"Semester 2",
-        year:"2024 - 2025",
-        sgpa:"8.3",
-        credits:"21",
-        percentage:"83%",
-        subjects:[
-            ["Object Oriented Programming","87","A"],
-            ["Database Systems","90","A"],
-            ["Operating Systems","82","B"],
-            ["Mathematics II","80","A"],
-            ["Web Technology","85","A"]
-        ]
+        semester:"2nd Semester",
+        subject:"Data Structures",
+        code:"BCA201",
+        marks:86,
+        max:100,
+        grade:"A+",
+        gradePoint:9,
+        credits:4
+    },
+
+    {
+        semester:"2nd Semester",
+        subject:"Object Oriented Programming",
+        code:"BCA202",
+        marks:84,
+        max:100,
+        grade:"A",
+        gradePoint:8,
+        credits:4
+    },
+
+    {
+        semester:"2nd Semester",
+        subject:"Mathematics II",
+        code:"BCA203",
+        marks:79,
+        max:100,
+        grade:"A",
+        gradePoint:8,
+        credits:4
+    },
+
+    {
+        semester:"2nd Semester",
+        subject:"Database Fundamentals",
+        code:"BCA204",
+        marks:90,
+        max:100,
+        grade:"O",
+        gradePoint:10,
+        credits:3
+    },
+
+    {
+        semester:"2nd Semester",
+        subject:"Programming Lab",
+        code:"BCA205",
+        marks:92,
+        max:100,
+        grade:"O",
+        gradePoint:10,
+        credits:2
     },
 
 
     {
-        name:"Semester 3",
-        year:"2025 - 2026",
-        sgpa:"8.5",
-        credits:"21",
-        percentage:"85%",
-        subjects:[
-            ["Database Management System","92","A"],
-            ["Software Engineering","87","A"],
-            ["Computer Networks","82","B"],
-            ["Artificial Intelligence","80","A"],
-            ["Web Programming","90","A"]
-        ]
+        semester:"3rd Semester",
+        subject:"Database Management System",
+        code:"BCA301",
+        marks:89,
+        max:100,
+        grade:"A+",
+        gradePoint:9,
+        credits:4
+    },
+
+    {
+        semester:"3rd Semester",
+        subject:"Web Programming",
+        code:"BCA302",
+        marks:87,
+        max:100,
+        grade:"A+",
+        gradePoint:9,
+        credits:4
+    },
+
+    {
+        semester:"3rd Semester",
+        subject:"Computer Networks",
+        code:"BCA303",
+        marks:81,
+        max:100,
+        grade:"A",
+        gradePoint:8,
+        credits:4
+    },
+
+    {
+        semester:"3rd Semester",
+        subject:"Operating Systems",
+        code:"BCA304",
+        marks:85,
+        max:100,
+        grade:"A",
+        gradePoint:8,
+        credits:4
+    },
+
+    {
+        semester:"3rd Semester",
+        subject:"Web Programming Lab",
+        code:"BCA305",
+        marks:95,
+        max:100,
+        grade:"O",
+        gradePoint:10,
+        credits:2
     },
 
 
     {
-        name:"Semester 4",
-        year:"2025 - 2026",
-        sgpa:"8.6",
-        credits:"21",
-        percentage:"86%",
-        subjects:[
-            ["Database Management System","92","A"],
-            ["Web Programming","90","A"],
-            ["Software Engineering","87","A"],
-            ["Computer Networks","82","B"],
-            ["Mathematics","78","B"]
-        ]
+        semester:"4th Semester",
+        subject:"Software Engineering",
+        code:"BCA401",
+        marks:91,
+        max:100,
+        grade:"O",
+        gradePoint:10,
+        credits:4
+    },
+
+    {
+        semester:"4th Semester",
+        subject:"Artificial Intelligence",
+        code:"BCA402",
+        marks:88,
+        max:100,
+        grade:"A+",
+        gradePoint:9,
+        credits:4
+    },
+
+    {
+        semester:"4th Semester",
+        subject:"Computer Graphics",
+        code:"BCA403",
+        marks:84,
+        max:100,
+        grade:"A",
+        gradePoint:8,
+        credits:4
+    },
+
+    {
+        semester:"4th Semester",
+        subject:"Python Programming",
+        code:"BCA404",
+        marks:90,
+        max:100,
+        grade:"O",
+        gradePoint:10,
+        credits:4
+    },
+
+    {
+        semester:"4th Semester",
+        subject:"Python Lab",
+        code:"BCA405",
+        marks:93,
+        max:100,
+        grade:"O",
+        gradePoint:10,
+        credits:2
+    },
+
+
+    {
+        semester:"5th Semester",
+        subject:"Cloud Computing",
+        code:"BCA501",
+        marks:92,
+        max:100,
+        grade:"O",
+        gradePoint:10,
+        credits:4
+    },
+
+    {
+        semester:"5th Semester",
+        subject:"Machine Learning",
+        code:"BCA502",
+        marks:89,
+        max:100,
+        grade:"A+",
+        gradePoint:9,
+        credits:4
+    },
+
+    {
+        semester:"5th Semester",
+        subject:"Cyber Security",
+        code:"BCA503",
+        marks:86,
+        max:100,
+        grade:"A+",
+        gradePoint:9,
+        credits:4
+    },
+
+    {
+        semester:"5th Semester",
+        subject:"Mobile Application Development",
+        code:"BCA504",
+        marks:84,
+        max:100,
+        grade:"A",
+        gradePoint:8,
+        credits:4
+    },
+
+    {
+        semester:"5th Semester",
+        subject:"Project Work",
+        code:"BCA505",
+        marks:95,
+        max:100,
+        grade:"O",
+        gradePoint:10,
+        credits:3
     }
 
 ];
 
+const SEMESTERS = [
+    "1st Semester",
+    "2nd Semester",
+    "3rd Semester",
+    "4th Semester",
+    "5th Semester"
+];
 
-/* =========================================================
+
+/* =====================================================
+   RESULT HELPERS
+===================================================== */
+
+function semesterRows(semester){
+    return RESULTS.filter(function(r){
+        return r.semester === semester;
+    });
+}
+
+function semesterSGPA(semester){
+
+    const rows = semesterRows(semester);
+
+    const credits = rows.reduce(
+        function(sum,r){
+            return sum + r.credits;
+        },
+        0
+    );
+
+    if(!credits){
+        return "0.00";
+    }
+
+    const points = rows.reduce(
+        function(sum,r){
+            return sum + (r.gradePoint * r.credits);
+        },
+        0
+    );
+
+    return (points / credits).toFixed(2);
+}
+
+function overallCGPA(){
+
+    const credits = RESULTS.reduce(
+        function(sum,r){
+            return sum + r.credits;
+        },
+        0
+    );
+
+    const points = RESULTS.reduce(
+        function(sum,r){
+            return sum + (r.gradePoint * r.credits);
+        },
+        0
+    );
+
+    return (points / credits).toFixed(2);
+}
+
+function semesterPercentage(semester){
+
+    const rows = semesterRows(semester);
+
+    if(!rows.length){
+        return 0;
+    }
+
+    const marks = rows.reduce(
+        function(sum,r){
+            return sum + r.marks;
+        },
+        0
+    );
+
+    const max = rows.reduce(
+        function(sum,r){
+            return sum + r.max;
+        },
+        0
+    );
+
+    return Math.round((marks / max) * 100);
+}
+
+function latestSemester(){
+    return SEMESTERS[SEMESTERS.length - 1];
+}
+
+
+/* =====================================================
    CLOCK
-========================================================= */
+===================================================== */
 
 function updateClock(){
 
     const now = new Date();
 
-    let hours =
-        now.getHours();
+    let hours = now.getHours();
 
     const minutes =
-        String(
-            now.getMinutes()
-        ).padStart(2,"0");
+        String(now.getMinutes()).padStart(2,"0");
 
     const seconds =
-        String(
-            now.getSeconds()
-        ).padStart(2,"0");
+        String(now.getSeconds()).padStart(2,"0");
 
     const ampm =
-        hours >= 12
-            ? "PM"
-            : "AM";
+        hours >= 12 ? "PM" : "AM";
 
-    hours =
-        hours % 12 || 12;
+    hours = hours % 12 || 12;
 
-    document.getElementById("clock")
-        .textContent =
-        `${String(hours).padStart(2,"0")}:${minutes}:${seconds} ${ampm}`;
+    document.getElementById("clock").textContent =
+        hours +
+        ":" +
+        minutes +
+        ":" +
+        seconds +
+        " " +
+        ampm;
 }
 
 updateClock();
 
-setInterval(
-    updateClock,
-    1000
-);
+setInterval(updateClock,1000);
 
 
-/* =========================================================
+/* =====================================================
    SEMESTER FILTER
-========================================================= */
+===================================================== */
 
-function filterSemester(){
+function populateSemesterFilter(){
 
-    const selected =
-        document
-        .getElementById("semesterFilter")
-        .value;
+    const select =
+        document.getElementById("semesterFilter");
 
-    const cards =
-        document.querySelectorAll(
-            ".semester-card"
-        );
+    SEMESTERS.forEach(function(semester){
 
-    cards.forEach(function(card){
+        const option =
+            document.createElement("option");
 
-        if(
-            selected === "all" ||
-            card.dataset.semester === selected
-        ){
+        option.value = semester;
+        option.textContent = semester;
 
-            card.style.display =
-                "block";
-
-        }else{
-
-            card.style.display =
-                "none";
-
-        }
-
+        select.appendChild(option);
     });
-
 }
 
 
-/* =========================================================
-   OPEN SEMESTER
-========================================================= */
+/* =====================================================
+   OVERVIEW
+===================================================== */
 
-function openSemester(index){
+function renderOverview(){
+
+    const latest = latestSemester();
+
+    const rows = semesterRows(latest);
+
+    const totalCredits =
+        RESULTS.reduce(
+            function(sum,r){
+                return sum + r.credits;
+            },
+            0
+        );
+
+    const passed =
+        rows.filter(function(r){
+            return r.marks >= 40;
+        }).length;
+
+    const percentage =
+        semesterPercentage(latest);
+
+    document.getElementById("currentSGPA").textContent =
+        semesterSGPA(latest);
+
+    document.getElementById("overallCGPA").textContent =
+        overallCGPA();
+
+    document.getElementById("statCredits").textContent =
+        totalCredits;
+
+    document.getElementById("statSubjects").textContent =
+        rows.length;
+
+    document.getElementById("statPassed").textContent =
+        passed;
+
+    document.getElementById("statPercentage").textContent =
+        percentage + "%";
+
+    document.getElementById("heroTitle").textContent =
+        "Your " + latest + " result is ready 🎓";
+
+    document.getElementById("heroText").textContent =
+        "You scored " +
+        percentage +
+        "% in " +
+        latest +
+        " with an SGPA of " +
+        semesterSGPA(latest) +
+        ". Click any subject card to view complete result details.";
+}
+
+
+/* =====================================================
+   RESULT CARDS
+===================================================== */
+
+function renderResults(){
 
     const semester =
-        semesters[index];
+        document.getElementById("semesterFilter").value;
 
+    const grade =
+        document.getElementById("gradeFilter").value;
+
+    const list =
+        document.getElementById("resultsList");
+
+    let rows = RESULTS.slice();
+
+    if(semester !== "all"){
+
+        rows = rows.filter(function(r){
+            return r.semester === semester;
+        });
+    }
+
+    if(grade !== "all"){
+
+        rows = rows.filter(function(r){
+            return r.grade === grade;
+        });
+    }
+
+    list.innerHTML = "";
+
+    if(!rows.length){
+
+        list.innerHTML =
+            '<div class="empty-note">No results match your filters 🔍</div>';
+
+        return;
+    }
+
+    rows.forEach(function(r){
+
+        const card =
+            document.createElement("div");
+
+        card.className = "result-card";
+
+        card.onclick = function(){
+            showResultDetails(r);
+        };
+
+        const percentage =
+            Math.round((r.marks / r.max) * 100);
+
+        card.innerHTML =
+
+            '<div class="result-icon">📚</div>' +
+
+            '<div class="result-info">' +
+
+                '<strong>' +
+                    r.subject +
+                '</strong>' +
+
+                '<span>' +
+                    r.code +
+                    ' • ' +
+                    r.semester +
+                '</span>' +
+
+                '<div class="result-meta">' +
+
+                    '<span class="result-tag">' +
+                        r.marks +
+                        '/' +
+                        r.max +
+                        ' Marks' +
+                    '</span>' +
+
+                    '<span class="result-tag">' +
+                        percentage +
+                        '%' +
+                    '</span>' +
+
+                '</div>' +
+
+            '</div>' +
+
+            '<div class="grade-box">' +
+
+                '<strong>' +
+                    r.grade +
+                '</strong>' +
+
+                '<span>' +
+                    r.gradePoint +
+                    ' GP' +
+                '</span>' +
+
+            '</div>';
+
+        list.appendChild(card);
+    });
+}
+
+
+/* =====================================================
+   PERFORMANCE
+===================================================== */
+
+function renderPerformance(){
+
+    const grid =
+        document.getElementById("performanceGrid");
+
+    grid.innerHTML = "";
+
+    SEMESTERS.forEach(function(semester){
+
+        const sgpa =
+            semesterSGPA(semester);
+
+        const percentage =
+            semesterPercentage(semester);
+
+        const card =
+            document.createElement("div");
+
+        card.className =
+            "performance-card";
+
+        card.onclick = function(){
+
+            document.getElementById(
+                "semesterFilter"
+            ).value = semester;
+
+            document.getElementById(
+                "gradeFilter"
+            ).value = "all";
+
+            renderResults();
+
+            showToast(
+                "Showing " + semester
+            );
+        };
+
+        card.innerHTML =
+
+            '<span>' +
+                semester.toUpperCase() +
+            '</span>' +
+
+            '<strong>' +
+                sgpa +
+            '</strong>' +
+
+            '<div class="performance-bar">' +
+                '<i style="width:' +
+                    Math.min(100,percentage) +
+                '%"></i>' +
+            '</div>' +
+
+            '<small>' +
+                percentage +
+                '% overall' +
+            '</small>';
+
+        grid.appendChild(card);
+    });
+}
+
+
+/* =====================================================
+   SUMMARY CARDS
+===================================================== */
+
+function showSummary(type){
+
+    const latest =
+        latestSemester();
+
+    const rows =
+        semesterRows(latest);
+
+    if(type === "credits"){
+
+        const credits =
+            RESULTS.reduce(
+                function(sum,r){
+                    return sum + r.credits;
+                },
+                0
+            );
+
+        showToast(
+            credits +
+            " credits completed 🎓"
+        );
+    }
+
+    if(type === "subjects"){
+
+        showToast(
+            rows.length +
+            " subjects in " +
+            latest +
+            " 📚"
+        );
+    }
+
+    if(type === "passed"){
+
+        const passed =
+            rows.filter(function(r){
+                return r.marks >= 40;
+            });
+
+        showToast(
+            passed.length +
+            " subjects passed ✅"
+        );
+    }
+
+    if(type === "percentage"){
+
+        showToast(
+            semesterPercentage(latest) +
+            "% in " +
+            latest +
+            " ⭐"
+        );
+    }
+}
+
+
+/* =====================================================
+   MODAL
+===================================================== */
+
+function openModal(title,html){
 
     document.getElementById(
         "modalTitle"
-    ).textContent =
-        semester.name +
-        " Results";
-
+    ).textContent = title;
 
     document.getElementById(
-        "modalSGPA"
-    ).textContent =
-        semester.sgpa;
-
+        "modalContent"
+    ).innerHTML = html;
 
     document.getElementById(
-        "modalCredits"
-    ).textContent =
-        semester.credits;
-
-
-    document.getElementById(
-        "modalPercentage"
-    ).textContent =
-        semester.percentage;
-
-
-    const tbody =
-        document.getElementById(
-            "modalSubjects"
-        );
-
-
-    tbody.innerHTML = "";
-
-
-    semester.subjects.forEach(
-        function(subject){
-
-            const row =
-                document.createElement(
-                    "tr"
-                );
-
-
-            row.innerHTML = `
-
-                <td>
-                    ${subject[0]}
-                </td>
-
-                <td>
-                    ${subject[1]} / 100
-                </td>
-
-                <td>
-
-                    <span class="grade">
-                        ${subject[2]}
-                    </span>
-
-                </td>
-
-            `;
-
-
-            tbody.appendChild(row);
-
-        }
-    );
-
-
-    document
-        .getElementById("resultModal")
-        .classList.add("show");
-
+        "resultsModal"
+    ).classList.add("show");
 }
 
+function showResultDetails(r){
 
-/* =========================================================
-   CLOSE MODAL
-========================================================= */
+    const percentage =
+        Math.round((r.marks / r.max) * 100);
+
+    openModal(
+
+        r.subject,
+
+        "<p><strong>Semester:</strong> " +
+            r.semester +
+        "</p>" +
+
+        "<p><strong>Subject Code:</strong> " +
+            r.code +
+        "</p>" +
+
+        "<p><strong>Marks:</strong> " +
+            r.marks +
+            " / " +
+            r.max +
+        "</p>" +
+
+        "<p><strong>Percentage:</strong> " +
+            percentage +
+            "%" +
+        "</p>" +
+
+        "<p><strong>Grade:</strong> " +
+            r.grade +
+        "</p>" +
+
+        "<p><strong>Grade Point:</strong> " +
+            r.gradePoint +
+        "</p>" +
+
+        "<p><strong>Credits:</strong> " +
+            r.credits +
+        "</p>" +
+
+        "<div class='tip-box'>" +
+            "Your result details are shown above. Keep tracking your semester performance regularly. 📈" +
+        "</div>"
+    );
+}
+
+function showPerformance(){
+
+    let html =
+        "<p><strong>Overall CGPA:</strong> " +
+        overallCGPA() +
+        "</p>";
+
+    html +=
+        "<p><strong>Latest SGPA:</strong> " +
+        semesterSGPA(latestSemester()) +
+        "</p>";
+
+    html +=
+        "<p><strong>Latest Percentage:</strong> " +
+        semesterPercentage(latestSemester()) +
+        "%</p>";
+
+    SEMESTERS.forEach(function(s){
+
+        html +=
+            "<p><strong>" +
+            s +
+            ":</strong> SGPA " +
+            semesterSGPA(s) +
+            " • " +
+            semesterPercentage(s) +
+            "%</p>";
+    });
+
+    openModal(
+        "📈 Semester Performance",
+        html
+    );
+}
+
+function showNotifications(){
+
+    openModal(
+
+        "🔔 Notifications",
+
+        "<p><strong>Results Update</strong></p>" +
+
+        "<p>📈 Your latest semester result is available.</p>" +
+
+        "<p>🎓 Current SGPA: " +
+            semesterSGPA(latestSemester()) +
+        "</p>" +
+
+        "<p>⭐ Overall CGPA: " +
+            overallCGPA() +
+        "</p>"
+    );
+}
 
 function closeModal(){
 
-    document
-        .getElementById("resultModal")
-        .classList.remove("show");
+    document.getElementById(
+        "resultsModal"
+    ).classList.remove("show");
+}
 
+function closeModalOutside(event){
+
+    if(
+        event.target ===
+        document.getElementById("resultsModal")
+    ){
+        closeModal();
+    }
 }
 
 
-document
-    .getElementById("resultModal")
-    .addEventListener(
-        "click",
-        function(event){
+/* =====================================================
+   DOWNLOAD RESULTS
+===================================================== */
 
-            if(
-                event.target === this
-            ){
+function downloadResults(){
 
-                closeModal();
+    let text =
+        "CampusConnect - Student Results\n";
 
-            }
+    text +=
+        "================================\n\n";
 
-        }
+    text +=
+        "Student: Student\n";
+
+    text +=
+        "Course: BCA - 5th Semester\n\n";
+
+    SEMESTERS.forEach(function(s){
+
+        text += s + "\n";
+
+        text +=
+            "SGPA: " +
+            semesterSGPA(s) +
+            "\n";
+
+        semesterRows(s).forEach(function(r){
+
+            text +=
+                r.subject +
+                " (" +
+                r.code +
+                ") - " +
+                r.marks +
+                "/" +
+                r.max +
+                " - Grade " +
+                r.grade +
+                " - " +
+                r.gradePoint +
+                " GP\n";
+        });
+
+        text += "\n";
+    });
+
+    text +=
+        "Overall CGPA: " +
+        overallCGPA();
+
+    const blob =
+        new Blob(
+            [text],
+            {type:"text/plain"}
+        );
+
+    const link =
+        document.createElement("a");
+
+    link.href =
+        URL.createObjectURL(blob);
+
+    link.download =
+        "student-results.txt";
+
+    link.click();
+
+    URL.revokeObjectURL(link.href);
+
+    showToast(
+        "Results downloaded 📄"
     );
+}
 
 
-/* =========================================================
+/* =====================================================
    TOAST
-========================================================= */
-
-let toastTimer;
+===================================================== */
 
 function showToast(message){
 
     const toast =
-        document.getElementById(
-            "toast"
-        );
+        document.getElementById("toast");
 
     toast.textContent =
         message;
 
-    toast.classList.add(
-        "show"
-    );
+    toast.classList.add("show");
 
+    clearTimeout(toast._timer);
 
-    clearTimeout(
-        toastTimer
-    );
-
-
-    toastTimer =
+    toast._timer =
         setTimeout(
             function(){
-
-                toast.classList.remove(
-                    "show"
-                );
-
+                toast.classList.remove("show");
             },
             2500
         );
-
 }
 
 
-/* =========================================================
-   CHATBOT OPEN / CLOSE
-========================================================= */
+/* =====================================================
+   CHATBOT
+===================================================== */
 
-function toggleChat(){
+function openChatPanel(){
 
-    const panel =
-        document.getElementById(
-            "chatbotPanel"
-        );
+    document.getElementById(
+        "chatbotPanel"
+    ).classList.add("open");
 
-    panel.classList.toggle(
-        "open"
-    );
-
+    document.getElementById(
+        "chatBubble"
+    ).classList.add("hide");
 }
 
+function closeChatPanel(){
 
-/* =========================================================
-   CHATBOT MESSAGES
-========================================================= */
+    document.getElementById(
+        "chatbotPanel"
+    ).classList.remove("open");
 
-function addBotMessage(message){
-
-    const body =
-        document.getElementById(
-            "chatBody"
-        );
-
-    const div =
-        document.createElement(
-            "div"
-        );
-
-    div.className =
-        "bot-message";
-
-    div.innerHTML =
-        message;
-
-    body.appendChild(div);
-
-    body.scrollTop =
-        body.scrollHeight;
-
+    document.getElementById(
+        "chatBubble"
+    ).classList.remove("hide");
 }
-
-
-function addUserMessage(message){
-
-    const body =
-        document.getElementById(
-            "chatBody"
-        );
-
-    const div =
-        document.createElement(
-            "div"
-        );
-
-    div.className =
-        "user-message";
-
-    div.textContent =
-        message;
-
-    body.appendChild(div);
-
-    body.scrollTop =
-        body.scrollHeight;
-
-}
-
-
-/* =========================================================
-   SEND CHAT
-========================================================= */
-
-function sendMessage(){
-
-    const input =
-        document.getElementById(
-            "chatInput"
-        );
-
-    const message =
-        input.value.trim();
-
-
-    if(!message){
-
-        return;
-
-    }
-
-
-    addUserMessage(
-        message
-    );
-
-
-    input.value = "";
-
-
-    setTimeout(
-        function(){
-
-            const q =
-                message.toLowerCase();
-
-
-            if(
-                q.includes("cgpa") ||
-                q.includes("overall")
-            ){
-
-                addBotMessage(
-                    "🎓 Your current <b>CGPA is 8.6</b>."
-                );
-
-            }
-
-
-            else if(
-                q.includes("best") ||
-                q.includes("highest")
-            ){
-
-                addBotMessage(
-                    "⭐ Your best semester is <b>Semester 4</b> with an <b>SGPA of 8.6</b>."
-                );
-
-            }
-
-
-            else if(
-                q.includes("backlog")
-            ){
-
-                addBotMessage(
-                    "✅ You currently have <b>0 backlogs</b>."
-                );
-
-            }
-
-
-            else if(
-                q.includes("credit")
-            ){
-
-                addBotMessage(
-                    "📚 You have earned <b>84 credits</b> so far."
-                );
-
-            }
-
-
-            else if(
-                q.includes("semester 1") ||
-                q.includes("sem 1")
-            ){
-
-                addBotMessage(
-                    "📘 Semester 1 SGPA is <b>8.1</b>."
-                );
-
-            }
-
-
-            else if(
-                q.includes("semester 2") ||
-                q.includes("sem 2")
-            ){
-
-                addBotMessage(
-                    "📗 Semester 2 SGPA is <b>8.3</b>."
-                );
-
-            }
-
-
-            else if(
-                q.includes("semester 3") ||
-                q.includes("sem 3")
-            ){
-
-                addBotMessage(
-                    "📙 Semester 3 SGPA is <b>8.5</b>."
-                );
-
-            }
-
-
-            else if(
-                q.includes("semester 4") ||
-                q.includes("sem 4")
-            ){
-
-                addBotMessage(
-                    "📕 Semester 4 SGPA is <b>8.6</b>."
-                );
-
-            }
-
-
-            else if(
-                q.includes("result") ||
-                q.includes("marks") ||
-                q.includes("grade")
-            ){
-
-                addBotMessage(
-                    "📊 Click any semester card to view its detailed subject marks and grades."
-                );
-
-            }
-
-
-            else{
-
-                addBotMessage(
-                    "🤖 I can help with <b>CGPA, SGPA, credits, backlogs and semester results</b>."
-                );
-
-            }
-
-        },
-        450
-    );
-
-}
-
-
-/* =========================================================
-   QUICK CHAT
-========================================================= */
 
 function quickChat(text){
 
-    document
-        .getElementById("chatInput")
-        .value = text;
+    document.getElementById(
+        "chatInput"
+    ).value = text;
 
-    sendMessage();
+    sendChat();
+}
 
+function addMessage(cls,html){
+
+    const body =
+        document.getElementById("chatBody");
+
+    const msg =
+        document.createElement("div");
+
+    msg.className =
+        cls;
+
+    msg.innerHTML =
+        html;
+
+    body.appendChild(msg);
+
+    body.scrollTop =
+        body.scrollHeight;
+
+    return msg;
 }
 
 
-document
-    .getElementById("chatInput")
-    .addEventListener(
-        "keydown",
-        function(event){
+/* =====================================================
+   CHATBOT REPLIES
+===================================================== */
 
-            if(
-                event.key === "Enter"
-            ){
+function botReply(text){
 
-                sendMessage();
+    const lower =
+        text.toLowerCase();
 
-            }
+    const latest =
+        latestSemester();
 
-        }
-    );
+    if(
+        /^(hi|hello|hey|hii|yo)\b/.test(lower)
+    ){
 
-
-/* =========================================================
-   LOGOUT
-========================================================= */
-
-function logoutUser(event){
-
-    event.preventDefault();
-
-
-    const confirmLogout =
-        confirm(
-            "Are you sure you want to logout?"
-        );
-
-
-    if(confirmLogout){
-
-        window.location.href =
-            "../index.html";
-
+        return "👋 Hey! Ask me about your SGPA, CGPA, marks, grades or semester results.";
     }
 
+    if(lower.includes("cgpa")){
+
+        return (
+            "⭐ Your overall CGPA is " +
+            overallCGPA() +
+            "."
+        );
+    }
+
+    if(
+        lower.includes("sgpa") ||
+        lower.includes("latest result")
+    ){
+
+        return (
+            "📈 Your latest SGPA for " +
+            latest +
+            " is " +
+            semesterSGPA(latest) +
+            ". Your percentage is " +
+            semesterPercentage(latest) +
+            "%."
+        );
+    }
+
+    if(
+        lower.includes("pass") ||
+        lower.includes("cleared")
+    ){
+
+        const passed =
+            semesterRows(latest)
+            .filter(function(r){
+                return r.marks >= 40;
+            });
+
+        return (
+            "✅ You passed " +
+            passed.length +
+            " subjects in " +
+            latest +
+            ": " +
+            passed.map(function(r){
+                return r.subject;
+            }).join(", ") +
+            "."
+        );
+    }
+
+    if(
+        lower.includes("mark") ||
+        lower.includes("score")
+    ){
+
+        return (
+            "📚 Your latest semester percentage is " +
+            semesterPercentage(latest) +
+            "%. Open a subject card to see its detailed marks and grade."
+        );
+    }
+
+    if(lower.includes("grade")){
+
+        return (
+            "⭐ Your latest semester includes grades such as O, A+ and A. Tap a result card to see the exact grade for each subject."
+        );
+    }
+
+    if(lower.includes("semester")){
+
+        return (
+            "🎓 You have results recorded for " +
+            SEMESTERS.join(", ") +
+            "."
+        );
+    }
+
+    if(lower.includes("thank")){
+
+        return (
+            "😊 Anytime! I'm here whenever you need help with your results."
+        );
+    }
+
+    return (
+        "😊 I can help with your CGPA, SGPA, marks, grades and semester results. Try asking \"What is my CGPA?\""
+    );
+}
+
+function sendChat(){
+
+    const input =
+        document.getElementById("chatInput");
+
+    const text =
+        input.value.trim();
+
+    if(!text){
+        return;
+    }
+
+    addMessage(
+        "user-message",
+        escapeHtml(text)
+    );
+
+    input.value = "";
+
+    const typing =
+        addMessage(
+            "typing",
+            "<i></i><i></i><i></i>"
+        );
+
+    setTimeout(function(){
+
+        typing.remove();
+
+        addMessage(
+            "bot-message",
+            botReply(text)
+        );
+
+    },600);
+}
+
+function handleChatKey(event){
+
+    if(event.key === "Enter"){
+        sendChat();
+    }
+}
+
+function escapeHtml(str){
+
+    return str
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;");
 }
 
 
-/* =========================================================
-   ESCAPE MODAL
-========================================================= */
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+function confirmLogout(){
+
+    return confirm(
+        "Are you sure you want to logout?"
+    );
+}
+
+
+/* =====================================================
+   ESCAPE KEY
+===================================================== */
 
 document.addEventListener(
     "keydown",
     function(event){
 
-        if(
-            event.key === "Escape"
-        ){
+        if(event.key === "Escape"){
 
             closeModal();
-
+            closeChatPanel();
         }
-
     }
 );
 
+
+/* =====================================================
+   INITIALIZE
+===================================================== */
+
+populateSemesterFilter();
+
+renderOverview();
+
+renderResults();
+
+renderPerformance();
+
+setTimeout(function(){
+
+    addMessage(
+        "bot-message",
+        "Your latest SGPA is <strong>" +
+        semesterSGPA(latestSemester()) +
+        "</strong> and your overall CGPA is <strong>" +
+        overallCGPA() +
+        "</strong>. Ask me anything about your results. 🎓"
+    );
+
+},1200);
+
 </script>
 
+<script src="../js/chatbot.js"></script>
 </body>
 </html>

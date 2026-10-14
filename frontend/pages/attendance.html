@@ -1,19 +1,12 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>CampusConnect | Attendance</title>
 
 <style>
-
-/* =========================================================
-   GLOBAL
-========================================================= */
-
 *{
     margin:0;
     padding:0;
@@ -29,15 +22,12 @@ html,body{
     overflow:hidden;
 }
 
-button,
-input,
-select{
+button,input,select{
     font-family:inherit;
 }
 
-
 /* =========================================================
-   SIDEBAR
+   SIDEBAR — SAME AS FACULTY
 ========================================================= */
 
 .sidebar{
@@ -45,56 +35,36 @@ select{
     left:0;
     top:0;
     bottom:0;
-
     width:268px;
     min-width:268px;
-
-    background:
-        linear-gradient(
-            180deg,
-            #172a70 0%,
-            #28237d 48%,
-            #5520a7 100%
-        );
-
+    background:linear-gradient(180deg,#172a70 0%,#28237d 48%,#5520a7 100%);
     color:white;
     overflow-y:auto;
     overflow-x:hidden;
-
     z-index:1000;
     padding-bottom:20px;
+    scrollbar-width:thin;
+    scrollbar-color:rgba(255,255,255,.25) transparent;
 }
 
 .brand{
     height:120px;
-
     display:flex;
     align-items:center;
-
     padding:22px 18px;
-
-    border-bottom:
-        1px solid rgba(255,255,255,.12);
+    border-bottom:1px solid rgba(255,255,255,.12);
 }
 
 .logo-box{
     width:52px;
     height:52px;
-
     border-radius:16px;
-
     display:flex;
     align-items:center;
     justify-content:center;
-
     font-size:28px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #24b8ff,
-            #7144f5
-        );
+    background:linear-gradient(135deg,#24b8ff,#7144f5);
+    box-shadow:0 10px 25px rgba(0,0,0,.20);
 }
 
 .brand-text{
@@ -109,8 +79,8 @@ select{
 
 .brand-subtitle{
     font-size:12px;
-    margin-top:3px;
     opacity:.72;
+    margin-top:3px;
 }
 
 .menu{
@@ -120,11 +90,8 @@ select{
 .menu-title{
     font-size:12px;
     font-weight:700;
-
     color:rgba(255,255,255,.52);
-
     letter-spacing:1px;
-
     padding:0 11px 10px;
 }
 
@@ -134,53 +101,33 @@ select{
 
 .nav-item{
     width:100%;
-
     display:flex;
     align-items:center;
-
     min-height:49px;
-
     padding:0 14px;
-
     margin:5px 0;
-
     border-radius:13px;
-
     color:rgba(255,255,255,.84);
-
     text-decoration:none;
-
-    transition:.2s;
+    transition:transform .2s ease,background .2s ease,color .2s ease;
 }
 
 .nav-item:hover{
     background:rgba(255,255,255,.12);
     color:white;
-
     transform:translateX(3px);
 }
 
 .nav-item.active{
     color:white;
-
-    background:
-        linear-gradient(
-            90deg,
-            #22b9f5,
-            #6942f4
-        );
-
-    box-shadow:
-        0 9px 22px rgba(0,0,0,.18);
+    background:linear-gradient(90deg,#22b9f5,#6942f4);
+    box-shadow:0 9px 22px rgba(0,0,0,.18);
 }
 
 .nav-icon{
     width:31px;
-
     font-size:20px;
-
     text-align:center;
-
     margin-right:10px;
 }
 
@@ -191,13 +138,9 @@ select{
 
 .logout{
     margin-top:14px;
-
     padding-top:15px;
-
-    border-top:
-        1px solid rgba(255,255,255,.13);
+    border-top:1px solid rgba(255,255,255,.13);
 }
-
 
 /* =========================================================
    MAIN AREA
@@ -205,184 +148,119 @@ select{
 
 .main-area{
     margin-left:268px;
-
     width:auto;
     height:100vh;
-
     overflow-y:auto;
     overflow-x:hidden;
-
-    background:
-        linear-gradient(
-            180deg,
-            #f8f9ff,
-            #eef1fb
-        );
+    background:linear-gradient(180deg,#f8f9ff,#eef1fb);
 }
-
-
-/* =========================================================
-   HEADER
-========================================================= */
 
 .top-header{
     height:120px;
-
-    background:
-        rgba(255,255,255,.96);
-
+    background:rgba(255,255,255,.96);
     display:flex;
-
     align-items:center;
-
     justify-content:space-between;
-
     padding:22px 28px;
-
-    border-bottom:
-        1px solid #e9ebf5;
-
+    border-bottom:1px solid #e9ebf5;
     position:sticky;
-
     top:0;
-
     z-index:100;
 }
 
 .header-left h1{
     font-size:30px;
-
     line-height:1.05;
-
     font-weight:800;
 }
 
 .header-left p{
     margin-top:7px;
-
     color:#8990a7;
-
     font-size:14px;
 }
 
 .header-right{
     display:flex;
-
     align-items:center;
-
     gap:18px;
 }
 
 .time-box{
     font-size:18px;
-
     font-weight:750;
-
     color:#59617d;
 }
 
 .notification{
     width:48px;
     height:48px;
-
-    background:white;
-
+    background:#fff;
     border-radius:50%;
-
     display:flex;
-
     align-items:center;
     justify-content:center;
-
     font-size:22px;
-
-    box-shadow:
-        0 5px 18px rgba(40,35,100,.10);
-
+    box-shadow:0 5px 18px rgba(40,35,100,.10);
     position:relative;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.notification:hover{
+    transform:scale(1.06);
 }
 
 .notification::after{
     content:"";
-
     width:8px;
     height:8px;
-
     border-radius:50%;
-
     background:#ff4f8b;
-
     position:absolute;
-
     top:7px;
     right:8px;
 }
 
 .profile-mini{
     display:flex;
-
     align-items:center;
-
     gap:10px;
 }
 
 .profile-circle{
     width:48px;
     height:48px;
-
     border-radius:50%;
-
-    background:
-        linear-gradient(
-            135deg,
-            #25b8ee,
-            #466cf1
-        );
-
+    background:linear-gradient(135deg,#25b8ee,#466cf1);
     color:white;
-
     display:flex;
-
     align-items:center;
     justify-content:center;
-
     font-size:20px;
-
     font-weight:800;
 }
 
 .profile-info strong{
     display:block;
-
     font-size:15px;
 }
 
 .profile-info span{
     display:block;
-
     color:#8d93a8;
-
     font-size:12px;
-
-    margin-top:1px;
 }
-
-
-/* =========================================================
-   PAGE
-========================================================= */
 
 .page-content{
     padding:20px 24px 35px;
+    width:100%;
 }
 
 .page-heading{
     display:flex;
-
     align-items:center;
-
     justify-content:space-between;
-
     margin-bottom:20px;
 }
 
@@ -392,86 +270,68 @@ select{
 }
 
 .page-heading p{
+    margin-top:6px;
     color:#8990a7;
-
     font-size:13px;
-
-    margin-top:5px;
 }
 
+.heading-btn{
+    border:none;
+    border-radius:11px;
+    padding:11px 16px;
+    color:white;
+    font-size:12px;
+    font-weight:700;
+    cursor:pointer;
+    background:linear-gradient(135deg,#6543e8,#843de0);
+    box-shadow:0 8px 20px rgba(85,50,190,.25);
+    transition:.2s;
+}
+
+.heading-btn:hover{
+    transform:translateY(-2px);
+}
 
 /* =========================================================
-   HERO
+   ATTENDANCE HERO
 ========================================================= */
 
 .attendance-hero{
-    min-height:190px;
-
     width:100%;
-
+    min-height:190px;
     border-radius:20px;
-
     padding:28px 32px;
-
     color:white;
-
+    background:linear-gradient(120deg,#19398d,#4828c8 55%,#7738dd);
+    box-shadow:0 14px 35px rgba(55,44,150,.20);
     display:flex;
-
     align-items:center;
-
     justify-content:space-between;
-
-    position:relative;
-
-    overflow:hidden;
-
     margin-bottom:20px;
-
-    background:
-        linear-gradient(
-            110deg,
-            #19398d,
-            #4828c8 55%,
-            #7738dd
-        );
-
-    box-shadow:
-        0 15px 35px
-        rgba(48,40,150,.20);
+    position:relative;
+    overflow:hidden;
 }
 
 .attendance-hero::before{
     content:"";
-
     position:absolute;
-
-    width:280px;
-    height:280px;
-
+    width:260px;
+    height:260px;
     border-radius:50%;
-
-    right:-70px;
-    top:-150px;
-
-    background:
-        rgba(255,255,255,.08);
+    right:-80px;
+    top:-110px;
+    background:rgba(255,255,255,.08);
 }
 
 .attendance-hero::after{
     content:"";
-
     position:absolute;
-
-    width:220px;
-    height:220px;
-
+    width:150px;
+    height:150px;
     border-radius:50%;
-
-    right:120px;
-    bottom:-170px;
-
-    background:
-        rgba(35,190,235,.12);
+    right:150px;
+    bottom:-100px;
+    background:rgba(255,255,255,.05);
 }
 
 .hero-content{
@@ -479,725 +339,368 @@ select{
     z-index:2;
 }
 
-.hero-small{
-    font-size:11px;
-
-    font-weight:700;
-
-    color:
-        rgba(255,255,255,.78);
-
-    margin-bottom:8px;
-}
-
-.hero-content h2{
-    font-size:26px;
-
+.hero-content h3{
+    font-size:23px;
     font-weight:800;
-
     margin-bottom:8px;
 }
 
 .hero-content p{
-    max-width:650px;
-
-    color:
-        rgba(255,255,255,.78);
-
     font-size:12px;
-
-    line-height:1.6;
+    color:rgba(255,255,255,.76);
+    max-width:520px;
+    line-height:1.7;
 }
 
-
-/* =========================================================
-   DONUT
-========================================================= */
-
-.donut-wrap{
-    width:125px;
-    height:125px;
-
-    flex-shrink:0;
-
-    margin-right:15px;
-
+.hero-action{
     position:relative;
-
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-}
-
-.donut{
-    width:125px;
-    height:125px;
-
-    border-radius:50%;
-
-    background:
-        conic-gradient(
-            #38e0a3 0deg 316.8deg,
-            rgba(255,255,255,.17)
-            316.8deg 360deg
-        );
-
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-
-    position:relative;
-}
-
-.donut::after{
-    content:"";
-
-    width:91px;
-    height:91px;
-
-    background:#33299a;
-
-    border-radius:50%;
-
-    position:absolute;
-}
-
-.donut-text{
-    position:relative;
-
     z-index:2;
-
-    text-align:center;
+    display:flex;
+    align-items:center;
+    gap:12px;
 }
 
-.donut-text strong{
+.stat-box{
+    min-width:110px;
+    padding:17px 20px;
+    border-radius:15px;
+    background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.15);
+    text-align:center;
+    backdrop-filter:blur(5px);
+}
+
+.stat-box strong{
     display:block;
-
-    font-size:24px;
-
+    font-size:30px;
     font-weight:800;
 }
 
-.donut-text span{
-    font-size:9px;
-
-    color:
-        rgba(255,255,255,.72);
+.stat-box span{
+    display:block;
+    font-size:10px;
+    margin-top:4px;
+    color:rgba(255,255,255,.72);
 }
 
-
 /* =========================================================
-   SUMMARY CARDS
+   SUMMARY
 ========================================================= */
 
 .summary-grid{
+    width:100%;
     display:grid;
-
-    grid-template-columns:
-        repeat(4,minmax(0,1fr));
-
+    grid-template-columns:repeat(4,minmax(0,1fr));
     gap:18px;
-
     margin-bottom:20px;
 }
 
 .summary-card{
     background:white;
-
-    border:
-        1px solid #e9ebf5;
-
+    border:1px solid #e9ebf5;
     border-radius:17px;
-
     padding:18px;
-
     min-height:120px;
-
-    box-shadow:
-        0 8px 25px
-        rgba(40,35,100,.06);
-
+    box-shadow:0 8px 25px rgba(40,35,100,.06);
     transition:.2s;
+    cursor:pointer;
 }
 
 .summary-card:hover{
-    transform:translateY(-3px);
-
-    box-shadow:
-        0 13px 30px
-        rgba(40,35,100,.10);
+    transform:translateY(-4px);
+    box-shadow:0 15px 35px rgba(40,35,100,.12);
 }
 
 .summary-top{
     display:flex;
-
-    align-items:center;
-
     justify-content:space-between;
 }
 
 .summary-title{
     color:#7f88a5;
-
     font-size:12px;
-
     font-weight:700;
 }
 
 .summary-icon{
-    width:38px;
-    height:38px;
-
-    border-radius:12px;
-
+    width:43px;
+    height:43px;
+    border-radius:13px;
     background:#f0f3ff;
-
     display:flex;
-
     align-items:center;
     justify-content:center;
-
-    font-size:19px;
+    font-size:21px;
 }
 
 .summary-number{
-    font-size:25px;
-
+    font-size:27px;
     font-weight:800;
-
     margin-top:9px;
-}
-
-.green-number{
-    color:#13a65d;
-}
-
-.red-number{
-    color:#e24d6e;
-}
-
-.blue-number{
     color:#3063df;
-}
-
-.purple-number{
-    color:#7041df;
 }
 
 .summary-small{
     color:#9aa2b9;
-
     font-size:10px;
-
     margin-top:2px;
 }
 
-
 /* =========================================================
-   MAIN ATTENDANCE CARD
+   CONTENT CARD
 ========================================================= */
 
 .content-card{
     background:white;
-
-    border:
-        1px solid #e9ebf5;
-
+    border:1px solid #e9ebf5;
     border-radius:17px;
-
     padding:20px;
-
-    box-shadow:
-        0 8px 25px
-        rgba(40,35,100,.06);
-
+    box-shadow:0 8px 25px rgba(40,35,100,.06);
     margin-bottom:20px;
 }
 
 .card-heading{
     display:flex;
-
-    align-items:center;
-
     justify-content:space-between;
-
-    gap:10px;
-
+    align-items:center;
     margin-bottom:15px;
+    gap:10px;
+    flex-wrap:wrap;
 }
 
 .card-heading h3{
     font-size:17px;
-
-    font-weight:800;
 }
 
-.card-heading p{
-    color:#9299ae;
-
-    font-size:11px;
-
-    margin-top:4px;
-}
-
-.subject-filter{
-    height:38px;
-
-    min-width:140px;
-
-    padding:0 12px;
-
-    border:
-        1px solid #e0e3ef;
-
-    border-radius:10px;
-
-    background:white;
-
-    color:#69728d;
-
-    font-size:11px;
-
-    outline:none;
-}
-
-
-/* =========================================================
-   TABLE HEADER
-========================================================= */
-
-.attendance-header{
-    display:grid;
-
-    grid-template-columns:
-        2.2fr
-        .7fr
-        1.5fr
-        .7fr
-        .8fr;
-
-    gap:14px;
-
-    padding:
-        11px 10px;
-
-    background:#f7f8fc;
-
-    border-radius:11px;
-
-    color:#8991a8;
-
-    font-size:10px;
-
-    font-weight:700;
-
-    margin-bottom:5px;
-}
-
-
-/* =========================================================
-   SUBJECT ROW
-========================================================= */
-
-.subject-row{
-    display:grid;
-
-    grid-template-columns:
-        2.2fr
-        .7fr
-        1.5fr
-        .7fr
-        .8fr;
-
-    gap:14px;
-
+.card-tools{
+    display:flex;
+    gap:8px;
     align-items:center;
+}
 
-    padding:14px 10px;
-
-    border-bottom:
-        1px solid #eef0f5;
-
+.search-box{
+    height:38px;
+    border:1px solid #e1e4ef;
+    border-radius:10px;
+    padding:0 12px;
+    color:#39425e;
+    background:white;
+    outline:none;
+    font-size:11px;
+    min-width:170px;
     transition:.2s;
 }
 
-.subject-row:last-child{
-    border-bottom:none;
+.search-box:focus{
+    border-color:#a99bf0;
 }
 
-.subject-row:hover{
-    background:#fafaff;
+.filter-select{
+    height:38px;
+    border:1px solid #e1e4ef;
+    border-radius:10px;
+    padding:0 11px;
+    color:#68728d;
+    background:white;
+    outline:none;
+    font-size:11px;
+    cursor:pointer;
+    transition:.2s;
+}
 
-    transform:translateX(2px);
+.filter-select:hover{
+    border-color:#c9cee4;
+}
+
+/* =========================================================
+   SUBJECT ATTENDANCE GRID
+========================================================= */
+
+.attendance-grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:14px;
+}
+
+.attendance-card{
+    padding:17px;
+    border:1px solid #eceef5;
+    border-radius:15px;
+    background:#fafbff;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.attendance-card:hover{
+    transform:translateY(-3px);
+    box-shadow:0 10px 25px rgba(40,35,100,.08);
+    border-color:#dcd6fb;
+}
+
+.attendance-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
 }
 
 .subject-info{
-    display:flex;
-
-    align-items:center;
-
-    gap:10px;
-
     min-width:0;
 }
 
-.subject-icon{
-    width:39px;
-    height:39px;
-
-    flex-shrink:0;
-
-    border-radius:11px;
-
-    background:#f0f3ff;
-
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-
-    font-size:18px;
-}
-
-.subject-name{
-    min-width:0;
-}
-
-.subject-name strong{
+.subject-info strong{
     display:block;
-
-    font-size:12px;
-
-    white-space:nowrap;
-
-    overflow:hidden;
-
-    text-overflow:ellipsis;
+    font-size:14px;
+    color:#27304b;
 }
 
-.subject-name span{
+.subject-info span{
     display:block;
-
-    color:#939aae;
-
-    font-size:9px;
-
-    margin-top:3px;
+    margin-top:4px;
+    color:#9aa2b9;
+    font-size:10.5px;
 }
 
-.attendance-percent{
-    font-size:13px;
-
+.percentage{
+    font-size:22px;
     font-weight:800;
 }
 
-.percent-green{
-    color:#13a65d;
-}
-
-.percent-orange{
-    color:#e4871b;
-}
-
-.percent-red{
-    color:#e04d72;
-}
-
-.progress-wrap{
+.progress-track{
     width:100%;
-
-    height:7px;
-
+    height:8px;
     border-radius:20px;
-
-    background:#eceef5;
-
+    background:#e9ecf6;
+    margin-top:14px;
     overflow:hidden;
 }
 
 .progress-bar{
     height:100%;
-
     border-radius:20px;
-
-    background:
-        linear-gradient(
-            90deg,
-            #25b8ef,
-            #6844ec
-        );
+    background:linear-gradient(90deg,#24b8ff,#7144f5);
+    transition:width .5s ease;
 }
 
-.progress-orange{
-    background:
-        linear-gradient(
-            90deg,
-            #f7b34d,
-            #ed7c32
-        );
+.attendance-bottom{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:9px;
 }
 
-.progress-red{
-    background:
-        linear-gradient(
-            90deg,
-            #f27691,
-            #df4774
-        );
+.attendance-bottom span{
+    color:#9aa2b9;
+    font-size:9.5px;
 }
 
-.attended{
-    font-size:10px;
-
-    color:#68718c;
-
+.attendance-status{
+    padding:4px 9px;
+    border-radius:20px;
+    font-size:9px;
     font-weight:700;
 }
 
-.status{
-    display:inline-flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    padding:6px 9px;
-
-    border-radius:20px;
-
-    font-size:9px;
-
-    font-weight:750;
-
-    width:max-content;
+.attendance-status.good{
+    color:#159b66;
+    background:#e8fff4;
 }
 
-.status-excellent{
-    background:#e9f9f1;
-
-    color:#13a65d;
+.attendance-status.warning{
+    color:#d68a18;
+    background:#fff5df;
 }
 
-.status-good{
-    background:#eaf8f6;
-
-    color:#159d8a;
+.attendance-status.low{
+    color:#e04a6d;
+    background:#fff0f4;
 }
-
-.status-attention{
-    background:#fff4e7;
-
-    color:#df841d;
-}
-
-.status-critical{
-    background:#fff0f3;
-
-    color:#e04d72;
-}
-
 
 /* =========================================================
-   RECENT ATTENDANCE
+   ATTENDANCE TABLE
 ========================================================= */
 
-.recent-card{
-    background:white;
-
-    border:
-        1px solid #e9ebf5;
-
-    border-radius:17px;
-
-    padding:20px;
-
-    box-shadow:
-        0 8px 25px
-        rgba(40,35,100,.06);
+.table-wrap{
+    overflow-x:auto;
 }
 
-.view-details{
-    border:
-        1px solid #ddd9fa;
+.attendance-table{
+    width:100%;
+    border-collapse:collapse;
+    font-size:11px;
+}
 
-    background:#faf9ff;
-
-    color:#6846df;
-
-    padding:8px 12px;
-
-    border-radius:9px;
-
+.attendance-table th{
+    text-align:left;
+    padding:10px 8px;
+    color:#8b93aa;
     font-size:10px;
-
-    font-weight:700;
-
-    cursor:pointer;
+    text-transform:uppercase;
+    border-bottom:1px solid #eceef5;
 }
 
-.recent-days{
-    display:grid;
-
-    grid-template-columns:
-        repeat(7,1fr);
-
-    gap:10px;
+.attendance-table td{
+    padding:12px 8px;
+    border-bottom:1px solid #f0f1f7;
+    color:#59617d;
 }
 
-.day-card{
-    padding:13px 8px;
-
-    background:#f8f9fd;
-
-    border:
-        1px solid #edf0f6;
-
-    border-radius:13px;
-
-    text-align:center;
-
-    transition:.2s;
+.attendance-table tr:last-child td{
+    border-bottom:none;
 }
 
-.day-card:hover{
-    transform:translateY(-2px);
-
-    background:#f2f1ff;
-}
-
-.day-name{
-    color:#8c94aa;
-
-    font-size:9px;
-
+.present{
+    color:#18a36b;
     font-weight:700;
 }
 
-.day-number{
-    font-size:14px;
-
-    font-weight:800;
-
-    margin:4px 0 7px;
+.absent{
+    color:#e05272;
+    font-weight:700;
 }
 
-.day-status{
-    width:25px;
-    height:25px;
-
-    border-radius:50%;
-
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-
-    margin:auto;
-
-    font-size:12px;
+.late{
+    color:#d89121;
+    font-weight:700;
 }
-
-.day-present{
-    background:#e7f8ef;
-
-    color:#13a65d;
-}
-
-.day-absent{
-    background:#fff0f3;
-
-    color:#e24d6e;
-}
-
-.day-holiday{
-    background:#eef0f5;
-
-    color:#9ba1b2;
-}
-
 
 /* =========================================================
-   CHATBOT BUTTON
-   SAME FACULTY STYLE
+   FLOATING CHATBOT — SAME AS FACULTY
 ========================================================= */
 
 .chat-bubble{
     position:fixed;
-
     right:24px;
     bottom:24px;
-
     width:64px;
     height:64px;
-
-    min-width:64px;
-    min-height:64px;
-
-    padding:0;
-
-    border:none !important;
-    outline:none !important;
-
     border-radius:50%;
-
-    background:
-        linear-gradient(
-            135deg,
-            #6543e8,
-            #a855f7
-        );
-
+    background:linear-gradient(135deg,#6543e8,#a855f7);
     display:flex;
-
     align-items:center;
     justify-content:center;
-
     font-size:30px;
-
     color:white;
-
+    border:none;
     cursor:pointer;
-
-    box-shadow:
-        0 12px 30px
-        rgba(101,67,232,.45);
-
+    box-shadow:0 12px 30px rgba(101,67,232,.45);
     z-index:9998;
-
-    transition:
-        transform .2s ease;
-
-    appearance:none;
-    -webkit-appearance:none;
+    transition:transform .2s ease;
 }
 
 .chat-bubble:hover{
     transform:scale(1.08);
 }
 
-.chat-bubble:focus,
-.chat-bubble:active{
-    outline:none !important;
-    border:none !important;
-}
-
 .chat-bubble::after{
     content:"";
-
     position:absolute;
-
     top:4px;
     right:4px;
-
     width:12px;
     height:12px;
-
     border-radius:50%;
-
     background:#ff4f8b;
-
     border:2px solid white;
 }
 
@@ -1205,293 +708,333 @@ select{
     display:none;
 }
 
-
-/* =========================================================
-   CHATBOT PANEL
-========================================================= */
-
 .chatbot-panel{
     position:fixed;
-
     right:24px;
     bottom:24px;
-
     width:320px;
     height:460px;
-
     background:white;
-
     border-radius:22px;
-
-    border:
-        1px solid #e5e6f2;
-
-    box-shadow:
-        0 20px 55px
-        rgba(40,35,100,.25);
-
+    border:1px solid #e5e6f2;
+    box-shadow:0 20px 55px rgba(40,35,100,.25);
     z-index:9999;
-
     display:none;
-
     flex-direction:column;
-
     overflow:hidden;
+    animation:panelIn .2s ease;
 }
 
 .chatbot-panel.open{
     display:flex;
 }
 
+@keyframes panelIn{
+    from{
+        opacity:0;
+        transform:translateY(20px) scale(.96);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
 .chat-header{
     min-height:70px;
-
     flex-shrink:0;
-
     padding:14px;
-
     display:flex;
-
     align-items:center;
-
     justify-content:space-between;
-
     color:white;
-
-    background:
-        linear-gradient(
-            135deg,
-            #29277d,
-            #7137d8
-        );
+    background:linear-gradient(135deg,#29277d,#7137d8);
 }
 
 .chat-header-left{
     display:flex;
-
     align-items:center;
 }
 
 .robot-icon{
     width:42px;
     height:42px;
-
     border-radius:12px;
-
-    background:
-        rgba(255,255,255,.15);
-
+    background:rgba(255,255,255,.15);
     display:flex;
-
     align-items:center;
     justify-content:center;
-
     font-size:22px;
-
     margin-right:10px;
 }
 
 .chat-title strong{
     display:block;
-
     font-size:14px;
 }
 
 .chat-title span{
     display:block;
-
     font-size:9px;
-
     margin-top:2px;
-
-    color:
-        rgba(255,255,255,.78);
+    color:rgba(255,255,255,.78);
 }
 
 .online-dot{
     display:inline-block;
-
     width:7px;
     height:7px;
-
     background:#57e6a3;
-
     border-radius:50%;
-
     margin-right:4px;
 }
 
 .close-chat{
     width:30px;
     height:30px;
-
     border:none;
-
     border-radius:50%;
-
-    background:
-        rgba(255,255,255,.15);
-
+    background:rgba(255,255,255,.15);
     color:white;
-
     font-size:16px;
-
     cursor:pointer;
 }
 
 .chat-body{
     flex:1;
-
     min-height:0;
-
     padding:14px;
-
     overflow-y:auto;
-
-    background:
-        linear-gradient(
-            180deg,
-            #fafbff,
-            #f4f5fb
-        );
+    background:linear-gradient(180deg,#fafbff,#f4f5fb);
 }
 
 .bot-message{
     background:white;
-
-    border:
-        1px solid #e7e9f3;
-
+    border:1px solid #e7e9f3;
     border-radius:14px;
-
-    padding:12px;
-
-    margin-bottom:10px;
-
+    padding:11px;
+    margin-bottom:9px;
     color:#65708d;
-
     font-size:11px;
-
-    line-height:1.6;
-
-    box-shadow:
-        0 5px 15px
-        rgba(40,35,100,.04);
+    line-height:1.55;
+    box-shadow:0 5px 15px rgba(40,35,100,.04);
 }
 
 .user-message{
-    background:
-        linear-gradient(
-            135deg,
-            #6241e8,
-            #7b3ee0
-        );
-
+    background:linear-gradient(135deg,#6241e8,#7b3ee0);
     color:white;
-
-    padding:10px 12px;
-
-    border-radius:
-        14px 14px 4px 14px;
-
-    margin:
-        9px 0 9px 20px;
-
+    padding:9px 12px;
+    border-radius:14px 14px 4px 14px;
+    margin:8px 0 8px 25px;
     font-size:11px;
-
     line-height:1.5;
+}
+
+.typing{
+    display:flex;
+    gap:4px;
+    width:52px;
+    padding:12px;
+    background:white;
+    border:1px solid #e7e9f3;
+    border-radius:14px;
+    margin-bottom:9px;
+}
+
+.typing i{
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:#b9bed4;
+    animation:blink 1s infinite;
+}
+
+.typing i:nth-child(2){
+    animation-delay:.2s;
+}
+
+.typing i:nth-child(3){
+    animation-delay:.4s;
+}
+
+@keyframes blink{
+    0%,100%{opacity:.3;}
+    50%{opacity:1;}
 }
 
 .quick-buttons{
     display:flex;
-
     gap:5px;
-
     flex-wrap:wrap;
-
-    padding:9px 14px;
-
+    padding:8px 12px;
     background:white;
-
-    border-top:
-        1px solid #eceef5;
+    border-top:1px solid #eceef5;
 }
 
 .quick-btn{
-    border:
-        1px solid #e0e3f0;
-
+    border:1px solid #e0e3f0;
     background:white;
-
     color:#6b54d9;
-
     border-radius:20px;
-
-    padding:7px 9px;
-
+    padding:6px 9px;
     font-size:9px;
-
     cursor:pointer;
+    transition:.2s;
+}
+
+.quick-btn:hover{
+    background:#f0edff;
 }
 
 .chat-footer{
     flex-shrink:0;
-
     padding:10px;
-
     background:white;
-
-    border-top:
-        1px solid #eceef5;
-
+    border-top:1px solid #eceef5;
     display:flex;
-
     gap:7px;
 }
 
 .chat-input{
     flex:1;
-
     min-width:0;
-
-    height:40px;
-
-    border:
-        1px solid #e1e4ef;
-
+    height:38px;
+    border:1px solid #e1e4ef;
     border-radius:12px;
-
     outline:none;
-
     padding:0 11px;
-
     font-size:11px;
-
     color:#555e78;
 }
 
-.send-btn{
-    width:40px;
-    height:40px;
-
-    border:none;
-
-    border-radius:12px;
-
-    color:white;
-
-    background:
-        linear-gradient(
-            135deg,
-            #6543e8,
-            #843de0
-        );
-
-    cursor:pointer;
-
-    font-size:17px;
+.chat-input:focus{
+    border-color:#a99bf0;
 }
 
+.send-btn{
+    width:38px;
+    height:38px;
+    border:none;
+    border-radius:12px;
+    color:white;
+    background:linear-gradient(135deg,#6543e8,#843de0);
+    cursor:pointer;
+    font-size:16px;
+    transition:.2s;
+}
+
+.send-btn:hover{
+    transform:scale(1.05);
+}
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(20,25,65,.55);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:30000;
+    padding:20px;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    width:min(500px,95%);
+    max-height:88vh;
+    overflow-y:auto;
+    background:white;
+    border-radius:20px;
+    padding:25px;
+    box-shadow:0 25px 70px rgba(20,25,70,.25);
+    animation:modalIn .2s ease;
+}
+
+@keyframes modalIn{
+    from{
+        opacity:0;
+        transform:translateY(15px) scale(.97);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+.modal-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:20px;
+}
+
+.modal-top h3{
+    font-size:19px;
+}
+
+.close-btn{
+    width:35px;
+    height:35px;
+    border:none;
+    border-radius:50%;
+    background:#f0f2fa;
+    color:#68728d;
+    cursor:pointer;
+    font-size:18px;
+}
+
+.modal-content{
+    color:#68728d;
+    font-size:12px;
+    line-height:1.7;
+}
+
+.modal-content p{
+    margin-bottom:6px;
+}
+
+.tip-box{
+    margin-top:12px;
+    padding:11px 13px;
+    border-radius:12px;
+    background:#f4f2ff;
+    color:#5d4fbe;
+    font-size:11px;
+    line-height:1.6;
+}
+
+.modal-buttons{
+    display:flex;
+    justify-content:flex-end;
+    gap:8px;
+    margin-top:18px;
+}
+
+.modal-btn{
+    border:none;
+    border-radius:10px;
+    padding:10px 15px;
+    cursor:pointer;
+    font-size:11px;
+    font-weight:700;
+}
+
+.modal-cancel{
+    background:#f0f2fa;
+    color:#68728d;
+}
+
+.modal-ok{
+    background:linear-gradient(135deg,#6543e8,#843de0);
+    color:white;
+}
 
 /* =========================================================
    TOAST
@@ -1499,44 +1042,27 @@ select{
 
 .toast{
     position:fixed;
-
     left:50%;
     bottom:25px;
-
-    transform:
-        translateX(-50%)
-        translateY(20px);
-
+    transform:translateX(-50%) translateY(20px);
     background:#29277d;
-
     color:white;
-
     padding:12px 18px;
-
     border-radius:12px;
-
     font-size:12px;
-
     opacity:0;
-
     pointer-events:none;
-
     transition:.3s;
-
     z-index:40000;
 }
 
 .toast.show{
     opacity:1;
-
-    transform:
-        translateX(-50%)
-        translateY(0);
+    transform:translateX(-50%) translateY(0);
 }
 
-
 /* =========================================================
-   RESPONSIVE
+   RESPONSIVE — SAME AS FACULTY
 ========================================================= */
 
 @media(max-width:1150px){
@@ -1551,16 +1077,12 @@ select{
     }
 
     .summary-grid{
-        grid-template-columns:
-            repeat(2,minmax(0,1fr));
+        grid-template-columns:repeat(2,minmax(0,1fr));
     }
 
-    .attendance-header,
-    .subject-row{
-        grid-template-columns:
-            2fr .7fr 1.2fr .7fr .8fr;
+    .attendance-grid{
+        grid-template-columns:1fr;
     }
-
 }
 
 @media(max-width:700px){
@@ -1572,7 +1094,6 @@ select{
 
     .brand{
         justify-content:center;
-
         padding:15px;
     }
 
@@ -1584,7 +1105,6 @@ select{
 
     .nav-item{
         justify-content:center;
-
         padding:0;
     }
 
@@ -1596,191 +1116,98 @@ select{
         margin-left:80px;
     }
 
-    .top-header{
-        padding:15px;
-    }
-
-    .header-left h1{
-        font-size:22px;
-    }
-
-    .header-left p,
-    .profile-info,
-    .time-box{
-        display:none;
-    }
-
-    .page-content{
-        padding:15px;
-    }
-
-    .attendance-hero{
-        padding:22px;
-
-        flex-direction:column;
-
-        align-items:flex-start;
-
-        gap:20px;
-    }
-
-    .donut-wrap{
-        align-self:center;
-
-        margin:0;
-    }
-
-    .page-heading{
-        align-items:flex-start;
-
-        flex-direction:column;
-    }
-
     .summary-grid{
         grid-template-columns:1fr;
     }
 
-    .card-heading{
-        align-items:flex-start;
-
+    .attendance-hero{
         flex-direction:column;
+        align-items:flex-start;
+        gap:20px;
     }
 
-    .attendance-header{
-        display:none;
-    }
-
-    .subject-row{
-        grid-template-columns:
-            1fr;
-
-        gap:9px;
-
-        padding:15px;
-    }
-
-    .progress-wrap{
+    .card-tools{
         width:100%;
     }
 
-    .recent-days{
-        grid-template-columns:
-            repeat(4,1fr);
+    .search-box{
+        flex:1;
+        min-width:0;
     }
 
     .chatbot-panel{
         width:92vw;
-
         right:4vw;
         left:4vw;
-
-        bottom:20px;
-
-        height:460px;
     }
-
-    .chat-bubble{
-        right:20px;
-        bottom:20px;
-    }
-
 }
-
 </style>
 </head>
 
-
 <body>
 
-
-<!-- =====================================================
+<!-- =========================================================
      SIDEBAR
-===================================================== -->
+========================================================= -->
 
 <aside class="sidebar">
 
     <div class="brand">
-
-        <div class="logo-box">
-            🎓
-        </div>
+        <div class="logo-box">🎓</div>
 
         <div class="brand-text">
-
-            <div class="brand-title">
-                CampusConnect
-            </div>
-
-            <div class="brand-subtitle">
-                AI College Companion
-            </div>
-
+            <div class="brand-title">CampusConnect</div>
+            <div class="brand-subtitle">AI College Companion</div>
         </div>
-
     </div>
-
 
     <div class="menu">
 
-        <div class="menu-title">
-            MAIN MENU
-        </div>
-
+        <div class="menu-title">MAIN MENU</div>
 
         <a class="nav-item" href="../dashboard.html">
             <span class="nav-icon">🏠</span>
             <span class="nav-text">Dashboard</span>
         </a>
 
-
         <a class="nav-item" href="courses.html">
             <span class="nav-icon">📚</span>
             <span class="nav-text">Courses</span>
         </a>
-
 
         <a class="nav-item" href="timetable.html">
             <span class="nav-icon">🗓️</span>
             <span class="nav-text">Timetable</span>
         </a>
 
-
         <a class="nav-item" href="assignments.html">
             <span class="nav-icon">📝</span>
             <span class="nav-text">Assignments</span>
         </a>
-
 
         <a class="nav-item active" href="attendance.html">
             <span class="nav-icon">📊</span>
             <span class="nav-text">Attendance</span>
         </a>
 
-
         <a class="nav-item" href="academics.html">
             <span class="nav-icon">🎓</span>
             <span class="nav-text">Academics</span>
         </a>
-
 
         <a class="nav-item" href="faculty.html">
             <span class="nav-icon">👨‍🏫</span>
             <span class="nav-text">Faculty</span>
         </a>
 
-
         <div class="menu-section">
 
-            <div class="menu-title">
-                CAREER
-            </div>
-
+            <div class="menu-title">CAREER</div>
 
             <a class="nav-item" href="placement.html">
                 <span class="nav-icon">💼</span>
                 <span class="nav-text">Placement</span>
             </a>
-
 
             <a class="nav-item" href="results.html">
                 <span class="nav-icon">📈</span>
@@ -1789,55 +1216,44 @@ select{
 
         </div>
 
-
         <div class="menu-section">
 
-            <div class="menu-title">
-                CAMPUS
-            </div>
-
+            <div class="menu-title">CAMPUS</div>
 
             <a class="nav-item" href="documents.html">
                 <span class="nav-icon">📄</span>
                 <span class="nav-text">Documents</span>
             </a>
 
-
             <a class="nav-item" href="complaints.html">
                 <span class="nav-icon">📢</span>
                 <span class="nav-text">Complaints</span>
             </a>
-
 
             <a class="nav-item" href="feedback.html">
                 <span class="nav-icon">💬</span>
                 <span class="nav-text">Feedback</span>
             </a>
 
-
             <a class="nav-item" href="lost_found.html">
                 <span class="nav-icon">🔎</span>
                 <span class="nav-text">Lost &amp; Found</span>
             </a>
-
 
             <a class="nav-item" href="campus.html">
                 <span class="nav-icon">🏫</span>
                 <span class="nav-text">Campus</span>
             </a>
 
-
             <a class="nav-item" href="events.html">
                 <span class="nav-icon">🎉</span>
                 <span class="nav-text">Events</span>
             </a>
 
-
             <a class="nav-item" href="exams.html">
                 <span class="nav-icon">📋</span>
                 <span class="nav-text">Exams</span>
             </a>
-
 
             <a class="nav-item" href="notifications.html">
                 <span class="nav-icon">🔔</span>
@@ -1846,33 +1262,23 @@ select{
 
         </div>
 
-
         <div class="menu-section">
 
-            <div class="menu-title">
-                ACCOUNT
-            </div>
-
+            <div class="menu-title">ACCOUNT</div>
 
             <a class="nav-item" href="profile.html">
                 <span class="nav-icon">👤</span>
                 <span class="nav-text">Profile</span>
             </a>
 
-
             <a class="nav-item" href="settings.html">
                 <span class="nav-icon">⚙️</span>
                 <span class="nav-text">Settings</span>
             </a>
 
-
             <div class="logout">
 
-                <a
-                    class="nav-item"
-                    href="../index.html"
-                    onclick="return confirm('Are you sure you want to logout?')"
-                >
+                <a class="nav-item" href="../index.html" onclick="return confirmLogout()">
                     <span class="nav-icon">🚪</span>
                     <span class="nav-text">Logout</span>
                 </a>
@@ -1882,49 +1288,38 @@ select{
         </div>
 
     </div>
-
 </aside>
 
-
-<!-- =====================================================
-     MAIN
-===================================================== -->
+<!-- =========================================================
+     MAIN AREA
+========================================================= -->
 
 <main class="main-area">
-
-
-    <!-- HEADER -->
 
     <header class="top-header">
 
         <div class="header-left">
 
             <h1>
-                Student<br>
-                Attendance
+                Attendance<br>
+                Tracker
             </h1>
 
             <p>
-                Track your attendance and stay above the required percentage
+                Monitor your attendance and stay on track
             </p>
 
         </div>
 
-
         <div class="header-right">
 
-            <div
-                class="time-box"
-                id="clock"
-            >
-                10:00 PM
+            <div class="time-box" id="clock">
+                6:00 PM
             </div>
 
-
-            <div class="notification">
+            <div class="notification" onclick="showNotifications()">
                 🔔
             </div>
-
 
             <div class="profile-mini">
 
@@ -1933,19 +1328,8 @@ select{
                 </div>
 
                 <div class="profile-info">
-
-                    <strong>
-                        Student
-                    </strong>
-
-                    <span>
-                        BCA
-                    </span>
-
-                    <span>
-                        Student
-                    </span>
-
+                    <strong>Student</strong>
+                    <span>BCA &bull; 5th Sem</span>
                 </div>
 
             </div>
@@ -1954,11 +1338,29 @@ select{
 
     </header>
 
-
-    <!-- CONTENT -->
-
     <div class="page-content">
 
+        <!-- PAGE HEADING -->
+
+        <div class="page-heading">
+
+            <div>
+
+                <h2>
+                    📊 Attendance Overview
+                </h2>
+
+                <p>
+                    Check your subject-wise attendance and maintain the required percentage.
+                </p>
+
+            </div>
+
+            <button class="heading-btn" onclick="showAttendanceDetails()">
+                View Full Details
+            </button>
+
+        </div>
 
         <!-- HERO -->
 
@@ -1966,38 +1368,40 @@ select{
 
             <div class="hero-content">
 
-                <div class="hero-small">
-                    ✨ Attendance Overview
-                </div>
+                <h3 id="heroTitle">
+                    You're doing great! 🎯
+                </h3>
 
-                <h2>
-                    Great job! Keep it up 🎉
-                </h2>
-
-                <p>
-                    Your overall attendance is healthy.
-                    Maintain regular attendance to stay
-                    eligible for exams and academic activities.
+                <p id="heroText">
+                    Keep attending your classes regularly to maintain your attendance.
+                    Check each subject below and avoid falling below the required percentage.
                 </p>
 
             </div>
 
+            <div class="hero-action">
 
-            <div class="donut-wrap">
+                <div class="stat-box">
 
-                <div class="donut">
+                    <strong id="overallAttendance">
+                        0%
+                    </strong>
 
-                    <div class="donut-text">
+                    <span>
+                        Overall Attendance
+                    </span>
 
-                        <strong>
-                            88%
-                        </strong>
+                </div>
 
-                        <span>
-                            Overall
-                        </span>
+                <div class="stat-box">
 
-                    </div>
+                    <strong id="classesAttended">
+                        0
+                    </strong>
+
+                    <span>
+                        Classes Attended
+                    </span>
 
                 </div>
 
@@ -2005,19 +1409,44 @@ select{
 
         </section>
 
-
         <!-- SUMMARY -->
 
         <section class="summary-grid">
 
-
-            <div class="summary-card">
+            <div class="summary-card"
+                 onclick="showToast(attendanceStats().total + ' total classes conducted 📚')">
 
                 <div class="summary-top">
 
-                    <span class="summary-title">
+                    <div class="summary-title">
+                        TOTAL CLASSES
+                    </div>
+
+                    <div class="summary-icon">
+                        📚
+                    </div>
+
+                </div>
+
+                <div class="summary-number" id="statTotal">
+                    0
+                </div>
+
+                <div class="summary-small">
+                    Classes conducted
+                </div>
+
+            </div>
+
+
+            <div class="summary-card"
+                 onclick="showToast(attendanceStats().present + ' classes attended ✅')">
+
+                <div class="summary-top">
+
+                    <div class="summary-title">
                         PRESENT
-                    </span>
+                    </div>
 
                     <div class="summary-icon">
                         ✅
@@ -2025,8 +1454,8 @@ select{
 
                 </div>
 
-                <div class="summary-number green-number">
-                    176
+                <div class="summary-number" id="statPresent">
+                    0
                 </div>
 
                 <div class="summary-small">
@@ -2036,13 +1465,14 @@ select{
             </div>
 
 
-            <div class="summary-card">
+            <div class="summary-card"
+                 onclick="showToast(attendanceStats().absent + ' classes missed ❌')">
 
                 <div class="summary-top">
 
-                    <span class="summary-title">
+                    <div class="summary-title">
                         ABSENT
-                    </span>
+                    </div>
 
                     <div class="summary-icon">
                         ❌
@@ -2050,8 +1480,8 @@ select{
 
                 </div>
 
-                <div class="summary-number red-number">
-                    24
+                <div class="summary-number" id="statAbsent">
+                    0
                 </div>
 
                 <div class="summary-small">
@@ -2061,38 +1491,14 @@ select{
             </div>
 
 
-            <div class="summary-card">
+            <div class="summary-card"
+                 onclick="showToast('Required attendance: ' + attendanceStats().required + '%')">
 
                 <div class="summary-top">
 
-                    <span class="summary-title">
-                        WORKING DAYS
-                    </span>
-
-                    <div class="summary-icon">
-                        📅
-                    </div>
-
-                </div>
-
-                <div class="summary-number blue-number">
-                    200
-                </div>
-
-                <div class="summary-small">
-                    Total classes
-                </div>
-
-            </div>
-
-
-            <div class="summary-card">
-
-                <div class="summary-top">
-
-                    <span class="summary-title">
+                    <div class="summary-title">
                         REQUIRED
-                    </span>
+                    </div>
 
                     <div class="summary-icon">
                         🎯
@@ -2100,7 +1506,7 @@ select{
 
                 </div>
 
-                <div class="summary-number purple-number">
+                <div class="summary-number" id="statRequired">
                     75%
                 </div>
 
@@ -2112,561 +1518,112 @@ select{
 
         </section>
 
-
         <!-- SUBJECT ATTENDANCE -->
 
         <section class="content-card">
 
             <div class="card-heading">
 
-                <div>
+                <h3>
+                    Subject-wise Attendance
+                </h3>
 
-                    <h3>
-                        Subject-wise Attendance
-                    </h3>
+                <div class="card-tools">
 
-                    <p>
-                        View your attendance for each subject.
-                    </p>
+                    <input
+                        class="search-box"
+                        id="attendanceSearch"
+                        type="text"
+                        placeholder="Search subject..."
+                        oninput="renderAttendance()"
+                    >
 
-                </div>
+                    <select
+                        class="filter-select"
+                        id="attendanceFilter"
+                        onchange="renderAttendance()"
+                    >
 
+                        <option value="all">
+                            All Subjects
+                        </option>
 
-                <select
-                    class="subject-filter"
-                    id="subjectFilter"
-                    onchange="filterSubjects()"
-                >
+                        <option value="good">
+                            Good
+                        </option>
 
-                    <option value="all">
-                        All Subjects
-                    </option>
+                        <option value="warning">
+                            Warning
+                        </option>
 
-                    <option value="Database Management System">
-                        Database Management System
-                    </option>
+                        <option value="low">
+                            Low
+                        </option>
 
-                    <option value="Web Programming">
-                        Web Programming
-                    </option>
+                    </select>
 
-                    <option value="Software Engineering">
-                        Software Engineering
-                    </option>
-
-                    <option value="Computer Networks">
-                        Computer Networks
-                    </option>
-
-                    <option value="Mathematics">
-                        Mathematics
-                    </option>
-
-                    <option value="Artificial Intelligence">
-                        Artificial Intelligence
-                    </option>
-
-                </select>
-
-            </div>
-
-
-            <div class="attendance-header">
-
-                <div>
-                    Subject
-                </div>
-
-                <div>
-                    Attendance
-                </div>
-
-                <div>
-                    Progress
-                </div>
-
-                <div>
-                    Attended
-                </div>
-
-                <div>
-                    Status
                 </div>
 
             </div>
-
 
             <div
-                class="subject-row"
-                data-subject="Database Management System"
-            >
-
-                <div class="subject-info">
-
-                    <div class="subject-icon">
-                        🗄️
-                    </div>
-
-                    <div class="subject-name">
-
-                        <strong>
-                            Database Management System
-                        </strong>
-
-                        <span>
-                            Prof. Sharma
-                        </span>
-
-                    </div>
-
-                </div>
-
-
-                <div class="attendance-percent percent-green">
-                    92%
-                </div>
-
-
-                <div class="progress-wrap">
-
-                    <div
-                        class="progress-bar"
-                        style="width:92%"
-                    ></div>
-
-                </div>
-
-
-                <div class="attended">
-                    46 / 50
-                </div>
-
-
-                <div class="status status-excellent">
-                    Excellent
-                </div>
-
+                class="attendance-grid"
+                id="attendanceList">
             </div>
-
-
-            <div
-                class="subject-row"
-                data-subject="Web Programming"
-            >
-
-                <div class="subject-info">
-
-                    <div class="subject-icon">
-                        💻
-                    </div>
-
-                    <div class="subject-name">
-
-                        <strong>
-                            Web Programming
-                        </strong>
-
-                        <span>
-                            Prof. Priya
-                        </span>
-
-                    </div>
-
-                </div>
-
-
-                <div class="attendance-percent percent-green">
-                    90%
-                </div>
-
-
-                <div class="progress-wrap">
-
-                    <div
-                        class="progress-bar"
-                        style="width:90%"
-                    ></div>
-
-                </div>
-
-
-                <div class="attended">
-                    45 / 50
-                </div>
-
-
-                <div class="status status-excellent">
-                    Excellent
-                </div>
-
-            </div>
-
-
-            <div
-                class="subject-row"
-                data-subject="Software Engineering"
-            >
-
-                <div class="subject-info">
-
-                    <div class="subject-icon">
-                        ⚙️
-                    </div>
-
-                    <div class="subject-name">
-
-                        <strong>
-                            Software Engineering
-                        </strong>
-
-                        <span>
-                            Prof. Kumar
-                        </span>
-
-                    </div>
-
-                </div>
-
-
-                <div class="attendance-percent percent-green">
-                    86%
-                </div>
-
-
-                <div class="progress-wrap">
-
-                    <div
-                        class="progress-bar"
-                        style="width:86%"
-                    ></div>
-
-                </div>
-
-
-                <div class="attended">
-                    43 / 50
-                </div>
-
-
-                <div class="status status-good">
-                    Good
-                </div>
-
-            </div>
-
-
-            <div
-                class="subject-row"
-                data-subject="Computer Networks"
-            >
-
-                <div class="subject-info">
-
-                    <div class="subject-icon">
-                        🌐
-                    </div>
-
-                    <div class="subject-name">
-
-                        <strong>
-                            Computer Networks
-                        </strong>
-
-                        <span>
-                            Prof. Rao
-                        </span>
-
-                    </div>
-
-                </div>
-
-
-                <div class="attendance-percent percent-green">
-                    84%
-                </div>
-
-
-                <div class="progress-wrap">
-
-                    <div
-                        class="progress-bar"
-                        style="width:84%"
-                    ></div>
-
-                </div>
-
-
-                <div class="attended">
-                    42 / 50
-                </div>
-
-
-                <div class="status status-good">
-                    Good
-                </div>
-
-            </div>
-
-
-            <div
-                class="subject-row"
-                data-subject="Mathematics"
-            >
-
-                <div class="subject-info">
-
-                    <div class="subject-icon">
-                        📐
-                    </div>
-
-                    <div class="subject-name">
-
-                        <strong>
-                            Mathematics
-                        </strong>
-
-                        <span>
-                            Prof. Mehta
-                        </span>
-
-                    </div>
-
-                </div>
-
-
-                <div class="attendance-percent percent-orange">
-                    76%
-                </div>
-
-
-                <div class="progress-wrap">
-
-                    <div
-                        class="progress-bar progress-orange"
-                        style="width:76%"
-                    ></div>
-
-                </div>
-
-
-                <div class="attended">
-                    38 / 50
-                </div>
-
-
-                <div class="status status-attention">
-                    Attention
-                </div>
-
-            </div>
-
-
-            <div
-                class="subject-row"
-                data-subject="Artificial Intelligence"
-            >
-
-                <div class="subject-info">
-
-                    <div class="subject-icon">
-                        🤖
-                    </div>
-
-                    <div class="subject-name">
-
-                        <strong>
-                            Artificial Intelligence
-                        </strong>
-
-                        <span>
-                            Prof. Singh
-                        </span>
-
-                    </div>
-
-                </div>
-
-
-                <div class="attendance-percent percent-red">
-                    72%
-                </div>
-
-
-                <div class="progress-wrap">
-
-                    <div
-                        class="progress-bar progress-red"
-                        style="width:72%"
-                    ></div>
-
-                </div>
-
-
-                <div class="attended">
-                    36 / 50
-                </div>
-
-
-                <div class="status status-critical">
-                    Critical
-                </div>
-
-            </div>
-
 
         </section>
 
+        <!-- RECENT RECORD -->
 
-        <!-- RECENT ATTENDANCE -->
-
-        <section class="recent-card">
+        <section class="content-card">
 
             <div class="card-heading">
 
-                <div>
-
-                    <h3>
-                        Recent Attendance
-                    </h3>
-
-                    <p>
-                        Your attendance for the recent working days.
-                    </p>
-
-                </div>
-
+                <h3>
+                    Recent Attendance Record
+                </h3>
 
                 <button
-                    class="view-details"
-                    onclick="showToast('Attendance details opened')"
+                    class="filter-select"
+                    onclick="showAttendanceDetails()"
                 >
                     View Details
                 </button>
 
             </div>
 
+            <div class="table-wrap">
 
-            <div class="recent-days">
+                <table class="attendance-table">
 
+                    <thead>
 
-                <div class="day-card">
+                        <tr>
 
-                    <div class="day-name">
-                        MON
-                    </div>
+                            <th>
+                                Date
+                            </th>
 
-                    <div class="day-number">
-                        14
-                    </div>
+                            <th>
+                                Subject
+                            </th>
 
-                    <div class="day-status day-present">
-                        ✓
-                    </div>
+                            <th>
+                                Faculty
+                            </th>
 
-                </div>
+                            <th>
+                                Status
+                            </th>
 
+                        </tr>
 
-                <div class="day-card">
+                    </thead>
 
-                    <div class="day-name">
-                        TUE
-                    </div>
+                    <tbody id="recentAttendance">
+                    </tbody>
 
-                    <div class="day-number">
-                        15
-                    </div>
-
-                    <div class="day-status day-present">
-                        ✓
-                    </div>
-
-                </div>
-
-
-                <div class="day-card">
-
-                    <div class="day-name">
-                        WED
-                    </div>
-
-                    <div class="day-number">
-                        16
-                    </div>
-
-                    <div class="day-status day-absent">
-                        ×
-                    </div>
-
-                </div>
-
-
-                <div class="day-card">
-
-                    <div class="day-name">
-                        THU
-                    </div>
-
-                    <div class="day-number">
-                        17
-                    </div>
-
-                    <div class="day-status day-present">
-                        ✓
-                    </div>
-
-                </div>
-
-
-                <div class="day-card">
-
-                    <div class="day-name">
-                        FRI
-                    </div>
-
-                    <div class="day-number">
-                        18
-                    </div>
-
-                    <div class="day-status day-present">
-                        ✓
-                    </div>
-
-                </div>
-
-
-                <div class="day-card">
-
-                    <div class="day-name">
-                        SAT
-                    </div>
-
-                    <div class="day-number">
-                        19
-                    </div>
-
-                    <div class="day-status day-present">
-                        ✓
-                    </div>
-
-                </div>
-
-
-                <div class="day-card">
-
-                    <div class="day-name">
-                        SUN
-                    </div>
-
-                    <div class="day-number">
-                        20
-                    </div>
-
-                    <div class="day-status day-holiday">
-                        —
-                    </div>
-
-                </div>
-
+                </table>
 
             </div>
 
@@ -2676,32 +1633,20 @@ select{
 
 </main>
 
-
-<!-- =====================================================
-     CHATBOT BUTTON
-===================================================== -->
+<!-- =========================================================
+     CHATBOT
+========================================================= -->
 
 <button
     class="chat-bubble"
     id="chatBubble"
-    onclick="toggleChatbot()"
-    aria-label="Open AI College Companion"
->
-
+    onclick="openChatPanel()">
     🤖
-
 </button>
 
-
-<!-- =====================================================
-     CHATBOT
-===================================================== -->
-
-<aside
+<div
     class="chatbot-panel"
-    id="chatbotPanel"
->
-
+    id="chatbotPanel">
 
     <div class="chat-header">
 
@@ -2718,118 +1663,338 @@ select{
                 </strong>
 
                 <span>
-
                     <i class="online-dot"></i>
-
                     Online • Ready to help
-
                 </span>
 
             </div>
 
         </div>
 
-
         <button
             class="close-chat"
-            onclick="toggleChatbot()"
-        >
+            onclick="closeChatPanel()">
             ×
         </button>
 
     </div>
 
-
     <div
         class="chat-body"
-        id="chatBody"
-    >
+        id="chatBody">
 
         <div class="bot-message">
 
             👋 Hi! I'm your
             <strong>AI College Companion.</strong>
 
-            I can help you understand your
-            attendance and identify subjects
-            that need attention.
-
-        </div>
-
-
-        <div class="bot-message">
-
-            Your current overall attendance is
-            <strong>88%</strong>.
-            Keep attending regularly! 😊
+            Ask me about your attendance,
+            subjects, missed classes or
+            required attendance.
 
         </div>
 
     </div>
-
 
     <div class="quick-buttons">
 
         <button
             class="quick-btn"
-            onclick="quickChat('My Attendance')"
-        >
+            onclick="quickChat('What is my attendance?')">
             My Attendance
         </button>
 
-
         <button
             class="quick-btn"
-            onclick="quickChat('Low Attendance')"
-        >
+            onclick="quickChat('Which subjects are low?')">
             Low Attendance
         </button>
 
+        <button
+            class="quick-btn"
+            onclick="quickChat('How many classes did I miss?')">
+            Classes Missed
+        </button>
 
         <button
             class="quick-btn"
-            onclick="quickChat('Minimum %')"
-        >
-            Minimum %
+            onclick="quickChat('What attendance is required?')">
+            Required %
         </button>
 
     </div>
 
-
     <div class="chat-footer">
 
         <input
-            class="chat-input"
             id="chatInput"
+            class="chat-input"
             type="text"
             placeholder="Ask your companion..."
             onkeydown="handleChatKey(event)"
         >
 
-
         <button
             class="send-btn"
-            onclick="sendChat()"
-        >
+            onclick="sendChat()">
             ➤
         </button>
 
     </div>
 
-</aside>
+</div>
 
+<!-- =========================================================
+     MODAL
+========================================================= -->
+
+<div
+    class="modal"
+    id="attendanceModal"
+    onclick="closeModalOutside(event)">
+
+    <div class="modal-box">
+
+        <div class="modal-top">
+
+            <h3 id="modalTitle">
+                📊 Attendance Details
+            </h3>
+
+            <button
+                class="close-btn"
+                onclick="closeModal()">
+                ×
+            </button>
+
+        </div>
+
+        <div
+            class="modal-content"
+            id="modalContent">
+        </div>
+
+        <div class="modal-buttons">
+
+            <button
+                class="modal-btn modal-cancel"
+                onclick="closeModal()">
+                Close
+            </button>
+
+            <button
+                class="modal-btn modal-ok"
+                onclick="downloadAttendance()">
+                Download Report
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
 
 <!-- TOAST -->
 
 <div
     class="toast"
-    id="toast"
->
-    Action completed
+    id="toast">
+    Done
 </div>
 
 
 <script>
+
+/* =========================================================
+   ATTENDANCE DATA
+========================================================= */
+
+const ATTENDANCE = [
+
+    {
+        id:"A1",
+        subject:"Database Management System",
+        code:"BCA501",
+        faculty:"Dr. Anita Sharma",
+        attended:42,
+        total:48,
+        status:"good"
+    },
+
+    {
+        id:"A2",
+        subject:"Web Programming",
+        code:"BCA502",
+        faculty:"Priya Iyer",
+        attended:38,
+        total:45,
+        status:"good"
+    },
+
+    {
+        id:"A3",
+        subject:"Software Engineering",
+        code:"BCA503",
+        faculty:"Rakesh Kumar",
+        attended:35,
+        total:43,
+        status:"good"
+    },
+
+    {
+        id:"A4",
+        subject:"Computer Networks",
+        code:"BCA504",
+        faculty:"Dr. Sunil Rao",
+        attended:31,
+        total:43,
+        status:"warning"
+    },
+
+    {
+        id:"A5",
+        subject:"Mathematics",
+        code:"BCA505",
+        faculty:"Kavita Mehta",
+        attended:39,
+        total:48,
+        status:"good"
+    },
+
+    {
+        id:"A6",
+        subject:"Artificial Intelligence",
+        code:"BCA506",
+        faculty:"Dr. Vikram Singh",
+        attended:28,
+        total:42,
+        status:"low"
+    }
+
+];
+
+
+/* =========================================================
+   RECENT ATTENDANCE
+========================================================= */
+
+const RECENT_RECORDS = [
+
+    {
+        date:"29 Sep 2026",
+        subject:"Database Management System",
+        faculty:"Dr. Anita Sharma",
+        status:"Present"
+    },
+
+    {
+        date:"29 Sep 2026",
+        subject:"Web Programming",
+        faculty:"Priya Iyer",
+        status:"Present"
+    },
+
+    {
+        date:"28 Sep 2026",
+        subject:"Artificial Intelligence",
+        faculty:"Dr. Vikram Singh",
+        status:"Absent"
+    },
+
+    {
+        date:"28 Sep 2026",
+        subject:"Mathematics",
+        faculty:"Kavita Mehta",
+        status:"Present"
+    },
+
+    {
+        date:"27 Sep 2026",
+        subject:"Computer Networks",
+        faculty:"Dr. Sunil Rao",
+        status:"Late"
+    },
+
+    {
+        date:"27 Sep 2026",
+        subject:"Software Engineering",
+        faculty:"Rakesh Kumar",
+        status:"Present"
+    }
+
+];
+
+
+/* =========================================================
+   HELPERS
+========================================================= */
+
+function percentage(attended,total){
+
+    if(!total) return 0;
+
+    return ((attended / total) * 100).toFixed(1);
+}
+
+
+function attendanceStats(){
+
+    let total = 0;
+    let present = 0;
+
+    ATTENDANCE.forEach(function(item){
+
+        total += item.total;
+        present += item.attended;
+
+    });
+
+    const absent = total - present;
+
+    const overall = total
+        ? ((present / total) * 100).toFixed(1)
+        : 0;
+
+    return {
+
+        total:total,
+        present:present,
+        absent:absent,
+        overall:overall,
+        required:75
+
+    };
+
+}
+
+
+function attendanceStatus(percent){
+
+    if(percent >= 75){
+        return "good";
+    }
+
+    if(percent >= 65){
+        return "warning";
+    }
+
+    return "low";
+
+}
+
+
+function attendanceStatusLabel(status){
+
+    return {
+
+        good:"Good Standing",
+        warning:"Needs Attention",
+        low:"Low Attendance"
+
+    }[status];
+
+}
+
 
 /* =========================================================
    CLOCK
@@ -2839,290 +2004,673 @@ function updateClock(){
 
     const now = new Date();
 
-    let hours =
-        now.getHours();
+    let hours = now.getHours();
 
     const minutes =
-        String(
-            now.getMinutes()
-        ).padStart(2,"0");
+        String(now.getMinutes()).padStart(2,"0");
+
+    const seconds =
+        String(now.getSeconds()).padStart(2,"0");
 
     const ampm =
-        hours >= 12
-            ? "PM"
-            : "AM";
+        hours >= 12 ? "PM" : "AM";
 
-    hours =
-        hours % 12 || 12;
+    hours = hours % 12 || 12;
 
-    document.getElementById(
-        "clock"
-    ).textContent =
-        hours +
-        ":" +
-        minutes +
-        " " +
+    document.getElementById("clock").textContent =
+        hours + ":" +
+        minutes + ":" +
+        seconds + " " +
         ampm;
 }
 
 updateClock();
 
-setInterval(
-    updateClock,
-    1000
-);
+setInterval(updateClock,1000);
 
 
 /* =========================================================
-   SUBJECT FILTER
+   RENDER OVERVIEW
 ========================================================= */
 
-function filterSubjects(){
+function renderOverview(){
 
-    const selected =
-        document.getElementById(
-            "subjectFilter"
-        ).value;
+    const stats = attendanceStats();
 
-    const rows =
-        document.querySelectorAll(
-            ".subject-row"
-        );
+    document.getElementById("overallAttendance").textContent =
+        stats.overall + "%";
 
+    document.getElementById("classesAttended").textContent =
+        stats.present;
 
-    rows.forEach(
-        row => {
+    document.getElementById("statTotal").textContent =
+        stats.total;
 
-            const subject =
-                row.dataset.subject;
+    document.getElementById("statPresent").textContent =
+        stats.present;
 
+    document.getElementById("statAbsent").textContent =
+        stats.absent;
 
-            if(
-                selected === "all" ||
-                subject === selected
-            ){
-
-                row.style.display =
-                    "grid";
-
-            }else{
-
-                row.style.display =
-                    "none";
-
-            }
-
-        }
-    );
-
-}
+    document.getElementById("statRequired").textContent =
+        stats.required + "%";
 
 
-/* =========================================================
-   CHATBOT
-========================================================= */
-
-function toggleChatbot(){
-
-    const panel =
-        document.getElementById(
-            "chatbotPanel"
-        );
-
-    const bubble =
-        document.getElementById(
-            "chatBubble"
-        );
-
-
-    if(
-        panel.classList.contains(
-            "open"
-        )
-    ){
-
-        panel.classList.remove(
-            "open"
-        );
-
-        bubble.classList.remove(
-            "hide"
-        );
-
-    }else{
-
-        panel.classList.add(
-            "open"
-        );
-
-        bubble.classList.add(
-            "hide"
-        );
-
-        setTimeout(
-            function(){
-
-                document.getElementById(
-                    "chatInput"
-                ).focus();
-
-            },
-            100
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   QUICK CHAT
-========================================================= */
-
-function quickChat(text){
-
-    document.getElementById(
-        "chatInput"
-    ).value =
-        text;
-
-    sendChat();
-
-}
-
-
-/* =========================================================
-   SEND CHAT
-========================================================= */
-
-function sendChat(){
-
-    const input =
-        document.getElementById(
-            "chatInput"
-        );
+    const title =
+        document.getElementById("heroTitle");
 
     const text =
-        input.value.trim();
+        document.getElementById("heroText");
 
 
-    if(!text){
-        return;
+    if(Number(stats.overall) >= 85){
+
+        title.textContent =
+            "Excellent attendance! 🎯";
+
+        text.textContent =
+            "You're maintaining a strong attendance percentage. Keep attending regularly and stay consistent.";
+
+    }
+
+    else if(Number(stats.overall) >= 75){
+
+        title.textContent =
+            "Your attendance is on track 👍";
+
+        text.textContent =
+            "You're meeting the minimum attendance requirement. Keep attending classes regularly.";
+
+    }
+
+    else{
+
+        title.textContent =
+            "Attendance needs attention ⚠️";
+
+        text.textContent =
+            "Your overall attendance is below the required percentage. Attend upcoming classes regularly to improve it.";
+
+    }
+
+}
+
+
+/* =========================================================
+   RENDER ATTENDANCE CARDS
+========================================================= */
+
+function renderAttendance(){
+
+    const search =
+        document.getElementById("attendanceSearch")
+        .value
+        .trim()
+        .toLowerCase();
+
+    const filter =
+        document.getElementById("attendanceFilter")
+        .value;
+
+    const list =
+        document.getElementById("attendanceList");
+
+
+    let rows = ATTENDANCE.slice();
+
+
+    if(search){
+
+        rows = rows.filter(function(item){
+
+            return (
+
+                item.subject.toLowerCase().includes(search) ||
+
+                item.code.toLowerCase().includes(search) ||
+
+                item.faculty.toLowerCase().includes(search)
+
+            );
+
+        });
+
     }
 
 
-    const body =
-        document.getElementById(
-            "chatBody"
-        );
+    if(filter !== "all"){
+
+        rows = rows.filter(function(item){
+
+            const percent =
+                Number(percentage(item.attended,item.total));
+
+            return attendanceStatus(percent) === filter;
+
+        });
+
+    }
 
 
-    const userMessage =
-        document.createElement(
-            "div"
-        );
-
-    userMessage.className =
-        "user-message";
-
-    userMessage.textContent =
-        text;
+    list.innerHTML = "";
 
 
-    body.appendChild(
-        userMessage
-    );
+    if(rows.length === 0){
+
+        list.innerHTML =
+            '<div class="empty-note">No subjects match your search 🔍</div>';
+
+        return;
+
+    }
 
 
-    input.value = "";
+    rows.forEach(function(item){
+
+        const percent =
+            Number(percentage(item.attended,item.total));
+
+        const status =
+            attendanceStatus(percent);
+
+        const card =
+            document.createElement("div");
+
+        card.className =
+            "attendance-card";
 
 
-    setTimeout(
-        function(){
+        card.onclick = function(){
 
-            const botMessage =
-                document.createElement(
-                    "div"
-                );
+            showSubjectDetails(item.id);
 
-            botMessage.className =
-                "bot-message";
+        };
 
 
-            const lower =
-                text.toLowerCase();
+        card.innerHTML =
+
+            '<div class="attendance-top">' +
+
+                '<div class="subject-info">' +
+
+                    '<strong>' +
+                    item.subject +
+                    '</strong>' +
+
+                    '<span>' +
+                    item.code +
+                    ' • ' +
+                    item.faculty +
+                    '</span>' +
+
+                '</div>' +
+
+                '<div class="percentage" style="color:' +
+                    (
+                        status === "good"
+                        ? "#159b66"
+                        : status === "warning"
+                        ? "#d68a18"
+                        : "#e04a6d"
+                    ) +
+                ';">' +
+
+                    percent +
+                    '%' +
+
+                '</div>' +
+
+            '</div>' +
 
 
-            let response =
-                "😊 Your overall attendance is 88%. Keep attending regularly!";
+            '<div class="progress-track">' +
+
+                '<div class="progress-bar" style="width:' +
+                Math.min(percent,100) +
+                '%;"></div>' +
+
+            '</div>' +
 
 
-            if(
-                lower.includes(
-                    "low"
-                )
-            ){
+            '<div class="attendance-bottom">' +
 
-                response =
-                    "⚠️ Mathematics is at 76% and Artificial Intelligence is at 72%. These subjects need more attention.";
+                '<span>' +
+                item.attended +
+                ' attended out of ' +
+                item.total +
+                '</span>' +
 
-            }
+                '<span class="attendance-status ' +
+                status +
+                '">' +
 
-            else if(
-                lower.includes(
-                    "minimum"
-                )
-            ){
+                attendanceStatusLabel(status) +
 
-                response =
-                    "🎯 The minimum required attendance is 75%.";
+                '</span>' +
 
-            }
-
-            else if(
-                lower.includes(
-                    "attendance"
-                )
-            ){
-
-                response =
-                    "📊 Your overall attendance is 88%. You have attended 176 out of 200 classes.";
-
-            }
+            '</div>';
 
 
-            botMessage.textContent =
-                response;
+        list.appendChild(card);
+
+    });
+
+}
 
 
-            body.appendChild(
-                botMessage
-            );
+/* =========================================================
+   RECENT RECORDS
+========================================================= */
+
+function renderRecentRecords(){
+
+    const tbody =
+        document.getElementById("recentAttendance");
+
+    tbody.innerHTML = "";
 
 
-            body.scrollTop =
-                body.scrollHeight;
+    RECENT_RECORDS.forEach(function(record){
 
-        },
-        400
+        const tr =
+            document.createElement("tr");
+
+
+        let statusClass =
+            record.status.toLowerCase();
+
+
+        tr.innerHTML =
+
+            '<td>' +
+            record.date +
+            '</td>' +
+
+            '<td>' +
+            record.subject +
+            '</td>' +
+
+            '<td>' +
+            record.faculty +
+            '</td>' +
+
+            '<td class="' +
+            statusClass +
+            '">' +
+
+            (
+                record.status === "Present"
+                ? "✓ "
+                : record.status === "Absent"
+                ? "✕ "
+                : "• "
+            ) +
+
+            record.status +
+
+            '</td>';
+
+
+        tbody.appendChild(tr);
+
+    });
+
+}
+
+
+/* =========================================================
+   SUBJECT DETAILS
+========================================================= */
+
+function showSubjectDetails(id){
+
+    const item =
+        ATTENDANCE.find(function(x){
+            return x.id === id;
+        });
+
+    if(!item) return;
+
+
+    const percent =
+        percentage(item.attended,item.total);
+
+    const missed =
+        item.total - item.attended;
+
+
+    openModal(
+
+        "📊 " + item.subject,
+
+        "<p><strong>Subject Code:</strong> " +
+        item.code +
+        "</p>" +
+
+        "<p><strong>Faculty:</strong> " +
+        item.faculty +
+        "</p>" +
+
+        "<p><strong>Attendance:</strong> " +
+        percent +
+        "%</p>" +
+
+        "<p><strong>Classes Attended:</strong> " +
+        item.attended +
+        "</p>" +
+
+        "<p><strong>Total Classes:</strong> " +
+        item.total +
+        "</p>" +
+
+        "<p><strong>Classes Missed:</strong> " +
+        missed +
+        "</p>" +
+
+        "<div class='tip-box'>" +
+
+        (
+            Number(percent) >= 75
+
+            ? "✅ Your attendance is currently above the required 75%."
+
+            : "⚠️ Your attendance is below 75%. Try to attend the upcoming classes regularly."
+
+        ) +
+
+        "</div>"
+
     );
 
 }
 
 
 /* =========================================================
-   ENTER KEY
+   FULL ATTENDANCE DETAILS
 ========================================================= */
 
-function handleChatKey(event){
+function showAttendanceDetails(){
 
-    if(
-        event.key === "Enter"
-    ){
+    const stats =
+        attendanceStats();
 
-        sendChat();
+
+    let rowsHtml =
+
+        "<table style='width:100%;border-collapse:collapse;margin-top:10px;font-size:11px;'>" +
+
+        "<tr>" +
+
+        "<th style='text-align:left;padding:8px 6px;color:#8b93aa;border-bottom:1px solid #f0f1f7;'>Subject</th>" +
+
+        "<th style='text-align:left;padding:8px 6px;color:#8b93aa;border-bottom:1px solid #f0f1f7;'>Attended</th>" +
+
+        "<th style='text-align:left;padding:8px 6px;color:#8b93aa;border-bottom:1px solid #f0f1f7;'>Total</th>" +
+
+        "<th style='text-align:left;padding:8px 6px;color:#8b93aa;border-bottom:1px solid #f0f1f7;'>%</th>" +
+
+        "</tr>";
+
+
+    ATTENDANCE.forEach(function(item){
+
+        rowsHtml +=
+
+            "<tr>" +
+
+            "<td style='padding:8px 6px;border-bottom:1px solid #f0f1f7;'>" +
+            item.subject +
+            "</td>" +
+
+            "<td style='padding:8px 6px;border-bottom:1px solid #f0f1f7;'>" +
+            item.attended +
+            "</td>" +
+
+            "<td style='padding:8px 6px;border-bottom:1px solid #f0f1f7;'>" +
+            item.total +
+            "</td>" +
+
+            "<td style='padding:8px 6px;border-bottom:1px solid #f0f1f7;'>" +
+            percentage(item.attended,item.total) +
+            "%</td>" +
+
+            "</tr>";
+
+    });
+
+
+    rowsHtml += "</table>";
+
+
+    openModal(
+
+        "📊 Attendance Report",
+
+        "<p><strong>Overall Attendance:</strong> " +
+        stats.overall +
+        "%</p>" +
+
+        "<p><strong>Total Classes:</strong> " +
+        stats.total +
+        "</p>" +
+
+        "<p><strong>Classes Attended:</strong> " +
+        stats.present +
+        "</p>" +
+
+        "<p><strong>Classes Missed:</strong> " +
+        stats.absent +
+        "</p>" +
+
+        "<p><strong>Required Attendance:</strong> " +
+        stats.required +
+        "%</p>" +
+
+        rowsHtml
+
+    );
+
+}
+
+
+/* =========================================================
+   NOTIFICATIONS
+========================================================= */
+
+function showNotifications(){
+
+    const stats =
+        attendanceStats();
+
+
+    const lowSubjects =
+        ATTENDANCE.filter(function(item){
+
+            return Number(
+                percentage(item.attended,item.total)
+            ) < 75;
+
+        });
+
+
+    let html =
+
+        "<p><strong>Attendance Update</strong></p>" +
+
+        "<p>📊 Overall attendance: " +
+        stats.overall +
+        "%</p>" +
+
+        "<p>📚 " +
+        stats.present +
+        " classes attended.</p>" +
+
+        "<p>❌ " +
+        stats.absent +
+        " classes missed.</p>";
+
+
+    if(lowSubjects.length){
+
+        html +=
+
+            "<p>⚠️ Subjects below 75%: " +
+
+            lowSubjects
+            .map(function(item){
+                return item.subject;
+            })
+            .join(", ") +
+
+            ".</p>";
 
     }
+    else{
+
+        html +=
+            "<p>✅ All subjects are above the required attendance.</p>";
+
+    }
+
+
+    openModal(
+        "🔔 Attendance Notifications",
+        html
+    );
+
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+function openModal(title,html){
+
+    document.getElementById("modalTitle")
+        .textContent = title;
+
+    document.getElementById("modalContent")
+        .innerHTML = html;
+
+    document.getElementById("attendanceModal")
+        .classList.add("show");
+
+}
+
+
+function closeModal(){
+
+    document.getElementById("attendanceModal")
+        .classList.remove("show");
+
+}
+
+
+function closeModalOutside(event){
+
+    if(
+        event.target ===
+        document.getElementById("attendanceModal")
+    ){
+
+        closeModal();
+
+    }
+
+}
+
+
+/* =========================================================
+   DOWNLOAD ATTENDANCE
+========================================================= */
+
+function downloadAttendance(){
+
+    const stats =
+        attendanceStats();
+
+
+    let text =
+        "CampusConnect - Attendance Report\n" +
+        "====================================\n\n" +
+
+        "Overall Attendance : " +
+        stats.overall +
+        "%\n" +
+
+        "Total Classes      : " +
+        stats.total +
+        "\n" +
+
+        "Classes Attended   : " +
+        stats.present +
+        "\n" +
+
+        "Classes Missed     : " +
+        stats.absent +
+        "\n" +
+
+        "Required Attendance: " +
+        stats.required +
+        "%\n\n";
+
+
+    ATTENDANCE.forEach(function(item){
+
+        text +=
+
+            item.subject +
+            "\n" +
+
+            "Code       : " +
+            item.code +
+            "\n" +
+
+            "Faculty    : " +
+            item.faculty +
+            "\n" +
+
+            "Attended   : " +
+            item.attended +
+            "\n" +
+
+            "Total      : " +
+            item.total +
+            "\n" +
+
+            "Attendance : " +
+            percentage(item.attended,item.total) +
+            "%\n\n";
+
+    });
+
+
+    const blob =
+        new Blob(
+            [text],
+            {type:"text/plain"}
+        );
+
+
+    const link =
+        document.createElement("a");
+
+
+    link.href =
+        URL.createObjectURL(blob);
+
+    link.download =
+        "attendance-report.txt";
+
+    link.click();
+
+    URL.revokeObjectURL(link.href);
+
+
+    showToast(
+        "Attendance report downloaded 📄"
+    );
 
 }
 
@@ -3134,69 +2682,379 @@ function handleChatKey(event){
 function showToast(message){
 
     const toast =
-        document.getElementById(
-            "toast"
-        );
-
+        document.getElementById("toast");
 
     toast.textContent =
         message;
 
+    toast.classList.add("show");
 
-    toast.classList.add(
-        "show"
+    clearTimeout(toast._timer);
+
+    toast._timer =
+        setTimeout(function(){
+
+            toast.classList.remove("show");
+
+        },2500);
+
+}
+
+
+/* =========================================================
+   CHATBOT
+========================================================= */
+
+function openChatPanel(){
+
+    document
+        .getElementById("chatbotPanel")
+        .classList.add("open");
+
+    document
+        .getElementById("chatBubble")
+        .classList.add("hide");
+
+}
+
+
+function closeChatPanel(){
+
+    document
+        .getElementById("chatbotPanel")
+        .classList.remove("open");
+
+    document
+        .getElementById("chatBubble")
+        .classList.remove("hide");
+
+}
+
+
+function quickChat(text){
+
+    document
+        .getElementById("chatInput")
+        .value = text;
+
+    sendChat();
+
+}
+
+
+function addMessage(cls,html){
+
+    const body =
+        document.getElementById("chatBody");
+
+    const msg =
+        document.createElement("div");
+
+    msg.className =
+        cls;
+
+    msg.innerHTML =
+        html;
+
+    body.appendChild(msg);
+
+    body.scrollTop =
+        body.scrollHeight;
+
+    return msg;
+
+}
+
+
+/* =========================================================
+   CHATBOT RESPONSE
+========================================================= */
+
+function botReply(text){
+
+    const stats =
+        attendanceStats();
+
+    const lower =
+        text.toLowerCase();
+
+
+    if(
+        /^(hi|hello|hey|hii|yo)\b/.test(lower)
+    ){
+
+        return "👋 Hey! Ask me about your attendance, missed classes, low-attendance subjects or required percentage.";
+
+    }
+
+
+    if(
+        lower.includes("what is my attendance") ||
+        lower.includes("my attendance") ||
+        lower.includes("overall attendance")
+    ){
+
+        return "📊 Your overall attendance is <strong>" +
+            stats.overall +
+            "%</strong>. You have attended " +
+            stats.present +
+            " out of " +
+            stats.total +
+            " classes.";
+
+    }
+
+
+    if(
+        lower.includes("low") ||
+        lower.includes("below") ||
+        lower.includes("shortage")
+    ){
+
+        const low =
+            ATTENDANCE.filter(function(item){
+
+                return Number(
+                    percentage(item.attended,item.total)
+                ) < 75;
+
+            });
+
+
+        if(!low.length){
+
+            return "✅ All your subjects are currently above the required 75%.";
+
+        }
+
+
+        return "⚠️ Subjects below 75%: " +
+
+            low.map(function(item){
+
+                return item.subject +
+                    " (" +
+                    percentage(item.attended,item.total) +
+                    "%)";
+
+            }).join(", ") +
+
+            ".";
+
+    }
+
+
+    if(
+        lower.includes("missed") ||
+        lower.includes("absent") ||
+        lower.includes("classes did i miss")
+    ){
+
+        return "❌ You have missed <strong>" +
+            stats.absent +
+            "</strong> classes in total.";
+
+    }
+
+
+    if(
+        lower.includes("required") ||
+        lower.includes("minimum") ||
+        lower.includes("75")
+    ){
+
+        return "🎯 The required attendance is <strong>" +
+            stats.required +
+            "%</strong>.";
+
+    }
+
+
+    if(
+        lower.includes("subject")
+    ){
+
+        return "📚 Your subjects are: " +
+
+            ATTENDANCE.map(function(item){
+
+                return item.subject;
+
+            }).join(", ") +
+
+            ".";
+
+    }
+
+
+    for(
+        let i = 0;
+        i < ATTENDANCE.length;
+        i++
+    ){
+
+        const item =
+            ATTENDANCE[i];
+
+
+        if(
+            lower.includes(
+                item.subject.toLowerCase()
+            ) ||
+            lower.includes(
+                item.code.toLowerCase()
+            )
+        ){
+
+            return item.subject +
+                " attendance is <strong>" +
+                percentage(
+                    item.attended,
+                    item.total
+                ) +
+                "%</strong>. You attended " +
+                item.attended +
+                " out of " +
+                item.total +
+                " classes.";
+
+        }
+
+    }
+
+
+    if(lower.includes("thank")){
+
+        return "😊 Anytime! Keep attending regularly and stay above the required percentage.";
+
+    }
+
+
+    return "😊 I can tell you your overall attendance, missed classes, required percentage, or subject-wise attendance. Try asking \"What is my attendance?\"";
+
+}
+
+
+function sendChat(){
+
+    const input =
+        document.getElementById("chatInput");
+
+    const text =
+        input.value.trim();
+
+
+    if(!text) return;
+
+
+    addMessage(
+        "user-message",
+        escapeHtml(text)
     );
 
 
-    setTimeout(
-        function(){
+    input.value = "";
 
-            toast.classList.remove(
-                "show"
-            );
 
-        },
-        2500
+    const typing =
+        addMessage(
+            "typing",
+            "<i></i><i></i><i></i>"
+        );
+
+
+    setTimeout(function(){
+
+        typing.remove();
+
+        addMessage(
+            "bot-message",
+            botReply(text)
+        );
+
+    },600);
+
+}
+
+
+function handleChatKey(event){
+
+    if(event.key === "Enter"){
+
+        sendChat();
+
+    }
+
+}
+
+
+function escapeHtml(str){
+
+    return str
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;");
+
+}
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+function confirmLogout(){
+
+    return confirm(
+        "Are you sure you want to logout?"
     );
 
 }
 
 
 /* =========================================================
-   ESCAPE
+   ESCAPE KEY
 ========================================================= */
 
 document.addEventListener(
     "keydown",
     function(event){
 
-        if(
-            event.key === "Escape"
-        ){
+        if(event.key === "Escape"){
 
-            document
-                .getElementById(
-                    "chatbotPanel"
-                )
-                .classList.remove(
-                    "open"
-                );
-
-
-            document
-                .getElementById(
-                    "chatBubble"
-                )
-                .classList.remove(
-                    "hide"
-                );
+            closeModal();
+            closeChatPanel();
 
         }
 
     }
 );
 
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+renderOverview();
+
+renderAttendance();
+
+renderRecentRecords();
+
+
+setTimeout(function(){
+
+    addMessage(
+        "bot-message",
+        "Your overall attendance is <strong>" +
+        attendanceStats().overall +
+        "%</strong>. Tap the bubble anytime if you need help. 🤝"
+    );
+
+},1200);
+
 </script>
 
+<script src="../js/chatbot.js"></script>
 </body>
 </html>
+```

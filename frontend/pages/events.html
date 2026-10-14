@@ -1,9 +1,9 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>CampusConnect | Events</title>
 
 <style>
@@ -144,15 +144,12 @@ button,input,select{
 
 .main-area{
     margin-left:268px;
-    margin-right:286px;
     width:auto;
     height:100vh;
     overflow-y:auto;
     overflow-x:hidden;
     background:linear-gradient(180deg,#f8f9ff,#eef1fb);
 }
-
-/* ================= HEADER ================= */
 
 .top-header{
     height:120px;
@@ -202,6 +199,12 @@ button,input,select{
     font-size:22px;
     box-shadow:0 5px 18px rgba(40,35,100,.10);
     position:relative;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.notification:hover{
+    transform:scale(1.06);
 }
 
 .notification::after{
@@ -247,389 +250,537 @@ button,input,select{
 
 /* ================= CONTENT ================= */
 
-.content{
-    padding:26px 28px 45px;
+.page-content{
+    padding:20px 24px 35px;
+    width:100%;
+}
+
+.page-heading{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:20px;
+}
+
+.page-heading h2{
+    font-size:24px;
+    font-weight:800;
+}
+
+.page-heading p{
+    margin-top:6px;
+    color:#8990a7;
+    font-size:13px;
+}
+
+.heading-btn{
+    border:none;
+    border-radius:11px;
+    padding:11px 16px;
+    color:white;
+    font-size:12px;
+    font-weight:700;
+    cursor:pointer;
+    background:linear-gradient(135deg,#6543e8,#843de0);
+    box-shadow:0 8px 20px rgba(85,50,190,.25);
+    transition:.2s;
+}
+
+.heading-btn:hover{
+    transform:translateY(-2px);
 }
 
 /* ================= HERO ================= */
 
-.hero{
+.events-hero{
+    width:100%;
     min-height:190px;
-    padding:28px 30px;
-    border-radius:24px;
+    border-radius:20px;
+    padding:28px 32px;
     color:white;
-    background:
-        radial-gradient(circle at 90% 20%,rgba(37,184,238,.30),transparent 28%),
-        radial-gradient(circle at 20% 100%,rgba(126,58,220,.45),transparent 35%),
-        linear-gradient(135deg,#29277d,#5a28a7);
-    box-shadow:0 14px 35px rgba(65,48,150,.18);
+    background:linear-gradient(120deg,#19398d,#4828c8 55%,#7738dd);
+    box-shadow:0 14px 35px rgba(55,44,150,.20);
     display:flex;
     align-items:center;
     justify-content:space-between;
-    overflow:hidden;
+    margin-bottom:20px;
     position:relative;
+    overflow:hidden;
 }
 
-.hero::after{
-    content:"🎉";
+.events-hero::before{
+    content:"";
     position:absolute;
-    right:45px;
-    bottom:-35px;
-    font-size:135px;
-    opacity:.08;
+    width:260px;
+    height:260px;
+    border-radius:50%;
+    right:-80px;
+    top:-110px;
+    background:rgba(255,255,255,.08);
 }
 
-.hero-text{
-    max-width:650px;
+.events-hero::after{
+    content:"";
+    position:absolute;
+    width:150px;
+    height:150px;
+    border-radius:50%;
+    right:150px;
+    bottom:-100px;
+    background:rgba(255,255,255,.05);
+}
+
+.hero-content{
     position:relative;
     z-index:2;
 }
 
-.hero-label{
-    display:inline-block;
-    background:rgba(255,255,255,.13);
-    border:1px solid rgba(255,255,255,.16);
-    padding:7px 13px;
-    border-radius:20px;
-    font-size:11px;
-    font-weight:700;
-    letter-spacing:.5px;
-    margin-bottom:13px;
-}
-
-.hero h2{
-    font-size:28px;
+.hero-content h3{
+    font-size:23px;
+    font-weight:800;
     margin-bottom:8px;
 }
 
-.hero p{
-    color:rgba(255,255,255,.75);
-    font-size:13px;
-    line-height:1.6;
+.hero-content p{
+    font-size:12px;
+    color:rgba(255,255,255,.76);
+    max-width:520px;
+    line-height:1.7;
+}
+
+.hero-action{
+    position:relative;
+    z-index:2;
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.stat-box{
+    min-width:110px;
+    padding:17px 20px;
+    border-radius:15px;
+    background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.15);
+    text-align:center;
+    backdrop-filter:blur(5px);
+}
+
+.stat-box strong{
+    display:block;
+    font-size:30px;
+    font-weight:800;
+}
+
+.stat-box span{
+    display:block;
+    font-size:10px;
+    margin-top:4px;
+    color:rgba(255,255,255,.72);
 }
 
 /* ================= SUMMARY ================= */
 
 .summary-grid{
+    width:100%;
     display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:15px;
-    margin-top:20px;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:18px;
+    margin-bottom:20px;
 }
 
 .summary-card{
     background:white;
-    border:1px solid #e7e9f3;
-    border-radius:18px;
+    border:1px solid #e9ebf5;
+    border-radius:17px;
     padding:18px;
-    box-shadow:0 7px 22px rgba(40,35,100,.06);
+    min-height:120px;
+    box-shadow:0 8px 25px rgba(40,35,100,.06);
     transition:.2s;
+    cursor:pointer;
 }
 
 .summary-card:hover{
-    transform:translateY(-3px);
-    box-shadow:0 12px 28px rgba(40,35,100,.10);
+    transform:translateY(-4px);
+    box-shadow:0 15px 35px rgba(40,35,100,.12);
+}
+
+.summary-top{
+    display:flex;
+    justify-content:space-between;
+}
+
+.summary-title{
+    color:#7f88a5;
+    font-size:12px;
+    font-weight:700;
 }
 
 .summary-icon{
-    width:42px;
-    height:42px;
+    width:43px;
+    height:43px;
     border-radius:13px;
-    background:#f0edff;
+    background:#f0f3ff;
     display:flex;
     align-items:center;
     justify-content:center;
     font-size:21px;
-    margin-bottom:12px;
 }
 
-.summary-card strong{
-    display:block;
-    font-size:24px;
+.summary-number{
+    font-size:27px;
+    font-weight:800;
+    margin-top:9px;
+    color:#3063df;
 }
 
-.summary-card span{
-    display:block;
-    color:#8b92a9;
-    font-size:12px;
-    margin-top:4px;
+.summary-small{
+    color:#9aa2b9;
+    font-size:10px;
+    margin-top:2px;
 }
 
-/* ================= SECTION ================= */
+/* ================= CONTENT CARDS ================= */
 
-.section-head{
+.content-card{
+    background:white;
+    border:1px solid #e9ebf5;
+    border-radius:17px;
+    padding:20px;
+    box-shadow:0 8px 25px rgba(40,35,100,.06);
+    margin-bottom:20px;
+}
+
+.card-heading{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    margin:28px 0 14px;
-}
-
-.section-head h3{
-    font-size:19px;
-}
-
-.section-head p{
-    color:#9298ad;
-    font-size:12px;
-    margin-top:4px;
-}
-
-/* ================= CONTROLS ================= */
-
-.controls{
-    background:white;
-    border:1px solid #e7e9f3;
-    border-radius:18px;
-    padding:14px;
-    display:flex;
+    margin-bottom:15px;
     gap:10px;
-    margin-bottom:17px;
-    box-shadow:0 6px 18px rgba(40,35,100,.05);
+    flex-wrap:wrap;
+}
+
+.card-heading h3{
+    font-size:17px;
+}
+
+.card-tools{
+    display:flex;
+    gap:8px;
+    align-items:center;
 }
 
 .search-box{
-    flex:1;
-    position:relative;
-}
-
-.search-box span{
-    position:absolute;
-    left:13px;
-    top:11px;
-    font-size:15px;
-}
-
-.search-box input,
-.controls select{
-    width:100%;
-    height:40px;
-    border:1px solid #e0e3ef;
-    border-radius:11px;
-    outline:none;
-    color:#5b637b;
-    background:#fafbff;
-    font-size:12px;
+    height:38px;
+    border:1px solid #e1e4ef;
+    border-radius:10px;
     padding:0 12px;
+    color:#39425e;
+    background:white;
+    outline:none;
+    font-size:11px;
+    min-width:190px;
+    transition:.2s;
 }
 
-.search-box input{
-    padding-left:36px;
+.search-box:focus{
+    border-color:#a99bf0;
 }
 
-.controls select{
-    width:170px;
+.filter-select{
+    height:38px;
+    border:1px solid #e1e4ef;
+    border-radius:10px;
+    padding:0 11px;
+    color:#68728d;
+    background:white;
+    outline:none;
+    font-size:11px;
+    cursor:pointer;
 }
 
-/* ================= EVENTS ================= */
+/* ================= EVENT GRID ================= */
 
-.events-grid{
+.event-grid{
     display:grid;
-    grid-template-columns:repeat(2,1fr);
+    grid-template-columns:repeat(2,minmax(0,1fr));
     gap:15px;
 }
 
 .event-card{
-    background:white;
-    border:1px solid #e7e9f3;
-    border-radius:18px;
-    padding:18px;
-    box-shadow:0 7px 22px rgba(40,35,100,.05);
-    transition:.2s;
+    border:1px solid #eceef5;
+    border-radius:16px;
+    background:#fafbff;
+    overflow:hidden;
     cursor:pointer;
+    transition:.2s;
 }
 
 .event-card:hover{
-    transform:translateY(-3px);
-    box-shadow:0 13px 30px rgba(40,35,100,.10);
+    transform:translateY(-4px);
+    box-shadow:0 12px 28px rgba(40,35,100,.10);
+    border-color:#ddd8fa;
 }
 
 .event-top{
+    padding:17px;
     display:flex;
-    justify-content:space-between;
-    align-items:flex-start;
-}
-
-.event-icon{
-    width:55px;
-    height:55px;
-    border-radius:16px;
-    background:linear-gradient(135deg,#eef2ff,#f3eaff);
-    display:flex;
+    gap:14px;
     align-items:center;
-    justify-content:center;
-    font-size:28px;
 }
 
 .event-date{
-    text-align:center;
-    min-width:54px;
-    border-radius:12px;
-    background:#f0edff;
-    padding:7px;
-}
-
-.event-date small{
-    display:block;
-    color:#775ed5;
-    font-size:9px;
-    font-weight:700;
+    width:58px;
+    height:62px;
+    border-radius:15px;
+    background:linear-gradient(135deg,#25b8ee,#7144f5);
+    color:white;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    flex-shrink:0;
 }
 
 .event-date strong{
-    display:block;
-    color:#4f3a9b;
-    font-size:19px;
-    margin-top:1px;
+    font-size:21px;
+    line-height:1;
 }
 
-.event-card h4{
-    margin-top:14px;
-    font-size:17px;
-}
-
-.event-description{
-    margin-top:6px;
-    color:#7e879f;
-    font-size:12px;
-    line-height:1.55;
-}
-
-.event-meta{
-    margin-top:13px;
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:8px;
-}
-
-.meta-box{
-    background:#f7f8fc;
-    border-radius:10px;
-    padding:9px;
-}
-
-.meta-box small{
-    display:block;
-    color:#9aa0b3;
+.event-date span{
     font-size:9px;
+    margin-top:4px;
+    opacity:.85;
 }
 
-.meta-box strong{
-    display:block;
-    color:#59617b;
+.event-info{
+    flex:1;
+    min-width:0;
+}
+
+.event-info h4{
+    font-size:14px;
+    color:#27304b;
+    margin-bottom:5px;
+}
+
+.event-info p{
+    color:#969db2;
     font-size:10px;
-    margin-top:3px;
+    line-height:1.5;
 }
 
-.event-footer{
+.event-body{
+    padding:0 17px 16px;
+}
+
+.event-tags{
     display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-top:14px;
-    padding-top:12px;
-    border-top:1px solid #eef0f6;
+    gap:6px;
+    flex-wrap:wrap;
 }
 
-.category-tag{
-    padding:6px 9px;
-    background:#efecff;
-    color:#7761d9;
-    border-radius:8px;
+.event-tag{
+    padding:5px 9px;
+    border-radius:20px;
+    background:#edf8ff;
+    color:#238acb;
     font-size:9px;
     font-weight:700;
 }
 
-.register-btn{
+.event-tag.purple{
+    background:#f0edff;
+    color:#6851d2;
+}
+
+.event-tag.green{
+    background:#eafbf2;
+    color:#249663;
+}
+
+.event-footer{
+    border-top:1px solid #eceef5;
+    padding:11px 17px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.event-location{
+    font-size:9px;
+    color:#969db2;
+}
+
+.event-action{
     border:none;
-    background:linear-gradient(135deg,#6543e8,#843de0);
-    color:white;
-    padding:8px 12px;
+    background:#f0edff;
+    color:#6543d9;
     border-radius:9px;
-    font-size:10px;
+    padding:7px 10px;
+    font-size:9px;
     font-weight:700;
     cursor:pointer;
 }
 
-.registered-btn{
-    background:#eafbf4;
-    color:#18a673;
+.event-action:hover{
+    background:#e5e0ff;
 }
 
-/* ================= EMPTY ================= */
-
-.empty-state{
-    display:none;
-    background:white;
-    border-radius:18px;
-    padding:45px;
+.empty-note{
+    padding:30px 5px;
     text-align:center;
-    border:1px solid #e7e9f3;
-}
-
-.empty-state div{
-    font-size:40px;
-}
-
-.empty-state h3{
-    margin-top:10px;
-}
-
-.empty-state p{
-    color:#9298ad;
+    color:#9aa2b9;
     font-size:12px;
-    margin-top:5px;
+    grid-column:1/-1;
+}
+
+/* ================= CATEGORY CARDS ================= */
+
+.category-grid{
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:12px;
+}
+
+.category-card{
+    padding:16px;
+    border:1px solid #eceef5;
+    border-radius:14px;
+    background:#fafbff;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.category-card:hover{
+    transform:translateY(-3px);
+    box-shadow:0 9px 22px rgba(40,35,100,.08);
+}
+
+.category-icon{
+    width:40px;
+    height:40px;
+    border-radius:12px;
+    background:#f0f3ff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:20px;
+    margin-bottom:9px;
+}
+
+.category-card strong{
+    display:block;
+    font-size:13px;
+    color:#39425e;
+}
+
+.category-card span{
+    display:block;
+    margin-top:4px;
+    color:#9aa2b9;
+    font-size:9px;
 }
 
 /* ================= CHATBOT ================= */
 
-.chatbot{
+.chat-bubble{
     position:fixed;
-    top:18px;
-    right:18px;
-    bottom:18px;
-    width:268px;
-    min-width:268px;
-    max-width:268px;
+    right:24px;
+    bottom:24px;
+    width:64px;
+    height:64px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#6543e8,#a855f7);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:30px;
+    color:white;
+    border:none;
+    cursor:pointer;
+    box-shadow:0 12px 30px rgba(101,67,232,.45);
+    z-index:9998;
+    transition:transform .2s ease;
+}
+
+.chat-bubble:hover{
+    transform:scale(1.08);
+}
+
+.chat-bubble::after{
+    content:"";
+    position:absolute;
+    top:4px;
+    right:4px;
+    width:12px;
+    height:12px;
+    border-radius:50%;
+    background:#ff4f8b;
+    border:2px solid white;
+}
+
+.chat-bubble.hide{
+    display:none;
+}
+
+.chatbot-panel{
+    position:fixed;
+    right:24px;
+    bottom:24px;
+    width:320px;
+    height:460px;
     background:white;
     border-radius:22px;
     border:1px solid #e5e6f2;
-    box-shadow:0 15px 45px rgba(40,35,100,.15);
+    box-shadow:0 20px 55px rgba(40,35,100,.25);
     z-index:9999;
-    display:flex;
+    display:none;
     flex-direction:column;
     overflow:hidden;
 }
 
+.chatbot-panel.open{
+    display:flex;
+}
+
 .chat-header{
-    min-height:82px;
+    min-height:70px;
     flex-shrink:0;
-    padding:15px;
+    padding:14px;
     display:flex;
     align-items:center;
+    justify-content:space-between;
     color:white;
     background:linear-gradient(135deg,#29277d,#7137d8);
 }
 
+.chat-header-left{
+    display:flex;
+    align-items:center;
+}
+
 .robot-icon{
-    width:45px;
-    height:45px;
-    border-radius:14px;
+    width:42px;
+    height:42px;
+    border-radius:12px;
     background:rgba(255,255,255,.15);
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:24px;
+    font-size:22px;
     margin-right:10px;
 }
 
 .chat-title strong{
     display:block;
-    font-size:15px;
+    font-size:14px;
 }
 
 .chat-title span{
     display:block;
-    font-size:10px;
-    margin-top:3px;
+    font-size:9px;
+    margin-top:2px;
     color:rgba(255,255,255,.78);
 }
 
@@ -642,10 +793,21 @@ button,input,select{
     margin-right:4px;
 }
 
+.close-chat{
+    width:30px;
+    height:30px;
+    border:none;
+    border-radius:50%;
+    background:rgba(255,255,255,.15);
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+
 .chat-body{
     flex:1;
     min-height:0;
-    padding:17px 14px;
+    padding:14px;
     overflow-y:auto;
     background:linear-gradient(180deg,#fafbff,#f4f5fb);
 }
@@ -654,29 +816,61 @@ button,input,select{
     background:white;
     border:1px solid #e7e9f3;
     border-radius:14px;
-    padding:12px;
-    margin-bottom:10px;
+    padding:11px;
+    margin-bottom:9px;
     color:#65708d;
     font-size:11px;
-    line-height:1.6;
+    line-height:1.55;
     box-shadow:0 5px 15px rgba(40,35,100,.04);
 }
 
 .user-message{
     background:linear-gradient(135deg,#6241e8,#7b3ee0);
     color:white;
-    padding:10px 12px;
+    padding:9px 12px;
     border-radius:14px 14px 4px 14px;
-    margin:9px 0 9px 20px;
+    margin:8px 0 8px 25px;
     font-size:11px;
     line-height:1.5;
+}
+
+.typing{
+    display:flex;
+    gap:4px;
+    width:52px;
+    padding:12px;
+    background:white;
+    border:1px solid #e7e9f3;
+    border-radius:14px;
+    margin-bottom:9px;
+}
+
+.typing i{
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:#b9bed4;
+    animation:blink 1s infinite;
+}
+
+.typing i:nth-child(2){
+    animation-delay:.2s;
+}
+
+.typing i:nth-child(3){
+    animation-delay:.4s;
+}
+
+@keyframes blink{
+    0%,100%{opacity:.3;}
+    50%{opacity:1;}
 }
 
 .quick-buttons{
     display:flex;
     gap:5px;
     flex-wrap:wrap;
-    padding:9px 14px;
+    padding:8px 12px;
     background:white;
     border-top:1px solid #eceef5;
 }
@@ -686,14 +880,13 @@ button,input,select{
     background:white;
     color:#6b54d9;
     border-radius:20px;
-    padding:7px 9px;
+    padding:6px 9px;
     font-size:9px;
     cursor:pointer;
-    transition:.2s;
 }
 
 .quick-btn:hover{
-    background:#f1edff;
+    background:#f0edff;
 }
 
 .chat-footer{
@@ -708,7 +901,7 @@ button,input,select{
 .chat-input{
     flex:1;
     min-width:0;
-    height:40px;
+    height:38px;
     border:1px solid #e1e4ef;
     border-radius:12px;
     outline:none;
@@ -718,150 +911,137 @@ button,input,select{
 }
 
 .send-btn{
-    width:40px;
-    height:40px;
+    width:38px;
+    height:38px;
     border:none;
     border-radius:12px;
     color:white;
     background:linear-gradient(135deg,#6543e8,#843de0);
     cursor:pointer;
-    font-size:17px;
+    font-size:16px;
 }
 
 /* ================= MODAL ================= */
 
-.modal-overlay{
+.modal{
     position:fixed;
     inset:0;
-    background:rgba(22,24,55,.48);
-    backdrop-filter:blur(5px);
+    background:rgba(20,25,65,.55);
     display:none;
     align-items:center;
     justify-content:center;
-    z-index:20000;
+    z-index:30000;
     padding:20px;
 }
 
-.modal{
-    width:510px;
-    max-width:100%;
-    max-height:90vh;
-    overflow-y:auto;
-    background:white;
-    border-radius:22px;
-    box-shadow:0 25px 70px rgba(20,20,70,.25);
-    padding:24px;
+.modal.show{
+    display:flex;
 }
 
-.modal-header{
+.modal-box{
+    width:min(500px,95%);
+    max-height:88vh;
+    overflow-y:auto;
+    background:white;
+    border-radius:20px;
+    padding:25px;
+    box-shadow:0 25px 70px rgba(20,25,70,.25);
+}
+
+.modal-top{
     display:flex;
     align-items:center;
     justify-content:space-between;
     margin-bottom:20px;
 }
 
-.modal-header h2{
-    font-size:20px;
+.modal-top h3{
+    font-size:19px;
 }
 
 .close-btn{
-    width:34px;
-    height:34px;
+    width:35px;
+    height:35px;
+    border:none;
+    border-radius:50%;
+    background:#f0f2fa;
+    color:#68728d;
+    cursor:pointer;
+    font-size:18px;
+}
+
+.modal-content{
+    color:#68728d;
+    font-size:12px;
+    line-height:1.7;
+}
+
+.modal-content p{
+    margin-bottom:7px;
+}
+
+.tip-box{
+    margin-top:12px;
+    padding:11px 13px;
+    border-radius:12px;
+    background:#f4f2ff;
+    color:#5d4fbe;
+    font-size:11px;
+    line-height:1.6;
+}
+
+.modal-buttons{
+    display:flex;
+    justify-content:flex-end;
+    gap:8px;
+    margin-top:18px;
+}
+
+.modal-btn{
     border:none;
     border-radius:10px;
-    background:#f1f2f8;
-    color:#69718a;
+    padding:10px 15px;
     cursor:pointer;
-    font-size:17px;
+    font-size:11px;
+    font-weight:700;
 }
 
-.modal-icon{
-    width:75px;
-    height:75px;
-    border-radius:20px;
-    background:#f0edff;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:40px;
-    margin-bottom:15px;
+.modal-cancel{
+    background:#f0f2fa;
+    color:#68728d;
 }
 
-.modal-title{
-    font-size:23px;
-}
-
-.modal-description{
-    color:#727b94;
-    font-size:13px;
-    line-height:1.65;
-    margin:10px 0 17px;
-}
-
-.detail-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:10px;
-}
-
-.detail-box{
-    background:#f7f8fc;
-    padding:12px;
-    border-radius:12px;
-}
-
-.detail-box small{
-    display:block;
-    color:#9aa0b3;
-    font-size:9px;
-}
-
-.detail-box strong{
-    display:block;
-    margin-top:4px;
-    font-size:12px;
-    color:#4f5872;
-}
-
-.modal-action{
-    width:100%;
-    height:44px;
-    border:none;
-    border-radius:12px;
+.modal-ok{
     background:linear-gradient(135deg,#6543e8,#843de0);
     color:white;
-    font-weight:750;
-    cursor:pointer;
-    margin-top:18px;
 }
 
 /* ================= TOAST ================= */
 
 .toast{
     position:fixed;
-    right:310px;
+    left:50%;
     bottom:25px;
+    transform:translateX(-50%) translateY(20px);
     background:#29277d;
     color:white;
-    padding:13px 18px;
+    padding:12px 18px;
     border-radius:12px;
     font-size:12px;
-    box-shadow:0 12px 30px rgba(20,20,70,.2);
-    transform:translateY(100px);
     opacity:0;
+    pointer-events:none;
     transition:.3s;
-    z-index:30000;
+    z-index:40000;
 }
 
 .toast.show{
-    transform:translateY(0);
     opacity:1;
+    transform:translateX(-50%) translateY(0);
 }
 
 /* ================= RESPONSIVE ================= */
 
 @media(max-width:1150px){
-
     .sidebar{
         width:230px;
         min-width:230px;
@@ -869,42 +1049,22 @@ button,input,select{
 
     .main-area{
         margin-left:230px;
-        margin-right:250px;
-    }
-
-    .chatbot{
-        width:232px;
-        min-width:232px;
-        max-width:232px;
-        right:10px;
     }
 
     .summary-grid{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+    }
+
+    .event-grid{
+        grid-template-columns:1fr;
+    }
+
+    .category-grid{
         grid-template-columns:repeat(2,1fr);
     }
 }
 
-@media(max-width:900px){
-
-    .chatbot{
-        display:none;
-    }
-
-    .main-area{
-        margin-right:0;
-    }
-
-    .events-grid{
-        grid-template-columns:1fr;
-    }
-
-    .toast{
-        right:20px;
-    }
-}
-
 @media(max-width:700px){
-
     .sidebar{
         width:80px;
         min-width:80px;
@@ -915,10 +1075,7 @@ button,input,select{
         padding:15px;
     }
 
-    .brand-text{
-        display:none;
-    }
-
+    .brand-text,
     .menu-title,
     .nav-text{
         display:none;
@@ -937,34 +1094,33 @@ button,input,select{
         margin-left:80px;
     }
 
-    .top-header{
-        height:100px;
-        padding:15px;
-    }
-
-    .header-left h1{
-        font-size:22px;
-    }
-
-    .profile-info,
-    .time-box{
-        display:none;
-    }
-
-    .content{
-        padding:18px;
-    }
-
     .summary-grid{
         grid-template-columns:1fr;
     }
 
-    .controls{
+    .events-hero{
         flex-direction:column;
+        align-items:flex-start;
+        gap:20px;
     }
 
-    .controls select{
+    .category-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .card-tools{
         width:100%;
+    }
+
+    .search-box{
+        flex:1;
+        min-width:0;
+    }
+
+    .chatbot-panel{
+        width:92vw;
+        right:4vw;
+        left:4vw;
     }
 }
 </style>
@@ -977,168 +1133,139 @@ button,input,select{
 <aside class="sidebar">
 
     <div class="brand">
-
-        <div class="logo-box">
-            🎓
-        </div>
+        <div class="logo-box">🎓</div>
 
         <div class="brand-text">
-
-            <div class="brand-title">
-                CampusConnect
-            </div>
-
-            <div class="brand-subtitle">
-                AI College Companion
-            </div>
-
+            <div class="brand-title">CampusConnect</div>
+            <div class="brand-subtitle">AI College Companion</div>
         </div>
-
     </div>
 
+    <div class="menu">
 
-    <nav class="menu">
+        <div class="menu-title">MAIN MENU</div>
 
-        <div class="menu-title">
-            MAIN MENU
-        </div>
-
-        <a href="../dashboard.html" class="nav-item">
+        <a class="nav-item" href="../dashboard.html">
             <span class="nav-icon">🏠</span>
             <span class="nav-text">Dashboard</span>
         </a>
 
         <a class="nav-item" href="courses.html">
+            <span class="nav-icon">📚</span>
+            <span class="nav-text">Courses</span>
+        </a>
 
-    <span class="nav-icon">
-        📚
-    </span>
-
-    <span class="nav-text">
-        Courses
-    </span>
-
-</a>
-
-        <a href="timetable.html" class="nav-item">
+        <a class="nav-item" href="timetable.html">
             <span class="nav-icon">🗓️</span>
             <span class="nav-text">Timetable</span>
         </a>
 
-        <a href="assignments.html" class="nav-item">
+        <a class="nav-item" href="assignments.html">
             <span class="nav-icon">📝</span>
             <span class="nav-text">Assignments</span>
         </a>
 
-        <a href="attendance.html" class="nav-item">
+        <a class="nav-item" href="attendance.html">
             <span class="nav-icon">📊</span>
             <span class="nav-text">Attendance</span>
         </a>
 
-        <a href="academics.html" class="nav-item">
+        <a class="nav-item" href="academics.html">
             <span class="nav-icon">🎓</span>
             <span class="nav-text">Academics</span>
         </a>
 
-        <a href="faculty.html" class="nav-item">
+        <a class="nav-item" href="faculty.html">
             <span class="nav-icon">👨‍🏫</span>
             <span class="nav-text">Faculty</span>
         </a>
 
-
         <div class="menu-section">
 
-            <div class="menu-title">
-                CAREER
-            </div>
+            <div class="menu-title">CAREER</div>
 
-            <a href="placement.html" class="nav-item">
+            <a class="nav-item" href="placement.html">
                 <span class="nav-icon">💼</span>
                 <span class="nav-text">Placement</span>
             </a>
 
-            <a href="results.html" class="nav-item">
+            <a class="nav-item" href="results.html">
                 <span class="nav-icon">📈</span>
                 <span class="nav-text">Results</span>
             </a>
 
         </div>
 
-
         <div class="menu-section">
 
-            <div class="menu-title">
-                CAMPUS
-            </div>
+            <div class="menu-title">CAMPUS</div>
 
-            <a href="documents.html" class="nav-item">
+            <a class="nav-item" href="documents.html">
                 <span class="nav-icon">📄</span>
                 <span class="nav-text">Documents</span>
             </a>
 
-            <a href="complaints.html" class="nav-item">
+            <a class="nav-item" href="complaints.html">
                 <span class="nav-icon">📢</span>
                 <span class="nav-text">Complaints</span>
             </a>
 
-            <a href="feedback.html" class="nav-item">
+            <a class="nav-item" href="feedback.html">
                 <span class="nav-icon">💬</span>
                 <span class="nav-text">Feedback</span>
             </a>
 
-            <a href="lost-found.html" class="nav-item">
+            <a class="nav-item" href="lost_found.html">
                 <span class="nav-icon">🔎</span>
-                <span class="nav-text">Lost & Found</span>
+                <span class="nav-text">Lost &amp; Found</span>
             </a>
 
-            <a href="campus.html" class="nav-item">
+            <a class="nav-item" href="campus.html">
                 <span class="nav-icon">🏫</span>
                 <span class="nav-text">Campus</span>
             </a>
 
-            <a href="events.html" class="nav-item active">
+            <a class="nav-item active" href="events.html">
                 <span class="nav-icon">🎉</span>
                 <span class="nav-text">Events</span>
             </a>
 
-            <a href="exams.html" class="nav-item">
+            <a class="nav-item" href="exams.html">
                 <span class="nav-icon">📋</span>
                 <span class="nav-text">Exams</span>
             </a>
 
-            <a href="notifications.html" class="nav-item">
+            <a class="nav-item" href="notifications.html">
                 <span class="nav-icon">🔔</span>
                 <span class="nav-text">Notifications</span>
             </a>
 
         </div>
 
-
         <div class="menu-section">
 
-            <div class="menu-title">
-                ACCOUNT
-            </div>
+            <div class="menu-title">ACCOUNT</div>
 
-            <a href="profile.html" class="nav-item">
+            <a class="nav-item" href="profile.html">
                 <span class="nav-icon">👤</span>
                 <span class="nav-text">Profile</span>
             </a>
 
-            <a href="settings.html" class="nav-item">
+            <a class="nav-item" href="settings.html">
                 <span class="nav-icon">⚙️</span>
                 <span class="nav-text">Settings</span>
             </a>
 
-            <a href="../index.html" class="nav-item logout">
-                <span class="nav-icon">🚪</span>
-                <span class="nav-text">Logout</span>
-            </a>
+            <div class="logout">
+                <a class="nav-item" href="../index.html" onclick="return confirmLogout()">
+                    <span class="nav-icon">🚪</span>
+                    <span class="nav-text">Logout</span>
+                </a>
+            </div>
 
         </div>
 
-    </nav>
-
+    </div>
 </aside>
 
 
@@ -1146,305 +1273,261 @@ button,input,select{
 
 <main class="main-area">
 
-    <header class="top-header">
+<header class="top-header">
 
-        <div class="header-left">
+    <div class="header-left">
+        <h1>Campus<br>Events</h1>
+        <p>Discover what's happening around your campus</p>
+    </div>
 
-            <h1>
-                Events
-            </h1>
+    <div class="header-right">
 
-            <p>
-                Discover what's happening around your campus
-            </p>
+        <div class="time-box" id="clock">6:00 PM</div>
 
-        </div>
+        <div class="notification" onclick="showNotifications()">🔔</div>
 
+        <div class="profile-mini">
+            <div class="profile-circle">P</div>
 
-        <div class="header-right">
-
-            <div class="time-box" id="clock">
-                --:--
+            <div class="profile-info">
+                <strong>Student</strong>
+                <span>BCA • 5th Sem</span>
             </div>
-
-            <div class="notification">
-                🔔
-            </div>
-
-            <div class="profile-mini">
-
-                <div class="profile-circle">
-                    P
-                </div>
-
-                <div class="profile-info">
-
-                    <strong>
-                        Priya
-                    </strong>
-
-                    <span>
-                        Student
-                    </span>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </header>
-
-
-    <div class="content">
-
-        <!-- HERO -->
-
-        <section class="hero">
-
-            <div class="hero-text">
-
-                <div class="hero-label">
-                    🎉 CAMPUS EVENTS
-                </div>
-
-                <h2>
-                    Experience More. Connect More.
-                </h2>
-
-                <p>
-                    Discover workshops, technical events,
-                    cultural programs, competitions and student
-                    activities happening on campus.
-                </p>
-
-            </div>
-
-        </section>
-
-
-        <!-- SUMMARY -->
-
-        <section class="summary-grid">
-
-            <div class="summary-card">
-
-                <div class="summary-icon">
-                    🎉
-                </div>
-
-                <strong>
-                    18
-                </strong>
-
-                <span>
-                    Upcoming Events
-                </span>
-
-            </div>
-
-
-            <div class="summary-card">
-
-                <div class="summary-icon">
-                    🧑‍💻
-                </div>
-
-                <strong>
-                    7
-                </strong>
-
-                <span>
-                    Technical Events
-                </span>
-
-            </div>
-
-
-            <div class="summary-card">
-
-                <div class="summary-icon">
-                    🎭
-                </div>
-
-                <strong>
-                    5
-                </strong>
-
-                <span>
-                    Cultural Events
-                </span>
-
-            </div>
-
-
-            <div class="summary-card">
-
-                <div class="summary-icon">
-                    👥
-                </div>
-
-                <strong id="registeredCount">
-                    3
-                </strong>
-
-                <span>
-                    My Registrations
-                </span>
-
-            </div>
-
-        </section>
-
-
-        <!-- EVENT LIST -->
-
-        <div class="section-head">
-
-            <div>
-
-                <h3>
-                    Upcoming Events
-                </h3>
-
-                <p>
-                    Find events that interest you
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <!-- SEARCH/FILTER -->
-
-        <div class="controls">
-
-            <div class="search-box">
-
-                <span>
-                    🔍
-                </span>
-
-                <input
-                    type="text"
-                    id="searchInput"
-                    placeholder="Search events, venues or descriptions..."
-                >
-
-            </div>
-
-
-            <select id="categoryFilter">
-
-                <option value="all">
-                    All Categories
-                </option>
-
-                <option value="Technical">
-                    Technical
-                </option>
-
-                <option value="Cultural">
-                    Cultural
-                </option>
-
-                <option value="Sports">
-                    Sports
-                </option>
-
-                <option value="Workshop">
-                    Workshop
-                </option>
-
-                <option value="Competition">
-                    Competition
-                </option>
-
-            </select>
-
-        </div>
-
-
-        <!-- EVENTS -->
-
-        <div
-            class="events-grid"
-            id="eventsGrid"
-        ></div>
-
-
-        <div
-            class="empty-state"
-            id="emptyState"
-        >
-
-            <div>
-                🔍
-            </div>
-
-            <h3>
-                No events found
-            </h3>
-
-            <p>
-                Try another search or category.
-            </p>
-
         </div>
 
     </div>
+
+</header>
+
+
+<div class="page-content">
+
+    <div class="page-heading">
+
+        <div>
+            <h2>🎉 Events Overview</h2>
+            <p>Explore upcoming activities, workshops, competitions and campus programs.</p>
+        </div>
+
+        <button class="heading-btn" onclick="showAllEvents()">
+            View All Events
+        </button>
+
+    </div>
+
+
+    <!-- HERO -->
+
+    <section class="events-hero">
+
+        <div class="hero-content">
+
+            <h3 id="heroTitle">Exciting events are coming up 🎉</h3>
+
+            <p id="heroText">
+                Stay connected with campus activities, technical events,
+                cultural programs, workshops and student competitions.
+                Tap any event card to view complete details.
+            </p>
+
+        </div>
+
+        <div class="hero-action">
+
+            <div class="stat-box">
+                <strong id="totalEvents">0</strong>
+                <span>Total Events</span>
+            </div>
+
+            <div class="stat-box">
+                <strong id="upcomingEvents">0</strong>
+                <span>Upcoming</span>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- SUMMARY -->
+
+    <section class="summary-grid">
+
+        <div class="summary-card" onclick="showToast(eventsStats().total + ' events available 🎉')">
+
+            <div class="summary-top">
+                <div class="summary-title">TOTAL EVENTS</div>
+                <div class="summary-icon">🎉</div>
+            </div>
+
+            <div class="summary-number" id="statTotal">0</div>
+
+            <div class="summary-small">
+                Campus activities
+            </div>
+
+        </div>
+
+
+        <div class="summary-card" onclick="showToast(eventsStats().upcoming + ' upcoming events 📅')">
+
+            <div class="summary-top">
+                <div class="summary-title">UPCOMING</div>
+                <div class="summary-icon">📅</div>
+            </div>
+
+            <div class="summary-number" id="statUpcoming">0</div>
+
+            <div class="summary-small">
+                Coming soon
+            </div>
+
+        </div>
+
+
+        <div class="summary-card" onclick="showToast(eventsStats().categories + ' event categories 🏛️')">
+
+            <div class="summary-top">
+                <div class="summary-title">CATEGORIES</div>
+                <div class="summary-icon">🏛️</div>
+            </div>
+
+            <div class="summary-number" id="statCategories">0</div>
+
+            <div class="summary-small">
+                Types of events
+            </div>
+
+        </div>
+
+
+        <div class="summary-card" onclick="showToast('Registration is available for selected events 📝')">
+
+            <div class="summary-top">
+                <div class="summary-title">REGISTRATION</div>
+                <div class="summary-icon">📝</div>
+            </div>
+
+            <div class="summary-number" id="statRegistration">0</div>
+
+            <div class="summary-small">
+                Events open for registration
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- EVENT DIRECTORY -->
+
+    <section class="content-card">
+
+        <div class="card-heading">
+
+            <h3>Upcoming Events</h3>
+
+            <div class="card-tools">
+
+                <input
+                    class="search-box"
+                    id="eventSearch"
+                    type="text"
+                    placeholder="Search events..."
+                    oninput="renderEvents()"
+                >
+
+                <select
+                    class="filter-select"
+                    id="categoryFilter"
+                    onchange="renderEvents()"
+                >
+                    <option value="all">All Categories</option>
+                </select>
+
+            </div>
+
+        </div>
+
+        <div class="event-grid" id="eventList"></div>
+
+    </section>
+
+
+    <!-- CATEGORY SECTION -->
+
+    <section class="content-card">
+
+        <div class="card-heading">
+
+            <h3>Browse by Category</h3>
+
+            <button class="filter-select" onclick="showCategoryInfo()">
+                View Details
+            </button>
+
+        </div>
+
+        <div class="category-grid" id="categoryGrid"></div>
+
+    </section>
+
+</div>
 
 </main>
 
 
 <!-- ================= CHATBOT ================= -->
 
-<aside class="chatbot">
+<button
+    class="chat-bubble"
+    id="chatBubble"
+    onclick="openChatPanel()"
+>
+    🤖
+</button>
+
+
+<div class="chatbot-panel" id="chatbotPanel">
 
     <div class="chat-header">
 
-        <div class="robot-icon">
-            🤖
+        <div class="chat-header-left">
+
+            <div class="robot-icon">🤖</div>
+
+            <div class="chat-title">
+
+                <strong>AI College Companion</strong>
+
+                <span>
+                    <i class="online-dot"></i>
+                    Online • Ready to help
+                </span>
+
+            </div>
+
         </div>
 
-        <div class="chat-title">
-
-            <strong>
-                CampusConnect AI
-            </strong>
-
-            <span>
-                <span class="online-dot"></span>
-                College Companion
-            </span>
-
-        </div>
+        <button
+            class="close-chat"
+            onclick="closeChatPanel()"
+        >
+            ×
+        </button>
 
     </div>
 
 
-    <div
-        class="chat-body"
-        id="chatBody"
-    >
+    <div class="chat-body" id="chatBody">
 
         <div class="bot-message">
 
-            👋 Hi Priya! I'm your
-            <b>CampusConnect AI College Companion</b>.
+            👋 Hi! I'm your
+            <strong>AI College Companion.</strong>
 
-            <br><br>
-
-            I can help you discover upcoming campus events,
-            workshops, competitions and cultural programs.
-
-        </div>
-
-
-        <div class="bot-message">
-
-            What would you like to explore?
+            Ask me about upcoming events, workshops,
+            competitions or event registration.
 
         </div>
 
@@ -1455,23 +1538,30 @@ button,input,select{
 
         <button
             class="quick-btn"
-            onclick="quickChat('Technical events')"
+            onclick="quickChat('What events are coming up?')"
         >
-            💻 Technical
+            Upcoming Events
         </button>
 
         <button
             class="quick-btn"
-            onclick="quickChat('Cultural events')"
+            onclick="quickChat('Show technical events')"
         >
-            🎭 Cultural
+            Technical
         </button>
 
         <button
             class="quick-btn"
-            onclick="quickChat('My registrations')"
+            onclick="quickChat('Show cultural events')"
         >
-            🎟️ My Events
+            Cultural
+        </button>
+
+        <button
+            class="quick-btn"
+            onclick="quickChat('How many events are there?')"
+        >
+            Total Events
         </button>
 
     </div>
@@ -1480,10 +1570,11 @@ button,input,select{
     <div class="chat-footer">
 
         <input
-            type="text"
             id="chatInput"
             class="chat-input"
-            placeholder="Ask CampusConnect AI..."
+            type="text"
+            placeholder="Ask your companion..."
+            onkeydown="handleChatKey(event)"
         >
 
         <button
@@ -1495,35 +1586,56 @@ button,input,select{
 
     </div>
 
-</aside>
+</div>
 
 
-<!-- ================= EVENT DETAILS MODAL ================= -->
+<!-- ================= MODAL ================= -->
 
 <div
-    class="modal-overlay"
-    id="detailsModal"
+    class="modal"
+    id="eventModal"
+    onclick="closeModalOutside(event)"
 >
 
-    <div class="modal">
+    <div class="modal-box">
 
-        <div class="modal-header">
+        <div class="modal-top">
 
-            <h2>
-                Event Details
-            </h2>
+            <h3 id="modalTitle">
+                🎉 Event Details
+            </h3>
 
             <button
                 class="close-btn"
-                onclick="closeDetails()"
+                onclick="closeModal()"
             >
                 ×
             </button>
 
         </div>
 
+        <div
+            class="modal-content"
+            id="modalContent"
+        ></div>
 
-        <div id="detailsContent"></div>
+        <div class="modal-buttons">
+
+            <button
+                class="modal-btn modal-cancel"
+                onclick="closeModal()"
+            >
+                Close
+            </button>
+
+            <button
+                class="modal-btn modal-ok"
+                onclick="registerSelectedEvent()"
+            >
+                Register
+            </button>
+
+        </div>
 
     </div>
 
@@ -1536,547 +1648,626 @@ button,input,select{
     class="toast"
     id="toast"
 >
-    Done!
+    Done
 </div>
 
 
 <script>
 
-/* ================= EVENTS DATA ================= */
+/* ================= EVENT DATA ================= */
 
-const events = [
+const EVENTS = [
 
     {
-        id:1,
-        name:"TechNova 2026",
+        id:"E1",
+        title:"Tech Innovation Summit",
+        date:"18",
+        month:"OCT",
+        fullDate:"18 October 2026",
         category:"Technical",
         icon:"💻",
-        day:"18",
-        month:"SEP",
-        description:"A technology festival featuring coding challenges, project exhibitions and innovative student ideas.",
-        venue:"Main Auditorium",
-        time:"9:30 AM - 5:00 PM",
-        organizer:"Computer Science Club",
-        seats:"120 seats",
-        registered:false
+        time:"10:00 AM – 4:00 PM",
+        location:"Main Auditorium",
+        organizer:"Computer Science Department",
+        description:"A technology-focused event featuring innovation talks, project demonstrations and student technology presentations.",
+        registration:true
     },
 
     {
-        id:2,
-        name:"AI & Future Technologies Workshop",
-        category:"Workshop",
-        icon:"🤖",
-        day:"20",
-        month:"SEP",
-        description:"Hands-on workshop covering artificial intelligence, machine learning and emerging technologies.",
-        venue:"Seminar Hall A",
-        time:"10:00 AM - 1:00 PM",
-        organizer:"AI Innovation Club",
-        seats:"60 seats",
-        registered:false
-    },
-
-    {
-        id:3,
-        name:"Campus Cultural Fest",
+        id:"E2",
+        title:"Cultural Fest 2026",
+        date:"22",
+        month:"OCT",
+        fullDate:"22 October 2026",
         category:"Cultural",
         icon:"🎭",
-        day:"22",
-        month:"SEP",
-        description:"A vibrant cultural celebration featuring music, dance, drama and creative performances by students.",
-        venue:"Open Air Theatre",
-        time:"4:00 PM - 8:30 PM",
-        organizer:"Cultural Committee",
-        seats:"500 seats",
-        registered:true
+        time:"9:30 AM – 6:00 PM",
+        location:"College Ground",
+        organizer:"Student Cultural Committee",
+        description:"A celebration of music, dance, drama and creative student performances from across the campus.",
+        registration:true
     },
 
     {
-        id:4,
-        name:"Inter-College Cricket Tournament",
+        id:"E3",
+        title:"AI & Machine Learning Workshop",
+        date:"25",
+        month:"OCT",
+        fullDate:"25 October 2026",
+        category:"Workshop",
+        icon:"🤖",
+        time:"10:00 AM – 1:00 PM",
+        location:"CS Lab 2",
+        organizer:"Department of Computer Science",
+        description:"Hands-on workshop introducing students to artificial intelligence, machine learning concepts and practical applications.",
+        registration:true
+    },
+
+    {
+        id:"E4",
+        title:"Inter College Cricket Tournament",
+        date:"29",
+        month:"OCT",
+        fullDate:"29 October 2026",
         category:"Sports",
         icon:"🏏",
-        day:"24",
-        month:"SEP",
-        description:"Annual cricket tournament bringing together college teams for an exciting sports competition.",
-        venue:"College Sports Ground",
-        time:"8:00 AM - 4:00 PM",
-        organizer:"Sports Department",
-        seats:"Open Entry",
-        registered:false
+        time:"8:00 AM – 5:00 PM",
+        location:"College Sports Ground",
+        organizer:"Sports Committee",
+        description:"Inter-college cricket tournament featuring teams from participating colleges.",
+        registration:false
     },
 
     {
-        id:5,
-        name:"CodeSprint Competition",
-        category:"Competition",
-        icon:"👨‍💻",
-        day:"26",
-        month:"SEP",
-        description:"Competitive programming challenge where students solve real-world coding problems against the clock.",
-        venue:"Computer Lab 1",
-        time:"10:00 AM - 2:00 PM",
-        organizer:"Coding Club",
-        seats:"100 seats",
-        registered:false
+        id:"E5",
+        title:"Career Guidance Seminar",
+        date:"03",
+        month:"NOV",
+        fullDate:"3 November 2026",
+        category:"Career",
+        icon:"💼",
+        time:"11:00 AM – 2:00 PM",
+        location:"Seminar Hall",
+        organizer:"Placement Cell",
+        description:"Career guidance session covering recruitment preparation, interviews, resumes and professional opportunities.",
+        registration:true
     },
 
     {
-        id:6,
-        name:"Entrepreneurship Bootcamp",
-        category:"Workshop",
-        icon:"🚀",
-        day:"28",
-        month:"SEP",
-        description:"Learn how to transform an idea into a startup with guidance from entrepreneurs and industry mentors.",
-        venue:"Innovation Centre",
-        time:"9:00 AM - 4:00 PM",
-        organizer:"E-Cell",
-        seats:"80 seats",
-        registered:false
-    },
-
-    {
-        id:7,
-        name:"Photography Walk",
-        category:"Cultural",
-        icon:"📸",
-        day:"30",
-        month:"SEP",
-        description:"A creative campus photography walk for students interested in photography and visual storytelling.",
-        venue:"Main Gate",
-        time:"4:30 PM - 6:30 PM",
-        organizer:"Photography Club",
-        seats:"40 seats",
-        registered:false
-    },
-
-    {
-        id:8,
-        name:"Hackathon 2026",
+        id:"E6",
+        title:"Coding Challenge",
+        date:"08",
+        month:"NOV",
+        fullDate:"8 November 2026",
         category:"Technical",
-        icon:"⚡",
-        day:"03",
-        month:"OCT",
-        description:"24-hour innovation challenge where teams build technology solutions for real-world problems.",
-        venue:"Innovation Hub",
-        time:"9:00 AM - Next Day",
-        organizer:"Innovation Club",
-        seats:"150 seats",
-        registered:false
+        icon:"👨‍💻",
+        time:"10:00 AM – 3:00 PM",
+        location:"Computer Lab 1",
+        organizer:"Coding Club",
+        description:"A competitive coding challenge where students solve programming problems within a fixed time.",
+        registration:true
+    },
+
+    {
+        id:"E7",
+        title:"Photography Exhibition",
+        date:"12",
+        month:"NOV",
+        fullDate:"12 November 2026",
+        category:"Arts",
+        icon:"📷",
+        time:"10:00 AM – 4:00 PM",
+        location:"Arts Block",
+        organizer:"Photography Club",
+        description:"Student photography exhibition displaying creative photographs captured around campus and beyond.",
+        registration:false
+    },
+
+    {
+        id:"E8",
+        title:"Entrepreneurship Meet",
+        date:"18",
+        month:"NOV",
+        fullDate:"18 November 2026",
+        category:"Career",
+        icon:"🚀",
+        time:"10:30 AM – 2:30 PM",
+        location:"Innovation Centre",
+        organizer:"Entrepreneurship Cell",
+        description:"An entrepreneurship event connecting students with startup ideas, founders and innovation opportunities.",
+        registration:true
     }
 
 ];
 
 
-/* ================= RENDER ================= */
+/* ================= HELPERS ================= */
 
-function renderEvents(){
+let selectedEvent = null;
 
-    const grid =
-        document.getElementById("eventsGrid");
+function eventsStats(){
 
-    const empty =
-        document.getElementById("emptyState");
+    const categories =
+        [...new Set(EVENTS.map(e => e.category))];
 
-    const search =
-        document
-        .getElementById("searchInput")
-        .value
-        .toLowerCase();
+    const registration =
+        EVENTS.filter(e => e.registration).length;
 
-    const category =
-        document
-        .getElementById("categoryFilter")
-        .value;
-
-
-    const filtered =
-        events.filter(event => {
-
-            const matchesSearch =
-                event.name
-                .toLowerCase()
-                .includes(search)
-                ||
-                event.description
-                .toLowerCase()
-                .includes(search)
-                ||
-                event.venue
-                .toLowerCase()
-                .includes(search);
-
-
-            const matchesCategory =
-                category === "all"
-                ||
-                event.category === category;
-
-
-            return matchesSearch &&
-                   matchesCategory;
-
-        });
-
-
-    grid.innerHTML = "";
-
-
-    if(filtered.length === 0){
-
-        empty.style.display = "block";
-
-        return;
-
-    }
-
-
-    empty.style.display = "none";
-
-
-    filtered.forEach(event => {
-
-        const card =
-            document.createElement("div");
-
-        card.className =
-            "event-card";
-
-
-        card.onclick =
-            () => openDetails(event.id);
-
-
-        card.innerHTML = `
-
-            <div class="event-top">
-
-                <div class="event-icon">
-                    ${event.icon}
-                </div>
-
-
-                <div class="event-date">
-
-                    <small>
-                        ${event.month}
-                    </small>
-
-                    <strong>
-                        ${event.day}
-                    </strong>
-
-                </div>
-
-            </div>
-
-
-            <h4>
-                ${event.name}
-            </h4>
-
-
-            <p class="event-description">
-                ${event.description}
-            </p>
-
-
-            <div class="event-meta">
-
-                <div class="meta-box">
-
-                    <small>
-                        VENUE
-                    </small>
-
-                    <strong>
-                        📍 ${event.venue}
-                    </strong>
-
-                </div>
-
-
-                <div class="meta-box">
-
-                    <small>
-                        TIME
-                    </small>
-
-                    <strong>
-                        🕐 ${event.time}
-                    </strong>
-
-                </div>
-
-            </div>
-
-
-            <div class="event-footer">
-
-                <span class="category-tag">
-                    ${event.category}
-                </span>
-
-
-                <button
-                    class="register-btn ${event.registered ? "registered-btn" : ""}"
-                    onclick="event.stopPropagation();toggleRegistration(${event.id})"
-                >
-                    ${event.registered ? "✓ Registered" : "Register →"}
-                </button>
-
-            </div>
-
-        `;
-
-
-        grid.appendChild(card);
-
-    });
-
-
-    updateRegisteredCount();
-
+    return {
+        total:EVENTS.length,
+        upcoming:EVENTS.length,
+        categories:categories.length,
+        registration:registration
+    };
 }
-
-
-/* ================= DETAILS ================= */
-
-function openDetails(id){
-
-    const event =
-        events.find(item => item.id === id);
-
-
-    if(!event) return;
-
-
-    document.getElementById(
-        "detailsContent"
-    ).innerHTML = `
-
-        <div class="modal-icon">
-            ${event.icon}
-        </div>
-
-
-        <h2 class="modal-title">
-            ${event.name}
-        </h2>
-
-
-        <p class="modal-description">
-            ${event.description}
-        </p>
-
-
-        <div class="detail-grid">
-
-            <div class="detail-box">
-
-                <small>
-                    DATE
-                </small>
-
-                <strong>
-                    ${event.day} ${event.month} 2026
-                </strong>
-
-            </div>
-
-
-            <div class="detail-box">
-
-                <small>
-                    CATEGORY
-                </small>
-
-                <strong>
-                    ${event.category}
-                </strong>
-
-            </div>
-
-
-            <div class="detail-box">
-
-                <small>
-                    VENUE
-                </small>
-
-                <strong>
-                    📍 ${event.venue}
-                </strong>
-
-            </div>
-
-
-            <div class="detail-box">
-
-                <small>
-                    TIME
-                </small>
-
-                <strong>
-                    🕐 ${event.time}
-                </strong>
-
-            </div>
-
-
-            <div class="detail-box">
-
-                <small>
-                    ORGANIZER
-                </small>
-
-                <strong>
-                    ${event.organizer}
-                </strong>
-
-            </div>
-
-
-            <div class="detail-box">
-
-                <small>
-                    AVAILABILITY
-                </small>
-
-                <strong>
-                    ${event.seats}
-                </strong>
-
-            </div>
-
-        </div>
-
-
-        <button
-            class="modal-action"
-            onclick="toggleRegistration(${event.id});closeDetails()"
-        >
-            ${event.registered ? "Cancel Registration" : "Register for Event"}
-        </button>
-
-    `;
-
-
-    document.getElementById(
-        "detailsModal"
-    ).style.display = "flex";
-
-}
-
-
-function closeDetails(){
-
-    document.getElementById(
-        "detailsModal"
-    ).style.display = "none";
-
-}
-
-
-/* ================= REGISTRATION ================= */
-
-function toggleRegistration(id){
-
-    const event =
-        events.find(item => item.id === id);
-
-
-    if(!event) return;
-
-
-    event.registered =
-        !event.registered;
-
-
-    if(event.registered){
-
-        showToast(
-            "🎉 Successfully registered for " +
-            event.name
-        );
-
-    }
-    else{
-
-        showToast(
-            "Registration cancelled"
-        );
-
-    }
-
-
-    renderEvents();
-
-}
-
-
-function updateRegisteredCount(){
-
-    const count =
-        events.filter(
-            event => event.registered
-        ).length;
-
-
-    document.getElementById(
-        "registeredCount"
-    ).textContent = count;
-
-}
-
-
-/* ================= SEARCH ================= */
-
-document
-.getElementById("searchInput")
-.addEventListener(
-    "input",
-    renderEvents
-);
-
-
-document
-.getElementById("categoryFilter")
-.addEventListener(
-    "change",
-    renderEvents
-);
 
 
 /* ================= CLOCK ================= */
 
 function updateClock(){
 
-    const now =
-        new Date();
+    const now = new Date();
+
+    let hours = now.getHours();
+
+    const minutes =
+        String(now.getMinutes()).padStart(2,"0");
+
+    const seconds =
+        String(now.getSeconds()).padStart(2,"0");
+
+    const ampm =
+        hours >= 12 ? "PM" : "AM";
+
+    hours = hours % 12 || 12;
+
+    document.getElementById("clock").textContent =
+        hours + ":" +
+        minutes + ":" +
+        seconds + " " +
+        ampm;
+}
+
+updateClock();
+
+setInterval(updateClock,1000);
 
 
-    document.getElementById(
-        "clock"
-    ).textContent =
-        now.toLocaleTimeString(
-            "en-IN",
-            {
-                hour:"2-digit",
-                minute:"2-digit",
-                hour12:true
-            }
-        );
+/* ================= CATEGORY FILTER ================= */
+
+function populateCategoryFilter(){
+
+    const select =
+        document.getElementById("categoryFilter");
+
+    const categories =
+        [...new Set(EVENTS.map(e => e.category))];
+
+    categories.forEach(category => {
+
+        const option =
+            document.createElement("option");
+
+        option.value = category;
+        option.textContent = category;
+
+        select.appendChild(option);
+
+    });
+}
+
+
+/* ================= OVERVIEW ================= */
+
+function renderOverview(){
+
+    const stats = eventsStats();
+
+    document.getElementById("totalEvents").textContent =
+        stats.total;
+
+    document.getElementById("upcomingEvents").textContent =
+        stats.upcoming;
+
+    document.getElementById("statTotal").textContent =
+        stats.total;
+
+    document.getElementById("statUpcoming").textContent =
+        stats.upcoming;
+
+    document.getElementById("statCategories").textContent =
+        stats.categories;
+
+    document.getElementById("statRegistration").textContent =
+        stats.registration;
+
+    document.getElementById("heroTitle").textContent =
+        stats.upcoming + " upcoming events on campus 🎉";
 
 }
 
-setInterval(
-    updateClock,
-    1000
-);
 
-updateClock();
+/* ================= EVENT RENDER ================= */
+
+function renderEvents(){
+
+    const search =
+        document.getElementById("eventSearch")
+        .value
+        .trim()
+        .toLowerCase();
+
+    const category =
+        document.getElementById("categoryFilter").value;
+
+    const list =
+        document.getElementById("eventList");
+
+    let rows = EVENTS.slice();
+
+    if(category !== "all"){
+        rows =
+            rows.filter(e => e.category === category);
+    }
+
+    if(search){
+
+        rows =
+            rows.filter(e =>
+                e.title.toLowerCase().includes(search) ||
+                e.category.toLowerCase().includes(search) ||
+                e.organizer.toLowerCase().includes(search) ||
+                e.location.toLowerCase().includes(search)
+            );
+
+    }
+
+    list.innerHTML = "";
+
+    if(rows.length === 0){
+
+        list.innerHTML =
+            '<div class="empty-note">No events match your search 🔍</div>';
+
+        return;
+    }
+
+
+    rows.forEach(event => {
+
+        const card =
+            document.createElement("div");
+
+        card.className = "event-card";
+
+        card.onclick = function(){
+
+            showEventDetails(event.id);
+
+        };
+
+
+        card.innerHTML =
+
+            '<div class="event-top">' +
+
+                '<div class="event-date">' +
+                    '<strong>' + event.date + '</strong>' +
+                    '<span>' + event.month + '</span>' +
+                '</div>' +
+
+                '<div class="event-info">' +
+
+                    '<h4>' +
+                        event.icon + " " + event.title +
+                    '</h4>' +
+
+                    '<p>' +
+                        event.time +
+                        " • " +
+                        event.organizer +
+                    '</p>' +
+
+                '</div>' +
+
+            '</div>' +
+
+
+            '<div class="event-body">' +
+
+                '<div class="event-tags">' +
+
+                    '<span class="event-tag">' +
+                        event.category +
+                    '</span>' +
+
+                    (event.registration
+                        ? '<span class="event-tag green">Registration Open</span>'
+                        : '<span class="event-tag purple">Open Event</span>') +
+
+                '</div>' +
+
+            '</div>' +
+
+
+            '<div class="event-footer">' +
+
+                '<span class="event-location">' +
+                    "📍 " + event.location +
+                '</span>' +
+
+                '<button class="event-action">' +
+                    "View Details" +
+                '</button>' +
+
+            '</div>';
+
+
+        list.appendChild(card);
+
+    });
+
+}
+
+
+/* ================= CATEGORY GRID ================= */
+
+function renderCategories(){
+
+    const grid =
+        document.getElementById("categoryGrid");
+
+    grid.innerHTML = "";
+
+    const categoryIcons = {
+        Technical:"💻",
+        Cultural:"🎭",
+        Workshop:"🛠️",
+        Sports:"🏏",
+        Career:"💼",
+        Arts:"🎨"
+    };
+
+    const categories =
+        [...new Set(EVENTS.map(e => e.category))];
+
+
+    categories.forEach(category => {
+
+        const count =
+            EVENTS.filter(e => e.category === category).length;
+
+        const card =
+            document.createElement("div");
+
+        card.className = "category-card";
+
+        card.onclick = function(){
+
+            document.getElementById("categoryFilter").value =
+                category;
+
+            renderEvents();
+
+            showToast(
+                "Showing " + category + " events"
+            );
+
+        };
+
+
+        card.innerHTML =
+
+            '<div class="category-icon">' +
+                (categoryIcons[category] || "🎉") +
+            '</div>' +
+
+            '<strong>' +
+                category +
+            '</strong>' +
+
+            '<span>' +
+                count +
+                " event" +
+                (count === 1 ? "" : "s") +
+            '</span>';
+
+
+        grid.appendChild(card);
+
+    });
+
+}
+
+
+/* ================= MODAL ================= */
+
+function openModal(title,html){
+
+    document.getElementById("modalTitle").textContent =
+        title;
+
+    document.getElementById("modalContent").innerHTML =
+        html;
+
+    document.getElementById("eventModal")
+        .classList.add("show");
+}
+
+
+function showEventDetails(id){
+
+    const event =
+        EVENTS.find(e => e.id === id);
+
+    if(!event) return;
+
+    selectedEvent = event;
+
+    openModal(
+
+        event.icon + " " + event.title,
+
+        '<p><strong>Date:</strong> ' +
+            event.fullDate +
+        '</p>' +
+
+        '<p><strong>Time:</strong> ' +
+            event.time +
+        '</p>' +
+
+        '<p><strong>Location:</strong> ' +
+            event.location +
+        '</p>' +
+
+        '<p><strong>Category:</strong> ' +
+            event.category +
+        '</p>' +
+
+        '<p><strong>Organizer:</strong> ' +
+            event.organizer +
+        '</p>' +
+
+        '<p><strong>About:</strong> ' +
+            event.description +
+        '</p>' +
+
+        '<div class="tip-box">' +
+
+            (event.registration
+                ? "📝 Registration is currently open for this event."
+                : "🎉 This event is open for students to attend.") +
+
+        '</div>'
+
+    );
+
+}
+
+
+function showAllEvents(){
+
+    document.getElementById("eventSearch").value = "";
+
+    document.getElementById("categoryFilter").value = "all";
+
+    renderEvents();
+
+    showToast("Showing all campus events 🎉");
+
+}
+
+
+function showCategoryInfo(){
+
+    const stats = eventsStats();
+
+    let html =
+        "<p><strong>Total Categories:</strong> " +
+        stats.categories +
+        "</p>";
+
+    const categories =
+        [...new Set(EVENTS.map(e => e.category))];
+
+    categories.forEach(category => {
+
+        const count =
+            EVENTS.filter(e => e.category === category).length;
+
+        html +=
+            "<p>📌 <strong>" +
+            category +
+            ":</strong> " +
+            count +
+            " event(s)</p>";
+
+    });
+
+    openModal(
+        "🏛️ Event Categories",
+        html
+    );
+
+}
+
+
+function showNotifications(){
+
+    const stats = eventsStats();
+
+    openModal(
+
+        "🔔 Notifications",
+
+        "<p><strong>Campus Events</strong></p>" +
+
+        "<p>🎉 " +
+        stats.upcoming +
+        " upcoming events are listed.</p>" +
+
+        "<p>📝 " +
+        stats.registration +
+        " events currently have registration available.</p>" +
+
+        "<p>📅 Check the event cards for dates and locations.</p>"
+
+    );
+
+}
+
+
+function registerSelectedEvent(){
+
+    if(!selectedEvent){
+
+        closeModal();
+
+        return;
+    }
+
+    if(!selectedEvent.registration){
+
+        closeModal();
+
+        showToast(
+            "This event does not require registration 🎉"
+        );
+
+        return;
+    }
+
+    closeModal();
+
+    showToast(
+        "Registration noted for " +
+        selectedEvent.title +
+        " 📝"
+    );
+
+}
+
+
+function closeModal(){
+
+    document.getElementById("eventModal")
+        .classList.remove("show");
+
+}
+
+
+function closeModalOutside(event){
+
+    if(
+        event.target ===
+        document.getElementById("eventModal")
+    ){
+
+        closeModal();
+
+    }
+
+}
 
 
 /* ================= TOAST ================= */
@@ -2086,119 +2277,226 @@ function showToast(message){
     const toast =
         document.getElementById("toast");
 
-
-    toast.textContent =
-        message;
-
+    toast.textContent = message;
 
     toast.classList.add("show");
 
+    clearTimeout(toast._timer);
 
-    setTimeout(() => {
-
-        toast.classList.remove("show");
-
-    },3000);
+    toast._timer =
+        setTimeout(
+            () => toast.classList.remove("show"),
+            2500
+        );
 
 }
 
 
 /* ================= CHATBOT ================= */
 
-function addUserMessage(message){
+function openChatPanel(){
 
-    const body =
-        document.getElementById("chatBody");
+    document.getElementById("chatbotPanel")
+        .classList.add("open");
 
-
-    const div =
-        document.createElement("div");
-
-
-    div.className =
-        "user-message";
-
-
-    div.textContent =
-        message;
-
-
-    body.appendChild(div);
-
-
-    body.scrollTop =
-        body.scrollHeight;
+    document.getElementById("chatBubble")
+        .classList.add("hide");
 
 }
 
 
-function addBotMessage(message){
+function closeChatPanel(){
 
-    const body =
-        document.getElementById("chatBody");
+    document.getElementById("chatbotPanel")
+        .classList.remove("open");
 
-
-    const div =
-        document.createElement("div");
-
-
-    div.className =
-        "bot-message";
-
-
-    div.innerHTML =
-        message;
-
-
-    body.appendChild(div);
-
-
-    body.scrollTop =
-        body.scrollHeight;
+    document.getElementById("chatBubble")
+        .classList.remove("hide");
 
 }
 
 
-function quickChat(message){
+function quickChat(text){
 
-    addUserMessage(message);
+    document.getElementById("chatInput").value =
+        text;
+
+    sendChat();
+
+}
 
 
-    setTimeout(() => {
+function addMessage(cls,html){
 
-        if(message === "Technical events"){
+    const body =
+        document.getElementById("chatBody");
 
-            addBotMessage(
-                "💻 Upcoming technical events include <b>TechNova 2026</b>, <b>CodeSprint</b> and <b>Hackathon 2026</b>. Use the Technical filter to see them."
+    const msg =
+        document.createElement("div");
+
+    msg.className = cls;
+
+    msg.innerHTML = html;
+
+    body.appendChild(msg);
+
+    body.scrollTop =
+        body.scrollHeight;
+
+    return msg;
+
+}
+
+
+function botReply(text){
+
+    const lower =
+        text.toLowerCase();
+
+    const stats =
+        eventsStats();
+
+
+    if(
+        /^(hi|hello|hey|hii|yo)\b/.test(lower)
+    ){
+
+        return "👋 Hey! I can help you find upcoming events, workshops, competitions, cultural programs and registration information.";
+
+    }
+
+
+    if(
+        lower.includes("how many") ||
+        lower.includes("total")
+    ){
+
+        return "🎉 There are " +
+            stats.total +
+            " events listed across " +
+            stats.categories +
+            " categories.";
+
+    }
+
+
+    if(
+        lower.includes("upcoming") ||
+        lower.includes("coming")
+    ){
+
+        return "📅 There are " +
+            stats.upcoming +
+            " upcoming campus events. You can browse them in the Upcoming Events section.";
+
+    }
+
+
+    if(
+        lower.includes("technical") ||
+        lower.includes("coding") ||
+        lower.includes("technology")
+    ){
+
+        const technical =
+            EVENTS.filter(
+                e => e.category === "Technical"
             );
 
-        }
+        return "💻 Technical events: " +
+            technical.map(e => e.title).join(", ") +
+            ".";
 
-        else if(message === "Cultural events"){
+    }
 
-            addBotMessage(
-                "🎭 The upcoming cultural events include the <b>Campus Cultural Fest</b> and <b>Photography Walk</b>."
+
+    if(
+        lower.includes("cultural") ||
+        lower.includes("dance") ||
+        lower.includes("music")
+    ){
+
+        const cultural =
+            EVENTS.filter(
+                e => e.category === "Cultural"
             );
 
-        }
+        return "🎭 Cultural events: " +
+            cultural.map(e => e.title).join(", ") +
+            ".";
 
-        else{
-
-            const registered =
-                events.filter(
-                    event => event.registered
-                ).length;
+    }
 
 
-            addBotMessage(
-                "🎟️ You currently have <b>" +
-                registered +
-                "</b> event registration(s)."
+    if(
+        lower.includes("workshop")
+    ){
+
+        const workshops =
+            EVENTS.filter(
+                e => e.category === "Workshop"
             );
 
-        }
+        return "🛠️ Workshops: " +
+            workshops.map(e => e.title).join(", ") +
+            ".";
 
-    },500);
+    }
+
+
+    if(
+        lower.includes("career")
+    ){
+
+        const career =
+            EVENTS.filter(
+                e => e.category === "Career"
+            );
+
+        return "💼 Career events: " +
+            career.map(e => e.title).join(", ") +
+            ".";
+
+    }
+
+
+    if(
+        lower.includes("register") ||
+        lower.includes("registration")
+    ){
+
+        return "📝 " +
+            stats.registration +
+            " events currently have registration available. Open an event card to view its details.";
+
+    }
+
+
+    if(
+        lower.includes("sport") ||
+        lower.includes("cricket")
+    ){
+
+        const sports =
+            EVENTS.filter(
+                e => e.category === "Sports"
+            );
+
+        return "🏏 Sports events: " +
+            sports.map(e => e.title).join(", ") +
+            ".";
+
+    }
+
+
+    if(lower.includes("thank")){
+
+        return "😊 You're welcome! Let me know if you need anything else about campus events.";
+
+    }
+
+
+    return "😊 I can help you with upcoming events, technical events, cultural programs, workshops, sports, career events and registration. Try asking \"What events are coming up?\"";
 
 }
 
@@ -2208,160 +2506,78 @@ function sendChat(){
     const input =
         document.getElementById("chatInput");
 
-
-    const message =
+    const text =
         input.value.trim();
 
+    if(!text) return;
 
-    if(!message) return;
-
-
-    addUserMessage(message);
-
+    addMessage(
+        "user-message",
+        escapeHtml(text)
+    );
 
     input.value = "";
 
+    const typing =
+        addMessage(
+            "typing",
+            "<i></i><i></i><i></i>"
+        );
 
-    setTimeout(() => {
+    setTimeout(function(){
 
-        const lower =
-            message.toLowerCase();
+        typing.remove();
 
+        addMessage(
+            "bot-message",
+            botReply(text)
+        );
 
-        if(
-            lower.includes("technical")
-            ||
-            lower.includes("tech")
-        ){
-
-            addBotMessage(
-                "💻 Check out <b>TechNova 2026</b>, <b>CodeSprint</b> and <b>Hackathon 2026</b>."
-            );
-
-        }
-
-        else if(
-            lower.includes("cultural")
-            ||
-            lower.includes("dance")
-            ||
-            lower.includes("music")
-        ){
-
-            addBotMessage(
-                "🎭 The <b>Campus Cultural Fest</b> is coming up on 22 September, followed by the <b>Photography Walk</b>."
-            );
-
-        }
-
-        else if(
-            lower.includes("registration")
-            ||
-            lower.includes("registered")
-        ){
-
-            const count =
-                events.filter(
-                    event => event.registered
-                ).length;
-
-
-            addBotMessage(
-                "🎟️ You currently have <b>" +
-                count +
-                "</b> registered event(s)."
-            );
-
-        }
-
-        else if(
-            lower.includes("workshop")
-        ){
-
-            addBotMessage(
-                "🧑‍💻 Upcoming workshops include <b>AI & Future Technologies Workshop</b> and <b>Entrepreneurship Bootcamp</b>."
-            );
-
-        }
-
-        else if(
-            lower.includes("sports")
-            ||
-            lower.includes("cricket")
-        ){
-
-            addBotMessage(
-                "🏏 The <b>Inter-College Cricket Tournament</b> is scheduled for 24 September."
-            );
-
-        }
-
-        else if(
-            lower.includes("hackathon")
-        ){
-
-            addBotMessage(
-                "⚡ <b>Hackathon 2026</b> is scheduled for 3 October at the Innovation Hub."
-            );
-
-        }
-
-        else{
-
-            addBotMessage(
-                "🤖 I can help you find <b>technical events, cultural programs, workshops, sports events, competitions and your registrations</b>."
-            );
-
-        }
-
-    },500);
+    },600);
 
 }
 
 
-document
-.getElementById("chatInput")
-.addEventListener(
-    "keydown",
-    function(e){
+function handleChatKey(event){
 
-        if(e.key === "Enter"){
-
-            sendChat();
-
-        }
-
+    if(event.key === "Enter"){
+        sendChat();
     }
-);
+
+}
+
+
+function escapeHtml(str){
+
+    return str
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;");
+
+}
+
+
+/* ================= LOGOUT ================= */
+
+function confirmLogout(){
+
+    return confirm(
+        "Are you sure you want to logout?"
+    );
+
+}
 
 
 /* ================= ESCAPE ================= */
 
 document.addEventListener(
     "keydown",
-    function(e){
+    function(event){
 
-        if(e.key === "Escape"){
+        if(event.key === "Escape"){
 
-            closeDetails();
-
-        }
-
-    }
-);
-
-
-/* ================= OUTSIDE MODAL ================= */
-
-document
-.getElementById("detailsModal")
-.addEventListener(
-    "click",
-    function(e){
-
-        if(e.target === this){
-
-            closeDetails();
+            closeModal();
+            closeChatPanel();
 
         }
 
@@ -2369,11 +2585,30 @@ document
 );
 
 
-/* ================= INITIAL LOAD ================= */
+/* ================= INIT ================= */
+
+populateCategoryFilter();
+
+renderOverview();
 
 renderEvents();
 
+renderCategories();
+
+
+setTimeout(function(){
+
+    addMessage(
+        "bot-message",
+        "There are <strong>" +
+        eventsStats().upcoming +
+        "</strong> upcoming campus events. Tap the bubble anytime to ask me something. 🎉"
+    );
+
+},1200);
+
 </script>
 
+<script src="../js/chatbot.js"></script>
 </body>
 </html>

@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>CampusConnect | Exams</title>
 
 <style>
@@ -144,15 +143,12 @@ button,input,select{
 
 .main-area{
     margin-left:268px;
-    margin-right:286px;
     width:auto;
     height:100vh;
     overflow-y:auto;
     overflow-x:hidden;
     background:linear-gradient(180deg,#f8f9ff,#eef1fb);
 }
-
-/* ================= HEADER ================= */
 
 .top-header{
     height:120px;
@@ -203,6 +199,11 @@ button,input,select{
     box-shadow:0 5px 18px rgba(40,35,100,.10);
     position:relative;
     cursor:pointer;
+    transition:.2s;
+}
+
+.notification:hover{
+    transform:scale(1.06);
 }
 
 .notification::after{
@@ -246,44 +247,84 @@ button,input,select{
     font-size:12px;
 }
 
-/* ================= CONTENT ================= */
-
-.content{
-    padding:26px 28px 40px;
+.page-content{
+    padding:20px 24px 35px;
+    width:100%;
 }
 
-/* HERO */
+.page-heading{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:20px;
+}
 
-.hero{
-    background:linear-gradient(135deg,#25277d,#6337d8);
-    border-radius:24px;
-    padding:27px 30px;
+.page-heading h2{
+    font-size:24px;
+    font-weight:800;
+}
+
+.page-heading p{
+    margin-top:6px;
+    color:#8990a7;
+    font-size:13px;
+}
+
+.heading-btn{
+    border:none;
+    border-radius:11px;
+    padding:11px 16px;
     color:white;
+    font-size:12px;
+    font-weight:700;
+    cursor:pointer;
+    background:linear-gradient(135deg,#6543e8,#843de0);
+    box-shadow:0 8px 20px rgba(85,50,190,.25);
+    transition:.2s;
+}
+
+.heading-btn:hover{
+    transform:translateY(-2px);
+}
+
+/* ================= HERO ================= */
+
+.exam-hero{
+    width:100%;
+    min-height:190px;
+    border-radius:20px;
+    padding:28px 32px;
+    color:white;
+    background:linear-gradient(120deg,#19398d,#4828c8 55%,#7738dd);
+    box-shadow:0 14px 35px rgba(55,44,150,.20);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:20px;
     position:relative;
     overflow:hidden;
-    box-shadow:0 15px 35px rgba(57,48,150,.18);
 }
 
-.hero::before{
+.exam-hero::before{
     content:"";
     position:absolute;
-    width:230px;
-    height:230px;
+    width:260px;
+    height:260px;
     border-radius:50%;
-    background:rgba(255,255,255,.06);
-    right:-70px;
-    top:-90px;
+    right:-80px;
+    top:-110px;
+    background:rgba(255,255,255,.08);
 }
 
-.hero::after{
+.exam-hero::after{
     content:"";
     position:absolute;
     width:150px;
     height:150px;
     border-radius:50%;
-    background:rgba(36,184,255,.10);
-    right:120px;
-    bottom:-90px;
+    right:150px;
+    bottom:-100px;
+    background:rgba(255,255,255,.05);
 }
 
 .hero-content{
@@ -291,357 +332,457 @@ button,input,select{
     z-index:2;
 }
 
-.hero-tag{
-    display:inline-block;
-    background:rgba(255,255,255,.14);
-    padding:6px 12px;
-    border-radius:20px;
-    font-size:11px;
-    margin-bottom:10px;
+.hero-content h3{
+    font-size:23px;
+    font-weight:800;
+    margin-bottom:8px;
 }
 
-.hero h2{
-    font-size:25px;
-    margin-bottom:7px;
+.hero-content p{
+    font-size:12px;
+    color:rgba(255,255,255,.76);
+    max-width:600px;
+    line-height:1.7;
 }
 
-.hero p{
-    font-size:13px;
-    color:rgba(255,255,255,.78);
-}
-
-.hero-date{
-    margin-top:17px;
+.hero-action{
+    position:relative;
+    z-index:2;
     display:flex;
-    gap:10px;
-    flex-wrap:wrap;
+    align-items:center;
+    gap:12px;
 }
 
-.date-pill{
-    background:rgba(255,255,255,.13);
-    border:1px solid rgba(255,255,255,.12);
-    padding:8px 12px;
-    border-radius:12px;
-    font-size:11px;
+.stat-box{
+    min-width:110px;
+    padding:17px 20px;
+    border-radius:15px;
+    background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.15);
+    text-align:center;
+    backdrop-filter:blur(5px);
 }
 
-/* SUMMARY */
+.stat-box strong{
+    display:block;
+    font-size:30px;
+    font-weight:800;
+}
+
+.stat-box span{
+    display:block;
+    font-size:10px;
+    margin-top:4px;
+    color:rgba(255,255,255,.72);
+}
+
+/* ================= SUMMARY CARDS ================= */
 
 .summary-grid{
+    width:100%;
     display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:16px;
-    margin-top:20px;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:18px;
+    margin-bottom:20px;
 }
 
 .summary-card{
     background:white;
-    border:1px solid #e7e9f3;
-    border-radius:18px;
-    padding:19px;
-    box-shadow:0 7px 22px rgba(40,35,100,.06);
+    border:1px solid #e9ebf5;
+    border-radius:17px;
+    padding:18px;
+    min-height:120px;
+    box-shadow:0 8px 25px rgba(40,35,100,.06);
     transition:.2s;
+    cursor:pointer;
 }
 
 .summary-card:hover{
-    transform:translateY(-3px);
-    box-shadow:0 12px 28px rgba(40,35,100,.10);
+    transform:translateY(-4px);
+    box-shadow:0 15px 35px rgba(40,35,100,.12);
 }
 
 .summary-top{
     display:flex;
     justify-content:space-between;
-    align-items:center;
+}
+
+.summary-title{
+    color:#7f88a5;
+    font-size:12px;
+    font-weight:700;
 }
 
 .summary-icon{
     width:43px;
     height:43px;
     border-radius:13px;
+    background:#f0f3ff;
     display:flex;
     align-items:center;
     justify-content:center;
     font-size:21px;
-    background:#f0efff;
 }
 
-.summary-label{
-    margin-top:13px;
-    font-size:12px;
-    color:#8a91a8;
-}
-
-.summary-value{
-    margin-top:3px;
-    font-size:24px;
+.summary-number{
+    font-size:27px;
     font-weight:800;
-    color:#202750;
+    margin-top:9px;
+    color:#3063df;
 }
 
-/* SECTION */
-
-.section-head{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    margin-top:28px;
-    margin-bottom:14px;
+.summary-small{
+    color:#9aa2b9;
+    font-size:10px;
+    margin-top:2px;
 }
 
-.section-head h3{
-    font-size:19px;
-    font-weight:800;
-}
+/* ================= CONTENT CARD ================= */
 
-.section-head span{
-    color:#8b92a8;
-    font-size:12px;
-}
-
-/* FILTER */
-
-.filters{
+.content-card{
     background:white;
-    padding:14px;
-    border-radius:16px;
-    border:1px solid #e7e9f3;
+    border:1px solid #e9ebf5;
+    border-radius:17px;
+    padding:20px;
+    box-shadow:0 8px 25px rgba(40,35,100,.06);
+    margin-bottom:20px;
+}
+
+.card-heading{
     display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:15px;
     gap:10px;
-    margin-bottom:16px;
-    box-shadow:0 5px 16px rgba(40,35,100,.04);
+    flex-wrap:wrap;
+}
+
+.card-heading h3{
+    font-size:17px;
+}
+
+.card-tools{
+    display:flex;
+    gap:8px;
+    align-items:center;
 }
 
 .search-box{
-    flex:1;
-    position:relative;
-}
-
-.search-box input{
-    width:100%;
-    height:42px;
-    border:1px solid #e0e3ef;
-    border-radius:12px;
-    outline:none;
-    padding:0 13px;
-    font-size:12px;
-    color:#4f5875;
-}
-
-.search-box input:focus,
-.filters select:focus{
-    border-color:#7650e8;
-}
-
-.filters select{
-    height:42px;
-    border:1px solid #e0e3ef;
-    border-radius:12px;
+    height:38px;
+    border:1px solid #e1e4ef;
+    border-radius:10px;
     padding:0 12px;
-    color:#59627d;
-    outline:none;
+    color:#39425e;
     background:white;
-    font-size:12px;
-    min-width:140px;
+    outline:none;
+    font-size:11px;
+    min-width:190px;
+    transition:.2s;
 }
 
-/* EXAM CARDS */
+.search-box:focus{
+    border-color:#a99bf0;
+}
+
+.filter-select{
+    height:38px;
+    border:1px solid #e1e4ef;
+    border-radius:10px;
+    padding:0 11px;
+    color:#68728d;
+    background:white;
+    outline:none;
+    font-size:11px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.filter-select:hover{
+    border-color:#c9cee4;
+}
+
+/* ================= EXAM GRID ================= */
 
 .exam-grid{
     display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:16px;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:14px;
 }
 
 .exam-card{
-    background:white;
-    border:1px solid #e7e9f3;
-    border-radius:18px;
-    padding:19px;
-    box-shadow:0 7px 22px rgba(40,35,100,.05);
+    padding:17px;
+    border:1px solid #eceef5;
+    border-radius:15px;
+    background:#fafbff;
+    cursor:pointer;
     transition:.2s;
 }
 
 .exam-card:hover{
     transform:translateY(-3px);
-    box-shadow:0 13px 28px rgba(40,35,100,.10);
+    box-shadow:0 10px 25px rgba(40,35,100,.08);
+    border-color:#dcd6fb;
 }
 
 .exam-top{
     display:flex;
     align-items:flex-start;
     justify-content:space-between;
-    gap:10px;
+    gap:12px;
 }
 
-.exam-icon{
-    width:48px;
-    height:48px;
+.exam-date{
+    width:55px;
+    height:58px;
     border-radius:14px;
+    background:linear-gradient(135deg,#6543e8,#843de0);
+    color:white;
     display:flex;
+    flex-direction:column;
     align-items:center;
     justify-content:center;
-    font-size:24px;
-    background:linear-gradient(135deg,#e9f7ff,#f0eaff);
+    flex-shrink:0;
 }
 
-.exam-type{
-    background:#f0edff;
-    color:#6949d8;
-    padding:6px 9px;
-    border-radius:20px;
+.exam-date strong{
+    font-size:20px;
+    line-height:1;
+}
+
+.exam-date span{
     font-size:9px;
-    font-weight:700;
-}
-
-.exam-card h4{
-    font-size:16px;
-    margin-top:14px;
-    color:#22294e;
-}
-
-.exam-subject{
-    color:#7e87a2;
-    font-size:11px;
-    margin-top:4px;
+    margin-top:3px;
+    opacity:.8;
 }
 
 .exam-info{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:10px;
-    margin-top:16px;
+    flex:1;
 }
 
-.info-box{
-    background:#f8f9fd;
-    border-radius:11px;
-    padding:9px;
+.exam-info strong{
+    display:block;
+    font-size:14px;
+    color:#27304b;
 }
 
-.info-label{
-    color:#999fb1;
-    font-size:9px;
-}
-
-.info-value{
-    margin-top:3px;
-    color:#454e6d;
-    font-size:11px;
-    font-weight:700;
-}
-
-.exam-bottom{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    margin-top:16px;
-    padding-top:13px;
-    border-top:1px solid #edf0f6;
+.exam-info span{
+    display:block;
+    margin-top:4px;
+    color:#9299ae;
+    font-size:10px;
 }
 
 .exam-status{
-    font-size:10px;
-    font-weight:700;
-    padding:6px 9px;
+    padding:5px 9px;
     border-radius:20px;
-}
-
-.status-upcoming{
-    color:#2674b9;
-    background:#eaf7ff;
-}
-
-.status-soon{
-    color:#bd7a12;
-    background:#fff5df;
-}
-
-.status-completed{
-    color:#2e9a69;
-    background:#e9fbf3;
-}
-
-.view-btn{
-    border:none;
-    background:linear-gradient(135deg,#6243e7,#7b3fdf);
-    color:white;
-    border-radius:10px;
-    padding:9px 13px;
-    cursor:pointer;
-    font-size:10px;
+    font-size:9px;
     font-weight:700;
-    transition:.2s;
 }
 
-.view-btn:hover{
-    transform:translateY(-1px);
-    box-shadow:0 6px 14px rgba(100,65,220,.22);
+.exam-status.upcoming{
+    background:#edf8ff;
+    color:#238acb;
 }
 
-/* EMPTY */
+.exam-status.completed{
+    background:#eafbf2;
+    color:#2eae6f;
+}
 
-.empty-state{
-    display:none;
-    background:white;
-    border:1px dashed #d9dced;
-    border-radius:18px;
+.exam-status.today{
+    background:#fff3e5;
+    color:#e38a2d;
+}
+
+.exam-meta{
+    display:flex;
+    gap:7px;
+    margin-top:14px;
+    flex-wrap:wrap;
+}
+
+.exam-tag{
+    padding:5px 9px;
+    border-radius:20px;
+    background:#f0edff;
+    color:#6854d8;
+    font-size:9px;
+    font-weight:700;
+}
+
+.empty-note{
+    padding:25px 5px;
     text-align:center;
-    padding:35px;
-    color:#858ca3;
-    font-size:13px;
+    color:#9aa2b9;
+    font-size:12px;
+    grid-column:1/-1;
+}
+
+/* ================= SUBJECT BREAKDOWN ================= */
+
+.subject-grid{
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:12px;
+}
+
+.subject-card{
+    padding:15px;
+    border:1px solid #eceef5;
+    border-radius:13px;
+    background:#fafbff;
+    transition:.2s;
+    cursor:pointer;
+}
+
+.subject-card:hover{
+    transform:translateY(-3px);
+    box-shadow:0 8px 20px rgba(40,35,100,.08);
+}
+
+.subject-icon{
+    width:38px;
+    height:38px;
+    border-radius:11px;
+    background:#f0f3ff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:19px;
+    margin-bottom:9px;
+}
+
+.subject-card span{
+    display:block;
+    color:#9299ae;
+    font-size:10px;
+}
+
+.subject-card strong{
+    display:block;
+    margin-top:5px;
+    color:#39425e;
+    font-size:15px;
+}
+
+.subject-card small{
+    display:block;
+    margin-top:4px;
+    color:#9aa2b9;
+    font-size:9px;
 }
 
 /* ================= CHATBOT ================= */
 
-.chatbot{
+.chat-bubble{
     position:fixed;
-    top:18px;
-    right:18px;
-    bottom:18px;
-    width:268px;
-    min-width:268px;
-    max-width:268px;
+    right:24px;
+    bottom:24px;
+    width:64px;
+    height:64px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#6543e8,#a855f7);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:30px;
+    color:white;
+    border:none;
+    cursor:pointer;
+    box-shadow:0 12px 30px rgba(101,67,232,.45);
+    z-index:9998;
+    transition:transform .2s ease;
+}
+
+.chat-bubble:hover{
+    transform:scale(1.08);
+}
+
+.chat-bubble::after{
+    content:"";
+    position:absolute;
+    top:4px;
+    right:4px;
+    width:12px;
+    height:12px;
+    border-radius:50%;
+    background:#ff4f8b;
+    border:2px solid white;
+}
+
+.chat-bubble.hide{
+    display:none;
+}
+
+.chatbot-panel{
+    position:fixed;
+    right:24px;
+    bottom:24px;
+    width:320px;
+    height:460px;
     background:white;
     border-radius:22px;
     border:1px solid #e5e6f2;
-    box-shadow:0 15px 45px rgba(40,35,100,.15);
+    box-shadow:0 20px 55px rgba(40,35,100,.25);
     z-index:9999;
-    display:flex;
+    display:none;
     flex-direction:column;
     overflow:hidden;
+    animation:panelIn .2s ease;
+}
+
+.chatbot-panel.open{
+    display:flex;
+}
+
+@keyframes panelIn{
+    from{
+        opacity:0;
+        transform:translateY(20px) scale(.96);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
 }
 
 .chat-header{
-    min-height:82px;
+    min-height:70px;
     flex-shrink:0;
-    padding:15px;
+    padding:14px;
     display:flex;
     align-items:center;
+    justify-content:space-between;
     color:white;
     background:linear-gradient(135deg,#29277d,#7137d8);
 }
 
+.chat-header-left{
+    display:flex;
+    align-items:center;
+}
+
 .robot-icon{
-    width:45px;
-    height:45px;
-    border-radius:14px;
+    width:42px;
+    height:42px;
+    border-radius:12px;
     background:rgba(255,255,255,.15);
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:24px;
+    font-size:22px;
     margin-right:10px;
 }
 
 .chat-title strong{
     display:block;
-    font-size:15px;
+    font-size:14px;
 }
 
 .chat-title span{
     display:block;
-    font-size:10px;
-    margin-top:3px;
+    font-size:9px;
+    margin-top:2px;
     color:rgba(255,255,255,.78);
 }
 
@@ -654,10 +795,21 @@ button,input,select{
     margin-right:4px;
 }
 
+.close-chat{
+    width:30px;
+    height:30px;
+    border:none;
+    border-radius:50%;
+    background:rgba(255,255,255,.15);
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+
 .chat-body{
     flex:1;
     min-height:0;
-    padding:17px 14px;
+    padding:14px;
     overflow-y:auto;
     background:linear-gradient(180deg,#fafbff,#f4f5fb);
 }
@@ -666,29 +818,61 @@ button,input,select{
     background:white;
     border:1px solid #e7e9f3;
     border-radius:14px;
-    padding:12px;
-    margin-bottom:10px;
+    padding:11px;
+    margin-bottom:9px;
     color:#65708d;
     font-size:11px;
-    line-height:1.6;
+    line-height:1.55;
     box-shadow:0 5px 15px rgba(40,35,100,.04);
 }
 
 .user-message{
     background:linear-gradient(135deg,#6241e8,#7b3ee0);
     color:white;
-    padding:10px 12px;
+    padding:9px 12px;
     border-radius:14px 14px 4px 14px;
-    margin:9px 0 9px 20px;
+    margin:8px 0 8px 25px;
     font-size:11px;
     line-height:1.5;
+}
+
+.typing{
+    display:flex;
+    gap:4px;
+    width:52px;
+    padding:12px;
+    background:white;
+    border:1px solid #e7e9f3;
+    border-radius:14px;
+    margin-bottom:9px;
+}
+
+.typing i{
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:#b9bed4;
+    animation:blink 1s infinite;
+}
+
+.typing i:nth-child(2){
+    animation-delay:.2s;
+}
+
+.typing i:nth-child(3){
+    animation-delay:.4s;
+}
+
+@keyframes blink{
+    0%,100%{opacity:.3;}
+    50%{opacity:1;}
 }
 
 .quick-buttons{
     display:flex;
     gap:5px;
     flex-wrap:wrap;
-    padding:9px 14px;
+    padding:8px 12px;
     background:white;
     border-top:1px solid #eceef5;
 }
@@ -698,14 +882,14 @@ button,input,select{
     background:white;
     color:#6b54d9;
     border-radius:20px;
-    padding:7px 9px;
+    padding:6px 9px;
     font-size:9px;
     cursor:pointer;
     transition:.2s;
 }
 
 .quick-btn:hover{
-    background:#f3f0ff;
+    background:#f0edff;
 }
 
 .chat-footer{
@@ -720,7 +904,7 @@ button,input,select{
 .chat-input{
     flex:1;
     min-width:0;
-    height:40px;
+    height:38px;
     border:1px solid #e1e4ef;
     border-radius:12px;
     outline:none;
@@ -729,55 +913,58 @@ button,input,select{
     color:#555e78;
 }
 
+.chat-input:focus{
+    border-color:#a99bf0;
+}
+
 .send-btn{
-    width:40px;
-    height:40px;
+    width:38px;
+    height:38px;
     border:none;
     border-radius:12px;
     color:white;
     background:linear-gradient(135deg,#6543e8,#843de0);
     cursor:pointer;
-    font-size:17px;
+    font-size:16px;
     transition:.2s;
 }
 
 .send-btn:hover{
-    transform:scale(1.04);
+    transform:scale(1.05);
 }
 
 /* ================= MODAL ================= */
 
-.modal-overlay{
+.modal{
     position:fixed;
     inset:0;
-    background:rgba(20,25,65,.48);
-    backdrop-filter:blur(5px);
+    background:rgba(20,25,65,.55);
     display:none;
     align-items:center;
     justify-content:center;
-    z-index:20000;
+    z-index:30000;
     padding:20px;
 }
 
-.modal-overlay.show{
+.modal.show{
     display:flex;
 }
 
-.modal{
-    width:520px;
-    max-width:100%;
-    max-height:90vh;
+.modal-box{
+    width:min(500px,95%);
+    max-height:88vh;
     overflow-y:auto;
     background:white;
-    border-radius:22px;
-    box-shadow:0 25px 70px rgba(25,25,70,.25);
+    border-radius:20px;
+    padding:25px;
+    box-shadow:0 25px 70px rgba(20,25,70,.25);
     animation:modalIn .2s ease;
 }
 
 @keyframes modalIn{
     from{
         opacity:0;
-        transform:translateY(12px) scale(.98);
+        transform:translateY(15px) scale(.97);
     }
     to{
         opacity:1;
@@ -785,126 +972,90 @@ button,input,select{
     }
 }
 
-.modal-head{
-    padding:21px 23px;
-    background:linear-gradient(135deg,#29277d,#7137d8);
-    color:white;
+.modal-top{
     display:flex;
     align-items:center;
     justify-content:space-between;
+    margin-bottom:20px;
 }
 
-.modal-head h3{
+.modal-top h3{
+    font-size:19px;
+}
+
+.close-btn{
+    width:35px;
+    height:35px;
+    border:none;
+    border-radius:50%;
+    background:#f0f2fa;
+    color:#68728d;
+    cursor:pointer;
     font-size:18px;
 }
 
-.close-modal{
-    width:34px;
-    height:34px;
-    border:none;
-    border-radius:50%;
-    background:rgba(255,255,255,.14);
-    color:white;
-    font-size:19px;
-    cursor:pointer;
-}
-
-.modal-body{
-    padding:22px;
-}
-
-.detail-title{
-    font-size:20px;
-    font-weight:800;
-    color:#252b51;
-}
-
-.detail-subject{
-    color:#7e86a0;
+.modal-content{
+    color:#68728d;
     font-size:12px;
-    margin-top:5px;
+    line-height:1.7;
 }
 
-.detail-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:11px;
-    margin-top:18px;
+.modal-content p{
+    margin-bottom:6px;
 }
 
-.detail-box{
-    padding:12px;
-    border-radius:13px;
-    background:#f7f8fc;
-}
-
-.detail-box span{
-    display:block;
-    font-size:9px;
-    color:#9299ac;
-}
-
-.detail-box strong{
-    display:block;
-    margin-top:4px;
-    font-size:12px;
-    color:#454d6a;
-}
-
-.instructions{
-    margin-top:17px;
-    background:#f2efff;
-    border-radius:14px;
-    padding:13px;
-    color:#5d5981;
+.tip-box{
+    margin-top:12px;
+    padding:11px 13px;
+    border-radius:12px;
+    background:#f4f2ff;
+    color:#5d4fbe;
     font-size:11px;
     line-height:1.6;
 }
 
-.modal-actions{
+.modal-buttons{
     display:flex;
-    gap:9px;
+    justify-content:flex-end;
+    gap:8px;
     margin-top:18px;
 }
 
-.action-btn{
-    flex:1;
-    height:42px;
-    border-radius:11px;
+.modal-btn{
+    border:none;
+    border-radius:10px;
+    padding:10px 15px;
     cursor:pointer;
     font-size:11px;
     font-weight:700;
 }
 
-.primary-action{
-    border:none;
+.modal-cancel{
+    background:#f0f2fa;
+    color:#68728d;
+}
+
+.modal-ok{
+    background:linear-gradient(135deg,#6543e8,#843de0);
     color:white;
-    background:linear-gradient(135deg,#6243e7,#7b3fdf);
 }
 
-.secondary-action{
-    border:1px solid #dddff0;
-    background:white;
-    color:#6654bd;
-}
-
-/* TOAST */
+/* ================= TOAST ================= */
 
 .toast{
     position:fixed;
-    bottom:30px;
     left:50%;
+    bottom:25px;
     transform:translateX(-50%) translateY(20px);
-    background:#20264b;
+    background:#29277d;
     color:white;
     padding:12px 18px;
     border-radius:12px;
-    font-size:11px;
+    font-size:12px;
     opacity:0;
     pointer-events:none;
     transition:.3s;
-    z-index:30000;
-    box-shadow:0 12px 30px rgba(20,25,60,.22);
+    z-index:40000;
 }
 
 .toast.show{
@@ -923,33 +1074,18 @@ button,input,select{
 
     .main-area{
         margin-left:230px;
-        margin-right:250px;
-    }
-
-    .chatbot{
-        width:232px;
-        min-width:232px;
-        max-width:232px;
-        right:10px;
     }
 
     .summary-grid{
-        grid-template-columns:repeat(2,1fr);
-    }
-}
-
-@media(max-width:900px){
-
-    .chatbot{
-        display:none;
-    }
-
-    .main-area{
-        margin-right:0;
+        grid-template-columns:repeat(2,minmax(0,1fr));
     }
 
     .exam-grid{
         grid-template-columns:1fr;
+    }
+
+    .subject-grid{
+        grid-template-columns:repeat(2,minmax(0,1fr));
     }
 }
 
@@ -965,10 +1101,7 @@ button,input,select{
         padding:15px;
     }
 
-    .brand-text{
-        display:none;
-    }
-
+    .brand-text,
     .menu-title,
     .nav-text{
         display:none;
@@ -987,37 +1120,33 @@ button,input,select{
         margin-left:80px;
     }
 
-    .top-header{
-        padding:18px;
-    }
-
-    .header-left h1{
-        font-size:23px;
-    }
-
-    .header-left p{
-        font-size:11px;
-    }
-
-    .time-box,
-    .profile-info{
-        display:none;
-    }
-
-    .content{
-        padding:18px;
-    }
-
     .summary-grid{
+        grid-template-columns:1fr;
+    }
+
+    .exam-hero{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:20px;
+    }
+
+    .subject-grid{
         grid-template-columns:1fr 1fr;
     }
 
-    .filters{
-        flex-direction:column;
+    .card-tools{
+        width:100%;
     }
 
-    .filters select{
-        width:100%;
+    .search-box{
+        flex:1;
+        min-width:0;
+    }
+
+    .chatbot-panel{
+        width:92vw;
+        right:4vw;
+        left:4vw;
     }
 }
 </style>
@@ -1025,7 +1154,7 @@ button,input,select{
 
 <body>
 
-<!-- ================= SIDEBAR ================= -->
+<!-- SIDEBAR -->
 
 <aside class="sidebar">
 
@@ -1038,7 +1167,7 @@ button,input,select{
         </div>
     </div>
 
-    <nav class="menu">
+    <div class="menu">
 
         <div class="menu-title">MAIN MENU</div>
 
@@ -1048,16 +1177,9 @@ button,input,select{
         </a>
 
         <a class="nav-item" href="courses.html">
-
-    <span class="nav-icon">
-        📚
-    </span>
-
-    <span class="nav-text">
-        Courses
-    </span>
-
-</a>
+            <span class="nav-icon">📚</span>
+            <span class="nav-text">Courses</span>
+        </a>
 
         <a class="nav-item" href="timetable.html">
             <span class="nav-icon">🗓️</span>
@@ -1119,9 +1241,9 @@ button,input,select{
                 <span class="nav-text">Feedback</span>
             </a>
 
-            <a class="nav-item" href="lost-found.html">
+            <a class="nav-item" href="lost_found.html">
                 <span class="nav-icon">🔎</span>
-                <span class="nav-text">Lost & Found</span>
+                <span class="nav-text">Lost &amp; Found</span>
             </a>
 
             <a class="nav-item" href="campus.html">
@@ -1160,47 +1282,46 @@ button,input,select{
                 <span class="nav-text">Settings</span>
             </a>
 
-            <a class="nav-item logout" href="../index.html" onclick="logoutUser(event)">
-                <span class="nav-icon">🚪</span>
-                <span class="nav-text">Logout</span>
-            </a>
+            <div class="logout">
+
+                <a class="nav-item" href="../index.html" onclick="return confirmLogout()">
+                    <span class="nav-icon">🚪</span>
+                    <span class="nav-text">Logout</span>
+                </a>
+
+            </div>
 
         </div>
 
-    </nav>
+    </div>
+
 </aside>
 
 
-<!-- ================= MAIN ================= -->
+<!-- MAIN AREA -->
 
 <main class="main-area">
 
     <header class="top-header">
 
         <div class="header-left">
-            <h1>Exams 📋</h1>
-            <p>View your examination schedule and important exam details</p>
+            <h1>Exams<br>Schedule</h1>
+            <p>View upcoming examinations, dates and important exam details</p>
         </div>
 
         <div class="header-right">
 
-            <div class="time-box" id="clock">
-                00:00:00
-            </div>
+            <div class="time-box" id="clock">6:00 PM</div>
 
-            <div class="notification" onclick="showToast('You have 3 new notifications 🔔')">
-                🔔
-            </div>
+            <div class="notification" onclick="showNotifications()">🔔</div>
 
             <div class="profile-mini">
 
-                <div class="profile-circle">
-                    PB
-                </div>
+                <div class="profile-circle">P</div>
 
                 <div class="profile-info">
-                    <strong>Priya Bhavani</strong>
-                    <span>Student</span>
+                    <strong>Student</strong>
+                    <span>BCA • 5th Sem</span>
                 </div>
 
             </div>
@@ -1210,39 +1331,47 @@ button,input,select{
     </header>
 
 
-    <div class="content">
+    <div class="page-content">
+
+        <div class="page-heading">
+
+            <div>
+                <h2>📋 Examination Overview</h2>
+                <p>Check your examination schedule, subjects, dates and exam status.</p>
+            </div>
+
+            <button class="heading-btn" onclick="showFullSchedule()">
+                View Full Schedule
+            </button>
+
+        </div>
+
 
         <!-- HERO -->
 
-        <section class="hero">
+        <section class="exam-hero">
 
             <div class="hero-content">
 
-                <div class="hero-tag">
-                    📚 Examination Center
-                </div>
+                <h3 id="heroTitle">6 exams are coming up 📚</h3>
 
-                <h2>Stay Ready for Your Exams</h2>
-
-                <p>
-                    Check your upcoming examinations, timings, rooms,
-                    and important instructions in one place.
+                <p id="heroText">
+                    Keep track of your examination dates and prepare ahead of time.
+                    Tap any exam card to view complete details.
                 </p>
 
-                <div class="hero-date">
+            </div>
 
-                    <div class="date-pill">
-                        📅 Next Exam: 18 September 2026
-                    </div>
+            <div class="hero-action">
 
-                    <div class="date-pill">
-                        ⏰ 10:00 AM
-                    </div>
+                <div class="stat-box">
+                    <strong id="totalExams">0</strong>
+                    <span>Total Exams</span>
+                </div>
 
-                    <div class="date-pill">
-                        🏫 Semester IV
-                    </div>
-
+                <div class="stat-box">
+                    <strong id="upcomingExams">0</strong>
+                    <span>Upcoming</span>
                 </div>
 
             </div>
@@ -1254,69 +1383,65 @@ button,input,select{
 
         <section class="summary-grid">
 
-            <div class="summary-card">
+            <div class="summary-card" onclick="showToast(examStats().total + ' examinations in this period')">
 
                 <div class="summary-top">
+                    <div class="summary-title">TOTAL EXAMS</div>
+                    <div class="summary-icon">📋</div>
+                </div>
+
+                <div class="summary-number" id="statTotal">0</div>
+
+                <div class="summary-small">
+                    This examination period
+                </div>
+
+            </div>
+
+
+            <div class="summary-card" onclick="showToast(examStats().upcoming + ' exams are upcoming')">
+
+                <div class="summary-top">
+                    <div class="summary-title">UPCOMING</div>
+                    <div class="summary-icon">🗓️</div>
+                </div>
+
+                <div class="summary-number" id="statUpcoming">0</div>
+
+                <div class="summary-small">
+                    Exams yet to come
+                </div>
+
+            </div>
+
+
+            <div class="summary-card" onclick="showToast(examStats().subjects + ' subjects in schedule')">
+
+                <div class="summary-top">
+                    <div class="summary-title">SUBJECTS</div>
                     <div class="summary-icon">📚</div>
                 </div>
 
-                <div class="summary-label">
-                    Total Exams
-                </div>
+                <div class="summary-number" id="statSubjects">0</div>
 
-                <div class="summary-value">
-                    6
-                </div>
-
-            </div>
-
-
-            <div class="summary-card">
-
-                <div class="summary-top">
-                    <div class="summary-icon">⏳</div>
-                </div>
-
-                <div class="summary-label">
-                    Upcoming
-                </div>
-
-                <div class="summary-value">
-                    4
+                <div class="summary-small">
+                    Subjects in schedule
                 </div>
 
             </div>
 
 
-            <div class="summary-card">
+            <div class="summary-card" onclick="showToast(examStats().completed + ' exam completed')">
 
                 <div class="summary-top">
+                    <div class="summary-title">COMPLETED</div>
                     <div class="summary-icon">✅</div>
                 </div>
 
-                <div class="summary-label">
-                    Completed
-                </div>
+                <div class="summary-number" id="statCompleted">0</div>
 
-                <div class="summary-value">
-                    2
-                </div>
-
-            </div>
-
-
-            <div class="summary-card">
-
-                <div class="summary-top">
-                    <div class="summary-icon">📅</div>
-                </div>
-
-                <div class="summary-label">
-                    Next Exam
-                </div>
-
-                <div class="summary-value">
-                    3 Days
+                <div class="summary-small">
+                    Exams completed
                 </div>
 
             </div>
@@ -1324,527 +1449,115 @@ button,input,select{
         </section>
 
 
-        <!-- EXAMS -->
+        <!-- EXAM SCHEDULE -->
 
-        <div class="section-head">
+        <section class="content-card">
 
-            <h3>Examination Schedule</h3>
+            <div class="card-heading">
 
-            <span>
-                Academic Year 2026
-            </span>
+                <h3>Examination Schedule</h3>
 
-        </div>
+                <div class="card-tools">
+
+                    <input
+                        class="search-box"
+                        id="examSearch"
+                        type="text"
+                        placeholder="Search subject or exam..."
+                        oninput="renderExams()"
+                    >
+
+                    <select
+                        class="filter-select"
+                        id="typeFilter"
+                        onchange="renderExams()"
+                    >
+                        <option value="all">All Types</option>
+                    </select>
+
+                    <select
+                        class="filter-select"
+                        id="statusFilter"
+                        onchange="renderExams()"
+                    >
+                        <option value="all">Any Status</option>
+                        <option value="upcoming">Upcoming</option>
+                        <option value="today">Today</option>
+                        <option value="completed">Completed</option>
+                    </select>
+
+                </div>
+
+            </div>
+
+            <div class="exam-grid" id="examList"></div>
+
+        </section>
 
 
-        <!-- FILTERS -->
+        <!-- SUBJECT BREAKDOWN -->
 
-        <div class="filters">
+        <section class="content-card">
 
-            <div class="search-box">
+            <div class="card-heading">
 
-                <input
-                    type="text"
-                    id="searchInput"
-                    placeholder="🔎 Search exam or subject..."
-                    oninput="filterExams()"
+                <h3>Subjects in Examination</h3>
+
+                <button
+                    class="filter-select"
+                    onclick="showSubjectDetails()"
                 >
+                    View Details
+                </button>
 
             </div>
 
-            <select id="semesterFilter" onchange="filterExams()">
+            <div class="subject-grid" id="subjectGrid"></div>
 
-                <option value="all">
-                    All Semesters
-                </option>
-
-                <option value="Semester IV">
-                    Semester IV
-                </option>
-
-                <option value="Semester III">
-                    Semester III
-                </option>
-
-            </select>
-
-
-            <select id="statusFilter" onchange="filterExams()">
-
-                <option value="all">
-                    All Status
-                </option>
-
-                <option value="Upcoming">
-                    Upcoming
-                </option>
-
-                <option value="Completed">
-                    Completed
-                </option>
-
-            </select>
-
-        </div>
-
-
-        <div class="exam-grid" id="examGrid">
-
-            <!-- EXAM 1 -->
-
-            <div
-                class="exam-card"
-                data-name="Database Management System DBMS"
-                data-semester="Semester IV"
-                data-status="Upcoming"
-            >
-
-                <div class="exam-top">
-
-                    <div class="exam-icon">
-                        🗄️
-                    </div>
-
-                    <div class="exam-type">
-                        THEORY
-                    </div>
-
-                </div>
-
-                <h4>
-                    Database Management System
-                </h4>
-
-                <div class="exam-subject">
-                    DBMS • Semester IV
-                </div>
-
-                <div class="exam-info">
-
-                    <div class="info-box">
-                        <div class="info-label">Date</div>
-                        <div class="info-value">18 Sep 2026</div>
-                    </div>
-
-                    <div class="info-box">
-                        <div class="info-label">Time</div>
-                        <div class="info-value">10:00 AM</div>
-                    </div>
-
-                    <div class="info-box">
-                        <div class="info-label">Room</div>
-                        <div class="info-value">Block A - 204</div>
-                    </div>
-
-                    <div class="info-box">
-                        <div class="info-label">Duration</div>
-                        <div class="info-value">3 Hours</div>
-                    </div>
-
-                </div>
-
-                <div class="exam-bottom">
-
-                    <div class="exam-status status-soon">
-                        Upcoming
-                    </div>
-
-                    <button
-                        class="view-btn"
-                        onclick="openExam(0)"
-                    >
-                        View Details
-                    </button>
-
-                </div>
-
-            </div>
-
-
-            <!-- EXAM 2 -->
-
-            <div
-                class="exam-card"
-                data-name="Web Programming Web Technology"
-                data-semester="Semester IV"
-                data-status="Upcoming"
-            >
-
-                <div class="exam-top">
-
-                    <div class="exam-icon">
-                        💻
-                    </div>
-
-                    <div class="exam-type">
-                        THEORY
-                    </div>
-
-                </div>
-
-                <h4>
-                    Web Programming
-                </h4>
-
-                <div class="exam-subject">
-                    Web Technology • Semester IV
-                </div>
-
-                <div class="exam-info">
-
-                    <div class="info-box">
-                        <div class="info-label">Date</div>
-                        <div class="info-value">20 Sep 2026</div>
-                    </div>
-
-                    <div class="info-box">
-                        <div class="info-label">Time</div>
-                        <div class="info-value">10:00 AM</div>
-                    </div>
-
-                    <div class="info-box">
-                        <div class="info-label">Room</div>
-                        <div class="info-value">Block B - 105</div>
-                    </div>
-
-                    <div class="info-box">
-                        <div class="info-label">Duration</div>
-                        <div class="info-value">3 Hours</div>
-                    </div>
-
-                </div>
-
-                <div class="exam-bottom">
-
-                    <div class="exam-status status-upcoming">
-                        Upcoming
-                    </div>
-
-                    <button
-                        class="view-btn"
-                        onclick="openExam(1)"
-                    >
-                        View Details
-                    </button>
-
-                </div>
-
-            </div>
-
-
-            <!-- EXAM 3 -->
-
-            <div
-                class="exam-card"
-                data-name="Software Engineering SE"
-                data-semester="Semester IV"
-                data-status="Upcoming"
-            >
-
-                <div class="exam-top">
-
-                    <div class="exam-icon">
-                        ⚙️
-                    </div>
-
-                    <div class="exam-type">
-                        THEORY
-                    </div>
-
-                </div>
-
-                <h4>
-                    Software Engineering
-                </h4>
-
-                <div class="exam-subject">
-                    Software Engineering • Semester IV
-                </div>
-
-                <div class="exam-info">
-
-                    <div class="info-box">
-                        <div class="info-label">Date</div>
-                        <div class="info-value">22 Sep 2026</div>
-                    </div>
-
-                    <div class="info-box">
-                        <div class="info-label">Time</div>
-                        <div class="info-value">2:00 PM</div>
-                    </div>
-
-                    <div class="info-box">
-                        <div class="info-label">Room</div>
-                        <div class="info-value">Block A - 301</div>
-                    </div>
-
-                    <div class="info-box">
-                        <div class="info-label">Duration</div>
-                        <div class="info-value">3 Hours</div>
-                    </div>
-
-                </div>
-
-                <div class="exam-bottom">
-
-                    <div class="exam-status status-upcoming">
-                        Upcoming
-                    </div>
-
-                    <button
-                        class="view-btn"
-                        onclick="openExam(2)"
-                    >
-                        View Details
-                    </button>
-
-                </div>
-
-            </div>
-
-
-            <!-- EXAM 4 -->
-
-            <div
-                class="exam-card"
-                data-name="Computer Networks CN"
-                data-semester="Semester IV"
-                data-status="Upcoming"
-            >
-
-                <div class="exam-top">
-
-                    <div class="exam-icon">
-                        🌐
-                    </div>
-
-                    <div class="exam-type">
-                        THEORY
-                    </div>
-
-                </div>
-
-                <h4>
-                    Computer Networks
-                </h4>
-
-                <div class="exam-subject">
-                    Computer Networks • Semester IV
-                </div>
-
-                <div class="exam-info">
-
-                    <div class="info-box">
-                        <div class="info-label">Date</div>
-                        <div class="info-value">24 Sep 2026</div>
-                    </div>
-
-                    <div class="info-box">
-                        <div class="info-label">Time</div>
-                        <div class="info-value">10:00 AM</div>
-                    </div>
-
-                    <div class="info-box">
-                        <div class="info-label">Room</div>
-                        <div class="info-value">Block B - 204</div>
-                    </div>
-
-                    <div class="info-box">
-                        <div class="info-label">Duration</div>
-                        <div class="info-value">3 Hours</div>
-                    </div>
-
-                </div>
-
-                <div class="exam-bottom">
-
-                    <div class="exam-status status-upcoming">
-                        Upcoming
-                    </div>
-
-                    <button
-                        class="view-btn"
-                        onclick="openExam(3)"
-                    >
-                        View Details
-                    </button>
-
-                </div>
-
-            </div>
-
-
-            <!-- EXAM 5 -->
-
-            <div
-                class="exam-card"
-                data-name="Artificial Intelligence AI"
-                data-semester="Semester III"
-                data-status="Completed"
-            >
-
-                <div class="exam-top">
-
-                    <div class="exam-icon">
-                        🤖
-                    </div>
-
-                    <div class="exam-type">
-                        THEORY
-                    </div>
-
-                </div>
-
-                <h4>
-                    Artificial Intelligence
-                </h4>
-
-                <div class="exam-subject">
-                    AI • Semester III
-                </div>
-
-                <div class="exam-info">
-
-                    <div class="info-box">
-                        <div class="info-label">Date</div>
-                        <div class="info-value">10 Sep 2026</div>
-                    </div>
-
-                    <div class="info-box">
-                        <div class="info-label">Time</div>
-                        <div class="info-value">10:00 AM</div>
-                    </div>
-
-                    <div class="info-box">
-                        <div class="info-label">Room</div>
-                        <div class="info-value">Block A - 201</div>
-                    </div>
-
-                    <div class="info-box">
-                        <div class="info-label">Duration</div>
-                        <div class="info-value">3 Hours</div>
-                    </div>
-
-                </div>
-
-                <div class="exam-bottom">
-
-                    <div class="exam-status status-completed">
-                        Completed
-                    </div>
-
-                    <button
-                        class="view-btn"
-                        onclick="openExam(4)"
-                    >
-                        View Details
-                    </button>
-
-                </div>
-
-            </div>
-
-
-            <!-- EXAM 6 -->
-
-            <div
-                class="exam-card"
-                data-name="Mathematics Mathematics IV"
-                data-semester="Semester III"
-                data-status="Completed"
-            >
-
-                <div class="exam-top">
-
-                    <div class="exam-icon">
-                        📐
-                    </div>
-
-                    <div class="exam-type">
-                        THEORY
-                    </div>
-
-                </div>
-
-                <h4>
-                    Mathematics
-                </h4>
-
-                <div class="exam-subject">
-                    Mathematics • Semester III
-                </div>
-
-                <div class="exam-info">
-
-                    <div class="info-box">
-                        <div class="info-label">Date</div>
-                        <div class="info-value">12 Sep 2026</div>
-                    </div>
-
-                    <div class="info-box">
-                        <div class="info-label">Time</div>
-                        <div class="info-value">2:00 PM</div>
-                    </div>
-
-                    <div class="info-box">
-                        <div class="info-label">Room</div>
-                        <div class="info-value">Block B - 102</div>
-                    </div>
-
-                    <div class="info-box">
-                        <div class="info-label">Duration</div>
-                        <div class="info-value">3 Hours</div>
-                    </div>
-
-                </div>
-
-                <div class="exam-bottom">
-
-                    <div class="exam-status status-completed">
-                        Completed
-                    </div>
-
-                    <button
-                        class="view-btn"
-                        onclick="openExam(5)"
-                    >
-                        View Details
-                    </button>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <div class="empty-state" id="emptyState">
-            🔎 No exams found matching your search.
-        </div>
+        </section>
 
     </div>
 
 </main>
 
 
-<!-- ================= CHATBOT ================= -->
+<!-- CHAT BUBBLE -->
 
-<aside class="chatbot">
+<button
+    class="chat-bubble"
+    id="chatBubble"
+    onclick="openChatPanel()"
+>
+    🤖
+</button>
+
+
+<!-- CHATBOT PANEL -->
+
+<div class="chatbot-panel" id="chatbotPanel">
 
     <div class="chat-header">
 
-        <div class="robot-icon">
-            🤖
+        <div class="chat-header-left">
+
+            <div class="robot-icon">🤖</div>
+
+            <div class="chat-title">
+                <strong>AI College Companion</strong>
+                <span>
+                    <i class="online-dot"></i>
+                    Online • Ready to help
+                </span>
+            </div>
+
         </div>
 
-        <div class="chat-title">
-            <strong>CampusConnect AI</strong>
-
-            <span>
-                <span class="online-dot"></span>
-                College Companion
-            </span>
-        </div>
+        <button
+            class="close-chat"
+            onclick="closeChatPanel()"
+        >
+            ×
+        </button>
 
     </div>
 
@@ -1852,13 +1565,8 @@ button,input,select{
     <div class="chat-body" id="chatBody">
 
         <div class="bot-message">
-            Hi Priya! 👋 I'm your CampusConnect AI College Companion.
-            I can help you with exam dates, rooms, timings, and preparation.
-        </div>
-
-        <div class="bot-message">
-            Your next exam is <b>Database Management System</b>
-            on <b>18 September 2026</b> at <b>10:00 AM</b>.
+            👋 Hi! I'm your <strong>AI College Companion.</strong>
+            Ask me about your exam dates, subjects, upcoming exams or completed exams.
         </div>
 
     </div>
@@ -1868,30 +1576,30 @@ button,input,select{
 
         <button
             class="quick-btn"
-            onclick="quickChat('Next Exam')"
+            onclick="quickChat('What exams are coming up?')"
         >
-            📅 Next Exam
+            Upcoming Exams
         </button>
 
         <button
             class="quick-btn"
-            onclick="quickChat('Exam Schedule')"
+            onclick="quickChat('Show my exam schedule')"
         >
-            📋 Schedule
+            Exam Schedule
         </button>
 
         <button
             class="quick-btn"
-            onclick="quickChat('Exam Tips')"
+            onclick="quickChat('How many exams do I have?')"
         >
-            💡 Exam Tips
+            Total Exams
         </button>
 
         <button
             class="quick-btn"
-            onclick="quickChat('Hall Ticket')"
+            onclick="quickChat('Which exams are completed?')"
         >
-            🎫 Hall Ticket
+            Completed
         </button>
 
     </div>
@@ -1900,9 +1608,10 @@ button,input,select{
     <div class="chat-footer">
 
         <input
-            class="chat-input"
             id="chatInput"
-            placeholder="Ask CampusConnect AI..."
+            class="chat-input"
+            type="text"
+            placeholder="Ask your companion..."
             onkeydown="handleChatKey(event)"
         >
 
@@ -1915,108 +1624,52 @@ button,input,select{
 
     </div>
 
-</aside>
+</div>
 
 
-<!-- ================= MODAL ================= -->
+<!-- MODAL -->
 
-<div class="modal-overlay" id="examModal">
+<div
+    class="modal"
+    id="examModal"
+    onclick="closeModalOutside(event)"
+>
 
-    <div class="modal">
+    <div class="modal-box">
 
-        <div class="modal-head">
+        <div class="modal-top">
 
-            <h3>
-                Examination Details
-            </h3>
+            <h3 id="modalTitle">📋 Exam Details</h3>
 
             <button
-                class="close-modal"
-                onclick="closeExam()"
+                class="close-btn"
+                onclick="closeModal()"
             >
                 ×
             </button>
 
         </div>
 
+        <div
+            class="modal-content"
+            id="modalContent"
+        ></div>
 
-        <div class="modal-body">
+        <div class="modal-buttons">
 
-            <div class="detail-title" id="modalTitle">
-                Database Management System
-            </div>
+            <button
+                class="modal-btn modal-cancel"
+                onclick="closeModal()"
+            >
+                Close
+            </button>
 
-            <div class="detail-subject" id="modalSubject">
-                DBMS • Semester IV
-            </div>
-
-
-            <div class="detail-grid">
-
-                <div class="detail-box">
-                    <span>Date</span>
-                    <strong id="modalDate">18 Sep 2026</strong>
-                </div>
-
-                <div class="detail-box">
-                    <span>Time</span>
-                    <strong id="modalTime">10:00 AM</strong>
-                </div>
-
-                <div class="detail-box">
-                    <span>Exam Room</span>
-                    <strong id="modalRoom">Block A - 204</strong>
-                </div>
-
-                <div class="detail-box">
-                    <span>Duration</span>
-                    <strong id="modalDuration">3 Hours</strong>
-                </div>
-
-                <div class="detail-box">
-                    <span>Semester</span>
-                    <strong id="modalSemester">Semester IV</strong>
-                </div>
-
-                <div class="detail-box">
-                    <span>Status</span>
-                    <strong id="modalStatus">Upcoming</strong>
-                </div>
-
-            </div>
-
-
-            <div class="instructions">
-
-                <b>Important Instructions</b>
-
-                <br><br>
-
-                • Carry your college ID card.<br>
-                • Reach the examination hall at least 30 minutes early.<br>
-                • Carry required stationery items.<br>
-                • Electronic devices are not permitted inside the exam hall.
-
-            </div>
-
-
-            <div class="modal-actions">
-
-                <button
-                    class="action-btn secondary-action"
-                    onclick="downloadHallTicket()"
-                >
-                    🎫 Hall Ticket
-                </button>
-
-                <button
-                    class="action-btn primary-action"
-                    onclick="addCalendar()"
-                >
-                    📅 Add to Calendar
-                </button>
-
-            </div>
+            <button
+                class="modal-btn modal-ok"
+                onclick="downloadSchedule()"
+            >
+                Download Schedule
+            </button>
 
         </div>
 
@@ -2027,8 +1680,11 @@ button,input,select{
 
 <!-- TOAST -->
 
-<div class="toast" id="toast">
-    Action completed
+<div
+    class="toast"
+    id="toast"
+>
+    Done
 </div>
 
 
@@ -2036,75 +1692,154 @@ button,input,select{
 
 /* ================= EXAM DATA ================= */
 
-const exams = [
+const EXAMS = [
 
     {
-        title:"Database Management System",
-        subject:"DBMS • Semester IV",
-        date:"18 Sep 2026",
-        time:"10:00 AM",
-        room:"Block A - 204",
-        duration:"3 Hours",
-        semester:"Semester IV",
-        status:"Upcoming"
+        id:"E1",
+        subject:"Database Management System",
+        code:"BCA501",
+        type:"Theory",
+        date:"08",
+        month:"OCT",
+        fullDate:"08 October 2026",
+        time:"10:00 AM - 1:00 PM",
+        room:"Exam Hall 1",
+        status:"upcoming",
+        duration:"3 Hours"
     },
 
     {
-        title:"Web Programming",
-        subject:"Web Technology • Semester IV",
-        date:"20 Sep 2026",
-        time:"10:00 AM",
-        room:"Block B - 105",
-        duration:"3 Hours",
-        semester:"Semester IV",
-        status:"Upcoming"
+        id:"E2",
+        subject:"Web Programming",
+        code:"BCA502",
+        type:"Theory",
+        date:"10",
+        month:"OCT",
+        fullDate:"10 October 2026",
+        time:"10:00 AM - 1:00 PM",
+        room:"Exam Hall 2",
+        status:"upcoming",
+        duration:"3 Hours"
     },
 
     {
-        title:"Software Engineering",
-        subject:"Software Engineering • Semester IV",
-        date:"22 Sep 2026",
-        time:"2:00 PM",
-        room:"Block A - 301",
-        duration:"3 Hours",
-        semester:"Semester IV",
-        status:"Upcoming"
+        id:"E3",
+        subject:"Computer Networks",
+        code:"BCA503",
+        type:"Theory",
+        date:"13",
+        month:"OCT",
+        fullDate:"13 October 2026",
+        time:"10:00 AM - 1:00 PM",
+        room:"Exam Hall 1",
+        status:"upcoming",
+        duration:"3 Hours"
     },
 
     {
-        title:"Computer Networks",
-        subject:"Computer Networks • Semester IV",
-        date:"24 Sep 2026",
-        time:"10:00 AM",
-        room:"Block B - 204",
-        duration:"3 Hours",
-        semester:"Semester IV",
-        status:"Upcoming"
+        id:"E4",
+        subject:"Software Engineering",
+        code:"BCA504",
+        type:"Theory",
+        date:"16",
+        month:"OCT",
+        fullDate:"16 October 2026",
+        time:"10:00 AM - 1:00 PM",
+        room:"Exam Hall 3",
+        status:"upcoming",
+        duration:"3 Hours"
     },
 
     {
-        title:"Artificial Intelligence",
-        subject:"AI • Semester III",
-        date:"10 Sep 2026",
-        time:"10:00 AM",
-        room:"Block A - 201",
-        duration:"3 Hours",
-        semester:"Semester III",
-        status:"Completed"
+        id:"E5",
+        subject:"Artificial Intelligence",
+        code:"BCA505",
+        type:"Theory",
+        date:"19",
+        month:"OCT",
+        fullDate:"19 October 2026",
+        time:"10:00 AM - 1:00 PM",
+        room:"Exam Hall 2",
+        status:"upcoming",
+        duration:"3 Hours"
     },
 
     {
-        title:"Mathematics",
-        subject:"Mathematics • Semester III",
-        date:"12 Sep 2026",
-        time:"2:00 PM",
-        room:"Block B - 102",
-        duration:"3 Hours",
-        semester:"Semester III",
-        status:"Completed"
+        id:"E6",
+        subject:"Mathematics",
+        code:"BCA506",
+        type:"Theory",
+        date:"22",
+        month:"OCT",
+        fullDate:"22 October 2026",
+        time:"10:00 AM - 1:00 PM",
+        room:"Exam Hall 1",
+        status:"upcoming",
+        duration:"3 Hours"
+    },
+
+    {
+        id:"E7",
+        subject:"Computer Laboratory",
+        code:"BCA507",
+        type:"Practical",
+        date:"25",
+        month:"SEP",
+        fullDate:"25 September 2026",
+        time:"10:00 AM - 12:00 PM",
+        room:"Computer Lab 2",
+        status:"completed",
+        duration:"2 Hours"
+    },
+
+    {
+        id:"E8",
+        subject:"Communication Skills",
+        code:"BCA508",
+        type:"Internal",
+        date:"28",
+        month:"SEP",
+        fullDate:"28 September 2026",
+        time:"10:00 AM - 12:00 PM",
+        room:"Seminar Hall",
+        status:"completed",
+        duration:"2 Hours"
     }
 
 ];
+
+
+/* ================= HELPERS ================= */
+
+function examStats(){
+
+    const upcoming =
+        EXAMS.filter(e => e.status === "upcoming").length;
+
+    const completed =
+        EXAMS.filter(e => e.status === "completed").length;
+
+    const subjects =
+        new Set(EXAMS.map(e => e.subject)).size;
+
+    return {
+        total:EXAMS.length,
+        upcoming:upcoming,
+        completed:completed,
+        subjects:subjects
+    };
+}
+
+
+function statusLabel(status){
+
+    return {
+        upcoming:"Upcoming",
+        completed:"Completed",
+        today:"Today"
+    }[status];
+
+}
 
 
 /* ================= CLOCK ================= */
@@ -2114,17 +1849,20 @@ function updateClock(){
     const now = new Date();
 
     let hours = now.getHours();
-    let minutes = now.getMinutes();
-    let seconds = now.getSeconds();
 
-    const ampm = hours >= 12 ? "PM" : "AM";
+    const minutes =
+        String(now.getMinutes()).padStart(2,"0");
+
+    const seconds =
+        String(now.getSeconds()).padStart(2,"0");
+
+    const ampm =
+        hours >= 12 ? "PM" : "AM";
 
     hours = hours % 12 || 12;
 
     document.getElementById("clock").textContent =
-        `${String(hours).padStart(2,"0")}:` +
-        `${String(minutes).padStart(2,"0")}:` +
-        `${String(seconds).padStart(2,"0")} ${ampm}`;
+        hours + ":" + minutes + ":" + seconds + " " + ampm;
 }
 
 updateClock();
@@ -2134,250 +1872,785 @@ setInterval(updateClock,1000);
 
 /* ================= FILTER ================= */
 
-function filterExams(){
+function populateTypeFilter(){
 
-    const search =
-        document
-        .getElementById("searchInput")
-        .value
-        .toLowerCase();
+    const select =
+        document.getElementById("typeFilter");
 
-    const semester =
-        document
-        .getElementById("semesterFilter")
-        .value;
+    const types =
+        [...new Set(EXAMS.map(e => e.type))];
 
-    const status =
-        document
-        .getElementById("statusFilter")
-        .value;
+    types.forEach(function(type){
 
-    const cards =
-        document.querySelectorAll(".exam-card");
+        const option =
+            document.createElement("option");
 
-    let visible = 0;
+        option.value = type;
+        option.textContent = type;
 
-    cards.forEach(card => {
-
-        const name =
-            card.dataset.name.toLowerCase();
-
-        const cardSemester =
-            card.dataset.semester;
-
-        const cardStatus =
-            card.dataset.status;
-
-        const matchSearch =
-            name.includes(search);
-
-        const matchSemester =
-            semester === "all" ||
-            cardSemester === semester;
-
-        const matchStatus =
-            status === "all" ||
-            cardStatus === status;
-
-        if(
-            matchSearch &&
-            matchSemester &&
-            matchStatus
-        ){
-
-            card.style.display = "block";
-            visible++;
-
-        }else{
-
-            card.style.display = "none";
-
-        }
+        select.appendChild(option);
 
     });
 
-    document.getElementById("emptyState").style.display =
-        visible === 0 ? "block" : "none";
+}
+
+
+/* ================= OVERVIEW ================= */
+
+function renderOverview(){
+
+    const stats = examStats();
+
+    document.getElementById("totalExams").textContent =
+        stats.total;
+
+    document.getElementById("upcomingExams").textContent =
+        stats.upcoming;
+
+    document.getElementById("statTotal").textContent =
+        stats.total;
+
+    document.getElementById("statUpcoming").textContent =
+        stats.upcoming;
+
+    document.getElementById("statSubjects").textContent =
+        stats.subjects;
+
+    document.getElementById("statCompleted").textContent =
+        stats.completed;
+
+    const title =
+        document.getElementById("heroTitle");
+
+    const text =
+        document.getElementById("heroText");
+
+    if(stats.upcoming === 0){
+
+        title.textContent =
+            "No upcoming exams right now 📚";
+
+        text.textContent =
+            "All scheduled examinations have been completed. Check the examination schedule for your records.";
+
+    }else{
+
+        title.textContent =
+            stats.upcoming + " exams are coming up 📚";
+
+        text.textContent =
+            "Keep track of your examination dates and prepare ahead of time. Tap any exam card to view complete details.";
+
+    }
+
+}
+
+
+/* ================= EXAM CARDS ================= */
+
+function renderExams(){
+
+    const search =
+        document.getElementById("examSearch")
+        .value
+        .trim()
+        .toLowerCase();
+
+    const type =
+        document.getElementById("typeFilter").value;
+
+    const status =
+        document.getElementById("statusFilter").value;
+
+    const list =
+        document.getElementById("examList");
+
+    let rows =
+        EXAMS.slice();
+
+    if(type !== "all"){
+
+        rows =
+            rows.filter(e => e.type === type);
+
+    }
+
+    if(status !== "all"){
+
+        rows =
+            rows.filter(e => e.status === status);
+
+    }
+
+    if(search){
+
+        rows =
+            rows.filter(e =>
+
+                e.subject.toLowerCase().includes(search) ||
+
+                e.code.toLowerCase().includes(search) ||
+
+                e.type.toLowerCase().includes(search)
+
+            );
+
+    }
+
+    list.innerHTML = "";
+
+    if(rows.length === 0){
+
+        list.innerHTML =
+            '<div class="empty-note">No examinations match your search 🔍</div>';
+
+        return;
+
+    }
+
+
+    rows.forEach(function(exam){
+
+        const card =
+            document.createElement("div");
+
+        card.className =
+            "exam-card";
+
+        card.onclick =
+            function(){
+                showExamDetails(exam.id);
+            };
+
+
+        card.innerHTML =
+
+            '<div class="exam-top">' +
+
+                '<div class="exam-date">' +
+                    '<strong>' + exam.date + '</strong>' +
+                    '<span>' + exam.month + '</span>' +
+                '</div>' +
+
+                '<div class="exam-info">' +
+                    '<strong>' + exam.subject + '</strong>' +
+                    '<span>' + exam.code + ' • ' + exam.type + '</span>' +
+                '</div>' +
+
+                '<div class="exam-status ' +
+                    exam.status +
+                '">' +
+                    statusLabel(exam.status) +
+                '</div>' +
+
+            '</div>' +
+
+            '<div class="exam-meta">' +
+
+                '<span class="exam-tag">🕐 ' +
+                    exam.time +
+                '</span>' +
+
+                '<span class="exam-tag">📍 ' +
+                    exam.room +
+                '</span>' +
+
+            '</div>';
+
+
+        list.appendChild(card);
+
+    });
+
+}
+
+
+/* ================= SUBJECTS ================= */
+
+function renderSubjects(){
+
+    const grid =
+        document.getElementById("subjectGrid");
+
+    grid.innerHTML = "";
+
+    const subjects =
+        [...new Set(EXAMS.map(e => e.subject))];
+
+
+    subjects.forEach(function(subject){
+
+        const exam =
+            EXAMS.find(e => e.subject === subject);
+
+        const card =
+            document.createElement("div");
+
+        card.className =
+            "subject-card";
+
+        card.onclick =
+            function(){
+                showExamDetails(exam.id);
+            };
+
+        card.innerHTML =
+
+            '<div class="subject-icon">📚</div>' +
+
+            '<span>' +
+                exam.code +
+            '</span>' +
+
+            '<strong>' +
+                subject +
+            '</strong>' +
+
+            '<small>' +
+                exam.type +
+                ' Examination' +
+            '</small>';
+
+        grid.appendChild(card);
+
+    });
+
 }
 
 
 /* ================= MODAL ================= */
 
-function openExam(index){
+function openModal(title,html){
 
-    const exam = exams[index];
+    document.getElementById("modalTitle")
+        .textContent = title;
 
-    document.getElementById("modalTitle").textContent =
-        exam.title;
+    document.getElementById("modalContent")
+        .innerHTML = html;
 
-    document.getElementById("modalSubject").textContent =
-        exam.subject;
+    document.getElementById("examModal")
+        .classList.add("show");
 
-    document.getElementById("modalDate").textContent =
-        exam.date;
-
-    document.getElementById("modalTime").textContent =
-        exam.time;
-
-    document.getElementById("modalRoom").textContent =
-        exam.room;
-
-    document.getElementById("modalDuration").textContent =
-        exam.duration;
-
-    document.getElementById("modalSemester").textContent =
-        exam.semester;
-
-    document.getElementById("modalStatus").textContent =
-        exam.status;
-
-    document.getElementById("examModal").classList.add("show");
 }
 
 
-function closeExam(){
+function showExamDetails(id){
 
-    document
-        .getElementById("examModal")
-        .classList.remove("show");
+    const exam =
+        EXAMS.find(e => e.id === id);
+
+    if(!exam) return;
+
+
+    let message = "";
+
+    if(exam.status === "upcoming"){
+
+        message =
+            "📚 This examination is scheduled for " +
+            exam.fullDate +
+            ". Make sure to arrive before the reporting time.";
+
+    }else{
+
+        message =
+            "✅ This examination has already been completed.";
+
+    }
+
+
+    openModal(
+
+        "📋 " + exam.subject,
+
+        '<p><strong>Subject Code:</strong> ' +
+            exam.code +
+        '</p>' +
+
+        '<p><strong>Examination Type:</strong> ' +
+            exam.type +
+        '</p>' +
+
+        '<p><strong>Date:</strong> ' +
+            exam.fullDate +
+        '</p>' +
+
+        '<p><strong>Time:</strong> ' +
+            exam.time +
+        '</p>' +
+
+        '<p><strong>Duration:</strong> ' +
+            exam.duration +
+        '</p>' +
+
+        '<p><strong>Venue:</strong> ' +
+            exam.room +
+        '</p>' +
+
+        '<p><strong>Status:</strong> ' +
+            statusLabel(exam.status) +
+        '</p>' +
+
+        '<div class="tip-box">' +
+            message +
+        '</div>'
+
+    );
+
 }
 
 
-document
-    .getElementById("examModal")
-    .addEventListener("click",function(e){
+function showFullSchedule(){
 
-        if(e.target === this){
-            closeExam();
-        }
+    const stats =
+        examStats();
+
+    let rowsHtml =
+
+        "<table style='width:100%;border-collapse:collapse;margin-top:10px;font-size:11px;'>" +
+
+        "<tr>" +
+
+            "<th style='text-align:left;padding:8px 6px;color:#8b93aa;font-size:10px;border-bottom:1px solid #f0f1f7;'>Subject</th>" +
+
+            "<th style='text-align:left;padding:8px 6px;color:#8b93aa;font-size:10px;border-bottom:1px solid #f0f1f7;'>Date</th>" +
+
+            "<th style='text-align:left;padding:8px 6px;color:#8b93aa;font-size:10px;border-bottom:1px solid #f0f1f7;'>Status</th>" +
+
+        "</tr>";
+
+
+    EXAMS.forEach(function(exam){
+
+        rowsHtml +=
+
+            "<tr>" +
+
+                "<td style='padding:8px 6px;border-bottom:1px solid #f0f1f7;'>" +
+                    exam.subject +
+                "</td>" +
+
+                "<td style='padding:8px 6px;border-bottom:1px solid #f0f1f7;'>" +
+                    exam.fullDate +
+                "</td>" +
+
+                "<td style='padding:8px 6px;border-bottom:1px solid #f0f1f7;'>" +
+                    statusLabel(exam.status) +
+                "</td>" +
+
+            "</tr>";
 
     });
 
 
-/* ================= HALL TICKET ================= */
+    rowsHtml += "</table>";
 
-function downloadHallTicket(){
 
-    showToast(
-        "🎫 Hall ticket download started!"
+    openModal(
+
+        "📋 Examination Schedule",
+
+        "<p><strong>Total Exams:</strong> " +
+            stats.total +
+        "</p>" +
+
+        "<p><strong>Upcoming:</strong> " +
+            stats.upcoming +
+        "</p>" +
+
+        "<p><strong>Completed:</strong> " +
+            stats.completed +
+        "</p>" +
+
+        rowsHtml
+
     );
+
 }
 
 
-/* ================= CALENDAR ================= */
+function showSubjectDetails(){
 
-function addCalendar(){
+    const subjects =
+        [...new Set(EXAMS.map(e => e.subject))];
 
-    showToast(
-        "📅 Exam added to your calendar!"
+    let html =
+        "<p><strong>Total Subjects:</strong> " +
+        subjects.length +
+        "</p>";
+
+    subjects.forEach(function(subject){
+
+        const exam =
+            EXAMS.find(e => e.subject === subject);
+
+        html +=
+
+            "<p>📚 <strong>" +
+            subject +
+            "</strong> — " +
+            exam.code +
+            " — " +
+            exam.type +
+            "</p>";
+
+    });
+
+    openModal(
+        "📚 Examination Subjects",
+        html
     );
+
+}
+
+
+function showNotifications(){
+
+    const stats =
+        examStats();
+
+    openModal(
+
+        "🔔 Exam Notifications",
+
+        "<p><strong>Today's Exam Updates</strong></p>" +
+
+        "<p>📚 " +
+            stats.upcoming +
+            " upcoming examinations are scheduled.</p>" +
+
+        "<p>📋 " +
+            stats.total +
+            " examinations are listed in your schedule.</p>" +
+
+        "<p>✅ " +
+            stats.completed +
+            " examination has been completed.</p>"
+
+    );
+
+}
+
+
+function closeModal(){
+
+    document
+        .getElementById("examModal")
+        .classList.remove("show");
+
+}
+
+
+function closeModalOutside(event){
+
+    if(
+        event.target ===
+        document.getElementById("examModal")
+    ){
+        closeModal();
+    }
+
+}
+
+
+/* ================= DOWNLOAD ================= */
+
+function downloadSchedule(){
+
+    let text =
+        "CampusConnect - Examination Schedule\n";
+
+    text +=
+        "====================================\n\n";
+
+
+    EXAMS.forEach(function(exam){
+
+        text +=
+
+            exam.subject +
+            " (" +
+            exam.code +
+            ")\n" +
+
+            "Type      : " +
+            exam.type +
+            "\n" +
+
+            "Date      : " +
+            exam.fullDate +
+            "\n" +
+
+            "Time      : " +
+            exam.time +
+            "\n" +
+
+            "Duration  : " +
+            exam.duration +
+            "\n" +
+
+            "Venue     : " +
+            exam.room +
+            "\n" +
+
+            "Status    : " +
+            statusLabel(exam.status) +
+            "\n\n";
+
+    });
+
+
+    const blob =
+        new Blob(
+            [text],
+            {type:"text/plain"}
+        );
+
+    const link =
+        document.createElement("a");
+
+    link.href =
+        URL.createObjectURL(blob);
+
+    link.download =
+        "campusconnect-exam-schedule.txt";
+
+    link.click();
+
+    URL.revokeObjectURL(link.href);
+
+    showToast("Exam schedule downloaded 📋");
+
 }
 
 
 /* ================= TOAST ================= */
-
-let toastTimer;
 
 function showToast(message){
 
     const toast =
         document.getElementById("toast");
 
-    toast.textContent = message;
+    toast.textContent =
+        message;
 
     toast.classList.add("show");
 
-    clearTimeout(toastTimer);
+    clearTimeout(toast._timer);
 
-    toastTimer = setTimeout(() => {
+    toast._timer =
+        setTimeout(
+            () => toast.classList.remove("show"),
+            2500
+        );
 
-        toast.classList.remove("show");
-
-    },3000);
 }
 
 
-/* ================= CHATBOT ================= */
+/* ================= CHAT ================= */
 
-function addBotMessage(message){
+function openChatPanel(){
+
+    document
+        .getElementById("chatbotPanel")
+        .classList.add("open");
+
+    document
+        .getElementById("chatBubble")
+        .classList.add("hide");
+
+}
+
+
+function closeChatPanel(){
+
+    document
+        .getElementById("chatbotPanel")
+        .classList.remove("open");
+
+    document
+        .getElementById("chatBubble")
+        .classList.remove("hide");
+
+}
+
+
+function quickChat(text){
+
+    document.getElementById("chatInput").value =
+        text;
+
+    sendChat();
+
+}
+
+
+function addMessage(cls,html){
 
     const body =
         document.getElementById("chatBody");
 
-    const div =
+    const msg =
         document.createElement("div");
 
-    div.className = "bot-message";
+    msg.className =
+        cls;
 
-    div.innerHTML = message;
+    msg.innerHTML =
+        html;
 
-    body.appendChild(div);
+    body.appendChild(msg);
 
-    body.scrollTop = body.scrollHeight;
+    body.scrollTop =
+        body.scrollHeight;
+
+    return msg;
+
 }
 
 
-function addUserMessage(message){
+function botReply(text){
 
-    const body =
-        document.getElementById("chatBody");
+    const lower =
+        text.toLowerCase();
 
-    const div =
-        document.createElement("div");
-
-    div.className = "user-message";
-
-    div.textContent = message;
-
-    body.appendChild(div);
-
-    body.scrollTop = body.scrollHeight;
-}
+    const stats =
+        examStats();
 
 
-function quickChat(type){
+    if(
+        /^(hi|hello|hey|hii|yo)\b/.test(lower)
+    ){
 
-    addUserMessage(type);
+        return "👋 Hey! I can help you with exam dates, upcoming examinations, subjects and your completed exams.";
 
-    setTimeout(() => {
+    }
 
-        if(type === "Next Exam"){
 
-            addBotMessage(
-                "📅 Your next exam is <b>Database Management System</b> on <b>18 September 2026</b> at <b>10:00 AM</b> in <b>Block A - 204</b>."
+    if(
+        lower.includes("upcoming") ||
+        lower.includes("coming")
+    ){
+
+        const upcoming =
+            EXAMS.filter(
+                e => e.status === "upcoming"
             );
+
+        return "📚 Upcoming exams: " +
+            upcoming
+                .map(
+                    e =>
+                        e.subject +
+                        " on " +
+                        e.fullDate
+                )
+                .join(", ") +
+            ".";
+
+    }
+
+
+    if(
+        lower.includes("how many") ||
+        lower.includes("total")
+    ){
+
+        return "📋 You have " +
+            stats.total +
+            " examinations in the schedule, with " +
+            stats.upcoming +
+            " upcoming.";
+
+    }
+
+
+    if(
+        lower.includes("completed")
+    ){
+
+        const completed =
+            EXAMS.filter(
+                e => e.status === "completed"
+            );
+
+        return "✅ Completed exams: " +
+            completed
+                .map(e => e.subject)
+                .join(", ") +
+            ".";
+
+    }
+
+
+    if(
+        lower.includes("subject") ||
+        lower.includes("subjects")
+    ){
+
+        return "📚 Subjects include: " +
+            EXAMS
+                .map(e => e.subject)
+                .join(", ") +
+            ".";
+
+    }
+
+
+    if(
+        lower.includes("schedule") ||
+        lower.includes("exam date") ||
+        lower.includes("date")
+    ){
+
+        return "🗓️ Open any exam card to view its date, time, duration and examination venue.";
+
+    }
+
+
+    for(
+        let i = 0;
+        i < EXAMS.length;
+        i++
+    ){
+
+        const exam =
+            EXAMS[i];
+
+        if(
+            lower.includes(
+                exam.subject.toLowerCase()
+            ) ||
+            lower.includes(
+                exam.code.toLowerCase()
+            )
+        ){
+
+            return exam.subject +
+                " is scheduled on " +
+                exam.fullDate +
+                " from " +
+                exam.time +
+                " at " +
+                exam.room +
+                ".";
 
         }
 
-        else if(type === "Exam Schedule"){
+    }
 
-            addBotMessage(
-                "📋 Your upcoming exams are:<br><br>" +
-                "1. DBMS — 18 Sep<br>" +
-                "2. Web Programming — 20 Sep<br>" +
-                "3. Software Engineering — 22 Sep<br>" +
-                "4. Computer Networks — 24 Sep"
-            );
 
-        }
+    if(
+        lower.includes("thank")
+    ){
 
-        else if(type === "Exam Tips"){
+        return "😊 You're welcome! Let me know if you need any exam details.";
 
-            addBotMessage(
-                "💡 Exam tip: Start with the subjects having the earliest exam dates. Keep your ID card, stationery, and hall ticket ready the night before."
-            );
+    }
 
-        }
 
-        else if(type === "Hall Ticket"){
+    return "😊 I can help you with upcoming exams, exam dates, subjects, completed exams and the full examination schedule.";
 
-            addBotMessage(
-                "🎫 Your hall ticket can be accessed from the exam details popup. Open an exam and select <b>Hall Ticket</b>."
-            );
-
-        }
-
-    },500);
 }
 
 
@@ -2386,75 +2659,38 @@ function sendChat(){
     const input =
         document.getElementById("chatInput");
 
-    const message =
+    const text =
         input.value.trim();
 
-    if(!message){
-        return;
-    }
+    if(!text) return;
 
-    addUserMessage(message);
+
+    addMessage(
+        "user-message",
+        escapeHtml(text)
+    );
 
     input.value = "";
 
-    setTimeout(() => {
 
-        const text =
-            message.toLowerCase();
+    const typing =
+        addMessage(
+            "typing",
+            "<i></i><i></i><i></i>"
+        );
 
-        if(
-            text.includes("next") ||
-            text.includes("upcoming")
-        ){
 
-            addBotMessage(
-                "📅 Your next exam is <b>Database Management System</b> on <b>18 September 2026</b> at <b>10:00 AM</b>."
-            );
+    setTimeout(function(){
 
-        }
+        typing.remove();
 
-        else if(
-            text.includes("schedule") ||
-            text.includes("exam")
-        ){
+        addMessage(
+            "bot-message",
+            botReply(text)
+        );
 
-            addBotMessage(
-                "📋 Your exam schedule currently has 4 upcoming exams: DBMS, Web Programming, Software Engineering, and Computer Networks."
-            );
+    },600);
 
-        }
-
-        else if(
-            text.includes("tip") ||
-            text.includes("prepare")
-        ){
-
-            addBotMessage(
-                "💡 Prepare a short revision plan, practice previous questions, and reach the exam hall 30 minutes early."
-            );
-
-        }
-
-        else if(
-            text.includes("hall") ||
-            text.includes("ticket")
-        ){
-
-            addBotMessage(
-                "🎫 Open any exam using <b>View Details</b> and select the Hall Ticket button."
-            );
-
-        }
-
-        else{
-
-            addBotMessage(
-                "🤖 I can help with <b>exam dates, exam rooms, schedules, hall tickets, and preparation tips</b>. Try asking about your next exam."
-            );
-
-        }
-
-    },500);
 }
 
 
@@ -2467,38 +2703,68 @@ function handleChatKey(event){
 }
 
 
-/* ================= LOGOUT ================= */
+function escapeHtml(str){
 
-function logoutUser(event){
-
-    event.preventDefault();
-
-    const confirmLogout =
-        confirm("Are you sure you want to logout?");
-
-    if(confirmLogout){
-
-        window.location.href =
-            "../index.html";
-
-    }
+    return str
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;");
 
 }
 
 
-/* ================= ESC KEY ================= */
+/* ================= LOGOUT ================= */
 
-document.addEventListener("keydown",function(event){
+function confirmLogout(){
 
-    if(event.key === "Escape"){
+    return confirm(
+        "Are you sure you want to logout?"
+    );
 
-        closeExam();
+}
+
+
+/* ================= ESCAPE ================= */
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(event.key === "Escape"){
+
+            closeModal();
+            closeChatPanel();
+
+        }
 
     }
+);
 
-});
+
+/* ================= INIT ================= */
+
+populateTypeFilter();
+
+renderOverview();
+
+renderExams();
+
+renderSubjects();
+
+
+setTimeout(function(){
+
+    addMessage(
+        "bot-message",
+        "There are <strong>" +
+        examStats().upcoming +
+        "</strong> upcoming exams in your schedule. Tap the bubble anytime to ask me something. 📚"
+    );
+
+},1200);
 
 </script>
 
+<script src="../js/chatbot.js"></script>
 </body>
 </html>

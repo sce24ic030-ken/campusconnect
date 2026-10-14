@@ -1,18 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>CampusConnect | Feedback</title>
 
 <style>
-
-/* =========================================================
-   GLOBAL
-========================================================= */
-
 *{
     margin:0;
     padding:0;
@@ -21,1697 +14,1352 @@
 
 html,body{
     width:100%;
-    min-height:100%;
-}
-
-body{
+    height:100%;
     font-family:"Segoe UI",Arial,sans-serif;
     background:#f4f6ff;
     color:#17203a;
+    overflow:hidden;
 }
 
+button,input,select,textarea{
+    font-family:inherit;
+}
 
-/* =========================================================
-   SIDEBAR - SAME AS FACULTY
-========================================================= */
+/* ================= SIDEBAR ================= */
 
 .sidebar{
     position:fixed;
     left:0;
     top:0;
-
-    width:320px;
-    height:100vh;
-
-    background:
-    linear-gradient(
-        180deg,
-        #172a70 0%,
-        #28237d 48%,
-        #5520a7 100%
-    );
-
+    bottom:0;
+    width:268px;
+    min-width:268px;
+    background:linear-gradient(180deg,#172a70 0%,#28237d 48%,#5520a7 100%);
     color:white;
-
     overflow-y:auto;
     overflow-x:hidden;
-
     z-index:1000;
+    padding-bottom:20px;
+    scrollbar-width:none;
 }
-
-
-/* scrollbar */
 
 .sidebar::-webkit-scrollbar{
-    width:7px;
+    width:0;
+    display:none;
 }
 
-.sidebar::-webkit-scrollbar-track{
-    background:rgba(255,255,255,.05);
-}
-
-.sidebar::-webkit-scrollbar-thumb{
-    background:rgba(255,255,255,.25);
-    border-radius:10px;
-}
-
-
-/* =========================================================
-   LOGO
-========================================================= */
-
-.logo-area{
-    height:144px;
-
-    padding:22px 26px;
-
+.brand{
+    height:120px;
     display:flex;
     align-items:center;
-
-    gap:15px;
-
-    border-bottom:1px solid rgba(255,255,255,.15);
-
-    width:100%;
+    padding:22px 18px;
+    border-bottom:1px solid rgba(255,255,255,.12);
 }
 
-.logo-icon{
-    width:62px;
-    height:62px;
-
-    min-width:62px;
-
-    border-radius:18px;
-
+.logo-box{
+    width:52px;
+    height:52px;
+    border-radius:16px;
     display:flex;
     align-items:center;
     justify-content:center;
-
-    font-size:30px;
-
-    background:
-    linear-gradient(
-        135deg,
-        #24b5f5,
-        #6344ef
-    );
+    font-size:28px;
+    background:linear-gradient(135deg,#24b8ff,#7144f5);
+    box-shadow:0 10px 25px rgba(0,0,0,.20);
 }
 
-.logo-text{
-    min-width:0;
+.brand-text{
+    margin-left:13px;
 }
 
-.logo-text h2{
+.brand-title{
     font-size:21px;
-
     font-weight:800;
-
-    white-space:nowrap;
-
-    letter-spacing:-.4px;
+    letter-spacing:-.5px;
 }
 
-.logo-text p{
-    margin-top:5px;
-
-    font-size:14px;
-
-    color:#c5c9e8;
-
-    white-space:nowrap;
+.brand-subtitle{
+    font-size:12px;
+    opacity:.72;
+    margin-top:3px;
 }
 
-
-/* =========================================================
-   MENU
-========================================================= */
-
-.menu-section{
-    padding:27px 16px 0;
+.menu{
+    padding:25px 14px;
 }
 
 .menu-title{
-    padding:0 18px 17px;
-
-    font-size:13px;
-
-    font-weight:800;
-
+    font-size:12px;
+    font-weight:700;
+    color:rgba(255,255,255,.52);
     letter-spacing:1px;
-
-    color:#a9afd3;
+    padding:0 11px 10px;
 }
 
-
-/* =========================================================
-   NAVIGATION
-========================================================= */
+.menu-section{
+    margin-top:20px;
+}
 
 .nav-item{
-    height:60px;
-
-    margin:0 5px 7px;
-
-    padding:0 16px;
-
+    width:100%;
     display:flex;
-
     align-items:center;
-
-    gap:15px;
-
-    border-radius:15px;
-
-    color:#e5e6f6;
-
+    min-height:49px;
+    padding:0 14px;
+    margin:5px 0;
+    border-radius:13px;
+    color:rgba(255,255,255,.84);
     text-decoration:none;
-
-    font-size:17px;
-
-    font-weight:700;
-
-    transition:.25s;
-
-    width:calc(100% - 10px);
+    transition:transform .2s ease,background .2s ease,color .2s ease;
 }
 
 .nav-item:hover{
-    background:rgba(255,255,255,.10);
+    background:rgba(255,255,255,.12);
+    color:white;
+    transform:translateX(3px);
 }
 
 .nav-item.active{
-    background:
-    linear-gradient(
-        90deg,
-        #24aef2,
-        #5d3ff0
-    );
-
     color:white;
-
-    box-shadow:
-    0 8px 20px rgba(48,72,220,.35);
+    background:linear-gradient(90deg,#22b9f5,#6942f4);
+    box-shadow:0 9px 22px rgba(0,0,0,.18);
 }
 
 .nav-icon{
-    width:28px;
-
-    min-width:28px;
-
+    width:31px;
+    font-size:20px;
     text-align:center;
-
-    font-size:21px;
+    margin-right:10px;
+    flex-shrink:0;
 }
 
 .nav-text{
+    font-size:15px;
+    font-weight:650;
     white-space:nowrap;
 }
 
-
-/* logout */
-
-.logout-item{
-    margin-bottom:30px;
+.logout{
+    margin-top:14px;
+    padding-top:15px;
+    border-top:1px solid rgba(255,255,255,.13);
 }
 
-.logout-item:hover{
-    background:rgba(255,85,110,.15);
-}
-
-
-/* =========================================================
-   MAIN AREA
-========================================================= */
+/* ================= MAIN AREA ================= */
 
 .main-area{
-    margin-left:320px;
-
-    min-height:100vh;
-
-    background:
-    linear-gradient(
-        180deg,
-        #f8f9ff 0%,
-        #eef1fb 100%
-    );
+    margin-left:268px;
+    width:auto;
+    height:100vh;
+    overflow-y:auto;
+    overflow-x:hidden;
+    background:linear-gradient(180deg,#f8f9ff,#eef1fb);
 }
 
-
-/* =========================================================
-   HEADER
-========================================================= */
-
 .top-header{
-    height:144px;
-
-    background:white;
-
+    height:120px;
+    background:rgba(255,255,255,.96);
     display:flex;
-
     align-items:center;
-
     justify-content:space-between;
-
-    padding:25px 34px;
-
-    border-bottom:1px solid #e7e9f3;
+    padding:22px 28px;
+    border-bottom:1px solid #e9ebf5;
+    position:sticky;
+    top:0;
+    z-index:100;
 }
 
 .header-left h1{
-    font-size:38px;
-
+    font-size:30px;
     line-height:1.05;
-
-    font-weight:900;
-
-    color:#17203a;
-
-    letter-spacing:-1px;
+    font-weight:800;
 }
 
 .header-left p{
-    margin-top:9px;
-
-    font-size:18px;
-
-    color:#8992b1;
+    margin-top:7px;
+    color:#8990a7;
+    font-size:14px;
 }
 
 .header-right{
     display:flex;
-
     align-items:center;
-
-    gap:20px;
+    gap:18px;
 }
 
 .time-box{
     font-size:18px;
-
-    font-weight:700;
-
-    color:#65708f;
+    font-weight:750;
+    color:#59617d;
 }
 
 .notification{
-    position:relative;
-
-    width:58px;
-    height:58px;
-
-    background:white;
-
+    width:48px;
+    height:48px;
+    background:#fff;
     border-radius:50%;
-
     display:flex;
-
     align-items:center;
-
     justify-content:center;
-
-    font-size:25px;
-
-    box-shadow:
-    0 8px 25px rgba(45,58,100,.10);
-
+    font-size:22px;
+    box-shadow:0 5px 18px rgba(40,35,100,.10);
+    position:relative;
     cursor:pointer;
+    transition:.2s;
+}
+
+.notification:hover{
+    transform:scale(1.06);
 }
 
 .notification::after{
     content:"";
-
-    position:absolute;
-
-    top:7px;
-    right:9px;
-
-    width:9px;
-    height:9px;
-
-    background:#ff4f91;
-
+    width:8px;
+    height:8px;
     border-radius:50%;
+    background:#ff4f8b;
+    position:absolute;
+    top:7px;
+    right:8px;
 }
 
-.profile{
+.profile-mini{
     display:flex;
-
     align-items:center;
-
-    gap:13px;
+    gap:10px;
 }
 
 .profile-circle{
-    width:58px;
-    height:58px;
-
+    width:48px;
+    height:48px;
     border-radius:50%;
-
-    background:
-    linear-gradient(
-        135deg,
-        #28aef2,
-        #5378ef
-    );
-
+    background:linear-gradient(135deg,#25b8ee,#466cf1);
     color:white;
-
     display:flex;
-
     align-items:center;
     justify-content:center;
-
-    font-size:22px;
-
+    font-size:20px;
     font-weight:800;
 }
 
 .profile-info strong{
     display:block;
-
-    font-size:18px;
+    font-size:15px;
 }
 
 .profile-info span{
     display:block;
-
-    margin-top:4px;
-
-    color:#9aa1ba;
-
-    font-size:14px;
+    color:#8d93a8;
+    font-size:12px;
 }
 
+/* ================= PAGE CONTENT ================= */
 
-/* =========================================================
-   CONTENT
-========================================================= */
-
-.content{
-    padding:26px 30px 40px;
+.page-content{
+    padding:20px 24px 35px;
+    width:100%;
 }
 
 .page-heading{
     display:flex;
-
+    align-items:center;
     justify-content:space-between;
-
-    align-items:center;
-
-    margin-bottom:25px;
-}
-
-.page-heading h2{
-    font-size:30px;
-
-    font-weight:900;
-}
-
-.page-heading p{
-    margin-top:7px;
-
-    color:#8992b1;
-
-    font-size:17px;
-}
-
-.primary-btn{
-    border:none;
-
-    padding:15px 24px;
-
-    border-radius:15px;
-
-    background:
-    linear-gradient(
-        135deg,
-        #693fe8,
-        #843de1
-    );
-
-    color:white;
-
-    font-size:16px;
-
-    font-weight:800;
-
-    cursor:pointer;
-
-    box-shadow:
-    0 10px 25px rgba(105,63,232,.20);
-}
-
-
-/* =========================================================
-   HERO
-========================================================= */
-
-.hero{
-    min-height:230px;
-
-    padding:36px 45px;
-
-    border-radius:24px;
-
-    overflow:hidden;
-
-    color:white;
-
-    background:
-    linear-gradient(
-        110deg,
-        #214394,
-        #3e27c9 55%,
-        #7738df
-    );
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    margin-bottom:24px;
-
-    position:relative;
-}
-
-.hero::before{
-    content:"";
-
-    position:absolute;
-
-    width:260px;
-    height:260px;
-
-    right:-70px;
-    top:-110px;
-
-    background:rgba(255,255,255,.08);
-
-    border-radius:50%;
-}
-
-.hero::after{
-    content:"";
-
-    position:absolute;
-
-    width:220px;
-    height:220px;
-
-    right:160px;
-    bottom:-170px;
-
-    background:rgba(255,255,255,.07);
-
-    border-radius:50%;
-}
-
-.hero-text{
-    max-width:66%;
-
-    position:relative;
-
-    z-index:2;
-}
-
-.hero-text h2{
-    font-size:29px;
-
-    line-height:1.35;
-
-    font-weight:900;
-
-    margin-bottom:12px;
-}
-
-.hero-text p{
-    font-size:17px;
-
-    line-height:1.7;
-
-    color:#e0e3ff;
-}
-
-.hero-stats{
-    display:flex;
-
-    gap:16px;
-
-    position:relative;
-
-    z-index:2;
-}
-
-.hero-stat{
-    width:185px;
-    height:115px;
-
-    border-radius:20px;
-
-    display:flex;
-
-    flex-direction:column;
-
-    align-items:center;
-
-    justify-content:center;
-
-    background:rgba(255,255,255,.13);
-
-    border:1px solid rgba(255,255,255,.18);
-}
-
-.hero-stat strong{
-    font-size:36px;
-}
-
-.hero-stat span{
-    margin-top:5px;
-
-    font-size:15px;
-
-    color:#d9dcff;
-}
-
-
-/* =========================================================
-   STATS
-========================================================= */
-
-.stats-grid{
-    display:grid;
-
-    grid-template-columns:
-    repeat(4,1fr);
-
-    gap:24px;
-
-    margin-bottom:24px;
-}
-
-.stat-card{
-    min-height:155px;
-
-    padding:25px;
-
-    background:white;
-
-    border-radius:20px;
-
-    box-shadow:
-    0 8px 30px rgba(50,63,110,.06);
-}
-
-.stat-top{
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-}
-
-.stat-label{
-    color:#7e88a9;
-
-    font-size:14px;
-
-    font-weight:800;
-}
-
-.stat-icon{
-    width:48px;
-    height:48px;
-
-    border-radius:15px;
-
-    background:#eef2ff;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    font-size:24px;
-}
-
-.stat-number{
-    margin-top:15px;
-
-    font-size:32px;
-
-    font-weight:900;
-
-    color:#3264dc;
-}
-
-.stat-card small{
-    display:block;
-
-    margin-top:3px;
-
-    color:#9aa2bc;
-
-    font-size:13px;
-}
-
-
-/* =========================================================
-   FEEDBACK SECTION
-========================================================= */
-
-.section-card{
-    background:white;
-
-    border-radius:20px;
-
-    padding:24px;
-
-    box-shadow:
-    0 8px 30px rgba(50,63,110,.06);
-
-    margin-bottom:24px;
-}
-
-.section-header{
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
     margin-bottom:20px;
 }
 
-.section-header h3{
-    font-size:21px;
-
-    font-weight:900;
-}
-
-.section-header p{
-    margin-top:5px;
-
-    color:#9098b3;
-
-    font-size:14px;
-}
-
-
-/* =========================================================
-   FEEDBACK FORM
-========================================================= */
-
-.feedback-grid{
-    display:grid;
-
-    grid-template-columns:
-    1fr 1fr;
-
-    gap:20px;
-}
-
-.form-group{
-    display:flex;
-
-    flex-direction:column;
-
-    gap:8px;
-}
-
-.form-group.full{
-    grid-column:1 / -1;
-}
-
-.form-group label{
-    font-size:13px;
-
+.page-heading h2{
+    font-size:24px;
     font-weight:800;
-
-    color:#65708f;
 }
 
-.form-input,
-.form-select,
-.form-textarea{
-    width:100%;
-
-    border:1px solid #e1e5f1;
-
-    border-radius:13px;
-
-    padding:13px 14px;
-
-    outline:none;
-
-    font-family:inherit;
-
-    font-size:14px;
-
-    color:#17203a;
-
-    background:white;
+.page-heading p{
+    margin-top:6px;
+    color:#8990a7;
+    font-size:13px;
 }
 
-.form-input:focus,
-.form-select:focus,
-.form-textarea:focus{
-    border-color:#6a42e7;
-
-    box-shadow:
-    0 0 0 3px rgba(106,66,231,.08);
-}
-
-.form-textarea{
-    min-height:120px;
-
-    resize:vertical;
-}
-
-
-/* =========================================================
-   RATING
-========================================================= */
-
-.rating-box{
-    display:flex;
-
-    align-items:center;
-
-    gap:8px;
-}
-
-.star{
+.heading-btn{
     border:none;
-
-    background:#eef2ff;
-
-    width:43px;
-    height:43px;
-
-    border-radius:12px;
-
-    font-size:21px;
-
+    border-radius:11px;
+    padding:11px 16px;
+    color:white;
+    font-size:12px;
+    font-weight:700;
     cursor:pointer;
-
+    background:linear-gradient(135deg,#6543e8,#843de0);
+    box-shadow:0 8px 20px rgba(85,50,190,.25);
     transition:.2s;
 }
 
-.star:hover{
+.heading-btn:hover{
     transform:translateY(-2px);
-
-    background:#e4e9ff;
 }
 
-.star.selected{
-    background:#fff1bd;
-}
+/* ================= HERO ================= */
 
-
-/* =========================================================
-   FEEDBACK LIST
-========================================================= */
-
-.feedback-list{
+.feedback-hero{
+    width:100%;
+    min-height:190px;
+    border-radius:20px;
+    padding:28px 32px;
+    color:white;
+    background:linear-gradient(120deg,#19398d,#4828c8 55%,#7738dd);
+    box-shadow:0 14px 35px rgba(55,44,150,.20);
     display:flex;
-
-    flex-direction:column;
-
-    gap:13px;
-}
-
-.feedback-item{
-    padding:17px;
-
-    border:1px solid #edf0f7;
-
-    border-radius:16px;
-
-    display:flex;
-
     align-items:center;
+    justify-content:space-between;
+    margin-bottom:20px;
+    position:relative;
+    overflow:hidden;
+}
 
+.feedback-hero::before{
+    content:"";
+    position:absolute;
+    width:260px;
+    height:260px;
+    border-radius:50%;
+    right:-80px;
+    top:-110px;
+    background:rgba(255,255,255,.08);
+}
+
+.feedback-hero::after{
+    content:"";
+    position:absolute;
+    width:150px;
+    height:150px;
+    border-radius:50%;
+    right:150px;
+    bottom:-100px;
+    background:rgba(255,255,255,.05);
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+}
+
+.hero-content h3{
+    font-size:23px;
+    font-weight:800;
+    margin-bottom:8px;
+}
+
+.hero-content p{
+    font-size:12px;
+    color:rgba(255,255,255,.76);
+    max-width:520px;
+    line-height:1.7;
+}
+
+.hero-action{
+    position:relative;
+    z-index:2;
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.stat-box{
+    min-width:110px;
+    padding:17px 20px;
+    border-radius:15px;
+    background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.15);
+    text-align:center;
+    backdrop-filter:blur(5px);
+}
+
+.stat-box strong{
+    display:block;
+    font-size:30px;
+    font-weight:800;
+}
+
+.stat-box span{
+    display:block;
+    font-size:10px;
+    margin-top:4px;
+    color:rgba(255,255,255,.72);
+}
+
+/* ================= SUMMARY ================= */
+
+.summary-grid{
+    width:100%;
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:18px;
+    margin-bottom:20px;
+}
+
+.summary-card{
+    background:white;
+    border:1px solid #e9ebf5;
+    border-radius:17px;
+    padding:18px;
+    min-height:120px;
+    box-shadow:0 8px 25px rgba(40,35,100,.06);
+    transition:.2s;
+    cursor:pointer;
+}
+
+.summary-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 15px 35px rgba(40,35,100,.12);
+}
+
+.summary-top{
+    display:flex;
     justify-content:space-between;
 }
 
-.feedback-left{
+.summary-title{
+    color:#7f88a5;
+    font-size:12px;
+    font-weight:700;
+}
+
+.summary-icon{
+    width:43px;
+    height:43px;
+    border-radius:13px;
+    background:#f0f3ff;
     display:flex;
-
     align-items:center;
+    justify-content:center;
+    font-size:21px;
+}
 
+.summary-number{
+    font-size:27px;
+    font-weight:800;
+    margin-top:9px;
+    color:#3063df;
+}
+
+.summary-small{
+    color:#9aa2b9;
+    font-size:10px;
+    margin-top:2px;
+}
+
+/* ================= CONTENT CARD ================= */
+
+.content-card{
+    background:white;
+    border:1px solid #e9ebf5;
+    border-radius:17px;
+    padding:20px;
+    box-shadow:0 8px 25px rgba(40,35,100,.06);
+    margin-bottom:20px;
+}
+
+.card-heading{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:15px;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.card-heading h3{
+    font-size:17px;
+}
+
+.card-tools{
+    display:flex;
+    gap:8px;
+    align-items:center;
+}
+
+.search-box{
+    height:38px;
+    border:1px solid #e1e4ef;
+    border-radius:10px;
+    padding:0 12px;
+    color:#39425e;
+    background:white;
+    outline:none;
+    font-size:11px;
+    min-width:190px;
+    transition:.2s;
+}
+
+.search-box:focus{
+    border-color:#a99bf0;
+}
+
+.filter-select{
+    height:38px;
+    border:1px solid #e1e4ef;
+    border-radius:10px;
+    padding:0 11px;
+    color:#68728d;
+    background:white;
+    outline:none;
+    font-size:11px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.filter-select:hover{
+    border-color:#c9cee4;
+}
+
+/* ================= FEEDBACK CARDS ================= */
+
+.feedback-grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
     gap:14px;
+}
+
+.feedback-card{
+    border:1px solid #eceef5;
+    border-radius:15px;
+    background:#fafbff;
+    padding:17px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.feedback-card:hover{
+    transform:translateY(-3px);
+    box-shadow:0 10px 25px rgba(40,35,100,.08);
+    border-color:#dcd6fb;
+}
+
+.feedback-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
 }
 
 .feedback-icon{
     width:48px;
     height:48px;
-
     border-radius:14px;
-
-    background:#eef2ff;
-
+    background:linear-gradient(135deg,#25b8ee,#7144f5);
+    color:white;
     display:flex;
-
     align-items:center;
-
     justify-content:center;
-
-    font-size:22px;
+    font-size:23px;
+    flex-shrink:0;
 }
 
-.feedback-title{
-    font-size:15px;
-
-    font-weight:900;
+.feedback-info{
+    flex:1;
+    min-width:0;
 }
 
-.feedback-description{
-    margin-top:4px;
+.feedback-info strong{
+    display:block;
+    font-size:13.5px;
+    color:#27304b;
+}
 
-    color:#929ab4;
-
-    font-size:12px;
+.feedback-info span{
+    display:block;
+    margin-top:3px;
+    color:#9aa2b9;
+    font-size:10.5px;
 }
 
 .feedback-rating{
-    font-size:14px;
-
-    font-weight:800;
-
-    color:#3264dc;
+    display:flex;
+    gap:2px;
+    color:#f5b83d;
+    font-size:13px;
+    white-space:nowrap;
 }
 
+.feedback-description{
+    margin-top:12px;
+    color:#7e879f;
+    font-size:11px;
+    line-height:1.6;
+}
 
-/* =========================================================
-   BUTTON
-========================================================= */
+.feedback-bottom{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:13px;
+}
+
+.feedback-tag{
+    padding:4px 9px;
+    border-radius:20px;
+    background:#edf8ff;
+    color:#238acb;
+    font-size:9px;
+    font-weight:700;
+}
+
+.feedback-action{
+    color:#6747dc;
+    font-size:10px;
+    font-weight:700;
+}
+
+.empty-note{
+    padding:25px 5px;
+    text-align:center;
+    color:#9aa2b9;
+    font-size:12px;
+    grid-column:1/-1;
+}
+
+/* ================= RATING AREA ================= */
+
+.rating-area{
+    display:flex;
+    gap:8px;
+    margin-top:12px;
+}
+
+.rating-star{
+    width:34px;
+    height:34px;
+    border:none;
+    border-radius:9px;
+    background:#f0f2fa;
+    color:#c5cada;
+    font-size:18px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.rating-star:hover{
+    transform:translateY(-2px);
+    background:#fff3d7;
+    color:#f5b83d;
+}
+
+.rating-star.selected{
+    background:#fff1cc;
+    color:#f2ad22;
+}
+
+/* ================= FEEDBACK FORM ================= */
+
+.feedback-form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+}
+
+.form-group.full{
+    grid-column:1/-1;
+}
+
+.form-group label{
+    color:#69738f;
+    font-size:11px;
+    font-weight:700;
+}
+
+.form-control{
+    width:100%;
+    min-height:40px;
+    border:1px solid #e1e4ef;
+    border-radius:10px;
+    outline:none;
+    padding:9px 11px;
+    color:#39425e;
+    background:white;
+    font-size:11px;
+    transition:.2s;
+}
+
+textarea.form-control{
+    min-height:95px;
+    resize:vertical;
+}
+
+.form-control:focus{
+    border-color:#a99bf0;
+    box-shadow:0 0 0 3px rgba(105,67,232,.06);
+}
+
+.submit-row{
+    display:flex;
+    justify-content:flex-end;
+    margin-top:15px;
+}
 
 .submit-btn{
-    margin-top:5px;
-
-    padding:14px 24px;
-
     border:none;
-
-    border-radius:13px;
-
-    background:
-    linear-gradient(
-        135deg,
-        #693fe8,
-        #843de1
-    );
-
+    border-radius:11px;
+    padding:11px 18px;
     color:white;
-
-    font-size:14px;
-
-    font-weight:800;
-
+    font-size:11px;
+    font-weight:700;
     cursor:pointer;
+    background:linear-gradient(135deg,#6543e8,#843de0);
+    box-shadow:0 8px 20px rgba(85,50,190,.22);
+    transition:.2s;
 }
 
+.submit-btn:hover{
+    transform:translateY(-2px);
+}
 
-/* =========================================================
-   CHATBOT - SAME AS FACULTY
-========================================================= */
+/* ================= CHATBOT ================= */
 
-.chatbot-button{
+.chat-bubble{
     position:fixed;
-
     right:24px;
     bottom:24px;
-
-    width:76px;
-    height:76px;
-
+    width:64px;
+    height:64px;
     border-radius:50%;
-
-    border:none;
-
-    background:
-    linear-gradient(
-        135deg,
-        #653fe8,
-        #843ce1
-    );
-
-    box-shadow:
-    0 12px 30px rgba(86,55,210,.35);
-
-    font-size:34px;
-
-    color:white;
-
-    cursor:pointer;
-
-    z-index:9999;
-
+    background:linear-gradient(135deg,#6543e8,#a855f7);
     display:flex;
-
     align-items:center;
-
     justify-content:center;
+    font-size:30px;
+    color:white;
+    border:none;
+    cursor:pointer;
+    box-shadow:0 12px 30px rgba(101,67,232,.45);
+    z-index:9998;
+    transition:transform .2s ease;
 }
 
-.chatbot-button::after{
+.chat-bubble:hover{
+    transform:scale(1.08);
+}
+
+.chat-bubble::after{
     content:"";
-
     position:absolute;
-
-    width:14px;
-    height:14px;
-
-    top:3px;
-    right:3px;
-
+    top:4px;
+    right:4px;
+    width:12px;
+    height:12px;
     border-radius:50%;
-
-    background:#ff4d91;
-
-    border:3px solid white;
+    background:#ff4f8b;
+    border:2px solid white;
 }
 
-
-/* =========================================================
-   CHAT WINDOW
-========================================================= */
-
-.chat-window{
+.chat-bubble.hide{
     display:none;
+}
 
+.chatbot-panel{
     position:fixed;
-
     right:24px;
     bottom:24px;
-
-    width:350px;
-    height:480px;
-
+    width:320px;
+    height:460px;
     background:white;
-
     border-radius:22px;
-
-    box-shadow:
-    0 20px 55px rgba(40,35,100,.25);
-
+    border:1px solid #e5e6f2;
+    box-shadow:0 20px 55px rgba(40,35,100,.25);
+    z-index:9999;
+    display:none;
+    flex-direction:column;
     overflow:hidden;
-
-    z-index:9998;
+    animation:panelIn .2s ease;
 }
 
-.chat-window.open{
+.chatbot-panel.open{
     display:flex;
+}
 
-    flex-direction:column;
+@keyframes panelIn{
+    from{
+        opacity:0;
+        transform:translateY(20px) scale(.96);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
 }
 
 .chat-header{
-    padding:17px;
-
-    background:
-    linear-gradient(
-        135deg,
-        #263b91,
-        #713de0
-    );
-
+    min-height:70px;
+    flex-shrink:0;
+    padding:14px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
     color:white;
-
-    display:flex;
-
-    align-items:center;
-
-    gap:11px;
+    background:linear-gradient(135deg,#29277d,#7137d8);
 }
 
-.robot{
-    width:45px;
-    height:45px;
+.chat-header-left{
+    display:flex;
+    align-items:center;
+}
 
+.robot-icon{
+    width:42px;
+    height:42px;
+    border-radius:12px;
     background:rgba(255,255,255,.15);
-
-    border-radius:13px;
-
     display:flex;
-
     align-items:center;
-
     justify-content:center;
-
-    font-size:24px;
+    font-size:22px;
+    margin-right:10px;
 }
 
-.chat-header strong{
+.chat-title strong{
     display:block;
-
-    font-size:15px;
+    font-size:14px;
 }
 
-.chat-header span{
+.chat-title span{
     display:block;
+    font-size:9px;
+    margin-top:2px;
+    color:rgba(255,255,255,.78);
+}
 
-    margin-top:3px;
+.online-dot{
+    display:inline-block;
+    width:7px;
+    height:7px;
+    background:#57e6a3;
+    border-radius:50%;
+    margin-right:4px;
+}
 
-    font-size:11px;
-
-    color:#d9ddff;
+.close-chat{
+    width:30px;
+    height:30px;
+    border:none;
+    border-radius:50%;
+    background:rgba(255,255,255,.15);
+    color:white;
+    font-size:16px;
+    cursor:pointer;
 }
 
 .chat-body{
     flex:1;
-
-    padding:16px;
-
+    min-height:0;
+    padding:14px;
     overflow-y:auto;
-
-    background:#f7f8fd;
+    background:linear-gradient(180deg,#fafbff,#f4f5fb);
 }
 
 .bot-message{
     background:white;
-
-    padding:12px 14px;
-
+    border:1px solid #e7e9f3;
     border-radius:14px;
-
-    margin-bottom:10px;
-
-    font-size:12px;
-
-    line-height:1.5;
-
-    box-shadow:
-    0 4px 15px rgba(40,50,90,.05);
+    padding:11px;
+    margin-bottom:9px;
+    color:#65708d;
+    font-size:11px;
+    line-height:1.55;
+    box-shadow:0 5px 15px rgba(40,35,100,.04);
 }
 
 .user-message{
-    background:#5b42dd;
-
+    background:linear-gradient(135deg,#6241e8,#7b3ee0);
     color:white;
+    padding:9px 12px;
+    border-radius:14px 14px 4px 14px;
+    margin:8px 0 8px 25px;
+    font-size:11px;
+    line-height:1.5;
+}
 
-    padding:11px 14px;
-
+.typing{
+    display:flex;
+    gap:4px;
+    width:52px;
+    padding:12px;
+    background:white;
+    border:1px solid #e7e9f3;
     border-radius:14px;
+    margin-bottom:9px;
+}
 
-    margin-bottom:10px;
+.typing i{
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:#b9bed4;
+    animation:blink 1s infinite;
+}
 
-    margin-left:35px;
+.typing i:nth-child(2){
+    animation-delay:.2s;
+}
 
-    font-size:12px;
+.typing i:nth-child(3){
+    animation-delay:.4s;
+}
+
+@keyframes blink{
+    0%,100%{opacity:.3;}
+    50%{opacity:1;}
+}
+
+.quick-buttons{
+    display:flex;
+    gap:5px;
+    flex-wrap:wrap;
+    padding:8px 12px;
+    background:white;
+    border-top:1px solid #eceef5;
+}
+
+.quick-btn{
+    border:1px solid #e0e3f0;
+    background:white;
+    color:#6b54d9;
+    border-radius:20px;
+    padding:6px 9px;
+    font-size:9px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.quick-btn:hover{
+    background:#f0edff;
 }
 
 .chat-footer{
+    flex-shrink:0;
     padding:10px;
-
-    border-top:1px solid #e8eaf2;
-
+    background:white;
+    border-top:1px solid #eceef5;
     display:flex;
-
     gap:7px;
 }
 
 .chat-input{
     flex:1;
-
-    border:1px solid #e0e4ef;
-
-    border-radius:11px;
-
-    padding:10px;
-
+    min-width:0;
+    height:38px;
+    border:1px solid #e1e4ef;
+    border-radius:12px;
     outline:none;
+    padding:0 11px;
+    font-size:11px;
+    color:#555e78;
+}
 
-    font-size:12px;
+.chat-input:focus{
+    border-color:#a99bf0;
 }
 
 .send-btn{
-    width:42px;
-
+    width:38px;
+    height:38px;
     border:none;
-
-    border-radius:11px;
-
-    background:#633fe0;
-
+    border-radius:12px;
     color:white;
-
+    background:linear-gradient(135deg,#6543e8,#843de0);
     cursor:pointer;
+    font-size:16px;
+    transition:.2s;
 }
 
+.send-btn:hover{
+    transform:scale(1.05);
+}
 
-/* =========================================================
-   TOAST
-========================================================= */
+/* ================= MODAL ================= */
+
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(20,25,65,.55);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:30000;
+    padding:20px;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    width:min(500px,95%);
+    max-height:88vh;
+    overflow-y:auto;
+    background:white;
+    border-radius:20px;
+    padding:25px;
+    box-shadow:0 25px 70px rgba(20,25,70,.25);
+    animation:modalIn .2s ease;
+}
+
+@keyframes modalIn{
+    from{
+        opacity:0;
+        transform:translateY(15px) scale(.97);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+.modal-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:20px;
+}
+
+.modal-top h3{
+    font-size:19px;
+}
+
+.close-btn{
+    width:35px;
+    height:35px;
+    border:none;
+    border-radius:50%;
+    background:#f0f2fa;
+    color:#68728d;
+    cursor:pointer;
+    font-size:18px;
+}
+
+.modal-content{
+    color:#68728d;
+    font-size:12px;
+    line-height:1.7;
+}
+
+.modal-content p{
+    margin-bottom:7px;
+}
+
+.modal-buttons{
+    display:flex;
+    justify-content:flex-end;
+    gap:8px;
+    margin-top:18px;
+}
+
+.modal-btn{
+    border:none;
+    border-radius:10px;
+    padding:10px 15px;
+    cursor:pointer;
+    font-size:11px;
+    font-weight:700;
+}
+
+.modal-cancel{
+    background:#f0f2fa;
+    color:#68728d;
+}
+
+.modal-ok{
+    background:linear-gradient(135deg,#6543e8,#843de0);
+    color:white;
+}
+
+/* ================= TOAST ================= */
 
 .toast{
     position:fixed;
-
-    right:24px;
-    top:24px;
-
-    background:#20294a;
-
+    left:50%;
+    bottom:25px;
+    transform:translateX(-50%) translateY(20px);
+    background:#29277d;
     color:white;
-
-    padding:13px 18px;
-
-    border-radius:11px;
-
+    padding:12px 18px;
+    border-radius:12px;
+    font-size:12px;
     opacity:0;
-
-    transform:translateY(-10px);
-
     pointer-events:none;
-
     transition:.3s;
-
-    z-index:10000;
-
-    font-size:13px;
+    z-index:40000;
 }
 
 .toast.show{
     opacity:1;
-
-    transform:translateY(0);
+    transform:translateX(-50%) translateY(0);
 }
 
+/* ================= RESPONSIVE ================= */
 
-/* =========================================================
-   RESPONSIVE
-========================================================= */
-
-@media(max-width:1200px){
+@media(max-width:1150px){
 
     .sidebar{
-        width:290px;
+        width:230px;
+        min-width:230px;
     }
 
     .main-area{
-        margin-left:290px;
+        margin-left:230px;
     }
 
-    .stats-grid{
-        grid-template-columns:
-        repeat(2,1fr);
+    .summary-grid{
+        grid-template-columns:repeat(2,minmax(0,1fr));
     }
 
-    .hero-stats{
-        display:none;
-    }
-
-    .hero-text{
-        max-width:100%;
+    .feedback-grid{
+        grid-template-columns:1fr;
     }
 }
 
-
-@media(max-width:850px){
+@media(max-width:700px){
 
     .sidebar{
-        width:78px;
+        width:80px;
+        min-width:80px;
     }
 
-    .logo-text,
+    .brand{
+        justify-content:center;
+        padding:15px;
+    }
+
+    .brand-text,
     .menu-title,
     .nav-text{
         display:none;
     }
 
-    .logo-area{
-        justify-content:center;
-
-        padding:15px;
-    }
-
     .nav-item{
         justify-content:center;
-
         padding:0;
     }
 
+    .nav-icon{
+        margin:0;
+    }
+
     .main-area{
-        margin-left:78px;
+        margin-left:80px;
     }
 
-    .profile-info,
-    .time-box{
-        display:none;
+    .summary-grid{
+        grid-template-columns:1fr;
     }
 
-    .feedback-grid{
+    .feedback-hero{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:20px;
+    }
+
+    .feedback-form-grid{
         grid-template-columns:1fr;
     }
 
     .form-group.full{
         grid-column:auto;
     }
-}
 
-
-@media(max-width:650px){
-
-    .content{
-        padding:18px;
+    .card-tools{
+        width:100%;
     }
 
-    .top-header{
-        padding:20px;
+    .search-box{
+        flex:1;
+        min-width:0;
     }
 
-    .header-left h1{
-        font-size:30px;
-    }
-
-    .header-left p{
-        font-size:14px;
-    }
-
-    .stats-grid{
-        grid-template-columns:1fr;
-    }
-
-    .page-heading{
-        align-items:flex-start;
-
-        flex-direction:column;
-
-        gap:14px;
-    }
-
-    .hero{
-        padding:28px;
-    }
-
-    .hero-text h2{
-        font-size:23px;
-    }
-
-    .hero-text p{
-        font-size:14px;
-    }
-
-    .chat-window{
-        width:calc(100% - 30px);
-
-        height:460px;
-
-        right:15px;
-
-        bottom:15px;
-    }
-
-    .chatbot-button{
-        width:68px;
-        height:68px;
-
-        right:18px;
-        bottom:18px;
+    .chatbot-panel{
+        width:92vw;
+        right:4vw;
+        left:4vw;
     }
 }
-
 </style>
 </head>
 
-
 <body>
 
-
-<!-- =====================================================
-     SIDEBAR
-===================================================== -->
+<!-- ================= SIDEBAR ================= -->
 
 <aside class="sidebar">
 
+    <div class="brand">
+        <div class="logo-box">🎓</div>
 
-    <!-- LOGO -->
-
-    <div class="logo-area">
-
-        <div class="logo-icon">
-            🎓
+        <div class="brand-text">
+            <div class="brand-title">CampusConnect</div>
+            <div class="brand-subtitle">AI College Companion</div>
         </div>
-
-        <div class="logo-text">
-
-            <h2>CampusConnect</h2>
-
-            <p>AI College Companion</p>
-
-        </div>
-
     </div>
 
+    <div class="menu">
 
+        <div class="menu-title">MAIN MENU</div>
 
-    <!-- =================================================
-         MAIN MENU
-    ================================================= -->
-
-    <div class="menu-section">
-
-        <div class="menu-title">
-            MAIN MENU
-        </div>
-
-
-        <a class="nav-item"
-           href="dashboard.html">
-
+        <a class="nav-item" href="../dashboard.html">
             <span class="nav-icon">🏠</span>
-
-            <span class="nav-text">
-                Dashboard
-            </span>
-
+            <span class="nav-text">Dashboard</span>
         </a>
 
-
-        <a class="nav-item"
-           href="courses.html">
-
+        <a class="nav-item" href="courses.html">
             <span class="nav-icon">📚</span>
-
-            <span class="nav-text">
-                Courses
-            </span>
-
+            <span class="nav-text">Courses</span>
         </a>
 
-
-        <a class="nav-item"
-           href="timetable.html">
-
+        <a class="nav-item" href="timetable.html">
             <span class="nav-icon">🗓️</span>
-
-            <span class="nav-text">
-                Timetable
-            </span>
-
+            <span class="nav-text">Timetable</span>
         </a>
 
-
-        <a class="nav-item"
-           href="assignments.html">
-
+        <a class="nav-item" href="assignments.html">
             <span class="nav-icon">📝</span>
-
-            <span class="nav-text">
-                Assignments
-            </span>
-
+            <span class="nav-text">Assignments</span>
         </a>
 
-
-        <a class="nav-item"
-           href="attendance.html">
-
+        <a class="nav-item" href="attendance.html">
             <span class="nav-icon">📊</span>
-
-            <span class="nav-text">
-                Attendance
-            </span>
-
+            <span class="nav-text">Attendance</span>
         </a>
 
-
-        <a class="nav-item"
-           href="academics.html">
-
+        <a class="nav-item" href="academics.html">
             <span class="nav-icon">🎓</span>
-
-            <span class="nav-text">
-                Academics
-            </span>
-
+            <span class="nav-text">Academics</span>
         </a>
 
-
-        <a class="nav-item"
-           href="faculty.html">
-
-            <span class="nav-icon">👩‍🏫</span>
-
-            <span class="nav-text">
-                Faculty
-            </span>
-
+        <a class="nav-item" href="faculty.html">
+            <span class="nav-icon">👨‍🏫</span>
+            <span class="nav-text">Faculty</span>
         </a>
 
-    </div>
+        <div class="menu-section">
 
+            <div class="menu-title">CAREER</div>
 
+            <a class="nav-item" href="placement.html">
+                <span class="nav-icon">💼</span>
+                <span class="nav-text">Placement</span>
+            </a>
 
-    <!-- =================================================
-         CAREER
-    ================================================= -->
+            <a class="nav-item" href="results.html">
+                <span class="nav-icon">📈</span>
+                <span class="nav-text">Results</span>
+            </a>
 
-    <div class="menu-section">
-
-        <div class="menu-title">
-            CAREER
         </div>
 
+        <div class="menu-section">
 
-        <a class="nav-item"
-           href="placement.html">
+            <div class="menu-title">CAMPUS</div>
 
-            <span class="nav-icon">💼</span>
+            <a class="nav-item" href="documents.html">
+                <span class="nav-icon">📄</span>
+                <span class="nav-text">Documents</span>
+            </a>
 
-            <span class="nav-text">
-                Placement
-            </span>
+            <a class="nav-item" href="complaints.html">
+                <span class="nav-icon">📢</span>
+                <span class="nav-text">Complaints</span>
+            </a>
 
-        </a>
+            <a class="nav-item active" href="feedback.html">
+                <span class="nav-icon">💬</span>
+                <span class="nav-text">Feedback</span>
+            </a>
 
+            <a class="nav-item" href="lost_found.html">
+                <span class="nav-icon">🔎</span>
+                <span class="nav-text">Lost &amp; Found</span>
+            </a>
 
-        <a class="nav-item"
-           href="results.html">
+            <a class="nav-item" href="campus.html">
+                <span class="nav-icon">🏫</span>
+                <span class="nav-text">Campus</span>
+            </a>
 
-            <span class="nav-icon">🏆</span>
+            <a class="nav-item" href="events.html">
+                <span class="nav-icon">🎉</span>
+                <span class="nav-text">Events</span>
+            </a>
 
-            <span class="nav-text">
-                Results
-            </span>
+            <a class="nav-item" href="exams.html">
+                <span class="nav-icon">📋</span>
+                <span class="nav-text">Exams</span>
+            </a>
 
-        </a>
+            <a class="nav-item" href="notifications.html">
+                <span class="nav-icon">🔔</span>
+                <span class="nav-text">Notifications</span>
+            </a>
 
-
-        <a class="nav-item"
-           href="documents.html">
-
-            <span class="nav-icon">📁</span>
-
-            <span class="nav-text">
-                Documents
-            </span>
-
-        </a>
-
-
-        <a class="nav-item"
-           href="complaints.html">
-
-            <span class="nav-icon">📢</span>
-
-            <span class="nav-text">
-                Complaints
-            </span>
-
-        </a>
-
-
-        <!-- ACTIVE FEEDBACK -->
-
-        <a class="nav-item active"
-           href="feedback.html">
-
-            <span class="nav-icon">💬</span>
-
-            <span class="nav-text">
-                Feedback
-            </span>
-
-        </a>
-
-
-        <a class="nav-item"
-           href="lost-found.html">
-
-            <span class="nav-icon">🔎</span>
-
-            <span class="nav-text">
-                Lost &amp; Found
-            </span>
-
-        </a>
-
-
-        <a class="nav-item"
-           href="campus.html">
-
-            <span class="nav-icon">🏫</span>
-
-            <span class="nav-text">
-                Campus
-            </span>
-
-        </a>
-
-
-        <a class="nav-item"
-           href="events.html">
-
-            <span class="nav-icon">🎉</span>
-
-            <span class="nav-text">
-                Events
-            </span>
-
-        </a>
-
-
-        <a class="nav-item"
-           href="exams.html">
-
-            <span class="nav-icon">📋</span>
-
-            <span class="nav-text">
-                Exams
-            </span>
-
-        </a>
-
-
-        <a class="nav-item"
-           href="notifications.html">
-
-            <span class="nav-icon">🔔</span>
-
-            <span class="nav-text">
-                Notifications
-            </span>
-
-        </a>
-
-    </div>
-
-
-
-    <!-- =================================================
-         ACCOUNT
-    ================================================= -->
-
-    <div class="menu-section">
-
-        <div class="menu-title">
-            ACCOUNT
         </div>
 
+        <div class="menu-section">
 
-        <a class="nav-item"
-           href="profile.html">
+            <div class="menu-title">ACCOUNT</div>
 
-            <span class="nav-icon">👤</span>
+            <a class="nav-item" href="profile.html">
+                <span class="nav-icon">👤</span>
+                <span class="nav-text">Profile</span>
+            </a>
 
-            <span class="nav-text">
-                Profile
-            </span>
+            <a class="nav-item" href="settings.html">
+                <span class="nav-icon">⚙️</span>
+                <span class="nav-text">Settings</span>
+            </a>
 
-        </a>
+            <div class="logout">
 
+                <a class="nav-item" href="../index.html" onclick="return confirmLogout()">
+                    <span class="nav-icon">🚪</span>
+                    <span class="nav-text">Logout</span>
+                </a>
 
-        <a class="nav-item"
-           href="settings.html">
+            </div>
 
-            <span class="nav-icon">⚙️</span>
-
-            <span class="nav-text">
-                Settings
-            </span>
-
-        </a>
-
-
-        <a class="nav-item logout-item"
-           href="login.html"
-           onclick="return logoutUser()">
-
-            <span class="nav-icon">🚪</span>
-
-            <span class="nav-text">
-                Logout
-            </span>
-
-        </a>
+        </div>
 
     </div>
 
 </aside>
 
-
-
-<!-- =====================================================
-     MAIN
-===================================================== -->
+<!-- ================= MAIN AREA ================= -->
 
 <main class="main-area">
-
-
-    <!-- =================================================
-         HEADER
-    ================================================= -->
 
     <header class="top-header">
 
         <div class="header-left">
 
-            <h1>
-                Feedback
-            </h1>
+            <h1>Student<br>Feedback</h1>
 
-            <p>
-                Share your experience and help us improve CampusConnect
-            </p>
+            <p>Share your thoughts and help improve your campus experience</p>
 
         </div>
 
-
         <div class="header-right">
 
-            <div class="time-box"
-                 id="clock">
-            </div>
+            <div class="time-box" id="clock">6:00 PM</div>
 
-
-            <div class="notification"
-                 onclick="showToast('You have new notifications 🔔')">
-
+            <div class="notification" onclick="showNotifications()">
                 🔔
-
             </div>
 
+            <div class="profile-mini">
 
-            <div class="profile">
-
-                <div class="profile-circle">
-                    P
-                </div>
+                <div class="profile-circle">P</div>
 
                 <div class="profile-info">
-
-                    <strong>
-                        Student
-                    </strong>
-
-                    <span>
-                        BCA • 5th Sem
-                    </span>
-
+                    <strong>Student</strong>
+                    <span>BCA • 5th Sem</span>
                 </div>
 
             </div>
@@ -1720,14 +1368,7 @@ body{
 
     </header>
 
-
-
-    <!-- =================================================
-         CONTENT
-    ================================================= -->
-
-    <section class="content">
-
+    <div class="page-content">
 
         <!-- PAGE HEADING -->
 
@@ -1735,254 +1376,258 @@ body{
 
             <div>
 
-                <h2>
-                    💬 Feedback Overview
-                </h2>
+                <h2>💬 Feedback Overview</h2>
 
                 <p>
-                    Tell us about your experience and suggestions.
+                    Tell us what you think about your college experience and services.
                 </p>
 
             </div>
 
-
-            <button class="primary-btn"
-                    onclick="scrollToFeedback()">
-
-                + Give Feedback
-
+            <button class="heading-btn" onclick="scrollToFeedbackForm()">
+                Give Feedback
             </button>
 
         </div>
 
+        <!-- HERO -->
 
+        <section class="feedback-hero">
 
-        <!-- =================================================
-             HERO
-        ================================================= -->
+            <div class="hero-content">
 
-        <div class="hero">
+                <h3 id="heroTitle">
+                    Your voice helps us improve 🤝
+                </h3>
 
-            <div class="hero-text">
-
-                <h2>
-                    Your feedback helps us improve 💙
-                </h2>
-
-                <p>
-                    Share your thoughts about academics, faculty,
-                    campus facilities and your overall CampusConnect
-                    experience. Every suggestion helps make your
-                    college experience better.
+                <p id="heroText">
+                    Share honest feedback about academics, campus facilities,
+                    faculty, placements and student services. Your feedback
+                    helps make CampusConnect better for everyone.
                 </p>
 
             </div>
 
+            <div class="hero-action">
 
-            <div class="hero-stats">
-
-                <div class="hero-stat">
-
-                    <strong>
-                        4.5
-                    </strong>
-
-                    <span>
-                        Your Rating
-                    </span>
-
+                <div class="stat-box">
+                    <strong id="totalFeedback">0</strong>
+                    <span>Feedback Topics</span>
                 </div>
 
-
-                <div class="hero-stat">
-
-                    <strong>
-                        3
-                    </strong>
-
-                    <span>
-                        Feedback Given
-                    </span>
-
+                <div class="stat-box">
+                    <strong id="avgRating">0</strong>
+                    <span>Average Rating</span>
                 </div>
 
             </div>
 
-        </div>
+        </section>
 
+        <!-- SUMMARY -->
 
+        <section class="summary-grid">
 
-        <!-- =================================================
-             STATS
-        ================================================= -->
+            <div class="summary-card" onclick="showToast(feedbackData.length + ' feedback categories available')">
 
-        <div class="stats-grid">
+                <div class="summary-top">
 
+                    <div class="summary-title">
+                        CATEGORIES
+                    </div>
 
-            <div class="stat-card">
-
-                <div class="stat-top">
-
-                    <span class="stat-label">
-                        FEEDBACK GIVEN
-                    </span>
-
-                    <div class="stat-icon">
+                    <div class="summary-icon">
                         💬
                     </div>
 
                 </div>
 
-                <div class="stat-number">
-                    3
+                <div class="summary-number" id="statCategories">
+                    0
                 </div>
 
-                <small>
-                    Total feedback submitted
-                </small>
+                <div class="summary-small">
+                    Areas you can review
+                </div>
 
             </div>
 
 
+            <div class="summary-card" onclick="showToast('Academic feedback helps improve learning')">
 
-            <div class="stat-card">
+                <div class="summary-top">
 
-                <div class="stat-top">
+                    <div class="summary-title">
+                        ACADEMICS
+                    </div>
 
-                    <span class="stat-label">
-                        AVERAGE RATING
-                    </span>
+                    <div class="summary-icon">
+                        🎓
+                    </div>
 
-                    <div class="stat-icon">
+                </div>
+
+                <div class="summary-number">
+                    4.5
+                </div>
+
+                <div class="summary-small">
+                    Current rating
+                </div>
+
+            </div>
+
+
+            <div class="summary-card" onclick="showToast('Campus services feedback is important')">
+
+                <div class="summary-top">
+
+                    <div class="summary-title">
+                        CAMPUS
+                    </div>
+
+                    <div class="summary-icon">
+                        🏫
+                    </div>
+
+                </div>
+
+                <div class="summary-number">
+                    4.3
+                </div>
+
+                <div class="summary-small">
+                    Current rating
+                </div>
+
+            </div>
+
+
+            <div class="summary-card" onclick="scrollToFeedbackForm()">
+
+                <div class="summary-top">
+
+                    <div class="summary-title">
+                        YOUR RATING
+                    </div>
+
+                    <div class="summary-icon">
                         ⭐
                     </div>
 
                 </div>
 
-                <div class="stat-number">
-                    4.5
+                <div class="summary-number" id="yourRating">
+                    0
                 </div>
 
-                <small>
-                    Out of 5.0
-                </small>
+                <div class="summary-small">
+                    Select below
+                </div>
 
             </div>
 
+        </section>
 
 
-            <div class="stat-card">
+        <!-- FEEDBACK CATEGORIES -->
 
-                <div class="stat-top">
+        <section class="content-card">
 
-                    <span class="stat-label">
-                        RESPONDED
-                    </span>
+            <div class="card-heading">
 
-                    <div class="stat-icon">
-                        ✅
-                    </div>
+                <h3>Feedback Categories</h3>
+
+                <div class="card-tools">
+
+                    <input
+                        class="search-box"
+                        id="feedbackSearch"
+                        type="text"
+                        placeholder="Search feedback..."
+                        oninput="renderFeedback()"
+                    >
+
+                    <select
+                        class="filter-select"
+                        id="categoryFilter"
+                        onchange="renderFeedback()"
+                    >
+
+                        <option value="all">
+                            All Categories
+                        </option>
+
+                    </select>
 
                 </div>
-
-                <div class="stat-number">
-                    2
-                </div>
-
-                <small>
-                    Feedback reviewed
-                </small>
 
             </div>
 
+            <div
+                class="feedback-grid"
+                id="feedbackList"
+            ></div>
+
+        </section>
 
 
-            <div class="stat-card">
+        <!-- FEEDBACK FORM -->
 
-                <div class="stat-top">
+        <section
+            class="content-card"
+            id="feedbackFormSection"
+        >
 
-                    <span class="stat-label">
-                        PENDING
-                    </span>
-
-                    <div class="stat-icon">
-                        ⏳
-                    </div>
-
-                </div>
-
-                <div class="stat-number">
-                    1
-                </div>
-
-                <small>
-                    Awaiting review
-                </small>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- =================================================
-             GIVE FEEDBACK
-        ================================================= -->
-
-        <div class="section-card"
-             id="feedbackFormSection">
-
-            <div class="section-header">
+            <div class="card-heading">
 
                 <div>
 
-                    <h3>
-                        Give Your Feedback
-                    </h3>
-
-                    <p>
-                        Tell us how we can improve your college experience.
-                    </p>
+                    <h3>Share Your Feedback</h3>
 
                 </div>
 
             </div>
 
-
-            <div class="feedback-grid">
-
+            <div class="feedback-form-grid">
 
                 <div class="form-group">
 
-                    <label>
-                        Feedback Category
+                    <label for="feedbackCategory">
+                        CATEGORY
                     </label>
 
-                    <select class="form-select"
-                            id="category">
+                    <select
+                        class="form-control"
+                        id="feedbackCategory"
+                    >
 
-                        <option>
-                            Select category
+                        <option value="">
+                            Select a category
                         </option>
 
-                        <option>
+                        <option value="Academics">
                             Academics
                         </option>
 
-                        <option>
+                        <option value="Faculty">
                             Faculty
                         </option>
 
-                        <option>
+                        <option value="Campus Facilities">
                             Campus Facilities
                         </option>
 
-                        <option>
+                        <option value="Placement">
                             Placement
                         </option>
 
-                        <option>
-                            CampusConnect
+                        <option value="Library">
+                            Library
+                        </option>
+
+                        <option value="Student Services">
+                            Student Services
                         </option>
 
                     </select>
@@ -1990,59 +1635,52 @@ body{
                 </div>
 
 
-
                 <div class="form-group">
 
                     <label>
-                        Subject
+                        YOUR RATING
                     </label>
 
-                    <input
-                        class="form-input"
-                        id="subject"
-                        type="text"
-                        placeholder="Enter feedback subject">
+                    <div class="rating-area">
 
-                </div>
-
-
-
-                <div class="form-group full">
-
-                    <label>
-                        Your Rating
-                    </label>
-
-                    <div class="rating-box">
-
-                        <button class="star"
-                                onclick="selectRating(1)"
-                                id="star1">
-                            ⭐
+                        <button
+                            class="rating-star"
+                            onclick="selectRating(1)"
+                            id="star1"
+                        >
+                            ★
                         </button>
 
-                        <button class="star"
-                                onclick="selectRating(2)"
-                                id="star2">
-                            ⭐
+                        <button
+                            class="rating-star"
+                            onclick="selectRating(2)"
+                            id="star2"
+                        >
+                            ★
                         </button>
 
-                        <button class="star"
-                                onclick="selectRating(3)"
-                                id="star3">
-                            ⭐
+                        <button
+                            class="rating-star"
+                            onclick="selectRating(3)"
+                            id="star3"
+                        >
+                            ★
                         </button>
 
-                        <button class="star"
-                                onclick="selectRating(4)"
-                                id="star4">
-                            ⭐
+                        <button
+                            class="rating-star"
+                            onclick="selectRating(4)"
+                            id="star4"
+                        >
+                            ★
                         </button>
 
-                        <button class="star"
-                                onclick="selectRating(5)"
-                                id="star5">
-                            ⭐
+                        <button
+                            class="rating-star"
+                            onclick="selectRating(5)"
+                            id="star5"
+                        >
+                            ★
                         </button>
 
                     </div>
@@ -2050,254 +1688,156 @@ body{
                 </div>
 
 
-
                 <div class="form-group full">
 
-                    <label>
-                        Your Feedback
+                    <label for="feedbackMessage">
+                        YOUR FEEDBACK
                     </label>
 
                     <textarea
-                        class="form-textarea"
-                        id="feedbackText"
-                        placeholder="Write your feedback or suggestion..."></textarea>
-
-                </div>
-
-
-
-                <div class="form-group full">
-
-                    <button class="submit-btn"
-                            onclick="submitFeedback()">
-
-                        Submit Feedback
-
-                    </button>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- =================================================
-             PREVIOUS FEEDBACK
-        ================================================= -->
-
-        <div class="section-card">
-
-            <div class="section-header">
-
-                <div>
-
-                    <h3>
-                        Previous Feedback
-                    </h3>
-
-                    <p>
-                        View your submitted feedback
-                    </p>
+                        class="form-control"
+                        id="feedbackMessage"
+                        placeholder="Write your feedback here..."
+                    ></textarea>
 
                 </div>
 
             </div>
 
 
-            <div class="feedback-list">
+            <div class="submit-row">
 
-
-                <div class="feedback-item">
-
-                    <div class="feedback-left">
-
-                        <div class="feedback-icon">
-                            🎓
-                        </div>
-
-                        <div>
-
-                            <div class="feedback-title">
-                                Academics
-                            </div>
-
-                            <div class="feedback-description">
-                                Feedback submitted about academic services
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="feedback-rating">
-                        ⭐ 5.0
-                    </div>
-
-                </div>
-
-
-
-                <div class="feedback-item">
-
-                    <div class="feedback-left">
-
-                        <div class="feedback-icon">
-                            👩‍🏫
-                        </div>
-
-                        <div>
-
-                            <div class="feedback-title">
-                                Faculty
-                            </div>
-
-                            <div class="feedback-description">
-                                Feedback about faculty interaction
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="feedback-rating">
-                        ⭐ 4.5
-                    </div>
-
-                </div>
-
-
-
-                <div class="feedback-item">
-
-                    <div class="feedback-left">
-
-                        <div class="feedback-icon">
-                            🏫
-                        </div>
-
-                        <div>
-
-                            <div class="feedback-title">
-                                Campus Facilities
-                            </div>
-
-                            <div class="feedback-description">
-                                Feedback about campus facilities
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="feedback-rating">
-                        ⭐ 4.0
-                    </div>
-
-                </div>
+                <button
+                    class="submit-btn"
+                    onclick="submitFeedback()"
+                >
+                    Submit Feedback
+                </button>
 
             </div>
 
-        </div>
+        </section>
 
-
-    </section>
+    </div>
 
 </main>
 
 
-
-<!-- =====================================================
-     CHATBOT BUTTON
-===================================================== -->
+<!-- ================= CHAT BUBBLE ================= -->
 
 <button
-    class="chatbot-button"
-    id="chatbotButton"
-    onclick="toggleChat()">
-
+    class="chat-bubble"
+    id="chatBubble"
+    onclick="openChatPanel()"
+>
     🤖
-
 </button>
 
 
-
-<!-- =====================================================
-     CHAT WINDOW
-===================================================== -->
-
 <div
-    class="chat-window"
-    id="chatWindow">
-
+    class="chatbot-panel"
+    id="chatbotPanel"
+>
 
     <div class="chat-header">
 
-        <div class="robot">
-            🤖
+        <div class="chat-header-left">
+
+            <div class="robot-icon">
+                🤖
+            </div>
+
+            <div class="chat-title">
+
+                <strong>
+                    AI College Companion
+                </strong>
+
+                <span>
+                    <i class="online-dot"></i>
+                    Online • Ready to help
+                </span>
+
+            </div>
+
         </div>
 
-        <div>
-
-            <strong>
-                CampusConnect AI
-            </strong>
-
-            <span>
-                ● College Companion
-            </span>
-
-        </div>
+        <button
+            class="close-chat"
+            onclick="closeChatPanel()"
+        >
+            ×
+        </button>
 
     </div>
-
 
 
     <div
         class="chat-body"
-        id="chatBody">
+        id="chatBody"
+    >
 
         <div class="bot-message">
 
-            Hi! 👋
+            👋 Hi! I'm your
+            <strong>AI College Companion.</strong>
 
-            <br><br>
-
-            I'm your
-            <b>CampusConnect AI College Companion</b>.
-
-            <br><br>
-
-            Ask me about feedback, academics,
-            faculty, campus facilities or
-            CampusConnect.
+            I can help you understand the feedback categories,
+            submit feedback and choose a rating.
 
         </div>
 
     </div>
 
+
+    <div class="quick-buttons">
+
+        <button
+            class="quick-btn"
+            onclick="quickChat('How do I give feedback?')"
+        >
+            How to Give
+        </button>
+
+        <button
+            class="quick-btn"
+            onclick="quickChat('What can I give feedback about?')"
+        >
+            Categories
+        </button>
+
+        <button
+            class="quick-btn"
+            onclick="quickChat('How do I rate something?')"
+        >
+            Rating
+        </button>
+
+        <button
+            class="quick-btn"
+            onclick="quickChat('Why is feedback important?')"
+        >
+            Why Feedback
+        </button>
+
+    </div>
 
 
     <div class="chat-footer">
 
         <input
-            type="text"
             id="chatInput"
             class="chat-input"
-            placeholder="Ask CampusConnect AI..."
-            onkeydown="handleEnter(event)">
-
+            type="text"
+            placeholder="Ask your companion..."
+            onkeydown="handleChatKey(event)"
+        >
 
         <button
             class="send-btn"
-            onclick="sendMessage()">
-
+            onclick="sendChat()"
+        >
             ➤
-
         </button>
 
     </div>
@@ -2305,116 +1845,463 @@ body{
 </div>
 
 
+<!-- ================= MODAL ================= -->
 
-<!-- =====================================================
-     TOAST
-===================================================== -->
+<div
+    class="modal"
+    id="feedbackModal"
+    onclick="closeModalOutside(event)"
+>
+
+    <div class="modal-box">
+
+        <div class="modal-top">
+
+            <h3 id="modalTitle">
+                💬 Feedback Details
+            </h3>
+
+            <button
+                class="close-btn"
+                onclick="closeModal()"
+            >
+                ×
+            </button>
+
+        </div>
+
+        <div
+            class="modal-content"
+            id="modalContent"
+        ></div>
+
+        <div class="modal-buttons">
+
+            <button
+                class="modal-btn modal-cancel"
+                onclick="closeModal()"
+            >
+                Close
+            </button>
+
+            <button
+                class="modal-btn modal-ok"
+                onclick="scrollToFeedbackForm(); closeModal();"
+            >
+                Give Feedback
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= TOAST ================= -->
 
 <div
     class="toast"
-    id="toast">
+    id="toast"
+>
+    Done
 </div>
-
 
 
 <script>
 
-/* =========================================================
-   CLOCK
-========================================================= */
+/* ================= FEEDBACK DATA ================= */
+
+const feedbackData = [
+
+    {
+        id:"FB1",
+        title:"Academic Experience",
+        category:"Academics",
+        icon:"🎓",
+        rating:4.5,
+        description:"Share your thoughts about classes, curriculum, learning materials and academic support."
+    },
+
+    {
+        id:"FB2",
+        title:"Faculty & Teaching",
+        category:"Faculty",
+        icon:"👨‍🏫",
+        rating:4.6,
+        description:"Tell us about teaching quality, faculty interaction, guidance and classroom experience."
+    },
+
+    {
+        id:"FB3",
+        title:"Campus Facilities",
+        category:"Campus Facilities",
+        icon:"🏫",
+        rating:4.3,
+        description:"Give feedback about classrooms, laboratories, campus infrastructure and facilities."
+    },
+
+    {
+        id:"FB4",
+        title:"Placement Support",
+        category:"Placement",
+        icon:"💼",
+        rating:4.4,
+        description:"Share your experience about placement training, company visits and career support."
+    },
+
+    {
+        id:"FB5",
+        title:"Library Services",
+        category:"Library",
+        icon:"📚",
+        rating:4.2,
+        description:"Tell us about library resources, study spaces, books and digital learning resources."
+    },
+
+    {
+        id:"FB6",
+        title:"Student Services",
+        category:"Student Services",
+        icon:"🧑‍🎓",
+        rating:4.1,
+        description:"Share your experience with student support, administration and campus services."
+    }
+
+];
+
+
+/* ================= CLOCK ================= */
 
 function updateClock(){
 
     const now = new Date();
 
-    document.getElementById("clock").textContent =
-        now.toLocaleTimeString(
-            "en-IN",
-            {
-                hour:"numeric",
-                minute:"2-digit",
-                second:"2-digit"
-            }
-        );
-}
+    let hours = now.getHours();
 
-setInterval(updateClock,1000);
+    const minutes =
+        String(now.getMinutes()).padStart(2,"0");
+
+    const seconds =
+        String(now.getSeconds()).padStart(2,"0");
+
+    const ampm =
+        hours >= 12 ? "PM" : "AM";
+
+    hours = hours % 12 || 12;
+
+    document.getElementById("clock").textContent =
+        hours + ":" + minutes + ":" + seconds + " " + ampm;
+}
 
 updateClock();
 
+setInterval(updateClock,1000);
 
 
-/* =========================================================
-   TOAST
-========================================================= */
+/* ================= STATISTICS ================= */
 
-function showToast(message){
+function calculateAverage(){
 
-    const toast =
-        document.getElementById("toast");
+    if(!feedbackData.length){
+        return 0;
+    }
 
-    toast.textContent = message;
+    const total =
+        feedbackData.reduce(
+            (sum,item) => sum + item.rating,
+            0
+        );
 
-    toast.classList.add("show");
-
-    setTimeout(function(){
-
-        toast.classList.remove("show");
-
-    },2500);
+    return (total / feedbackData.length).toFixed(1);
 }
 
 
+/* ================= CATEGORY FILTER ================= */
 
-/* =========================================================
-   LOGOUT
-========================================================= */
+function populateCategoryFilter(){
 
-function logoutUser(){
+    const select =
+        document.getElementById("categoryFilter");
 
-    showToast("Logging out...");
+    const categories =
+        [...new Set(
+            feedbackData.map(item => item.category)
+        )];
 
-    setTimeout(function(){
+    categories.forEach(function(category){
 
-        window.location.href = "login.html";
+        const option =
+            document.createElement("option");
 
-    },800);
+        option.value = category;
 
-    return false;
+        option.textContent = category;
+
+        select.appendChild(option);
+
+    });
 }
 
 
+/* ================= OVERVIEW ================= */
 
-/* =========================================================
-   SCROLL TO FEEDBACK
-========================================================= */
+function renderOverview(){
 
-function scrollToFeedback(){
+    document.getElementById("totalFeedback").textContent =
+        feedbackData.length;
 
-    document
-    .getElementById("feedbackFormSection")
-    .scrollIntoView({
-        behavior:"smooth"
+    document.getElementById("avgRating").textContent =
+        calculateAverage();
+
+    document.getElementById("statCategories").textContent =
+        feedbackData.length;
+
+    document.getElementById("heroTitle").textContent =
+        "Your voice helps us improve 🤝";
+
+}
+
+
+/* ================= STAR DISPLAY ================= */
+
+function createStars(rating){
+
+    const rounded =
+        Math.round(rating);
+
+    let stars = "";
+
+    for(let i = 1; i <= 5; i++){
+
+        if(i <= rounded){
+            stars += "★";
+        }else{
+            stars += "☆";
+        }
+
+    }
+
+    return stars;
+}
+
+
+/* ================= RENDER FEEDBACK ================= */
+
+function renderFeedback(){
+
+    const search =
+        document
+        .getElementById("feedbackSearch")
+        .value
+        .trim()
+        .toLowerCase();
+
+    const category =
+        document.getElementById("categoryFilter").value;
+
+    const list =
+        document.getElementById("feedbackList");
+
+    let rows =
+        feedbackData.slice();
+
+
+    if(category !== "all"){
+
+        rows =
+            rows.filter(
+                item => item.category === category
+            );
+
+    }
+
+
+    if(search){
+
+        rows =
+            rows.filter(item =>
+                item.title.toLowerCase().includes(search) ||
+                item.category.toLowerCase().includes(search) ||
+                item.description.toLowerCase().includes(search)
+            );
+
+    }
+
+
+    list.innerHTML = "";
+
+
+    if(rows.length === 0){
+
+        list.innerHTML =
+            '<div class="empty-note">No feedback category found 🔍</div>';
+
+        return;
+
+    }
+
+
+    rows.forEach(function(item){
+
+        const card =
+            document.createElement("div");
+
+        card.className =
+            "feedback-card";
+
+        card.onclick = function(){
+
+            showFeedbackDetails(item.id);
+
+        };
+
+
+        card.innerHTML =
+
+            '<div class="feedback-top">' +
+
+                '<div class="feedback-icon">' +
+                    item.icon +
+                '</div>' +
+
+                '<div class="feedback-info">' +
+
+                    '<strong>' +
+                        item.title +
+                    '</strong>' +
+
+                    '<span>' +
+                        item.category +
+                    '</span>' +
+
+                '</div>' +
+
+                '<div class="feedback-rating">' +
+                    createStars(item.rating) +
+                '</div>' +
+
+            '</div>' +
+
+            '<div class="feedback-description">' +
+                item.description +
+            '</div>' +
+
+            '<div class="feedback-bottom">' +
+
+                '<span class="feedback-tag">' +
+                    item.category +
+                '</span>' +
+
+                '<span class="feedback-action">' +
+                    'Give Feedback →' +
+                '</span>' +
+
+            '</div>';
+
+
+        list.appendChild(card);
+
     });
 
 }
 
 
+/* ================= SHOW FEEDBACK DETAILS ================= */
 
-/* =========================================================
-   RATING
-========================================================= */
+function showFeedbackDetails(id){
+
+    const item =
+        feedbackData.find(
+            x => x.id === id
+        );
+
+    if(!item){
+        return;
+    }
+
+
+    openModal(
+
+        item.icon + " " + item.title,
+
+        "<p><strong>Category:</strong> " +
+            item.category +
+        "</p>" +
+
+        "<p><strong>Current Rating:</strong> " +
+            item.rating +
+            " / 5.0 ⭐</p>" +
+
+        "<p>" +
+            item.description +
+        "</p>" +
+
+        "<div style='margin-top:12px;padding:12px;border-radius:12px;background:#f4f2ff;color:#5d4fbe;font-size:11px;line-height:1.6;'>" +
+
+            "Your feedback helps the college understand what students need and improve services over time." +
+
+        "</div>"
+
+    );
+
+}
+
+
+/* ================= MODAL ================= */
+
+function openModal(title,html){
+
+    document.getElementById("modalTitle").textContent =
+        title;
+
+    document.getElementById("modalContent").innerHTML =
+        html;
+
+    document
+        .getElementById("feedbackModal")
+        .classList.add("show");
+
+}
+
+
+function closeModal(){
+
+    document
+        .getElementById("feedbackModal")
+        .classList.remove("show");
+
+}
+
+
+function closeModalOutside(event){
+
+    if(
+        event.target ===
+        document.getElementById("feedbackModal")
+    ){
+
+        closeModal();
+
+    }
+
+}
+
+
+/* ================= RATING ================= */
 
 let selectedRating = 0;
+
 
 function selectRating(rating){
 
     selectedRating = rating;
 
-    for(let i=1;i<=5;i++){
+
+    for(let i = 1; i <= 5; i++){
 
         const star =
-            document.getElementById("star"+i);
+            document.getElementById("star" + i);
 
         if(i <= rating){
 
@@ -2428,38 +2315,33 @@ function selectRating(rating){
 
     }
 
+
+    document.getElementById("yourRating").textContent =
+        rating + "/5";
+
+
+    showToast(
+        "You selected " + rating + " star" +
+        (rating === 1 ? "" : "s")
+    );
+
 }
 
 
-
-/* =========================================================
-   SUBMIT FEEDBACK
-========================================================= */
+/* ================= SUBMIT FEEDBACK ================= */
 
 function submitFeedback(){
 
     const category =
-        document.getElementById("category").value;
+        document.getElementById("feedbackCategory").value;
 
-    const subject =
-        document.getElementById("subject").value.trim();
-
-    const feedback =
-        document.getElementById("feedbackText").value.trim();
+    const message =
+        document.getElementById("feedbackMessage").value.trim();
 
 
-    if(category === "Select category"){
+    if(!category){
 
-        showToast("Please select a feedback category.");
-
-        return;
-
-    }
-
-
-    if(!subject){
-
-        showToast("Please enter a subject.");
+        showToast("Please select a category");
 
         return;
 
@@ -2468,206 +2350,429 @@ function submitFeedback(){
 
     if(selectedRating === 0){
 
-        showToast("Please select a rating.");
+        showToast("Please select a rating");
 
         return;
 
     }
 
 
-    if(!feedback){
+    if(!message){
 
-        showToast("Please write your feedback.");
+        showToast("Please write your feedback");
 
         return;
 
     }
 
 
-    showToast("Feedback submitted successfully! 💙");
+    openModal(
+
+        "✅ Feedback Submitted",
+
+        "<p><strong>Category:</strong> " +
+            category +
+        "</p>" +
+
+        "<p><strong>Your Rating:</strong> " +
+            selectedRating +
+            " / 5.0 ⭐</p>" +
+
+        "<p><strong>Your Feedback:</strong></p>" +
+
+        "<div style='padding:12px;background:#f7f8fc;border-radius:12px;margin-top:8px;'>" +
+            escapeHtml(message) +
+        "</div>" +
+
+        "<div style='margin-top:12px;padding:11px;background:#f0fff7;border-radius:12px;color:#27875b;font-size:11px;'>" +
+            "Thank you for sharing your feedback. Your response has been recorded for this demo." +
+        "</div>"
+
+    );
 
 
-    document.getElementById("subject").value = "";
+    document.getElementById("feedbackCategory").value = "";
 
-    document.getElementById("feedbackText").value = "";
-
-    document.getElementById("category").value =
-        "Select category";
+    document.getElementById("feedbackMessage").value = "";
 
     selectedRating = 0;
 
 
-    for(let i=1;i<=5;i++){
+    for(let i = 1; i <= 5; i++){
 
         document
-        .getElementById("star"+i)
-        .classList.remove("selected");
+            .getElementById("star" + i)
+            .classList.remove("selected");
 
     }
+
+
+    document.getElementById("yourRating").textContent =
+        "0";
 
 }
 
 
+/* ================= SCROLL TO FORM ================= */
 
-/* =========================================================
-   CHATBOT
-========================================================= */
+function scrollToFeedbackForm(){
 
-function toggleChat(){
+    const section =
+        document.getElementById("feedbackFormSection");
 
-    const chat =
-        document.getElementById("chatWindow");
-
-    const button =
-        document.getElementById("chatbotButton");
-
-
-    chat.classList.toggle("open");
-
-
-    if(chat.classList.contains("open")){
-
-        button.style.display = "none";
-
-    }else{
-
-        button.style.display = "flex";
-
-    }
+    section.scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+    });
 
 }
 
 
+/* ================= NOTIFICATIONS ================= */
 
-/* =========================================================
-   ENTER KEY
-========================================================= */
+function showNotifications(){
 
-function handleEnter(event){
+    openModal(
 
-    if(event.key === "Enter"){
+        "🔔 Notifications",
 
-        sendMessage();
+        "<p><strong>Feedback Center</strong></p>" +
 
-    }
+        "<p>💬 You can submit feedback about academics, faculty, campus facilities, placements, library and student services.</p>" +
+
+        "<p>⭐ Remember to select a rating before submitting.</p>" +
+
+        "<p>✅ Your feedback helps improve the student experience.</p>"
+
+    );
 
 }
 
 
+/* ================= TOAST ================= */
 
-/* =========================================================
-   SEND MESSAGE
-========================================================= */
+function showToast(message){
 
-function sendMessage(){
+    const toast =
+        document.getElementById("toast");
 
-    const input =
-        document.getElementById("chatInput");
+    toast.textContent =
+        message;
 
-    const message =
-        input.value.trim();
+    toast.classList.add("show");
+
+    clearTimeout(toast._timer);
+
+    toast._timer =
+        setTimeout(
+            () => toast.classList.remove("show"),
+            2500
+        );
+
+}
 
 
-    if(!message) return;
+/* ================= CHATBOT ================= */
 
+function openChatPanel(){
+
+    document
+        .getElementById("chatbotPanel")
+        .classList.add("open");
+
+    document
+        .getElementById("chatBubble")
+        .classList.add("hide");
+
+}
+
+
+function closeChatPanel(){
+
+    document
+        .getElementById("chatbotPanel")
+        .classList.remove("open");
+
+    document
+        .getElementById("chatBubble")
+        .classList.remove("hide");
+
+}
+
+
+/* ================= QUICK CHAT ================= */
+
+function quickChat(text){
+
+    document.getElementById("chatInput").value =
+        text;
+
+    sendChat();
+
+}
+
+
+/* ================= ADD CHAT MESSAGE ================= */
+
+function addMessage(cls,html){
 
     const body =
         document.getElementById("chatBody");
 
-
-    const user =
+    const msg =
         document.createElement("div");
 
-    user.className =
-        "user-message";
+    msg.className =
+        cls;
 
-    user.textContent =
-        message;
+    msg.innerHTML =
+        html;
 
-    body.appendChild(user);
-
-
-    const text =
-        message.toLowerCase();
-
-
-    let reply =
-        "I can help you with feedback, ratings, academics, faculty and CampusConnect.";
-
-
-    if(
-        text.includes("feedback") ||
-        text.includes("suggestion")
-    ){
-
-        reply =
-            "You can submit your feedback using the Give Feedback section on this page.";
-
-    }
-
-    else if(
-        text.includes("rating") ||
-        text.includes("rate")
-    ){
-
-        reply =
-            "You can give a rating from 1 to 5 stars before submitting your feedback.";
-
-    }
-
-    else if(text.includes("faculty")){
-
-        reply =
-            "You can share your experience about faculty through the Feedback page.";
-
-    }
-
-    else if(text.includes("academic")){
-
-        reply =
-            "You can select Academics as the feedback category and describe your experience.";
-
-    }
-
-    else if(
-        text.includes("campus") ||
-        text.includes("facility")
-    ){
-
-        reply =
-            "You can submit suggestions about campus facilities through this feedback form.";
-
-    }
-
-
-    setTimeout(function(){
-
-        const bot =
-            document.createElement("div");
-
-        bot.className =
-            "bot-message";
-
-        bot.textContent =
-            reply;
-
-        body.appendChild(bot);
-
-        body.scrollTop =
-            body.scrollHeight;
-
-    },400);
-
-
-    input.value = "";
+    body.appendChild(msg);
 
     body.scrollTop =
         body.scrollHeight;
 
+    return msg;
+
 }
+
+
+/* ================= BOT REPLY ================= */
+
+function botReply(text){
+
+    const lower =
+        text.toLowerCase();
+
+
+    if(
+        /^(hi|hello|hey|hii|yo)\b/.test(lower)
+    ){
+
+        return "👋 Hi! I can help you with feedback categories, ratings and submitting feedback.";
+
+    }
+
+
+    if(
+        lower.includes("how") &&
+        (
+            lower.includes("give") ||
+            lower.includes("submit")
+        )
+    ){
+
+        return "💬 Choose a feedback category, select your rating, write your comments and click Submit Feedback.";
+
+    }
+
+
+    if(
+        lower.includes("category") ||
+        lower.includes("categories") ||
+        lower.includes("what can")
+    ){
+
+        return "📋 You can give feedback about Academics, Faculty, Campus Facilities, Placement, Library and Student Services.";
+
+    }
+
+
+    if(
+        lower.includes("rating") ||
+        lower.includes("star")
+    ){
+
+        return "⭐ Select between 1 and 5 stars. Five stars represents the highest rating.";
+
+    }
+
+
+    if(
+        lower.includes("important") ||
+        lower.includes("why feedback")
+    ){
+
+        return "🤝 Feedback helps the college understand student experiences and identify areas that can be improved.";
+
+    }
+
+
+    if(
+        lower.includes("academic")
+    ){
+
+        return "🎓 Academic feedback can cover classes, curriculum, learning materials, assignments and academic support.";
+
+    }
+
+
+    if(
+        lower.includes("faculty") ||
+        lower.includes("teacher")
+    ){
+
+        return "👨‍🏫 Faculty feedback can cover teaching quality, interaction, guidance and classroom experience.";
+
+    }
+
+
+    if(
+        lower.includes("campus") ||
+        lower.includes("facility")
+    ){
+
+        return "🏫 Campus feedback can cover classrooms, laboratories, infrastructure and other facilities.";
+
+    }
+
+
+    if(
+        lower.includes("placement")
+    ){
+
+        return "💼 Placement feedback can cover training, company visits, career guidance and placement support.";
+
+    }
+
+
+    if(
+        lower.includes("thank")
+    ){
+
+        return "😊 You're welcome! I'm always here to help.";
+
+    }
+
+
+    return "😊 I can help with feedback categories, ratings, submitting feedback and explaining why student feedback is useful.";
+
+}
+
+
+/* ================= SEND CHAT ================= */
+
+function sendChat(){
+
+    const input =
+        document.getElementById("chatInput");
+
+    const text =
+        input.value.trim();
+
+
+    if(!text){
+        return;
+    }
+
+
+    addMessage(
+        "user-message",
+        escapeHtml(text)
+    );
+
+
+    input.value = "";
+
+
+    const typing =
+        addMessage(
+            "typing",
+            "<i></i><i></i><i></i>"
+        );
+
+
+    setTimeout(function(){
+
+        typing.remove();
+
+        addMessage(
+            "bot-message",
+            botReply(text)
+        );
+
+    },600);
+
+}
+
+
+function handleChatKey(event){
+
+    if(event.key === "Enter"){
+
+        sendChat();
+
+    }
+
+}
+
+
+/* ================= ESCAPE HTML ================= */
+
+function escapeHtml(str){
+
+    return str
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+/* ================= LOGOUT ================= */
+
+function confirmLogout(){
+
+    return confirm(
+        "Are you sure you want to logout?"
+    );
+
+}
+
+
+/* ================= ESCAPE KEY ================= */
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(event.key === "Escape"){
+
+            closeModal();
+
+            closeChatPanel();
+
+        }
+
+    }
+);
+
+
+/* ================= INITIALIZE ================= */
+
+populateCategoryFilter();
+
+renderOverview();
+
+renderFeedback();
+
+
+setTimeout(function(){
+
+    addMessage(
+        "bot-message",
+        "There are <strong>" +
+        feedbackData.length +
+        "</strong> feedback categories available. Tap the bubble anytime if you need help. 🤝"
+    );
+
+},1200);
 
 </script>
 
+<script src="../js/chatbot.js"></script>
 </body>
-
 </html>

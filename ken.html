@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CampusConnect — Project Guide &amp; Change Report</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  /* =========================================================
+     THEME — mirrored from frontend/css/style.css (:root tokens)
+     ========================================================= */
+  :root{
+    --primary:#26358c;
+    --primary-dark:#17235f;
+    --secondary:#6436d8;
+    --accent:#7b4bea;
+    --gradient:linear-gradient(135deg,#17235f 0%,#29378f 45%,#7138d8 100%);
+    --light-bg:#f4f7fc;
+    --white:#ffffff;
+    --text-dark:#17213d;
+    --text:#34405e;
+    --text-light:#71809e;
+    --border:#e5e9f2;
+    --success:#18a957;
+    --warning:#f3a928;
+    --danger:#e74c5c;
+    --info:#3976e8;
+    --shadow-sm:0 4px 15px rgba(34,48,100,.06);
+    --shadow:0 10px 30px rgba(34,48,100,.10);
+    --shadow-lg:0 18px 45px rgba(34,48,100,.15);
+    --sidebar-width:290px;
+    --radius-sm:10px;
+    --radius:18px;
+    --radius-lg:26px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    background:var(--light-bg);
+    color:var(--text-dark);
+    line-height:1.65;
+    font-size:15px;
+  }
+  a{color:var(--primary);text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  /* ============ LAYOUT ============ */
+  .app{display:flex;min-height:100vh;width:100%}
+  .sidebar{
+    position:fixed;left:0;top:0;width:var(--sidebar-width);height:100vh;
+    background:var(--gradient);color:#fff;z-index:1000;
+    display:flex;flex-direction:column;overflow:hidden;
+    box-shadow:8px 0 30px rgba(25,37,95,.15);
+  }
+  .sidebar-inner{height:100%;overflow-y:auto;padding:22px 14px}
+  .sidebar-inner::-webkit-scrollbar{width:5px}
+  .sidebar-inner::-webkit-scrollbar-thumb{background:rgba(255,255,255,.25);border-radius:20px}
+  .brand{display:flex;align-items:center;gap:13px;padding:7px 10px 22px;margin-bottom:15px;border-bottom:1px solid rgba(255,255,255,.18)}
+  .brand-logo{width:50px;height:50px;border-radius:15px;background:linear-gradient(135deg,#fff,#dfe7ff);display:flex;align-items:center;justify-content:center;font-size:26px;box-shadow:0 8px 20px rgba(0,0,0,.15);flex-shrink:0}
+  .brand-text h1{font-size:20px;line-height:1.2;font-weight:800;letter-spacing:-.5px}
+  .brand-text p{font-size:11px;margin-top:3px;color:rgba(255,255,255,.72);font-weight:500}
+  .nav-title{padding:12px 15px 7px;font-size:10px;text-transform:uppercase;letter-spacing:1.2px;color:rgba(255,255,255,.45);font-weight:700}
+  .nav-link{
+    display:flex;align-items:center;gap:11px;width:100%;min-height:42px;padding:9px 14px;margin:3px 0;
+    border-radius:13px;color:rgba(255,255,255,.85);font-size:13.5px;font-weight:600;transition:.18s;
+  }
+  .nav-link:hover{background:rgba(255,255,255,.12);color:#fff;text-decoration:none}
+  .nav-link .ico{width:20px;text-align:center;font-size:15px}
+  .nav-link.active{background:rgba(255,255,255,.18);color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.18)}
+
+  .content{margin-left:var(--sidebar-width);flex:1;padding:44px 58px 90px;max-width:1180px}
+
+  /* ============ HERO ============ */
+  .hero{
+    background:var(--gradient);color:#fff;border-radius:var(--radius-lg);
+    padding:44px 46px;box-shadow:var(--shadow-lg);position:relative;overflow:hidden;margin-bottom:34px;
+  }
+  .hero::after{content:"";position:absolute;right:-70px;top:-70px;width:280px;height:280px;border-radius:50%;background:rgba(255,255,255,.08)}
+  .hero .tag{display:inline-block;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.28);padding:5px 14px;border-radius:999px;font-size:12px;font-weight:700;letter-spacing:.4px;margin-bottom:16px}
+  .hero h2{font-size:38px;font-weight:900;letter-spacing:-1px;line-height:1.15;margin-bottom:12px}
+  .hero p{font-size:16px;color:rgba(255,255,255,.88);max-width:760px}
+  .hero-facts{display:flex;flex-wrap:wrap;gap:14px;margin-top:26px}
+  .fact{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);border-radius:var(--radius-sm);padding:12px 18px;min-width:140px}
+  .fact b{display:block;font-size:22px;font-weight:800}
+  .fact span{font-size:11.5px;color:rgba(255,255,255,.75);text-transform:uppercase;letter-spacing:.6px;font-weight:600}
+
+  /* ============ SECTIONS / CARDS ============ */
+  section{scroll-margin-top:24px;margin-bottom:40px}
+  .sec-head{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+  .sec-num{
+    width:42px;height:42px;border-radius:12px;background:var(--gradient);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;flex-shrink:0;box-shadow:var(--shadow-sm)
+  }
+  .sec-head h3{font-size:24px;font-weight:800;letter-spacing:-.4px;color:var(--text-dark)}
+  .sec-head p{font-size:13px;color:var(--text-light);font-weight:500}
+
+  .card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:26px 28px;box-shadow:var(--shadow-sm);margin-bottom:18px}
+  .card h4{font-size:17px;font-weight:800;margin-bottom:12px;color:var(--text-dark);display:flex;align-items:center;gap:9px}
+  .card h4 .dot{width:9px;height:9px;border-radius:50%;background:var(--accent)}
+  .card p{margin-bottom:12px;color:var(--text)}
+  .card ul{margin:8px 0 8px 20px;color:var(--text)}
+  .card li{margin-bottom:7px}
+  .muted{color:var(--text-light)}
+
+  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  @media(max-width:1080px){.grid-2,.grid-3{grid-template-columns:1fr}}
+
+  /* ============ BADGES / PILLS ============ */
+  .pill{display:inline-block;padding:3px 11px;border-radius:999px;font-size:11px;font-weight:700;letter-spacing:.3px}
+  .pill.ok{background:rgba(24,169,87,.12);color:var(--success)}
+  .pill.warn{background:rgba(243,169,40,.15);color:#b97c05}
+  .pill.bad{background:rgba(231,76,92,.12);color:var(--danger)}
+  .pill.info{background:rgba(57,118,232,.12);color:var(--info)}
+  .pill.gray{background:#eef1f8;color:var(--text-light)}
+
+  /* ============ TABLES ============ */
+  .tbl{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:6px}
+  .tbl th{background:#f1f4fb;color:var(--text-dark);text-align:left;padding:11px 14px;font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.5px;border-bottom:2px solid var(--border)}
+  .tbl td{padding:10px 14px;border-bottom:1px solid var(--border);color:var(--text);vertical-align:top}
+  .tbl tr:hover td{background:#fafbff}
+  .tbl code{background:#eef1f8;padding:1px 7px;border-radius:6px;font-size:12.5px;color:var(--primary-dark);font-family:'SFMono-Regular',Consolas,monospace}
+
+  /* ============ BEFORE / AFTER ============ */
+  .compare{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:1080px){.compare{grid-template-columns:1fr}}
+  .ba{border-radius:var(--radius);padding:0;overflow:hidden;border:1px solid var(--border);background:#fff;box-shadow:var(--shadow-sm)}
+  .ba .ba-head{padding:14px 20px;font-weight:800;font-size:14px;display:flex;align-items:center;gap:9px;color:#fff}
+  .ba.before .ba-head{background:linear-gradient(135deg,#5b6379,#7d869c)}
+  .ba.after .ba-head{background:linear-gradient(135deg,#17235f,#7138d8)}
+  .ba .ba-body{padding:18px 20px}
+
+  /* ============ CODE ============ */
+  pre{
+    background:#0f1530;color:#dbe3ff;border-radius:var(--radius-sm);padding:16px 18px;overflow:auto;
+    font-family:'SFMono-Regular',Consolas,'Liberation Mono',monospace;font-size:12.5px;line-height:1.6;margin:10px 0;
+  }
+  pre .c{color:#7f8fc7}
+  code.inline{background:#eef1f8;padding:1px 7px;border-radius:6px;font-size:12.5px;color:var(--primary-dark);font-family:'SFMono-Regular',Consolas,monospace}
+
+  /* ============ TIMELINE ============ */
+  .tl{position:relative;margin-left:8px;padding-left:26px;border-left:2px solid var(--border)}
+  .tl .node{position:relative;margin-bottom:20px}
+  .tl .node::before{content:"";position:absolute;left:-33px;top:5px;width:14px;height:14px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(123,75,234,.15)}
+  .tl .node strong{color:var(--text-dark)}
+  .tl .node span{display:block;font-size:12.5px;color:var(--text-light)}
+
+  /* ============ CALLOUT ============ */
+  .callout{border-left:4px solid var(--info);background:rgba(57,118,232,.06);border-radius:8px;padding:13px 18px;margin:12px 0;font-size:13.5px;color:var(--text)}
+  .callout.warn{border-color:var(--warning);background:rgba(243,169,40,.08)}
+  .callout.bad{border-color:var(--danger);background:rgba(231,76,92,.06)}
+  .callout.good{border-color:var(--success);background:rgba(24,169,87,.07)}
+
+  footer{margin-left:var(--sidebar-width);padding:26px 58px 50px;color:var(--text-light);font-size:12.5px;border-top:1px solid var(--border);max-width:1180px}
+  @media(max-width:900px){
+    .sidebar{display:none}
+    .content,footer{margin-left:0;padding:24px 20px}
+  }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <!-- ================= SIDEBAR ================= -->
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+      <div class="brand">
+        <div class="brand-logo">🎓</div>
+        <div class="brand-text">
+          <h1>CampusConnect</h1>
+          <p>Project Guide &amp; Change Report</p>
+        </div>
+      </div>
+
+      <div class="nav-title">Getting Started</div>
+      <a class="nav-link" href="#intro"><span class="ico">📘</span> What this document is</a>
+      <a class="nav-link" href="#compare"><span class="ico">🔀</span> The two folders</a>
+      <a class="nav-link" href="#overview"><span class="ico">🚀</span> Project overview</a>
+
+      <div class="nav-title">Technical Deep Dive</div>
+      <a class="nav-link" href="#architecture"><span class="ico">🏗️</span> Architecture</a>
+      <a class="nav-link" href="#stack"><span class="ico">🧩</span> Tech stack</a>
+      <a class="nav-link" href="#database"><span class="ico">🗄️</span> Database design</a>
+      <a class="nav-link" href="#backend"><span class="ico">⚙️</span> Backend walkthrough</a>
+      <a class="nav-link" href="#auth"><span class="ico">🔐</span> Auth &amp; security</a>
+      <a class="nav-link" href="#api"><span class="ico">🔌</span> API reference</a>
+      <a class="nav-link" href="#chatbot"><span class="ico">🤖</span> AI chatbot</a>
+      <a class="nav-link" href="#frontend"><span class="ico">🎨</span> Frontend</a>
+
+      <div class="nav-title">Change Report</div>
+      <a class="nav-link" href="#before"><span class="ico">📦</span> What existed before</a>
+      <a class="nav-link" href="#bugs"><span class="ico">🐞</span> Bugs in the original</a>
+      <a class="nav-link" href="#after"><span class="ico">✨</span> What we added now</a>
+      <a class="nav-link" href="#filemap"><span class="ico">📄</span> File-by-file map</a>
+
+      <div class="nav-title">Run &amp; Ship</div>
+      <a class="nav-link" href="#setup"><span class="ico">🛠️</span> Setup from scratch</a>
+      <a class="nav-link" href="#testing"><span class="ico">🧪</span> Running &amp; testing</a>
+      <a class="nav-link" href="#deploy"><span class="ico">☁️</span> Deployment</a>
+      <a class="nav-link" href="#status"><span class="ico">✅</span> Verification status</a>
+      <a class="nav-link" href="#next"><span class="ico">🧭</span> What's still open</a>
+      <a class="nav-link" href="#glossary"><span class="ico">📖</span> Glossary</a>
+    </div>
+  </aside>
+
+  <!-- ================= CONTENT ================= -->
+  <main class="content">
+
+    <!-- HERO -->
+    <div class="hero">
+      <span class="tag">BCA MAJOR PROJECT · FULL GUIDE</span>
+      <h2>CampusConnect — AI College Companion</h2>
+      <p>A single-file guide to the whole project: what it is, how it works from scratch, what the original
+         snapshot contained, and exactly what was added to turn a half-finished skeleton into a working
+         Flask&nbsp;+&nbsp;MySQL student portal with 22 API modules, JWT security, an AI chatbot and a full test suite.</p>
+      <div class="hero-facts">
+        <div class="fact"><b>Flask 3.1</b><span>Backend</span></div>
+        <div class="fact"><b>MySQL 8</b><span>Database</span></div>
+        <div class="fact"><b>22</b><span>API modules</span></div>
+        <div class="fact"><b>18</b><span>DB tables</span></div>
+        <div class="fact"><b>112 / 112</b><span>E2E tests passing</span></div>
+        <div class="fact"><b>0 → 1</b><span>Working product</span></div>
+      </div>
+    </div>
+
+    <!-- ============ 1. INTRO ============ -->
+    <section id="intro">
+      <div class="sec-head">
+        <div class="sec-num">01</div>
+        <div><h3>What this document is</h3><p>Purpose, scope and how to read it</p></div>
+      </div>
+      <div class="card">
+        <p>This page is a <b>comparison + from-scratch guide</b> for the <b>CampusConnect</b> BCA project.
+           It answers three questions in one place:</p>
+        <ul>
+          <li><b>What was there before?</b> — the original project snapshot found in
+              <code class="inline">Downloads\BCA\BCA</code> (the baseline handed over).</li>
+          <li><b>What do we have now?</b> — the finished project in
+              <code class="inline">Desktop\Rahul\BCA</code> after the backend was implemented.</li>
+          <li><b>How does the whole thing work?</b> — an independent, end-to-end technical explanation so
+              anyone (examiner, teammate, future-you) can understand and run it.</li>
+        </ul>
+        <div class="callout good"><b>Note:</b> this file is documentation only. No source file in the project
+          was changed to produce it.</div>
+      </div>
+    </section>
+
+    <!-- ============ 2. COMPARE FOLDERS ============ -->
+    <section id="compare">
+      <div class="sec-head">
+        <div class="sec-num">02</div>
+        <div><h3>The two folders being compared</h3><p>Same project, two stages of completion</p></div>
+      </div>
+      <div class="compare">
+        <div class="ba before">
+          <div class="ba-head">📦 BEFORE · <code style="color:#fff">Downloads\BCA\BCA</code></div>
+          <div class="ba-body">
+            <p class="muted" style="font-size:13px">The original snapshot. A complete <b>static frontend</b> plus a
+              <b>skeleton backend</b> where most files were empty placeholders and the server would not even start.</p>
+            <ul style="font-size:13.5px">
+              <li>3 fully-built frontend HTML pages + 15 module pages</li>
+              <li>Only <b>2 of 22</b> backend modules actually written</li>
+              <li>Server <b>cannot boot</b> — 4 syntax/import errors</li>
+              <li>Empty <code class="inline">config.py</code> and <code class="inline">requirements.txt</code></li>
+              <li>Broken bundled <code class="inline">venv/</code> from another machine</li>
+            </ul>
+          </div>
+        </div>
+        <div class="ba after">
+          <div class="ba-head">✨ NOW · <code style="color:#fff">Desktop\Rahul\BCA</code></div>
+          <div class="ba-body">
+            <p class="muted" style="font-size:13px">The completed project. The same frontend, but with a fully
+              implemented, tested and deployable backend behind it.</p>
+            <ul style="font-size:13.5px">
+              <li>All <b>22 backend modules</b> implemented with raw SQL</li>
+              <li>Real <b>JWT auth</b> + role guards (student / admin)</li>
+              <li><b>AI chatbot</b> (NVIDIA NIM + offline fallback)</li>
+              <li>Docs, config, WSGI entry point, Procfile, <code class="inline">.env.example</code></li>
+              <li><b>6 smoke tests + 112 E2E tests</b> — all passing</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 3. OVERVIEW ============ -->
+    <section id="overview">
+      <div class="sec-head">
+        <div class="sec-num">03</div>
+        <div><h3>Project overview (from scratch)</h3><p>What CampusConnect is and why it exists</p></div>
+      </div>
+      <div class="card">
+        <h4><span class="dot"></span>In one sentence</h4>
+        <p><b>CampusConnect</b> is a web-based <b>“AI College Companion”</b> that brings a student's entire campus
+           life into one secure login — academics, attendance, timetable, exams, results, assignments, events,
+           placements, faculty, complaints, lost&nbsp;&amp;&nbsp;found, documents, notifications and feedback — all
+           powered by a Flask REST API over a MySQL database.</p>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <h4><span class="dot"></span>The problem</h4>
+          <p class="muted">Students juggle notice boards, portals, WhatsApp groups and paper records. Information is
+             scattered and easy to miss, and there is no single place to <i>act</i> on it.</p>
+        </div>
+        <div class="card">
+          <h4><span class="dot"></span>The solution</h4>
+          <p class="muted">One integrated portal with a single login. Every module is data-driven from a central
+             MySQL database and exposed through clean JSON endpoints the frontend consumes.</p>
+        </div>
+      </div>
+      <div class="card">
+        <h4><span class="dot"></span>Objectives (as stated in the synopsis)</h4>
+        <ul>
+          <li>Provide a <b>single login</b> for all campus features and personal academic data.</li>
+          <li><b>Digitise records</b> — courses, attendance, timetable, exams, results, assignments.</li>
+          <li>Keep students <b>informed in real time</b> via notifications, events and placements.</li>
+          <li>Let students <b>act</b> — submit assignments, raise complaints, post lost &amp; found, give feedback.</li>
+          <li>Expose a <b>clean, secure REST API</b> with proper status codes and password hashing.</li>
+          <li>Lay the foundation for an <b>AI chatbot</b> that answers questions from the campus database.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ 4. ARCHITECTURE ============ -->
+    <section id="architecture">
+      <div class="sec-head">
+        <div class="sec-num">04</div>
+        <div><h3>Architecture</h3><p>How the pieces fit together</p></div>
+      </div>
+      <div class="card">
+        <p>CampusConnect is deliberately split into <b>three tiers</b>. The backend is a pure JSON API — it has no
+           server-rendered templates — and the frontend is a separate static site that calls it over HTTP.</p>
+<pre>
+  ┌──────────────────────────────────────────────┐
+  │  FRONTEND  (static HTML / CSS / JS)          │
+  │  index.html · register.html · dashboard.html │
+  │  pages/*.html  (academics, exams, …)         │
+  │  calls the API with  fetch() + Bearer JWT    │
+  └───────────────┬──────────────────────────────┘
+                  │  HTTP  /api/...
+                  ▼
+  ┌──────────────────────────────────────────────┐
+  │  FLASK BACKEND  (create_app factory)         │
+  │                                              │
+  │  routes/     22 blueprints  (controllers)    │
+  │  services/   chatbot · notification · reminder│
+  │  models/     courses data-access             │
+  │  utils/      security · helpers · validators │
+  │  config.py   env-driven configuration        │
+  └───────────────┬──────────────────────────────┘
+                  │  mysql-connector-python (raw SQL)
+                  ▼
+  ┌──────────────────────────────────────────────┐
+  │  MySQL 8  —  database "campusconnect"        │
+  │  18 tables, foreign keys, ON DELETE CASCADE  │
+  └──────────────────────────────────────────────┘
+</pre>
+        <h4 style="margin-top:18px"><span class="dot"></span>Request lifecycle</h4>
+        <div class="tl">
+          <div class="node"><strong>1 · Client request</strong><span>Browser sends <code class="inline">fetch("/api/attendance")</code> with an <code class="inline">Authorization: Bearer &lt;token&gt;</code> header.</span></div>
+          <div class="node"><strong>2 · CORS + JSON provider</strong><span>Flask-CORS allows the origin; the custom JSON provider handles dates, times and Decimals.</span></div>
+          <div class="node"><strong>3 · Blueprint route</strong><span>The matching blueprint handler runs; <code class="inline">@token_required</code> verifies the JWT and injects <code class="inline">request.user_id</code> / <code class="inline">role</code>.</span></div>
+          <div class="node"><strong>4 · Raw SQL</strong><span><code class="inline">database/db.py</code> opens a connection and runs <code class="inline">query_all / query_one / execute</code> with parameterised SQL.</span></div>
+          <div class="node"><strong>5 · Envelope response</strong><span>Route returns <code class="inline">{"success":true,"data":…}</code> or <code class="inline">{"success":false,"message":…}</code> with an HTTP status code.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 5. STACK ============ -->
+    <section id="stack">
+      <div class="sec-head">
+        <div class="sec-num">05</div>
+        <div><h3>Technology stack</h3><p>Every library and why it is used</p></div>
+      </div>
+      <div class="card">
+        <table class="tbl">
+          <thead><tr><th>Layer</th><th>Technology</th><th>Why</th></tr></thead>
+          <tbody>
+            <tr><td>Language</td><td>Python 3.12+</td><td>Readable, huge ecosystem, standard for college Flask projects.</td></tr>
+            <tr><td>Web framework</td><td>Flask 3.1</td><td>Lightweight, blueprint-based modular routing.</td></tr>
+            <tr><td>Database</td><td>MySQL 8</td><td>Relational data with foreign keys and referential integrity.</td></tr>
+            <tr><td>DB driver</td><td><code>mysql-connector-python</code></td><td>Official driver; raw SQL, no ORM overhead.</td></tr>
+            <tr><td>Auth</td><td>JWT (<code>PyJWT</code>)</td><td>Stateless tokens — no server session store needed.</td></tr>
+            <tr><td>Password hashing</td><td>Werkzeug <code>generate/check_password_hash</code> (PBKDF2)</td><td>Never store plain passwords; salted PBKDF2 hashes.</td></tr>
+            <tr><td>Config</td><td><code>python-dotenv</code></td><td>Secrets stay in <code>.env</code>, out of source control.</td></tr>
+            <tr><td>CORS</td><td><code>Flask-CORS</code></td><td>Frontend is served from a different origin/port.</td></tr>
+            <tr><td>Server</td><td>Werkzeug (dev) / gunicorn (prod)</td><td>Werkzeug for local dev, gunicorn behind a host in production.</td></tr>
+            <tr><td>AI</td><td>NVIDIA NIM (<code>openai/gpt-oss-20b</code>)</td><td>LLM answers grounded in the student's live data.</td></tr>
+            <tr><td>Tests</td><td>pytest + PowerShell E2E script</td><td>Smoke tests in CI-style + full API flow test.</td></tr>
+            <tr><td>Frontend</td><td>Vanilla HTML / CSS / JS</td><td>No build step; opens directly in a browser.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ============ 6. DATABASE ============ -->
+    <section id="database">
+      <div class="sec-head">
+        <div class="sec-num">06</div>
+        <div><h3>Database design</h3><p>Database <code>campusconnect</code> — 18 tables</p></div>
+      </div>
+      <div class="card">
+        <p>All student-bound tables reference <code class="inline">users(id)</code> with
+           <code class="inline">ON DELETE CASCADE</code>, so removing a user cleans up their rows automatically.
+           Student-scoped queries filter by <code class="inline">user_id</code> taken from the JWT — never from the request body.</p>
+        <table class="tbl">
+          <thead><tr><th>#</th><th>Table</th><th>Holds</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td><code>users</code></td><td>Students &amp; admins — name, email, password hash, student_id, course, semester, phone, role, profile image.</td></tr>
+            <tr><td>2</td><td><code>courses</code></td><td>Course catalogue — code, name, program, semester, credits, department.</td></tr>
+            <tr><td>3</td><td><code>attendance</code></td><td>Per-student, per-course records (Present / Absent / Late).</td></tr>
+            <tr><td>4</td><td><code>timetable</code></td><td>Day / time slots, room and faculty per course.</td></tr>
+            <tr><td>5</td><td><code>assignments</code></td><td>Assignment tracking + submission file + status.</td></tr>
+            <tr><td>6</td><td><code>exams</code></td><td>Exam schedule per student/course.</td></tr>
+            <tr><td>7</td><td><code>results</code></td><td>Marks, grade and pass/fail status per student.</td></tr>
+            <tr><td>8</td><td><code>events</code></td><td>Campus events — date, time, location, category, image.</td></tr>
+            <tr><td>9</td><td><code>notifications</code></td><td>Per-student alerts with read/unread state.</td></tr>
+            <tr><td>10</td><td><code>placements</code></td><td>Company / job listings with deadlines.</td></tr>
+            <tr><td>11</td><td><code>applications</code></td><td>Student applications to placements + status.</td></tr>
+            <tr><td>12</td><td><code>faculty</code></td><td>Faculty directory — department, designation, contact.</td></tr>
+            <tr><td>13</td><td><code>campus</code></td><td>Campus facilities / information.</td></tr>
+            <tr><td>14</td><td><code>documents</code></td><td>Uploaded document metadata (library/documents module).</td></tr>
+            <tr><td>15</td><td><code>complaints</code></td><td>Grievances + admin response and status.</td></tr>
+            <tr><td>16</td><td><code>feedback</code></td><td>Ratings and messages from students.</td></tr>
+            <tr><td>17</td><td><code>lost_found</code></td><td>Lost / found item reports.</td></tr>
+            <tr><td>18</td><td><code>chatbot_messages</code></td><td>User ↔ bot conversation log.</td></tr>
+          </tbody>
+        </table>
+        <div class="callout warn"><b>Fixed:</b> in the original <code class="inline">schema.sql</code> the <b>courses</b>
+          table was defined <b>twice</b> with different columns, which broke the Courses API. The current schema
+          reconciles it into a single definition and adds sample seed data.</div>
+      </div>
+    </section>
+
+    <!-- ============ 7. BACKEND ============ -->
+    <section id="backend">
+      <div class="sec-head">
+        <div class="sec-num">07</div>
+        <div><h3>Backend walkthrough</h3><p>Layer by layer, top to bottom</p></div>
+      </div>
+
+      <div class="card">
+        <h4><span class="dot"></span>Application factory — <code class="inline">app.py</code></h4>
+        <p>The entry point builds the app inside <code class="inline">create_app()</code> instead of at import time — the
+           standard Flask pattern that makes testing and deployment easier. It loads config, installs a custom JSON
+           provider, wires CORS, registers 22 blueprints and adds JSON error handlers.</p>
+<pre><span class="c"># app.py — core of the factory</span>
+class CampusJSONProvider(DefaultJSONProvider):
+    def default(self, obj):
+        if isinstance(obj, (datetime, date, time)): return obj.isoformat()
+        if isinstance(obj, timedelta): return str(obj)
+        if isinstance(obj, Decimal):   return float(obj)
+        return super().default(obj)
+
+def create_app():
+    app = Flask(__name__)
+    app.config.from_object(get_config())
+    app.json = CampusJSONProvider(app)          <span class="c"># dates/Decimals → JSON</span>
+    CORS(app, origins=...)                       <span class="c"># from config</span>
+    for bp in blueprints: app.register_blueprint(bp)
+    ...
+    return app
+
+app = create_app()
+</pre>
+      </div>
+
+      <div class="card">
+        <h4><span class="dot"></span>Configuration — <code class="inline">config.py</code></h4>
+        <p>Previously an empty file. Now it reads everything from environment variables via
+           <code class="inline">python-dotenv</code>, exposes a <code class="inline">get_config()</code> that returns the
+           right class for dev/prod, and never hard-codes secrets.</p>
+      </div>
+
+      <div class="card">
+        <h4><span class="dot"></span>Database helpers — <code class="inline">database/db.py</code></h4>
+        <p>Originally only had <code class="inline">create_database()</code> and <code class="inline">get_connection()</code>.
+           Three thin wrappers were added so route files stay short and consistent, and every call is parameterised
+           (no string-concatenated SQL → no SQL injection):</p>
+        <table class="tbl">
+          <thead><tr><th>Helper</th><th>Purpose</th></tr></thead>
+          <tbody>
+            <tr><td><code>query_all(sql, params)</code></td><td>Run a SELECT → list of dicts.</td></tr>
+            <tr><td><code>query_one(sql, params)</code></td><td>Run a SELECT → one dict or <code>None</code>.</td></tr>
+            <tr><td><code>execute(sql, params, return_id)</code></td><td>INSERT/UPDATE/DELETE with commit + rollback on error; returns new id or row count.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card">
+        <h4><span class="dot"></span>Routes — <code class="inline">routes/</code></h4>
+        <p>One blueprint per feature area. Each file defines a <code class="inline">Blueprint</code> with its own
+           <code class="inline">url_prefix</code> (e.g. <code class="inline">/api/attendance</code>), guards handlers with
+           <code class="inline">@token_required</code> / <code class="inline">@admin_required</code>, validates input, runs
+           SQL, and returns the standard JSON envelope.</p>
+      </div>
+
+      <div class="card">
+        <h4><span class="dot"></span>Models, services, utils</h4>
+        <table class="tbl">
+          <thead><tr><th>Folder</th><th>Contents</th></tr></thead>
+          <tbody>
+            <tr><td><code>models/</code></td><td><code>courses.py</code> rewritten from a broken SQLAlchemy leftover into a small raw-SQL data-access layer (<code>get_all_courses</code>, <code>get_course_by_id</code>).</td></tr>
+            <tr><td><code>services/</code></td><td><code>chatbot_service.py</code> (NVIDIA NIM call + rule-based fallback), <code>notification_service.py</code>, <code>reminder_service.py</code>.</td></tr>
+            <tr><td><code>utils/</code></td><td><code>security.py</code> (JWT create/verify + decorators), <code>helpers.py</code> (<code>success()</code>/<code>error()</code>), <code>validators.py</code> (date/time/int checks).</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card">
+        <h4><span class="dot"></span>Deployment files</h4>
+        <p><code class="inline">wsgi.py</code> exposes the app for production servers, <code class="inline">Procfile</code>
+           contains the gunicorn start command, and <code class="inline">.env.example</code> documents every required
+           environment variable.</p>
+      </div>
+    </section>
+
+    <!-- ============ 8. AUTH ============ -->
+    <section id="auth">
+      <div class="sec-head">
+        <div class="sec-num">08</div>
+        <div><h3>Authentication &amp; security</h3><p>JWT, hashing and role guards</p></div>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <h4><span class="dot"></span>How a login works</h4>
+          <div class="tl">
+            <div class="node"><strong>POST /api/auth/register</strong><span>Creates the account; the password is hashed with PBKDF2 — the plain text is never stored. New users get role <code class="inline">student</code>.</span></div>
+            <div class="node"><strong>POST /api/auth/login</strong><span>Verifies the hash and returns a signed JWT plus the user object.</span></div>
+            <div class="node"><strong>Protected requests</strong><span>Client sends <code class="inline">Authorization: Bearer &lt;token&gt;</code>; the decorator decodes it and injects <code class="inline">user_id</code> / <code class="inline">role</code>.</span></div>
+          </div>
+        </div>
+        <div class="card">
+          <h4><span class="dot"></span>Guards — <code class="inline">utils/security.py</code></h4>
+          <table class="tbl">
+            <thead><tr><th>Decorator</th><th>Effect</th></tr></thead>
+            <tbody>
+              <tr><td><code>@token_required</code></td><td>Valid JWT required; sets <code>request.user_id</code> and <code>request.user_role</code>.</td></tr>
+              <tr><td><code>@admin_required</code></td><td>Also requires <code>role = 'admin'</code>.</td></tr>
+            </tbody>
+          </table>
+          <p class="muted" style="font-size:13px;margin-top:10px">Tokens are signed with <code class="inline">JWT_SECRET</code> and expire after
+             <code class="inline">JWT_EXPIRY_HOURS</code> (default 24). Promote a user to admin directly in MySQL:</p>
+<pre>UPDATE campusconnect.users
+  SET role = 'admin'
+  WHERE email = 'you@example.com';</pre>
+        </div>
+      </div>
+      <div class="callout good"><b>Security checklist:</b> parameterised SQL everywhere · PBKDF2 password hashing ·
+        secrets only in <code class="inline">.env</code> (git-ignored) · student data scoped by JWT <code class="inline">user_id</code>,
+        never by request body · admin-only routes guarded · consistent HTTP status codes (400/401/403/404/405/500).</div>
+    </section>
+
+    <!-- ============ 9. API ============ -->
+    <section id="api">
+      <div class="sec-head">
+        <div class="sec-num">09</div>
+        <div><h3>API reference</h3><p>22 modules · every endpoint</p></div>
+      </div>
+      <div class="card">
+        <p><b>Two response shapes:</b> <code class="inline">/api/courses</code> returns a plain JSON array (the frontend
+           consumes it directly); every other endpoint returns an envelope
+           <code class="inline">{"success":true,"data":…}</code> or <code class="inline">{"success":false,"message":…}</code>.
+           Dates are <code class="inline">YYYY-MM-DD</code>, times <code class="inline">HH:MM:SS</code>.</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <h4><span class="dot"></span>Auth · <code class="inline">/api/auth</code></h4>
+          <table class="tbl"><tbody>
+            <tr><td><code>POST /register</code></td><td class="muted">Register</td></tr>
+            <tr><td><code>POST /login</code></td><td class="muted">Log in → JWT</td></tr>
+          </tbody></table>
+        </div>
+        <div class="card">
+          <h4><span class="dot"></span>Students · <code class="inline">/api/students</code></h4>
+          <table class="tbl"><tbody>
+            <tr><td><code>GET/PUT /me</code></td><td class="muted">My profile</td></tr>
+            <tr><td><code>GET / , /&lt;id&gt;</code></td><td class="muted">Admin: list / one</td></tr>
+          </tbody></table>
+        </div>
+        <div class="card">
+          <h4><span class="dot"></span>Settings · <code class="inline">/api/settings</code></h4>
+          <table class="tbl"><tbody>
+            <tr><td><code>GET/PUT</code></td><td class="muted">My preferences</td></tr>
+          </tbody></table>
+        </div>
+        <div class="card">
+          <h4><span class="dot"></span>Courses · <code class="inline">/api/courses</code> <span class="pill gray">public</span></h4>
+          <table class="tbl"><tbody>
+            <tr><td><code>GET /</code></td><td class="muted">List (?program=&amp;semester=)</td></tr>
+            <tr><td><code>GET /&lt;id&gt;</code></td><td class="muted">One course</td></tr>
+          </tbody></table>
+        </div>
+        <div class="card">
+          <h4><span class="dot"></span>Attendance · <code class="inline">/api/attendance</code></h4>
+          <table class="tbl"><tbody>
+            <tr><td><code>GET / , /summary, /&lt;id&gt;</code></td><td class="muted">Read + % summary</td></tr>
+            <tr><td><code>POST / , PUT/DELETE /&lt;id&gt;</code></td><td class="muted">Write</td></tr>
+          </tbody></table>
+        </div>
+        <div class="card">
+          <h4><span class="dot"></span>Timetable · <code class="inline">/api/timetable</code></h4>
+          <table class="tbl"><tbody>
+            <tr><td><code>GET / , /&lt;id&gt;</code></td><td class="muted">Read (?day=)</td></tr>
+            <tr><td><code>POST / , PUT/DELETE /&lt;id&gt;</code></td><td class="muted">Write</td></tr>
+          </tbody></table>
+        </div>
+        <div class="card">
+          <h4><span class="dot"></span>Assignments · <code class="inline">/api/assignments</code></h4>
+          <table class="tbl"><tbody>
+            <tr><td><code>GET / , /&lt;id&gt;</code></td><td class="muted">Read (?status=)</td></tr>
+            <tr><td><code>POST / , /&lt;id&gt;/submit</code></td><td class="muted">Create / submit</td></tr>
+            <tr><td><code>PUT/DELETE /&lt;id&gt;</code></td><td class="muted">Update / remove</td></tr>
+          </tbody></table>
+        </div>
+        <div class="card">
+          <h4><span class="dot"></span>Exams · <code class="inline">/api/exams</code></h4>
+          <table class="tbl"><tbody>
+            <tr><td><code>GET / , /&lt;id&gt;</code></td><td class="muted">Read (?upcoming=1)</td></tr>
+            <tr><td><code>POST / , PUT/DELETE /&lt;id&gt;</code></td><td class="muted">Write</td></tr>
+          </tbody></table>
+        </div>
+        <div class="card">
+          <h4><span class="dot"></span>Results · <code class="inline">/api/results</code></h4>
+          <table class="tbl"><tbody>
+            <tr><td><code>GET / , /summary</code></td><td class="muted">Mine + GPA</td></tr>
+            <tr><td><code>POST / , PUT/DELETE /&lt;id&gt;</code></td><td class="muted">Admin write</td></tr>
+          </tbody></table>
+        </div>
+        <div class="card">
+          <h4><span class="dot"></span>Events · <code class="inline">/api/events</code> <span class="pill gray">public</span></h4>
+          <table class="tbl"><tbody>
+            <tr><td><code>GET / , /&lt;id&gt;</code></td><td class="muted">List (?category=&amp;upcoming=1)</td></tr>
+            <tr><td><code>POST / , PUT/DELETE /&lt;id&gt;</code></td><td class="muted">Admin write</td></tr>
+          </tbody></table>
+        </div>
+        <div class="card">
+          <h4><span class="dot"></span>Faculty · <code class="inline">/api/faculty</code> <span class="pill gray">public</span></h4>
+          <table class="tbl"><tbody>
+            <tr><td><code>GET / , /&lt;id&gt;</code></td><td class="muted">Directory (?department=)</td></tr>
+            <tr><td><code>POST / , PUT/DELETE /&lt;id&gt;</code></td><td class="muted">Admin write</td></tr>
+          </tbody></table>
+        </div>
+        <div class="card">
+          <h4><span class="dot"></span>Campus · <code class="inline">/api/campus</code> <span class="pill gray">public</span></h4>
+          <table class="tbl"><tbody>
+            <tr><td><code>GET / , /&lt;id&gt;</code></td><td class="muted">Facilities (?category=)</td></tr>
+            <tr><td><code>POST / , PUT/DELETE /&lt;id&gt;</code></td><td class="muted">Admin write</td></tr>
+          </tbody></table>
+        </div>
+        <div class="card">
+          <h4><span class="dot"></span>Placements · <code class="inline">/api/placements</code> <span class="pill gray">public</span></h4>
+          <table class="tbl"><tbody>
+            <tr><td><code>GET / , /&lt;id&gt;</code></td><td class="muted">List (?q=&amp;open=1)</td></tr>
+            <tr><td><code>POST / , PUT/DELETE /&lt;id&gt;</code></td><td class="muted">Admin write</td></tr>
+          </tbody></table>
+        </div>
+        <div class="card">
+          <h4><span class="dot"></span>Applications · <code class="inline">/api/applications</code></h4>
+          <table class="tbl"><tbody>
+            <tr><td><code>GET / , /&lt;id&gt;</code></td><td class="muted">Mine (?all=1 admin)</td></tr>
+            <tr><td><code>POST /</code></td><td class="muted">Apply</td></tr>
+            <tr><td><code>PUT /&lt;id&gt;</code> · <code>DELETE /&lt;id&gt;</code></td><td class="muted">Admin update · withdraw</td></tr>
+          </tbody></table>
+        </div>
+        <div class="card">
+          <h4><span class="dot"></span>Notifications · <code class="inline">/api/notifications</code></h4>
+          <table class="tbl"><tbody>
+            <tr><td><code>GET / , /unread-count</code></td><td class="muted">Mine (?unread=1)</td></tr>
+            <tr><td><code>PUT /&lt;id&gt;/read , /read-all</code></td><td class="muted">Mark read</td></tr>
+            <tr><td><code>POST / , /broadcast</code></td><td class="muted">Admin create / broadcast</td></tr>
+          </tbody></table>
+        </div>
+        <div class="card">
+          <h4><span class="dot"></span>Library · <code class="inline">/api/library</code></h4>
+          <table class="tbl"><tbody>
+            <tr><td><code>GET /documents</code></td><td class="muted">My documents</td></tr>
+            <tr><td><code>POST /documents</code></td><td class="muted">Add (JSON or file)</td></tr>
+            <tr><td><code>DELETE /documents/&lt;id&gt;</code></td><td class="muted">Remove</td></tr>
+          </tbody></table>
+        </div>
+        <div class="card">
+          <h4><span class="dot"></span>Lost &amp; Found · <code class="inline">/api/lost-found</code> <span class="pill gray">list public</span></h4>
+          <table class="tbl"><tbody>
+            <tr><td><code>GET / , /&lt;id&gt;</code></td><td class="muted">List (?item_type=&amp;status=&amp;q=)</td></tr>
+            <tr><td><code>POST / , PUT/DELETE /&lt;id&gt;</code></td><td class="muted">Owner or admin</td></tr>
+          </tbody></table>
+        </div>
+        <div class="card">
+          <h4><span class="dot"></span>Complaints · <code class="inline">/api/complaints</code></h4>
+          <table class="tbl"><tbody>
+            <tr><td><code>GET / , /&lt;id&gt;</code></td><td class="muted">Mine (?all=1 admin)</td></tr>
+            <tr><td><code>POST /</code></td><td class="muted">Submit</td></tr>
+            <tr><td><code>PUT/DELETE /&lt;id&gt;</code></td><td class="muted">Admin respond / delete</td></tr>
+          </tbody></table>
+        </div>
+        <div class="card">
+          <h4><span class="dot"></span>Feedback · <code class="inline">/api/feedback</code></h4>
+          <table class="tbl"><tbody>
+            <tr><td><code>POST / , GET /</code></td><td class="muted">Submit / mine</td></tr>
+            <tr><td><code>GET /summary</code></td><td class="muted">Admin average + recent</td></tr>
+          </tbody></table>
+        </div>
+        <div class="card">
+          <h4><span class="dot"></span>Admin · <code class="inline">/api/admin</code></h4>
+          <table class="tbl"><tbody>
+            <tr><td><code>GET /stats, /users</code></td><td class="muted">Dashboard counts, list (?role=)</td></tr>
+            <tr><td><code>PUT /users/&lt;id&gt;/role</code></td><td class="muted">Change role</td></tr>
+            <tr><td><code>DELETE /users/&lt;id&gt;</code></td><td class="muted">Delete user</td></tr>
+          </tbody></table>
+        </div>
+        <div class="card">
+          <h4><span class="dot"></span>Academics · <code class="inline">/api/academics</code></h4>
+          <table class="tbl"><tbody>
+            <tr><td><code>GET /overview</code></td><td class="muted">Dashboard aggregate for a student</td></tr>
+          </tbody></table>
+        </div>
+        <div class="card">
+          <h4><span class="dot"></span>Chatbot · <code class="inline">/api/chatbot</code></h4>
+          <table class="tbl"><tbody>
+            <tr><td><code>POST /message</code></td><td class="muted">Send, get reply</td></tr>
+            <tr><td><code>GET/DELETE /history</code></td><td class="muted">My history / clear</td></tr>
+          </tbody></table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 10. CHATBOT ============ -->
+    <section id="chatbot">
+      <div class="sec-head">
+        <div class="sec-num">10</div>
+        <div><h3>The AI chatbot</h3><p>LLM-first, always answers</p></div>
+      </div>
+      <div class="card">
+        <p>The chatbot is the “AI” in <i>AI College Companion</i>. It tries a real LLM first and degrades gracefully
+           so the endpoint never fails.</p>
+        <div class="tl">
+          <div class="node"><strong>1 · Try the LLM</strong><span>Posts to NVIDIA NIM (<code class="inline">integrate.api.nvidia.com/v1</code>) using <code class="inline">openai/gpt-oss-20b</code>, feeding the model the student's live attendance, assignments, exams and timetable so it can guide them in-app.</span></div>
+          <div class="node"><strong>2 · Reply</strong><span>Returns the answer in <code class="inline">data.reply</code> with <code class="inline">data.intent = "llm"</code>.</span></div>
+          <div class="node"><strong>3 · Fallback</strong><span>If <code class="inline">NVIDIA_API_KEY</code> is unset, or the model errors/times out, a built-in rule-based assistant answers instead — so <code class="inline">/api/chatbot/message</code> always responds.</span></div>
+        </div>
+        <p class="muted" style="font-size:13px">Relevant config keys: <code class="inline">NVIDIA_API_KEY</code>,
+           <code class="inline">CHATBOT_MODEL</code>, <code class="inline">CHATBOT_TIMEOUT</code>,
+           <code class="inline">CHATBOT_REASONING_EFFORT</code>. In the original snapshot this was an empty placeholder file.</p>
+      </div>
+    </section>
+
+    <!-- ============ 11. FRONTEND ============ -->
+    <section id="frontend">
+      <div class="sec-head">
+        <div class="sec-num">11</div>
+        <div><h3>Frontend</h3><p>The static UI the API powers</p></div>
+      </div>
+      <div class="card">
+        <p>The frontend already existed in the original snapshot and was largely carried over. It is plain
+           HTML/CSS/JS with no build step — open a page in a browser and it calls the API.</p>
+        <h4><span class="dot"></span>Design system (this page uses the same tokens)</h4>
+        <div class="grid-3">
+          <div><p class="muted" style="font-size:12px;margin-bottom:4px">GRADIENT</p><div style="height:34px;border-radius:10px;background:linear-gradient(135deg,#17235f,#29378f,#7138d8)"></div></div>
+          <div><p class="muted" style="font-size:12px;margin-bottom:4px">PRIMARY #26358C</p><div style="height:34px;border-radius:10px;background:#26358c"></div></div>
+          <div><p class="muted" style="font-size:12px;margin-bottom:4px">ACCENT #7B4BEA</p><div style="height:34px;border-radius:10px;background:#7b4bea"></div></div>
+        </div>
+        <table class="tbl" style="margin-top:16px">
+          <thead><tr><th>File</th><th>Role</th></tr></thead>
+          <tbody>
+            <tr><td><code>frontend/index.html</code></td><td>Landing / login entry.</td></tr>
+            <tr><td><code>frontend/register.html</code></td><td>Registration form (calls <code>/api/auth/register</code>).</td></tr>
+            <tr><td><code>frontend/dashboard.html</code></td><td>Post-login shell with sidebar + topbar.</td></tr>
+            <tr><td><code>frontend/js/dashboard.js</code>, <code>login.js</code></td><td>Auth handling, token storage and dashboard data.</td></tr>
+            <tr><td><code>frontend/js/chatbot.js</code></td><td><b>Newly implemented</b> — wires the chat widget to <code>/api/chatbot</code>.</td></tr>
+            <tr><td><code>frontend/css/style.css</code></td><td>Global theme — the design tokens reused on this page.</td></tr>
+            <tr><td><code>frontend/pages/*.html</code></td><td>15 module pages (academics, attendance, exams, results, events, placement, faculty, complaints, lost&nbsp;&amp;&nbsp;found, documents, notifications, feedback, campus, profile, settings).</td></tr>
+          </tbody>
+        </table>
+        <div class="callout warn"><b>Integration note:</b> in the original, only Registration and Academics actually
+          called the API — the other pages ran on mock/local data. Now that every endpoint exists, the remaining
+          pages can be wired up incrementally.</div>
+      </div>
+    </section>
+
+    <!-- ============ 12. BEFORE ============ -->
+    <section id="before">
+      <div class="sec-head">
+        <div class="sec-num">12</div>
+        <div><h3>What existed before</h3><p>The original snapshot, exactly as received</p></div>
+      </div>
+      <div class="card">
+        <p>Source: <code class="inline">Downloads\BCA\BCA</code>. A full static frontend sat on top of a backend where
+           only two files had real logic.</p>
+        <table class="tbl">
+          <thead><tr><th>Area</th><th>State in the original</th></tr></thead>
+          <tbody>
+            <tr><td>Frontend</td><td><span class="pill ok">Built</span> index, register, dashboard + 15 module pages, CSS and 2 JS files.</td></tr>
+            <tr><td>Auth API</td><td><span class="pill ok">Working</span> register + login with hashing.</td></tr>
+            <tr><td>Courses API</td><td><span class="pill warn">Broken</span> logic present but the file started with <code>python app.py</code> → <code>SyntaxError</code>.</td></tr>
+            <tr><td>All other routes</td><td><span class="pill bad">Empty</span> 13 of 15 modules were 0-byte placeholders.</td></tr>
+            <tr><td>Models / services / utils</td><td><span class="pill bad">Empty</span> except a broken SQLAlchemy <code>courses.py</code>.</td></tr>
+            <tr><td>Database</td><td><span class="pill warn">There</span> 18-table schema, but <code>courses</code> defined twice.</td></tr>
+            <tr><td>config / requirements</td><td><span class="pill bad">Empty</span> both 0 bytes.</td></tr>
+            <tr><td>Venv</td><td><span class="pill bad">Broken</span> pointed at another machine's Python path.</td></tr>
+            <tr><td>Docs / deployment</td><td><span class="pill bad">None</span> no README, wsgi, Procfile or tests.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ============ 13. BUGS ============ -->
+    <section id="bugs">
+      <div class="sec-head">
+        <div class="sec-num">13</div>
+        <div><h3>Bugs in the original</h3><p>Why it could not start</p></div>
+      </div>
+      <div class="card">
+        <table class="tbl">
+          <thead><tr><th>#</th><th>File</th><th>Problem</th><th>Result</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td><code>routes/courses.py</code> line 1</td><td>Contained the text <code>python app.py</code></td><td><code>SyntaxError</code> — app won't import.</td></tr>
+            <tr><td>2</td><td><code>setup_schema.py</code> line 58</td><td><code>continue=</code> (stray <code>=</code>)</td><td><code>SyntaxError</code> — DB setup won't run.</td></tr>
+            <tr><td>3</td><td><code>routes/attendance.py</code></td><td>Contained only a stray <code>\</code></td><td><code>SyntaxError</code>.</td></tr>
+            <tr><td>4</td><td><code>models/courses.py</code></td><td>Broken SQLAlchemy leftover (<code>from app import db</code>, markdown fences)</td><td><code>IndentationError</code>.</td></tr>
+            <tr><td>5</td><td><code>config.py</code>, <code>requirements.txt</code></td><td>Both empty</td><td>No config source; no dependencies declared.</td></tr>
+            <tr><td>6</td><td><code>database/schema.sql</code></td><td><code>courses</code> defined twice with different columns</td><td>Courses API can't work until reconciled.</td></tr>
+            <tr><td>7</td><td>bundled <code>venv/</code></td><td>Points to another machine's Python path</td><td>Unusable — must be recreated.</td></tr>
+          </tbody>
+        </table>
+        <div class="callout bad"><b>Net effect:</b> the server would not boot and the database setup script would not run.
+          The project had a polished frontend sitting on a non-functional backend.</div>
+      </div>
+    </section>
+
+    <!-- ============ 14. AFTER ============ -->
+    <section id="after">
+      <div class="sec-head">
+        <div class="sec-num">14</div>
+        <div><h3>What we added now</h3><p>From skeleton to working product</p></div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <h4><span class="dot"></span>Backend implementation</h4>
+          <ul>
+            <li>All <b>22 blueprints</b> implemented with raw SQL + validation.</li>
+            <li><b>App factory</b> (<code class="inline">create_app</code>), custom JSON provider, 404/405/500 handlers.</li>
+            <li>Real <b><code class="inline">config.py</code></b> and filled <code class="inline">requirements.txt</code>.</li>
+            <li><b><code class="inline">database/db.py</code></b> query helpers (<code class="inline">query_all / query_one / execute</code>).</li>
+            <li><b><code class="inline">models/courses.py</code></b> rewritten as clean raw-SQL access.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="dot"></span>Security &amp; services</h4>
+          <ul>
+            <li><b>JWT auth</b> + <code class="inline">@token_required</code> / <code class="inline">@admin_required</code>.</li>
+            <li><code class="inline">utils/</code>: <code class="inline">security.py</code>, <code class="inline">helpers.py</code>, <code class="inline">validators.py</code>.</li>
+            <li><b>Chatbot</b> service (NVIDIA NIM + rule-based fallback).</li>
+            <li><b>Notification</b> and <b>reminder</b> services.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="dot"></span>New modules (were empty before)</h4>
+          <p class="muted" style="font-size:13.5px">campus · chatbot · complaints · faculty · feedback · results · settings
+             — plus the 15 originally-planned modules all filled in.</p>
+        </div>
+        <div class="card">
+          <h4><span class="dot"></span>DB, tests &amp; deployment</h4>
+          <ul>
+            <li>Reconciled <code class="inline">schema.sql</code> (single <code class="inline">courses</code> table) + seed data.</li>
+            <li><code class="inline">tests/test_smoke.py</code> (pytest) + <code class="inline">tests/e2e_api_test.ps1</code> (full flow).</li>
+            <li><code class="inline">wsgi.py</code>, <code class="inline">Procfile</code>, <code class="inline">.env.example</code>.</li>
+            <li><code class="inline">backend/README.md</code> (full docs) + <code class="inline">frontend/js/chatbot.js</code>.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <h4><span class="dot"></span>Before → After at a glance</h4>
+        <table class="tbl">
+          <thead><tr><th>Metric</th><th>Before</th><th>After</th></tr></thead>
+          <tbody>
+            <tr><td>Backend modules implemented</td><td class="muted">2 / 16 planned</td><td><b>22</b></td></tr>
+            <tr><td>Server boots?</td><td><span class="pill bad">No</span></td><td><span class="pill ok">Yes</span></td></tr>
+            <tr><td>DB setup script runs?</td><td><span class="pill bad">No</span></td><td><span class="pill ok">Yes</span></td></tr>
+            <tr><td>JWT auth &amp; roles</td><td><span class="pill bad">Planned</span></td><td><span class="pill ok">Implemented</span></td></tr>
+            <tr><td>AI chatbot</td><td><span class="pill bad">Empty file</span></td><td><span class="pill ok">LLM + fallback</span></td></tr>
+            <tr><td>Config &amp; dependencies</td><td><span class="pill bad">Empty</span></td><td><span class="pill ok">Complete</span></td></tr>
+            <tr><td>Automated tests</td><td class="muted">0</td><td><b>6 smoke + 112 E2E</b></td></tr>
+            <tr><td>Deploy config</td><td><span class="pill bad">None</span></td><td><span class="pill ok">wsgi + Procfile</span></td></tr>
+            <tr><td>Documentation</td><td><span class="pill bad">None</span></td><td><span class="pill ok">README + synopsis</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ============ 15. FILE MAP ============ -->
+    <section id="filemap">
+      <div class="sec-head">
+        <div class="sec-num">15</div>
+        <div><h3>File-by-file change map</h3><p>Every meaningful difference between the two folders</p></div>
+      </div>
+      <div class="card">
+        <table class="tbl">
+          <thead><tr><th>File</th><th>Before</th><th>Now</th></tr></thead>
+          <tbody>
+            <tr><td><code>backend/app.py</code></td><td class="muted">2 blueprints, no config/handlers</td><td><b>App factory, 22 blueprints, JSON provider, error handlers</b></td></tr>
+            <tr><td><code>backend/config.py</code></td><td class="muted">0 bytes</td><td><b>Env-driven config classes</b></td></tr>
+            <tr><td><code>backend/requirements.txt</code></td><td class="muted">0 bytes</td><td><b>Pinned dependencies</b></td></tr>
+            <tr><td><code>backend/requirements-dev.txt</code></td><td class="muted">—</td><td><b>New</b> — pytest</td></tr>
+            <tr><td><code>backend/Procfile</code></td><td class="muted">—</td><td><b>New</b> — gunicorn</td></tr>
+            <tr><td><code>backend/wsgi.py</code></td><td class="muted">—</td><td><b>New</b> — production entry</td></tr>
+            <tr><td><code>backend/.env.example</code></td><td class="muted">—</td><td><b>New</b> — documented keys</td></tr>
+            <tr><td><code>backend/README.md</code></td><td class="muted">—</td><td><b>New</b> — full docs (16&nbsp;KB)</td></tr>
+            <tr><td><code>backend/setup_schema.py</code></td><td class="muted"><code>continue=</code> syntax error</td><td><b>Fixed</b></td></tr>
+            <tr><td><code>backend/database/db.py</code></td><td class="muted">connect only</td><td><b>+ query_all / query_one / execute</b></td></tr>
+            <tr><td><code>backend/database/schema.sql</code></td><td class="muted">courses defined twice</td><td><b>Reconciled + seed data</b></td></tr>
+            <tr><td><code>backend/models/courses.py</code></td><td class="muted">broken SQLAlchemy</td><td><b>Raw-SQL data access</b></td></tr>
+            <tr><td><code>backend/routes/courses.py</code></td><td class="muted">starts with <code>python app.py</code></td><td><b>Fixed + refactored</b></td></tr>
+            <tr><td><code>backend/routes/attendance.py</code></td><td class="muted">stray <code>\</code></td><td><b>Implemented</b></td></tr>
+            <tr><td><code>backend/routes/*</code> (13 more)</td><td class="muted">empty</td><td><b>Implemented</b></td></tr>
+            <tr><td><code>backend/routes/</code> (campus, chatbot, complaints, faculty, feedback, results, settings)</td><td class="muted">didn't exist</td><td><b>New modules</b></td></tr>
+            <tr><td><code>backend/services/*</code></td><td class="muted">all empty</td><td><b>chatbot, notification, reminder</b></td></tr>
+            <tr><td><code>backend/utils/*</code></td><td class="muted">helpers.py empty</td><td><b>security, helpers, validators</b></td></tr>
+            <tr><td><code>backend/tests/*</code></td><td class="muted">—</td><td><b>New</b> — smoke + E2E</td></tr>
+            <tr><td><code>frontend/js/chatbot.js</code></td><td class="muted">0 bytes</td><td><b>Implemented</b></td></tr>
+            <tr><td><code>frontend/*</code> (pages, css, js)</td><td class="muted">present</td><td>Carried over</td></tr>
+            <tr><td><code>SYNOPSIS.md</code>, <code>dashboard_screenshot.png</code></td><td class="muted">—</td><td><b>New</b> — project docs</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ============ 16. SETUP ============ -->
+    <section id="setup">
+      <div class="sec-head">
+        <div class="sec-num">16</div>
+        <div><h3>Setup from scratch</h3><p>Get it running on a clean machine (Windows / PowerShell)</p></div>
+      </div>
+      <div class="card">
+        <p><b>Prerequisites:</b> Python 3.12+, MySQL 8 running on <code class="inline">localhost:3306</code>.</p>
+<pre><span class="c"># 1 — go to the backend</span>
+cd "C:\Users\acube\OneDrive\Desktop\Rahul\BCA\backend"
+
+<span class="c"># 2 — create and activate a virtual environment</span>
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+
+<span class="c"># 3 — install dependencies</span>
+pip install -r requirements.txt
+
+<span class="c"># 4 — create your .env and fill in your MySQL password</span>
+Copy-Item .env.example .env
+notepad .env
+
+<span class="c"># 5 — create the database + tables</span>
+python setup_schema.py
+
+<span class="c"># 6 — run the API</span>
+python app.py
+</pre>
+        <p>The API is then available at <b>http://127.0.0.1:5000</b>. Open the frontend pages directly in a browser
+           (or serve the <code class="inline">frontend/</code> folder) and they will call that API.</p>
+      </div>
+      <div class="card">
+        <h4><span class="dot"></span>Environment variables (<code class="inline">.env</code>)</h4>
+        <table class="tbl">
+          <thead><tr><th>Key</th><th>Meaning</th></tr></thead>
+          <tbody>
+            <tr><td><code>DB_HOST / DB_USER / DB_PASSWORD / DB_NAME</code></td><td>MySQL connection (db name: <code>campusconnect</code>).</td></tr>
+            <tr><td><code>FLASK_ENV / FLASK_DEBUG</code></td><td><code>development</code>/<code>production</code> and debug flag.</td></tr>
+            <tr><td><code>SECRET_KEY / JWT_SECRET</code></td><td>Flask secret and JWT signing key.</td></tr>
+            <tr><td><code>JWT_EXPIRY_HOURS</code></td><td>Token lifetime (default 24).</td></tr>
+            <tr><td><code>CORS_ORIGINS</code></td><td>Allowed origins or <code>*</code>.</td></tr>
+            <tr><td><code>NVIDIA_API_KEY</code></td><td>Chatbot key (secret).</td></tr>
+            <tr><td><code>CHATBOT_MODEL / CHATBOT_TIMEOUT / CHATBOT_REASONING_EFFORT</code></td><td>Chatbot tuning.</td></tr>
+          </tbody>
+        </table>
+        <div class="callout warn"><code>.env</code> is git-ignored — never commit real credentials.</div>
+      </div>
+    </section>
+
+    <!-- ============ 17. TESTING ============ -->
+    <section id="testing">
+      <div class="sec-head">
+        <div class="sec-num">17</div>
+        <div><h3>Running &amp; testing</h3><p>Prove it works</p></div>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <h4><span class="dot"></span>Smoke tests (pytest)</h4>
+<pre>.\.venv\Scripts\Activate.ps1
+pip install -r requirements-dev.txt
+python -m pytest tests -q</pre>
+          <p class="muted" style="font-size:13px">Result: <b>6 / 6 passed.</b></p>
+        </div>
+        <div class="card">
+          <h4><span class="dot"></span>Full end-to-end API test</h4>
+<pre><span class="c"># terminal 1</span>
+python app.py
+<span class="c"># terminal 2</span>
+powershell -File tests\e2e_api_test.ps1</pre>
+          <p class="muted" style="font-size:13px">Exercises every module. Result: <b>112 / 112 passed.</b></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 18. DEPLOY ============ -->
+    <section id="deploy">
+      <div class="sec-head">
+        <div class="sec-num">18</div>
+        <div><h3>Deployment</h3><p>Shipping it to a real host</p></div>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <h4><span class="dot"></span>PythonAnywhere (free tier)</h4>
+          <ul>
+            <li>Upload / clone the <code class="inline">backend</code> folder.</li>
+            <li>Create a virtualenv and <code class="inline">pip install -r requirements.txt</code>.</li>
+            <li>Add a MySQL database, put its values in <code class="inline">.env</code>, run <code class="inline">python setup_schema.py</code>.</li>
+            <li>Manual config → Flask; point the WSGI file at <code class="inline">wsgi.py</code> / <code class="inline">app.application</code>.</li>
+            <li>Reload the web app.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="dot"></span>Render / other hosts</h4>
+          <ul>
+            <li>Build: <code class="inline">pip install -r requirements.txt</code></li>
+            <li>Start: <code class="inline">gunicorn app:app</code> (already in the <code class="inline">Procfile</code>).</li>
+            <li>Use a managed MySQL (e.g. Aiven free) and set the DB env vars in the host dashboard.</li>
+          </ul>
+          <div class="callout bad">In production set <code class="inline">FLASK_ENV=production</code>,
+             <code class="inline">FLASK_DEBUG=False</code> and strong <code class="inline">SECRET_KEY</code> /
+             <code class="inline">JWT_SECRET</code> values.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 19. STATUS ============ -->
+    <section id="status">
+      <div class="sec-head">
+        <div class="sec-num">19</div>
+        <div><h3>Verification status</h3><p>What has been confirmed vs. what has not</p></div>
+      </div>
+      <div class="card">
+        <table class="tbl">
+          <thead><tr><th>Item</th><th>Status</th><th>Evidence</th></tr></thead>
+          <tbody>
+            <tr><td>Backend boots</td><td><span class="pill ok">Verified</span></td><td>App factory registers all blueprints; server runs on :5000.</td></tr>
+            <tr><td>Smoke tests</td><td><span class="pill ok">Verified</span></td><td>pytest — 6/6 passed.</td></tr>
+            <tr><td>End-to-end API</td><td><span class="pill ok">Verified</span></td><td>E2E script — 112/112 passed.</td></tr>
+            <tr><td>Schema creation</td><td><span class="pill ok">Verified</span></td><td><code>setup_schema.py</code> creates all 18 tables.</td></tr>
+            <tr><td>Frontend ↔ API integration</td><td><span class="pill warn">Partial</span></td><td>Registration + Academics wired; other pages still on mock data.</td></tr>
+            <tr><td>Live deployment</td><td><span class="pill gray">Not done</span></td><td>Deploy config ready; not yet hosted.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ============ 20. NEXT ============ -->
+    <section id="next">
+      <div class="sec-head">
+        <div class="sec-num">20</div>
+        <div><h3>What's still open</h3><p>Next steps for a complete delivery</p></div>
+      </div>
+      <div class="card">
+        <ul>
+          <li><b>Wire the remaining frontend pages</b> to the real API (only Registration &amp; Academics call it today — the rest use mock data).</li>
+          <li><b>Create an admin user</b> via SQL and verify the <code class="inline">/api/admin</code> flows, then seed realistic data.</li>
+          <li><b>Deploy</b> using <code class="inline">wsgi.py</code> / <code class="inline">Procfile</code> and a managed MySQL instance.</li>
+          <li>Optional enhancements already sketched: GPA calculation polish, scheduled email reminders, richer chatbot knowledge.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ 21. GLOSSARY ============ -->
+    <section id="glossary">
+      <div class="sec-head">
+        <div class="sec-num">21</div>
+        <div><h3>Glossary</h3><p>Plain-English terms used above</p></div>
+      </div>
+      <div class="card">
+        <table class="tbl">
+          <thead><tr><th>Term</th><th>Meaning</th></tr></thead>
+          <tbody>
+            <tr><td>REST API</td><td>A way for programs to talk over HTTP using URLs, verbs (GET/POST/PUT/DELETE) and JSON.</td></tr>
+            <tr><td>Blueprint</td><td>Flask's way to group related routes (e.g. all attendance endpoints) into one module.</td></tr>
+            <tr><td>App factory</td><td>A function that <i>builds</i> the Flask app on demand — easier to test and deploy.</td></tr>
+            <tr><td>JWT</td><td>JSON Web Token — a signed string the client sends to prove who it is, without server sessions.</td></tr>
+            <tr><td>PBKDF2</td><td>A slow password-hashing function — makes stolen hashes hard to crack.</td></tr>
+            <tr><td>Raw SQL</td><td>Writing SQL statements directly instead of using an ORM mapping layer.</td></tr>
+            <tr><td>CORS</td><td>Browser rule that a server must explicitly allow another origin to call it.</td></tr>
+            <tr><td>WSGI</td><td>The standard interface between Python web apps and production servers.</td></tr>
+            <tr><td>E2E test</td><td>End-to-end test — exercises the whole system as a real user would.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  CampusConnect — Project Guide &amp; Change Report · generated from the actual source in
+  <code>Downloads\BCA\BCA</code> (before) and <code>Desktop\Rahul\BCA</code> (now).
+  This file is documentation only — no project source was modified.
+</footer>
+
+<script>
+  // Highlight the sidebar link for the section currently in view
+  const links = document.querySelectorAll('.nav-link');
+  const sections = [...links].map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+  const setActive = id => links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); });
+  }, { rootMargin: '-20% 0px -70% 0px', threshold: 0 });
+  sections.forEach(s => io.observe(s));
+  links.forEach(a => a.addEventListener('click', () => setActive(a.getAttribute('href').slice(1))));
+</script>
+</body>
+</html>

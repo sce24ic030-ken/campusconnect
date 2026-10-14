@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>CampusConnect | Profile</title>
 
 <style>
-
 *{
     margin:0;
     padding:0;
@@ -37,21 +34,12 @@ button,input,select{
     bottom:0;
     width:268px;
     min-width:268px;
-
-    background:
-    linear-gradient(
-        180deg,
-        #172a70 0%,
-        #28237d 48%,
-        #5520a7 100%
-    );
-
+    background:linear-gradient(180deg,#172a70 0%,#28237d 48%,#5520a7 100%);
     color:white;
     overflow-y:auto;
     overflow-x:hidden;
     z-index:1000;
     padding-bottom:20px;
-
     scrollbar-width:thin;
     scrollbar-color:rgba(255,255,255,.25) transparent;
 }
@@ -68,20 +56,11 @@ button,input,select{
     width:52px;
     height:52px;
     border-radius:16px;
-
     display:flex;
     align-items:center;
     justify-content:center;
-
     font-size:28px;
-
-    background:
-    linear-gradient(
-        135deg,
-        #24b8ff,
-        #7144f5
-    );
-
+    background:linear-gradient(135deg,#24b8ff,#7144f5);
     box-shadow:0 10px 25px rgba(0,0,0,.20);
 }
 
@@ -122,19 +101,12 @@ button,input,select{
     display:flex;
     align-items:center;
     min-height:49px;
-
     padding:0 14px;
     margin:5px 0;
-
     border-radius:13px;
-
     color:rgba(255,255,255,.84);
     text-decoration:none;
-
-    transition:
-    transform .2s ease,
-    background .2s ease,
-    color .2s ease;
+    transition:transform .2s ease,background .2s ease,color .2s ease;
 }
 
 .nav-item:hover{
@@ -145,14 +117,7 @@ button,input,select{
 
 .nav-item.active{
     color:white;
-
-    background:
-    linear-gradient(
-        90deg,
-        #22b9f5,
-        #6942f4
-    );
-
+    background:linear-gradient(90deg,#22b9f5,#6942f4);
     box-shadow:0 9px 22px rgba(0,0,0,.18);
 }
 
@@ -174,41 +139,27 @@ button,input,select{
     border-top:1px solid rgba(255,255,255,.13);
 }
 
-/* ================= MAIN ================= */
+/* ================= MAIN AREA ================= */
 
 .main-area{
     margin-left:268px;
-    margin-right:286px;
-
     width:auto;
     height:100vh;
-
     overflow-y:auto;
     overflow-x:hidden;
-
-    background:
-    linear-gradient(
-        180deg,
-        #f8f9ff,
-        #eef1fb
-    );
+    background:linear-gradient(180deg,#f8f9ff,#eef1fb);
 }
 
 /* ================= HEADER ================= */
 
 .top-header{
     height:120px;
-
     background:rgba(255,255,255,.96);
-
     display:flex;
     align-items:center;
     justify-content:space-between;
-
     padding:22px 28px;
-
     border-bottom:1px solid #e9ebf5;
-
     position:sticky;
     top:0;
     z-index:100;
@@ -241,36 +192,29 @@ button,input,select{
 .notification{
     width:48px;
     height:48px;
-
     background:#fff;
     border-radius:50%;
-
     display:flex;
     align-items:center;
     justify-content:center;
-
     font-size:22px;
-
-    box-shadow:
-    0 5px 18px rgba(40,35,100,.10);
-
+    box-shadow:0 5px 18px rgba(40,35,100,.10);
     position:relative;
-
     cursor:pointer;
+    transition:.2s;
+}
+
+.notification:hover{
+    transform:scale(1.06);
 }
 
 .notification::after{
     content:"";
-
     width:8px;
     height:8px;
-
     border-radius:50%;
-
     background:#ff4f8b;
-
     position:absolute;
-
     top:7px;
     right:8px;
 }
@@ -284,22 +228,12 @@ button,input,select{
 .profile-circle{
     width:48px;
     height:48px;
-
     border-radius:50%;
-
-    background:
-    linear-gradient(
-        135deg,
-        #25b8ee,
-        #466cf1
-    );
-
+    background:linear-gradient(135deg,#25b8ee,#466cf1);
     color:white;
-
     display:flex;
     align-items:center;
     justify-content:center;
-
     font-size:20px;
     font-weight:800;
 }
@@ -315,828 +249,781 @@ button,input,select{
     font-size:12px;
 }
 
-/* ================= CONTENT ================= */
+/* ================= PAGE ================= */
 
-.content{
-    padding:26px 28px 40px;
+.page-content{
+    padding:20px 24px 35px;
+    width:100%;
+}
+
+.page-heading{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:20px;
+}
+
+.page-heading h2{
+    font-size:24px;
+    font-weight:800;
+}
+
+.page-heading p{
+    margin-top:6px;
+    color:#8990a7;
+    font-size:13px;
+}
+
+.heading-btn{
+    border:none;
+    border-radius:11px;
+    padding:11px 16px;
+    color:white;
+    font-size:12px;
+    font-weight:700;
+    cursor:pointer;
+    background:linear-gradient(135deg,#6543e8,#843de0);
+    box-shadow:0 8px 20px rgba(85,50,190,.25);
+    transition:.2s;
+}
+
+.heading-btn:hover{
+    transform:translateY(-2px);
 }
 
 /* ================= PROFILE HERO ================= */
 
 .profile-hero{
-    background:
-    linear-gradient(
-        135deg,
-        #25277d,
-        #6337d8
-    );
-
-    border-radius:24px;
-
-    padding:28px 30px;
-
+    width:100%;
+    min-height:210px;
+    border-radius:20px;
+    padding:28px 32px;
     color:white;
-
-    position:relative;
-
-    overflow:hidden;
-
-    box-shadow:
-    0 15px 35px rgba(57,48,150,.18);
-
+    background:linear-gradient(120deg,#19398d,#4828c8 55%,#7738dd);
+    box-shadow:0 14px 35px rgba(55,44,150,.20);
     display:flex;
     align-items:center;
     justify-content:space-between;
+    margin-bottom:20px;
+    position:relative;
+    overflow:hidden;
 }
 
 .profile-hero::before{
     content:"";
-
     position:absolute;
-
-    width:230px;
-    height:230px;
-
+    width:270px;
+    height:270px;
     border-radius:50%;
-
-    background:
-    rgba(255,255,255,.06);
-
-    right:-60px;
-    top:-100px;
+    right:-80px;
+    top:-120px;
+    background:rgba(255,255,255,.08);
 }
 
-.profile-hero-left{
+.profile-hero::after{
+    content:"";
+    position:absolute;
+    width:170px;
+    height:170px;
+    border-radius:50%;
+    right:180px;
+    bottom:-110px;
+    background:rgba(255,255,255,.05);
+}
+
+.hero-left{
     display:flex;
     align-items:center;
-    gap:20px;
+    gap:22px;
     position:relative;
     z-index:2;
 }
 
-.big-profile{
-    width:90px;
-    height:90px;
-
-    border-radius:25px;
-
-    background:
-    linear-gradient(
-        135deg,
-        #24b8ff,
-        #7650ef
-    );
-
+.big-avatar{
+    width:100px;
+    height:100px;
+    border-radius:28px;
+    background:linear-gradient(135deg,#25b8ee,#7144f5);
     display:flex;
     align-items:center;
     justify-content:center;
-
-    font-size:31px;
+    color:white;
+    font-size:38px;
     font-weight:800;
-
-    box-shadow:
-    0 12px 28px rgba(0,0,0,.22);
-
-    border:
-    3px solid rgba(255,255,255,.22);
+    border:4px solid rgba(255,255,255,.25);
+    box-shadow:0 12px 30px rgba(0,0,0,.20);
 }
 
-.profile-hero h2{
+.hero-content{
+    position:relative;
+    z-index:2;
+}
+
+.hero-content h3{
     font-size:25px;
-    margin-bottom:6px;
+    font-weight:800;
+    margin-bottom:7px;
 }
 
-.profile-hero p{
-    font-size:13px;
-    color:rgba(255,255,255,.75);
+.hero-content p{
+    font-size:12px;
+    color:rgba(255,255,255,.78);
+    line-height:1.7;
 }
 
-.profile-status{
-    display:inline-flex;
-    align-items:center;
-
-    gap:6px;
-
+.hero-tags{
+    display:flex;
+    gap:7px;
+    flex-wrap:wrap;
     margin-top:10px;
+}
 
+.hero-tag{
     padding:6px 11px;
-
     border-radius:20px;
-
-    background:rgba(255,255,255,.13);
-
+    background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.15);
     font-size:10px;
 }
 
-.status-dot{
-    width:7px;
-    height:7px;
-    border-radius:50%;
-    background:#57e6a3;
-}
-
-.edit-profile-btn{
+.hero-stats{
     position:relative;
     z-index:2;
-
-    border:none;
-
-    padding:12px 18px;
-
-    border-radius:12px;
-
-    background:white;
-
-    color:#5a3bd0;
-
-    font-size:11px;
-    font-weight:800;
-
-    cursor:pointer;
-
-    transition:.2s;
-}
-
-.edit-profile-btn:hover{
-    transform:translateY(-2px);
-}
-
-/* ================= GRID ================= */
-
-.profile-grid{
-    display:grid;
-
-    grid-template-columns:
-    1.3fr .7fr;
-
-    gap:18px;
-
-    margin-top:20px;
-}
-
-/* ================= CARDS ================= */
-
-.card{
-    background:white;
-
-    border:
-    1px solid #e7e9f3;
-
-    border-radius:18px;
-
-    padding:20px;
-
-    box-shadow:
-    0 7px 22px rgba(40,35,100,.06);
-}
-
-.card-title{
     display:flex;
-    align-items:center;
-    justify-content:space-between;
-
-    margin-bottom:18px;
-}
-
-.card-title h3{
-    font-size:17px;
-    font-weight:800;
-}
-
-.card-title span{
-    color:#9299ae;
-    font-size:11px;
-}
-
-/* ================= INFO ================= */
-
-.info-grid{
-    display:grid;
-
-    grid-template-columns:
-    1fr 1fr;
-
-    gap:13px;
-}
-
-.info-box{
-    background:#f7f8fc;
-
-    border-radius:13px;
-
-    padding:13px;
-}
-
-.info-box label{
-    display:block;
-
-    color:#959bad;
-
-    font-size:9px;
-
-    margin-bottom:5px;
-}
-
-.info-box strong{
-    display:block;
-
-    color:#424a69;
-
-    font-size:12px;
-}
-
-/* ================= STATS ================= */
-
-.stats-grid{
-    display:grid;
-
-    grid-template-columns:
-    1fr 1fr;
-
     gap:12px;
 }
 
 .stat-box{
-    padding:16px;
-
-    border-radius:14px;
-
-    background:
-    linear-gradient(
-        135deg,
-        #f5f3ff,
-        #f8fbff
-    );
-
-    border:
-    1px solid #ececf6;
+    min-width:115px;
+    padding:17px 20px;
+    border-radius:15px;
+    background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.15);
+    text-align:center;
+    backdrop-filter:blur(5px);
 }
 
-.stat-icon{
-    font-size:22px;
-}
-
-.stat-value{
-    margin-top:9px;
-
-    font-size:22px;
-
+.stat-box strong{
+    display:block;
+    font-size:27px;
     font-weight:800;
-
-    color:#282f56;
 }
 
-.stat-label{
-    margin-top:3px;
-
-    color:#9299ae;
-
+.stat-box span{
+    display:block;
     font-size:10px;
+    margin-top:4px;
+    color:rgba(255,255,255,.72);
 }
 
-/* ================= CONTACT ================= */
+/* ================= SUMMARY ================= */
 
-.contact-list{
+.summary-grid{
+    width:100%;
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:18px;
+    margin-bottom:20px;
+}
+
+.summary-card{
+    background:white;
+    border:1px solid #e9ebf5;
+    border-radius:17px;
+    padding:18px;
+    min-height:120px;
+    box-shadow:0 8px 25px rgba(40,35,100,.06);
+    transition:.2s;
+    cursor:pointer;
+}
+
+.summary-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 15px 35px rgba(40,35,100,.12);
+}
+
+.summary-top{
     display:flex;
-    flex-direction:column;
-    gap:10px;
+    justify-content:space-between;
 }
 
-.contact-item{
-    display:flex;
-    align-items:center;
-
-    gap:11px;
-
-    padding:11px;
-
-    background:#f8f9fc;
-
-    border-radius:12px;
+.summary-title{
+    color:#7f88a5;
+    font-size:12px;
+    font-weight:700;
 }
 
-.contact-icon{
-    width:36px;
-    height:36px;
-
-    border-radius:10px;
-
+.summary-icon{
+    width:43px;
+    height:43px;
+    border-radius:13px;
+    background:#f0f3ff;
     display:flex;
     align-items:center;
     justify-content:center;
+    font-size:21px;
+}
 
-    background:#efedff;
+.summary-number{
+    font-size:27px;
+    font-weight:800;
+    margin-top:9px;
+    color:#3063df;
+}
 
+.summary-small{
+    color:#9aa2b9;
+    font-size:10px;
+    margin-top:2px;
+}
+
+/* ================= CONTENT CARD ================= */
+
+.content-card{
+    background:white;
+    border:1px solid #e9ebf5;
+    border-radius:17px;
+    padding:20px;
+    box-shadow:0 8px 25px rgba(40,35,100,.06);
+    margin-bottom:20px;
+}
+
+.card-heading{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:15px;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.card-heading h3{
     font-size:17px;
 }
 
-.contact-text span{
-    display:block;
+/* ================= PROFILE INFORMATION ================= */
 
-    font-size:9px;
-
-    color:#999fb1;
+.profile-layout{
+    display:grid;
+    grid-template-columns:1.15fr .85fr;
+    gap:18px;
 }
 
-.contact-text strong{
-    display:block;
-
-    font-size:11px;
-
-    color:#4a5270;
-
-    margin-top:2px;
+.info-grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:13px;
 }
 
-/* ================= ACTIVITY ================= */
-
-.activity{
-    margin-top:18px;
+.info-item{
+    padding:15px;
+    border:1px solid #eceef5;
+    border-radius:14px;
+    background:#fafbff;
+    transition:.2s;
 }
 
-.activity-list{
+.info-item:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 20px rgba(40,35,100,.07);
+}
+
+.info-label{
+    color:#9299ae;
+    font-size:10px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.4px;
+}
+
+.info-value{
+    margin-top:6px;
+    color:#303953;
+    font-size:13px;
+    font-weight:700;
+}
+
+.info-sub{
+    margin-top:3px;
+    color:#9aa2b9;
+    font-size:10px;
+}
+
+/* ================= ACCOUNT CARD ================= */
+
+.account-list{
     display:flex;
     flex-direction:column;
-    gap:10px;
-}
-
-.activity-item{
-    display:flex;
-    align-items:center;
     gap:11px;
 }
 
-.activity-icon{
-    width:35px;
-    height:35px;
+.account-row{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:13px;
+    border:1px solid #eceef5;
+    border-radius:13px;
+    background:#fafbff;
+    cursor:pointer;
+    transition:.2s;
+}
 
-    border-radius:10px;
+.account-row:hover{
+    transform:translateX(3px);
+    box-shadow:0 8px 20px rgba(40,35,100,.07);
+}
 
+.account-icon{
+    width:40px;
+    height:40px;
+    border-radius:12px;
+    background:#f0f3ff;
     display:flex;
     align-items:center;
     justify-content:center;
-
-    background:#f0efff;
-
-    font-size:16px;
+    font-size:19px;
+    flex-shrink:0;
 }
 
-.activity-text{
+.account-info{
     flex:1;
 }
 
-.activity-text strong{
+.account-info strong{
     display:block;
-
-    font-size:11px;
-
-    color:#4a5270;
+    color:#303953;
+    font-size:12px;
 }
 
-.activity-text span{
+.account-info span{
     display:block;
+    color:#9aa2b9;
+    font-size:10px;
+    margin-top:3px;
+}
 
-    margin-top:2px;
+.account-arrow{
+    color:#8c94ab;
+    font-size:17px;
+}
 
-    font-size:9px;
+/* ================= PROGRESS ================= */
 
-    color:#9ba1b2;
+.progress-box{
+    padding:17px;
+    border:1px solid #eceef5;
+    border-radius:14px;
+    background:#fafbff;
+    margin-bottom:12px;
+}
+
+.progress-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:9px;
+}
+
+.progress-head strong{
+    font-size:12px;
+    color:#303953;
+}
+
+.progress-head span{
+    font-size:11px;
+    font-weight:800;
+    color:#5c48d8;
+}
+
+.progress-track{
+    width:100%;
+    height:8px;
+    border-radius:20px;
+    background:#e9ecf7;
+    overflow:hidden;
+}
+
+.progress-fill{
+    height:100%;
+    border-radius:20px;
+    background:linear-gradient(90deg,#25b8ee,#7144f5);
 }
 
 /* ================= CHATBOT ================= */
 
-.chatbot{
+.chat-bubble{
     position:fixed;
-
-    top:18px;
-    right:18px;
-    bottom:18px;
-
-    width:268px;
-    min-width:268px;
-    max-width:268px;
-
-    background:white;
-
-    border-radius:22px;
-
-    border:1px solid #e5e6f2;
-
-    box-shadow:
-    0 15px 45px rgba(40,35,100,.15);
-
-    z-index:9999;
-
-    display:flex;
-    flex-direction:column;
-
-    overflow:hidden;
-}
-
-.chat-header{
-    min-height:82px;
-    flex-shrink:0;
-
-    padding:15px;
-
-    display:flex;
-    align-items:center;
-
-    color:white;
-
-    background:
-    linear-gradient(
-        135deg,
-        #29277d,
-        #7137d8
-    );
-}
-
-.robot-icon{
-    width:45px;
-    height:45px;
-
-    border-radius:14px;
-
-    background:rgba(255,255,255,.15);
-
+    right:24px;
+    bottom:24px;
+    width:64px;
+    height:64px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#6543e8,#a855f7);
     display:flex;
     align-items:center;
     justify-content:center;
+    font-size:30px;
+    color:white;
+    border:none;
+    cursor:pointer;
+    box-shadow:0 12px 30px rgba(101,67,232,.45);
+    z-index:9998;
+    transition:transform .2s ease;
+}
 
-    font-size:24px;
+.chat-bubble:hover{
+    transform:scale(1.08);
+}
 
+.chat-bubble::after{
+    content:"";
+    position:absolute;
+    top:4px;
+    right:4px;
+    width:12px;
+    height:12px;
+    border-radius:50%;
+    background:#ff4f8b;
+    border:2px solid white;
+}
+
+.chat-bubble.hide{
+    display:none;
+}
+
+.chatbot-panel{
+    position:fixed;
+    right:24px;
+    bottom:24px;
+    width:320px;
+    height:460px;
+    background:white;
+    border-radius:22px;
+    border:1px solid #e5e6f2;
+    box-shadow:0 20px 55px rgba(40,35,100,.25);
+    z-index:9999;
+    display:none;
+    flex-direction:column;
+    overflow:hidden;
+    animation:panelIn .2s ease;
+}
+
+.chatbot-panel.open{
+    display:flex;
+}
+
+@keyframes panelIn{
+    from{
+        opacity:0;
+        transform:translateY(20px) scale(.96);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+.chat-header{
+    min-height:70px;
+    flex-shrink:0;
+    padding:14px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    color:white;
+    background:linear-gradient(135deg,#29277d,#7137d8);
+}
+
+.chat-header-left{
+    display:flex;
+    align-items:center;
+}
+
+.robot-icon{
+    width:42px;
+    height:42px;
+    border-radius:12px;
+    background:rgba(255,255,255,.15);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
     margin-right:10px;
 }
 
 .chat-title strong{
     display:block;
-    font-size:15px;
+    font-size:14px;
 }
 
 .chat-title span{
     display:block;
-    font-size:10px;
-    margin-top:3px;
+    font-size:9px;
+    margin-top:2px;
     color:rgba(255,255,255,.78);
 }
 
 .online-dot{
     display:inline-block;
-
     width:7px;
     height:7px;
-
     background:#57e6a3;
-
     border-radius:50%;
-
     margin-right:4px;
+}
+
+.close-chat{
+    width:30px;
+    height:30px;
+    border:none;
+    border-radius:50%;
+    background:rgba(255,255,255,.15);
+    color:white;
+    font-size:16px;
+    cursor:pointer;
 }
 
 .chat-body{
     flex:1;
     min-height:0;
-
-    padding:17px 14px;
-
+    padding:14px;
     overflow-y:auto;
-
-    background:
-    linear-gradient(
-        180deg,
-        #fafbff,
-        #f4f5fb
-    );
+    background:linear-gradient(180deg,#fafbff,#f4f5fb);
 }
 
 .bot-message{
     background:white;
-
     border:1px solid #e7e9f3;
-
     border-radius:14px;
-
-    padding:12px;
-
-    margin-bottom:10px;
-
+    padding:11px;
+    margin-bottom:9px;
     color:#65708d;
-
     font-size:11px;
-
-    line-height:1.6;
-
-    box-shadow:
-    0 5px 15px rgba(40,35,100,.04);
+    line-height:1.55;
+    box-shadow:0 5px 15px rgba(40,35,100,.04);
 }
 
 .user-message{
-    background:
-    linear-gradient(
-        135deg,
-        #6241e8,
-        #7b3ee0
-    );
-
+    background:linear-gradient(135deg,#6241e8,#7b3ee0);
     color:white;
-
-    padding:10px 12px;
-
-    border-radius:
-    14px 14px 4px 14px;
-
-    margin:
-    9px 0 9px 20px;
-
+    padding:9px 12px;
+    border-radius:14px 14px 4px 14px;
+    margin:8px 0 8px 25px;
     font-size:11px;
-
     line-height:1.5;
+}
+
+.typing{
+    display:flex;
+    gap:4px;
+    width:52px;
+    padding:12px;
+    background:white;
+    border:1px solid #e7e9f3;
+    border-radius:14px;
+    margin-bottom:9px;
+}
+
+.typing i{
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:#b9bed4;
+    animation:blink 1s infinite;
+}
+
+.typing i:nth-child(2){
+    animation-delay:.2s;
+}
+
+.typing i:nth-child(3){
+    animation-delay:.4s;
+}
+
+@keyframes blink{
+    0%,100%{opacity:.3;}
+    50%{opacity:1;}
 }
 
 .quick-buttons{
     display:flex;
-
     gap:5px;
-
     flex-wrap:wrap;
-
-    padding:9px 14px;
-
+    padding:8px 12px;
     background:white;
-
-    border-top:
-    1px solid #eceef5;
+    border-top:1px solid #eceef5;
 }
 
 .quick-btn{
     border:1px solid #e0e3f0;
-
     background:white;
-
     color:#6b54d9;
-
     border-radius:20px;
-
-    padding:7px 9px;
-
+    padding:6px 9px;
     font-size:9px;
-
     cursor:pointer;
+    transition:.2s;
 }
 
 .quick-btn:hover{
-    background:#f3f0ff;
+    background:#f0edff;
 }
 
 .chat-footer{
     flex-shrink:0;
-
     padding:10px;
-
     background:white;
-
-    border-top:
-    1px solid #eceef5;
-
+    border-top:1px solid #eceef5;
     display:flex;
-
     gap:7px;
 }
 
 .chat-input{
     flex:1;
     min-width:0;
-
-    height:40px;
-
+    height:38px;
     border:1px solid #e1e4ef;
-
     border-radius:12px;
-
     outline:none;
-
     padding:0 11px;
-
     font-size:11px;
-
     color:#555e78;
 }
 
+.chat-input:focus{
+    border-color:#a99bf0;
+}
+
 .send-btn{
-    width:40px;
-    height:40px;
-
+    width:38px;
+    height:38px;
     border:none;
-
     border-radius:12px;
-
     color:white;
-
-    background:
-    linear-gradient(
-        135deg,
-        #6543e8,
-        #843de0
-    );
-
+    background:linear-gradient(135deg,#6543e8,#843de0);
     cursor:pointer;
+    font-size:16px;
+    transition:.2s;
+}
 
-    font-size:17px;
+.send-btn:hover{
+    transform:scale(1.05);
 }
 
 /* ================= MODAL ================= */
 
-.modal-overlay{
+.modal{
     position:fixed;
     inset:0;
-
-    background:rgba(20,25,65,.48);
-
-    backdrop-filter:blur(5px);
-
+    background:rgba(20,25,65,.55);
     display:none;
-
     align-items:center;
     justify-content:center;
-
-    z-index:20000;
-
+    z-index:30000;
     padding:20px;
 }
 
-.modal-overlay.show{
+.modal.show{
     display:flex;
 }
 
-.modal{
-    width:520px;
-    max-width:100%;
-
+.modal-box{
+    width:min(520px,95%);
+    max-height:88vh;
+    overflow-y:auto;
     background:white;
-
-    border-radius:22px;
-
-    overflow:hidden;
-
-    box-shadow:
-    0 25px 70px rgba(25,25,70,.25);
-
-    animation:
-    modalIn .2s ease;
+    border-radius:20px;
+    padding:25px;
+    box-shadow:0 25px 70px rgba(20,25,70,.25);
+    animation:modalIn .2s ease;
 }
 
 @keyframes modalIn{
-
     from{
         opacity:0;
-        transform:
-        translateY(12px) scale(.98);
+        transform:translateY(15px) scale(.97);
     }
-
     to{
         opacity:1;
-        transform:
-        translateY(0) scale(1);
+        transform:translateY(0) scale(1);
     }
 }
 
-.modal-head{
-    padding:20px 22px;
-
-    color:white;
-
-    background:
-    linear-gradient(
-        135deg,
-        #29277d,
-        #7137d8
-    );
-
+.modal-top{
     display:flex;
-
     align-items:center;
     justify-content:space-between;
+    margin-bottom:20px;
 }
 
-.modal-head h3{
+.modal-top h3{
+    font-size:19px;
+}
+
+.close-btn{
+    width:35px;
+    height:35px;
+    border:none;
+    border-radius:50%;
+    background:#f0f2fa;
+    color:#68728d;
+    cursor:pointer;
     font-size:18px;
 }
 
-.close-modal{
-    width:34px;
-    height:34px;
-
-    border:none;
-
-    border-radius:50%;
-
-    background:rgba(255,255,255,.14);
-
-    color:white;
-
-    font-size:19px;
-
-    cursor:pointer;
-}
-
-.modal-body{
-    padding:23px;
-}
-
-.form-grid{
-    display:grid;
-
-    grid-template-columns:
-    1fr 1fr;
-
-    gap:13px;
-}
-
 .form-group{
-    display:flex;
-    flex-direction:column;
-    gap:6px;
-}
-
-.form-group.full{
-    grid-column:1 / -1;
+    margin-bottom:13px;
 }
 
 .form-group label{
+    display:block;
+    color:#7f88a5;
     font-size:10px;
     font-weight:700;
-    color:#777f98;
+    margin-bottom:6px;
 }
 
 .form-group input,
 .form-group select{
+    width:100%;
     height:40px;
-
-    border:
-    1px solid #e0e3ef;
-
-    border-radius:11px;
-
+    border:1px solid #e1e4ef;
+    border-radius:10px;
     outline:none;
-
     padding:0 11px;
-
-    color:#4d5672;
-
+    color:#39425e;
     font-size:11px;
-
-    background:white;
 }
 
 .form-group input:focus,
 .form-group select:focus{
-    border-color:#7050e8;
+    border-color:#a99bf0;
 }
 
 .modal-buttons{
     display:flex;
-
     justify-content:flex-end;
-
     gap:8px;
-
-    margin-top:20px;
+    margin-top:18px;
 }
 
-.cancel-btn,
-.save-btn{
-    height:40px;
-
-    padding:0 16px;
-
-    border-radius:11px;
-
-    font-size:11px;
-
-    font-weight:700;
-
-    cursor:pointer;
-}
-
-.cancel-btn{
-    border:1px solid #e0e3ee;
-
-    background:white;
-
-    color:#727a91;
-}
-
-.save-btn{
+.modal-btn{
     border:none;
+    border-radius:10px;
+    padding:10px 15px;
+    cursor:pointer;
+    font-size:11px;
+    font-weight:700;
+}
 
-    background:
-    linear-gradient(
-        135deg,
-        #6243e7,
-        #7b3fdf
-    );
+.modal-cancel{
+    background:#f0f2fa;
+    color:#68728d;
+}
 
+.modal-ok{
+    background:linear-gradient(135deg,#6543e8,#843de0);
     color:white;
 }
 
@@ -1144,39 +1031,23 @@ button,input,select{
 
 .toast{
     position:fixed;
-
-    bottom:30px;
     left:50%;
-
-    transform:
-    translateX(-50%)
-    translateY(20px);
-
-    background:#20264b;
-
+    bottom:25px;
+    transform:translateX(-50%) translateY(20px);
+    background:#29277d;
     color:white;
-
     padding:12px 18px;
-
     border-radius:12px;
-
-    font-size:11px;
-
+    font-size:12px;
     opacity:0;
-
     pointer-events:none;
-
     transition:.3s;
-
-    z-index:30000;
+    z-index:40000;
 }
 
 .toast.show{
     opacity:1;
-
-    transform:
-    translateX(-50%)
-    translateY(0);
+    transform:translateX(-50%) translateY(0);
 }
 
 /* ================= RESPONSIVE ================= */
@@ -1190,29 +1061,35 @@ button,input,select{
 
     .main-area{
         margin-left:230px;
-        margin-right:250px;
     }
 
-    .chatbot{
-        width:232px;
-        min-width:232px;
-        max-width:232px;
-        right:10px;
+    .summary-grid{
+        grid-template-columns:repeat(2,minmax(0,1fr));
     }
 
-    .profile-grid{
+    .profile-layout{
         grid-template-columns:1fr;
     }
 }
 
-@media(max-width:900px){
+@media(max-width:800px){
 
-    .chatbot{
-        display:none;
+    .profile-hero{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:20px;
     }
 
-    .main-area{
-        margin-right:0;
+    .hero-stats{
+        width:100%;
+    }
+
+    .stat-box{
+        flex:1;
+    }
+
+    .info-grid{
+        grid-template-columns:1fr;
     }
 }
 
@@ -1228,10 +1105,7 @@ button,input,select{
         padding:15px;
     }
 
-    .brand-text{
-        display:none;
-    }
-
+    .brand-text,
     .menu-title,
     .nav-text{
         display:none;
@@ -1250,1141 +1124,1028 @@ button,input,select{
         margin-left:80px;
     }
 
-    .top-header{
-        padding:18px;
-    }
-
-    .header-left h1{
-        font-size:23px;
-    }
-
-    .header-left p{
-        font-size:11px;
-    }
-
-    .time-box,
-    .profile-info{
-        display:none;
-    }
-
-    .content{
-        padding:18px;
-    }
-
-    .profile-hero{
-        align-items:flex-start;
-        flex-direction:column;
-        gap:18px;
-    }
-
-    .profile-hero-left{
-        flex-direction:column;
-        align-items:flex-start;
-    }
-
-    .info-grid,
-    .form-grid{
+    .summary-grid{
         grid-template-columns:1fr;
     }
 
-    .form-group.full{
-        grid-column:auto;
+    .hero-left{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .header-right .profile-info{
+        display:none;
+    }
+
+    .page-heading{
+        align-items:flex-start;
+        gap:12px;
+    }
+
+    .chatbot-panel{
+        width:92vw;
+        right:4vw;
+        left:4vw;
     }
 }
-
 </style>
 </head>
 
-
 <body>
-
 
 <!-- ================= SIDEBAR ================= -->
 
 <aside class="sidebar">
 
-<div class="brand">
+    <div class="brand">
+        <div class="logo-box">🎓</div>
 
-    <div class="logo-box">
-        🎓
+        <div class="brand-text">
+            <div class="brand-title">CampusConnect</div>
+            <div class="brand-subtitle">AI College Companion</div>
+        </div>
     </div>
 
-    <div class="brand-text">
+    <div class="menu">
 
-        <div class="brand-title">
-            CampusConnect
+        <div class="menu-title">MAIN MENU</div>
+
+        <a class="nav-item" href="../dashboard.html">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-text">Dashboard</span>
+        </a>
+
+        <a class="nav-item" href="courses.html">
+            <span class="nav-icon">📚</span>
+            <span class="nav-text">Courses</span>
+        </a>
+
+        <a class="nav-item" href="timetable.html">
+            <span class="nav-icon">🗓️</span>
+            <span class="nav-text">Timetable</span>
+        </a>
+
+        <a class="nav-item" href="assignments.html">
+            <span class="nav-icon">📝</span>
+            <span class="nav-text">Assignments</span>
+        </a>
+
+        <a class="nav-item" href="attendance.html">
+            <span class="nav-icon">📊</span>
+            <span class="nav-text">Attendance</span>
+        </a>
+
+        <a class="nav-item" href="academics.html">
+            <span class="nav-icon">🎓</span>
+            <span class="nav-text">Academics</span>
+        </a>
+
+        <a class="nav-item" href="faculty.html">
+            <span class="nav-icon">👨‍🏫</span>
+            <span class="nav-text">Faculty</span>
+        </a>
+
+        <div class="menu-section">
+
+            <div class="menu-title">CAREER</div>
+
+            <a class="nav-item" href="placement.html">
+                <span class="nav-icon">💼</span>
+                <span class="nav-text">Placement</span>
+            </a>
+
+            <a class="nav-item" href="results.html">
+                <span class="nav-icon">📈</span>
+                <span class="nav-text">Results</span>
+            </a>
+
         </div>
 
-        <div class="brand-subtitle">
-            AI College Companion
+        <div class="menu-section">
+
+            <div class="menu-title">CAMPUS</div>
+
+            <a class="nav-item" href="documents.html">
+                <span class="nav-icon">📄</span>
+                <span class="nav-text">Documents</span>
+            </a>
+
+            <a class="nav-item" href="complaints.html">
+                <span class="nav-icon">📢</span>
+                <span class="nav-text">Complaints</span>
+            </a>
+
+            <a class="nav-item" href="feedback.html">
+                <span class="nav-icon">💬</span>
+                <span class="nav-text">Feedback</span>
+            </a>
+
+            <a class="nav-item" href="lost_found.html">
+                <span class="nav-icon">🔎</span>
+                <span class="nav-text">Lost &amp; Found</span>
+            </a>
+
+            <a class="nav-item" href="campus.html">
+                <span class="nav-icon">🏫</span>
+                <span class="nav-text">Campus</span>
+            </a>
+
+            <a class="nav-item" href="events.html">
+                <span class="nav-icon">🎉</span>
+                <span class="nav-text">Events</span>
+            </a>
+
+            <a class="nav-item" href="exams.html">
+                <span class="nav-icon">📋</span>
+                <span class="nav-text">Exams</span>
+            </a>
+
+            <a class="nav-item" href="notifications.html">
+                <span class="nav-icon">🔔</span>
+                <span class="nav-text">Notifications</span>
+            </a>
+
+        </div>
+
+        <div class="menu-section">
+
+            <div class="menu-title">ACCOUNT</div>
+
+            <a class="nav-item active" href="profile.html">
+                <span class="nav-icon">👤</span>
+                <span class="nav-text">Profile</span>
+            </a>
+
+            <a class="nav-item" href="settings.html">
+                <span class="nav-icon">⚙️</span>
+                <span class="nav-text">Settings</span>
+            </a>
+
+            <div class="logout">
+
+                <a class="nav-item"
+                   href="../index.html"
+                   onclick="return confirmLogout()">
+
+                    <span class="nav-icon">🚪</span>
+                    <span class="nav-text">Logout</span>
+
+                </a>
+
+            </div>
+
         </div>
 
     </div>
-
-</div>
-
-
-<nav class="menu">
-
-
-<div class="menu-title">
-    MAIN MENU
-</div>
-
-
-<a class="nav-item" href="../dashboard.html">
-    <span class="nav-icon">🏠</span>
-    <span class="nav-text">Dashboard</span>
-</a>
-
-<a class="nav-item" href="courses.html">
-
-    <span class="nav-icon">
-        📚
-    </span>
-
-    <span class="nav-text">
-        Courses
-    </span>
-
-</a>
-
-<a class="nav-item" href="timetable.html">
-    <span class="nav-icon">🗓️</span>
-    <span class="nav-text">Timetable</span>
-</a>
-
-
-<a class="nav-item" href="assignments.html">
-    <span class="nav-icon">📝</span>
-    <span class="nav-text">Assignments</span>
-</a>
-
-
-<a class="nav-item" href="attendance.html">
-    <span class="nav-icon">📊</span>
-    <span class="nav-text">Attendance</span>
-</a>
-
-
-<a class="nav-item" href="academics.html">
-    <span class="nav-icon">🎓</span>
-    <span class="nav-text">Academics</span>
-</a>
-
-
-<a class="nav-item" href="faculty.html">
-    <span class="nav-icon">👨‍🏫</span>
-    <span class="nav-text">Faculty</span>
-</a>
-
-
-<div class="menu-section">
-
-<div class="menu-title">
-    CAREER
-</div>
-
-
-<a class="nav-item" href="placement.html">
-    <span class="nav-icon">💼</span>
-    <span class="nav-text">Placement</span>
-</a>
-
-
-<a class="nav-item" href="results.html">
-    <span class="nav-icon">📈</span>
-    <span class="nav-text">Results</span>
-</a>
-
-</div>
-
-
-<div class="menu-section">
-
-<div class="menu-title">
-    CAMPUS
-</div>
-
-
-<a class="nav-item" href="documents.html">
-    <span class="nav-icon">📄</span>
-    <span class="nav-text">Documents</span>
-</a>
-
-
-<a class="nav-item" href="complaints.html">
-    <span class="nav-icon">📢</span>
-    <span class="nav-text">Complaints</span>
-</a>
-
-
-<a class="nav-item" href="feedback.html">
-    <span class="nav-icon">💬</span>
-    <span class="nav-text">Feedback</span>
-</a>
-
-
-<a class="nav-item" href="lost-found.html">
-    <span class="nav-icon">🔎</span>
-    <span class="nav-text">Lost & Found</span>
-</a>
-
-
-<a class="nav-item" href="campus.html">
-    <span class="nav-icon">🏫</span>
-    <span class="nav-text">Campus</span>
-</a>
-
-
-<a class="nav-item" href="events.html">
-    <span class="nav-icon">🎉</span>
-    <span class="nav-text">Events</span>
-</a>
-
-
-<a class="nav-item" href="exams.html">
-    <span class="nav-icon">📋</span>
-    <span class="nav-text">Exams</span>
-</a>
-
-
-<a class="nav-item" href="notifications.html">
-    <span class="nav-icon">🔔</span>
-    <span class="nav-text">Notifications</span>
-</a>
-
-</div>
-
-
-<div class="menu-section">
-
-<div class="menu-title">
-    ACCOUNT
-</div>
-
-
-<a class="nav-item active" href="profile.html">
-    <span class="nav-icon">👤</span>
-    <span class="nav-text">Profile</span>
-</a>
-
-
-<a class="nav-item" href="settings.html">
-    <span class="nav-icon">⚙️</span>
-    <span class="nav-text">Settings</span>
-</a>
-
-
-<a
-    class="nav-item logout"
-    href="../index.html"
-    onclick="logoutUser(event)"
->
-    <span class="nav-icon">🚪</span>
-    <span class="nav-text">Logout</span>
-</a>
-
-
-</div>
-
-</nav>
 
 </aside>
-
 
 
 <!-- ================= MAIN ================= -->
 
 <main class="main-area">
 
+    <!-- HEADER -->
 
-<header class="top-header">
+    <header class="top-header">
 
-<div class="header-left">
+        <div class="header-left">
 
-<h1>
-    My Profile 👤
-</h1>
+            <h1>
+                My<br>
+                Profile
+            </h1>
 
-<p>
-    Manage your CampusConnect student profile
-</p>
+            <p>
+                Manage your personal information and student details
+            </p>
 
-</div>
+        </div>
 
+        <div class="header-right">
 
-<div class="header-right">
+            <div class="time-box" id="clock">
+                6:00 PM
+            </div>
 
-<div class="time-box" id="clock">
-    00:00:00
-</div>
+            <div class="notification"
+                 onclick="showNotifications()">
+                🔔
+            </div>
 
+            <div class="profile-mini">
 
-<div
-    class="notification"
-    onclick="window.location.href='notifications.html'"
->
-    🔔
-</div>
+                <div class="profile-circle">
+                    P
+                </div>
 
+                <div class="profile-info">
 
-<div class="profile-mini">
+                    <strong id="miniName">
+                        Student
+                    </strong>
 
-<div class="profile-circle">
-    PB
-</div>
+                    <span id="miniCourse">
+                        BCA • 5th Sem
+                    </span>
 
-<div class="profile-info">
+                </div>
 
-<strong>
-    Priya Bhavani
-</strong>
+            </div>
 
-<span>
-    Student
-</span>
+        </div>
 
-</div>
+    </header>
 
-</div>
 
-</div>
+    <div class="page-content">
 
-</header>
+        <!-- PAGE HEADING -->
 
+        <div class="page-heading">
 
+            <div>
 
-<div class="content">
+                <h2>
+                    👤 Profile Overview
+                </h2>
 
+                <p>
+                    View and manage your CampusConnect student profile.
+                </p>
 
-<!-- ================= PROFILE HERO ================= -->
+            </div>
 
-<section class="profile-hero">
+            <button class="heading-btn"
+                    onclick="openEditProfile()">
 
+                ✏️ Edit Profile
 
-<div class="profile-hero-left">
+            </button>
 
-<div class="big-profile" id="bigInitials">
-    PB
-</div>
+        </div>
 
 
-<div>
+        <!-- HERO -->
 
-<h2 id="heroName">
-    Priya Bhavani
-</h2>
+        <section class="profile-hero">
 
-<p>
-    Bachelor of Computer Applications
-    • Computer Science
-</p>
+            <div class="hero-left">
 
-<div class="profile-status">
+                <div class="big-avatar"
+                     id="heroAvatar">
+                    P
+                </div>
 
-<span class="status-dot"></span>
+                <div class="hero-content">
 
-Active Student
+                    <h3 id="heroName">
+                        Priya Bhavani
+                    </h3>
 
-</div>
+                    <p id="heroDescription">
+                        BCA student • 5th Semester<br>
+                        CampusConnect Student Portal
+                    </p>
 
-</div>
+                    <div class="hero-tags">
 
-</div>
+                        <span class="hero-tag">
+                            🎓 BCA
+                        </span>
 
+                        <span class="hero-tag">
+                            📚 5th Semester
+                        </span>
 
-<button
-    class="edit-profile-btn"
-    onclick="openEditProfile()"
->
-    ✏️ Edit Profile
-</button>
+                        <span class="hero-tag">
+                            🟢 Active Student
+                        </span>
 
+                    </div>
 
-</section>
+                </div>
 
+            </div>
 
 
-<!-- ================= PROFILE GRID ================= -->
+            <div class="hero-stats">
 
-<div class="profile-grid">
+                <div class="stat-box">
 
+                    <strong>
+                        5
+                    </strong>
 
-<!-- PERSONAL INFORMATION -->
+                    <span>
+                        Semester
+                    </span>
 
-<section class="card">
+                </div>
 
-<div class="card-title">
+                <div class="stat-box">
 
-<h3>
-    Personal Information
-</h3>
+                    <strong>
+                        8.4
+                    </strong>
 
-<span>
-    Student Details
-</span>
+                    <span>
+                        Current CGPA
+                    </span>
 
-</div>
+                </div>
 
+            </div>
 
-<div class="info-grid">
+        </section>
 
 
-<div class="info-box">
+        <!-- SUMMARY -->
 
-<label>
-    FULL NAME
-</label>
+        <section class="summary-grid">
 
-<strong id="nameValue">
-    Priya Bhavani
-</strong>
+            <div class="summary-card"
+                 onclick="showToast('BCA • 5th Semester 🎓')">
 
-</div>
+                <div class="summary-top">
 
+                    <div class="summary-title">
+                        PROGRAM
+                    </div>
 
-<div class="info-box">
+                    <div class="summary-icon">
+                        🎓
+                    </div>
 
-<label>
-    STUDENT ID
-</label>
+                </div>
 
-<strong>
-    CC2026BCA014
-</strong>
+                <div class="summary-number"
+                     style="font-size:22px;">
+                    BCA
+                </div>
 
-</div>
+                <div class="summary-small">
+                    Bachelor of Computer Applications
+                </div>
 
+            </div>
 
-<div class="info-box">
 
-<label>
-    EMAIL ADDRESS
-</label>
+            <div class="summary-card"
+                 onclick="showToast('5th Semester 📚')">
 
-<strong id="emailValue">
-    priya.bhavani@college.edu
-</strong>
+                <div class="summary-top">
 
-</div>
+                    <div class="summary-title">
+                        SEMESTER
+                    </div>
 
+                    <div class="summary-icon">
+                        📚
+                    </div>
 
-<div class="info-box">
+                </div>
 
-<label>
-    PHONE NUMBER
-</label>
+                <div class="summary-number">
+                    5
+                </div>
 
-<strong id="phoneValue">
-    +91 98765 43210
-</strong>
+                <div class="summary-small">
+                    Current semester
+                </div>
 
-</div>
+            </div>
 
 
-<div class="info-box">
+            <div class="summary-card"
+                 onclick="showToast('Current CGPA: 8.4 ⭐')">
 
-<label>
-    DATE OF BIRTH
-</label>
+                <div class="summary-top">
 
-<strong>
-    15 August 2005
-</strong>
+                    <div class="summary-title">
+                        CGPA
+                    </div>
 
-</div>
+                    <div class="summary-icon">
+                        ⭐
+                    </div>
 
+                </div>
 
-<div class="info-box">
+                <div class="summary-number">
+                    8.4
+                </div>
 
-<label>
-    GENDER
-</label>
+                <div class="summary-small">
+                    Current academic performance
+                </div>
 
-<strong>
-    Female
-</strong>
+            </div>
 
-</div>
 
+            <div class="summary-card"
+                 onclick="showToast('Student account is active ✅')">
 
-<div class="info-box">
+                <div class="summary-top">
 
-<label>
-    COURSE
-</label>
+                    <div class="summary-title">
+                        STATUS
+                    </div>
 
-<strong>
-    Bachelor of Computer Applications
-</strong>
+                    <div class="summary-icon">
+                        ✅
+                    </div>
 
-</div>
+                </div>
 
+                <div class="summary-number"
+                     style="font-size:21px;">
+                    Active
+                </div>
 
-<div class="info-box">
+                <div class="summary-small">
+                    Student account status
+                </div>
 
-<label>
-    DEPARTMENT
-</label>
+            </div>
 
-<strong>
-    Computer Science
-</strong>
+        </section>
 
-</div>
 
+        <!-- PROFILE INFORMATION -->
 
-</div>
+        <div class="profile-layout">
 
-</section>
+            <section class="content-card">
 
+                <div class="card-heading">
 
+                    <h3>
+                        Personal Information
+                    </h3>
 
-<!-- ACADEMIC SUMMARY -->
+                    <button class="heading-btn"
+                            onclick="openEditProfile()">
 
-<section class="card">
+                        Edit
 
-<div class="card-title">
+                    </button>
 
-<h3>
-    Academic Summary
-</h3>
+                </div>
 
-<span>
-    2026
-</span>
 
-</div>
+                <div class="info-grid">
 
+                    <div class="info-item">
 
-<div class="stats-grid">
+                        <div class="info-label">
+                            Full Name
+                        </div>
 
+                        <div class="info-value"
+                             id="infoName">
+                            Priya Bhavani
+                        </div>
 
-<div class="stat-box">
+                    </div>
 
-<div class="stat-icon">
-    📊
-</div>
 
-<div class="stat-value">
-    8.6
-</div>
+                    <div class="info-item">
 
-<div class="stat-label">
-    Current CGPA
-</div>
+                        <div class="info-label">
+                            Student ID
+                        </div>
 
-</div>
+                        <div class="info-value">
+                            CC2025BCA015
+                        </div>
 
+                    </div>
 
-<div class="stat-box">
 
-<div class="stat-icon">
-    📅
-</div>
+                    <div class="info-item">
 
-<div class="stat-value">
-    92%
-</div>
+                        <div class="info-label">
+                            Email
+                        </div>
 
-<div class="stat-label">
-    Attendance
-</div>
+                        <div class="info-value"
+                             id="infoEmail">
+                            priya@campus.edu
+                        </div>
 
-</div>
+                    </div>
 
 
-<div class="stat-box">
+                    <div class="info-item">
 
-<div class="stat-icon">
-    📝
-</div>
+                        <div class="info-label">
+                            Phone
+                        </div>
 
-<div class="stat-value">
-    5
-</div>
+                        <div class="info-value"
+                             id="infoPhone">
+                            +91 98765 43210
+                        </div>
 
-<div class="stat-label">
-    Pending Assignments
-</div>
+                    </div>
 
-</div>
 
+                    <div class="info-item">
 
-<div class="stat-box">
+                        <div class="info-label">
+                            Date of Birth
+                        </div>
 
-<div class="stat-icon">
-    🎓
-</div>
+                        <div class="info-value"
+                             id="infoDob">
+                            15 August 2005
+                        </div>
 
-<div class="stat-value">
-    4
-</div>
+                    </div>
 
-<div class="stat-label">
-    Semester
-</div>
 
-</div>
+                    <div class="info-item">
 
+                        <div class="info-label">
+                            Gender
+                        </div>
 
-</div>
+                        <div class="info-value"
+                             id="infoGender">
+                            Female
+                        </div>
 
-</section>
+                    </div>
 
+                </div>
 
+            </section>
 
-<!-- CONTACT INFORMATION -->
 
-<section class="card">
+            <!-- ACCOUNT DETAILS -->
 
-<div class="card-title">
+            <section class="content-card">
 
-<h3>
-    Contact Information
-</h3>
+                <div class="card-heading">
 
-<span>
-    Reach Me
-</span>
+                    <h3>
+                        Account Details
+                    </h3>
 
-</div>
+                </div>
 
 
-<div class="contact-list">
+                <div class="account-list">
 
+                    <div class="account-row"
+                         onclick="showToast('Email verified successfully ✅')">
 
-<div class="contact-item">
+                        <div class="account-icon">
+                            📧
+                        </div>
 
-<div class="contact-icon">
-    📧
-</div>
+                        <div class="account-info">
 
-<div class="contact-text">
+                            <strong>
+                                Email Verification
+                            </strong>
 
-<span>
-    College Email
-</span>
+                            <span>
+                                Verified campus email
+                            </span>
 
-<strong id="contactEmail">
-    priya.bhavani@college.edu
-</strong>
+                        </div>
 
-</div>
+                        <div class="account-arrow">
+                            ✓
+                        </div>
 
-</div>
+                    </div>
 
 
-<div class="contact-item">
+                    <div class="account-row"
+                         onclick="showToast('Student account is active 🟢')">
 
-<div class="contact-icon">
-    📱
-</div>
+                        <div class="account-icon">
+                            🟢
+                        </div>
 
-<div class="contact-text">
+                        <div class="account-info">
 
-<span>
-    Mobile
-</span>
+                            <strong>
+                                Account Status
+                            </strong>
 
-<strong id="contactPhone">
-    +91 98765 43210
-</strong>
+                            <span>
+                                Active student account
+                            </span>
 
-</div>
+                        </div>
 
-</div>
+                        <div class="account-arrow">
+                            ✓
+                        </div>
 
+                    </div>
 
-<div class="contact-item">
 
-<div class="contact-icon">
-    🏠
-</div>
+                    <div class="account-row"
+                         onclick="showToast('Profile last updated today')">
 
-<div class="contact-text">
+                        <div class="account-icon">
+                            🕐
+                        </div>
 
-<span>
-    Address
-</span>
+                        <div class="account-info">
 
-<strong>
-    Hubballi, Karnataka
-</strong>
+                            <strong>
+                                Last Updated
+                            </strong>
 
-</div>
+                            <span>
+                                Profile information is up to date
+                            </span>
 
-</div>
+                        </div>
 
+                        <div class="account-arrow">
+                            →
+                        </div>
 
-<div class="contact-item">
+                    </div>
 
-<div class="contact-icon">
-    👨‍🏫
-</div>
 
-<div class="contact-text">
+                    <div class="account-row"
+                         onclick="showToast('Your account is protected 🔐')">
 
-<span>
-    Academic Advisor
-</span>
+                        <div class="account-icon">
+                            🔐
+                        </div>
 
-<strong>
-    Prof. Priya Sharma
-</strong>
+                        <div class="account-info">
 
-</div>
+                            <strong>
+                                Account Security
+                            </strong>
 
-</div>
+                            <span>
+                                Your student account is protected
+                            </span>
 
+                        </div>
 
-</div>
+                        <div class="account-arrow">
+                            →
+                        </div>
 
-</section>
+                    </div>
 
+                </div>
 
+            </section>
 
-<!-- RECENT ACTIVITY -->
+        </div>
 
-<section class="card activity">
 
-<div class="card-title">
+        <!-- ACADEMIC INFORMATION -->
 
-<h3>
-    Recent Activity
-</h3>
+        <section class="content-card">
 
-<span>
-    Latest
-</span>
+            <div class="card-heading">
 
-</div>
+                <h3>
+                    Academic Progress
+                </h3>
 
+                <button class="heading-btn"
+                        onclick="goToAcademics()">
 
-<div class="activity-list">
+                    View Academics
 
+                </button>
 
-<div class="activity-item">
+            </div>
 
-<div class="activity-icon">
-    📋
-</div>
 
-<div class="activity-text">
+            <div class="progress-box">
 
-<strong>
-    Viewed examination timetable
-</strong>
+                <div class="progress-head">
 
-<span>
-    Today • 10:30 AM
-</span>
+                    <strong>
+                        Overall Academic Progress
+                    </strong>
 
-</div>
+                    <span>
+                        84%
+                    </span>
 
-</div>
+                </div>
 
+                <div class="progress-track">
 
-<div class="activity-item">
+                    <div class="progress-fill"
+                         style="width:84%;">
+                    </div>
 
-<div class="activity-icon">
-    📝
-</div>
+                </div>
 
-<div class="activity-text">
+            </div>
 
-<strong>
-    Checked assignment deadline
-</strong>
 
-<span>
-    Today • 9:15 AM
-</span>
+            <div class="progress-box">
 
-</div>
+                <div class="progress-head">
 
-</div>
+                    <strong>
+                        Attendance
+                    </strong>
 
+                    <span>
+                        87%
+                    </span>
 
-<div class="activity-item">
+                </div>
 
-<div class="activity-icon">
-    🎉
-</div>
+                <div class="progress-track">
 
-<div class="activity-text">
+                    <div class="progress-fill"
+                         style="width:87%;">
+                    </div>
 
-<strong>
-    Registered for Campus Cultural Fest
-</strong>
+                </div>
 
-<span>
-    Yesterday • 4:20 PM
-</span>
+            </div>
 
-</div>
 
-</div>
+            <div class="progress-box">
 
+                <div class="progress-head">
 
-<div class="activity-item">
+                    <strong>
+                        Assignment Completion
+                    </strong>
 
-<div class="activity-icon">
-    💼
-</div>
+                    <span>
+                        92%
+                    </span>
 
-<div class="activity-text">
+                </div>
 
-<strong>
-    Viewed placement opportunities
-</strong>
+                <div class="progress-track">
 
-<span>
-    Yesterday • 2:10 PM
-</span>
+                    <div class="progress-fill"
+                         style="width:92%;">
+                    </div>
 
-</div>
+                </div>
 
-</div>
+            </div>
 
+        </section>
 
-</div>
-
-</section>
-
-
-</div>
-
-</div>
+    </div>
 
 </main>
 
 
-
 <!-- ================= CHATBOT ================= -->
 
-<aside class="chatbot">
-
-
-<div class="chat-header">
-
-<div class="robot-icon">
+<button class="chat-bubble"
+        id="chatBubble"
+        onclick="openChatPanel()">
     🤖
-</div>
-
-
-<div class="chat-title">
-
-<strong>
-    CampusConnect AI
-</strong>
-
-<span>
-
-<span class="online-dot"></span>
-
-College Companion
-
-</span>
-
-</div>
-
-</div>
-
-
-
-<div
-    class="chat-body"
-    id="chatBody"
->
-
-<div class="bot-message">
-
-Hi Priya! 👋 I'm your CampusConnect AI
-College Companion.
-
-I can help you with your profile,
-academics, attendance, assignments,
-placements, and campus information.
-
-</div>
-
-
-<div class="bot-message">
-
-Your current CGPA is <b>8.6</b> and your
-attendance is <b>92%</b>. 🎓
-
-</div>
-
-</div>
-
-
-
-<div class="quick-buttons">
-
-<button
-    class="quick-btn"
-    onclick="quickChat('My Profile')"
->
-    👤 My Profile
 </button>
 
 
-<button
-    class="quick-btn"
-    onclick="quickChat('My CGPA')"
->
-    📊 My CGPA
-</button>
+<div class="chatbot-panel"
+     id="chatbotPanel">
+
+    <div class="chat-header">
+
+        <div class="chat-header-left">
+
+            <div class="robot-icon">
+                🤖
+            </div>
+
+            <div class="chat-title">
+
+                <strong>
+                    AI College Companion
+                </strong>
+
+                <span>
+                    <i class="online-dot"></i>
+                    Online • Ready to help
+                </span>
+
+            </div>
+
+        </div>
+
+        <button class="close-chat"
+                onclick="closeChatPanel()">
+            ×
+        </button>
+
+    </div>
 
 
-<button
-    class="quick-btn"
-    onclick="quickChat('My Attendance')"
->
-    📅 Attendance
-</button>
+    <div class="chat-body"
+         id="chatBody">
+
+        <div class="bot-message">
+
+            👋 Hi! I'm your
+            <strong>AI College Companion.</strong>
+
+            I can help you with your profile,
+            academics, attendance, courses and
+            other CampusConnect features.
+
+        </div>
+
+    </div>
 
 
-<button
-    class="quick-btn"
-    onclick="quickChat('Edit Profile')"
->
-    ✏️ Edit Profile
-</button>
+    <div class="quick-buttons">
+
+        <button class="quick-btn"
+                onclick="quickChat('Show my profile')">
+            My Profile
+        </button>
+
+        <button class="quick-btn"
+                onclick="quickChat('What is my CGPA?')">
+            My CGPA
+        </button>
+
+        <button class="quick-btn"
+                onclick="quickChat('What is my semester?')">
+            Semester
+        </button>
+
+        <button class="quick-btn"
+                onclick="quickChat('Show my attendance')">
+            Attendance
+        </button>
+
+    </div>
+
+
+    <div class="chat-footer">
+
+        <input
+            id="chatInput"
+            class="chat-input"
+            type="text"
+            placeholder="Ask your companion..."
+            onkeydown="handleChatKey(event)"
+        >
+
+        <button class="send-btn"
+                onclick="sendChat()">
+            ➤
+        </button>
+
+    </div>
 
 </div>
-
-
-
-<div class="chat-footer">
-
-<input
-    class="chat-input"
-    id="chatInput"
-    placeholder="Ask CampusConnect AI..."
-    onkeydown="handleChatKey(event)"
->
-
-
-<button
-    class="send-btn"
-    onclick="sendChat()"
->
-    ➤
-</button>
-
-</div>
-
-</aside>
-
 
 
 <!-- ================= EDIT PROFILE MODAL ================= -->
 
-<div
-    class="modal-overlay"
-    id="profileModal"
->
+<div class="modal"
+     id="profileModal"
+     onclick="closeModalOutside(event)">
 
-<div class="modal">
+    <div class="modal-box">
 
+        <div class="modal-top">
 
-<div class="modal-head">
+            <h3>
+                ✏️ Edit Profile
+            </h3>
 
-<h3>
-    ✏️ Edit Profile
-</h3>
+            <button class="close-btn"
+                    onclick="closeModal()">
+                ×
+            </button>
 
-
-<button
-    class="close-modal"
-    onclick="closeEditProfile()"
->
-    ×
-</button>
-
-</div>
+        </div>
 
 
+        <div class="form-group">
 
-<div class="modal-body">
+            <label>
+                FULL NAME
+            </label>
 
+            <input
+                type="text"
+                id="editName"
+                value="Priya Bhavani"
+            >
 
-<div class="form-grid">
-
-
-<div class="form-group">
-
-<label>
-    FULL NAME
-</label>
-
-<input
-    type="text"
-    id="editName"
-    value="Priya Bhavani"
->
-
-</div>
+        </div>
 
 
-<div class="form-group">
+        <div class="form-group">
 
-<label>
-    STUDENT ID
-</label>
+            <label>
+                EMAIL
+            </label>
 
-<input
-    type="text"
-    value="CC2026BCA014"
-    disabled
->
+            <input
+                type="email"
+                id="editEmail"
+                value="priya@campus.edu"
+            >
 
-</div>
-
-
-<div class="form-group">
-
-<label>
-    EMAIL
-</label>
-
-<input
-    type="email"
-    id="editEmail"
-    value="priya.bhavani@college.edu"
->
-
-</div>
+        </div>
 
 
-<div class="form-group">
+        <div class="form-group">
 
-<label>
-    PHONE
-</label>
+            <label>
+                PHONE
+            </label>
 
-<input
-    type="text"
-    id="editPhone"
-    value="+91 98765 43210"
->
+            <input
+                type="text"
+                id="editPhone"
+                value="+91 98765 43210"
+            >
 
-</div>
-
-
-<div class="form-group">
-
-<label>
-    COURSE
-</label>
-
-<select>
-
-<option>
-    Bachelor of Computer Applications
-</option>
-
-<option>
-    Bachelor of Computer Science
-</option>
-
-<option>
-    Bachelor of Information Technology
-</option>
-
-</select>
-
-</div>
+        </div>
 
 
-<div class="form-group">
+        <div class="form-group">
 
-<label>
-    YEAR
-</label>
+            <label>
+                DATE OF BIRTH
+            </label>
 
-<select>
+            <input
+                type="text"
+                id="editDob"
+                value="15 August 2005"
+            >
 
-<option>
-    4th Semester
-</option>
+        </div>
 
-<option>
-    3rd Semester
-</option>
 
-<option>
-    2nd Semester
-</option>
+        <div class="form-group">
 
-<option>
-    1st Semester
-</option>
+            <label>
+                GENDER
+            </label>
 
-</select>
+            <select id="editGender">
+
+                <option value="Female">
+                    Female
+                </option>
+
+                <option value="Male">
+                    Male
+                </option>
+
+                <option value="Other">
+                    Other
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="modal-buttons">
+
+            <button class="modal-btn modal-cancel"
+                    onclick="closeModal()">
+                Cancel
+            </button>
+
+            <button class="modal-btn modal-ok"
+                    onclick="saveProfile()">
+                Save Changes
+            </button>
+
+        </div>
+
+    </div>
 
 </div>
-
-
-<div class="form-group full">
-
-<label>
-    ADDRESS
-</label>
-
-<input
-    type="text"
-    value="Hubballi, Karnataka"
->
-
-</div>
-
-
-</div>
-
-
-
-<div class="modal-buttons">
-
-<button
-    class="cancel-btn"
-    onclick="closeEditProfile()"
->
-    Cancel
-</button>
-
-
-<button
-    class="save-btn"
-    onclick="saveProfile()"
->
-    ✓ Save Changes
-</button>
-
-</div>
-
-
-</div>
-
-</div>
-
-</div>
-
 
 
 <!-- ================= TOAST ================= -->
 
-<div
-    class="toast"
-    id="toast"
->
-    Profile updated successfully
+<div class="toast"
+     id="toast">
+    Done
 </div>
-
 
 
 <script>
@@ -2406,11 +2167,13 @@ function updateClock(){
     const ampm =
         hours >= 12 ? "PM" : "AM";
 
-    hours =
-        hours % 12 || 12;
+    hours = hours % 12 || 12;
 
     document.getElementById("clock").textContent =
-        `${String(hours).padStart(2,"0")}:${minutes}:${seconds} ${ampm}`;
+        hours + ":" +
+        minutes + ":" +
+        seconds + " " +
+        ampm;
 }
 
 updateClock();
@@ -2418,384 +2181,367 @@ updateClock();
 setInterval(updateClock,1000);
 
 
-/* ================= PROFILE MODAL ================= */
+/* ================= EDIT PROFILE ================= */
 
 function openEditProfile(){
 
-    document
-        .getElementById("profileModal")
+    document.getElementById("profileModal")
         .classList.add("show");
 
 }
 
 
-function closeEditProfile(){
+function closeModal(){
 
-    document
-        .getElementById("profileModal")
+    document.getElementById("profileModal")
         .classList.remove("show");
 
 }
 
 
-document
-.getElementById("profileModal")
-.addEventListener(
-    "click",
-    function(event){
+function closeModalOutside(event){
 
-        if(event.target === this){
-
-            closeEditProfile();
-
-        }
-
+    if(
+        event.target ===
+        document.getElementById("profileModal")
+    ){
+        closeModal();
     }
-);
 
+}
 
-/* ================= SAVE PROFILE ================= */
 
 function saveProfile(){
 
     const name =
-        document
-        .getElementById("editName")
-        .value
-        .trim();
+        document.getElementById("editName").value.trim();
 
     const email =
-        document
-        .getElementById("editEmail")
-        .value
-        .trim();
+        document.getElementById("editEmail").value.trim();
 
     const phone =
-        document
-        .getElementById("editPhone")
-        .value
-        .trim();
+        document.getElementById("editPhone").value.trim();
 
+    const dob =
+        document.getElementById("editDob").value.trim();
 
-    if(!name || !email || !phone){
+    const gender =
+        document.getElementById("editGender").value;
 
-        showToast(
-            "⚠️ Please fill all required fields"
-        );
+    if(!name){
+
+        showToast("Please enter your name");
 
         return;
-
     }
 
+    document.getElementById("heroName").textContent =
+        name;
 
-    document
-        .getElementById("heroName")
-        .textContent = name;
+    document.getElementById("infoName").textContent =
+        name;
 
-    document
-        .getElementById("nameValue")
-        .textContent = name;
+    document.getElementById("infoEmail").textContent =
+        email || "Not provided";
 
-    document
-        .getElementById("emailValue")
-        .textContent = email;
+    document.getElementById("infoPhone").textContent =
+        phone || "Not provided";
 
-    document
-        .getElementById("phoneValue")
-        .textContent = phone;
+    document.getElementById("infoDob").textContent =
+        dob || "Not provided";
 
-    document
-        .getElementById("contactEmail")
-        .textContent = email;
+    document.getElementById("infoGender").textContent =
+        gender;
 
-    document
-        .getElementById("contactPhone")
-        .textContent = phone;
+    document.getElementById("miniName").textContent =
+        name.split(" ")[0];
 
+    const firstLetter =
+        name.charAt(0).toUpperCase();
 
-    const parts =
-        name.split(" ");
+    document.getElementById("heroAvatar").textContent =
+        firstLetter;
 
-    let initials =
-        parts[0].charAt(0).toUpperCase();
+    document.querySelector(".profile-circle").textContent =
+        firstLetter;
 
-    if(parts.length > 1){
+    closeModal();
 
-        initials +=
-            parts[parts.length - 1]
-            .charAt(0)
-            .toUpperCase();
-
-    }
+    showToast("Profile updated successfully ✅");
+}
 
 
-    document
-        .getElementById("bigInitials")
-        .textContent = initials;
+/* ================= NOTIFICATIONS ================= */
 
+function showNotifications(){
 
-    closeEditProfile();
+    const html =
+        "<strong>CampusConnect Notification</strong><br><br>" +
+        "👤 Your profile information is available here.<br><br>" +
+        "🎓 Current program: BCA<br>" +
+        "📚 Current semester: 5th Semester<br>" +
+        "⭐ Current CGPA: 8.4";
 
-    showToast(
-        "✓ Profile updated successfully"
-    );
+    addMessage("bot-message",html);
+
+    openChatPanel();
 
 }
 
 
 /* ================= TOAST ================= */
 
-let toastTimer;
-
 function showToast(message){
 
     const toast =
         document.getElementById("toast");
 
-    toast.textContent =
-        message;
+    toast.textContent = message;
 
     toast.classList.add("show");
 
-    clearTimeout(toastTimer);
+    clearTimeout(toast._timer);
 
-    toastTimer =
-        setTimeout(
-            () => {
-                toast.classList.remove("show");
-            },
-            3000
-        );
+    toast._timer =
+        setTimeout(function(){
+
+            toast.classList.remove("show");
+
+        },2500);
 }
 
 
-/* ================= CHATBOT ================= */
+/* ================= ACADEMICS ================= */
 
-function addBotMessage(message){
+function goToAcademics(){
+
+    window.location.href =
+        "academics.html";
+
+}
+
+
+/* ================= CHAT ================= */
+
+function openChatPanel(){
+
+    document.getElementById("chatbotPanel")
+        .classList.add("open");
+
+    document.getElementById("chatBubble")
+        .classList.add("hide");
+
+}
+
+
+function closeChatPanel(){
+
+    document.getElementById("chatbotPanel")
+        .classList.remove("open");
+
+    document.getElementById("chatBubble")
+        .classList.remove("hide");
+
+}
+
+
+function quickChat(text){
+
+    document.getElementById("chatInput").value =
+        text;
+
+    sendChat();
+
+}
+
+
+function addMessage(cls,html){
 
     const body =
         document.getElementById("chatBody");
 
-    const div =
+    const msg =
         document.createElement("div");
 
-    div.className =
-        "bot-message";
+    msg.className = cls;
 
-    div.innerHTML =
-        message;
+    msg.innerHTML = html;
 
-    body.appendChild(div);
+    body.appendChild(msg);
 
     body.scrollTop =
         body.scrollHeight;
-}
 
-
-function addUserMessage(message){
-
-    const body =
-        document.getElementById("chatBody");
-
-    const div =
-        document.createElement("div");
-
-    div.className =
-        "user-message";
-
-    div.textContent =
-        message;
-
-    body.appendChild(div);
-
-    body.scrollTop =
-        body.scrollHeight;
-}
-
-
-/* ================= QUICK CHAT ================= */
-
-function quickChat(type){
-
-    addUserMessage(type);
-
-
-    setTimeout(() => {
-
-        if(type === "My Profile"){
-
-            addBotMessage(
-                "👤 Your profile shows <b>Priya Bhavani</b>, BCA student in Computer Science, currently in the <b>4th semester</b>."
-            );
-
-        }
-
-        else if(type === "My CGPA"){
-
-            addBotMessage(
-                "📊 Your current CGPA is <b>8.6</b>. Keep up the great work! 🎓"
-            );
-
-        }
-
-        else if(type === "My Attendance"){
-
-            addBotMessage(
-                "📅 Your current attendance is <b>92%</b>. That's a healthy attendance level."
-            );
-
-        }
-
-        else if(type === "Edit Profile"){
-
-            addBotMessage(
-                "✏️ You can edit your name, email, phone number, course, year, and address using the <b>Edit Profile</b> button."
-            );
-
-        }
-
-    },500);
+    return msg;
 
 }
 
 
-/* ================= SEND CHAT ================= */
+function botReply(text){
+
+    const lower =
+        text.toLowerCase();
+
+    if(
+        lower.includes("profile") ||
+        lower.includes("my details") ||
+        lower.includes("my information")
+    ){
+
+        return "👤 Your profile shows Priya Bhavani, BCA, 5th Semester. Your current CGPA is 8.4 and your student account is active.";
+
+    }
+
+
+    if(
+        lower.includes("cgpa") ||
+        lower.includes("marks") ||
+        lower.includes("performance")
+    ){
+
+        return "⭐ Your current CGPA is 8.4. Your academic progress shown on the profile is 84%.";
+
+    }
+
+
+    if(
+        lower.includes("semester") ||
+        lower.includes("course") ||
+        lower.includes("program")
+    ){
+
+        return "🎓 You are currently studying BCA in the 5th Semester.";
+
+    }
+
+
+    if(
+        lower.includes("attendance")
+    ){
+
+        return "📊 Your current attendance shown on the profile is 87%.";
+
+    }
+
+
+    if(
+        lower.includes("assignment")
+    ){
+
+        return "📝 Your assignment completion shown on the profile is 92%.";
+
+    }
+
+
+    if(
+        lower.includes("email") ||
+        lower.includes("phone") ||
+        lower.includes("contact")
+    ){
+
+        return "📧 Your profile contains your registered email and phone number. Open the Personal Information section to view them.";
+
+    }
+
+
+    if(
+        lower.includes("edit") ||
+        lower.includes("change")
+    ){
+
+        return "✏️ Click the Edit Profile button to update your name, email, phone, date of birth or gender.";
+
+    }
+
+
+    if(
+        lower.includes("hello") ||
+        lower.includes("hi") ||
+        lower.includes("hey")
+    ){
+
+        return "👋 Hi! I can help you with your profile, CGPA, semester, attendance and academic information.";
+
+    }
+
+
+    if(
+        lower.includes("thank")
+    ){
+
+        return "😊 You're welcome! I'm always here to help.";
+
+    }
+
+
+    return "😊 I can help you with your profile, CGPA, semester, attendance, assignments or editing your profile. Try asking: \"What is my CGPA?\"";
+
+}
+
 
 function sendChat(){
 
     const input =
         document.getElementById("chatInput");
 
-    const message =
+    const text =
         input.value.trim();
 
-    if(!message){
-        return;
-    }
+    if(!text) return;
 
-    addUserMessage(message);
+    addMessage(
+        "user-message",
+        escapeHtml(text)
+    );
 
     input.value = "";
 
+    const typing =
+        addMessage(
+            "typing",
+            "<i></i><i></i><i></i>"
+        );
 
-    setTimeout(() => {
+    setTimeout(function(){
 
-        const text =
-            message.toLowerCase();
+        typing.remove();
 
+        addMessage(
+            "bot-message",
+            botReply(text)
+        );
 
-        if(
-            text.includes("profile") ||
-            text.includes("name")
-        ){
-
-            addBotMessage(
-                "👤 Your profile name is <b>" +
-                document.getElementById("nameValue").textContent +
-                "</b>. You are a BCA Computer Science student."
-            );
-
-        }
-
-        else if(
-            text.includes("cgpa") ||
-            text.includes("marks")
-        ){
-
-            addBotMessage(
-                "📊 Your current CGPA is <b>8.6</b>."
-            );
-
-        }
-
-        else if(
-            text.includes("attendance")
-        ){
-
-            addBotMessage(
-                "📅 Your current attendance is <b>92%</b>."
-            );
-
-        }
-
-        else if(
-            text.includes("email")
-        ){
-
-            addBotMessage(
-                "📧 Your registered college email is <b>" +
-                document.getElementById("emailValue").textContent +
-                "</b>."
-            );
-
-        }
-
-        else if(
-            text.includes("phone") ||
-            text.includes("mobile")
-        ){
-
-            addBotMessage(
-                "📱 Your registered mobile number is <b>" +
-                document.getElementById("phoneValue").textContent +
-                "</b>."
-            );
-
-        }
-
-        else if(
-            text.includes("edit")
-        ){
-
-            addBotMessage(
-                "✏️ Click the <b>Edit Profile</b> button at the top of the page to update your details."
-            );
-
-        }
-
-        else{
-
-            addBotMessage(
-                "🤖 I can help you with your <b>profile, CGPA, attendance, email, phone number, and profile editing</b>."
-            );
-
-        }
-
-    },500);
+    },600);
 
 }
 
 
-/* ================= ENTER KEY ================= */
-
 function handleChatKey(event){
 
     if(event.key === "Enter"){
-
         sendChat();
-
     }
+
+}
+
+
+function escapeHtml(str){
+
+    return str
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;");
 
 }
 
 
 /* ================= LOGOUT ================= */
 
-function logoutUser(event){
+function confirmLogout(){
 
-    event.preventDefault();
-
-    const confirmed =
-        confirm(
-            "Are you sure you want to logout?"
-        );
-
-    if(confirmed){
-
-        window.location.href =
-            "../index.html";
-
-    }
+    return confirm(
+        "Are you sure you want to logout?"
+    );
 
 }
 
@@ -2808,15 +2554,28 @@ document.addEventListener(
 
         if(event.key === "Escape"){
 
-            closeEditProfile();
+            closeModal();
+            closeChatPanel();
 
         }
 
     }
 );
 
+
+/* ================= INITIAL CHAT MESSAGE ================= */
+
+setTimeout(function(){
+
+    addMessage(
+        "bot-message",
+        "👋 Welcome to your profile! Your current CGPA is <strong>8.4</strong> and attendance is <strong>87%</strong>. Ask me anything about your student profile."
+    );
+
+},1200);
+
 </script>
 
+<script src="../js/chatbot.js"></script>
 </body>
-
 </html>

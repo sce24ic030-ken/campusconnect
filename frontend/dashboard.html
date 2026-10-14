@@ -1,8 +1,5 @@
-
-```html
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,862 +8,1448 @@
 
 <style>
 
-/* =====================================================
-   RESET
-===================================================== */
+/* =========================================================
+   GLOBAL
+========================================================= */
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,Helvetica,sans-serif;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-body{
-    background:#f4f7fb;
-    color:#1f2937;
-    min-height:100vh;
+html,
+body {
+    width: 100%;
+    height: 100%;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #f4f6ff;
+    color: #17203a;
+    overflow: hidden;
 }
 
-
-/* =====================================================
-   SIDEBAR
-===================================================== */
-
-.sidebar{
-    position:fixed;
-    left:0;
-    top:0;
-    width:250px;
-    height:100vh;
-
-    background:linear-gradient(
-        180deg,
-        #172554,
-        #312e81,
-        #4c1d95
-    );
-
-    color:white;
-    padding:25px 15px;
-
-    z-index:1000;
-    overflow-y:auto;
-}
-
-.logo{
-    display:flex;
-    align-items:center;
-    gap:12px;
-
-    padding:0 12px 25px;
-
-    border-bottom:1px solid rgba(255,255,255,.2);
-    margin-bottom:20px;
-}
-
-.logo-icon{
-    width:45px;
-    height:45px;
-
-    border-radius:14px;
-
-    background:linear-gradient(
-        135deg,
-        #38bdf8,
-        #a78bfa
-    );
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    font-size:23px;
-}
-
-.logo h2{
-    font-size:20px;
-}
-
-.logo span{
-    display:block;
-    font-size:11px;
-    opacity:.7;
-    margin-top:3px;
+button,
+input {
+    font-family: inherit;
 }
 
 
-/* NAVIGATION */
+/* =========================================================
+   APP
+========================================================= */
 
-.nav-item{
-    width:100%;
-
-    border:none;
-    background:transparent;
-
-    color:#dbeafe;
-
-    display:flex;
-    align-items:center;
-
-    gap:13px;
-
-    padding:13px 15px;
-    margin:4px 0;
-
-    border-radius:12px;
-
-    cursor:pointer;
-
-    font-size:14px;
-    text-align:left;
-
-    transition:.25s;
-}
-
-.nav-item:hover{
-    background:rgba(255,255,255,.12);
-    transform:translateX(4px);
-    color:white;
-}
-
-.nav-item.active{
-    background:linear-gradient(
-        90deg,
-        #38bdf8,
-        #8b5cf6
-    );
-
-    color:white;
-}
-
-.nav-icon{
-    width:25px;
-    text-align:center;
-    font-size:17px;
+.app {
+    width: 100%;
+    height: 100vh;
 }
 
 
-/* =====================================================
-   MAIN
-===================================================== */
+/* =========================================================
+   LEFT SIDEBAR
+========================================================= */
 
-.main{
-    margin-left:250px;
-    min-height:100vh;
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+
+    width: 268px;
+    min-width: 268px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #172a70 0%,
+            #28237d 48%,
+            #5520a7 100%
+        );
+
+    color: white;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    z-index: 1000;
+
+    padding-bottom: 20px;
+
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255,255,255,.25) transparent;
 }
 
 
-/* =====================================================
-   TOPBAR
-===================================================== */
+/* LOGO */
 
-.topbar{
-    height:75px;
+.brand {
+    height: 120px;
 
-    background:white;
+    display: flex;
+    align-items: center;
 
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
+    padding: 22px 18px;
 
-    padding:0 30px;
-
-    border-bottom:1px solid #e5e7eb;
-
-    position:sticky;
-    top:0;
-
-    z-index:500;
+    border-bottom: 1px solid rgba(255,255,255,.12);
 }
 
-.page-title{
-    font-size:21px;
-    font-weight:700;
-}
+.logo-box {
+    width: 52px;
+    height: 52px;
 
-.page-subtitle{
-    font-size:12px;
-    color:#6b7280;
-    margin-top:4px;
-}
+    border-radius: 16px;
 
-.top-right{
-    display:flex;
-    align-items:center;
-    gap:20px;
-}
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-.clock{
-    font-size:13px;
-    color:#64748b;
-}
+    font-size: 28px;
 
-.notification{
-    width:40px;
-    height:40px;
-
-    border-radius:50%;
-
-    background:#f1f5f9;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    cursor:pointer;
-
-    position:relative;
-
-    transition:.2s;
-}
-
-.notification:hover{
-    background:#e0e7ff;
-    transform:scale(1.05);
-}
-
-.notification-dot{
-    position:absolute;
-
-    width:8px;
-    height:8px;
-
-    border-radius:50%;
-
-    background:#ef4444;
-
-    right:8px;
-    top:7px;
-}
-
-.profile{
-    display:flex;
-    align-items:center;
-    gap:10px;
-
-    cursor:pointer;
-}
-
-.profile-avatar{
-    width:40px;
-    height:40px;
-
-    border-radius:50%;
-
-    background:linear-gradient(
-        135deg,
-        #06b6d4,
-        #6366f1
-    );
-
-    color:white;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    font-weight:bold;
-}
-
-.profile-info strong{
-    display:block;
-    font-size:13px;
-}
-
-.profile-info span{
-    font-size:11px;
-    color:#64748b;
-}
-
-
-/* =====================================================
-   CONTENT
-===================================================== */
-
-.content{
-    padding:30px;
-}
-
-
-/* =====================================================
-   HERO
-===================================================== */
-
-.hero{
-    background:linear-gradient(
-        120deg,
-        #172554,
-        #312e81,
-        #6d28d9
-    );
-
-    border-radius:24px;
-
-    padding:32px;
-
-    color:white;
-
-    position:relative;
-    overflow:hidden;
-
-    margin-bottom:25px;
+    background:
+        linear-gradient(
+            135deg,
+            #24b8ff,
+            #7144f5
+        );
 
     box-shadow:
-        0 15px 40px rgba(49,46,129,.2);
+        0 10px 25px rgba(0,0,0,.20);
 }
 
-.hero:before{
-    content:"";
-
-    position:absolute;
-
-    width:300px;
-    height:300px;
-
-    border-radius:50%;
-
-    background:rgba(255,255,255,.08);
-
-    right:-80px;
-    top:-130px;
+.brand-text {
+    margin-left: 13px;
 }
 
-.hero:after{
-    content:"";
-
-    position:absolute;
-
-    width:180px;
-    height:180px;
-
-    border-radius:50%;
-
-    background:rgba(56,189,248,.12);
-
-    right:150px;
-    bottom:-100px;
+.brand-title {
+    font-size: 21px;
+    font-weight: 800;
+    letter-spacing: -.5px;
 }
 
-.hero-content{
-    position:relative;
-    z-index:2;
-}
-
-.hero h1{
-    font-size:30px;
-    margin-bottom:10px;
-}
-
-.hero p{
-    color:#dbeafe;
-    font-size:14px;
-    max-width:650px;
-    line-height:1.6;
-}
-
-.hero-date{
-    display:inline-block;
-
-    margin-top:18px;
-
-    padding:9px 14px;
-
-    background:rgba(255,255,255,.12);
-
-    border-radius:20px;
-
-    font-size:12px;
+.brand-subtitle {
+    font-size: 12px;
+    opacity: .72;
+    margin-top: 3px;
 }
 
 
-/* =====================================================
-   STATS
-===================================================== */
+/* MENU */
 
-.stats{
-    display:grid;
-
-    grid-template-columns:
-        repeat(4,1fr);
-
-    gap:18px;
-
-    margin-bottom:25px;
+.menu {
+    padding: 25px 14px;
 }
 
-.stat-card{
-    background:white;
+.menu-title {
+    font-size: 12px;
+    font-weight: 700;
 
-    border-radius:18px;
+    color: rgba(255,255,255,.52);
 
-    padding:22px;
+    letter-spacing: 1px;
 
-    border:1px solid #e5e7eb;
-
-    transition:.25s;
+    padding: 0 11px 10px;
 }
 
-.stat-card:hover{
-    transform:translateY(-5px);
+.menu-section {
+    margin-top: 20px;
+}
+
+
+.nav-item {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+
+    min-height: 49px;
+
+    padding: 0 14px;
+
+    margin: 5px 0;
+
+    border-radius: 13px;
+
+    color: rgba(255,255,255,.84);
+
+    text-decoration: none;
+
+    transition:
+        transform .2s ease,
+        background .2s ease,
+        color .2s ease;
+}
+
+.nav-item:hover {
+    background: rgba(255,255,255,.12);
+    color: white;
+    transform: translateX(3px);
+}
+
+.nav-item.active {
+    color: white;
+
+    background:
+        linear-gradient(
+            90deg,
+            #22b9f5,
+            #6942f4
+        );
 
     box-shadow:
-        0 12px 30px rgba(15,23,42,.1);
+        0 9px 22px rgba(0,0,0,.18);
 }
 
-.stat-top{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+.nav-icon {
+    width: 31px;
+    font-size: 20px;
+    text-align: center;
+    margin-right: 10px;
 }
 
-.stat-icon{
-    width:45px;
-    height:45px;
-
-    border-radius:13px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    font-size:20px;
-
-    background:#eef2ff;
-}
-
-.stat-card h3{
-    font-size:28px;
-    margin:15px 0 5px;
-}
-
-.stat-card p{
-    color:#64748b;
-    font-size:12px;
-}
-
-.green{
-    color:#16a34a;
-}
-
-.blue{
-    color:#2563eb;
-}
-
-.orange{
-    color:#ea580c;
-}
-
-.purple{
-    color:#7c3aed;
+.nav-text {
+    font-size: 15px;
+    font-weight: 650;
 }
 
 
-/* =====================================================
-   GRID
-===================================================== */
+/* LOGOUT */
 
-.dashboard-grid{
-    display:grid;
+.logout {
+    margin-top: 14px;
+    padding-top: 15px;
 
-    grid-template-columns:
-        1.5fr 1fr;
-
-    gap:22px;
-}
-
-.card{
-    background:white;
-
-    border:1px solid #e5e7eb;
-
-    border-radius:20px;
-
-    padding:23px;
-
-    margin-bottom:22px;
-}
-
-.card-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-
-    margin-bottom:20px;
-}
-
-.card-header h2{
-    font-size:17px;
-}
-
-.card-header span{
-    font-size:12px;
-    color:#6366f1;
-    cursor:pointer;
-}
-
-.card-header span:hover{
-    text-decoration:underline;
+    border-top: 1px solid rgba(255,255,255,.13);
 }
 
 
-/* =====================================================
-   SCHEDULE
-===================================================== */
+/* =========================================================
+   MAIN AREA
+========================================================= */
 
-.schedule{
-    display:flex;
-    flex-direction:column;
-    gap:12px;
-}
+.main-area {
+    margin-left: 268px;
+    margin-right: 0;
 
-.schedule-item{
-    display:grid;
+    width: auto;
 
-    grid-template-columns:
-        80px 1fr 80px;
+    height: 100vh;
 
-    align-items:center;
+    overflow-y: auto;
+    overflow-x: hidden;
 
-    padding:14px;
-
-    border-radius:13px;
-
-    background:#f8fafc;
-
-    border-left:
-        4px solid #6366f1;
-
-    transition:.2s;
-}
-
-.schedule-item:hover{
-    background:#eef2ff;
-    transform:translateX(3px);
-}
-
-.schedule-time{
-    font-size:12px;
-    color:#64748b;
-}
-
-.schedule-subject{
-    font-weight:600;
-    font-size:13px;
-}
-
-.schedule-room{
-    font-size:11px;
-    color:#64748b;
-    text-align:right;
+    background:
+        linear-gradient(
+            180deg,
+            #f8f9ff,
+            #eef1fb
+        );
 }
 
 
-/* =====================================================
-   QUICK ACTIONS
-===================================================== */
+/* =========================================================
+   TOP HEADER
+========================================================= */
 
-.actions{
-    display:grid;
+.top-header {
+    height: 120px;
 
-    grid-template-columns:
-        1fr 1fr;
+    background: rgba(255,255,255,.96);
 
-    gap:12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 22px 28px;
+
+    border-bottom: 1px solid #e9ebf5;
+
+    position: sticky;
+    top: 0;
+
+    z-index: 100;
 }
 
-.action{
-    border:1px solid #e5e7eb;
-
-    background:#fff;
-
-    padding:17px;
-
-    border-radius:15px;
-
-    cursor:pointer;
-
-    transition:.25s;
-
-    text-align:left;
+.header-left h1 {
+    font-size: 30px;
+    line-height: 1.05;
+    font-weight: 800;
 }
 
-.action:hover{
-    transform:translateY(-3px);
+.header-left p {
+    margin-top: 7px;
+    color: #8990a7;
+    font-size: 14px;
+}
 
-    border-color:#818cf8;
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.time-box {
+    font-size: 18px;
+    font-weight: 750;
+    color: #59617d;
+}
+
+.notification {
+    width: 48px;
+    height: 48px;
+
+    background: #fff;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 22px;
+
+    box-shadow: 0 5px 18px rgba(40,35,100,.10);
+
+    position: relative;
+}
+
+.notification::after {
+    content: "";
+
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+
+    background: #ff4f8b;
+
+    position: absolute;
+    top: 7px;
+    right: 8px;
+}
+
+.profile-mini {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.profile-circle {
+    width: 48px;
+    height: 48px;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #25b8ee,
+            #466cf1
+        );
+
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.profile-info strong {
+    display: block;
+    font-size: 15px;
+}
+
+.profile-info span {
+    display: block;
+    color: #8d93a8;
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   DASHBOARD CONTENT
+========================================================= */
+
+.dashboard-content {
+    padding: 20px 24px 35px;
+
+    width: 100%;
+}
+
+
+/* =========================================================
+   WELCOME HERO
+========================================================= */
+
+.welcome-banner {
+    width: 100%;
+    min-height: 255px;
+
+    border-radius: 20px;
+
+    padding: 30px 38px;
+
+    position: relative;
+    overflow: hidden;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            120deg,
+            #19398d,
+            #4828c8 55%,
+            #7738dd
+        );
 
     box-shadow:
-        0 8px 20px rgba(99,102,241,.1);
+        0 14px 35px rgba(55,44,150,.20);
+
+    display: flex;
+    align-items: center;
 }
 
-.action-icon{
-    font-size:22px;
-    margin-bottom:10px;
+.welcome-banner::before {
+    content: "";
+
+    position: absolute;
+
+    width: 350px;
+    height: 350px;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,.07);
+
+    right: 40px;
+    top: -150px;
 }
 
-.action strong{
-    display:block;
-    font-size:13px;
+.welcome-banner::after {
+    content: "";
+
+    position: absolute;
+
+    width: 300px;
+    height: 300px;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,.05);
+
+    right: -70px;
+    bottom: -160px;
 }
 
-.action small{
-    color:#64748b;
-    font-size:10px;
+.hero-content {
+    position: relative;
+    z-index: 2;
+
+    max-width: 65%;
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 8px;
+
+    background: rgba(255,255,255,.13);
+
+    padding: 9px 15px;
+
+    border-radius: 30px;
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.hero-content h2 {
+    font-size: 37px;
+    line-height: 1.15;
+
+    margin-top: 18px;
+}
+
+.hero-content p {
+    font-size: 15px;
+    line-height: 1.65;
+
+    margin-top: 10px;
+
+    max-width: 580px;
+
+    color: rgba(255,255,255,.86);
+}
+
+.date-pill {
+    display: inline-flex;
+
+    margin-top: 17px;
+
+    padding: 10px 15px;
+
+    border-radius: 30px;
+
+    background: rgba(255,255,255,.12);
+
+    font-size: 13px;
+    font-weight: 650;
 }
 
 
-/* =====================================================
-   PROGRESS
-===================================================== */
+/* HERO ICON */
 
-.progress-box{
-    margin-bottom:18px;
+.hero-art {
+    position: absolute;
+
+    right: 65px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 190px;
+    height: 170px;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    z-index: 2;
 }
 
-.progress-info{
-    display:flex;
-    justify-content:space-between;
+.hero-cap {
+    font-size: 67px;
 
-    font-size:12px;
-
-    margin-bottom:8px;
+    filter:
+        drop-shadow(
+            0 12px 8px rgba(0,0,0,.25)
+        );
 }
 
-.progress{
-    width:100%;
-
-    height:8px;
-
-    background:#e5e7eb;
-
-    border-radius:20px;
-
-    overflow:hidden;
-}
-
-.progress-bar{
-    height:100%;
-
-    border-radius:20px;
-
-    background:linear-gradient(
-        90deg,
-        #06b6d4,
-        #6366f1
-    );
+.hero-books {
+    font-size: 65px;
+    margin-top: -18px;
 }
 
 
-/* =====================================================
-   CAMPUS
-===================================================== */
+/* =========================================================
+   STAT CARDS
+========================================================= */
 
-.campus-grid{
-    display:grid;
+.stats-grid {
+    width: 100%;
+
+    display: grid;
 
     grid-template-columns:
-        repeat(3,1fr);
+        repeat(3, minmax(0, 1fr));
 
-    gap:18px;
+    gap: 18px;
+
+    margin-top: 20px;
 }
 
-.campus-card{
-    min-height:160px;
+.stat-card {
+    background: white;
 
-    border-radius:18px;
+    border: 1px solid #e9ebf5;
 
-    padding:22px;
+    border-radius: 17px;
 
-    color:white;
+    padding: 20px;
 
-    position:relative;
-
-    overflow:hidden;
-
-    background:linear-gradient(
-        135deg,
-        #0f766e,
-        #0891b2
-    );
-}
-
-.campus-card:nth-child(2){
-    background:linear-gradient(
-        135deg,
-        #7c3aed,
-        #4f46e5
-    );
-}
-
-.campus-card:nth-child(3){
-    background:linear-gradient(
-        135deg,
-        #c2410c,
-        #ea580c
-    );
-}
-
-.campus-card h3{
-    margin-bottom:8px;
-    font-size:17px;
-}
-
-.campus-card p{
-    font-size:11px;
-    color:#e0f2fe;
-    line-height:1.5;
-}
-
-
-/* =====================================================
-   TOAST
-===================================================== */
-
-.toast{
-    position:fixed;
-
-    right:25px;
-    bottom:25px;
-
-    background:#172554;
-
-    color:white;
-
-    padding:15px 20px;
-
-    border-radius:12px;
+    min-height: 145px;
 
     box-shadow:
-        0 10px 30px rgba(0,0,0,.2);
+        0 8px 25px rgba(40,35,100,.06);
 
-    transform:translateY(120px);
+    cursor: pointer;
 
-    opacity:0;
-
-    transition:.3s;
-
-    z-index:3000;
-
-    font-size:13px;
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease;
 }
 
-.toast.show{
-    transform:translateY(0);
-    opacity:1;
+.stat-card:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 15px 35px rgba(40,35,100,.12);
+}
+
+.stat-top {
+    display: flex;
+    justify-content: space-between;
+}
+
+.stat-title {
+    color: #7f88a5;
+    font-size: 14px;
+    font-weight: 650;
+}
+
+.stat-icon {
+    width: 43px;
+    height: 43px;
+
+    border-radius: 13px;
+
+    background: #f0f3ff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 21px;
+}
+
+.stat-number {
+    font-size: 31px;
+    font-weight: 800;
+
+    margin-top: 11px;
+
+    color: #3063df;
+}
+
+.green {
+    color: #18a871;
+}
+
+.stat-small {
+    color: #9aa2b9;
+    font-size: 12px;
+}
+
+.progress {
+    width: 100%;
+    height: 7px;
+
+    background: #edf0f7;
+
+    border-radius: 10px;
+
+    margin-top: 10px;
+
+    overflow: hidden;
+}
+
+.progress span {
+    display: block;
+
+    width: 87%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #24aaf1,
+            #7641f2
+        );
+
+    border-radius: 10px;
 }
 
 
-/* =====================================================
-   MOBILE MENU
-===================================================== */
+/* =========================================================
+   TWO COLUMN MIDDLE CONTENT
+========================================================= */
 
-.mobile-menu{
-    display:none;
+.middle-grid {
+    display: grid;
 
-    border:none;
+    grid-template-columns:
+        minmax(0, 1.2fr)
+        minmax(0, .8fr);
 
-    background:none;
+    gap: 18px;
 
-    font-size:22px;
+    margin-top: 20px;
+}
 
-    cursor:pointer;
+.content-card {
+    background: white;
+
+    border: 1px solid #e9ebf5;
+
+    border-radius: 17px;
+
+    padding: 20px;
+
+    box-shadow:
+        0 8px 25px rgba(40,35,100,.06);
+}
+
+.card-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 15px;
+}
+
+.card-heading h3 {
+    font-size: 17px;
+}
+
+.view-link {
+    color: #6845e9;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    text-decoration: none;
 }
 
 
-/* =====================================================
+/* TIMETABLE */
+
+.class-row {
+    display: flex;
+    align-items: center;
+
+    padding: 13px 0;
+
+    border-bottom: 1px solid #f0f1f7;
+}
+
+.class-row:last-child {
+    border-bottom: none;
+}
+
+.class-time {
+    width: 90px;
+
+    color: #6845e9;
+
+    font-size: 13px;
+    font-weight: 750;
+}
+
+.class-info strong {
+    display: block;
+    font-size: 14px;
+}
+
+.class-info span {
+    color: #9299ae;
+    font-size: 12px;
+}
+
+
+/* EVENTS */
+
+.event-row {
+    display: flex;
+    align-items: center;
+
+    padding: 10px 0;
+
+    border-bottom: 1px solid #f0f1f7;
+}
+
+.event-row:last-child {
+    border-bottom: none;
+}
+
+.event-date {
+    width: 48px;
+    height: 48px;
+
+    border-radius: 12px;
+
+    background: #f0f3ff;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    margin-right: 12px;
+}
+
+.event-date strong {
+    color: #315bd5;
+    font-size: 16px;
+}
+
+.event-date span {
+    color: #8b94ad;
+    font-size: 10px;
+}
+
+.event-info strong {
+    display: block;
+    font-size: 13px;
+}
+
+.event-info span {
+    color: #959caf;
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   CAMPUS PHOTO SECTION
+========================================================= */
+
+.campus-section {
+    margin-top: 20px;
+}
+
+.section-title {
+    font-size: 19px;
+    font-weight: 800;
+
+    margin-bottom: 14px;
+}
+
+.photo-grid {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(5, minmax(0, 1fr));
+
+    gap: 13px;
+}
+
+.photo-card {
+    height: 145px;
+
+    border-radius: 16px;
+
+    overflow: hidden;
+
+    position: relative;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 7px 20px rgba(30,35,90,.10);
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
+}
+
+.photo-card:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 15px 30px rgba(30,35,90,.16);
+}
+
+.photo-card img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition: transform .4s ease;
+}
+
+.photo-card:hover img {
+    transform: scale(1.08);
+}
+
+.photo-overlay {
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    padding: 35px 12px 12px;
+
+    background:
+        linear-gradient(
+            transparent,
+            rgba(0,0,0,.72)
+        );
+
+    color: white;
+}
+
+.photo-overlay strong {
+    font-size: 13px;
+}
+
+.photo-overlay span {
+    display: block;
+
+    font-size: 10px;
+
+    opacity: .8;
+
+    margin-top: 2px;
+}
+
+
+/* =========================================================
+   RIGHT CHATBOT
+========================================================= */
+
+.chatbot {
+    position: fixed;
+
+    top: auto;
+    right: 24px;
+    bottom: 100px;
+
+    width: 350px;
+    min-width: 0;
+    max-width: calc(100vw - 40px);
+
+    height: 500px;
+    max-height: calc(100vh - 140px);
+
+    background: white;
+
+    border-radius: 18px;
+
+    border: 1px solid #e5e6f2;
+
+    box-shadow:
+        0 24px 60px rgba(40,35,100,.22);
+
+    z-index: 9999;
+
+    display: none;
+    flex-direction: column;
+
+    overflow: hidden;
+}
+
+.chatbot.open {
+    display: flex;
+}
+
+
+/* FLOATING LAUNCHER */
+
+.chat-bubble {
+    position: fixed;
+
+    right: 24px;
+    bottom: 24px;
+
+    width: 60px;
+    height: 60px;
+
+    border: none;
+    border-radius: 50%;
+
+    background:
+        linear-gradient(135deg, #6436d8, #7b4bea);
+
+    color: #fff;
+    font-size: 26px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 10px 26px rgba(100,54,216,.45);
+
+    z-index: 9998;
+
+    transition: .25s;
+}
+
+.chat-bubble:hover {
+    transform: scale(1.08);
+}
+
+
+/* CLOSE BUTTON */
+
+.close-chat {
+    margin-left: auto;
+
+    background: rgba(255,255,255,.18);
+
+    border: none;
+    color: #fff;
+
+    font-size: 20px;
+
+    width: 30px;
+    height: 30px;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+    line-height: 1;
+}
+
+
+/* CHAT HEADER */
+
+.chat-header {
+    min-height: 82px;
+
+    flex-shrink: 0;
+
+    padding: 15px;
+
+    display: flex;
+    align-items: center;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #29277d,
+            #7137d8
+        );
+}
+
+.robot-icon {
+    width: 45px;
+    height: 45px;
+
+    border-radius: 14px;
+
+    background: rgba(255,255,255,.15);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 24px;
+
+    margin-right: 10px;
+}
+
+.chat-title strong {
+    display: block;
+    font-size: 15px;
+}
+
+.chat-title span {
+    display: block;
+
+    font-size: 10px;
+
+    margin-top: 3px;
+
+    color: rgba(255,255,255,.78);
+}
+
+.online-dot {
+    display: inline-block;
+
+    width: 7px;
+    height: 7px;
+
+    background: #57e6a3;
+
+    border-radius: 50%;
+
+    margin-right: 4px;
+}
+
+
+/* CHAT BODY */
+
+.chat-body {
+    flex: 1;
+
+    min-height: 0;
+
+    padding: 17px 14px;
+
+    overflow-y: auto;
+
+    background:
+        linear-gradient(
+            180deg,
+            #fafbff,
+            #f4f5fb
+        );
+}
+
+.bot-message {
+    background: white;
+
+    border: 1px solid #e7e9f3;
+
+    border-radius: 14px;
+
+    padding: 12px;
+
+    margin-bottom: 10px;
+
+    color: #65708d;
+
+    font-size: 11px;
+
+    line-height: 1.6;
+
+    box-shadow:
+        0 5px 15px rgba(40,35,100,.04);
+}
+
+.user-message {
+    background:
+        linear-gradient(
+            135deg,
+            #6241e8,
+            #7b3ee0
+        );
+
+    color: white;
+
+    padding: 10px 12px;
+
+    border-radius: 14px 14px 4px 14px;
+
+    margin: 9px 0 9px 20px;
+
+    font-size: 11px;
+
+    line-height: 1.5;
+}
+
+
+/* QUICK BUTTONS */
+
+.quick-buttons {
+    display: flex;
+
+    gap: 5px;
+
+    flex-wrap: wrap;
+
+    padding: 9px 14px;
+
+    background: white;
+
+    border-top: 1px solid #eceef5;
+}
+
+.quick-btn {
+    border: 1px solid #e0e3f0;
+
+    background: white;
+
+    color: #6b54d9;
+
+    border-radius: 20px;
+
+    padding: 7px 9px;
+
+    font-size: 9px;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.quick-btn:hover {
+    background: #f0edff;
+}
+
+
+/* CHAT INPUT */
+
+.chat-footer {
+    flex-shrink: 0;
+
+    padding: 10px;
+
+    background: white;
+
+    border-top: 1px solid #eceef5;
+
+    display: flex;
+
+    gap: 7px;
+}
+
+.chat-input {
+    flex: 1;
+
+    min-width: 0;
+
+    height: 40px;
+
+    border: 1px solid #e1e4ef;
+
+    border-radius: 12px;
+
+    outline: none;
+
+    padding: 0 11px;
+
+    font-size: 11px;
+
+    color: #555e78;
+}
+
+.chat-input:focus {
+    border-color: #7244e8;
+
+    box-shadow:
+        0 0 0 3px rgba(114,68,232,.08);
+}
+
+.send-btn {
+    width: 40px;
+    height: 40px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6543e8,
+            #843de0
+        );
+
+    cursor: pointer;
+
+    font-size: 17px;
+
+    transition: .2s;
+}
+
+.send-btn:hover {
+    transform: scale(1.05);
+}
+
+
+/* =========================================================
+   WELCOME SCREEN
+========================================================= */
+
+.welcome-screen {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 20000;
+
+    background:
+        linear-gradient(
+            135deg,
+            #142867,
+            #3a218e 55%,
+            #722bd4
+        );
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    transition:
+        opacity .5s ease,
+        visibility .5s ease;
+}
+
+.welcome-screen.hide {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.welcome-box {
+    width: min(650px, 90%);
+
+    text-align: center;
+
+    color: white;
+
+    padding: 35px;
+}
+
+.big-logo {
+    width: 85px;
+    height: 85px;
+
+    border-radius: 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 auto 22px;
+
+    font-size: 43px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #25b9f4,
+            #7941f4
+        );
+
+    box-shadow:
+        0 18px 45px rgba(0,0,0,.25);
+}
+
+.welcome-box h1 {
+    font-size: 45px;
+    font-weight: 850;
+}
+
+.welcome-box h1 span {
+    color: #6ee4ff;
+}
+
+.welcome-box p {
+    font-size: 16px;
+
+    line-height: 1.7;
+
+    color: rgba(255,255,255,.78);
+
+    margin-top: 12px;
+}
+
+.enter-btn {
+    margin-top: 27px;
+
+    border: none;
+
+    padding: 14px 28px;
+
+    border-radius: 30px;
+
+    font-size: 14px;
+
+    font-weight: 750;
+
+    color: #3d2490;
+
+    background: white;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 12px 30px rgba(0,0,0,.20);
+
+    transition: .25s;
+}
+
+.enter-btn:hover {
+    transform: translateY(-3px) scale(1.02);
+}
+
+
+/* =========================================================
    RESPONSIVE
-===================================================== */
+========================================================= */
 
-@media(max-width:1000px){
+@media (max-width: 1150px) {
 
-    .stats{
-        grid-template-columns:1fr 1fr;
+    .sidebar {
+        width: 230px;
+        min-width: 230px;
     }
 
-    .dashboard-grid{
-        grid-template-columns:1fr;
+    .main-area {
+        margin-left: 230px;
+        margin-right: 0;
     }
 
-    .campus-grid{
-        grid-template-columns:1fr 1fr;
+    .chatbot {
+        width: 320px;
+        max-width: calc(100vw - 40px);
+
+        right: 12px;
+    }
+
+    .chat-bubble {
+        right: 12px;
+    }
+
+    .photo-grid {
+        grid-template-columns:
+            repeat(3, minmax(0,1fr));
     }
 }
 
 
-@media(max-width:700px){
+@media (max-width: 900px) {
 
-    .sidebar{
-        width:220px;
-
-        transform:translateX(-100%);
-
-        transition:.3s;
+    .main-area {
+        margin-right: 0;
     }
 
-    .sidebar.open{
-        transform:translateX(0);
+    .chatbot {
+        right: 12px;
     }
 
-    .main{
-        margin-left:0;
+    .chat-bubble {
+        right: 12px;
+    }
+}
+
+
+@media (max-width: 700px) {
+
+    .sidebar {
+        width: 80px;
+        min-width: 80px;
     }
 
-    .mobile-menu{
-        display:block;
-        margin-right:15px;
+    .brand {
+        justify-content: center;
+        padding: 15px;
     }
 
-    .topbar{
-        padding:0 15px;
+    .brand-text {
+        display: none;
     }
 
-    .clock,
-    .profile-info{
-        display:none;
+    .menu-title,
+    .nav-text {
+        display: none;
     }
 
-    .content{
-        padding:15px;
+    .nav-item {
+        justify-content: center;
+        padding: 0;
     }
 
-    .hero{
-        padding:24px;
+    .nav-icon {
+        margin: 0;
     }
 
-    .hero h1{
-        font-size:23px;
+    .main-area {
+        margin-left: 80px;
     }
 
-    .stats{
-        grid-template-columns:1fr 1fr;
-        gap:10px;
+    .stats-grid,
+    .middle-grid,
+    .photo-grid {
+        grid-template-columns: 1fr;
     }
 
-    .stat-card{
-        padding:15px;
+    .hero-content {
+        max-width: 100%;
     }
 
-    .stat-card h3{
-        font-size:22px;
-    }
-
-    .campus-grid{
-        grid-template-columns:1fr;
-    }
-
-    .schedule-item{
-        grid-template-columns:
-            65px 1fr;
-    }
-
-    .schedule-room{
-        display:none;
+    .hero-art {
+        display: none;
     }
 }
 
 </style>
-
 </head>
 
 
@@ -874,233 +1457,306 @@ body{
 
 
 <!-- =====================================================
-     SIDEBAR
+     WELCOME SCREEN
 ===================================================== -->
 
-<aside class="sidebar" id="sidebar">
+<div class="welcome-screen" id="welcomeScreen">
 
-    <div class="logo">
+    <div class="welcome-box">
 
-        <div class="logo-icon">
+        <div class="big-logo">
             🎓
         </div>
 
-        <div>
+        <h1>
+            Welcome to
+            <span>CampusConnect</span>
+        </h1>
 
-            <h2>CampusConnect</h2>
+        <p>
+            Your AI-powered college companion.
+            Manage academics, timetable, assignments,
+            attendance, campus activities and career
+            opportunities from one place.
+        </p>
 
-            <span>
+        <button class="enter-btn" onclick="enterDashboard()">
+            Enter Student Dashboard →
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     APP
+===================================================== -->
+
+<div class="app">
+
+
+<!-- =====================================================
+     LEFT SIDEBAR
+===================================================== -->
+
+<aside class="sidebar">
+
+    <div class="brand">
+
+        <div class="logo-box">
+            🎓
+        </div>
+
+        <div class="brand-text">
+
+            <div class="brand-title">
+                CampusConnect
+            </div>
+
+            <div class="brand-subtitle">
                 AI College Companion
-            </span>
+            </div>
 
         </div>
 
     </div>
 
 
-    <button class="nav-item active" data-page="dashboard">
-        <span class="nav-icon">🏠</span>
-        Dashboard
-    </button>
+    <div class="menu">
 
 
-    <button class="nav-item" data-page="courses">
-        <span class="nav-icon">📚</span>
-        My Courses
-    </button>
+        <!-- MAIN MENU -->
+
+        <div class="menu-title">
+            MAIN MENU
+        </div>
 
 
-    <button class="nav-item" data-page="timetable">
-        <span class="nav-icon">🗓️</span>
-        Timetable
-    </button>
+        <a class="nav-item active" href="dashboard.html">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-text">Dashboard</span>
+        </a>
+
+        <a class="nav-item" href="pages/courses.html">
+
+            <span class="nav-icon">📚</span>
+            <span class="nav-text">Courses</span>
+        </a>
 
 
-    <button class="nav-item" data-page="assignments">
-        <span class="nav-icon">📝</span>
-        Assignments
-    </button>
+        <a class="nav-item" href="pages/timetable.html">
+            <span class="nav-icon">🗓️</span>
+            <span class="nav-text">Timetable</span>
+        </a>
 
 
-    <button class="nav-item" data-page="attendance">
-        <span class="nav-icon">📊</span>
-        Attendance
-    </button>
+        <a class="nav-item" href="pages/assignments.html">
+            <span class="nav-icon">📝</span>
+            <span class="nav-text">Assignments</span>
+        </a>
 
 
-    <button class="nav-item" data-page="academics">
-        <span class="nav-icon">🎓</span>
-        Academics
-    </button>
+        <a class="nav-item" href="pages/attendance.html">
+            <span class="nav-icon">📊</span>
+            <span class="nav-text">Attendance</span>
+        </a>
 
 
-    <button class="nav-item" data-page="faculty">
-        <span class="nav-icon">👩‍🏫</span>
-        Faculty
-    </button>
+        <a class="nav-item" href="pages/academics.html">
+            <span class="nav-icon">🎓</span>
+            <span class="nav-text">Academics</span>
+        </a>
 
 
-    <button class="nav-item" data-page="placement">
-        <span class="nav-icon">💼</span>
-        Placement
-    </button>
+        <a class="nav-item" href="pages/faculty.html">
+            <span class="nav-icon">👨‍🏫</span>
+            <span class="nav-text">Faculty</span>
+        </a>
 
 
-    <button class="nav-item" data-page="results">
-        <span class="nav-icon">📈</span>
-        Results
-    </button>
+
+        <!-- CAREER -->
+
+        <div class="menu-section">
+
+            <div class="menu-title">
+                CAREER
+            </div>
 
 
-    <button class="nav-item" data-page="documents">
-        <span class="nav-icon">📄</span>
-        Documents
-    </button>
+            <a class="nav-item" href="pages/placement.html">
+                <span class="nav-icon">💼</span>
+                <span class="nav-text">Placement</span>
+            </a>
 
 
-    <button class="nav-item" data-page="complaints">
-        <span class="nav-icon">📢</span>
-        Complaints
-    </button>
+            <a class="nav-item" href="pages/results.html">
+                <span class="nav-icon">📈</span>
+                <span class="nav-text">Results</span>
+            </a>
+
+        </div>
 
 
-    <button class="nav-item" data-page="feedback">
-        <span class="nav-icon">💬</span>
-        Feedback
-    </button>
+
+        <!-- CAMPUS -->
+
+        <div class="menu-section">
+
+            <div class="menu-title">
+                CAMPUS
+            </div>
 
 
-    <button class="nav-item" data-page="lost-found">
-        <span class="nav-icon">🔎</span>
-        Lost & Found
-    </button>
+            <a class="nav-item" href="pages/documents.html">
+                <span class="nav-icon">📄</span>
+                <span class="nav-text">Documents</span>
+            </a>
 
 
-    <button class="nav-item" data-page="campus">
-        <span class="nav-icon">🏫</span>
-        Campus
-    </button>
+            <a class="nav-item" href="pages/complaints.html">
+                <span class="nav-icon">📢</span>
+                <span class="nav-text">Complaints</span>
+            </a>
 
 
-    <button class="nav-item" data-page="events">
-        <span class="nav-icon">🎉</span>
-        Events
-    </button>
+            <a class="nav-item" href="pages/feedback.html">
+                <span class="nav-icon">💬</span>
+                <span class="nav-text">Feedback</span>
+            </a>
 
 
-    <button class="nav-item" data-page="exams">
-        <span class="nav-icon">📋</span>
-        Exams
-    </button>
+            <a class="nav-item" href="pages/lost_found.html">
+                <span class="nav-icon">🔎</span>
+                <span class="nav-text">Lost & Found</span>
+            </a>
 
 
-    <button class="nav-item" data-page="notifications">
-        <span class="nav-icon">🔔</span>
-        Notifications
-    </button>
+            <a class="nav-item" href="pages/campus.html">
+                <span class="nav-icon">🏫</span>
+                <span class="nav-text">Campus</span>
+            </a>
 
 
-    <button class="nav-item" data-page="profile">
-        <span class="nav-icon">👤</span>
-        Profile
-    </button>
+            <a class="nav-item" href="pages/events.html">
+                <span class="nav-icon">🎉</span>
+                <span class="nav-text">Events</span>
+            </a>
 
 
-    <button class="nav-item" data-page="settings">
-        <span class="nav-icon">⚙️</span>
-        Settings
-    </button>
+            <a class="nav-item" href="pages/exams.html">
+                <span class="nav-icon">📋</span>
+                <span class="nav-text">Exams</span>
+            </a>
+
+
+            <a class="nav-item" href="pages/notifications.html">
+                <span class="nav-icon">🔔</span>
+                <span class="nav-text">Notifications</span>
+            </a>
+
+        </div>
+
+
+
+        <!-- ACCOUNT -->
+
+        <div class="menu-section">
+
+            <div class="menu-title">
+                ACCOUNT
+            </div>
+
+
+            <a class="nav-item" href="pages/profile.html">
+                <span class="nav-icon">👤</span>
+                <span class="nav-text">Profile</span>
+            </a>
+
+
+            <a class="nav-item" href="pages/settings.html">
+                <span class="nav-icon">⚙️</span>
+                <span class="nav-text">Settings</span>
+            </a>
+
+
+            <div class="logout">
+
+                <a class="nav-item"
+                   href="index.html"
+                   onclick="return confirmLogout()">
+
+                    <span class="nav-icon">🚪</span>
+                    <span class="nav-text">Logout</span>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </aside>
 
 
 
 <!-- =====================================================
-     MAIN
+     MIDDLE AREA
 ===================================================== -->
 
-<main class="main">
+<main class="main-area">
 
 
-    <!-- TOPBAR -->
+    <!-- HEADER -->
 
-    <header class="topbar">
+    <header class="top-header">
 
-        <div style="display:flex;align-items:center;">
+        <div class="header-left">
 
-            <button
-                class="mobile-menu"
-                onclick="toggleSidebar()">
+            <h1>
+                Student<br>
+                Dashboard
+            </h1>
 
-                ☰
-
-            </button>
-
-
-            <div>
-
-                <div
-                    class="page-title"
-                    id="pageTitle">
-
-                    Student Dashboard
-
-                </div>
-
-
-                <div class="page-subtitle">
-
-                    Your complete college companion
-
-                </div>
-
-            </div>
+            <p>
+                Welcome to your CampusConnect portal
+            </p>
 
         </div>
 
 
-        <div class="top-right">
+        <div class="header-right">
 
-
-            <div
-                class="clock"
-                id="clock">
-
-                12:00:00 PM
-
+            <div class="time-box" id="clock">
+                6:00 PM
             </div>
 
-
-            <div
-                class="notification"
-                onclick="openPage('notifications')">
-
+            <div class="notification">
                 🔔
-
-                <span
-                    class="notification-dot">
-                </span>
-
             </div>
 
 
-            <div
-                class="profile"
-                onclick="openPage('profile')">
+            <div class="profile-mini">
 
-                <div class="profile-avatar">
+                <div class="profile-circle">
                     P
                 </div>
 
-
                 <div class="profile-info">
 
-                    <strong id="studentName">
+                    <strong>
                         Student
                     </strong>
 
                     <span>
-                        BCA Student
+                        BCA
+                    </span>
+
+                    <span>
+                        Student
                     </span>
 
                 </div>
@@ -1113,1521 +1769,885 @@ body{
 
 
 
-    <!-- =================================================
-         CONTENT
-    ================================================= -->
+    <!-- DASHBOARD -->
 
-    <section class="content">
+    <div class="dashboard-content">
+
+
+        <!-- WELCOME HERO -->
+
+        <section class="welcome-banner">
+
+            <div class="hero-content">
+
+                <div class="hero-badge">
+                    ✨ AI-Powered Student Portal
+                </div>
+
+
+                <h2>
+                    Good Evening,<br>
+                    Student! 👋
+                </h2>
+
+
+                <p>
+                    Stay organized, track your academic
+                    progress, manage assignments and discover
+                    opportunities with your AI College Companion.
+                </p>
+
+
+                <div class="date-pill">
+                    📅 Monday, 14 September 2026
+                </div>
+
+            </div>
+
+
+            <div class="hero-art">
+
+                <div class="hero-cap">
+                    🎓
+                </div>
+
+                <div class="hero-books">
+                    📚
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- STAT CARDS -->
+
+        <section class="stats-grid">
+
+
+            <div class="stat-card"
+                 onclick="openPage('attendance.html')">
+
+                <div class="stat-top">
+
+                    <div class="stat-title">
+                        Overall<br>
+                        Attendance
+                    </div>
+
+                    <div class="stat-icon">
+                        📊
+                    </div>
+
+                </div>
+
+                <div class="stat-number green">
+                    87%
+                </div>
+
+                <div class="stat-small">
+                    Good attendance performance
+                </div>
+
+                <div class="progress">
+                    <span></span>
+                </div>
+
+            </div>
+
+
+
+            <div class="stat-card"
+                   onclick="openPage('pages/timetable.html')">
+
+                <div class="stat-top">
+
+                    <div class="stat-title">
+                        Total Classes
+                    </div>
+
+                    <div class="stat-icon">
+                        👥
+                    </div>
+
+                </div>
+
+                <div class="stat-number">
+                    120
+                </div>
+
+                <div class="stat-small">
+                    Classes conducted this semester
+                </div>
+
+            </div>
+
+
+
+            <div class="stat-card"
+                 onclick="openPage('events.html')">
+
+                <div class="stat-top">
+
+                    <div class="stat-title">
+                        Upcoming Events
+                    </div>
+
+                    <div class="stat-icon">
+                        📅
+                    </div>
+
+                </div>
+
+
+                <div class="event-row">
+
+                    <div class="event-date">
+                        <strong>16</strong>
+                        <span>Sep</span>
+                    </div>
+
+                    <div class="event-info">
+
+                        <strong>
+                            Tech Talk - AI & Future
+                        </strong>
+
+                        <span>
+                            10:00 AM - 12:00 PM
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- TIMETABLE + EVENTS -->
+
+        <section class="middle-grid">
+
+
+            <!-- TIMETABLE -->
+
+            <div class="content-card">
+
+                <div class="card-heading">
+
+                    <h3>
+                        🗓️ Today's Timetable
+                    </h3>
+
+                    <a class="view-link"
+                       href="pages/timetable.html"
+                        View all →
+                    </a>
+
+                </div>
+
+
+                <div class="class-row">
+
+                    <div class="class-time">
+                        09:00 AM
+                    </div>
+
+                    <div class="class-info">
+
+                        <strong>
+                            Database Management System
+                        </strong>
+
+                        <span>
+                            Room 204 • Prof. Sharma
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="class-row">
+
+                    <div class="class-time">
+                        11:00 AM
+                    </div>
+
+                    <div class="class-info">
+
+                        <strong>
+                            Web Programming
+                        </strong>
+
+                        <span>
+                            Lab 2 • Prof. Priya
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="class-row">
+
+                    <div class="class-time">
+                        02:00 PM
+                    </div>
+
+                    <div class="class-info">
+
+                        <strong>
+                            Software Engineering
+                        </strong>
+
+                        <span>
+                            Room 305 • Prof. Kumar
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- EVENTS -->
+
+            <div class="content-card">
+
+                <div class="card-heading">
+
+                    <h3>
+                        🎉 Upcoming Events
+                    </h3>
+
+                    <a class="view-link"
+                       href="pages/events.html">
+                        View all →
+                    </a>
+
+                </div>
+
+
+                <div class="event-row">
+
+                    <div class="event-date">
+                        <strong>16</strong>
+                        <span>Sep</span>
+                    </div>
+
+                    <div class="event-info">
+
+                        <strong>
+                            Tech Talk - AI & Future
+                        </strong>
+
+                        <span>
+                            10:00 AM - 12:00 PM
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="event-row">
+
+                    <div class="event-date">
+                        <strong>18</strong>
+                        <span>Sep</span>
+                    </div>
+
+                    <div class="event-info">
+
+                        <strong>
+                            Cultural Fest
+                        </strong>
+
+                        <span>
+                            02:00 PM - 05:00 PM
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="event-row">
+
+                    <div class="event-date">
+                        <strong>21</strong>
+                        <span>Sep</span>
+                    </div>
+
+                    <div class="event-info">
+
+                        <strong>
+                            Career Guidance
+                        </strong>
+
+                        <span>
+                            10:00 AM - 01:00 PM
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
 
 
         <!-- =================================================
-             DASHBOARD
+             CAMPUS PHOTOS
         ================================================= -->
 
-        <div id="dashboardContainer">
+        <section class="campus-section">
 
-
-            <!-- HERO -->
-
-            <div class="hero">
-
-                <div class="hero-content">
-
-                    <h1>
-                        Welcome back,
-                        <span id="welcomeName">
-                            Student
-                        </span>
-                        ! 👋
-                    </h1>
-
-
-                    <p>
-                        Welcome to your CampusConnect student dashboard.
-                        Manage your academics, attendance, timetable,
-                        assignments and campus activities from one place.
-                    </p>
-
-
-                    <div
-                        class="hero-date"
-                        id="todayDate">
-
-                        📅 Today
-
-                    </div>
-
-                </div>
-
+            <div class="section-title">
+                🏫 Explore Your Campus
             </div>
 
 
-
-            <!-- STATS -->
-
-            <div class="stats">
+            <div class="photo-grid">
 
 
-                <div class="stat-card">
+                <!-- CAMPUS -->
 
-                    <div class="stat-top">
+                <div class="photo-card"
+                     onclick="campusMessage('Campus')">
 
-                        <div class="stat-icon">
-                            📚
-                        </div>
+                    <img
+                    src="https://images.unsplash.com/photo-1564981797816-1043664bf78d?auto=format&fit=crop&w=700&q=80"
+                    alt="Campus">
 
-                        <span class="blue">
-                            Academic
+                    <div class="photo-overlay">
+
+                        <strong>
+                            🏫 Campus
+                        </strong>
+
+                        <span>
+                            Explore campus
                         </span>
 
                     </div>
 
-
-                    <h3>
-                        8
-                    </h3>
-
-
-                    <p>
-                        Active Courses
-                    </p>
-
                 </div>
 
 
 
-                <div class="stat-card">
+                <!-- LIBRARY -->
 
-                    <div class="stat-top">
+                <div class="photo-card"
+                     onclick="campusMessage('Library')">
 
-                        <div class="stat-icon">
-                            📊
-                        </div>
+                    <img
+                    src="https://images.unsplash.com/photo-1568667256549-094345857637?auto=format&fit=crop&w=700&q=80"
+                    alt="Library">
 
-                        <span class="green">
-                            Good
-                        </span>
+                    <div class="photo-overlay">
 
-                    </div>
-
-
-                    <h3>
-                        86%
-                    </h3>
-
-
-                    <p>
-                        Overall Attendance
-                    </p>
-
-                </div>
-
-
-
-                <div class="stat-card">
-
-                    <div class="stat-top">
-
-                        <div class="stat-icon">
-                            📝
-                        </div>
-
-                        <span class="orange">
-                            Pending
-                        </span>
-
-                    </div>
-
-
-                    <h3>
-                        4
-                    </h3>
-
-
-                    <p>
-                        Assignments
-                    </p>
-
-                </div>
-
-
-
-                <div class="stat-card">
-
-                    <div class="stat-top">
-
-                        <div class="stat-icon">
-                            🏆
-                        </div>
-
-                        <span class="purple">
-                            CGPA
-                        </span>
-
-                    </div>
-
-
-                    <h3>
-                        8.7
-                    </h3>
-
-
-                    <p>
-                        Current Semester
-                    </p>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- DASHBOARD GRID -->
-
-            <div class="dashboard-grid">
-
-
-                <!-- LEFT COLUMN -->
-
-                <div>
-
-
-                    <!-- TODAY'S SCHEDULE -->
-
-                    <div class="card">
-
-                        <div class="card-header">
-
-                            <h2>
-                                🗓️ Today's Schedule
-                            </h2>
-
-
-                            <span
-                                onclick="openPage('timetable')">
-
-                                View Timetable →
-
-                            </span>
-
-                        </div>
-
-
-                        <div class="schedule">
-
-
-                            <div class="schedule-item">
-
-                                <div class="schedule-time">
-                                    09:00 AM
-                                </div>
-
-
-                                <div>
-
-                                    <div class="schedule-subject">
-                                        Web Development
-                                    </div>
-
-                                    <div
-                                        style="
-                                        font-size:11px;
-                                        color:#64748b;
-                                        ">
-
-                                        BCA • Lecture
-
-                                    </div>
-
-                                </div>
-
-
-                                <div class="schedule-room">
-                                    Room 204
-                                </div>
-
-                            </div>
-
-
-
-                            <div class="schedule-item">
-
-                                <div class="schedule-time">
-                                    11:00 AM
-                                </div>
-
-
-                                <div>
-
-                                    <div class="schedule-subject">
-                                        Database Management
-                                    </div>
-
-                                    <div
-                                        style="
-                                        font-size:11px;
-                                        color:#64748b;
-                                        ">
-
-                                        BCA • Practical
-
-                                    </div>
-
-                                </div>
-
-
-                                <div class="schedule-room">
-                                    Lab 2
-                                </div>
-
-                            </div>
-
-
-
-                            <div class="schedule-item">
-
-                                <div class="schedule-time">
-                                    02:00 PM
-                                </div>
-
-
-                                <div>
-
-                                    <div class="schedule-subject">
-                                        Computer Networks
-                                    </div>
-
-                                    <div
-                                        style="
-                                        font-size:11px;
-                                        color:#64748b;
-                                        ">
-
-                                        BCA • Lecture
-
-                                    </div>
-
-                                </div>
-
-
-                                <div class="schedule-room">
-                                    Room 106
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <!-- ACADEMIC PROGRESS -->
-
-                    <div class="card">
-
-                        <div class="card-header">
-
-                            <h2>
-                                📈 Academic Progress
-                            </h2>
-
-
-                            <span
-                                onclick="openPage('academics')">
-
-                                View Academics →
-
-                            </span>
-
-                        </div>
-
-
-                        <div class="progress-box">
-
-                            <div class="progress-info">
-
-                                <span>
-                                    Web Development
-                                </span>
-
-                                <strong>
-                                    90%
-                                </strong>
-
-                            </div>
-
-
-                            <div class="progress">
-
-                                <div
-                                    class="progress-bar"
-                                    style="width:90%;">
-                                </div>
-
-                            </div>
-
-                        </div>
-
-
-
-                        <div class="progress-box">
-
-                            <div class="progress-info">
-
-                                <span>
-                                    Database Management
-                                </span>
-
-                                <strong>
-                                    82%
-                                </strong>
-
-                            </div>
-
-
-                            <div class="progress">
-
-                                <div
-                                    class="progress-bar"
-                                    style="width:82%;">
-                                </div>
-
-                            </div>
-
-                        </div>
-
-
-
-                        <div class="progress-box">
-
-                            <div class="progress-info">
-
-                                <span>
-                                    Computer Networks
-                                </span>
-
-                                <strong>
-                                    86%
-                                </strong>
-
-                            </div>
-
-
-                            <div class="progress">
-
-                                <div
-                                    class="progress-bar"
-                                    style="width:86%;">
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-
-                <!-- RIGHT COLUMN -->
-
-                <div>
-
-
-                    <!-- QUICK ACTIONS -->
-
-                    <div class="card">
-
-                        <div class="card-header">
-
-                            <h2>
-                                ⚡ Quick Actions
-                            </h2>
-
-                        </div>
-
-
-                        <div class="actions">
-
-
-                            <button
-                                class="action"
-                                onclick="openPage('assignments')">
-
-                                <div class="action-icon">
-                                    📝
-                                </div>
-
-                                <strong>
-                                    Assignments
-                                </strong>
-
-                                <small>
-                                    Check pending work
-                                </small>
-
-                            </button>
-
-
-
-                            <button
-                                class="action"
-                                onclick="openPage('exams')">
-
-                                <div class="action-icon">
-                                    📋
-                                </div>
-
-                                <strong>
-                                    Exams
-                                </strong>
-
-                                <small>
-                                    View exam schedule
-                                </small>
-
-                            </button>
-
-
-
-                            <button
-                                class="action"
-                                onclick="openPage('events')">
-
-                                <div class="action-icon">
-                                    🎉
-                                </div>
-
-                                <strong>
-                                    Events
-                                </strong>
-
-                                <small>
-                                    Explore campus events
-                                </small>
-
-                            </button>
-
-
-
-                            <button
-                                class="action"
-                                onclick="openPage('campus')">
-
-                                <div class="action-icon">
-                                    🏫
-                                </div>
-
-                                <strong>
-                                    Campus
-                                </strong>
-
-                                <small>
-                                    Explore campus
-                                </small>
-
-                            </button>
-
-
-
-                            <button
-                                class="action"
-                                onclick="openPage('placement')">
-
-                                <div class="action-icon">
-                                    💼
-                                </div>
-
-                                <strong>
-                                    Placement
-                                </strong>
-
-                                <small>
-                                    Placement opportunities
-                                </small>
-
-                            </button>
-
-
-
-                            <button
-                                class="action"
-                                onclick="openPage('results')">
-
-                                <div class="action-icon">
-                                    📊
-                                </div>
-
-                                <strong>
-                                    Results
-                                </strong>
-
-                                <small>
-                                    View academic results
-                                </small>
-
-                            </button>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <!-- NOTIFICATIONS -->
-
-                    <div class="card">
-
-                        <div class="card-header">
-
-                            <h2>
-                                🔔 Notifications
-                            </h2>
-
-
-                            <span
-                                onclick="openPage('notifications')">
-
-                                View All →
-
-                            </span>
-
-                        </div>
-
-
-                        <div
-                            style="
-                            padding:15px;
-                            background:#f8fafc;
-                            border-radius:12px;
-                            margin-bottom:10px;
-                            ">
-
-                            <strong
-                                style="font-size:13px;">
-
-                                New Campus Announcement
-
-                            </strong>
-
-
-                            <p
-                                style="
-                                font-size:11px;
-                                color:#64748b;
-                                margin-top:5px;
-                                ">
-
-                                Check the latest campus updates.
-
-                            </p>
-
-                        </div>
-
-
-
-                        <div
-                            style="
-                            padding:15px;
-                            background:#f8fafc;
-                            border-radius:12px;
-                            ">
-
-                            <strong
-                                style="font-size:13px;">
-
-                                Academic Update
-
-                            </strong>
-
-
-                            <p
-                                style="
-                                font-size:11px;
-                                color:#64748b;
-                                margin-top:5px;
-                                ">
-
-                                Check your latest academic information.
-
-                            </p>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- CAMPUS -->
-
-            <div class="card">
-
-                <div class="card-header">
-
-                    <h2>
-                        🏫 Campus
-                    </h2>
-
-
-                    <span
-                        onclick="openPage('campus')">
-
-                        Explore Campus →
-
-                    </span>
-
-                </div>
-
-
-                <div class="campus-grid">
-
-
-                    <div class="campus-card">
-
-                        <h3>
+                        <strong>
                             📚 Library
-                        </h3>
+                        </strong>
 
-                        <p>
-                            Access books, study materials and
-                            reference resources.
-                        </p>
-
-                    </div>
-
-
-
-                    <div class="campus-card">
-
-                        <h3>
-                            💻 Computer Lab
-                        </h3>
-
-                        <p>
-                            Facilities for practical sessions
-                            and academic learning.
-                        </p>
-
-                    </div>
-
-
-
-                    <div class="campus-card">
-
-                        <h3>
-                            ⚽ Sports
-                        </h3>
-
-                        <p>
-                            Participate in sports and
-                            recreational activities.
-                        </p>
+                        <span>
+                            Books & resources
+                        </span>
 
                     </div>
 
                 </div>
 
+
+
+                <!-- GROUND -->
+
+                <div class="photo-card"
+                     onclick="campusMessage('Ground')">
+
+                    <img
+                    src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=700&q=80"
+                    alt="Ground">
+
+                    <div class="photo-overlay">
+
+                        <strong>
+                            🏟️ Ground
+                        </strong>
+
+                        <span>
+                            Sports & activities
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- CLASSROOM -->
+
+                <div class="photo-card"
+                     onclick="campusMessage('Classroom')">
+
+                    <img
+                    src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=700&q=80"
+                    alt="Classroom">
+
+                    <div class="photo-overlay">
+
+                        <strong>
+                            🧑‍🏫 Classroom
+                        </strong>
+
+                        <span>
+                            Learning spaces
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- AUDITORIUM -->
+
+                <div class="photo-card"
+                     onclick="campusMessage('Auditorium')">
+
+                    <img
+                    src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=700&q=80"
+                    alt="Auditorium">
+
+                    <div class="photo-overlay">
+
+                        <strong>
+                            🎭 Auditorium
+                        </strong>
+
+                        <span>
+                            Events & programs
+                        </span>
+
+                    </div>
+
+                </div>
+
+
             </div>
 
-        </div>
+        </section>
 
-    </section>
+
+    </div>
 
 </main>
 
 
 
 <!-- =====================================================
-     TOAST
+     RIGHT AI CHATBOT
 ===================================================== -->
 
-<div
-    class="toast"
-    id="toast">
+<button class="chat-bubble" id="chatBubble" onclick="openChatPanel()" aria-label="Open AI College Companion">🤖</button>
 
-    Welcome to CampusConnect
+<aside class="chatbot" id="chatbotPanel">
+
+
+    <!-- CHAT HEADER -->
+
+    <div class="chat-header">
+
+        <div class="robot-icon">
+            🤖
+        </div>
+
+        <div class="chat-title">
+
+            <strong>
+                AI College Companion
+            </strong>
+
+            <span>
+                <i class="online-dot"></i>
+                Online • Ready to help
+            </span>
+
+        </div>
+
+        <button class="close-chat" onclick="closeChatPanel()" aria-label="Close assistant">×</button>
+
+    </div>
+
+
+
+    <!-- CHAT BODY -->
+
+    <div class="chat-body" id="chatBody">
+
+        <div class="bot-message">
+
+            👋 Hi! I'm your
+            <strong>AI College Companion.</strong>
+
+            I can help you with your timetable,
+            assignments, attendance, academics,
+            placements and campus activities.
+
+        </div>
+
+
+        <div class="bot-message">
+
+            What would you like to know today? 😊
+
+        </div>
+
+    </div>
+
+
+
+    <!-- QUICK BUTTONS -->
+
+    <div class="quick-buttons">
+
+        <button class="quick-btn"
+                onclick="quickChat('Show my timetable')">
+            Today's timetable
+        </button>
+
+        <button class="quick-btn"
+                onclick="quickChat('Show my attendance')">
+            My attendance
+        </button>
+
+        <button class="quick-btn"
+                onclick="quickChat('Show my assignments')">
+            Assignments
+        </button>
+
+    </div>
+
+
+
+    <!-- INPUT -->
+
+    <div class="chat-footer">
+
+        <input
+            id="chatInput"
+            class="chat-input"
+            type="text"
+            placeholder="Ask your companion..."
+            onkeydown="handleChatKey(event)"
+        >
+
+        <button
+            class="send-btn"
+            onclick="sendChat()">
+            ➤
+        </button>
+
+    </div>
+
+
+</aside>
+
 
 </div>
 
 
 
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
 <script>
 
-/* =====================================================
-   PAGE TITLES
-===================================================== */
 
-const pageTitles = {
+/* =========================================================
+   WELCOME SCREEN
+========================================================= */
 
-    dashboard: "Student Dashboard",
+function enterDashboard() {
 
-    courses: "My Courses",
+    const screen =
+        document.getElementById("welcomeScreen");
 
-    timetable: "Timetable",
+    screen.classList.add("hide");
 
-    assignments: "Assignments",
-
-    attendance: "Attendance",
-
-    academics: "Academics",
-
-    faculty: "Faculty",
-
-    placement: "Placement",
-
-    results: "Results",
-
-    documents: "Documents",
-
-    complaints: "Complaints",
-
-    feedback: "Feedback",
-
-    "lost-found": "Lost & Found",
-
-    campus: "Campus",
-
-    events: "Events",
-
-    exams: "Exams",
-
-    notifications: "Notifications",
-
-    profile: "Profile",
-
-    settings: "Settings"
-
-};
-
-
-
-/* =====================================================
-   MODULE FILE PATHS
-===================================================== */
-
-const externalPages = {
-
-    timetable: "pages/timetable.html",
-
-    attendance: "pages/attendance.html",
-
-    academics: "pages/academics.html",
-
-    campus: "pages/campus.html",
-
-    events: "pages/events.html",
-
-    exams: "pages/exams.html",
-
-    faculty: "pages/faculty.html",
-
-    placement: "pages/placement.html",
-
-    results: "pages/results.html",
-
-    documents: "pages/documents.html",
-
-    complaints: "pages/complaints.html",
-
-    feedback: "pages/feedback.html",
-
-    "lost-found": "pages/lost-found.html",
-
-    notifications: "pages/notifications.html",
-
-    profile: "pages/profile.html",
-
-    settings: "pages/settings.html"
-
-};
-
-
-
-/* =====================================================
-   OPEN PAGE
-===================================================== */
-
-function openPage(page){
-
-    if(!page){
-        return;
-    }
-
-
-    /* DASHBOARD */
-
-    if(page === "dashboard"){
-
-        window.location.href = "dashboard.html";
-
-        return;
-    }
-
-
-    /* EXTERNAL MODULE */
-
-    if(externalPages[page]){
-
-        window.location.href =
-            externalPages[page];
-
-        return;
-    }
-
-
-    /* COURSES */
-
-    if(page === "courses"){
-
-        showCoursesPage();
-
-        return;
-    }
-
-
-    /* ASSIGNMENTS */
-
-    if(page === "assignments"){
-
-        showAssignmentsPage();
-
-        return;
-    }
-
+    sessionStorage.setItem(
+        "campusWelcomeShown",
+        "true"
+    );
 }
 
 
+/* =========================================================
+   SHOW WELCOME ONLY ON NEW SESSION
+========================================================= */
 
-/* =====================================================
-   SIDEBAR NAVIGATION
-===================================================== */
+window.addEventListener("load", function() {
 
-document
-.querySelectorAll(".nav-item")
-.forEach(function(item){
+    const shown =
+        sessionStorage.getItem(
+            "campusWelcomeShown"
+        );
 
-    item.addEventListener(
-        "click",
-        function(){
+    if (shown === "true") {
 
-            const page =
-                this.dataset.page;
+        document
+            .getElementById("welcomeScreen")
+            .classList.add("hide");
 
+    }
 
-            document
-            .querySelectorAll(".nav-item")
-            .forEach(function(nav){
+    updateClock();
 
-                nav.classList.remove(
-                    "active"
-                );
-
-            });
-
-
-            this.classList.add("active");
-
-
-            if(pageTitles[page]){
-
-                document
-                .getElementById("pageTitle")
-                .textContent =
-                    pageTitles[page];
-
-            }
-
-
-            openPage(page);
-
-
-            if(window.innerWidth <= 700){
-
-                document
-                .getElementById("sidebar")
-                .classList.remove("open");
-
-            }
-
-        }
-    );
+    setInterval(updateClock, 1000);
 
 });
 
 
-
-/* =====================================================
-   COURSES PAGE
-===================================================== */
-
-function showCoursesPage(){
-
-    document
-    .getElementById("dashboardContainer")
-    .style.display = "none";
-
-
-    const page =
-        document.getElementById("pageContainer");
-
-
-    /*
-       Create container if required
-    */
-
-    if(!page){
-
-        createInternalContainer();
-
-    }
-
-
-    const container =
-        document.getElementById("pageContainer");
-
-
-    container.style.display = "block";
-
-
-    container.innerHTML = `
-
-        <div class="card">
-
-            <div class="card-header">
-
-                <h2>
-                    📚 My Courses
-                </h2>
-
-                <span onclick="returnDashboard()">
-                    ← Dashboard
-                </span>
-
-            </div>
-
-
-            <div class="campus-grid">
-
-                <div class="campus-card">
-
-                    <h3>
-                        Web Development
-                    </h3>
-
-                    <p>
-                        HTML, CSS, JavaScript and
-                        modern web technologies.
-                    </p>
-
-                </div>
-
-
-                <div class="campus-card">
-
-                    <h3>
-                        Database Management
-                    </h3>
-
-                    <p>
-                        SQL, MySQL, database design
-                        and management.
-                    </p>
-
-                </div>
-
-
-                <div class="campus-card">
-
-                    <h3>
-                        Computer Networks
-                    </h3>
-
-                    <p>
-                        Networking concepts,
-                        protocols and security.
-                    </p>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    `;
-
-}
-
-
-
-/* =====================================================
-   ASSIGNMENTS PAGE
-===================================================== */
-
-function showAssignmentsPage(){
-
-    document
-    .getElementById("dashboardContainer")
-    .style.display = "none";
-
-
-    if(!document.getElementById("pageContainer")){
-
-        createInternalContainer();
-
-    }
-
-
-    const page =
-        document.getElementById("pageContainer");
-
-
-    page.style.display = "block";
-
-
-    page.innerHTML = `
-
-        <div class="card">
-
-            <div class="card-header">
-
-                <h2>
-                    📝 Assignments
-                </h2>
-
-                <span onclick="returnDashboard()">
-                    ← Dashboard
-                </span>
-
-            </div>
-
-
-            <div
-                style="
-                display:flex;
-                flex-direction:column;
-                gap:15px;
-                ">
-
-
-                <div
-                    style="
-                    padding:20px;
-                    background:#f8fafc;
-                    border-radius:15px;
-                    ">
-
-                    <strong>
-                        Database Management Assignment
-                    </strong>
-
-                    <p
-                        style="
-                        font-size:12px;
-                        color:#64748b;
-                        margin-top:7px;
-                        ">
-
-                        Design and implement a
-                        student database.
-
-                    </p>
-
-
-                    <span
-                        style="
-                        display:inline-block;
-                        margin-top:10px;
-                        padding:6px 10px;
-                        background:#fee2e2;
-                        color:#dc2626;
-                        border-radius:8px;
-                        font-size:11px;
-                        ">
-
-                        Pending
-
-                    </span>
-
-                </div>
-
-
-
-                <div
-                    style="
-                    padding:20px;
-                    background:#f8fafc;
-                    border-radius:15px;
-                    ">
-
-                    <strong>
-                        Web Development Project
-                    </strong>
-
-
-                    <p
-                        style="
-                        font-size:12px;
-                        color:#64748b;
-                        margin-top:7px;
-                        ">
-
-                        Build a responsive college website.
-
-                    </p>
-
-
-                    <span
-                        style="
-                        display:inline-block;
-                        margin-top:10px;
-                        padding:6px 10px;
-                        background:#dcfce7;
-                        color:#16a34a;
-                        border-radius:8px;
-                        font-size:11px;
-                        ">
-
-                        In Progress
-
-                    </span>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    `;
-
-}
-
-
-
-/* =====================================================
-   INTERNAL CONTAINER
-===================================================== */
-
-function createInternalContainer(){
-
-    const content =
-        document.querySelector(".content");
-
-
-    const container =
-        document.createElement("div");
-
-
-    container.id =
-        "pageContainer";
-
-
-    container.style.display =
-        "none";
-
-
-    content.appendChild(container);
-
-}
-
-
-
-/* =====================================================
-   RETURN DASHBOARD
-===================================================== */
-
-function returnDashboard(){
-
-    window.location.href =
-        "dashboard.html";
-
-}
-
-
-
-/* =====================================================
+/* =========================================================
    CLOCK
-===================================================== */
+========================================================= */
 
-function updateClock(){
+function updateClock() {
 
-    const now =
-        new Date();
+    const now = new Date();
 
-
-    let hours =
-        now.getHours();
-
+    let hours = now.getHours();
 
     let minutes =
-        now.getMinutes();
+        String(now.getMinutes()).padStart(2, "0");
 
-
-    let seconds =
-        now.getSeconds();
-
-
-    const ampm =
-        hours >= 12
-            ? "PM"
-            : "AM";
-
+    let ampm = hours >= 12 ? "PM" : "AM";
 
     hours =
-        hours % 12;
+        hours % 12 || 12;
 
-
-    hours =
-        hours
-            ? hours
-            : 12;
-
-
-    minutes =
-        minutes < 10
-            ? "0" + minutes
-            : minutes;
-
-
-    seconds =
-        seconds < 10
-            ? "0" + seconds
-            : seconds;
-
-
-    const clock =
-        document.getElementById("clock");
-
-
-    if(clock){
-
-        clock.textContent =
-            hours + ":" +
-            minutes + ":" +
-            seconds + " " +
-            ampm;
-
-    }
+    document.getElementById("clock").innerText =
+        hours + ":" + minutes + " " + ampm;
 
 }
 
 
-setInterval(
-    updateClock,
-    1000
-);
+/* =========================================================
+   NAVIGATION
+========================================================= */
 
+function openPage(page) {
 
-updateClock();
-
-
-
-/* =====================================================
-   DATE
-===================================================== */
-
-function updateDate(){
-
-    const now =
-        new Date();
-
-
-    const options = {
-
-        weekday:"long",
-
-        year:"numeric",
-
-        month:"long",
-
-        day:"numeric"
-
-    };
-
-
-    const dateElement =
-        document.getElementById(
-            "todayDate"
-        );
-
-
-    if(dateElement){
-
-        dateElement.textContent =
-            "📅 " +
-            now.toLocaleDateString(
-                "en-IN",
-                options
-            );
-
-    }
+    window.location.href = page;
 
 }
 
 
-updateDate();
+/* =========================================================
+   LOGOUT
+========================================================= */
 
+function confirmLogout() {
 
-
-/* =====================================================
-   STUDENT NAME
-===================================================== */
-
-function loadStudent(){
-
-    try{
-
-        const student =
-            JSON.parse(
-                localStorage.getItem(
-                    "student"
-                )
-            );
-
-
-        if(student){
-
-            const name =
-                student.name ||
-                student.username ||
-                student.fullName;
-
-
-            if(name){
-
-                const studentName =
-                    document.getElementById(
-                        "studentName"
-                    );
-
-
-                const welcomeName =
-                    document.getElementById(
-                        "welcomeName"
-                    );
-
-
-                if(studentName){
-
-                    studentName.textContent =
-                        name;
-
-                }
-
-
-                if(welcomeName){
-
-                    welcomeName.textContent =
-                        name;
-
-                }
-
-            }
-
-        }
-
-    }
-
-    catch(error){
-
-        console.log(
-            "Student information not available."
-        );
-
-    }
-
-}
-
-
-loadStudent();
-
-
-
-/* =====================================================
-   MOBILE SIDEBAR
-===================================================== */
-
-function toggleSidebar(){
-
-    const sidebar =
-        document.getElementById(
-            "sidebar"
-        );
-
-
-    sidebar.classList.toggle(
-        "open"
+    return confirm(
+        "Are you sure you want to logout?"
     );
 
 }
 
 
+/* =========================================================
+   CAMPUS PHOTO BUTTONS
+========================================================= */
 
-/* =====================================================
-   TOAST
-===================================================== */
+function campusMessage(place) {
 
-function showToast(message){
+    const chatBody =
+        document.getElementById("chatBody");
 
-    const toast =
-        document.getElementById(
-            "toast"
-        );
+    const user =
+        document.createElement("div");
+
+    user.className =
+        "user-message";
+
+    user.innerText =
+        "Tell me about the " + place;
+
+    chatBody.appendChild(user);
 
 
-    if(!toast){
+    const bot =
+        document.createElement("div");
+
+    bot.className =
+        "bot-message";
+
+    bot.innerText =
+        "Sure! I can help you with information about the "
+        + place
+        + ". This section can later be connected to your college backend.";
+
+    chatBody.appendChild(bot);
+
+    chatBody.scrollTop =
+        chatBody.scrollHeight;
+
+}
+
+
+/* =========================================================
+   QUICK CHAT
+========================================================= */
+
+function quickChat(text) {
+
+    document.getElementById("chatInput").value =
+        text;
+
+    sendChat();
+
+}
+
+
+/* =========================================================
+   SEND CHAT
+========================================================= */
+
+function sendChat() {
+
+    const input =
+        document.getElementById("chatInput");
+
+    const text =
+        input.value.trim();
+
+    if (!text) {
         return;
     }
 
 
-    toast.textContent =
-        message;
+    const chatBody =
+        document.getElementById("chatBody");
 
 
-    toast.classList.add(
-        "show"
-    );
+    /* USER */
+
+    const user =
+        document.createElement("div");
+
+    user.className =
+        "user-message";
+
+    user.innerText =
+        text;
+
+    chatBody.appendChild(user);
 
 
-    setTimeout(
-        function(){
+    input.value = "";
 
-            toast.classList.remove(
-                "show"
-            );
 
-        },
-        3000
-    );
+    /* TEMPORARY BOT RESPONSE */
+
+    setTimeout(function() {
+
+        const bot =
+            document.createElement("div");
+
+        bot.className =
+            "bot-message";
+
+        let response =
+            "I received your question. "
+            + "Once your backend AI is connected, "
+            + "I will provide real student-specific information.";
+
+        const lower =
+            text.toLowerCase();
+
+
+        if (lower.includes("timetable")) {
+
+            response =
+                "📅 Your timetable is available. "
+                + "Click the Timetable section in the left navigation "
+                + "to view all your classes.";
+
+        }
+
+        else if (
+            lower.includes("attendance")
+        ) {
+
+            response =
+                "📊 Your current overall attendance is 87%. "
+                + "You can open Attendance from the left navigation "
+                + "for detailed subject-wise information.";
+
+        }
+
+        else if (
+            lower.includes("assignment")
+        ) {
+
+            response =
+                "📝 You can view your assignments by opening "
+                + "the Assignments section from the left navigation.";
+
+        }
+
+        else if (
+            lower.includes("event")
+        ) {
+
+            response =
+                "🎉 Upcoming events include Tech Talk, "
+                + "Cultural Fest and Career Guidance.";
+
+        }
+
+
+        bot.innerText =
+            response;
+
+        chatBody.appendChild(bot);
+
+        chatBody.scrollTop =
+            chatBody.scrollHeight;
+
+    }, 500);
 
 }
 
 
+/* =========================================================
+   ENTER KEY
+========================================================= */
 
-/* =====================================================
-   WELCOME MESSAGE
-===================================================== */
+function handleChatKey(event) {
 
-setTimeout(
-    function(){
+    if (event.key === "Enter") {
 
-        showToast(
-            "Welcome back to CampusConnect 🎓"
-        );
+        sendChat();
 
-    },
-    800
-);
+    }
+
+}
 
 </script>
 
 
-</body>
-
+<script src="js/chatbot.js"></script></body>
 </html>
-```

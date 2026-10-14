@@ -1,99 +1,243 @@
-// CampusConnect Login
+/* =========================================
+   CAMPUSCONNECT LOGIN
+========================================= */
 
-const loginForm = document.getElementById("loginForm");
+document.addEventListener("DOMContentLoaded", function () {
 
-if (loginForm) {
+    const loginForm = document.getElementById("loginForm");
+    const emailInput = document.getElementById("email");
+    const passwordInput = document.getElementById("password");
+    const togglePassword = document.getElementById("togglePassword");
+    const loginMessage = document.getElementById("loginMessage");
 
-    loginForm.addEventListener("submit", async function (event) {
+    const forgotPassword = document.getElementById("forgotPassword");
+    const forgotModal = document.getElementById("forgotModal");
+    const closeForgotModal = document.getElementById("closeForgotModal");
+    const forgotForm = document.getElementById("forgotForm");
+    const forgotMessage = document.getElementById("forgotMessage");
 
-        event.preventDefault();
+    const demoLogin = document.getElementById("demoLogin");
 
-        const email = document.getElementById("email").value.trim();
-        const password = document.getElementById("password").value;
 
-        if (!email || !password) {
-            alert("Please enter your email and password.");
-            return;
-        }
+    /* =========================================
+       SHOW / HIDE PASSWORD
+    ========================================== */
 
-        try {
+    if (togglePassword) {
 
-            const response = await fetch(
-                "http://127.0.0.1:5000/api/auth/login",
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        email: email,
-                        password: password
-                    })
-                }
-            );
+        togglePassword.addEventListener("click", function () {
 
-            const data = await response.json();
+            if (passwordInput.type === "password") {
 
-            console.log("Login response:", data);
+                passwordInput.type = "text";
+                togglePassword.textContent = "🙈";
 
-            if (!response.ok) {
-                alert(data.error || data.message || "Invalid email or password.");
+            } else {
+
+                passwordInput.type = "password";
+                togglePassword.textContent = "👁️";
+
+            }
+
+        });
+
+    }
+
+
+    /* =========================================
+       LOGIN
+    ========================================== */
+
+    if (loginForm) {
+
+        loginForm.addEventListener("submit", function (event) {
+
+            event.preventDefault();
+
+            const email = emailInput.value.trim();
+            const password = passwordInput.value.trim();
+
+
+            if (email === "" || password === "") {
+
+                showMessage(
+                    loginMessage,
+                    "Please enter your email and password.",
+                    "error"
+                );
+
                 return;
             }
 
-            // Get student information
-            const student = data.student || data;
 
-            // Get student ID from any possible backend field
-            const studentId =
-                student.id ||
-                student.student_id ||
-                data.student_id;
+            /*
+             * TEMPORARY FRONTEND LOGIN
+             *
+             * Later we will connect this to your
+             * friend's backend.
+             */
 
-            const studentName =
-                student.name ||
-                data.name ||
-                "Student";
+            showMessage(
+                loginMessage,
+                "Login successful! Opening CampusConnect...",
+                "success"
+            );
 
-            if (!studentId) {
-                console.error("Student ID missing from login response:", data);
-                alert("Login worked, but Student ID was not received.");
+
+            localStorage.setItem(
+                "campusconnect_user",
+                JSON.stringify({
+                    email: email,
+                    loggedIn: true
+                })
+            );
+
+
+            setTimeout(function () {
+
+                window.location.href = "pages/dashboard.html";
+
+            }, 900);
+
+        });
+
+    }
+
+
+    /* =========================================
+       DEMO LOGIN
+    ========================================== */
+
+    if (demoLogin) {
+
+        demoLogin.addEventListener("click", function () {
+
+            emailInput.value = "student@campusconnect.com";
+            passwordInput.value = "123456";
+
+
+            showMessage(
+                loginMessage,
+                "Demo account loaded. Signing you in...",
+                "success"
+            );
+
+
+            localStorage.setItem(
+                "campusconnect_user",
+                JSON.stringify({
+                    email: "student@campusconnect.com",
+                    loggedIn: true
+                })
+            );
+
+
+            setTimeout(function () {
+
+                window.location.href = "pages/dashboard.html";
+
+            }, 800);
+
+        });
+
+    }
+
+
+    /* =========================================
+       FORGOT PASSWORD MODAL
+    ========================================== */
+
+    if (forgotPassword) {
+
+        forgotPassword.addEventListener("click", function (event) {
+
+            event.preventDefault();
+
+            forgotModal.classList.add("active");
+
+        });
+
+    }
+
+
+    if (closeForgotModal) {
+
+        closeForgotModal.addEventListener("click", function () {
+
+            forgotModal.classList.remove("active");
+
+        });
+
+    }
+
+
+    /* Close modal when clicking outside */
+
+    if (forgotModal) {
+
+        forgotModal.addEventListener("click", function (event) {
+
+            if (event.target === forgotModal) {
+
+                forgotModal.classList.remove("active");
+
+            }
+
+        });
+
+    }
+
+
+    /* =========================================
+       FORGOT PASSWORD FORM
+    ========================================== */
+
+    if (forgotForm) {
+
+        forgotForm.addEventListener("submit", function (event) {
+
+            event.preventDefault();
+
+            const email =
+                document.getElementById("forgotEmail").value.trim();
+
+
+            if (email === "") {
+
+                showMessage(
+                    forgotMessage,
+                    "Please enter your email address.",
+                    "error"
+                );
+
                 return;
             }
 
-            // SAVE LOGIN INFORMATION
-            localStorage.setItem(
-                "student",
-                JSON.stringify(student)
+
+            showMessage(
+                forgotMessage,
+                "Reset instructions have been sent to your email.",
+                "success"
             );
 
-            localStorage.setItem(
-                "student_id",
-                String(studentId)
-            );
+        });
 
-            localStorage.setItem(
-                "student_name",
-                studentName
-            );
+    }
 
-            console.log("✅ Student ID saved:", studentId);
-            console.log("✅ Student name saved:", studentName);
 
-            alert("Login successful! Welcome to CampusConnect.");
+    /* =========================================
+       MESSAGE FUNCTION
+    ========================================== */
 
-            // Open dashboard
-            window.location.href = "dashboard.html";
+    function showMessage(element, message, type) {
 
-        } catch (error) {
+        if (!element) return;
 
-            console.error("❌ Login error:", error);
+        element.textContent = message;
 
-            alert(
-                "Cannot connect to the backend. Please make sure Flask is running."
-            );
-        }
+        element.className =
+            "form-message " + type;
 
-    });
+    }
 
-}
+});

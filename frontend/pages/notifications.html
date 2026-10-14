@@ -1,17 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>CampusConnect | Notifications</title>
 
 <style>
-
-/* ================= GLOBAL ================= */
-
 *{
     margin:0;
     padding:0;
@@ -40,63 +34,34 @@ button,input,select{
     bottom:0;
     width:268px;
     min-width:268px;
-
-    background:
-    linear-gradient(
-        180deg,
-        #172a70 0%,
-        #28237d 48%,
-        #5520a7 100%
-    );
-
+    background:linear-gradient(180deg,#172a70 0%,#28237d 48%,#5520a7 100%);
     color:white;
-
     overflow-y:auto;
     overflow-x:hidden;
-
     z-index:1000;
-
     padding-bottom:20px;
-
     scrollbar-width:thin;
     scrollbar-color:rgba(255,255,255,.25) transparent;
 }
 
-/* BRAND */
-
 .brand{
     height:120px;
-
     display:flex;
     align-items:center;
-
     padding:22px 18px;
-
-    border-bottom:
-    1px solid rgba(255,255,255,.12);
+    border-bottom:1px solid rgba(255,255,255,.12);
 }
 
 .logo-box{
     width:52px;
     height:52px;
-
     border-radius:16px;
-
     display:flex;
     align-items:center;
     justify-content:center;
-
     font-size:28px;
-
-    background:
-    linear-gradient(
-        135deg,
-        #24b8ff,
-        #7144f5
-    );
-
-    box-shadow:
-    0 10px 25px rgba(0,0,0,.20);
+    background:linear-gradient(135deg,#24b8ff,#7144f5);
+    box-shadow:0 10px 25px rgba(0,0,0,.20);
 }
 
 .brand-text{
@@ -115,8 +80,6 @@ button,input,select{
     margin-top:3px;
 }
 
-/* MENU */
-
 .menu{
     padding:25px 14px;
 }
@@ -124,14 +87,9 @@ button,input,select{
 .menu-title{
     font-size:12px;
     font-weight:700;
-
-    color:
-    rgba(255,255,255,.52);
-
+    color:rgba(255,255,255,.52);
     letter-spacing:1px;
-
-    padding:
-    0 11px 10px;
+    padding:0 11px 10px;
 }
 
 .menu-section{
@@ -140,60 +98,33 @@ button,input,select{
 
 .nav-item{
     width:100%;
-
     display:flex;
     align-items:center;
-
     min-height:49px;
-
     padding:0 14px;
-
     margin:5px 0;
-
     border-radius:13px;
-
-    color:
-    rgba(255,255,255,.84);
-
+    color:rgba(255,255,255,.84);
     text-decoration:none;
-
-    transition:
-    transform .2s ease,
-    background .2s ease,
-    color .2s ease;
+    transition:transform .2s ease,background .2s ease,color .2s ease;
 }
 
 .nav-item:hover{
-    background:
-    rgba(255,255,255,.12);
-
+    background:rgba(255,255,255,.12);
     color:white;
-
-    transform:
-    translateX(3px);
+    transform:translateX(3px);
 }
 
 .nav-item.active{
     color:white;
-
-    background:
-    linear-gradient(
-        90deg,
-        #22b9f5,
-        #6942f4
-    );
-
-    box-shadow:
-    0 9px 22px rgba(0,0,0,.18);
+    background:linear-gradient(90deg,#22b9f5,#6942f4);
+    box-shadow:0 9px 22px rgba(0,0,0,.18);
 }
 
 .nav-icon{
     width:31px;
-
     font-size:20px;
-
     text-align:center;
-
     margin-right:10px;
 }
 
@@ -204,1293 +135,932 @@ button,input,select{
 
 .logout{
     margin-top:14px;
-
     padding-top:15px;
-
-    border-top:
-    1px solid rgba(255,255,255,.13);
+    border-top:1px solid rgba(255,255,255,.13);
 }
 
 /* ================= MAIN ================= */
 
 .main-area{
-
     margin-left:268px;
-    margin-right:286px;
-
     width:auto;
-
     height:100vh;
-
     overflow-y:auto;
     overflow-x:hidden;
-
-    background:
-    linear-gradient(
-        180deg,
-        #f8f9ff,
-        #eef1fb
-    );
+    background:linear-gradient(180deg,#f8f9ff,#eef1fb);
 }
 
 /* ================= HEADER ================= */
 
 .top-header{
-
     height:120px;
-
-    background:
-    rgba(255,255,255,.96);
-
+    background:rgba(255,255,255,.96);
     display:flex;
-
     align-items:center;
-
     justify-content:space-between;
-
-    padding:
-    22px 28px;
-
-    border-bottom:
-    1px solid #e9ebf5;
-
+    padding:22px 28px;
+    border-bottom:1px solid #e9ebf5;
     position:sticky;
-
     top:0;
-
     z-index:100;
 }
 
 .header-left h1{
-
     font-size:30px;
-
     line-height:1.05;
-
     font-weight:800;
 }
 
 .header-left p{
-
     margin-top:7px;
-
     color:#8990a7;
-
     font-size:14px;
 }
 
 .header-right{
-
     display:flex;
-
     align-items:center;
-
     gap:18px;
 }
 
 .time-box{
-
     font-size:18px;
-
     font-weight:750;
-
     color:#59617d;
 }
 
 .notification{
-
     width:48px;
     height:48px;
-
     background:#fff;
-
     border-radius:50%;
-
     display:flex;
-
     align-items:center;
     justify-content:center;
-
     font-size:22px;
-
-    box-shadow:
-    0 5px 18px rgba(40,35,100,.10);
-
+    box-shadow:0 5px 18px rgba(40,35,100,.10);
     position:relative;
-
     cursor:pointer;
+    transition:.2s;
+}
+
+.notification:hover{
+    transform:scale(1.06);
 }
 
 .notification::after{
-
     content:"";
-
     width:8px;
     height:8px;
-
     border-radius:50%;
-
     background:#ff4f8b;
-
     position:absolute;
-
     top:7px;
     right:8px;
 }
 
 .profile-mini{
-
     display:flex;
-
     align-items:center;
-
     gap:10px;
 }
 
 .profile-circle{
-
     width:48px;
     height:48px;
-
     border-radius:50%;
-
-    background:
-    linear-gradient(
-        135deg,
-        #25b8ee,
-        #466cf1
-    );
-
+    background:linear-gradient(135deg,#25b8ee,#466cf1);
     color:white;
-
     display:flex;
-
     align-items:center;
     justify-content:center;
-
     font-size:20px;
-
     font-weight:800;
 }
 
 .profile-info strong{
-
     display:block;
-
     font-size:15px;
 }
 
 .profile-info span{
-
     display:block;
-
     color:#8d93a8;
-
     font-size:12px;
 }
 
-/* ================= CONTENT ================= */
+/* ================= PAGE ================= */
 
-.content{
-
-    padding:
-    26px 28px 40px;
+.page-content{
+    padding:20px 24px 35px;
+    width:100%;
 }
 
-/* HERO */
+.page-heading{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:20px;
+}
 
-.hero{
+.page-heading h2{
+    font-size:24px;
+    font-weight:800;
+}
 
-    background:
-    linear-gradient(
-        135deg,
-        #25277d,
-        #6337d8
-    );
+.page-heading p{
+    margin-top:6px;
+    color:#8990a7;
+    font-size:13px;
+}
 
-    border-radius:24px;
-
-    padding:
-    27px 30px;
-
+.heading-btn{
+    border:none;
+    border-radius:11px;
+    padding:11px 16px;
     color:white;
+    font-size:12px;
+    font-weight:700;
+    cursor:pointer;
+    background:linear-gradient(135deg,#6543e8,#843de0);
+    box-shadow:0 8px 20px rgba(85,50,190,.25);
+    transition:.2s;
+}
 
+.heading-btn:hover{
+    transform:translateY(-2px);
+}
+
+/* ================= HERO ================= */
+
+.notification-hero{
+    width:100%;
+    min-height:190px;
+    border-radius:20px;
+    padding:28px 32px;
+    color:white;
+    background:linear-gradient(120deg,#19398d,#4828c8 55%,#7738dd);
+    box-shadow:0 14px 35px rgba(55,44,150,.20);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:20px;
     position:relative;
-
     overflow:hidden;
-
-    box-shadow:
-    0 15px 35px rgba(57,48,150,.18);
 }
 
-.hero::before{
-
+.notification-hero::before{
     content:"";
-
     position:absolute;
-
-    width:230px;
-    height:230px;
-
+    width:260px;
+    height:260px;
     border-radius:50%;
-
-    background:
-    rgba(255,255,255,.06);
-
-    right:-70px;
-    top:-90px;
+    right:-80px;
+    top:-110px;
+    background:rgba(255,255,255,.08);
 }
 
-.hero::after{
-
+.notification-hero::after{
     content:"";
-
     position:absolute;
-
     width:150px;
     height:150px;
-
     border-radius:50%;
-
-    background:
-    rgba(36,184,255,.10);
-
-    right:120px;
-    bottom:-90px;
+    right:150px;
+    bottom:-100px;
+    background:rgba(255,255,255,.05);
 }
 
 .hero-content{
-
     position:relative;
-
     z-index:2;
 }
 
-.hero-tag{
-
-    display:inline-block;
-
-    background:
-    rgba(255,255,255,.14);
-
-    padding:
-    6px 12px;
-
-    border-radius:20px;
-
-    font-size:11px;
-
-    margin-bottom:10px;
+.hero-content h3{
+    font-size:23px;
+    font-weight:800;
+    margin-bottom:8px;
 }
 
-.hero h2{
-
-    font-size:25px;
-
-    margin-bottom:7px;
+.hero-content p{
+    font-size:12px;
+    color:rgba(255,255,255,.76);
+    max-width:520px;
+    line-height:1.7;
 }
 
-.hero p{
-
-    font-size:13px;
-
-    color:
-    rgba(255,255,255,.78);
-}
-
-.hero-stats{
-
-    margin-top:17px;
-
+.hero-action{
+    position:relative;
+    z-index:2;
     display:flex;
-
-    gap:10px;
-
-    flex-wrap:wrap;
+    align-items:center;
+    gap:12px;
 }
 
-.hero-pill{
+.stat-box{
+    min-width:110px;
+    padding:17px 20px;
+    border-radius:15px;
+    background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.15);
+    text-align:center;
+    backdrop-filter:blur(5px);
+}
 
-    background:
-    rgba(255,255,255,.13);
+.stat-box strong{
+    display:block;
+    font-size:30px;
+    font-weight:800;
+}
 
-    border:
-    1px solid rgba(255,255,255,.12);
-
-    padding:
-    8px 12px;
-
-    border-radius:12px;
-
-    font-size:11px;
+.stat-box span{
+    display:block;
+    font-size:10px;
+    margin-top:4px;
+    color:rgba(255,255,255,.72);
 }
 
 /* ================= SUMMARY ================= */
 
 .summary-grid{
-
+    width:100%;
     display:grid;
-
-    grid-template-columns:
-    repeat(4,1fr);
-
-    gap:16px;
-
-    margin-top:20px;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:18px;
+    margin-bottom:20px;
 }
 
 .summary-card{
-
     background:white;
-
-    border:
-    1px solid #e7e9f3;
-
-    border-radius:18px;
-
-    padding:19px;
-
-    box-shadow:
-    0 7px 22px rgba(40,35,100,.06);
-
+    border:1px solid #e9ebf5;
+    border-radius:17px;
+    padding:18px;
+    min-height:120px;
+    box-shadow:0 8px 25px rgba(40,35,100,.06);
     transition:.2s;
+    cursor:pointer;
 }
 
 .summary-card:hover{
-
-    transform:
-    translateY(-3px);
-
-    box-shadow:
-    0 12px 28px rgba(40,35,100,.10);
+    transform:translateY(-4px);
+    box-shadow:0 15px 35px rgba(40,35,100,.12);
 }
 
 .summary-top{
-
     display:flex;
-
     justify-content:space-between;
-
-    align-items:center;
 }
 
-.summary-icon{
-
-    width:43px;
-    height:43px;
-
-    border-radius:13px;
-
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-
-    font-size:21px;
-
-    background:#f0efff;
-}
-
-.summary-label{
-
-    margin-top:13px;
-
+.summary-title{
+    color:#7f88a5;
     font-size:12px;
-
-    color:#8a91a8;
-}
-
-.summary-value{
-
-    margin-top:3px;
-
-    font-size:24px;
-
-    font-weight:800;
-
-    color:#202750;
-}
-
-/* ================= SECTION ================= */
-
-.section-head{
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    margin-top:28px;
-
-    margin-bottom:14px;
-}
-
-.section-head h3{
-
-    font-size:19px;
-
-    font-weight:800;
-}
-
-.section-head span{
-
-    color:#8b92a8;
-
-    font-size:12px;
-}
-
-/* ================= TOOLBAR ================= */
-
-.toolbar{
-
-    background:white;
-
-    padding:14px;
-
-    border-radius:16px;
-
-    border:
-    1px solid #e7e9f3;
-
-    display:flex;
-
-    gap:10px;
-
-    margin-bottom:16px;
-
-    box-shadow:
-    0 5px 16px rgba(40,35,100,.04);
-}
-
-.search-box{
-
-    flex:1;
-}
-
-.search-box input{
-
-    width:100%;
-
-    height:42px;
-
-    border:
-    1px solid #e0e3ef;
-
-    border-radius:12px;
-
-    outline:none;
-
-    padding:
-    0 13px;
-
-    font-size:12px;
-
-    color:#4f5875;
-}
-
-.search-box input:focus{
-
-    border-color:#7650e8;
-}
-
-.toolbar select{
-
-    height:42px;
-
-    border:
-    1px solid #e0e3ef;
-
-    border-radius:12px;
-
-    padding:
-    0 12px;
-
-    color:#59627d;
-
-    outline:none;
-
-    background:white;
-
-    font-size:12px;
-
-    min-width:145px;
-}
-
-.mark-all-btn{
-
-    height:42px;
-
-    padding:
-    0 15px;
-
-    border:none;
-
-    border-radius:12px;
-
-    background:
-    linear-gradient(
-        135deg,
-        #6243e7,
-        #7b3fdf
-    );
-
-    color:white;
-
-    cursor:pointer;
-
-    font-size:11px;
-
     font-weight:700;
 }
 
-/* ================= NOTIFICATIONS ================= */
+.summary-icon{
+    width:43px;
+    height:43px;
+    border-radius:13px;
+    background:#f0f3ff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:21px;
+}
+
+.summary-number{
+    font-size:27px;
+    font-weight:800;
+    margin-top:9px;
+    color:#3063df;
+}
+
+.summary-small{
+    color:#9aa2b9;
+    font-size:10px;
+    margin-top:2px;
+}
+
+/* ================= CONTENT CARD ================= */
+
+.content-card{
+    background:white;
+    border:1px solid #e9ebf5;
+    border-radius:17px;
+    padding:20px;
+    box-shadow:0 8px 25px rgba(40,35,100,.06);
+    margin-bottom:20px;
+}
+
+.card-heading{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:15px;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.card-heading h3{
+    font-size:17px;
+}
+
+.card-tools{
+    display:flex;
+    gap:8px;
+    align-items:center;
+}
+
+.search-box{
+    height:38px;
+    border:1px solid #e1e4ef;
+    border-radius:10px;
+    padding:0 12px;
+    color:#39425e;
+    background:white;
+    outline:none;
+    font-size:11px;
+    min-width:210px;
+    transition:.2s;
+}
+
+.search-box:focus{
+    border-color:#a99bf0;
+}
+
+.filter-select{
+    height:38px;
+    border:1px solid #e1e4ef;
+    border-radius:10px;
+    padding:0 11px;
+    color:#68728d;
+    background:white;
+    outline:none;
+    font-size:11px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.filter-select:hover{
+    border-color:#c9cee4;
+}
+
+/* ================= NOTIFICATION LIST ================= */
 
 .notification-list{
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:12px;
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:14px;
 }
 
 .notification-card{
-
-    background:white;
-
-    border:
-    1px solid #e7e9f3;
-
-    border-radius:17px;
-
-    padding:16px 18px;
-
     display:flex;
-
-    align-items:center;
-
-    gap:15px;
-
-    box-shadow:
-    0 6px 19px rgba(40,35,100,.05);
-
-    transition:.2s;
-
+    align-items:flex-start;
+    gap:14px;
+    padding:17px;
+    border:1px solid #eceef5;
+    border-radius:15px;
+    background:#fafbff;
     cursor:pointer;
-
+    transition:.2s;
     position:relative;
 }
 
 .notification-card:hover{
-
-    transform:
-    translateY(-2px);
-
-    box-shadow:
-    0 11px 25px rgba(40,35,100,.09);
+    transform:translateY(-3px);
+    box-shadow:0 10px 25px rgba(40,35,100,.08);
+    border-color:#dcd6fb;
 }
 
 .notification-card.unread{
-
-    border-left:
-    4px solid #6942f4;
-
-    background:
-    linear-gradient(
-        90deg,
-        #fbfaff,
-        #ffffff
-    );
+    background:#f7f5ff;
+    border-color:#ded7ff;
 }
 
-.notif-icon{
-
-    width:48px;
-    height:48px;
-
-    min-width:48px;
-
-    border-radius:14px;
-
+.notification-icon{
+    width:52px;
+    height:52px;
+    border-radius:15px;
     display:flex;
-
     align-items:center;
     justify-content:center;
-
-    font-size:22px;
-
-    background:#f0efff;
+    font-size:23px;
+    flex-shrink:0;
+    background:#eef1ff;
 }
 
-.notif-content{
+.notification-icon.blue{
+    background:#e9f5ff;
+}
 
+.notification-icon.green{
+    background:#eafbf3;
+}
+
+.notification-icon.orange{
+    background:#fff5e8;
+}
+
+.notification-icon.red{
+    background:#fff0f3;
+}
+
+.notification-icon.purple{
+    background:#f2edff;
+}
+
+.notification-info{
     flex:1;
-
     min-width:0;
 }
 
-.notif-title-row{
+.notification-title{
+    display:block;
+    color:#27304b;
+    font-size:13.5px;
+    font-weight:800;
+    line-height:1.4;
+}
 
+.notification-text{
+    display:block;
+    color:#8991a9;
+    font-size:10.5px;
+    line-height:1.6;
+    margin-top:5px;
+}
+
+.notification-meta{
     display:flex;
-
     align-items:center;
-
-    gap:8px;
-
+    gap:7px;
+    margin-top:9px;
     flex-wrap:wrap;
 }
 
-.notif-title{
+.notification-tag{
+    padding:4px 9px;
+    border-radius:20px;
+    background:#edf8ff;
+    color:#238acb;
+    font-size:9px;
+    font-weight:700;
+}
 
-    font-size:14px;
-
-    font-weight:800;
-
-    color:#292f55;
+.notification-time{
+    color:#a0a7ba;
+    font-size:9px;
 }
 
 .unread-dot{
-
-    width:7px;
-    height:7px;
-
+    width:9px;
+    height:9px;
     border-radius:50%;
-
     background:#ff4f8b;
-}
-
-.notif-message{
-
-    font-size:11px;
-
-    color:#777f99;
-
+    box-shadow:0 0 0 4px rgba(255,79,139,.12);
+    flex-shrink:0;
     margin-top:5px;
-
-    line-height:1.5;
-
-    max-width:720px;
 }
 
-.notif-time{
-
-    margin-top:7px;
-
-    font-size:9px;
-
-    color:#a0a6b8;
-}
-
-.notif-actions{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:7px;
-}
-
-.small-btn{
-
-    width:34px;
-    height:34px;
-
-    border:
-    1px solid #e1e3ee;
-
-    background:white;
-
-    border-radius:10px;
-
-    cursor:pointer;
-
-    font-size:14px;
-
-    transition:.2s;
-}
-
-.small-btn:hover{
-
-    background:#f3f1ff;
-
-    border-color:#d8d2fa;
-}
-
-/* EMPTY */
-
-.empty-state{
-
-    display:none;
-
-    background:white;
-
-    border:
-    1px dashed #d9dced;
-
-    border-radius:18px;
-
+.empty-note{
+    padding:35px 5px;
     text-align:center;
+    color:#9aa2b9;
+    font-size:12px;
+    grid-column:1/-1;
+}
 
-    padding:40px;
+/* ================= CATEGORY GRID ================= */
 
-    color:#858ca3;
+.category-grid{
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:12px;
+}
 
-    font-size:13px;
+.category-card{
+    padding:16px;
+    border:1px solid #eceef5;
+    border-radius:13px;
+    background:#fafbff;
+    transition:.2s;
+    cursor:pointer;
+}
+
+.category-card:hover{
+    transform:translateY(-3px);
+    box-shadow:0 8px 20px rgba(40,35,100,.08);
+}
+
+.category-card span{
+    display:block;
+    color:#9299ae;
+    font-size:10px;
+}
+
+.category-card strong{
+    display:block;
+    margin-top:5px;
+    color:#39425e;
+    font-size:20px;
+}
+
+.category-card small{
+    display:block;
+    margin-top:3px;
+    color:#9aa2b9;
+    font-size:9px;
 }
 
 /* ================= CHATBOT ================= */
 
-.chatbot{
-
+.chat-bubble{
     position:fixed;
-
-    top:18px;
-
-    right:18px;
-
-    bottom:18px;
-
-    width:268px;
-
-    min-width:268px;
-
-    max-width:268px;
-
-    background:white;
-
-    border-radius:22px;
-
-    border:
-    1px solid #e5e6f2;
-
-    box-shadow:
-    0 15px 45px rgba(40,35,100,.15);
-
-    z-index:9999;
-
+    right:24px;
+    bottom:24px;
+    width:64px;
+    height:64px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#6543e8,#a855f7);
     display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:30px;
+    color:white;
+    border:none;
+    cursor:pointer;
+    box-shadow:0 12px 30px rgba(101,67,232,.45);
+    z-index:9998;
+    transition:transform .2s ease;
+}
 
+.chat-bubble:hover{
+    transform:scale(1.08);
+}
+
+.chat-bubble::after{
+    content:"";
+    position:absolute;
+    top:4px;
+    right:4px;
+    width:12px;
+    height:12px;
+    border-radius:50%;
+    background:#ff4f8b;
+    border:2px solid white;
+}
+
+.chat-bubble.hide{
+    display:none;
+}
+
+.chatbot-panel{
+    position:fixed;
+    right:24px;
+    bottom:24px;
+    width:320px;
+    height:460px;
+    background:white;
+    border-radius:22px;
+    border:1px solid #e5e6f2;
+    box-shadow:0 20px 55px rgba(40,35,100,.25);
+    z-index:9999;
+    display:none;
     flex-direction:column;
-
     overflow:hidden;
+    animation:panelIn .2s ease;
+}
+
+.chatbot-panel.open{
+    display:flex;
+}
+
+@keyframes panelIn{
+    from{
+        opacity:0;
+        transform:translateY(20px) scale(.96);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
 }
 
 .chat-header{
-
-    min-height:82px;
-
+    min-height:70px;
     flex-shrink:0;
-
-    padding:15px;
-
+    padding:14px;
     display:flex;
-
     align-items:center;
-
+    justify-content:space-between;
     color:white;
+    background:linear-gradient(135deg,#29277d,#7137d8);
+}
 
-    background:
-    linear-gradient(
-        135deg,
-        #29277d,
-        #7137d8
-    );
+.chat-header-left{
+    display:flex;
+    align-items:center;
 }
 
 .robot-icon{
-
-    width:45px;
-    height:45px;
-
-    border-radius:14px;
-
-    background:
-    rgba(255,255,255,.15);
-
+    width:42px;
+    height:42px;
+    border-radius:12px;
+    background:rgba(255,255,255,.15);
     display:flex;
-
     align-items:center;
     justify-content:center;
-
-    font-size:24px;
-
+    font-size:22px;
     margin-right:10px;
 }
 
 .chat-title strong{
-
     display:block;
-
-    font-size:15px;
+    font-size:14px;
 }
 
 .chat-title span{
-
     display:block;
-
-    font-size:10px;
-
-    margin-top:3px;
-
-    color:
-    rgba(255,255,255,.78);
+    font-size:9px;
+    margin-top:2px;
+    color:rgba(255,255,255,.78);
 }
 
 .online-dot{
-
     display:inline-block;
-
     width:7px;
     height:7px;
-
     background:#57e6a3;
-
     border-radius:50%;
-
     margin-right:4px;
 }
 
+.close-chat{
+    width:30px;
+    height:30px;
+    border:none;
+    border-radius:50%;
+    background:rgba(255,255,255,.15);
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+
 .chat-body{
-
     flex:1;
-
     min-height:0;
-
-    padding:17px 14px;
-
+    padding:14px;
     overflow-y:auto;
-
-    background:
-    linear-gradient(
-        180deg,
-        #fafbff,
-        #f4f5fb
-    );
+    background:linear-gradient(180deg,#fafbff,#f4f5fb);
 }
 
 .bot-message{
-
     background:white;
-
-    border:
-    1px solid #e7e9f3;
-
+    border:1px solid #e7e9f3;
     border-radius:14px;
-
-    padding:12px;
-
-    margin-bottom:10px;
-
+    padding:11px;
+    margin-bottom:9px;
     color:#65708d;
-
     font-size:11px;
-
-    line-height:1.6;
-
-    box-shadow:
-    0 5px 15px rgba(40,35,100,.04);
+    line-height:1.55;
+    box-shadow:0 5px 15px rgba(40,35,100,.04);
 }
 
 .user-message{
-
-    background:
-    linear-gradient(
-        135deg,
-        #6241e8,
-        #7b3ee0
-    );
-
+    background:linear-gradient(135deg,#6241e8,#7b3ee0);
     color:white;
-
-    padding:10px 12px;
-
-    border-radius:
-    14px 14px 4px 14px;
-
-    margin:
-    9px 0 9px 20px;
-
+    padding:9px 12px;
+    border-radius:14px 14px 4px 14px;
+    margin:8px 0 8px 25px;
     font-size:11px;
-
     line-height:1.5;
 }
 
-.quick-buttons{
-
+.typing{
     display:flex;
-
-    gap:5px;
-
-    flex-wrap:wrap;
-
-    padding:9px 14px;
-
+    gap:4px;
+    width:52px;
+    padding:12px;
     background:white;
+    border:1px solid #e7e9f3;
+    border-radius:14px;
+    margin-bottom:9px;
+}
 
-    border-top:
-    1px solid #eceef5;
+.typing i{
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:#b9bed4;
+    animation:blink 1s infinite;
+}
+
+.typing i:nth-child(2){
+    animation-delay:.2s;
+}
+
+.typing i:nth-child(3){
+    animation-delay:.4s;
+}
+
+@keyframes blink{
+    0%,100%{opacity:.3;}
+    50%{opacity:1;}
+}
+
+.quick-buttons{
+    display:flex;
+    gap:5px;
+    flex-wrap:wrap;
+    padding:8px 12px;
+    background:white;
+    border-top:1px solid #eceef5;
 }
 
 .quick-btn{
-
-    border:
-    1px solid #e0e3f0;
-
+    border:1px solid #e0e3f0;
     background:white;
-
     color:#6b54d9;
-
     border-radius:20px;
-
-    padding:7px 9px;
-
+    padding:6px 9px;
     font-size:9px;
-
     cursor:pointer;
-
     transition:.2s;
 }
 
 .quick-btn:hover{
-
-    background:#f3f0ff;
+    background:#f0edff;
 }
 
 .chat-footer{
-
     flex-shrink:0;
-
     padding:10px;
-
     background:white;
-
-    border-top:
-    1px solid #eceef5;
-
+    border-top:1px solid #eceef5;
     display:flex;
-
     gap:7px;
 }
 
 .chat-input{
-
     flex:1;
-
     min-width:0;
-
-    height:40px;
-
-    border:
-    1px solid #e1e4ef;
-
+    height:38px;
+    border:1px solid #e1e4ef;
     border-radius:12px;
-
     outline:none;
-
-    padding:
-    0 11px;
-
+    padding:0 11px;
     font-size:11px;
-
     color:#555e78;
 }
 
+.chat-input:focus{
+    border-color:#a99bf0;
+}
+
 .send-btn{
-
-    width:40px;
-    height:40px;
-
+    width:38px;
+    height:38px;
     border:none;
-
     border-radius:12px;
-
     color:white;
-
-    background:
-    linear-gradient(
-        135deg,
-        #6543e8,
-        #843de0
-    );
-
+    background:linear-gradient(135deg,#6543e8,#843de0);
     cursor:pointer;
-
-    font-size:17px;
-
+    font-size:16px;
     transition:.2s;
 }
 
 .send-btn:hover{
-
-    transform:scale(1.04);
+    transform:scale(1.05);
 }
 
 /* ================= MODAL ================= */
 
-.modal-overlay{
-
+.modal{
     position:fixed;
-
     inset:0;
-
-    background:
-    rgba(20,25,65,.48);
-
-    backdrop-filter:blur(5px);
-
+    background:rgba(20,25,65,.55);
     display:none;
-
     align-items:center;
-
     justify-content:center;
-
-    z-index:20000;
-
+    z-index:30000;
     padding:20px;
 }
 
-.modal-overlay.show{
-
+.modal.show{
     display:flex;
 }
 
-.modal{
-
-    width:500px;
-
-    max-width:100%;
-
+.modal-box{
+    width:min(500px,95%);
+    max-height:88vh;
+    overflow-y:auto;
     background:white;
-
-    border-radius:22px;
-
-    overflow:hidden;
-
-    box-shadow:
-    0 25px 70px rgba(25,25,70,.25);
-
-    animation:
-    modalIn .2s ease;
+    border-radius:20px;
+    padding:25px;
+    box-shadow:0 25px 70px rgba(20,25,70,.25);
+    animation:modalIn .2s ease;
 }
 
 @keyframes modalIn{
-
     from{
         opacity:0;
-        transform:
-        translateY(12px) scale(.98);
+        transform:translateY(15px) scale(.97);
     }
-
     to{
         opacity:1;
-        transform:
-        translateY(0) scale(1);
+        transform:translateY(0) scale(1);
     }
 }
 
-.modal-head{
-
-    padding:
-    20px 22px;
-
-    color:white;
-
-    background:
-    linear-gradient(
-        135deg,
-        #29277d,
-        #7137d8
-    );
-
+.modal-top{
     display:flex;
-
     align-items:center;
-
     justify-content:space-between;
+    margin-bottom:20px;
 }
 
-.modal-head h3{
+.modal-top h3{
+    font-size:19px;
+}
 
+.close-btn{
+    width:35px;
+    height:35px;
+    border:none;
+    border-radius:50%;
+    background:#f0f2fa;
+    color:#68728d;
+    cursor:pointer;
     font-size:18px;
 }
 
-.close-modal{
-
-    width:34px;
-    height:34px;
-
-    border:none;
-
-    border-radius:50%;
-
-    background:
-    rgba(255,255,255,.14);
-
-    color:white;
-
-    font-size:19px;
-
-    cursor:pointer;
-}
-
-.modal-body{
-
-    padding:23px;
-}
-
-.modal-icon{
-
-    width:55px;
-    height:55px;
-
-    border-radius:15px;
-
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-
-    background:#f0efff;
-
-    font-size:27px;
-
-    margin-bottom:13px;
-}
-
-.modal-title{
-
-    font-size:20px;
-
-    font-weight:800;
-
-    color:#272d52;
-}
-
-.modal-message{
-
-    margin-top:8px;
-
-    color:#727b96;
-
+.modal-content{
+    color:#68728d;
     font-size:12px;
-
     line-height:1.7;
 }
 
-.modal-meta{
-
-    display:grid;
-
-    grid-template-columns:
-    1fr 1fr;
-
-    gap:10px;
-
-    margin-top:18px;
+.modal-content p{
+    margin-bottom:7px;
 }
 
-.meta-box{
-
-    background:#f7f8fc;
-
-    padding:11px;
-
+.tip-box{
+    margin-top:12px;
+    padding:11px 13px;
     border-radius:12px;
-}
-
-.meta-box span{
-
-    display:block;
-
-    color:#969daf;
-
-    font-size:9px;
-}
-
-.meta-box strong{
-
-    display:block;
-
-    margin-top:4px;
-
+    background:#f4f2ff;
+    color:#5d4fbe;
     font-size:11px;
-
-    color:#49516e;
+    line-height:1.6;
 }
 
-.modal-action{
-
-    width:100%;
-
-    height:42px;
-
+.modal-buttons{
+    display:flex;
+    justify-content:flex-end;
+    gap:8px;
     margin-top:18px;
+}
 
+.modal-btn{
     border:none;
-
-    border-radius:11px;
-
-    background:
-    linear-gradient(
-        135deg,
-        #6243e7,
-        #7b3fdf
-    );
-
-    color:white;
-
+    border-radius:10px;
+    padding:10px 15px;
     cursor:pointer;
-
     font-size:11px;
-
     font-weight:700;
+}
+
+.modal-cancel{
+    background:#f0f2fa;
+    color:#68728d;
+}
+
+.modal-ok{
+    background:linear-gradient(135deg,#6543e8,#843de0);
+    color:white;
 }
 
 /* ================= TOAST ================= */
 
 .toast{
-
     position:fixed;
-
-    bottom:30px;
-
     left:50%;
-
-    transform:
-    translateX(-50%)
-    translateY(20px);
-
-    background:#20264b;
-
+    bottom:25px;
+    transform:translateX(-50%) translateY(20px);
+    background:#29277d;
     color:white;
-
-    padding:
-    12px 18px;
-
+    padding:12px 18px;
     border-radius:12px;
-
-    font-size:11px;
-
+    font-size:12px;
     opacity:0;
-
     pointer-events:none;
-
     transition:.3s;
-
-    z-index:30000;
-
-    box-shadow:
-    0 12px 30px rgba(20,25,60,.22);
+    z-index:40000;
 }
 
 .toast.show{
-
     opacity:1;
-
-    transform:
-    translateX(-50%)
-    translateY(0);
+    transform:translateX(-50%) translateY(0);
 }
 
 /* ================= RESPONSIVE ================= */
@@ -1504,39 +1074,14 @@ button,input,select{
 
     .main-area{
         margin-left:230px;
-        margin-right:250px;
-    }
-
-    .chatbot{
-        width:232px;
-        min-width:232px;
-        max-width:232px;
-        right:10px;
     }
 
     .summary-grid{
-        grid-template-columns:
-        repeat(2,1fr);
-    }
-}
-
-@media(max-width:900px){
-
-    .chatbot{
-        display:none;
+        grid-template-columns:repeat(2,minmax(0,1fr));
     }
 
-    .main-area{
-        margin-right:0;
-    }
-
-    .toolbar{
-        flex-direction:column;
-    }
-
-    .toolbar select,
-    .mark-all-btn{
-        width:100%;
+    .notification-list{
+        grid-template-columns:1fr;
     }
 }
 
@@ -1552,10 +1097,7 @@ button,input,select{
         padding:15px;
     }
 
-    .brand-text{
-        display:none;
-    }
-
+    .brand-text,
     .menu-title,
     .nav-text{
         display:none;
@@ -1574,1266 +1116,556 @@ button,input,select{
         margin-left:80px;
     }
 
-    .top-header{
-        padding:18px;
-    }
-
-    .header-left h1{
-        font-size:23px;
-    }
-
-    .header-left p{
-        font-size:11px;
-    }
-
-    .time-box,
-    .profile-info{
-        display:none;
-    }
-
-    .content{
-        padding:18px;
-    }
-
     .summary-grid{
-        grid-template-columns:
-        1fr 1fr;
+        grid-template-columns:1fr;
     }
 
-    .notification-card{
-        align-items:flex-start;
-    }
-
-    .notif-actions{
+    .notification-hero{
         flex-direction:column;
+        align-items:flex-start;
+        gap:20px;
     }
 
+    .category-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .card-tools{
+        width:100%;
+    }
+
+    .search-box{
+        flex:1;
+        min-width:0;
+    }
+
+    .chatbot-panel{
+        width:92vw;
+        right:4vw;
+        left:4vw;
+    }
 }
-
 </style>
-
 </head>
 
-
 <body>
-
 
 <!-- ================= SIDEBAR ================= -->
 
 <aside class="sidebar">
 
-<div class="brand">
+    <div class="brand">
+        <div class="logo-box">🎓</div>
 
-    <div class="logo-box">
-        🎓
+        <div class="brand-text">
+            <div class="brand-title">CampusConnect</div>
+            <div class="brand-subtitle">AI College Companion</div>
+        </div>
     </div>
 
-    <div class="brand-text">
+    <div class="menu">
 
-        <div class="brand-title">
-            CampusConnect
+        <div class="menu-title">MAIN MENU</div>
+
+        <a class="nav-item" href="../dashboard.html">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-text">Dashboard</span>
+        </a>
+
+        <a class="nav-item" href="courses.html">
+            <span class="nav-icon">📚</span>
+            <span class="nav-text">Courses</span>
+        </a>
+
+        <a class="nav-item" href="timetable.html">
+            <span class="nav-icon">🗓️</span>
+            <span class="nav-text">Timetable</span>
+        </a>
+
+        <a class="nav-item" href="assignments.html">
+            <span class="nav-icon">📝</span>
+            <span class="nav-text">Assignments</span>
+        </a>
+
+        <a class="nav-item" href="attendance.html">
+            <span class="nav-icon">📊</span>
+            <span class="nav-text">Attendance</span>
+        </a>
+
+        <a class="nav-item" href="academics.html">
+            <span class="nav-icon">🎓</span>
+            <span class="nav-text">Academics</span>
+        </a>
+
+        <a class="nav-item" href="faculty.html">
+            <span class="nav-icon">👨‍🏫</span>
+            <span class="nav-text">Faculty</span>
+        </a>
+
+        <div class="menu-section">
+
+            <div class="menu-title">CAREER</div>
+
+            <a class="nav-item" href="placement.html">
+                <span class="nav-icon">💼</span>
+                <span class="nav-text">Placement</span>
+            </a>
+
+            <a class="nav-item" href="results.html">
+                <span class="nav-icon">📈</span>
+                <span class="nav-text">Results</span>
+            </a>
+
         </div>
 
-        <div class="brand-subtitle">
-            AI College Companion
+        <div class="menu-section">
+
+            <div class="menu-title">CAMPUS</div>
+
+            <a class="nav-item" href="documents.html">
+                <span class="nav-icon">📄</span>
+                <span class="nav-text">Documents</span>
+            </a>
+
+            <a class="nav-item" href="complaints.html">
+                <span class="nav-icon">📢</span>
+                <span class="nav-text">Complaints</span>
+            </a>
+
+            <a class="nav-item" href="feedback.html">
+                <span class="nav-icon">💬</span>
+                <span class="nav-text">Feedback</span>
+            </a>
+
+            <a class="nav-item" href="lost_found.html">
+                <span class="nav-icon">🔎</span>
+                <span class="nav-text">Lost &amp; Found</span>
+            </a>
+
+            <a class="nav-item" href="campus.html">
+                <span class="nav-icon">🏫</span>
+                <span class="nav-text">Campus</span>
+            </a>
+
+            <a class="nav-item" href="events.html">
+                <span class="nav-icon">🎉</span>
+                <span class="nav-text">Events</span>
+            </a>
+
+            <a class="nav-item" href="exams.html">
+                <span class="nav-icon">📋</span>
+                <span class="nav-text">Exams</span>
+            </a>
+
+            <a class="nav-item active" href="notifications.html">
+                <span class="nav-icon">🔔</span>
+                <span class="nav-text">Notifications</span>
+            </a>
+
+        </div>
+
+        <div class="menu-section">
+
+            <div class="menu-title">ACCOUNT</div>
+
+            <a class="nav-item" href="profile.html">
+                <span class="nav-icon">👤</span>
+                <span class="nav-text">Profile</span>
+            </a>
+
+            <a class="nav-item" href="settings.html">
+                <span class="nav-icon">⚙️</span>
+                <span class="nav-text">Settings</span>
+            </a>
+
+            <div class="logout">
+
+                <a class="nav-item" href="../index.html" onclick="return confirmLogout()">
+                    <span class="nav-icon">🚪</span>
+                    <span class="nav-text">Logout</span>
+                </a>
+
+            </div>
+
         </div>
 
     </div>
-
-</div>
-
-
-<nav class="menu">
-
-
-<div class="menu-title">
-    MAIN MENU
-</div>
-
-
-<a class="nav-item" href="../dashboard.html">
-    <span class="nav-icon">🏠</span>
-    <span class="nav-text">Dashboard</span>
-</a>
-
-<a class="nav-item" href="courses.html">
-
-    <span class="nav-icon">
-        📚
-    </span>
-
-    <span class="nav-text">
-        Courses
-    </span>
-
-</a>
-
-
-<a class="nav-item" href="timetable.html">
-    <span class="nav-icon">🗓️</span>
-    <span class="nav-text">Timetable</span>
-</a>
-
-
-<a class="nav-item" href="assignments.html">
-    <span class="nav-icon">📝</span>
-    <span class="nav-text">Assignments</span>
-</a>
-
-
-<a class="nav-item" href="attendance.html">
-    <span class="nav-icon">📊</span>
-    <span class="nav-text">Attendance</span>
-</a>
-
-
-<a class="nav-item" href="academics.html">
-    <span class="nav-icon">🎓</span>
-    <span class="nav-text">Academics</span>
-</a>
-
-
-<a class="nav-item" href="faculty.html">
-    <span class="nav-icon">👨‍🏫</span>
-    <span class="nav-text">Faculty</span>
-</a>
-
-
-<div class="menu-section">
-
-<div class="menu-title">
-    CAREER
-</div>
-
-
-<a class="nav-item" href="placement.html">
-    <span class="nav-icon">💼</span>
-    <span class="nav-text">Placement</span>
-</a>
-
-
-<a class="nav-item" href="results.html">
-    <span class="nav-icon">📈</span>
-    <span class="nav-text">Results</span>
-</a>
-
-</div>
-
-
-<div class="menu-section">
-
-<div class="menu-title">
-    CAMPUS
-</div>
-
-
-<a class="nav-item" href="documents.html">
-    <span class="nav-icon">📄</span>
-    <span class="nav-text">Documents</span>
-</a>
-
-
-<a class="nav-item" href="complaints.html">
-    <span class="nav-icon">📢</span>
-    <span class="nav-text">Complaints</span>
-</a>
-
-
-<a class="nav-item" href="feedback.html">
-    <span class="nav-icon">💬</span>
-    <span class="nav-text">Feedback</span>
-</a>
-
-
-<a class="nav-item" href="lost-found.html">
-    <span class="nav-icon">🔎</span>
-    <span class="nav-text">Lost & Found</span>
-</a>
-
-
-<a class="nav-item" href="campus.html">
-    <span class="nav-icon">🏫</span>
-    <span class="nav-text">Campus</span>
-</a>
-
-
-<a class="nav-item" href="events.html">
-    <span class="nav-icon">🎉</span>
-    <span class="nav-text">Events</span>
-</a>
-
-
-<a class="nav-item" href="exams.html">
-    <span class="nav-icon">📋</span>
-    <span class="nav-text">Exams</span>
-</a>
-
-
-<a class="nav-item active" href="notifications.html">
-    <span class="nav-icon">🔔</span>
-    <span class="nav-text">Notifications</span>
-</a>
-
-</div>
-
-
-<div class="menu-section">
-
-<div class="menu-title">
-    ACCOUNT
-</div>
-
-
-<a class="nav-item" href="profile.html">
-    <span class="nav-icon">👤</span>
-    <span class="nav-text">Profile</span>
-</a>
-
-
-<a class="nav-item" href="settings.html">
-    <span class="nav-icon">⚙️</span>
-    <span class="nav-text">Settings</span>
-</a>
-
-
-<a
-    class="nav-item logout"
-    href="../index.html"
-    onclick="logoutUser(event)"
->
-
-    <span class="nav-icon">🚪</span>
-
-    <span class="nav-text">
-        Logout
-    </span>
-
-</a>
-
-
-</div>
-
-</nav>
-
 </aside>
 
-
-
-<!-- ================= MAIN ================= -->
+<!-- ================= MAIN AREA ================= -->
 
 <main class="main-area">
 
+    <header class="top-header">
 
-<header class="top-header">
+        <div class="header-left">
+            <h1>Notifications</h1>
+            <p>Stay updated with important college announcements and alerts</p>
+        </div>
 
+        <div class="header-right">
 
-<div class="header-left">
+            <div class="time-box" id="clock">6:00 PM</div>
 
-<h1>
-    Notifications 🔔
-</h1>
+            <div class="notification" onclick="showNotificationSummary()">
+                🔔
+            </div>
 
-<p>
-    Stay updated with everything happening on campus
-</p>
+            <div class="profile-mini">
 
-</div>
+                <div class="profile-circle">P</div>
 
+                <div class="profile-info">
+                    <strong>Student</strong>
+                    <span>BCA &bull; 5th Sem</span>
+                </div>
 
-<div class="header-right">
+            </div>
 
+        </div>
 
-<div class="time-box" id="clock">
-    00:00:00
-</div>
+    </header>
 
+    <div class="page-content">
 
-<div
-    class="notification"
-    onclick="markAllRead()"
->
-    🔔
-</div>
+        <!-- PAGE HEADING -->
 
+        <div class="page-heading">
 
-<div class="profile-mini">
+            <div>
+                <h2>🔔 Notification Center</h2>
+                <p>View announcements, academic updates and campus alerts.</p>
+            </div>
 
-<div class="profile-circle">
-    PB
-</div>
+            <button class="heading-btn" onclick="markAllRead()">
+                Mark All as Read
+            </button>
 
-<div class="profile-info">
+        </div>
 
-<strong>
-    Priya Bhavani
-</strong>
+        <!-- HERO -->
 
-<span>
-    Student
-</span>
+        <section class="notification-hero">
 
-</div>
+            <div class="hero-content">
 
-</div>
+                <h3 id="heroTitle">
+                    You have new updates 🔔
+                </h3>
 
+                <p id="heroText">
+                    Stay informed about academic schedules, examinations,
+                    placements, campus events and important college announcements.
+                </p>
 
-</div>
+            </div>
 
-</header>
+            <div class="hero-action">
 
+                <div class="stat-box">
+                    <strong id="totalNotifications">0</strong>
+                    <span>Total Notifications</span>
+                </div>
 
+                <div class="stat-box">
+                    <strong id="unreadNotifications">0</strong>
+                    <span>Unread</span>
+                </div>
 
-<div class="content">
+            </div>
 
+        </section>
 
-<!-- ================= HERO ================= -->
+        <!-- SUMMARY CARDS -->
 
-<section class="hero">
+        <section class="summary-grid">
 
+            <div class="summary-card" onclick="filterCategory('Academic')">
 
-<div class="hero-content">
+                <div class="summary-top">
+                    <div class="summary-title">ACADEMIC</div>
+                    <div class="summary-icon">🎓</div>
+                </div>
 
+                <div class="summary-number" id="academicCount">0</div>
 
-<div class="hero-tag">
-    🔔 Notification Center
-</div>
+                <div class="summary-small">
+                    Academic updates
+                </div>
 
+            </div>
 
-<h2>
-    Never Miss an Important Update
-</h2>
+            <div class="summary-card" onclick="filterCategory('Examination')">
 
+                <div class="summary-top">
+                    <div class="summary-title">EXAMINATION</div>
+                    <div class="summary-icon">📋</div>
+                </div>
 
-<p>
-    Get important academic, examination, assignment,
-    placement, and campus announcements in one place.
-</p>
+                <div class="summary-number" id="examCount">0</div>
 
+                <div class="summary-small">
+                    Examination alerts
+                </div>
 
-<div class="hero-stats">
+            </div>
 
-<div class="hero-pill">
-    🔴 <span id="heroUnread">4</span> Unread
-</div>
+            <div class="summary-card" onclick="filterCategory('Campus')">
 
-<div class="hero-pill">
-    📢 Academic Updates
-</div>
+                <div class="summary-top">
+                    <div class="summary-title">CAMPUS</div>
+                    <div class="summary-icon">🏫</div>
+                </div>
 
-<div class="hero-pill">
-    🎓 Campus Updates
-</div>
+                <div class="summary-number" id="campusCount">0</div>
 
-</div>
+                <div class="summary-small">
+                    Campus announcements
+                </div>
 
+            </div>
 
-</div>
+            <div class="summary-card" onclick="filterUnread()">
 
-</section>
+                <div class="summary-top">
+                    <div class="summary-title">UNREAD</div>
+                    <div class="summary-icon">🔔</div>
+                </div>
 
+                <div class="summary-number" id="unreadCardCount">0</div>
 
+                <div class="summary-small">
+                    Need your attention
+                </div>
 
-<!-- ================= SUMMARY ================= -->
+            </div>
 
-<section class="summary-grid">
+        </section>
 
+        <!-- NOTIFICATION LIST -->
 
-<div class="summary-card">
+        <section class="content-card">
 
-<div class="summary-top">
+            <div class="card-heading">
 
-<div class="summary-icon">
-    🔔
-</div>
+                <h3>Recent Notifications</h3>
 
-</div>
+                <div class="card-tools">
 
-<div class="summary-label">
-    Total Notifications
-</div>
+                    <input
+                        class="search-box"
+                        id="notificationSearch"
+                        type="text"
+                        placeholder="Search notification..."
+                        oninput="renderNotifications()"
+                    >
 
-<div
-    class="summary-value"
-    id="totalCount"
->
-    8
-</div>
+                    <select
+                        class="filter-select"
+                        id="categoryFilter"
+                        onchange="renderNotifications()"
+                    >
+                        <option value="all">All Categories</option>
+                        <option value="Academic">Academic</option>
+                        <option value="Examination">Examination</option>
+                        <option value="Campus">Campus</option>
+                        <option value="Placement">Placement</option>
+                        <option value="Events">Events</option>
+                        <option value="General">General</option>
+                    </select>
 
-</div>
+                    <select
+                        class="filter-select"
+                        id="statusFilter"
+                        onchange="renderNotifications()"
+                    >
+                        <option value="all">All Status</option>
+                        <option value="unread">Unread</option>
+                        <option value="read">Read</option>
+                    </select>
 
+                </div>
 
+            </div>
 
-<div class="summary-card">
+            <div class="notification-list" id="notificationList"></div>
 
-<div class="summary-top">
+        </section>
 
-<div class="summary-icon">
-    🔴
-</div>
+        <!-- CATEGORY BREAKDOWN -->
 
-</div>
+        <section class="content-card">
 
-<div class="summary-label">
-    Unread
-</div>
+            <div class="card-heading">
 
-<div
-    class="summary-value"
-    id="unreadCount"
->
-    4
-</div>
+                <h3>Notification Categories</h3>
 
-</div>
+                <button class="filter-select" onclick="showCategoryDetails()">
+                    View Details
+                </button>
 
+            </div>
 
+            <div class="category-grid" id="categoryGrid"></div>
 
-<div class="summary-card">
+        </section>
 
-<div class="summary-top">
-
-<div class="summary-icon">
-    📚
-</div>
-
-</div>
-
-<div class="summary-label">
-    Academic
-</div>
-
-<div class="summary-value">
-    3
-</div>
-
-</div>
-
-
-
-<div class="summary-card">
-
-<div class="summary-top">
-
-<div class="summary-icon">
-    🎓
-</div>
-
-</div>
-
-<div class="summary-label">
-    Campus Updates
-</div>
-
-<div class="summary-value">
-    5
-</div>
-
-</div>
-
-
-</section>
-
-
-
-<!-- ================= NOTIFICATION SECTION ================= -->
-
-<div class="section-head">
-
-<h3>
-    Recent Notifications
-</h3>
-
-<span>
-    Latest updates
-</span>
-
-</div>
-
-
-
-<!-- ================= TOOLBAR ================= -->
-
-<div class="toolbar">
-
-
-<div class="search-box">
-
-<input
-    type="text"
-    id="searchInput"
-    placeholder="🔎 Search notifications..."
-    oninput="filterNotifications()"
->
-
-</div>
-
-
-<select
-    id="categoryFilter"
-    onchange="filterNotifications()"
->
-
-<option value="all">
-    All Categories
-</option>
-
-<option value="Academic">
-    Academic
-</option>
-
-<option value="Exam">
-    Exam
-</option>
-
-<option value="Assignment">
-    Assignment
-</option>
-
-<option value="Placement">
-    Placement
-</option>
-
-<option value="Campus">
-    Campus
-</option>
-
-</select>
-
-
-<select
-    id="readFilter"
-    onchange="filterNotifications()"
->
-
-<option value="all">
-    All Status
-</option>
-
-<option value="unread">
-    Unread
-</option>
-
-<option value="read">
-    Read
-</option>
-
-</select>
-
-
-<button
-    class="mark-all-btn"
-    onclick="markAllRead()"
->
-    ✓ Mark All Read
-</button>
-
-
-</div>
-
-
-
-<!-- ================= NOTIFICATION LIST ================= -->
-
-<div
-    class="notification-list"
-    id="notificationList"
->
-
-
-<!-- NOTIFICATION 1 -->
-
-<div
-    class="notification-card unread"
-    data-category="Exam"
-    data-read="unread"
-    data-search="database management system exam timetable examination schedule"
-    onclick="openNotification(0)"
->
-
-<div class="notif-icon">
-    📝
-</div>
-
-
-<div class="notif-content">
-
-<div class="notif-title-row">
-
-<div class="notif-title">
-    Exam Timetable Released
-</div>
-
-<div class="unread-dot"></div>
-
-</div>
-
-<div class="notif-message">
-    Your Database Management System examination
-    is scheduled for 18 September 2026 at 10:00 AM.
-</div>
-
-<div class="notif-time">
-    Today • 10:30 AM
-</div>
-
-</div>
-
-
-<div class="notif-actions">
-
-<button
-    class="small-btn"
-    title="Mark as read"
-    onclick="event.stopPropagation(); markRead(this)"
->
-    ✓
-</button>
-
-<button
-    class="small-btn"
-    title="Delete"
-    onclick="event.stopPropagation(); deleteNotification(this)"
->
-    🗑️
-</button>
-
-</div>
-
-</div>
-
-
-
-<!-- NOTIFICATION 2 -->
-
-<div
-    class="notification-card unread"
-    data-category="Assignment"
-    data-read="unread"
-    data-search="web programming assignment deadline responsive website"
-    onclick="openNotification(1)"
->
-
-<div class="notif-icon">
-    💻
-</div>
-
-
-<div class="notif-content">
-
-<div class="notif-title-row">
-
-<div class="notif-title">
-    Assignment Deadline Reminder
-</div>
-
-<div class="unread-dot"></div>
-
-</div>
-
-<div class="notif-message">
-    Web Programming assignment is due on
-    20 September 2026. Make sure to submit it on time.
-</div>
-
-<div class="notif-time">
-    Today • 9:15 AM
-</div>
-
-</div>
-
-
-<div class="notif-actions">
-
-<button
-    class="small-btn"
-    onclick="event.stopPropagation(); markRead(this)"
->
-    ✓
-</button>
-
-<button
-    class="small-btn"
-    onclick="event.stopPropagation(); deleteNotification(this)"
->
-    🗑️
-</button>
-
-</div>
-
-</div>
-
-
-
-<!-- NOTIFICATION 3 -->
-
-<div
-    class="notification-card unread"
-    data-category="Placement"
-    data-read="unread"
-    data-search="placement company recruitment drive software developer"
-    onclick="openNotification(2)"
->
-
-<div class="notif-icon">
-    💼
-</div>
-
-
-<div class="notif-content">
-
-<div class="notif-title-row">
-
-<div class="notif-title">
-    New Placement Drive
-</div>
-
-<div class="unread-dot"></div>
-
-</div>
-
-<div class="notif-message">
-    A new Software Developer recruitment drive has
-    been added. Check eligibility and application details.
-</div>
-
-<div class="notif-time">
-    Yesterday • 4:40 PM
-</div>
-
-</div>
-
-
-<div class="notif-actions">
-
-<button
-    class="small-btn"
-    onclick="event.stopPropagation(); markRead(this)"
->
-    ✓
-</button>
-
-<button
-    class="small-btn"
-    onclick="event.stopPropagation(); deleteNotification(this)"
->
-    🗑️
-</button>
-
-</div>
-
-</div>
-
-
-
-<!-- NOTIFICATION 4 -->
-
-<div
-    class="notification-card unread"
-    data-category="Campus"
-    data-read="unread"
-    data-search="tech nova 2026 event auditorium registration"
-    onclick="openNotification(3)"
->
-
-<div class="notif-icon">
-    🎉
-</div>
-
-
-<div class="notif-content">
-
-<div class="notif-title-row">
-
-<div class="notif-title">
-    TechNova 2026 Registration Open
-</div>
-
-<div class="unread-dot"></div>
-
-</div>
-
-<div class="notif-message">
-    Registration is now open for TechNova 2026.
-    Join workshops, competitions, and technical events.
-</div>
-
-<div class="notif-time">
-    Yesterday • 1:20 PM
-</div>
-
-</div>
-
-
-<div class="notif-actions">
-
-<button
-    class="small-btn"
-    onclick="event.stopPropagation(); markRead(this)"
->
-    ✓
-</button>
-
-<button
-    class="small-btn"
-    onclick="event.stopPropagation(); deleteNotification(this)"
->
-    🗑️
-</button>
-
-</div>
-
-</div>
-
-
-
-<!-- NOTIFICATION 5 -->
-
-<div
-    class="notification-card"
-    data-category="Academic"
-    data-read="read"
-    data-search="academic semester internal assessment marks"
-    onclick="openNotification(4)"
->
-
-<div class="notif-icon">
-    🎓
-</div>
-
-
-<div class="notif-content">
-
-<div class="notif-title-row">
-
-<div class="notif-title">
-    Internal Assessment Updated
-</div>
-
-</div>
-
-<div class="notif-message">
-    Your latest internal assessment marks have
-    been updated in the Academics section.
-</div>
-
-<div class="notif-time">
-    12 Sep 2026 • 5:10 PM
-</div>
-
-</div>
-
-
-<div class="notif-actions">
-
-<button
-    class="small-btn"
-    onclick="event.stopPropagation(); deleteNotification(this)"
->
-    🗑️
-</button>
-
-</div>
-
-</div>
-
-
-
-<!-- NOTIFICATION 6 -->
-
-<div
-    class="notification-card"
-    data-category="Exam"
-    data-read="read"
-    data-search="hall ticket examination admit card"
-    onclick="openNotification(5)"
->
-
-<div class="notif-icon">
-    🎫
-</div>
-
-
-<div class="notif-content">
-
-<div class="notif-title-row">
-
-<div class="notif-title">
-    Hall Ticket Available
-</div>
-
-</div>
-
-<div class="notif-message">
-    Your semester examination hall ticket is
-    now available from the Exams section.
-</div>
-
-<div class="notif-time">
-    11 Sep 2026 • 3:45 PM
-</div>
-
-</div>
-
-
-<div class="notif-actions">
-
-<button
-    class="small-btn"
-    onclick="event.stopPropagation(); deleteNotification(this)"
->
-    🗑️
-</button>
-
-</div>
-
-</div>
-
-
-
-<!-- NOTIFICATION 7 -->
-
-<div
-    class="notification-card"
-    data-category="Campus"
-    data-read="read"
-    data-search="college cultural fest event campus"
-    onclick="openNotification(6)"
->
-
-<div class="notif-icon">
-    🎭
-</div>
-
-
-<div class="notif-content">
-
-<div class="notif-title-row">
-
-<div class="notif-title">
-    Campus Cultural Fest
-</div>
-
-</div>
-
-<div class="notif-message">
-    The annual Campus Cultural Fest will be held
-    on 22 September at the Open Air Theatre.
-</div>
-
-<div class="notif-time">
-    10 Sep 2026 • 11:00 AM
-</div>
-
-</div>
-
-
-<div class="notif-actions">
-
-<button
-    class="small-btn"
-    onclick="event.stopPropagation(); deleteNotification(this)"
->
-    🗑️
-</button>
-
-</div>
-
-</div>
-
-
-
-<!-- NOTIFICATION 8 -->
-
-<div
-    class="notification-card"
-    data-category="Academic"
-    data-read="read"
-    data-search="faculty meeting academic department announcement"
-    onclick="openNotification(7)"
->
-
-<div class="notif-icon">
-    👨‍🏫
-</div>
-
-
-<div class="notif-content">
-
-<div class="notif-title-row">
-
-<div class="notif-title">
-    Faculty Announcement
-</div>
-
-</div>
-
-<div class="notif-message">
-    Students are requested to check the Faculty
-    section for updated office hours and announcements.
-</div>
-
-<div class="notif-time">
-    09 Sep 2026 • 2:30 PM
-</div>
-
-</div>
-
-
-<div class="notif-actions">
-
-<button
-    class="small-btn"
-    onclick="event.stopPropagation(); deleteNotification(this)"
->
-    🗑️
-</button>
-
-</div>
-
-</div>
-
-
-</div>
-
-
-
-<div
-    class="empty-state"
-    id="emptyState"
->
-    🔎 No notifications found matching your search.
-</div>
-
-
-</div>
+    </div>
 
 </main>
 
-
-
 <!-- ================= CHATBOT ================= -->
 
-<aside class="chatbot">
-
-
-<div class="chat-header">
-
-<div class="robot-icon">
+<button
+    class="chat-bubble"
+    id="chatBubble"
+    onclick="openChatPanel()"
+>
     🤖
-</div>
-
-
-<div class="chat-title">
-
-<strong>
-    CampusConnect AI
-</strong>
-
-<span>
-
-<span class="online-dot"></span>
-
-College Companion
-
-</span>
-
-</div>
-
-</div>
-
-
-
-<div
-    class="chat-body"
-    id="chatBody"
->
-
-<div class="bot-message">
-
-Hi Priya! 👋 I'm your CampusConnect AI
-College Companion.
-
-I can help you understand your notifications,
-academic updates, exam announcements,
-placements, and campus events.
-
-</div>
-
-
-<div class="bot-message">
-
-You currently have
-<b>4 unread notifications</b>.
-
-</div>
-
-</div>
-
-
-
-<div class="quick-buttons">
-
-<button
-    class="quick-btn"
-    onclick="quickChat('Unread')"
->
-    🔴 Unread
 </button>
 
+<div class="chatbot-panel" id="chatbotPanel">
 
-<button
-    class="quick-btn"
-    onclick="quickChat('Exam Updates')"
->
-    📋 Exams
-</button>
+    <div class="chat-header">
 
+        <div class="chat-header-left">
 
-<button
-    class="quick-btn"
-    onclick="quickChat('Assignment Updates')"
->
-    📝 Assignments
-</button>
+            <div class="robot-icon">🤖</div>
 
+            <div class="chat-title">
+                <strong>AI College Companion</strong>
+                <span>
+                    <i class="online-dot"></i>
+                    Online • Ready to help
+                </span>
+            </div>
 
-<button
-    class="quick-btn"
-    onclick="quickChat('Placement Updates')"
->
-    💼 Placement
-</button>
+        </div>
+
+        <button
+            class="close-chat"
+            onclick="closeChatPanel()"
+        >
+            ×
+        </button>
+
+    </div>
+
+    <div class="chat-body" id="chatBody">
+
+        <div class="bot-message">
+            👋 Hi! I'm your
+            <strong>AI College Companion.</strong>
+            Ask me about your latest notifications, academic announcements,
+            examination alerts or campus updates.
+        </div>
+
+    </div>
+
+    <div class="quick-buttons">
+
+        <button
+            class="quick-btn"
+            onclick="quickChat('Show my unread notifications')"
+        >
+            Unread
+        </button>
+
+        <button
+            class="quick-btn"
+            onclick="quickChat('Show academic notifications')"
+        >
+            Academic
+        </button>
+
+        <button
+            class="quick-btn"
+            onclick="quickChat('Show examination notifications')"
+        >
+            Exams
+        </button>
+
+        <button
+            class="quick-btn"
+            onclick="quickChat('How many notifications do I have?')"
+        >
+            Total
+        </button>
+
+    </div>
+
+    <div class="chat-footer">
+
+        <input
+            id="chatInput"
+            class="chat-input"
+            type="text"
+            placeholder="Ask your companion..."
+            onkeydown="handleChatKey(event)"
+        >
+
+        <button
+            class="send-btn"
+            onclick="sendChat()"
+        >
+            ➤
+        </button>
+
+    </div>
 
 </div>
-
-
-
-<div class="chat-footer">
-
-<input
-    class="chat-input"
-    id="chatInput"
-    placeholder="Ask CampusConnect AI..."
-    onkeydown="handleChatKey(event)"
->
-
-
-<button
-    class="send-btn"
-    onclick="sendChat()"
->
-    ➤
-</button>
-
-</div>
-
-</aside>
-
-
 
 <!-- ================= MODAL ================= -->
 
 <div
-    class="modal-overlay"
+    class="modal"
     id="notificationModal"
+    onclick="closeModalOutside(event)"
 >
 
-<div class="modal">
+    <div class="modal-box">
 
+        <div class="modal-top">
 
-<div class="modal-head">
+            <h3 id="modalTitle">
+                🔔 Notification
+            </h3>
 
-<h3>
-    Notification Details
-</h3>
+            <button
+                class="close-btn"
+                onclick="closeModal()"
+            >
+                ×
+            </button>
 
+        </div>
 
-<button
-    class="close-modal"
-    onclick="closeNotification()"
->
-    ×
-</button>
+        <div
+            class="modal-content"
+            id="modalContent"
+        ></div>
 
-</div>
+        <div class="modal-buttons">
 
+            <button
+                class="modal-btn modal-cancel"
+                onclick="closeModal()"
+            >
+                Close
+            </button>
 
+            <button
+                class="modal-btn modal-ok"
+                onclick="markSelectedRead()"
+            >
+                Mark as Read
+            </button>
 
-<div class="modal-body">
+        </div>
 
-
-<div
-    class="modal-icon"
-    id="modalIcon"
->
-    🔔
-</div>
-
-
-<div
-    class="modal-title"
-    id="modalTitle"
->
-    Notification
-</div>
-
-
-<div
-    class="modal-message"
-    id="modalMessage"
->
-    Notification details.
-</div>
-
-
-
-<div class="modal-meta">
-
-
-<div class="meta-box">
-
-<span>
-    Category
-</span>
-
-<strong id="modalCategory">
-    Academic
-</strong>
+    </div>
 
 </div>
-
-
-<div class="meta-box">
-
-<span>
-    Time
-</span>
-
-<strong id="modalTime">
-    Today
-</strong>
-
-</div>
-
-</div>
-
-
-
-<button
-    class="modal-action"
-    onclick="closeNotification()"
->
-    ✓ Got It
-</button>
-
-
-</div>
-
-</div>
-
-</div>
-
-
 
 <!-- ================= TOAST ================= -->
 
@@ -2841,83 +1673,143 @@ You currently have
     class="toast"
     id="toast"
 >
-    Action completed
+    Done
 </div>
-
-
 
 <script>
 
-/* ================= NOTIFICATION DATA ================= */
+/* ================= DATA ================= */
 
-const notifications = [
+const NOTIFICATIONS = [
 
-{
-    icon:"📝",
-    title:"Exam Timetable Released",
-    message:"Your Database Management System examination is scheduled for 18 September 2026 at 10:00 AM.",
-    category:"Exam",
-    time:"Today • 10:30 AM"
-},
+    {
+        id:"N1",
+        title:"Internal Assessment Schedule Released",
+        text:"The internal assessment schedule for the current semester has been published.",
+        category:"Academic",
+        icon:"🎓",
+        color:"blue",
+        time:"10 minutes ago",
+        unread:true,
+        date:"02 Oct 2026"
+    },
 
-{
-    icon:"💻",
-    title:"Assignment Deadline Reminder",
-    message:"Web Programming assignment is due on 20 September 2026. Make sure to submit it on time.",
-    category:"Assignment",
-    time:"Today • 9:15 AM"
-},
+    {
+        id:"N2",
+        title:"End Semester Examination Timetable",
+        text:"The end semester examination timetable is now available for students.",
+        category:"Examination",
+        icon:"📋",
+        color:"purple",
+        time:"35 minutes ago",
+        unread:true,
+        date:"02 Oct 2026"
+    },
 
-{
-    icon:"💼",
-    title:"New Placement Drive",
-    message:"A new Software Developer recruitment drive has been added. Check eligibility and application details.",
-    category:"Placement",
-    time:"Yesterday • 4:40 PM"
-},
+    {
+        id:"N3",
+        title:"Placement Drive Registration Open",
+        text:"Registration has opened for the upcoming campus placement drive.",
+        category:"Placement",
+        icon:"💼",
+        color:"green",
+        time:"1 hour ago",
+        unread:true,
+        date:"02 Oct 2026"
+    },
 
-{
-    icon:"🎉",
-    title:"TechNova 2026 Registration Open",
-    message:"Registration is now open for TechNova 2026. Join workshops, competitions, and technical events.",
-    category:"Campus",
-    time:"Yesterday • 1:20 PM"
-},
+    {
+        id:"N4",
+        title:"Campus Cultural Fest",
+        text:"Students can register for the upcoming annual cultural festival.",
+        category:"Events",
+        icon:"🎉",
+        color:"orange",
+        time:"2 hours ago",
+        unread:false,
+        date:"02 Oct 2026"
+    },
 
-{
-    icon:"🎓",
-    title:"Internal Assessment Updated",
-    message:"Your latest internal assessment marks have been updated in the Academics section.",
-    category:"Academic",
-    time:"12 Sep 2026 • 5:10 PM"
-},
+    {
+        id:"N5",
+        title:"Library Timing Updated",
+        text:"The library will remain open until 8:00 PM on working days.",
+        category:"Campus",
+        icon:"📚",
+        color:"blue",
+        time:"3 hours ago",
+        unread:true,
+        date:"02 Oct 2026"
+    },
 
-{
-    icon:"🎫",
-    title:"Hall Ticket Available",
-    message:"Your semester examination hall ticket is now available from the Exams section.",
-    category:"Exam",
-    time:"11 Sep 2026 • 3:45 PM"
-},
+    {
+        id:"N6",
+        title:"Attendance Reminder",
+        text:"Students are advised to maintain the required attendance percentage.",
+        category:"Academic",
+        icon:"📊",
+        color:"green",
+        time:"4 hours ago",
+        unread:false,
+        date:"02 Oct 2026"
+    },
 
-{
-    icon:"🎭",
-    title:"Campus Cultural Fest",
-    message:"The annual Campus Cultural Fest will be held on 22 September at the Open Air Theatre.",
-    category:"Campus",
-    time:"10 Sep 2026 • 11:00 AM"
-},
+    {
+        id:"N7",
+        title:"Student ID Card Update",
+        text:"Students can collect updated ID cards from the administration office.",
+        category:"General",
+        icon:"🪪",
+        color:"purple",
+        time:"Yesterday",
+        unread:false,
+        date:"01 Oct 2026"
+    },
 
-{
-    icon:"👨‍🏫",
-    title:"Faculty Announcement",
-    message:"Students are requested to check the Faculty section for updated office hours and announcements.",
-    category:"Academic",
-    time:"09 Sep 2026 • 2:30 PM"
-}
+    {
+        id:"N8",
+        title:"Exam Hall Allocation Published",
+        text:"Check the examination portal for your room and seating allocation.",
+        category:"Examination",
+        icon:"🏫",
+        color:"red",
+        time:"Yesterday",
+        unread:true,
+        date:"01 Oct 2026"
+    }
 
 ];
 
+/* ================= HELPERS ================= */
+
+function notificationStats(){
+
+    const total = NOTIFICATIONS.length;
+
+    const unread = NOTIFICATIONS.filter(
+        n => n.unread
+    ).length;
+
+    const academic = NOTIFICATIONS.filter(
+        n => n.category === "Academic"
+    ).length;
+
+    const exams = NOTIFICATIONS.filter(
+        n => n.category === "Examination"
+    ).length;
+
+    const campus = NOTIFICATIONS.filter(
+        n => n.category === "Campus"
+    ).length;
+
+    return {
+        total,
+        unread,
+        academic,
+        exams,
+        campus
+    };
+}
 
 /* ================= CLOCK ================= */
 
@@ -2940,66 +1832,80 @@ function updateClock(){
         hours % 12 || 12;
 
     document.getElementById("clock").textContent =
-        `${String(hours).padStart(2,"0")}:${minutes}:${seconds} ${ampm}`;
+        hours + ":" +
+        minutes + ":" +
+        seconds + " " +
+        ampm;
 }
 
 updateClock();
 
 setInterval(updateClock,1000);
 
+/* ================= OVERVIEW ================= */
 
-/* ================= UPDATE COUNTS ================= */
+function renderOverview(){
 
-function updateCounts(){
+    const stats = notificationStats();
 
-    const cards =
-        document.querySelectorAll(".notification-card");
+    document.getElementById(
+        "totalNotifications"
+    ).textContent = stats.total;
 
-    let total = 0;
-    let unread = 0;
+    document.getElementById(
+        "unreadNotifications"
+    ).textContent = stats.unread;
 
-    cards.forEach(card => {
+    document.getElementById(
+        "academicCount"
+    ).textContent = stats.academic;
 
-        if(card.style.display !== "none"){
+    document.getElementById(
+        "examCount"
+    ).textContent = stats.exams;
 
-            total++;
+    document.getElementById(
+        "campusCount"
+    ).textContent = stats.campus;
 
-        }
+    document.getElementById(
+        "unreadCardCount"
+    ).textContent = stats.unread;
 
-        if(
-            card.dataset.read === "unread"
-        ){
+    const heroTitle =
+        document.getElementById("heroTitle");
 
-            unread++;
+    const heroText =
+        document.getElementById("heroText");
 
-        }
+    if(stats.unread === 0){
 
-    });
+        heroTitle.textContent =
+            "You're all caught up 🎉";
 
+        heroText.textContent =
+            "You have no unread notifications right now. Check back later for new college updates and announcements.";
 
-    document.getElementById("totalCount")
-        .textContent =
-        document.querySelectorAll(".notification-card").length;
+    }else{
 
+        heroTitle.textContent =
+            stats.unread +
+            " new notifications need your attention 🔔";
 
-    document.getElementById("unreadCount")
-        .textContent = unread;
-
-
-    document.getElementById("heroUnread")
-        .textContent = unread;
-
+        heroText.textContent =
+            "Stay informed about academic schedules, examinations, placements, campus events and important college announcements.";
+    }
 }
 
+/* ================= RENDER NOTIFICATIONS ================= */
 
-/* ================= FILTER ================= */
-
-function filterNotifications(){
+function renderNotifications(){
 
     const search =
         document
-        .getElementById("searchInput")
+        .getElementById("notificationSearch")
         .value
+        .trim()
         .toLowerCase();
 
     const category =
@@ -3007,557 +1913,727 @@ function filterNotifications(){
         .getElementById("categoryFilter")
         .value;
 
-    const readStatus =
+    const status =
         document
-        .getElementById("readFilter")
+        .getElementById("statusFilter")
         .value;
 
+    const list =
+        document.getElementById("notificationList");
 
-    const cards =
-        document.querySelectorAll(".notification-card");
+    let rows =
+        NOTIFICATIONS.slice();
 
-    let visible = 0;
+    if(category !== "all"){
 
+        rows =
+            rows.filter(
+                n => n.category === category
+            );
+    }
 
-    cards.forEach(card => {
+    if(status === "unread"){
 
-        const searchText =
-            card.dataset.search.toLowerCase();
+        rows =
+            rows.filter(
+                n => n.unread
+            );
+    }
 
-        const cardCategory =
-            card.dataset.category;
+    if(status === "read"){
 
-        const cardRead =
-            card.dataset.read;
+        rows =
+            rows.filter(
+                n => !n.unread
+            );
+    }
 
+    if(search){
 
-        const matchesSearch =
-            searchText.includes(search);
+        rows =
+            rows.filter(n =>
+                n.title.toLowerCase().includes(search) ||
+                n.text.toLowerCase().includes(search) ||
+                n.category.toLowerCase().includes(search)
+            );
+    }
 
-        const matchesCategory =
-            category === "all" ||
-            cardCategory === category;
+    list.innerHTML = "";
 
-        const matchesRead =
-            readStatus === "all" ||
-            cardRead === readStatus;
+    if(rows.length === 0){
 
+        list.innerHTML =
+            '<div class="empty-note">No notifications match your search 🔍</div>';
 
-        if(
-            matchesSearch &&
-            matchesCategory &&
-            matchesRead
-        ){
+        return;
+    }
 
-            card.style.display = "flex";
+    rows.forEach(function(n){
 
-            visible++;
+        const card =
+            document.createElement("div");
 
-        }
+        card.className =
+            "notification-card" +
+            (n.unread ? " unread" : "");
 
-        else{
+        card.onclick =
+            function(){
+                showNotification(n.id);
+            };
 
-            card.style.display = "none";
+        card.innerHTML =
 
-        }
+            '<div class="notification-icon ' +
+            n.color +
+            '">' +
+            n.icon +
+            '</div>' +
 
+            '<div class="notification-info">' +
+
+                '<strong class="notification-title">' +
+                n.title +
+                '</strong>' +
+
+                '<span class="notification-text">' +
+                n.text +
+                '</span>' +
+
+                '<div class="notification-meta">' +
+
+                    '<span class="notification-tag">' +
+                    n.category +
+                    '</span>' +
+
+                    '<span class="notification-time">' +
+                    n.time +
+                    '</span>' +
+
+                '</div>' +
+
+            '</div>' +
+
+            (
+                n.unread
+                ? '<div class="unread-dot"></div>'
+                : ''
+            );
+
+        list.appendChild(card);
     });
-
-
-    document.getElementById("emptyState")
-        .style.display =
-        visible === 0
-        ? "block"
-        : "none";
-
 }
 
+/* ================= CATEGORY GRID ================= */
 
-/* ================= OPEN NOTIFICATION ================= */
+function renderCategories(){
 
-function openNotification(index){
+    const grid =
+        document.getElementById("categoryGrid");
 
-    const item =
-        notifications[index];
+    grid.innerHTML = "";
 
+    const categories = [
+        "Academic",
+        "Examination",
+        "Campus",
+        "Placement",
+        "Events",
+        "General"
+    ];
 
-    document.getElementById("modalIcon")
-        .textContent =
-        item.icon;
+    categories.forEach(function(category){
 
+        const count =
+            NOTIFICATIONS.filter(
+                n => n.category === category
+            ).length;
 
-    document.getElementById("modalTitle")
-        .textContent =
-        item.title;
+        const card =
+            document.createElement("div");
 
+        card.className =
+            "category-card";
 
-    document.getElementById("modalMessage")
-        .textContent =
-        item.message;
+        card.onclick =
+            function(){
+                filterCategory(category);
+            };
 
+        card.innerHTML =
 
-    document.getElementById("modalCategory")
-        .textContent =
-        item.category;
+            '<span>' +
+            category.toUpperCase() +
+            '</span>' +
 
+            '<strong>' +
+            count +
+            '</strong>' +
 
-    document.getElementById("modalTime")
-        .textContent =
-        item.time;
+            '<small>Notifications</small>';
 
+        grid.appendChild(card);
+    });
+}
+
+/* ================= SHOW NOTIFICATION ================= */
+
+let selectedNotificationId = null;
+
+function showNotification(id){
+
+    const notification =
+        NOTIFICATIONS.find(
+            n => n.id === id
+        );
+
+    if(!notification) return;
+
+    selectedNotificationId = id;
+
+    document.getElementById(
+        "modalTitle"
+    ).textContent =
+        notification.icon +
+        " " +
+        notification.title;
+
+    document.getElementById(
+        "modalContent"
+    ).innerHTML =
+
+        "<p><strong>Category:</strong> " +
+        notification.category +
+        "</p>" +
+
+        "<p><strong>Date:</strong> " +
+        notification.date +
+        "</p>" +
+
+        "<p><strong>Received:</strong> " +
+        notification.time +
+        "</p>" +
+
+        "<p><strong>Message:</strong> " +
+        notification.text +
+        "</p>" +
+
+        "<div class='tip-box'>" +
+
+        (
+            notification.unread
+            ? "🔔 This notification is currently unread."
+            : "✅ You have already viewed this notification."
+        ) +
+
+        "</div>";
 
     document
         .getElementById("notificationModal")
         .classList.add("show");
-
 }
 
+/* ================= MARK SELECTED READ ================= */
 
-/* ================= CLOSE ================= */
+function markSelectedRead(){
 
-function closeNotification(){
+    if(!selectedNotificationId){
+
+        closeModal();
+
+        return;
+    }
+
+    const notification =
+        NOTIFICATIONS.find(
+            n => n.id === selectedNotificationId
+        );
+
+    if(notification){
+
+        notification.unread = false;
+
+        showToast(
+            "Notification marked as read ✓"
+        );
+    }
+
+    closeModal();
+
+    renderOverview();
+    renderNotifications();
+}
+
+/* ================= MARK ALL READ ================= */
+
+function markAllRead(){
+
+    NOTIFICATIONS.forEach(function(n){
+        n.unread = false;
+    });
+
+    renderOverview();
+    renderNotifications();
+
+    showToast(
+        "All notifications marked as read ✓"
+    );
+}
+
+/* ================= FILTER CATEGORY ================= */
+
+function filterCategory(category){
+
+    document.getElementById(
+        "categoryFilter"
+    ).value = category;
+
+    document.getElementById(
+        "statusFilter"
+    ).value = "all";
+
+    renderNotifications();
+
+    showToast(
+        "Showing " +
+        category +
+        " notifications"
+    );
+}
+
+/* ================= FILTER UNREAD ================= */
+
+function filterUnread(){
+
+    document.getElementById(
+        "categoryFilter"
+    ).value = "all";
+
+    document.getElementById(
+        "statusFilter"
+    ).value = "unread";
+
+    renderNotifications();
+
+    showToast(
+        "Showing unread notifications"
+    );
+}
+
+/* ================= CATEGORY DETAILS ================= */
+
+function showCategoryDetails(){
+
+    const categories = [
+        "Academic",
+        "Examination",
+        "Campus",
+        "Placement",
+        "Events",
+        "General"
+    ];
+
+    let html =
+        "<p><strong>Notification Categories</strong></p>";
+
+    categories.forEach(function(category){
+
+        const total =
+            NOTIFICATIONS.filter(
+                n => n.category === category
+            ).length;
+
+        const unread =
+            NOTIFICATIONS.filter(
+                n =>
+                    n.category === category &&
+                    n.unread
+            ).length;
+
+        html +=
+            "<p>" +
+            category +
+            ": " +
+            total +
+            " notifications, " +
+            unread +
+            " unread.</p>";
+    });
+
+    document.getElementById(
+        "modalTitle"
+    ).textContent =
+        "🔔 Notification Categories";
+
+    document.getElementById(
+        "modalContent"
+    ).innerHTML = html;
+
+    document
+        .getElementById("notificationModal")
+        .classList.add("show");
+}
+
+/* ================= HEADER NOTIFICATION ================= */
+
+function showNotificationSummary(){
+
+    const stats =
+        notificationStats();
+
+    document.getElementById(
+        "modalTitle"
+    ).textContent =
+        "🔔 Notification Summary";
+
+    document.getElementById(
+        "modalContent"
+    ).innerHTML =
+
+        "<p><strong>Total Notifications:</strong> " +
+        stats.total +
+        "</p>" +
+
+        "<p><strong>Unread:</strong> " +
+        stats.unread +
+        "</p>" +
+
+        "<p><strong>Academic:</strong> " +
+        stats.academic +
+        "</p>" +
+
+        "<p><strong>Examination:</strong> " +
+        stats.exams +
+        "</p>" +
+
+        "<p><strong>Campus:</strong> " +
+        stats.campus +
+        "</p>" +
+
+        "<div class='tip-box'>" +
+        "💡 Click any notification card to read its complete details."
+        + "</div>";
+
+    document
+        .getElementById("notificationModal")
+        .classList.add("show");
+}
+
+/* ================= MODAL ================= */
+
+function closeModal(){
 
     document
         .getElementById("notificationModal")
         .classList.remove("show");
 
+    selectedNotificationId = null;
 }
 
+function closeModalOutside(event){
 
-document
-    .getElementById("notificationModal")
-    .addEventListener(
-        "click",
-        function(event){
+    if(
+        event.target ===
+        document.getElementById("notificationModal")
+    ){
 
-            if(event.target === this){
-
-                closeNotification();
-
-            }
-
-        }
-    );
-
-
-/* ================= MARK READ ================= */
-
-function markRead(button){
-
-    const card =
-        button.closest(".notification-card");
-
-
-    card.dataset.read = "read";
-
-    card.classList.remove("unread");
-
-
-    const dot =
-        card.querySelector(".unread-dot");
-
-
-    if(dot){
-
-        dot.remove();
-
+        closeModal();
     }
-
-
-    button.remove();
-
-
-    updateCounts();
-
-    showToast(
-        "✓ Notification marked as read"
-    );
-
 }
-
-
-/* ================= MARK ALL ================= */
-
-function markAllRead(){
-
-    const cards =
-        document.querySelectorAll(".notification-card");
-
-
-    let changed = 0;
-
-
-    cards.forEach(card => {
-
-        if(card.dataset.read === "unread"){
-
-            card.dataset.read = "read";
-
-            card.classList.remove("unread");
-
-
-            const dot =
-                card.querySelector(".unread-dot");
-
-            if(dot){
-
-                dot.remove();
-
-            }
-
-
-            const actionArea =
-                card.querySelector(".notif-actions");
-
-
-            const readButton =
-                actionArea.querySelector(".small-btn");
-
-
-            if(readButton){
-
-                const buttons =
-                    actionArea.querySelectorAll(".small-btn");
-
-                if(buttons.length === 2){
-
-                    buttons[0].remove();
-
-                }
-
-            }
-
-
-            changed++;
-
-        }
-
-    });
-
-
-    updateCounts();
-
-
-    showToast(
-        changed > 0
-        ? "✓ All notifications marked as read"
-        : "✓ All notifications are already read"
-    );
-
-}
-
-
-/* ================= DELETE ================= */
-
-function deleteNotification(button){
-
-    const card =
-        button.closest(".notification-card");
-
-
-    card.style.opacity = "0";
-
-    card.style.transform =
-        "translateX(30px)";
-
-
-    setTimeout(() => {
-
-        card.remove();
-
-        updateCounts();
-
-        filterNotifications();
-
-    },250);
-
-
-    showToast(
-        "🗑️ Notification removed"
-    );
-
-}
-
 
 /* ================= TOAST ================= */
-
-let toastTimer;
 
 function showToast(message){
 
     const toast =
         document.getElementById("toast");
 
-
     toast.textContent =
         message;
 
-
     toast.classList.add("show");
 
+    clearTimeout(toast._timer);
 
-    clearTimeout(toastTimer);
-
-
-    toastTimer =
-        setTimeout(() => {
-
-            toast.classList.remove("show");
-
-        },3000);
-
+    toast._timer =
+        setTimeout(
+            function(){
+                toast.classList.remove("show");
+            },
+            2500
+        );
 }
-
 
 /* ================= CHATBOT ================= */
 
-function addBotMessage(message){
+function openChatPanel(){
+
+    document
+        .getElementById("chatbotPanel")
+        .classList.add("open");
+
+    document
+        .getElementById("chatBubble")
+        .classList.add("hide");
+}
+
+function closeChatPanel(){
+
+    document
+        .getElementById("chatbotPanel")
+        .classList.remove("open");
+
+    document
+        .getElementById("chatBubble")
+        .classList.remove("hide");
+}
+
+function quickChat(text){
+
+    document.getElementById(
+        "chatInput"
+    ).value = text;
+
+    sendChat();
+}
+
+function addMessage(cls,html){
 
     const body =
         document.getElementById("chatBody");
 
-
-    const div =
+    const msg =
         document.createElement("div");
 
+    msg.className = cls;
 
-    div.className =
-        "bot-message";
+    msg.innerHTML = html;
 
-
-    div.innerHTML =
-        message;
-
-
-    body.appendChild(div);
-
+    body.appendChild(msg);
 
     body.scrollTop =
         body.scrollHeight;
 
+    return msg;
 }
 
+function botReply(text){
 
-function addUserMessage(message){
+    const lower =
+        text.toLowerCase();
 
-    const body =
-        document.getElementById("chatBody");
+    const stats =
+        notificationStats();
 
+    if(
+        /^(hi|hello|hey|hii)\b/.test(lower)
+    ){
 
-    const div =
-        document.createElement("div");
+        return "👋 Hi! I can help you check unread notifications, academic updates, examination alerts and campus announcements.";
+    }
 
+    if(
+        lower.includes("unread") ||
+        lower.includes("new")
+    ){
 
-    div.className =
-        "user-message";
+        const unread =
+            NOTIFICATIONS.filter(
+                n => n.unread
+            );
 
+        if(unread.length === 0){
 
-    div.textContent =
-        message;
+            return "✅ You have no unread notifications right now.";
+        }
 
+        return "🔔 You have " +
+            unread.length +
+            " unread notifications: " +
+            unread.map(
+                n => n.title
+            ).join(", ") +
+            ".";
+    }
 
-    body.appendChild(div);
+    if(
+        lower.includes("academic")
+    ){
 
+        const rows =
+            NOTIFICATIONS.filter(
+                n => n.category === "Academic"
+            );
 
-    body.scrollTop =
-        body.scrollHeight;
+        return "🎓 Academic notifications: " +
+            rows.map(
+                n => n.title
+            ).join(", ") +
+            ".";
+    }
 
+    if(
+        lower.includes("exam") ||
+        lower.includes("examination")
+    ){
+
+        const rows =
+            NOTIFICATIONS.filter(
+                n => n.category === "Examination"
+            );
+
+        return "📋 Examination notifications: " +
+            rows.map(
+                n => n.title
+            ).join(", ") +
+            ".";
+    }
+
+    if(
+        lower.includes("campus")
+    ){
+
+        const rows =
+            NOTIFICATIONS.filter(
+                n => n.category === "Campus"
+            );
+
+        return "🏫 Campus notifications: " +
+            rows.map(
+                n => n.title
+            ).join(", ") +
+            ".";
+    }
+
+    if(
+        lower.includes("placement")
+    ){
+
+        const rows =
+            NOTIFICATIONS.filter(
+                n => n.category === "Placement"
+            );
+
+        return "💼 Placement notifications: " +
+            rows.map(
+                n => n.title
+            ).join(", ") +
+            ".";
+    }
+
+    if(
+        lower.includes("event")
+    ){
+
+        const rows =
+            NOTIFICATIONS.filter(
+                n => n.category === "Events"
+            );
+
+        return "🎉 Event notifications: " +
+            rows.map(
+                n => n.title
+            ).join(", ") +
+            ".";
+    }
+
+    if(
+        lower.includes("how many") ||
+        lower.includes("total")
+    ){
+
+        return "🔔 You currently have " +
+            stats.total +
+            " notifications, including " +
+            stats.unread +
+            " unread notifications.";
+    }
+
+    if(
+        lower.includes("read")
+    ){
+
+        const read =
+            NOTIFICATIONS.filter(
+                n => !n.unread
+            ).length;
+
+        return "✅ You have already viewed " +
+            read +
+            " notifications.";
+    }
+
+    if(
+        lower.includes("thank")
+    ){
+
+        return "😊 You're welcome! I'm here whenever you need help with your college updates.";
+    }
+
+    return "😊 I can show unread notifications, academic updates, examination alerts, campus notifications, placement updates or your total notification count.";
 }
-
-
-/* ================= QUICK CHAT ================= */
-
-function quickChat(type){
-
-    addUserMessage(type);
-
-
-    setTimeout(() => {
-
-
-        if(type === "Unread"){
-
-            addBotMessage(
-                "🔴 You currently have <b>" +
-                document.getElementById("unreadCount").textContent +
-                " unread notifications</b>."
-            );
-
-        }
-
-
-        else if(type === "Exam Updates"){
-
-            addBotMessage(
-                "📋 Your latest exam update is the <b>Database Management System</b> examination on <b>18 September 2026 at 10:00 AM</b>."
-            );
-
-        }
-
-
-        else if(type === "Assignment Updates"){
-
-            addBotMessage(
-                "📝 Your Web Programming assignment is due on <b>20 September 2026</b>. Don't forget to submit it before the deadline."
-            );
-
-        }
-
-
-        else if(type === "Placement Updates"){
-
-            addBotMessage(
-                "💼 A new Software Developer placement drive has been added. Check the Placement section for eligibility and application details."
-            );
-
-        }
-
-    },500);
-
-}
-
-
-/* ================= SEND CHAT ================= */
 
 function sendChat(){
 
     const input =
         document.getElementById("chatInput");
 
-
-    const message =
+    const text =
         input.value.trim();
 
+    if(!text) return;
 
-    if(!message){
-
-        return;
-
-    }
-
-
-    addUserMessage(message);
-
+    addMessage(
+        "user-message",
+        escapeHtml(text)
+    );
 
     input.value = "";
 
+    const typing =
+        addMessage(
+            "typing",
+            "<i></i><i></i><i></i>"
+        );
 
-    setTimeout(() => {
+    setTimeout(
+        function(){
 
+            typing.remove();
 
-        const text =
-            message.toLowerCase();
-
-
-        if(
-            text.includes("unread") ||
-            text.includes("notification")
-        ){
-
-            addBotMessage(
-                "🔔 You currently have <b>" +
-                document.getElementById("unreadCount").textContent +
-                " unread notifications</b>."
+            addMessage(
+                "bot-message",
+                botReply(text)
             );
 
-        }
-
-
-        else if(
-            text.includes("exam")
-        ){
-
-            addBotMessage(
-                "📋 Your next exam is <b>Database Management System</b> on <b>18 September 2026</b> at <b>10:00 AM</b>."
-            );
-
-        }
-
-
-        else if(
-            text.includes("assignment")
-        ){
-
-            addBotMessage(
-                "📝 Your Web Programming assignment is due on <b>20 September 2026</b>."
-            );
-
-        }
-
-
-        else if(
-            text.includes("placement") ||
-            text.includes("job")
-        ){
-
-            addBotMessage(
-                "💼 There is a new Software Developer placement drive available. Visit Placement for more details."
-            );
-
-        }
-
-
-        else if(
-            text.includes("event") ||
-            text.includes("campus")
-        ){
-
-            addBotMessage(
-                "🎉 TechNova 2026 registration is currently open, and the Campus Cultural Fest is scheduled for 22 September."
-            );
-
-        }
-
-
-        else{
-
-            addBotMessage(
-                "🤖 I can help with <b>notifications, exams, assignments, placements, and campus updates</b>. What would you like to know?"
-            );
-
-        }
-
-
-    },500);
-
+        },
+        600
+    );
 }
-
-
-/* ================= ENTER KEY ================= */
 
 function handleChatKey(event){
 
     if(event.key === "Enter"){
-
         sendChat();
-
     }
-
 }
 
+function escapeHtml(str){
+
+    return str
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;");
+}
 
 /* ================= LOGOUT ================= */
 
-function logoutUser(event){
+function confirmLogout(){
 
-    event.preventDefault();
-
-
-    const confirmed =
-        confirm(
-            "Are you sure you want to logout?"
-        );
-
-
-    if(confirmed){
-
-        window.location.href =
-            "../index.html";
-
-    }
-
+    return confirm(
+        "Are you sure you want to logout?"
+    );
 }
-
 
 /* ================= ESCAPE ================= */
 
@@ -3567,20 +2643,40 @@ document.addEventListener(
 
         if(event.key === "Escape"){
 
-            closeNotification();
-
+            closeModal();
+            closeChatPanel();
         }
 
     }
 );
 
-
 /* ================= INITIALIZE ================= */
 
-updateCounts();
+renderOverview();
+
+renderNotifications();
+
+renderCategories();
+
+setTimeout(
+    function(){
+
+        const stats =
+            notificationStats();
+
+        addMessage(
+            "bot-message",
+            "There are <strong>" +
+            stats.unread +
+            "</strong> unread notifications. Tap the chatbot anytime to ask me about them. 🔔"
+        );
+
+    },
+    1200
+);
 
 </script>
 
+<script src="../js/chatbot.js"></script>
 </body>
-
 </html>

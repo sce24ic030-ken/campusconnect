@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>CampusConnect | Settings</title>
 
 <style>
@@ -140,19 +139,16 @@ button,input,select{
     border-top:1px solid rgba(255,255,255,.13);
 }
 
-/* ================= MAIN ================= */
+/* ================= MAIN AREA ================= */
 
 .main-area{
     margin-left:268px;
-    margin-right:286px;
     width:auto;
     height:100vh;
     overflow-y:auto;
     overflow-x:hidden;
     background:linear-gradient(180deg,#f8f9ff,#eef1fb);
 }
-
-/* ================= HEADER ================= */
 
 .top-header{
     height:120px;
@@ -203,6 +199,11 @@ button,input,select{
     box-shadow:0 5px 18px rgba(40,35,100,.10);
     position:relative;
     cursor:pointer;
+    transition:.2s;
+}
+
+.notification:hover{
+    transform:scale(1.06);
 }
 
 .notification::after{
@@ -246,132 +247,293 @@ button,input,select{
     font-size:12px;
 }
 
-/* ================= CONTENT ================= */
+/* ================= PAGE ================= */
 
-.content{
-    padding:25px 28px 45px;
+.page-content{
+    padding:20px 24px 35px;
+    width:100%;
 }
 
-.hero{
-    background:linear-gradient(135deg,#29277d,#7137d8);
-    border-radius:24px;
-    padding:27px 30px;
-    color:white;
+.page-heading{
     display:flex;
-    justify-content:space-between;
     align-items:center;
-    box-shadow:0 14px 35px rgba(53,43,150,.18);
-    margin-bottom:22px;
+    justify-content:space-between;
+    margin-bottom:20px;
 }
 
-.hero h2{
-    font-size:25px;
-    margin-bottom:7px;
+.page-heading h2{
+    font-size:24px;
+    font-weight:800;
 }
 
-.hero p{
-    color:rgba(255,255,255,.75);
+.page-heading p{
+    margin-top:6px;
+    color:#8990a7;
     font-size:13px;
 }
 
-.hero-icon{
-    width:68px;
-    height:68px;
+.heading-btn{
+    border:none;
+    border-radius:11px;
+    padding:11px 16px;
+    color:white;
+    font-size:12px;
+    font-weight:700;
+    cursor:pointer;
+    background:linear-gradient(135deg,#6543e8,#843de0);
+    box-shadow:0 8px 20px rgba(85,50,190,.25);
+    transition:.2s;
+}
+
+.heading-btn:hover{
+    transform:translateY(-2px);
+}
+
+/* ================= HERO ================= */
+
+.settings-hero{
+    width:100%;
+    min-height:190px;
     border-radius:20px;
-    background:rgba(255,255,255,.14);
+    padding:28px 32px;
+    color:white;
+    background:linear-gradient(120deg,#19398d,#4828c8 55%,#7738dd);
+    box-shadow:0 14px 35px rgba(55,44,150,.20);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:20px;
+    position:relative;
+    overflow:hidden;
+}
+
+.settings-hero::before{
+    content:"";
+    position:absolute;
+    width:260px;
+    height:260px;
+    border-radius:50%;
+    right:-80px;
+    top:-110px;
+    background:rgba(255,255,255,.08);
+}
+
+.settings-hero::after{
+    content:"";
+    position:absolute;
+    width:150px;
+    height:150px;
+    border-radius:50%;
+    right:150px;
+    bottom:-100px;
+    background:rgba(255,255,255,.05);
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+}
+
+.hero-content h3{
+    font-size:23px;
+    font-weight:800;
+    margin-bottom:8px;
+}
+
+.hero-content p{
+    font-size:12px;
+    color:rgba(255,255,255,.76);
+    max-width:560px;
+    line-height:1.7;
+}
+
+.hero-action{
+    position:relative;
+    z-index:2;
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.stat-box{
+    min-width:115px;
+    padding:17px 20px;
+    border-radius:15px;
+    background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.15);
+    text-align:center;
+    backdrop-filter:blur(5px);
+}
+
+.stat-box strong{
+    display:block;
+    font-size:27px;
+    font-weight:800;
+}
+
+.stat-box span{
+    display:block;
+    font-size:10px;
+    margin-top:4px;
+    color:rgba(255,255,255,.72);
+}
+
+/* ================= SUMMARY ================= */
+
+.summary-grid{
+    width:100%;
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:18px;
+    margin-bottom:20px;
+}
+
+.summary-card{
+    background:white;
+    border:1px solid #e9ebf5;
+    border-radius:17px;
+    padding:18px;
+    min-height:120px;
+    box-shadow:0 8px 25px rgba(40,35,100,.06);
+    transition:.2s;
+    cursor:pointer;
+}
+
+.summary-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 15px 35px rgba(40,35,100,.12);
+}
+
+.summary-top{
+    display:flex;
+    justify-content:space-between;
+}
+
+.summary-title{
+    color:#7f88a5;
+    font-size:12px;
+    font-weight:700;
+}
+
+.summary-icon{
+    width:43px;
+    height:43px;
+    border-radius:13px;
+    background:#f0f3ff;
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:35px;
+    font-size:21px;
 }
 
-/* ================= SETTINGS ================= */
+.summary-number{
+    font-size:27px;
+    font-weight:800;
+    margin-top:9px;
+    color:#3063df;
+}
 
-.settings-grid{
+.summary-small{
+    color:#9aa2b9;
+    font-size:10px;
+    margin-top:2px;
+}
+
+/* ================= SETTINGS GRID ================= */
+
+.settings-layout{
     display:grid;
-    grid-template-columns:1fr 1fr;
+    grid-template-columns:1.35fr .9fr;
     gap:20px;
+    align-items:start;
 }
 
-.settings-card{
+.content-card{
     background:white;
-    border:1px solid #e6e8f2;
-    border-radius:20px;
-    padding:21px;
+    border:1px solid #e9ebf5;
+    border-radius:17px;
+    padding:20px;
     box-shadow:0 8px 25px rgba(40,35,100,.06);
-}
-
-.settings-card.full{
-    grid-column:1 / -1;
+    margin-bottom:20px;
 }
 
 .card-heading{
     display:flex;
+    justify-content:space-between;
     align-items:center;
-    gap:12px;
-    margin-bottom:18px;
-}
-
-.card-heading-icon{
-    width:44px;
-    height:44px;
-    border-radius:13px;
-    background:#f0edff;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:22px;
+    margin-bottom:17px;
+    gap:10px;
 }
 
 .card-heading h3{
     font-size:17px;
-    color:#222b49;
 }
 
 .card-heading p{
-    font-size:11px;
-    color:#9298ad;
-    margin-top:3px;
+    color:#9aa2b9;
+    font-size:10px;
+    margin-top:4px;
 }
 
+/* SETTINGS ROW */
+
 .setting-row{
-    min-height:65px;
-    padding:13px 0;
-    border-bottom:1px solid #eef0f6;
     display:flex;
     align-items:center;
     justify-content:space-between;
     gap:15px;
+    padding:16px 0;
+    border-bottom:1px solid #eef0f6;
 }
 
 .setting-row:last-child{
     border-bottom:none;
 }
 
+.setting-left{
+    display:flex;
+    align-items:center;
+    gap:13px;
+    min-width:0;
+}
+
+.setting-icon{
+    width:45px;
+    height:45px;
+    border-radius:13px;
+    background:#f0f3ff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:21px;
+    flex-shrink:0;
+}
+
+.setting-info{
+    min-width:0;
+}
+
 .setting-info strong{
     display:block;
+    color:#2d3550;
     font-size:13px;
-    color:#323b58;
 }
 
 .setting-info span{
     display:block;
-    font-size:11px;
-    color:#969caf;
     margin-top:4px;
+    color:#9aa2b9;
+    font-size:10px;
+    line-height:1.5;
 }
 
-.setting-control{
-    flex-shrink:0;
-}
-
-/* Toggle */
+/* TOGGLE */
 
 .switch{
     position:relative;
     width:48px;
     height:26px;
-    display:inline-block;
+    flex-shrink:0;
 }
 
 .switch input{
@@ -383,13 +545,13 @@ button,input,select{
 .slider{
     position:absolute;
     inset:0;
-    cursor:pointer;
+    background:#d9ddea;
     border-radius:30px;
-    background:#d8dbe8;
+    cursor:pointer;
     transition:.25s;
 }
 
-.slider:before{
+.slider::before{
     content:"";
     position:absolute;
     width:20px;
@@ -403,137 +565,269 @@ button,input,select{
 }
 
 .switch input:checked + .slider{
-    background:linear-gradient(90deg,#22b9f5,#6942f4);
+    background:linear-gradient(135deg,#6543e8,#843de0);
 }
 
-.switch input:checked + .slider:before{
+.switch input:checked + .slider::before{
     transform:translateX(22px);
 }
 
-/* Select */
+/* SELECT */
 
 .setting-select{
-    min-width:130px;
     height:38px;
-    border:1px solid #e0e3ee;
+    min-width:135px;
+    border:1px solid #e1e4ef;
     border-radius:10px;
     padding:0 10px;
-    color:#59617d;
+    color:#68728d;
     background:white;
     outline:none;
-    font-size:12px;
+    font-size:11px;
+    cursor:pointer;
 }
 
 .setting-select:focus{
-    border-color:#6942f4;
+    border-color:#a99bf0;
 }
 
-/* Buttons */
+/* PROFILE SETTINGS */
+
+.profile-box{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding:16px;
+    background:#fafbff;
+    border:1px solid #eceef5;
+    border-radius:15px;
+    margin-bottom:15px;
+}
+
+.profile-big{
+    width:58px;
+    height:58px;
+    border-radius:18px;
+    background:linear-gradient(135deg,#25b8ee,#7144f5);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
+    font-size:23px;
+    font-weight:800;
+}
+
+.profile-details strong{
+    display:block;
+    font-size:15px;
+    color:#27304b;
+}
+
+.profile-details span{
+    display:block;
+    color:#9aa2b9;
+    font-size:10px;
+    margin-top:4px;
+}
+
+.account-item{
+    padding:13px 0;
+    border-bottom:1px solid #eef0f6;
+}
+
+.account-item:last-child{
+    border-bottom:none;
+}
+
+.account-label{
+    font-size:10px;
+    color:#9299ae;
+    font-weight:700;
+    text-transform:uppercase;
+}
+
+.account-value{
+    font-size:12px;
+    color:#39425e;
+    font-weight:650;
+    margin-top:4px;
+}
+
+/* BUTTONS */
+
+.action-buttons{
+    display:flex;
+    justify-content:flex-end;
+    gap:9px;
+    margin-top:18px;
+}
 
 .action-btn{
     border:none;
-    border-radius:11px;
-    padding:10px 16px;
-    background:linear-gradient(135deg,#6543e8,#843de0);
-    color:white;
+    border-radius:10px;
+    padding:10px 15px;
+    cursor:pointer;
     font-size:11px;
     font-weight:700;
-    cursor:pointer;
     transition:.2s;
 }
 
 .action-btn:hover{
     transform:translateY(-2px);
-    box-shadow:0 8px 18px rgba(100,60,220,.22);
 }
 
-.secondary-btn{
-    border:1px solid #e0e3ef;
-    background:white;
-    color:#6553c8;
-    border-radius:11px;
-    padding:10px 16px;
-    font-size:11px;
+.reset-btn{
+    background:#f0f2fa;
+    color:#68728d;
+}
+
+.save-btn{
+    color:white;
+    background:linear-gradient(135deg,#6543e8,#843de0);
+    box-shadow:0 7px 18px rgba(85,50,190,.22);
+}
+
+/* DANGER CARD */
+
+.danger-card{
+    border:1px solid #f0dce2;
+    background:#fffafb;
+}
+
+.danger-title{
+    color:#d34d6f;
+}
+
+.danger-text{
+    color:#9b7b84;
+    font-size:10px;
+    line-height:1.6;
+    margin-top:7px;
+}
+
+.danger-btn{
+    margin-top:13px;
+    border:none;
+    border-radius:9px;
+    padding:9px 13px;
+    background:#fff0f3;
+    color:#d34d6f;
+    font-size:10px;
     font-weight:700;
     cursor:pointer;
 }
 
-/* Account info */
-
-.account-box{
-    background:linear-gradient(135deg,#f7f6ff,#f0f5ff);
-    border:1px solid #e4e5f2;
-    border-radius:14px;
-    padding:15px;
-}
-
-.account-line{
-    display:flex;
-    justify-content:space-between;
-    padding:7px 0;
-    font-size:11px;
-}
-
-.account-line span:first-child{
-    color:#9096a9;
-}
-
-.account-line span:last-child{
-    color:#424a67;
-    font-weight:700;
-}
-
 /* ================= CHATBOT ================= */
 
-.chatbot{
+.chat-bubble{
     position:fixed;
-    top:18px;
-    right:18px;
-    bottom:18px;
-    width:268px;
-    min-width:268px;
-    max-width:268px;
+    right:24px;
+    bottom:24px;
+    width:64px;
+    height:64px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#6543e8,#a855f7);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:30px;
+    color:white;
+    border:none;
+    cursor:pointer;
+    box-shadow:0 12px 30px rgba(101,67,232,.45);
+    z-index:9998;
+    transition:transform .2s ease;
+}
+
+.chat-bubble:hover{
+    transform:scale(1.08);
+}
+
+.chat-bubble::after{
+    content:"";
+    position:absolute;
+    top:4px;
+    right:4px;
+    width:12px;
+    height:12px;
+    border-radius:50%;
+    background:#ff4f8b;
+    border:2px solid white;
+}
+
+.chat-bubble.hide{
+    display:none;
+}
+
+.chatbot-panel{
+    position:fixed;
+    right:24px;
+    bottom:24px;
+    width:320px;
+    height:460px;
     background:white;
     border-radius:22px;
     border:1px solid #e5e6f2;
-    box-shadow:0 15px 45px rgba(40,35,100,.15);
+    box-shadow:0 20px 55px rgba(40,35,100,.25);
     z-index:9999;
-    display:flex;
+    display:none;
     flex-direction:column;
     overflow:hidden;
+    animation:panelIn .2s ease;
+}
+
+.chatbot-panel.open{
+    display:flex;
+}
+
+@keyframes panelIn{
+    from{
+        opacity:0;
+        transform:translateY(20px) scale(.96);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
 }
 
 .chat-header{
-    min-height:82px;
+    min-height:70px;
     flex-shrink:0;
-    padding:15px;
+    padding:14px;
     display:flex;
     align-items:center;
+    justify-content:space-between;
     color:white;
     background:linear-gradient(135deg,#29277d,#7137d8);
 }
 
+.chat-header-left{
+    display:flex;
+    align-items:center;
+}
+
 .robot-icon{
-    width:45px;
-    height:45px;
-    border-radius:14px;
+    width:42px;
+    height:42px;
+    border-radius:12px;
     background:rgba(255,255,255,.15);
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:24px;
+    font-size:22px;
     margin-right:10px;
 }
 
 .chat-title strong{
     display:block;
-    font-size:15px;
+    font-size:14px;
 }
 
 .chat-title span{
     display:block;
-    font-size:10px;
-    margin-top:3px;
+    font-size:9px;
+    margin-top:2px;
     color:rgba(255,255,255,.78);
 }
 
@@ -546,10 +840,21 @@ button,input,select{
     margin-right:4px;
 }
 
+.close-chat{
+    width:30px;
+    height:30px;
+    border:none;
+    border-radius:50%;
+    background:rgba(255,255,255,.15);
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+
 .chat-body{
     flex:1;
     min-height:0;
-    padding:17px 14px;
+    padding:14px;
     overflow-y:auto;
     background:linear-gradient(180deg,#fafbff,#f4f5fb);
 }
@@ -558,29 +863,61 @@ button,input,select{
     background:white;
     border:1px solid #e7e9f3;
     border-radius:14px;
-    padding:12px;
-    margin-bottom:10px;
+    padding:11px;
+    margin-bottom:9px;
     color:#65708d;
     font-size:11px;
-    line-height:1.6;
+    line-height:1.55;
     box-shadow:0 5px 15px rgba(40,35,100,.04);
 }
 
 .user-message{
     background:linear-gradient(135deg,#6241e8,#7b3ee0);
     color:white;
-    padding:10px 12px;
+    padding:9px 12px;
     border-radius:14px 14px 4px 14px;
-    margin:9px 0 9px 20px;
+    margin:8px 0 8px 25px;
     font-size:11px;
     line-height:1.5;
+}
+
+.typing{
+    display:flex;
+    gap:4px;
+    width:52px;
+    padding:12px;
+    background:white;
+    border:1px solid #e7e9f3;
+    border-radius:14px;
+    margin-bottom:9px;
+}
+
+.typing i{
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:#b9bed4;
+    animation:blink 1s infinite;
+}
+
+.typing i:nth-child(2){
+    animation-delay:.2s;
+}
+
+.typing i:nth-child(3){
+    animation-delay:.4s;
+}
+
+@keyframes blink{
+    0%,100%{opacity:.3;}
+    50%{opacity:1;}
 }
 
 .quick-buttons{
     display:flex;
     gap:5px;
     flex-wrap:wrap;
-    padding:9px 14px;
+    padding:8px 12px;
     background:white;
     border-top:1px solid #eceef5;
 }
@@ -590,14 +927,14 @@ button,input,select{
     background:white;
     color:#6b54d9;
     border-radius:20px;
-    padding:7px 9px;
+    padding:6px 9px;
     font-size:9px;
     cursor:pointer;
     transition:.2s;
 }
 
 .quick-btn:hover{
-    background:#f1eeff;
+    background:#f0edff;
 }
 
 .chat-footer{
@@ -612,7 +949,7 @@ button,input,select{
 .chat-input{
     flex:1;
     min-width:0;
-    height:40px;
+    height:38px;
     border:1px solid #e1e4ef;
     border-radius:12px;
     outline:none;
@@ -621,95 +958,115 @@ button,input,select{
     color:#555e78;
 }
 
+.chat-input:focus{
+    border-color:#a99bf0;
+}
+
 .send-btn{
-    width:40px;
-    height:40px;
+    width:38px;
+    height:38px;
     border:none;
     border-radius:12px;
     color:white;
     background:linear-gradient(135deg,#6543e8,#843de0);
     cursor:pointer;
-    font-size:17px;
+    font-size:16px;
+    transition:.2s;
+}
+
+.send-btn:hover{
+    transform:scale(1.05);
 }
 
 /* ================= MODAL ================= */
 
-.modal-overlay{
+.modal{
     position:fixed;
     inset:0;
-    background:rgba(25,24,55,.45);
-    backdrop-filter:blur(5px);
+    background:rgba(20,25,65,.55);
     display:none;
     align-items:center;
     justify-content:center;
-    z-index:12000;
+    z-index:30000;
+    padding:20px;
 }
 
-.modal-overlay.show{
+.modal.show{
     display:flex;
 }
 
-.modal{
-    width:430px;
-    max-width:92%;
+.modal-box{
+    width:min(470px,95%);
     background:white;
-    border-radius:22px;
+    border-radius:20px;
     padding:25px;
-    box-shadow:0 25px 70px rgba(20,20,60,.28);
+    box-shadow:0 25px 70px rgba(20,25,70,.25);
+    animation:modalIn .2s ease;
 }
 
-.modal-header{
+@keyframes modalIn{
+    from{
+        opacity:0;
+        transform:translateY(15px) scale(.97);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+.modal-top{
     display:flex;
-    justify-content:space-between;
     align-items:center;
-    margin-bottom:20px;
+    justify-content:space-between;
+    margin-bottom:18px;
 }
 
-.modal-header h3{
-    font-size:20px;
+.modal-top h3{
+    font-size:19px;
 }
 
 .close-btn{
     width:35px;
     height:35px;
     border:none;
-    border-radius:10px;
-    background:#f0f1f7;
-    color:#646b82;
+    border-radius:50%;
+    background:#f0f2fa;
+    color:#68728d;
     cursor:pointer;
     font-size:18px;
 }
 
-.form-group{
-    margin-bottom:15px;
-}
-
-.form-group label{
-    display:block;
-    font-size:11px;
-    color:#747b91;
-    margin-bottom:6px;
-}
-
-.form-group input{
-    width:100%;
-    height:42px;
-    border:1px solid #e0e3ee;
-    border-radius:11px;
-    padding:0 12px;
-    outline:none;
+.modal-content{
+    color:#68728d;
     font-size:12px;
+    line-height:1.7;
 }
 
-.form-group input:focus{
-    border-color:#6942f4;
-}
-
-.modal-actions{
+.modal-buttons{
     display:flex;
     justify-content:flex-end;
-    gap:9px;
-    margin-top:20px;
+    gap:8px;
+    margin-top:18px;
+}
+
+.modal-btn{
+    border:none;
+    border-radius:10px;
+    padding:10px 15px;
+    cursor:pointer;
+    font-size:11px;
+    font-weight:700;
+}
+
+.modal-cancel{
+    background:#f0f2fa;
+    color:#68728d;
+}
+
+.modal-ok{
+    background:linear-gradient(135deg,#6543e8,#843de0);
+    color:white;
 }
 
 /* ================= TOAST ================= */
@@ -717,27 +1074,28 @@ button,input,select{
 .toast{
     position:fixed;
     left:50%;
-    bottom:30px;
-    transform:translate(-50%,20px);
-    background:#202642;
+    bottom:25px;
+    transform:translateX(-50%) translateY(20px);
+    background:#29277d;
     color:white;
-    padding:12px 20px;
+    padding:12px 18px;
     border-radius:12px;
     font-size:12px;
     opacity:0;
     pointer-events:none;
     transition:.3s;
-    z-index:15000;
+    z-index:40000;
 }
 
 .toast.show{
     opacity:1;
-    transform:translate(-50%,0);
+    transform:translateX(-50%) translateY(0);
 }
 
 /* ================= RESPONSIVE ================= */
 
 @media(max-width:1150px){
+
     .sidebar{
         width:230px;
         min-width:230px;
@@ -745,36 +1103,19 @@ button,input,select{
 
     .main-area{
         margin-left:230px;
-        margin-right:250px;
     }
 
-    .chatbot{
-        width:232px;
-        min-width:232px;
-        max-width:232px;
-        right:10px;
+    .summary-grid{
+        grid-template-columns:repeat(2,minmax(0,1fr));
     }
 
-    .settings-grid{
+    .settings-layout{
         grid-template-columns:1fr;
-    }
-
-    .settings-card.full{
-        grid-column:auto;
-    }
-}
-
-@media(max-width:900px){
-    .chatbot{
-        display:none;
-    }
-
-    .main-area{
-        margin-right:0;
     }
 }
 
 @media(max-width:700px){
+
     .sidebar{
         width:80px;
         min-width:80px;
@@ -785,10 +1126,7 @@ button,input,select{
         padding:15px;
     }
 
-    .brand-text{
-        display:none;
-    }
-
+    .brand-text,
     .menu-title,
     .nav-text{
         display:none;
@@ -807,21 +1145,28 @@ button,input,select{
         margin-left:80px;
     }
 
-    .header-left h1{
-        font-size:22px;
+    .summary-grid{
+        grid-template-columns:1fr;
     }
 
-    .profile-info,
-    .time-box{
-        display:none;
+    .settings-hero{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:20px;
     }
 
-    .content{
-        padding:18px;
+    .setting-row{
+        align-items:flex-start;
     }
 
-    .hero{
-        padding:22px;
+    .setting-left{
+        align-items:flex-start;
+    }
+
+    .chatbot-panel{
+        width:92vw;
+        right:4vw;
+        left:4vw;
     }
 }
 </style>
@@ -852,16 +1197,9 @@ button,input,select{
         </a>
 
         <a class="nav-item" href="courses.html">
-
-    <span class="nav-icon">
-        📚
-    </span>
-
-    <span class="nav-text">
-        Courses
-    </span>
-
-</a>
+            <span class="nav-icon">📚</span>
+            <span class="nav-text">Courses</span>
+        </a>
 
         <a class="nav-item" href="timetable.html">
             <span class="nav-icon">🗓️</span>
@@ -923,9 +1261,9 @@ button,input,select{
                 <span class="nav-text">Feedback</span>
             </a>
 
-            <a class="nav-item" href="lost-found.html">
+            <a class="nav-item" href="lost_found.html">
                 <span class="nav-icon">🔎</span>
-                <span class="nav-text">Lost & Found</span>
+                <span class="nav-text">Lost &amp; Found</span>
             </a>
 
             <a class="nav-item" href="campus.html">
@@ -964,43 +1302,55 @@ button,input,select{
                 <span class="nav-text">Settings</span>
             </a>
 
-            <a class="nav-item logout" href="../index.html" onclick="return confirmLogout()">
-                <span class="nav-icon">🚪</span>
-                <span class="nav-text">Logout</span>
-            </a>
+            <div class="logout">
+
+                <a class="nav-item" href="../index.html" onclick="return confirmLogout()">
+                    <span class="nav-icon">🚪</span>
+                    <span class="nav-text">Logout</span>
+                </a>
+
+            </div>
 
         </div>
 
     </div>
+
 </aside>
 
 
-<!-- ================= MAIN ================= -->
+<!-- ================= MAIN AREA ================= -->
 
 <main class="main-area">
 
     <header class="top-header">
 
         <div class="header-left">
-            <h1>Settings ⚙️</h1>
-            <p>Customize your CampusConnect experience</p>
+
+            <h1>Account<br>Settings</h1>
+
+            <p>Manage your preferences and CampusConnect experience</p>
+
         </div>
 
         <div class="header-right">
 
-            <div class="time-box" id="clock">00:00:00</div>
+            <div class="time-box" id="clock">
+                6:00 PM
+            </div>
 
-            <div class="notification" onclick="showToast('You have new notifications 🔔')">
+            <div class="notification" onclick="showNotifications()">
                 🔔
             </div>
 
             <div class="profile-mini">
 
-                <div class="profile-circle">PB</div>
+                <div class="profile-circle">
+                    P
+                </div>
 
                 <div class="profile-info">
-                    <strong>Priya Bhavani</strong>
-                    <span>BCA • Semester 4</span>
+                    <strong>Student</strong>
+                    <span>BCA • 5th Sem</span>
                 </div>
 
             </div>
@@ -1010,348 +1360,806 @@ button,input,select{
     </header>
 
 
-    <div class="content">
+    <div class="page-content">
+
+        <!-- PAGE HEADING -->
+
+        <div class="page-heading">
+
+            <div>
+
+                <h2>⚙️ Settings Overview</h2>
+
+                <p>
+                    Customize notifications, appearance, privacy and your account preferences.
+                </p>
+
+            </div>
+
+            <button class="heading-btn" onclick="saveSettings()">
+                Save Settings
+            </button>
+
+        </div>
+
 
         <!-- HERO -->
 
-        <section class="hero">
+        <section class="settings-hero">
 
-            <div>
-                <h2>Manage Your Preferences ⚙️</h2>
-                <p>Control notifications, appearance, privacy and account preferences.</p>
+            <div class="hero-content">
+
+                <h3 id="heroTitle">
+                    Make CampusConnect work for you ⚙️
+                </h3>
+
+                <p id="heroText">
+                    Manage your notifications, appearance, privacy and study preferences
+                    from one place. Your settings are saved locally on this device.
+                </p>
+
             </div>
 
-            <div class="hero-icon">
-                ⚙️
+            <div class="hero-action">
+
+                <div class="stat-box">
+                    <strong id="enabledCount">4</strong>
+                    <span>Settings Enabled</span>
+                </div>
+
+                <div class="stat-box">
+                    <strong id="themeValue">Light</strong>
+                    <span>Appearance</span>
+                </div>
+
             </div>
 
         </section>
 
 
-        <!-- SETTINGS -->
+        <!-- SUMMARY CARDS -->
 
-        <div class="settings-grid">
+        <section class="summary-grid">
 
-            <!-- APPEARANCE -->
+            <div class="summary-card" onclick="focusSection('notificationsCard')">
 
-            <div class="settings-card">
+                <div class="summary-top">
 
-                <div class="card-heading">
-
-                    <div class="card-heading-icon">
-                        🎨
+                    <div class="summary-title">
+                        NOTIFICATIONS
                     </div>
 
-                    <div>
-                        <h3>Appearance</h3>
-                        <p>Customize how CampusConnect looks</p>
+                    <div class="summary-icon">
+                        🔔
                     </div>
 
                 </div>
 
+                <div class="summary-number" id="notificationStatus">
+                    ON
+                </div>
 
-                <div class="setting-row">
+                <div class="summary-small">
+                    App notifications
+                </div>
 
-                    <div class="setting-info">
-                        <strong>Theme</strong>
-                        <span>Choose your preferred interface theme</span>
+            </div>
+
+
+            <div class="summary-card" onclick="focusSection('appearanceCard')">
+
+                <div class="summary-top">
+
+                    <div class="summary-title">
+                        APPEARANCE
                     </div>
 
-                    <div class="setting-control">
+                    <div class="summary-icon">
+                        🎨
+                    </div>
 
-                        <select class="setting-select" id="themeSelect">
-                            <option value="light">Light</option>
-                            <option value="dark">Dark</option>
-                            <option value="system">System</option>
+                </div>
+
+                <div class="summary-number" id="appearanceStatus">
+                    Light
+                </div>
+
+                <div class="summary-small">
+                    Current theme
+                </div>
+
+            </div>
+
+
+            <div class="summary-card" onclick="focusSection('privacyCard')">
+
+                <div class="summary-top">
+
+                    <div class="summary-title">
+                        PRIVACY
+                    </div>
+
+                    <div class="summary-icon">
+                        🔒
+                    </div>
+
+                </div>
+
+                <div class="summary-number" id="privacyStatus">
+                    Secure
+                </div>
+
+                <div class="summary-small">
+                    Account privacy
+                </div>
+
+            </div>
+
+
+            <div class="summary-card" onclick="showToast('Settings are saved locally on this device')">
+
+                <div class="summary-top">
+
+                    <div class="summary-title">
+                        SAVED
+                    </div>
+
+                    <div class="summary-icon">
+                        ✅
+                    </div>
+
+                </div>
+
+                <div class="summary-number" id="saveStatus">
+                    Ready
+                </div>
+
+                <div class="summary-small">
+                    Preferences status
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- SETTINGS CONTENT -->
+
+        <div class="settings-layout">
+
+            <!-- LEFT COLUMN -->
+
+            <div>
+
+                <!-- NOTIFICATIONS -->
+
+                <section class="content-card" id="notificationsCard">
+
+                    <div class="card-heading">
+
+                        <div>
+
+                            <h3>🔔 Notification Preferences</h3>
+
+                            <p>
+                                Choose which updates you want to receive.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="setting-row">
+
+                        <div class="setting-left">
+
+                            <div class="setting-icon">
+                                🔔
+                            </div>
+
+                            <div class="setting-info">
+
+                                <strong>Push Notifications</strong>
+
+                                <span>
+                                    Receive important CampusConnect updates and alerts.
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                        <label class="switch">
+
+                            <input
+                                type="checkbox"
+                                id="pushNotifications"
+                                checked
+                                onchange="updateSettingsPreview()"
+                            >
+
+                            <span class="slider"></span>
+
+                        </label>
+
+                    </div>
+
+
+                    <div class="setting-row">
+
+                        <div class="setting-left">
+
+                            <div class="setting-icon">
+                                📚
+                            </div>
+
+                            <div class="setting-info">
+
+                                <strong>Assignment Reminders</strong>
+
+                                <span>
+                                    Get reminders about upcoming assignments.
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                        <label class="switch">
+
+                            <input
+                                type="checkbox"
+                                id="assignmentReminders"
+                                checked
+                                onchange="updateSettingsPreview()"
+                            >
+
+                            <span class="slider"></span>
+
+                        </label>
+
+                    </div>
+
+
+                    <div class="setting-row">
+
+                        <div class="setting-left">
+
+                            <div class="setting-icon">
+                                📋
+                            </div>
+
+                            <div class="setting-info">
+
+                                <strong>Exam Reminders</strong>
+
+                                <span>
+                                    Receive notifications before scheduled exams.
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                        <label class="switch">
+
+                            <input
+                                type="checkbox"
+                                id="examReminders"
+                                checked
+                                onchange="updateSettingsPreview()"
+                            >
+
+                            <span class="slider"></span>
+
+                        </label>
+
+                    </div>
+
+
+                    <div class="setting-row">
+
+                        <div class="setting-left">
+
+                            <div class="setting-icon">
+                                📢
+                            </div>
+
+                            <div class="setting-info">
+
+                                <strong>Campus Announcements</strong>
+
+                                <span>
+                                    Stay updated with important college announcements.
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                        <label class="switch">
+
+                            <input
+                                type="checkbox"
+                                id="campusAnnouncements"
+                                checked
+                                onchange="updateSettingsPreview()"
+                            >
+
+                            <span class="slider"></span>
+
+                        </label>
+
+                    </div>
+
+                </section>
+
+
+                <!-- APPEARANCE -->
+
+                <section class="content-card" id="appearanceCard">
+
+                    <div class="card-heading">
+
+                        <div>
+
+                            <h3>🎨 Appearance</h3>
+
+                            <p>
+                                Personalize how CampusConnect looks.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="setting-row">
+
+                        <div class="setting-left">
+
+                            <div class="setting-icon">
+                                🌓
+                            </div>
+
+                            <div class="setting-info">
+
+                                <strong>Theme</strong>
+
+                                <span>
+                                    Select your preferred interface appearance.
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                        <select
+                            class="setting-select"
+                            id="themeSelect"
+                            onchange="updateTheme()"
+                        >
+
+                            <option value="light">
+                                Light
+                            </option>
+
+                            <option value="dark">
+                                Dark
+                            </option>
+
+                            <option value="system">
+                                System
+                            </option>
+
                         </select>
 
                     </div>
 
-                </div>
 
+                    <div class="setting-row">
 
-                <div class="setting-row">
+                        <div class="setting-left">
 
-                    <div class="setting-info">
-                        <strong>Compact Mode</strong>
-                        <span>Reduce spacing across the portal</span>
-                    </div>
+                            <div class="setting-icon">
+                                🔤
+                            </div>
 
-                    <label class="switch">
-                        <input type="checkbox" id="compactToggle">
-                        <span class="slider"></span>
-                    </label>
+                            <div class="setting-info">
 
-                </div>
+                                <strong>Font Size</strong>
 
-            </div>
+                                <span>
+                                    Adjust the text size across the portal.
+                                </span>
 
+                            </div>
 
-            <!-- NOTIFICATIONS -->
-
-            <div class="settings-card">
-
-                <div class="card-heading">
-
-                    <div class="card-heading-icon">
-                        🔔
-                    </div>
-
-                    <div>
-                        <h3>Notifications</h3>
-                        <p>Manage alerts and reminders</p>
-                    </div>
-
-                </div>
-
-
-                <div class="setting-row">
-
-                    <div class="setting-info">
-                        <strong>Push Notifications</strong>
-                        <span>Receive important campus alerts</span>
-                    </div>
-
-                    <label class="switch">
-                        <input type="checkbox" id="pushToggle" checked>
-                        <span class="slider"></span>
-                    </label>
-
-                </div>
-
-
-                <div class="setting-row">
-
-                    <div class="setting-info">
-                        <strong>Email Notifications</strong>
-                        <span>Receive updates through email</span>
-                    </div>
-
-                    <label class="switch">
-                        <input type="checkbox" id="emailToggle" checked>
-                        <span class="slider"></span>
-                    </label>
-
-                </div>
-
-
-                <div class="setting-row">
-
-                    <div class="setting-info">
-                        <strong>Assignment Reminders</strong>
-                        <span>Get reminders before deadlines</span>
-                    </div>
-
-                    <label class="switch">
-                        <input type="checkbox" id="assignmentToggle" checked>
-                        <span class="slider"></span>
-                    </label>
-
-                </div>
-
-            </div>
-
-
-            <!-- PRIVACY -->
-
-            <div class="settings-card">
-
-                <div class="card-heading">
-
-                    <div class="card-heading-icon">
-                        🔐
-                    </div>
-
-                    <div>
-                        <h3>Privacy & Security</h3>
-                        <p>Keep your account secure</p>
-                    </div>
-
-                </div>
-
-
-                <div class="setting-row">
-
-                    <div class="setting-info">
-                        <strong>Profile Visibility</strong>
-                        <span>Control who can see your profile</span>
-                    </div>
-
-                    <select class="setting-select" id="visibilitySelect">
-
-                        <option>Students & Faculty</option>
-                        <option>Faculty Only</option>
-                        <option>Private</option>
-
-                    </select>
-
-                </div>
-
-
-                <div class="setting-row">
-
-                    <div class="setting-info">
-                        <strong>Two-Factor Authentication</strong>
-                        <span>Add an extra layer of account security</span>
-                    </div>
-
-                    <label class="switch">
-
-                        <input type="checkbox" id="twoFactorToggle">
-
-                        <span class="slider"></span>
-
-                    </label>
-
-                </div>
-
-
-                <div class="setting-row">
-
-                    <div class="setting-info">
-                        <strong>Password</strong>
-                        <span>Change your CampusConnect password</span>
-                    </div>
-
-                    <button class="secondary-btn" onclick="openPasswordModal()">
-                        Change
-                    </button>
-
-                </div>
-
-            </div>
-
-
-            <!-- LANGUAGE -->
-
-            <div class="settings-card">
-
-                <div class="card-heading">
-
-                    <div class="card-heading-icon">
-                        🌐
-                    </div>
-
-                    <div>
-                        <h3>Language & Region</h3>
-                        <p>Choose your language preferences</p>
-                    </div>
-
-                </div>
-
-
-                <div class="setting-row">
-
-                    <div class="setting-info">
-                        <strong>Portal Language</strong>
-                        <span>Select the language used by CampusConnect</span>
-                    </div>
-
-                    <select class="setting-select" id="languageSelect">
-
-                        <option>English</option>
-                        <option>Kannada</option>
-                        <option>Hindi</option>
-
-                    </select>
-
-                </div>
-
-
-                <div class="setting-row">
-
-                    <div class="setting-info">
-                        <strong>Time Format</strong>
-                        <span>Choose how time is displayed</span>
-                    </div>
-
-                    <select class="setting-select" id="timeFormat">
-
-                        <option value="12">12 Hour</option>
-                        <option value="24">24 Hour</option>
-
-                    </select>
-
-                </div>
-
-            </div>
-
-
-            <!-- ACCOUNT -->
-
-            <div class="settings-card full">
-
-                <div class="card-heading">
-
-                    <div class="card-heading-icon">
-                        👤
-                    </div>
-
-                    <div>
-                        <h3>Account Information</h3>
-                        <p>Your CampusConnect account details</p>
-                    </div>
-
-                </div>
-
-
-                <div class="account-box">
-
-                    <div class="account-line">
-                        <span>Student Name</span>
-                        <span>Priya Bhavani</span>
-                    </div>
-
-                    <div class="account-line">
-                        <span>Student ID</span>
-                        <span>CC2026BCA014</span>
-                    </div>
-
-                    <div class="account-line">
-                        <span>Email</span>
-                        <span>priya.bhavani@college.edu</span>
-                    </div>
-
-                    <div class="account-line">
-                        <span>Course</span>
-                        <span>BCA - Computer Science</span>
-                    </div>
-
-                    <div class="account-line">
-                        <span>Semester</span>
-                        <span>Semester 4</span>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- SAVE -->
-
-            <div class="settings-card full">
-
-                <div style="display:flex;align-items:center;justify-content:space-between;gap:15px;">
-
-                    <div>
-                        <strong style="font-size:14px;">
-                            Save Your Preferences
-                        </strong>
-
-                        <div style="font-size:11px;color:#969caf;margin-top:4px;">
-                            Changes will be applied to your CampusConnect account.
                         </div>
+
+                        <select
+                            class="setting-select"
+                            id="fontSizeSelect"
+                            onchange="updateFontSize()"
+                        >
+
+                            <option value="normal">
+                                Normal
+                            </option>
+
+                            <option value="large">
+                                Large
+                            </option>
+
+                            <option value="small">
+                                Small
+                            </option>
+
+                        </select>
+
                     </div>
 
-                    <button class="action-btn" onclick="saveSettings()">
-                        Save Changes
+                </section>
+
+
+                <!-- STUDY PREFERENCES -->
+
+                <section class="content-card">
+
+                    <div class="card-heading">
+
+                        <div>
+
+                            <h3>🎓 Study Preferences</h3>
+
+                            <p>
+                                Configure your academic experience.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="setting-row">
+
+                        <div class="setting-left">
+
+                            <div class="setting-icon">
+                                📅
+                            </div>
+
+                            <div class="setting-info">
+
+                                <strong>Week Starts On</strong>
+
+                                <span>
+                                    Select the first day shown in your timetable.
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                        <select class="setting-select" id="weekStart">
+
+                            <option value="monday">
+                                Monday
+                            </option>
+
+                            <option value="sunday">
+                                Sunday
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="setting-row">
+
+                        <div class="setting-left">
+
+                            <div class="setting-icon">
+                                ⏰
+                            </div>
+
+                            <div class="setting-info">
+
+                                <strong>Reminder Time</strong>
+
+                                <span>
+                                    Default time for academic reminders.
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                        <select class="setting-select" id="reminderTime">
+
+                            <option value="1">
+                                1 Hour Before
+                            </option>
+
+                            <option value="3">
+                                3 Hours Before
+                            </option>
+
+                            <option value="12">
+                                12 Hours Before
+                            </option>
+
+                            <option value="24">
+                                1 Day Before
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+
+            <!-- RIGHT COLUMN -->
+
+            <div>
+
+                <!-- PROFILE -->
+
+                <section class="content-card">
+
+                    <div class="card-heading">
+
+                        <div>
+
+                            <h3>👤 Account</h3>
+
+                            <p>
+                                Your CampusConnect account information.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="profile-box">
+
+                        <div class="profile-big">
+                            P
+                        </div>
+
+                        <div class="profile-details">
+
+                            <strong>Student</strong>
+
+                            <span>
+                                BCA • 5th Semester
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="account-item">
+
+                        <div class="account-label">
+                            Student ID
+                        </div>
+
+                        <div class="account-value">
+                            CC-BCA-2026
+                        </div>
+
+                    </div>
+
+
+                    <div class="account-item">
+
+                        <div class="account-label">
+                            Program
+                        </div>
+
+                        <div class="account-value">
+                            Bachelor of Computer Applications
+                        </div>
+
+                    </div>
+
+
+                    <div class="account-item">
+
+                        <div class="account-label">
+                            Current Semester
+                        </div>
+
+                        <div class="account-value">
+                            5th Semester
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- PRIVACY -->
+
+                <section class="content-card" id="privacyCard">
+
+                    <div class="card-heading">
+
+                        <div>
+
+                            <h3>🔒 Privacy &amp; Security</h3>
+
+                            <p>
+                                Control your account privacy preferences.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="setting-row">
+
+                        <div class="setting-left">
+
+                            <div class="setting-icon">
+                                👁️
+                            </div>
+
+                            <div class="setting-info">
+
+                                <strong>Profile Visibility</strong>
+
+                                <span>
+                                    Allow other students to view basic profile information.
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                        <label class="switch">
+
+                            <input
+                                type="checkbox"
+                                id="profileVisibility"
+                                checked
+                                onchange="updateSettingsPreview()"
+                            >
+
+                            <span class="slider"></span>
+
+                        </label>
+
+                    </div>
+
+
+                    <div class="setting-row">
+
+                        <div class="setting-left">
+
+                            <div class="setting-icon">
+                                🛡️
+                            </div>
+
+                            <div class="setting-info">
+
+                                <strong>Secure Session</strong>
+
+                                <span>
+                                    Keep your session protected while using CampusConnect.
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                        <label class="switch">
+
+                            <input
+                                type="checkbox"
+                                id="secureSession"
+                                checked
+                                onchange="updateSettingsPreview()"
+                            >
+
+                            <span class="slider"></span>
+
+                        </label>
+
+                    </div>
+
+                </section>
+
+
+                <!-- DANGER -->
+
+                <section class="content-card danger-card">
+
+                    <div class="card-heading">
+
+                        <div>
+
+                            <h3 class="danger-title">
+                                ⚠️ Account Actions
+                            </h3>
+
+                            <p>
+                                Manage actions that affect your current session.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="danger-text">
+
+                        Logging out will end your current CampusConnect session
+                        on this device.
+
+                    </div>
+
+
+                    <button
+                        class="danger-btn"
+                        onclick="logoutFromSettings()"
+                    >
+                        Logout From This Device
                     </button>
 
-                </div>
+                </section>
 
             </div>
 
         </div>
+
+
+        <!-- SAVE BUTTONS -->
+
+        <section class="content-card">
+
+            <div class="card-heading">
+
+                <div>
+
+                    <h3>💾 Save Preferences</h3>
+
+                    <p>
+                        Save your current settings for your next CampusConnect visit.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="action-buttons">
+
+                <button
+                    class="action-btn reset-btn"
+                    onclick="resetSettings()"
+                >
+                    Reset
+                </button>
+
+                <button
+                    class="action-btn save-btn"
+                    onclick="saveSettings()"
+                >
+                    Save Settings
+                </button>
+
+            </div>
+
+        </section>
 
     </div>
 
@@ -1360,36 +2168,66 @@ button,input,select{
 
 <!-- ================= CHATBOT ================= -->
 
-<aside class="chatbot">
+<button
+    class="chat-bubble"
+    id="chatBubble"
+    onclick="openChatPanel()"
+>
+    🤖
+</button>
+
+
+<div
+    class="chatbot-panel"
+    id="chatbotPanel"
+>
 
     <div class="chat-header">
 
-        <div class="robot-icon">🤖</div>
+        <div class="chat-header-left">
 
-        <div class="chat-title">
+            <div class="robot-icon">
+                🤖
+            </div>
 
-            <strong>CampusConnect AI</strong>
+            <div class="chat-title">
 
-            <span>
-                <span class="online-dot"></span>
-                AI College Companion
-            </span>
+                <strong>
+                    AI College Companion
+                </strong>
+
+                <span>
+                    <i class="online-dot"></i>
+                    Online • Ready to help
+                </span>
+
+            </div>
 
         </div>
+
+        <button
+            class="close-chat"
+            onclick="closeChatPanel()"
+        >
+            ×
+        </button>
 
     </div>
 
 
-    <div class="chat-body" id="chatBody">
+    <div
+        class="chat-body"
+        id="chatBody"
+    >
 
         <div class="bot-message">
-            Hi Priya! 👋 I'm your <b>CampusConnect AI College Companion</b>.
-            <br><br>
-            I can help you understand and change your portal settings.
-        </div>
 
-        <div class="bot-message">
-            You can ask me about notifications, privacy, theme, password or language settings.
+            👋 Hi! I'm your
+            <strong>AI College Companion.</strong>
+
+            I can help you understand your CampusConnect settings,
+            notifications, appearance and privacy options.
+
         </div>
 
     </div>
@@ -1397,20 +2235,32 @@ button,input,select{
 
     <div class="quick-buttons">
 
-        <button class="quick-btn" onclick="quickChat('Theme Settings')">
-            🎨 Theme
+        <button
+            class="quick-btn"
+            onclick="quickChat('How do I change notifications?')"
+        >
+            Notifications
         </button>
 
-        <button class="quick-btn" onclick="quickChat('Notifications')">
-            🔔 Notifications
+        <button
+            class="quick-btn"
+            onclick="quickChat('How do I change the theme?')"
+        >
+            Theme
         </button>
 
-        <button class="quick-btn" onclick="quickChat('Privacy')">
-            🔐 Privacy
+        <button
+            class="quick-btn"
+            onclick="quickChat('Tell me about privacy settings')"
+        >
+            Privacy
         </button>
 
-        <button class="quick-btn" onclick="quickChat('Password')">
-            🔑 Password
+        <button
+            class="quick-btn"
+            onclick="quickChat('How do I save settings?')"
+        >
+            Save Settings
         </button>
 
     </div>
@@ -1419,85 +2269,69 @@ button,input,select{
     <div class="chat-footer">
 
         <input
-            type="text"
-            class="chat-input"
             id="chatInput"
-            placeholder="Ask CampusConnect AI..."
+            class="chat-input"
+            type="text"
+            placeholder="Ask your companion..."
+            onkeydown="handleChatKey(event)"
         >
 
-        <button class="send-btn" onclick="sendMessage()">
+        <button
+            class="send-btn"
+            onclick="sendChat()"
+        >
             ➤
         </button>
 
     </div>
 
-</aside>
+</div>
 
 
-<!-- ================= PASSWORD MODAL ================= -->
+<!-- ================= MODAL ================= -->
 
-<div class="modal-overlay" id="passwordModal">
+<div
+    class="modal"
+    id="settingsModal"
+    onclick="closeModalOutside(event)"
+>
 
-    <div class="modal">
+    <div class="modal-box">
 
-        <div class="modal-header">
+        <div class="modal-top">
 
-            <h3>Change Password 🔐</h3>
+            <h3 id="modalTitle">
+                🔔 Notifications
+            </h3>
 
-            <button class="close-btn" onclick="closePasswordModal()">
-                ✕
+            <button
+                class="close-btn"
+                onclick="closeModal()"
+            >
+                ×
             </button>
 
         </div>
 
+        <div
+            class="modal-content"
+            id="modalContent"
+        ></div>
 
-        <div class="form-group">
+        <div class="modal-buttons">
 
-            <label>Current Password</label>
-
-            <input
-                type="password"
-                id="currentPassword"
-                placeholder="Enter current password"
+            <button
+                class="modal-btn modal-cancel"
+                onclick="closeModal()"
             >
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label>New Password</label>
-
-            <input
-                type="password"
-                id="newPassword"
-                placeholder="Enter new password"
-            >
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label>Confirm New Password</label>
-
-            <input
-                type="password"
-                id="confirmPassword"
-                placeholder="Confirm new password"
-            >
-
-        </div>
-
-
-        <div class="modal-actions">
-
-            <button class="secondary-btn" onclick="closePasswordModal()">
-                Cancel
+                Close
             </button>
 
-            <button class="action-btn" onclick="changePassword()">
-                Update Password
+            <button
+                class="modal-btn modal-ok"
+                onclick="saveSettings();closeModal()"
+            >
+                Save
             </button>
 
         </div>
@@ -1509,8 +2343,11 @@ button,input,select{
 
 <!-- ================= TOAST ================= -->
 
-<div class="toast" id="toast">
-    Settings saved successfully!
+<div
+    class="toast"
+    id="toast"
+>
+    Done
 </div>
 
 
@@ -1520,413 +2357,633 @@ button,input,select{
 
 function updateClock(){
 
-    const clock = document.getElementById("clock");
-
     const now = new Date();
 
     let hours = now.getHours();
-    const minutes = String(now.getMinutes()).padStart(2,"0");
-    const seconds = String(now.getSeconds()).padStart(2,"0");
 
-    const format =
-        document.getElementById("timeFormat")?.value || "12";
+    const minutes =
+        String(now.getMinutes()).padStart(2,"0");
 
-    if(format === "12"){
+    const seconds =
+        String(now.getSeconds()).padStart(2,"0");
 
-        const period = hours >= 12 ? "PM" : "AM";
+    const ampm =
+        hours >= 12 ? "PM" : "AM";
 
-        hours = hours % 12;
+    hours = hours % 12 || 12;
 
-        if(hours === 0){
-            hours = 12;
-        }
-
-        clock.textContent =
-            `${String(hours).padStart(2,"0")}:${minutes}:${seconds} ${period}`;
-
-    }else{
-
-        clock.textContent =
-            `${String(hours).padStart(2,"0")}:${minutes}:${seconds}`;
-
-    }
+    document.getElementById("clock").textContent =
+        hours + ":" +
+        minutes + ":" +
+        seconds + " " +
+        ampm;
 }
-
-setInterval(updateClock,1000);
 
 updateClock();
 
-
-/* ================= TOAST ================= */
-
-function showToast(message){
-
-    const toast = document.getElementById("toast");
-
-    toast.textContent = message;
-
-    toast.classList.add("show");
-
-    setTimeout(()=>{
-        toast.classList.remove("show");
-    },2500);
-}
+setInterval(updateClock,1000);
 
 
-/* ================= SAVE SETTINGS ================= */
+/* ================= STORAGE ================= */
 
-function saveSettings(){
+const DEFAULT_SETTINGS = {
 
-    const settings = {
+    pushNotifications:true,
 
-        theme:
-            document.getElementById("themeSelect").value,
+    assignmentReminders:true,
 
-        compact:
-            document.getElementById("compactToggle").checked,
+    examReminders:true,
 
-        push:
-            document.getElementById("pushToggle").checked,
+    campusAnnouncements:true,
 
-        email:
-            document.getElementById("emailToggle").checked,
+    profileVisibility:true,
 
-        assignment:
-            document.getElementById("assignmentToggle").checked,
+    secureSession:true,
 
-        visibility:
-            document.getElementById("visibilitySelect").value,
+    theme:"light",
 
-        twoFactor:
-            document.getElementById("twoFactorToggle").checked,
+    fontSize:"normal",
 
-        language:
-            document.getElementById("languageSelect").value,
+    weekStart:"monday",
 
-        timeFormat:
-            document.getElementById("timeFormat").value
-    };
+    reminderTime:"1"
 
-    localStorage.setItem(
-        "campusConnectSettings",
-        JSON.stringify(settings)
-    );
-
-    showToast("✅ Settings saved successfully!");
-
-    updateClock();
-}
+};
 
 
 /* ================= LOAD SETTINGS ================= */
 
 function loadSettings(){
 
-    const saved =
+    let saved =
         localStorage.getItem("campusConnectSettings");
 
-    if(!saved){
+    if(saved){
+
+        try{
+
+            return {
+                ...DEFAULT_SETTINGS,
+                ...JSON.parse(saved)
+            };
+
+        }catch(error){
+
+            return {...DEFAULT_SETTINGS};
+
+        }
+
+    }
+
+    return {...DEFAULT_SETTINGS};
+}
+
+
+let settings = loadSettings();
+
+
+/* ================= APPLY SETTINGS ================= */
+
+function applySettings(){
+
+    document.getElementById("pushNotifications").checked =
+        settings.pushNotifications;
+
+    document.getElementById("assignmentReminders").checked =
+        settings.assignmentReminders;
+
+    document.getElementById("examReminders").checked =
+        settings.examReminders;
+
+    document.getElementById("campusAnnouncements").checked =
+        settings.campusAnnouncements;
+
+    document.getElementById("profileVisibility").checked =
+        settings.profileVisibility;
+
+    document.getElementById("secureSession").checked =
+        settings.secureSession;
+
+    document.getElementById("themeSelect").value =
+        settings.theme;
+
+    document.getElementById("fontSizeSelect").value =
+        settings.fontSize;
+
+    document.getElementById("weekStart").value =
+        settings.weekStart;
+
+    document.getElementById("reminderTime").value =
+        settings.reminderTime;
+
+    updateSettingsPreview();
+
+}
+
+
+/* ================= GET CURRENT SETTINGS ================= */
+
+function collectSettings(){
+
+    settings.pushNotifications =
+        document.getElementById("pushNotifications").checked;
+
+    settings.assignmentReminders =
+        document.getElementById("assignmentReminders").checked;
+
+    settings.examReminders =
+        document.getElementById("examReminders").checked;
+
+    settings.campusAnnouncements =
+        document.getElementById("campusAnnouncements").checked;
+
+    settings.profileVisibility =
+        document.getElementById("profileVisibility").checked;
+
+    settings.secureSession =
+        document.getElementById("secureSession").checked;
+
+    settings.theme =
+        document.getElementById("themeSelect").value;
+
+    settings.fontSize =
+        document.getElementById("fontSizeSelect").value;
+
+    settings.weekStart =
+        document.getElementById("weekStart").value;
+
+    settings.reminderTime =
+        document.getElementById("reminderTime").value;
+
+}
+
+
+/* ================= PREVIEW ================= */
+
+function updateSettingsPreview(){
+
+    collectSettings();
+
+    const notificationOn =
+        settings.pushNotifications ||
+        settings.assignmentReminders ||
+        settings.examReminders ||
+        settings.campusAnnouncements;
+
+    document.getElementById("notificationStatus").textContent =
+        notificationOn ? "ON" : "OFF";
+
+    document.getElementById("appearanceStatus").textContent =
+        capitalize(settings.theme);
+
+    document.getElementById("themeValue").textContent =
+        capitalize(settings.theme);
+
+    document.getElementById("privacyStatus").textContent =
+        settings.secureSession ? "Secure" : "Basic";
+
+    const enabled = [
+
+        settings.pushNotifications,
+        settings.assignmentReminders,
+        settings.examReminders,
+        settings.campusAnnouncements,
+        settings.profileVisibility,
+        settings.secureSession
+
+    ].filter(Boolean).length;
+
+    document.getElementById("enabledCount").textContent =
+        enabled;
+
+}
+
+
+/* ================= SAVE ================= */
+
+function saveSettings(){
+
+    collectSettings();
+
+    localStorage.setItem(
+        "campusConnectSettings",
+        JSON.stringify(settings)
+    );
+
+    document.getElementById("saveStatus").textContent =
+        "Saved";
+
+    showToast("Settings saved successfully ✅");
+
+    updateSettingsPreview();
+
+}
+
+
+/* ================= RESET ================= */
+
+function resetSettings(){
+
+    const confirmReset =
+        confirm("Reset all settings to their default values?");
+
+    if(!confirmReset){
         return;
     }
 
-    const settings = JSON.parse(saved);
+    settings = {...DEFAULT_SETTINGS};
 
-    if(settings.theme)
-        document.getElementById("themeSelect").value = settings.theme;
+    localStorage.removeItem(
+        "campusConnectSettings"
+    );
 
-    if(typeof settings.compact === "boolean")
-        document.getElementById("compactToggle").checked = settings.compact;
+    applySettings();
 
-    if(typeof settings.push === "boolean")
-        document.getElementById("pushToggle").checked = settings.push;
+    document.getElementById("saveStatus").textContent =
+        "Ready";
 
-    if(typeof settings.email === "boolean")
-        document.getElementById("emailToggle").checked = settings.email;
+    showToast("Settings restored to default");
 
-    if(typeof settings.assignment === "boolean")
-        document.getElementById("assignmentToggle").checked = settings.assignment;
-
-    if(settings.visibility)
-        document.getElementById("visibilitySelect").value = settings.visibility;
-
-    if(typeof settings.twoFactor === "boolean")
-        document.getElementById("twoFactorToggle").checked = settings.twoFactor;
-
-    if(settings.language)
-        document.getElementById("languageSelect").value = settings.language;
-
-    if(settings.timeFormat)
-        document.getElementById("timeFormat").value = settings.timeFormat;
 }
-
-loadSettings();
 
 
 /* ================= THEME ================= */
 
-document.getElementById("themeSelect")
-.addEventListener("change",function(){
+function updateTheme(){
 
-    if(this.value === "dark"){
+    const theme =
+        document.getElementById("themeSelect").value;
 
-        document.body.style.background = "#17192b";
+    settings.theme = theme;
 
-        showToast("🌙 Dark theme selected");
+    document.getElementById("themeValue").textContent =
+        capitalize(theme);
 
-    }else if(this.value === "light"){
+    document.getElementById("appearanceStatus").textContent =
+        capitalize(theme);
 
-        document.body.style.background = "#f4f6ff";
+    showToast("Appearance changed to " + capitalize(theme));
 
-        showToast("☀️ Light theme selected");
+}
 
-    }else{
 
-        showToast("🖥️ System theme selected");
+/* ================= FONT SIZE ================= */
+
+function updateFontSize(){
+
+    const value =
+        document.getElementById("fontSizeSelect").value;
+
+    document.documentElement.style.fontSize =
+        value === "large"
+        ? "17px"
+        : value === "small"
+        ? "14px"
+        : "16px";
+
+    settings.fontSize = value;
+
+    showToast("Font size updated");
+
+}
+
+
+/* ================= SUMMARY CARD ================= */
+
+function focusSection(id){
+
+    const section =
+        document.getElementById(id);
+
+    if(section){
+
+        section.scrollIntoView({
+            behavior:"smooth",
+            block:"start"
+        });
+
+        section.style.boxShadow =
+            "0 0 0 3px rgba(101,67,232,.16)";
+
+        setTimeout(function(){
+
+            section.style.boxShadow =
+                "0 8px 25px rgba(40,35,100,.06)";
+
+        },1200);
 
     }
 
-});
+}
 
 
-/* ================= COMPACT MODE ================= */
+/* ================= NOTIFICATIONS ================= */
 
-document.getElementById("compactToggle")
-.addEventListener("change",function(){
+function showNotifications(){
 
-    const rows =
-        document.querySelectorAll(".setting-row");
+    const enabled = [
 
-    if(this.checked){
+        settings.pushNotifications,
+        settings.assignmentReminders,
+        settings.examReminders,
+        settings.campusAnnouncements
 
-        rows.forEach(row=>{
-            row.style.minHeight = "50px";
-            row.style.padding = "7px 0";
-        });
+    ].filter(Boolean).length;
 
-        showToast("Compact mode enabled");
+    openModal(
+        "🔔 Notification Settings",
+        "<p><strong>Enabled notification categories:</strong> " +
+        enabled +
+        "</p>" +
 
-    }else{
+        "<p>Push Notifications: " +
+        (settings.pushNotifications ? "Enabled" : "Disabled") +
+        "</p>" +
 
-        rows.forEach(row=>{
-            row.style.minHeight = "65px";
-            row.style.padding = "13px 0";
-        });
+        "<p>Assignment Reminders: " +
+        (settings.assignmentReminders ? "Enabled" : "Disabled") +
+        "</p>" +
 
-        showToast("Compact mode disabled");
+        "<p>Exam Reminders: " +
+        (settings.examReminders ? "Enabled" : "Disabled") +
+        "</p>" +
 
-    }
+        "<p>Campus Announcements: " +
+        (settings.campusAnnouncements ? "Enabled" : "Disabled") +
+        "</p>"
+    );
 
-});
+}
 
 
-/* ================= PASSWORD MODAL ================= */
+/* ================= MODAL ================= */
 
-function openPasswordModal(){
+function openModal(title,html){
 
-    document
-        .getElementById("passwordModal")
+    document.getElementById("modalTitle").textContent =
+        title;
+
+    document.getElementById("modalContent").innerHTML =
+        html;
+
+    document.getElementById("settingsModal")
         .classList.add("show");
 
 }
 
-function closePasswordModal(){
 
-    document
-        .getElementById("passwordModal")
+function closeModal(){
+
+    document.getElementById("settingsModal")
         .classList.remove("show");
 
 }
 
 
-/* ================= CHANGE PASSWORD ================= */
+function closeModalOutside(event){
 
-function changePassword(){
+    if(
+        event.target ===
+        document.getElementById("settingsModal")
+    ){
 
-    const current =
-        document.getElementById("currentPassword").value;
+        closeModal();
 
-    const newPassword =
-        document.getElementById("newPassword").value;
-
-    const confirm =
-        document.getElementById("confirmPassword").value;
-
-
-    if(!current || !newPassword || !confirm){
-
-        showToast("⚠️ Please fill all password fields");
-
-        return;
     }
 
-
-    if(newPassword.length < 6){
-
-        showToast("⚠️ Password must contain at least 6 characters");
-
-        return;
-    }
+}
 
 
-    if(newPassword !== confirm){
+/* ================= TOAST ================= */
 
-        showToast("❌ New passwords do not match");
+function showToast(message){
 
-        return;
-    }
+    const toast =
+        document.getElementById("toast");
 
+    toast.textContent =
+        message;
 
-    closePasswordModal();
+    toast.classList.add("show");
 
-    document.getElementById("currentPassword").value = "";
-    document.getElementById("newPassword").value = "";
-    document.getElementById("confirmPassword").value = "";
+    clearTimeout(toast._timer);
 
-    showToast("✅ Password updated successfully!");
+    toast._timer =
+        setTimeout(function(){
+
+            toast.classList.remove("show");
+
+        },2500);
 
 }
 
 
 /* ================= CHATBOT ================= */
 
-function addBotMessage(message){
+function openChatPanel(){
+
+    document.getElementById("chatbotPanel")
+        .classList.add("open");
+
+    document.getElementById("chatBubble")
+        .classList.add("hide");
+
+}
+
+
+function closeChatPanel(){
+
+    document.getElementById("chatbotPanel")
+        .classList.remove("open");
+
+    document.getElementById("chatBubble")
+        .classList.remove("hide");
+
+}
+
+
+function quickChat(text){
+
+    document.getElementById("chatInput").value =
+        text;
+
+    sendChat();
+
+}
+
+
+function addMessage(cls,html){
 
     const body =
         document.getElementById("chatBody");
 
-    const div =
+    const msg =
         document.createElement("div");
 
-    div.className = "bot-message";
+    msg.className =
+        cls;
 
-    div.innerHTML = message;
+    msg.innerHTML =
+        html;
 
-    body.appendChild(div);
+    body.appendChild(msg);
 
-    body.scrollTop = body.scrollHeight;
+    body.scrollTop =
+        body.scrollHeight;
+
+    return msg;
+
 }
 
 
-function addUserMessage(message){
+function botReply(text){
 
-    const body =
-        document.getElementById("chatBody");
+    const lower =
+        text.toLowerCase();
 
-    const div =
-        document.createElement("div");
+    if(
+        lower.includes("notification") ||
+        lower.includes("alert")
+    ){
 
-    div.className = "user-message";
-
-    div.textContent = message;
-
-    body.appendChild(div);
-
-    body.scrollTop = body.scrollHeight;
-}
-
-
-function quickChat(topic){
-
-    addUserMessage(topic);
-
-    let reply = "";
-
-    if(topic === "Theme Settings"){
-
-        reply =
-            "🎨 You can change your theme using the <b>Appearance → Theme</b> option. Choose Light, Dark or System.";
-
-    }else if(topic === "Notifications"){
-
-        reply =
-            "🔔 You can control Push Notifications, Email Notifications and Assignment Reminders from the Notifications section.";
-
-    }else if(topic === "Privacy"){
-
-        reply =
-            "🔐 Privacy settings allow you to control profile visibility and enable Two-Factor Authentication.";
-
-    }else if(topic === "Password"){
-
-        reply =
-            "🔑 Click the <b>Change</b> button next to Password to securely update your password.";
+        return "🔔 You can turn push notifications, assignment reminders, exam reminders and campus announcements on or off from the Notification Preferences section.";
 
     }
 
-    setTimeout(()=>{
-        addBotMessage(reply);
-    },400);
+
+    if(
+        lower.includes("theme") ||
+        lower.includes("appearance") ||
+        lower.includes("dark") ||
+        lower.includes("light")
+    ){
+
+        return "🎨 Open Appearance settings and choose Light, Dark or System from the Theme dropdown.";
+
+    }
+
+
+    if(
+        lower.includes("privacy") ||
+        lower.includes("security")
+    ){
+
+        return "🔒 Privacy settings let you control profile visibility and secure your CampusConnect session.";
+
+    }
+
+
+    if(
+        lower.includes("save") ||
+        lower.includes("settings")
+    ){
+
+        return "💾 Change your preferences and press Save Settings. Your preferences are stored locally on this device.";
+
+    }
+
+
+    if(
+        lower.includes("font") ||
+        lower.includes("text size")
+    ){
+
+        return "🔤 You can choose Small, Normal or Large text from the Appearance section.";
+
+    }
+
+
+    if(
+        lower.includes("reminder") ||
+        lower.includes("exam")
+    ){
+
+        return "⏰ You can enable exam reminders and choose how early you want to receive reminders.";
+
+    }
+
+
+    if(
+        lower.includes("hello") ||
+        lower.includes("hi") ||
+        lower.includes("hey")
+    ){
+
+        return "👋 Hi! I can help you with notifications, appearance, privacy and other CampusConnect settings.";
+
+    }
+
+
+    if(lower.includes("thank")){
+
+        return "😊 You're welcome! I'm always here to help.";
+
+    }
+
+
+    return "😊 I can help you with notifications, themes, font size, privacy, reminders and saving your settings.";
+
 }
 
 
-function sendMessage(){
+function sendChat(){
 
     const input =
         document.getElementById("chatInput");
 
-    const message =
+    const text =
         input.value.trim();
 
-    if(!message){
+    if(!text){
         return;
     }
 
-    addUserMessage(message);
+    addMessage(
+        "user-message",
+        escapeHtml(text)
+    );
 
     input.value = "";
 
-    setTimeout(()=>{
+    const typing =
+        addMessage(
+            "typing",
+            "<i></i><i></i><i></i>"
+        );
 
-        const lower =
-            message.toLowerCase();
+    setTimeout(function(){
 
-        let reply =
-            "🤖 I can help you with CampusConnect settings. Try asking about <b>theme, notifications, privacy, password or language</b>.";
+        typing.remove();
 
-        if(lower.includes("theme") ||
-           lower.includes("dark") ||
-           lower.includes("light")){
+        addMessage(
+            "bot-message",
+            botReply(text)
+        );
 
-            reply =
-                "🎨 Go to <b>Appearance → Theme</b> and choose Light, Dark or System.";
+    },600);
 
-        }else if(lower.includes("notification")){
-
-            reply =
-                "🔔 Notification preferences are available in the <b>Notifications</b> section.";
-
-        }else if(lower.includes("privacy")){
-
-            reply =
-                "🔐 You can control <b>Profile Visibility</b> and enable <b>Two-Factor Authentication</b>.";
-
-        }else if(lower.includes("password")){
-
-            reply =
-                "🔑 Click <b>Change</b> beside Password and enter your current and new password.";
-
-        }else if(lower.includes("language")){
-
-            reply =
-                "🌐 You can change the portal language from <b>Language & Region → Portal Language</b>.";
-
-        }
-
-        addBotMessage(reply);
-
-    },450);
 }
 
 
-document
-    .getElementById("chatInput")
-    .addEventListener("keydown",function(event){
+function handleChatKey(event){
 
-        if(event.key === "Enter"){
-            sendMessage();
-        }
+    if(event.key === "Enter"){
+        sendChat();
+    }
 
-    });
+}
+
+
+function escapeHtml(str){
+
+    return str
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
 
 
 /* ================= LOGOUT ================= */
@@ -1934,38 +2991,56 @@ document
 function confirmLogout(){
 
     return confirm(
-        "Are you sure you want to logout from CampusConnect?"
+        "Are you sure you want to logout?"
     );
 
 }
 
 
-/* ================= ESCAPE ================= */
+function logoutFromSettings(){
 
-document.addEventListener("keydown",function(event){
+    if(confirmLogout()){
 
-    if(event.key === "Escape"){
-
-        closePasswordModal();
+        window.location.href =
+            "../index.html";
 
     }
 
-});
+}
 
 
-/* ================= CLOSE MODAL ================= */
+/* ================= ESCAPE KEY ================= */
 
-document
-    .getElementById("passwordModal")
-    .addEventListener("click",function(event){
+document.addEventListener(
+    "keydown",
+    function(event){
 
-        if(event.target === this){
-            closePasswordModal();
+        if(event.key === "Escape"){
+
+            closeModal();
+            closeChatPanel();
+
         }
 
-    });
+    }
+);
+
+
+/* ================= INIT ================= */
+
+applySettings();
+
+setTimeout(function(){
+
+    addMessage(
+        "bot-message",
+        "⚙️ Your settings are ready. Ask me anything about notifications, appearance or privacy."
+    );
+
+},1200);
 
 </script>
 
+<script src="../js/chatbot.js"></script>
 </body>
 </html>

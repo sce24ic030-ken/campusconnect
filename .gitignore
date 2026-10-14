@@ -1,0 +1,30 @@
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# ---- Virtual environments ----
+venv/
+.venv/
+env/
+ENV/
+
+# ---- Environment / secrets ----
+.env
+*.env
+!.env.example
+
+# ---- Uploads ----
+uploads/
+static/uploads/
+
+# ---- Editors / OS ----
+.vscode/
+.idea/
+Thumbs.db
+Desktop.ini
+
+# ---- Local screenshots (not part of the app) ----
+dashboard_screenshot.png
+frontend-home.png
