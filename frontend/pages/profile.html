@@ -2256,39 +2256,93 @@ function saveProfile(){
         return;
     }
 
-    document.getElementById("heroName").textContent =
-        name;
+    const applyLocally = () => {
 
-    document.getElementById("infoName").textContent =
-        name;
+        document.getElementById("heroName").textContent = name;
 
-    document.getElementById("infoEmail").textContent =
-        email || "Not provided";
+        document.getElementById("infoName").textContent = name;
 
-    document.getElementById("infoPhone").textContent =
-        phone || "Not provided";
+        document.getElementById("infoEmail").textContent =
+            email || "Not provided";
 
-    document.getElementById("infoDob").textContent =
-        dob || "Not provided";
+        document.getElementById("infoPhone").textContent =
+            phone || "Not provided";
 
-    document.getElementById("infoGender").textContent =
-        gender;
+        document.getElementById("infoDob").textContent =
+            dob || "Not provided";
 
-    document.getElementById("miniName").textContent =
-        name.split(" ")[0];
+        document.getElementById("infoGender").textContent =
+            gender;
 
-    const firstLetter =
-        name.charAt(0).toUpperCase();
+        document.getElementById("miniName").textContent =
+            name.split(" ")[0];
 
-    document.getElementById("heroAvatar").textContent =
-        firstLetter;
+        const initials =
+            name.trim().split(/\s+/)
+                .map(word => word.charAt(0))
+                .join("").slice(0, 2).toUpperCase();
 
-    document.querySelector(".profile-circle").textContent =
-        firstLetter;
+        document.getElementById("heroAvatar").textContent =
+            initials || "S";
 
-    closeModal();
+        document.querySelector(".profile-circle").textContent =
+            initials.charAt(0) || "S";
 
-    showToast("Profile updated successfully ✅");
+        /* keep the shared topbar and the next page load in sync */
+        try {
+            const stored =
+                JSON.parse(localStorage.getItem("campusconnect_user") || "{}");
+
+            stored.name = name;
+
+            if (phone) { stored.phone = phone; }
+
+            localStorage.setItem("campusconnect_user", JSON.stringify(stored));
+            localStorage.setItem("campusConnectUser", name);
+        } catch (e) {
+            /* storage unavailable - the page still updates */
+        }
+    };
+
+    const token =
+        (window.CC && CC.token && CC.token()) ||
+        localStorage.getItem("token");
+
+    /* name and phone are the only fields the API accepts for self-service */
+    if (!token) {
+
+        applyLocally();
+        closeModal();
+        showToast("Profile updated ✅");
+        return;
+    }
+
+    fetch((window.CC_API_BASE || "") + "/api/students/me", {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + token
+        },
+        body: JSON.stringify(phone ? { name: name, phone: phone } : { name: name })
+    })
+    .then(response =>
+        response.json().then(body => ({ ok: response.ok, body: body }))
+    )
+    .then(result => {
+
+        applyLocally();
+        closeModal();
+
+        showToast(result.ok
+            ? "Profile updated successfully ✅"
+            : "Saved on this page, but the server could not be updated");
+    })
+    .catch(() => {
+
+        applyLocally();
+        closeModal();
+        showToast("Saved on this page, but the server could not be reached");
+    });
 }
 
 
