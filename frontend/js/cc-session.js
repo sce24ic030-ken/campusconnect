@@ -136,11 +136,15 @@
         return false;
     }
 
-    function logout() {
+    function clearSession() {
         SESSION_KEYS.forEach(function (key) {
             try { window.localStorage.removeItem(key); } catch (e) { /* ignore */ }
             try { window.sessionStorage.removeItem(key); } catch (e) { /* ignore */ }
         });
+    }
+
+    function logout() {
+        clearSession();
         location.href = inPages() ? "../index.html" : "index.html";
     }
 
@@ -540,15 +544,29 @@
         api: api,
         requireLogin: requireLogin,
         logout: logout,
+        clearSession: clearSession,
         initials: initials,
         escapeHtml: escapeHtml,
         pageUrl: pageUrl,
         initTopbar: initTopbar
     };
 
+    /* Every page's Logout link is onclick="return confirmLogout()", but those
+       page-local helpers only ask for confirmation - they never clear the
+       session (and admin.html has no helper at all, which threw). Own the
+       function here so one confirmation really signs the user out everywhere. */
+    function wireLogout() {
+        window.confirmLogout = function () {
+            var ok = window.confirm("Are you sure you want to logout?");
+            if (ok) { clearSession(); }
+            return ok;
+        };
+    }
+
     function boot() {
         try { injectStyles(); } catch (e) { /* never break a page over styles */ }
         try { initTopbar(); } catch (e) { /* never break a page over the topbar */ }
+        try { wireLogout(); } catch (e) { /* never break a page over logout */ }
         try {
             if (isAdmin()) { decorateNavForAdmin(); }
         } catch (e) { /* never break a page over the navigation */ }
