@@ -2087,7 +2087,7 @@ textarea{
 
 
             <button class="heading-btn"
-                    onclick="openAddModal()">
+                    id="addCourseBtn" onclick="openAddModal()">
 
                 + Add Course
 
@@ -2831,6 +2831,104 @@ function saveData(){
 
 
 /* ==================================================
+   ROLE GUARD
+   Students get a read-only course list. Only an
+   administrator may add, edit or delete a course.
+================================================== */
+
+function isAdminRole(){
+
+    try {
+
+        if(
+            window.CC &&
+            typeof window.CC.isAdmin === "function"
+        ){
+
+            return window.CC.isAdmin();
+
+        }
+
+    }catch(e){ /* CC is not loaded yet */ }
+
+
+    try {
+
+        const raw =
+            window.localStorage.getItem(
+                "campusconnect_user"
+            );
+
+        if(raw){
+
+            const account =
+                JSON.parse(raw);
+
+            if(account && account.role){
+
+                return String(account.role)
+                    .toLowerCase() === "admin";
+
+            }
+
+        }
+
+
+        const role =
+            window.localStorage.getItem(
+                "campusConnectRole"
+            );
+
+        if(role){
+
+            return String(role)
+                .toLowerCase() === "admin";
+
+        }
+
+    }catch(e){ /* storage unavailable */ }
+
+
+    /* Unknown visitor: safest is read-only. */
+    return false;
+
+}
+
+
+function lockStudentCourseActions(){
+
+    if(isAdminRole()) return;
+
+
+    const addBtn =
+        document.getElementById("addCourseBtn");
+
+    if(addBtn && addBtn.parentNode){
+
+        addBtn.parentNode.removeChild(addBtn);
+
+    }
+
+
+    [].slice.call(
+        document.querySelectorAll(
+            '[onclick^="editCourse("], ' +
+            '[onclick^="deleteCourse("]'
+        )
+    ).forEach(function(btn){
+
+        if(btn.parentNode){
+
+            btn.parentNode.removeChild(btn);
+
+        }
+
+    });
+
+}
+
+
+/* ==================================================
    RENDER COURSES
 ================================================== */
 
@@ -3015,6 +3113,8 @@ function renderCourses(){
 
     updateStats();
 
+    lockStudentCourseActions();
+
 }
 
 
@@ -3068,6 +3168,8 @@ function updateStats(){
 
 function openAddModal(){
 
+    if(!isAdminRole()) return;
+
     editingId = null;
 
     document.getElementById("modalTitle")
@@ -3117,6 +3219,8 @@ function clearForm(){
 ================================================== */
 
 function editCourse(id){
+
+    if(!isAdminRole()) return;
 
     const course =
         courses.find(c => c.id === id);
@@ -3168,6 +3272,8 @@ function editCourse(id){
 ================================================== */
 
 function saveCourse(){
+
+    if(!isAdminRole()) return;
 
     const code =
         document.getElementById("courseCode")
@@ -3295,6 +3401,8 @@ function saveCourse(){
 ================================================== */
 
 function deleteCourse(id){
+
+    if(!isAdminRole()) return;
 
     const course =
         courses.find(

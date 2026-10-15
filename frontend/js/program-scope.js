@@ -323,38 +323,30 @@
     function buildCourses(list, ctx) {
         var prefix = codePrefix();
 
-        /* The page keeps its own list in localStorage. Keep it only when it
-           really belongs to this student's programme (so demo BCA rows or a
-           previous account never leak across). */
-        var stored = null;
-        try { stored = JSON.parse(window.localStorage.getItem("campusConnectCourses") || "null"); }
-        catch (e) { stored = null; }
+        /* Students cannot add or edit courses, so the page list is always
+           rebuilt from the programme catalogue. Anything a previous account
+           cached in localStorage is discarded. */
+        var items = list.map(function (c, i) {
+            return {
+                id: c.id || (i + 1),
+                code: c.code,
+                name: c.name,
+                faculty: c.faculty,
+                credits: c.credits,
+                department: c.department,
+                semester: semesterLabel(c.semester),
+                status: c.semester < ctx.semester ? "Completed" : "Active",
+                icon: iconFor(c.name),
+                description: c.description ||
+                    (c.name + " \u2014 part of the " + ctx.info.full + " programme.")
+            };
+        });
 
-        var storedMatches = Array.isArray(stored) && stored.length &&
-            stored.every(function (c) {
-                return String((c && c.code) || "").toUpperCase().indexOf(prefix) === 0;
-            });
+        try { window.localStorage.removeItem("campusConnectCourses"); }
+        catch (e) { /* storage blocked */ }
 
-        if (!storedMatches) {
-            var items = list.map(function (c, i) {
-                return {
-                    id: c.id || (i + 1),
-                    code: c.code,
-                    name: c.name,
-                    faculty: c.faculty,
-                    credits: c.credits,
-                    department: c.department,
-                    semester: semesterLabel(c.semester),
-                    status: c.semester < ctx.semester ? "Completed" : "Active",
-                    icon: iconFor(c.name),
-                    description: c.description ||
-                        (c.name + " \u2014 part of the " + ctx.info.full + " programme.")
-                };
-            });
-
-            try { if (typeof courses !== "undefined") { courses = items; } }
-            catch (e) { /* binding missing */ }
-        }
+        try { if (typeof courses !== "undefined") { courses = items; } }
+        catch (e) { /* binding missing */ }
 
         /* the "add course" example code, e.g. Example: BCA401 */
         [].slice.call(document.querySelectorAll('input[placeholder^="Example: "]'))
