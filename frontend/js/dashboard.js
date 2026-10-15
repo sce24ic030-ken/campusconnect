@@ -398,7 +398,7 @@ document.addEventListener("DOMContentLoaded", function () {
             text.includes("class")
         ) {
 
-            return "Your next classes are Web Technology at 9:00 AM, Database Management at 10:00 AM, Computer Networks at 12:00 PM and Software Engineering at 2:00 PM.";
+            return "Your classes follow the " + (window.CC ? CC.programInfo().label : "BCA") + " timetable \u2014 open the Timetable page to see today's schedule.";
 
         }
 

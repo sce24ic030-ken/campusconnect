@@ -2045,7 +2045,7 @@ button,input,select{
             <input
                 type="text"
                 id="editName"
-                value="Priya Bhavani"
+                value=""
             >
 
         </div>
@@ -2184,6 +2184,27 @@ setInterval(updateClock,1000);
 /* ================= EDIT PROFILE ================= */
 
 function openEditProfile(){
+    /* prefill from the scoped profile values instead of the demo defaults */
+    try {
+        const u = (window.CC && CC.user()) || {};
+        const nameEl = document.getElementById("infoName");
+        const mailEl = document.getElementById("infoEmail");
+        const phoneEl = document.getElementById("infoPhone");
+
+        if (u.name || nameEl) {
+            document.getElementById("editName").value =
+                u.name || nameEl.textContent.trim();
+        }
+        if (mailEl) {
+            document.getElementById("editEmail").value = mailEl.textContent.trim();
+        }
+        if (phoneEl) {
+            document.getElementById("editPhone").value = phoneEl.textContent.trim();
+        }
+    } catch(e) {
+        /* keep whatever the form already shows */
+    }
+
 
     document.getElementById("profileModal")
         .classList.add("show");
@@ -2278,9 +2299,9 @@ function showNotifications(){
     const html =
         "<strong>CampusConnect Notification</strong><br><br>" +
         "👤 Your profile information is available here.<br><br>" +
-        "🎓 Current program: BCA<br>" +
-        "📚 Current semester: 5th Semester<br>" +
-        "⭐ Current CGPA: 8.4";
+        "🎓 Current program: " + ccLabel() + "<br>" +
+        "📚 Current semester: Semester " + ccSem() + "<br>" +
+        "⭐ Current CGPA: " + ccCgpa();
 
     addMessage("bot-message",html);
 
@@ -2377,6 +2398,13 @@ function addMessage(cls,html){
 }
 
 
+/* programme-aware text for the profile assistant (values come from cc-session.js / program-scope.js) */
+function ccLabel(){ try { return window.CC ? CC.programInfo().label : "BCA"; } catch(e){ return "BCA"; } }
+function ccSem(){ try { return window.CC ? CC.semester() : 5; } catch(e){ return 5; } }
+function ccCgpa(){ try { return (window.PS && window.PS.cgpa) || "8.4"; } catch(e){ return "8.4"; } }
+function ccName(){ try { return (window.CC && CC.user() && CC.user().name) || "Student"; } catch(e){ return "Student"; } }
+
+
 function botReply(text){
 
     const lower =
@@ -2388,7 +2416,7 @@ function botReply(text){
         lower.includes("my information")
     ){
 
-        return "👤 Your profile shows Priya Bhavani, BCA, 5th Semester. Your current CGPA is 8.4 and your student account is active.";
+        return "👤 Your profile shows " + ccName() + ", " + ccLabel() + ", Semester " + ccSem() + ". Your current CGPA is " + ccCgpa() + " and your student account is active.";
 
     }
 
@@ -2399,7 +2427,7 @@ function botReply(text){
         lower.includes("performance")
     ){
 
-        return "⭐ Your current CGPA is 8.4. Your academic progress shown on the profile is 84%.";
+        return "⭐ Your current CGPA is " + ccCgpa() + ". Your academic progress shown on the profile reflects your semester results.";
 
     }
 
@@ -2410,7 +2438,7 @@ function botReply(text){
         lower.includes("program")
     ){
 
-        return "🎓 You are currently studying BCA in the 5th Semester.";
+        return "🎓 You are currently studying " + ccLabel() + " in Semester " + ccSem() + ".";
 
     }
 
@@ -2578,6 +2606,7 @@ setTimeout(function(){
 
 <script src="../js/api-base.js"></script>
 <script src="../js/cc-session.js"></script>
+<script src="../js/program-scope.js"></script>
 <script src="../js/chatbot.js"></script>
 </body>
 </html>
