@@ -1328,8 +1328,7 @@ button,input,select{
                 6:00 PM
             </div>
 
-            <div class="notification"
-                 onclick="showNotifications()">
+            <div class="notification">
                 🔔
             </div>
 
@@ -2343,24 +2342,6 @@ function saveProfile(){
         closeModal();
         showToast("Saved on this page, but the server could not be reached");
     });
-}
-
-
-/* ================= NOTIFICATIONS ================= */
-
-function showNotifications(){
-
-    const html =
-        "<strong>CampusConnect Notification</strong><br><br>" +
-        "👤 Your profile information is available here.<br><br>" +
-        "🎓 Current program: " + ccLabel() + "<br>" +
-        "📚 Current semester: Semester " + ccSem() + "<br>" +
-        "⭐ Current CGPA: " + ccCgpa();
-
-    addMessage("bot-message",html);
-
-    openChatPanel();
-
 }
 
 
