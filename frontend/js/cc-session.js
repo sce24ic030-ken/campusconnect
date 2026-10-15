@@ -14,8 +14,17 @@
      CC.requireLogin()   sends guests to the sign-in page
      CC.logout()         clears the session and returns to sign-in
      CC.initTopbar()     fills the bell + avatar on the shared topbar
+     CC.setTheme(mode)   light | dark | system - applies and remembers it
+     CC.theme()          the remembered mode ("light" when never set)
+     CC.setFontSize(v)   normal | large | small - applies and remembers it
+     CC.applyAppearance() re-applies the saved theme + font size
 
    The topbar is populated automatically on load.
+
+   Appearance (the Theme and Font size controls on the Settings page) is
+   owned here: the dark stylesheet is injected once, <html data-theme>
+   picks it, and the choice is kept in the campusConnectSettings JSON in
+   localStorage, so it follows the student across every page and tab.
 ========================================================= */
 
 (function (window, document) {
@@ -358,6 +367,413 @@
         ".cc-notif-empty{padding:16px;text-align:center;font-size:12px;color:#94a3b8}"
     ].join("");
 
+    var DARK_EXTRA = [
+        '/* ---------- light chips: icon medallions, tags, pills ---------- */\n',
+        '\n',
+        'html[data-theme="dark"] .main-area [class*="-icon"],\n',
+        'html[data-theme="dark"] .main-area [class$="-tag"],\n',
+        'html[data-theme="dark"] .main-area [class$="-chip"],\n',
+        'html[data-theme="dark"] .main-area [class*="-pill"],\n',
+        'html[data-theme="dark"] .event-date,\n',
+        'html[data-theme="dark"] .tip-box,\n',
+        'html[data-theme="dark"] .close-btn,\n',
+        'html[data-theme="dark"] .modal-cancel,\n',
+        'html[data-theme="dark"] #ccContextBar{\n',
+        '    background:rgba(255,255,255,.07)!important;\n',
+        '    border-color:var(--cc-border)!important;\n',
+        '    color:var(--cc-text)!important;\n',
+        '}\n',
+        'html[data-theme="dark"] .main-area [class*="-icon"] strong,\n',
+        'html[data-theme="dark"] .main-area [class*="-icon"] span{\n',
+        '    color:var(--cc-text)!important;\n',
+        '}\n',
+        'html[data-theme="dark"] #ccContextBar .cc-ctx-eyebrow{\n',
+        '    color:#9db8ff!important;\n',
+        '}\n',
+        'html[data-theme="dark"] #ccContextBar .cc-ctx-tagline{\n',
+        '    color:var(--cc-muted)!important;\n',
+        '}\n',
+        'html[data-theme="dark"] .cc-ctx-pill{\n',
+        '    background:rgba(255,255,255,.07)!important;\n',
+        '    border-color:#4a5a8f!important;\n',
+        '    color:#bdccff!important;\n',
+        '}\n',
+        'html[data-theme="dark"] .cc-ctx-pill.active{\n',
+        '    background:var(--cc-accent,#3b6ef6)!important;\n',
+        '    color:#fff!important;\n',
+        '}\n',
+        '\n',
+        '/* ---------- value / meta text on dark surfaces ---------- */\n',
+        '\n',
+        'html[data-theme="dark"] .account-value,\n',
+        'html[data-theme="dark"] .detail-value,\n',
+        'html[data-theme="dark"] [class$="-value"]{\n',
+        '    color:var(--cc-text)!important;\n',
+        '}\n',
+        'html[data-theme="dark"] .cc-sem-meta,\n',
+        'html[data-theme="dark"] [class$="-meta"]{\n',
+        '    color:var(--cc-muted)!important;\n',
+        '}\n',
+        '\n',
+        '/* ---------- purple accents lifted off the dark surface ---------- */\n',
+        '\n',
+        'html[data-theme="dark"] .class-time,\n',
+        'html[data-theme="dark"] .view-link,\n',
+        'html[data-theme="dark"] .feedback-action,\n',
+        'html[data-theme="dark"] .drive-date,\n',
+        'html[data-theme="dark"] [class$="-link"]{\n',
+        '    color:#b3a6ff!important;\n',
+        '}\n',
+        '/* ---------- light list rows ---------- */\n',
+        '\n',
+        'html[data-theme="dark"] .info-item{\n',
+        '    background:var(--cc-surface-2)!important;\n',
+        '    border-color:var(--cc-border)!important;\n',
+        '}\n',
+        'html[data-theme="dark"] .info-label{\n',
+        '    color:var(--cc-muted)!important;\n',
+        '}\n',
+        '/* ---------- remaining light rows ---------- */\n',
+        '\n',
+        'html[data-theme="dark"] .account-row{\n',
+        '    background:var(--cc-surface-2)!important;\n',
+        '    border-color:var(--cc-border)!important;\n',
+        '}\n',
+        'html[data-theme="dark"] .progress{\n',
+        '    background:rgba(255,255,255,.10)!important;\n',
+        '}\n',
+        '\n',
+        '/* ---------- light action chips, tags and flat buttons ---------- */\n',
+        '\n',
+        'html[data-theme="dark"] .document-action,\n',
+        'html[data-theme="dark"] .event-action,\n',
+        'html[data-theme="dark"] .event-tag,\n',
+        'html[data-theme="dark"] .exam-tag,\n',
+        'html[data-theme="dark"] .placement-tag,\n',
+        'html[data-theme="dark"] .reset-btn,\n',
+        'html[data-theme="dark"] .admin-btn.ghost{\n',
+        '    background:rgba(255,255,255,.07)!important;\n',
+        '    border-color:var(--cc-border)!important;\n',
+        '    color:var(--cc-text)!important;\n',
+        '}\n',
+        'html[data-theme="dark"] .document-action:hover,\n',
+        'html[data-theme="dark"] .event-action:hover,\n',
+        'html[data-theme="dark"] .quick-btn:hover,\n',
+        'html[data-theme="dark"] .small-btn:hover,\n',
+        'html[data-theme="dark"] .day-tab:hover,\n',
+        'html[data-theme="dark"] .admin-btn.ghost:hover{\n',
+        '    background:rgba(255,255,255,.13)!important;\n',
+        '}\n',
+        '\n',
+        '/* ---------- red: logout / overdue ---------- */\n',
+        '\n',
+        'html[data-theme="dark"] .danger-btn,\n',
+        'html[data-theme="dark"] .status-overdue{\n',
+        '    background:rgba(255,99,132,.16)!important;\n',
+        '    border-color:rgba(255,99,132,.34)!important;\n',
+        '    color:#ff8fa8!important;\n',
+        '}\n',
+        'html[data-theme="dark"] .danger-btn:hover{\n',
+        '    background:rgba(255,99,132,.26)!important;\n',
+        '}\n',
+        '\n',
+        '/* ---------- amber: rating stars ---------- */\n',
+        '\n',
+        'html[data-theme="dark"] .rating-star{\n',
+        '    background:rgba(255,255,255,.07)!important;\n',
+        '    color:var(--cc-muted)!important;\n',
+        '}\n',
+        'html[data-theme="dark"] .rating-star.selected,\n',
+        'html[data-theme="dark"] .rating-star:hover{\n',
+        '    background:rgba(245,184,61,.20)!important;\n',
+        '    color:#f7c95c!important;\n',
+        '}\n',
+        '\n',
+        '/* ---------- role badges keep their meaning ---------- */\n',
+        '\n',
+        'html[data-theme="dark"] .admin-badge.student{\n',
+        '    background:rgba(96,138,255,.20)!important;\n',
+        '    color:#9db8ff!important;\n',
+        '}\n',
+        'html[data-theme="dark"] .admin-badge.faculty{\n',
+        '    background:rgba(255,183,77,.18)!important;\n',
+        '    color:#ffc266!important;\n',
+        '}\n',
+        'html[data-theme="dark"] .admin-badge.admin{\n',
+        '    background:rgba(255,99,132,.18)!important;\n',
+        '    color:#ff8fa8!important;\n',
+        '}\n',
+        'html[data-theme="dark"] .admin-table tbody tr:hover td{\n',
+        '    background:rgba(255,255,255,.05)!important;\n',
+        '}\n',
+        '/* ---------- chatbot mic ---------- */\n',
+        '\n',
+        'html[data-theme="dark"] .chat-mic{\n',
+        '    background:rgba(255,255,255,.09)!important;\n',
+        '    color:#c3b0ff!important;\n',
+        '}\n',
+        'html[data-theme="dark"] .chat-mic.recording{\n',
+        '    background:#e8484d!important;\n',
+        '    color:#fff!important;\n',
+        '}\n',
+        'html[data-theme="dark"] .chat-mic.working{\n',
+        '    background:rgba(255,255,255,.09)!important;\n',
+        '    color:#c3b0ff!important;\n',
+        '}\n',
+        '/* ---------- accent-soft surfaces ---------- */\n',
+        '\n',
+        'html[data-theme="dark"] .cc-notif-readall{\n',
+        '    background:rgba(255,255,255,.09)!important;\n',
+        '    color:#9db8ff!important;\n',
+        '}\n',
+        'html[data-theme="dark"] .cc-notif-item.unread{\n',
+        '    background:rgba(120,150,255,.10)!important;\n',
+        '}\n',
+        'html[data-theme="dark"] .cc-sem-head{\n',
+        '    border-bottom-color:rgba(255,255,255,.14)!important;\n',
+        '}\n',
+        ""
+    ].join("");
+
+    var DARK_CSS = [
+        '/* =========================================================\n',
+        '   CAMPUSCONNECT DARK THEME  (html[data-theme="dark"])\n',
+        '   The pages were authored with light surfaces and hardcoded\n',
+        '   colours, so the theme is a layer of overrides. The sidebar,\n',
+        '   heroes and brand gradients are already dark/deep and are\n',
+        '   deliberately left alone.\n',
+        '   ========================================================= */\n',
+        '\n',
+        'html[data-theme="dark"]{\n',
+        '    color-scheme:dark;\n',
+        '    --cc-bg:#0b0e1b;\n',
+        '    --cc-surface:#161b30;\n',
+        '    --cc-surface-2:#1e2440;\n',
+        '    --cc-border:#2b3355;\n',
+        '    --cc-text:#e9ecf8;\n',
+        '    --cc-text-soft:#c3cbe4;\n',
+        '    --cc-muted:#a3adc9;\n',
+        '    background:var(--cc-bg);\n',
+        '}\n',
+        '\n',
+        '/* ---------- shell ---------- */\n',
+        'html[data-theme="dark"] body{\n',
+        '    background:var(--cc-bg)!important;\n',
+        '    color:var(--cc-text)!important;\n',
+        '}\n',
+        'html[data-theme="dark"] .main-area{\n',
+        '    background:linear-gradient(180deg,#101427,#0a0d19)!important;\n',
+        '}\n',
+        'html[data-theme="dark"] .top-header{\n',
+        '    background:rgba(17,21,40,.97)!important;\n',
+        '    border-bottom-color:var(--cc-border)!important;\n',
+        '}\n',
+        'html[data-theme="dark"] .page-heading h2,\n',
+        'html[data-theme="dark"] .header-left h1,\n',
+        'html[data-theme="dark"] h1,\n',
+        'html[data-theme="dark"] h2,\n',
+        'html[data-theme="dark"] h3,\n',
+        'html[data-theme="dark"] h4,\n',
+        'html[data-theme="dark"] h5,\n',
+        'html[data-theme="dark"] h6{\n',
+        '    color:var(--cc-text)!important;\n',
+        '}\n',
+        'html[data-theme="dark"] .header-left p,\n',
+        'html[data-theme="dark"] .page-heading p{\n',
+        '    color:var(--cc-muted)!important;\n',
+        '}\n',
+        'html[data-theme="dark"] .time-box{\n',
+        '    color:var(--cc-text-soft)!important;\n',
+        '}\n',
+        'html[data-theme="dark"] .notification{\n',
+        '    background:var(--cc-surface-2)!important;\n',
+        '    color:var(--cc-text)!important;\n',
+        '    box-shadow:0 5px 18px rgba(0,0,0,.45)!important;\n',
+        '}\n',
+        'html[data-theme="dark"] .profile-info strong{\n',
+        '    color:var(--cc-text)!important;\n',
+        '}\n',
+        'html[data-theme="dark"] .profile-info span{\n',
+        '    color:var(--cc-muted)!important;\n',
+        '}\n',
+        '\n',
+        '/* ---------- cards, panels, popovers ---------- */\n',
+        'html[data-theme="dark"] .summary-card,\n',
+        'html[data-theme="dark"] .stat-box,\n',
+        'html[data-theme="dark"] .content-card,\n',
+        'html[data-theme="dark"] .category-card,\n',
+        'html[data-theme="dark"] .setting-row,\n',
+        'html[data-theme="dark"] .setting-card,\n',
+        'html[data-theme="dark"] .form-group,\n',
+        'html[data-theme="dark"] .quick-btn,\n',
+        'html[data-theme="dark"] .modal,\n',
+        'html[data-theme="dark"] .modal-content,\n',
+        'html[data-theme="dark"] .modal-box,\n',
+        'html[data-theme="dark"] .toast,\n',
+        'html[data-theme="dark"] .stat-card,\n',
+        'html[data-theme="dark"] .card,\n',
+        'html[data-theme="dark"] [class*="-card"],\n',
+        'html[data-theme="dark"] [class*="panel"]{\n',
+        '    background:var(--cc-surface)!important;\n',
+        '    border-color:var(--cc-border)!important;\n',
+        '    color:var(--cc-text)!important;\n',
+        '}\n',
+        '/* Elevated / inset surfaces (search fields, chips, time box). */\n',
+        'html[data-theme="dark"] .search-box,\n',
+        'html[data-theme="dark"] .time-box,\n',
+        'html[data-theme="dark"] .stat-box,\n',
+        'html[data-theme="dark"] [class*="-box"]{\n',
+        '    background:var(--cc-surface-2)!important;\n',
+        '    border-color:var(--cc-border)!important;\n',
+        '    color:var(--cc-text)!important;\n',
+        '}\n',
+        '/* Brand gradients must survive the sweeps above. */\n',
+        'html[data-theme="dark"] .logo-box{\n',
+        '    background:linear-gradient(135deg,#24b8ff,#7144f5)!important;\n',
+        '    color:#fff!important;\n',
+        '}\n',
+        'html[data-theme="dark"] .nav-item.active{\n',
+        '    background:linear-gradient(90deg,#22b9f5,#6942f4)!important;\n',
+        '    color:#fff!important;\n',
+        '}\n',
+        'html[data-theme="dark"] .heading-btn,\n',
+        'html[data-theme="dark"] .modal-btn,\n',
+        'html[data-theme="dark"] .save-btn,\n',
+        'html[data-theme="dark"] .add-btn,\n',
+        'html[data-theme="dark"] .primary-btn,\n',
+        'html[data-theme="dark"] .send-btn{\n',
+        '    color:#fff!important;\n',
+        '}\n',
+        'html[data-theme="dark"] .profile-circle{\n',
+        '    color:#fff!important;\n',
+        '}\n',
+        'html[data-theme="dark"] .settings-hero,\n',
+        'html[data-theme="dark"] .hero-content,\n',
+        'html[data-theme="dark"] .hero,\n',
+        'html[data-theme="dark"] .profile-hero{\n',
+        '    color:#fff!important;\n',
+        '}\n',
+        'html[data-theme="dark"] .settings-hero h1,\n',
+        'html[data-theme="dark"] .hero-content h1,\n',
+        'html[data-theme="dark"] .hero h1,\n',
+        'html[data-theme="dark"] .profile-hero h1{\n',
+        '    color:#fff!important;\n',
+        '}\n',
+        '\n',
+        '/* ---------- text ---------- */\n',
+        'html[data-theme="dark"] strong,\n',
+        'html[data-theme="dark"] b{\n',
+        '    color:var(--cc-text)!important;\n',
+        '}\n',
+        'html[data-theme="dark"] p,\n',
+        'html[data-theme="dark"] li,\n',
+        'html[data-theme="dark"] dt,\n',
+        'html[data-theme="dark"] dd,\n',
+        'html[data-theme="dark"] label,\n',
+        'html[data-theme="dark"] small{\n',
+        '    color:var(--cc-text-soft)!important;\n',
+        '}\n',
+        'html[data-theme="dark"] .summary-title,\n',
+        'html[data-theme="dark"] .summary-small,\n',
+        'html[data-theme="dark"] .card-heading p,\n',
+        'html[data-theme="dark"] .setting-info span,\n',
+        'html[data-theme="dark"] .inline-hint,\n',
+        'html[data-theme="dark"] .muted,\n',
+        'html[data-theme="dark"] .subtitle{\n',
+        '    color:var(--cc-muted)!important;\n',
+        '}\n',
+        'html[data-theme="dark"] .summary-number,\n',
+        'html[data-theme="dark"] .stat-number,\n',
+        'html[data-theme="dark"] .stat-value{\n',
+        '    color:#a8c6ff!important;\n',
+        '}\n',
+        '\n',
+        '/* ---------- forms ---------- */\n',
+        'html[data-theme="dark"] input:not([type="checkbox"]):not([type="radio"]),\n',
+        'html[data-theme="dark"] select,\n',
+        'html[data-theme="dark"] textarea{\n',
+        '    background:var(--cc-surface-2)!important;\n',
+        '    border-color:var(--cc-border)!important;\n',
+        '    color:var(--cc-text)!important;\n',
+        '}\n',
+        'html[data-theme="dark"] input::placeholder,\n',
+        'html[data-theme="dark"] textarea::placeholder{\n',
+        '    color:#7f89a9!important;\n',
+        '}\n',
+        'html[data-theme="dark"] option{\n',
+        '    background:var(--cc-surface-2);\n',
+        '    color:var(--cc-text);\n',
+        '}\n',
+        '\n',
+        '/* ---------- tables ---------- */\n',
+        'html[data-theme="dark"] table{\n',
+        '    background:transparent!important;\n',
+        '    color:var(--cc-text)!important;\n',
+        '}\n',
+        'html[data-theme="dark"] th{\n',
+        '    background:var(--cc-surface-2)!important;\n',
+        '    color:var(--cc-text)!important;\n',
+        '    border-color:var(--cc-border)!important;\n',
+        '}\n',
+        'html[data-theme="dark"] td{\n',
+        '    color:var(--cc-text-soft)!important;\n',
+        '    border-color:var(--cc-border)!important;\n',
+        '}\n',
+        'html[data-theme="dark"] tbody tr:hover td{\n',
+        '    background:rgba(255,255,255,.035)!important;\n',
+        '}\n',
+        '\n',
+        '/* ---------- shared notification panel (cc-session) ---------- */\n',
+        'html[data-theme="dark"] .cc-notif-panel{\n',
+        '    background:var(--cc-surface)!important;\n',
+        '    color:var(--cc-text)!important;\n',
+        '    border-color:var(--cc-border)!important;\n',
+        '    box-shadow:0 18px 45px rgba(0,0,0,.55)!important;\n',
+        '}\n',
+        'html[data-theme="dark"] .cc-notif-head,\n',
+        'html[data-theme="dark"] .cc-notif-item{\n',
+        '    border-color:var(--cc-border)!important;\n',
+        '}\n',
+        'html[data-theme="dark"] .cc-notif-head strong,\n',
+        'html[data-theme="dark"] .cc-notif-item strong{\n',
+        '    color:var(--cc-text)!important;\n',
+        '}\n',
+        'html[data-theme="dark"] .cc-notif-item p{\n',
+        '    color:var(--cc-text-soft)!important;\n',
+        '}\n',
+        'html[data-theme="dark"] .cc-notif-item small,\n',
+        'html[data-theme="dark"] .cc-notif-empty{\n',
+        '    color:var(--cc-muted)!important;\n',
+        '}\n',
+        '\n',
+        '/* ---------- chatbot ---------- */\n',
+        'html[data-theme="dark"] .chatbot,\n',
+'html[data-theme="dark"] .chatbot-panel,\n',
+        'html[data-theme="dark"] .chat-header,\n',
+        'html[data-theme="dark"] .chat-body,\n',
+        'html[data-theme="dark"] .chat-footer{\n',
+        '    background:var(--cc-surface)!important;\n',
+        '    border-color:var(--cc-border)!important;\n',
+        '    color:var(--cc-text)!important;\n',
+        '}\n',
+        'html[data-theme="dark"] .bot-message,\n',
+        'html[data-theme="dark"] .chat-bubble.bot,\n',
+        'html[data-theme="dark"] .chat-bubble.bot-message{\n',
+        '    background:var(--cc-surface-2)!important;\n',
+        '    color:var(--cc-text)!important;\n',
+        '}\n',
+        'html[data-theme="dark"] .chat-title,\n',
+        'html[data-theme="dark"] .chat-title strong{\n',
+        '    color:var(--cc-text)!important;\n',
+        '}\n',
+        'html[data-theme="dark"] .chat-input{\n',
+        '    background:var(--cc-surface-2)!important;\n',
+        '    border-color:var(--cc-border)!important;\n',
+        '    color:var(--cc-text)!important;\n',
+        '}\n',
+        ""
+    ].join("") + DARK_EXTRA;
+
     function injectStyles() {
         if (document.getElementById("cc-session-style")) { return; }
         if (!document.head) { return; }
@@ -366,6 +782,119 @@
         style.id = "cc-session-style";
         style.appendChild(document.createTextNode(CSS));
         document.head.appendChild(style);
+    }
+
+    /* ---------- appearance: theme + font size ---------- */
+
+    var PREFS_KEY = "campusConnectSettings";
+    var THEME_QUERY = window.matchMedia
+        ? window.matchMedia("(prefers-color-scheme: dark)")
+        : null;
+
+    function readPrefs() {
+        try {
+            var raw = window.localStorage.getItem(PREFS_KEY);
+            return raw ? (JSON.parse(raw) || {}) : {};
+        } catch (e) {
+            return {};
+        }
+    }
+
+    function savePref(patch) {
+        var prefs = readPrefs();
+        if (patch.theme !== undefined) { prefs.theme = patch.theme; }
+        if (patch.fontSize !== undefined) { prefs.fontSize = patch.fontSize; }
+        try {
+            window.localStorage.setItem(PREFS_KEY, JSON.stringify(prefs));
+        } catch (e) { /* private mode: theme still applies for this page */ }
+        return prefs;
+    }
+
+    /* light | dark | system -> light | dark */
+    function resolveTheme(mode) {
+        if (mode === "system") {
+            return THEME_QUERY && THEME_QUERY.matches ? "dark" : "light";
+        }
+        return mode === "dark" ? "dark" : "light";
+    }
+
+    function themeMode() {
+        return readPrefs().theme || "light";
+    }
+
+    /* Sets data-theme on <html>; the stylesheet keys off it. */
+    function applyThemePreference(mode) {
+        var wanted = mode === undefined ? themeMode() : mode;
+        var resolved = resolveTheme(wanted);
+        var root = document.documentElement;
+        if (root) {
+            root.setAttribute("data-theme", resolved);
+            root.setAttribute("data-theme-mode", wanted);
+        }
+        return resolved;
+    }
+
+    function fontSizePx(value) {
+        if (value === "large") { return "17px"; }
+        if (value === "small") { return "14px"; }
+        return "16px";
+    }
+
+    function applyFontSize(value) {
+        var wanted = value === undefined
+            ? (readPrefs().fontSize || "normal")
+            : value;
+        if (document.documentElement) {
+            document.documentElement.style.fontSize = fontSizePx(wanted);
+        }
+        return wanted;
+    }
+
+    /* Public setters: apply now and remember for every other page. */
+    function setTheme(mode) {
+        applyThemePreference(mode);
+        savePref({ theme: mode });
+    }
+
+    function setFontSize(value) {
+        applyFontSize(value);
+        savePref({ fontSize: value });
+    }
+
+    function injectDarkStyles() {
+        if (document.getElementById("cc-dark-theme")) { return; }
+        if (!document.head) { return; }
+
+        var style = document.createElement("style");
+        style.id = "cc-dark-theme";
+        style.appendChild(document.createTextNode(DARK_CSS));
+        document.head.appendChild(style);
+    }
+
+    /* Follow the OS setting, and changes made in another tab. */
+    function wireAppearance() {
+        if (THEME_QUERY) {
+            var onScheme = function () {
+                if (themeMode() === "system") { applyThemePreference("system"); }
+            };
+            if (THEME_QUERY.addEventListener) {
+                THEME_QUERY.addEventListener("change", onScheme);
+            } else if (THEME_QUERY.addListener) {
+                THEME_QUERY.addListener(onScheme);
+            }
+        }
+
+        window.addEventListener("storage", function (ev) {
+            if (ev.key !== PREFS_KEY) { return; }
+            applyThemePreference();
+            applyFontSize();
+        });
+    }
+
+    function applyAppearance() {
+        injectDarkStyles();
+        applyThemePreference();
+        applyFontSize();
     }
 
     function unreadOf(row) {
@@ -548,7 +1077,11 @@
         initials: initials,
         escapeHtml: escapeHtml,
         pageUrl: pageUrl,
-        initTopbar: initTopbar
+        initTopbar: initTopbar,
+        setTheme: setTheme,
+        setFontSize: setFontSize,
+        applyAppearance: applyAppearance,
+        theme: function () { return themeMode(); }
     };
 
     /* Every page's Logout link is onclick="return confirmLogout()", but those
@@ -565,12 +1098,18 @@
 
     function boot() {
         try { injectStyles(); } catch (e) { /* never break a page over styles */ }
+        try { wireAppearance(); } catch (e) { /* never break a page over appearance */ }
+        try { applyAppearance(); } catch (e) { /* never break a page over appearance */ }
         try { initTopbar(); } catch (e) { /* never break a page over the topbar */ }
         try { wireLogout(); } catch (e) { /* never break a page over logout */ }
         try {
             if (isAdmin()) { decorateNavForAdmin(); }
         } catch (e) { /* never break a page over the navigation */ }
     }
+
+    /* Applied at load, before the browser paints, so dark mode does not flash
+       light. boot() re-runs it in case <head> was not ready here. */
+    try { applyAppearance(); } catch (e) { /* boot() retries */ }
 
     try { injectStyles(); } catch (e) { /* head may not exist yet; boot() retries */ }
 

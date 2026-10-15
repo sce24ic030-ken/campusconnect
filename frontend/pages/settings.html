@@ -2476,7 +2476,37 @@ function applySettings(){
     document.getElementById("reminderTime").value =
         settings.reminderTime;
 
+    applySavedAppearance();
+
     updateSettingsPreview();
+
+}
+
+
+/* Re-apply the saved theme + font size (cc-session already does this on
+   every page; this keeps Settings correct even without that layer). */
+
+function applySavedAppearance(){
+
+    if(window.CC && CC.applyAppearance){
+
+        CC.applyAppearance();
+
+        return;
+
+    }
+
+    document.documentElement.setAttribute(
+        "data-theme",
+        settings.theme === "dark" ? "dark" : "light"
+    );
+
+    document.documentElement.style.fontSize =
+        settings.fontSize === "large"
+        ? "17px"
+        : settings.fontSize === "small"
+        ? "14px"
+        : "16px";
 
 }
 
@@ -2514,6 +2544,18 @@ function collectSettings(){
 
     settings.reminderTime =
         document.getElementById("reminderTime").value;
+
+}
+
+
+/* ================= HELPERS ================= */
+
+function capitalize(value){
+
+    const text =
+        String(value === null || value === undefined ? "" : value);
+
+    return text.charAt(0).toUpperCase() + text.slice(1);
 
 }
 
@@ -2616,6 +2658,27 @@ function updateTheme(){
 
     settings.theme = theme;
 
+    /* Apply at once and persist, so the choice survives a reload and
+       follows the student to every other page. */
+    if(window.CC && CC.setTheme){
+
+        CC.setTheme(theme);
+
+    }
+    else{
+
+        document.documentElement.setAttribute(
+            "data-theme",
+            theme === "dark" ? "dark" : "light"
+        );
+
+        localStorage.setItem(
+            "campusConnectSettings",
+            JSON.stringify(settings)
+        );
+
+    }
+
     document.getElementById("themeValue").textContent =
         capitalize(theme);
 
@@ -2634,14 +2697,29 @@ function updateFontSize(){
     const value =
         document.getElementById("fontSizeSelect").value;
 
-    document.documentElement.style.fontSize =
-        value === "large"
-        ? "17px"
-        : value === "small"
-        ? "14px"
-        : "16px";
-
     settings.fontSize = value;
+
+    /* Same deal as the theme: apply now and remember it. */
+    if(window.CC && CC.setFontSize){
+
+        CC.setFontSize(value);
+
+    }
+    else{
+
+        document.documentElement.style.fontSize =
+            value === "large"
+            ? "17px"
+            : value === "small"
+            ? "14px"
+            : "16px";
+
+        localStorage.setItem(
+            "campusConnectSettings",
+            JSON.stringify(settings)
+        );
+
+    }
 
     showToast("Font size updated");
 
