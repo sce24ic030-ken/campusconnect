@@ -273,8 +273,7 @@
         } catch (e) { /* binding missing - page keeps its own data */ }
     }
 
-    /* rebuild a <select> keeping only its "all" option, then let the
-       page repopulate it (avoids duplicated options on re-render) */
+    /* rebuild a <select> keeping only its "all" option */
     function resetSelect(id) {
         var sel = byId(id);
         if (!sel) { return; }
