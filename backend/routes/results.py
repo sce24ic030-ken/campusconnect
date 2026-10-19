@@ -17,8 +17,10 @@ results_bp = Blueprint(
 )
 
 RESULT_SELECT = (
-    "SELECT id, user_id, course_code, subject, semester, marks, max_marks, "
-    "grade, result_status, created_at FROM results"
+    "SELECT r.id, r.user_id, u.name AS student_name, r.course_code, "
+    "r.subject, r.semester, r.marks, r.max_marks, "
+    "r.grade, r.result_status, r.created_at "
+    "FROM results r LEFT JOIN users u ON r.user_id = u.id"
 )
 
 
@@ -62,15 +64,29 @@ def _grade_points(grade):
 def list_results():
 
     semester = request.args.get("semester")
+    user_id = to_int(request.args.get("user_id"))
 
-    query = RESULT_SELECT + " WHERE user_id = %s"
-    params = [request.user_id]
+    query = RESULT_SELECT
+    params = []
+
+    if request.user_role == "admin":
+
+        # Admins may see every result, or one student's with ?user_id=
+        query += " WHERE 1=1"
+
+        if user_id:
+            query += " AND r.user_id = %s"
+            params.append(user_id)
+
+    else:
+        query += " WHERE r.user_id = %s"
+        params.append(request.user_id)
 
     if semester:
-        query += " AND semester = %s"
+        query += " AND r.semester = %s"
         params.append(semester)
 
-    query += " ORDER BY semester, subject"
+    query += " ORDER BY r.semester, r.subject"
 
     try:
         rows = query_all(query, tuple(params))
@@ -90,7 +106,7 @@ def results_summary():
 
     try:
         rows = query_all(
-            RESULT_SELECT + " WHERE user_id = %s AND result_status = 'Published'",
+            RESULT_SELECT + " WHERE r.user_id = %s AND r.result_status = 'Published'",
             (request.user_id,)
         )
 
@@ -135,7 +151,7 @@ def results_summary():
 def get_result(result_id):
 
     try:
-        row = query_one(RESULT_SELECT + " WHERE id = %s", (result_id,))
+        row = query_one(RESULT_SELECT + " WHERE r.id = %s", (result_id,))
 
         if not row:
             return error("Result not found", 404)
@@ -194,7 +210,7 @@ def create_result():
             return_id=True
         )
 
-        row = query_one(RESULT_SELECT + " WHERE id = %s", (new_id,))
+        row = query_one(RESULT_SELECT + " WHERE r.id = %s", (new_id,))
 
         return success(row, message="Result created", status=201)
 
@@ -236,7 +252,7 @@ def update_result(result_id):
             (*fields.values(), result_id)
         )
 
-        row = query_one(RESULT_SELECT + " WHERE id = %s", (result_id,))
+        row = query_one(RESULT_SELECT + " WHERE r.id = %s", (result_id,))
 
         return success(row, message="Result updated")
 

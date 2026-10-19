@@ -18,9 +18,12 @@ complaints_bp = Blueprint(
 
 STATUSES = ("Pending", "In Progress", "Resolved", "Rejected")
 
+PRIORITIES = ("Low", "Medium", "High")
+
 COMPLAINT_SELECT = (
     "SELECT c.id, c.user_id, u.name AS student_name, c.subject, "
-    "c.description, c.status, c.response, c.created_at "
+    "c.description, c.category, c.location, c.priority, "
+    "c.status, c.response, c.created_at "
     "FROM complaints c LEFT JOIN users u ON c.user_id = u.id"
 )
 
@@ -97,11 +100,19 @@ def create_complaint():
     if not subject or not description:
         return error("subject and description are required", 400)
 
+    category = (data.get("category") or "").strip() or "Other"
+    location = (data.get("location") or "").strip()
+    priority = (data.get("priority") or "").strip() or "Medium"
+
+    if not one_of(priority, PRIORITIES):
+        return error("priority must be Low, Medium or High", 400)
+
     try:
         new_id = execute(
-            "INSERT INTO complaints (user_id, subject, description) "
-            "VALUES (%s, %s, %s)",
-            (request.user_id, subject, description),
+            "INSERT INTO complaints "
+            "(user_id, subject, description, category, location, priority) "
+            "VALUES (%s, %s, %s, %s, %s, %s)",
+            (request.user_id, subject, description, category, location or None, priority),
             return_id=True
         )
 
@@ -137,6 +148,17 @@ def respond_to_complaint(complaint_id):
 
     if "response" in data:
         fields["response"] = data["response"]
+
+    if "category" in data:
+        fields["category"] = (data.get("category") or "").strip() or "Other"
+
+    if "location" in data:
+        fields["location"] = (data.get("location") or "").strip() or None
+
+    if "priority" in data:
+        if not one_of(data["priority"], PRIORITIES):
+            return error("priority must be Low, Medium or High", 400)
+        fields["priority"] = data["priority"]
 
     if not fields:
         return error("No valid fields to update", 400)

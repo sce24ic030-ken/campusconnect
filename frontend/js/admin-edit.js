@@ -29,6 +29,46 @@
     var EVENT_CATEGORIES = ["Technical", "Cultural", "Workshop", "Sports",
                             "Career", "Seminar", "Other"];
 
+    var SEMESTER_LABELS = ["1st Semester", "2nd Semester", "3rd Semester",
+                           "4th Semester", "5th Semester", "6th Semester",
+                           "7th Semester", "8th Semester"];
+
+    var RESULT_STATUSES = ["Published", "Draft"];
+
+    /* Kept in sync with the category list on complaints.html. */
+    var COMPLAINT_CATEGORIES = ["Academic", "Infrastructure", "Technology",
+                                "Facilities", "Administration", "Transport",
+                                "Hostel", "Other"];
+
+    var COMPLAINT_STATUSES = ["Pending", "In Progress", "Resolved", "Rejected"];
+
+    var COMPLAINT_PRIORITIES = ["Low", "Medium", "High"];
+
+    var CAMPUS_CATEGORIES = ["Academic", "Food", "Administration", "Student Life",
+                             "Sports", "Health", "Security", "Events",
+                             "Transport", "Other"];
+
+    /* Demo cards carry their icon inline; API rows have only a category. */
+    var CAMPUS_ICONS = {
+        "Academic": "📚", "Food": "🍴", "Administration": "🏢",
+        "Student Life": "🎭", "Sports": "⚽", "Health": "🏥",
+        "Security": "🛡️", "Events": "🎤", "Transport": "🚌"
+    };
+
+    /* Matches the notification page's category filter + demo card styling. */
+    var NOTIF_CATEGORIES = ["Academic", "Examination", "Campus",
+                            "Placement", "Events", "General"];
+
+    var NOTIF_ICONS = {
+        "Academic": "🎓", "Examination": "📋", "Campus": "📚",
+        "Placement": "💼", "Events": "🎉", "General": "🪪"
+    };
+
+    var NOTIF_COLORS = {
+        "Academic": "blue", "Examination": "purple", "Campus": "blue",
+        "Placement": "green", "Events": "orange", "General": "purple"
+    };
+
     /* =========================================================
        PAGE REGISTRY
        ========================================================= */
@@ -311,6 +351,307 @@
                 }
                 if (typeof window.updateWeeklyStats === "function") { updateWeeklyStats(); }
             }
+        },
+
+        /* -------------------------------------------------- */
+        "results.html": {
+            api: "/api/results",
+            thing: "Result",
+            addLabel: "+ Add Result",
+            array: "RESULTS",
+            render: "renderResults",
+            show: "showResultDetails",
+            card: ".result-card",
+            titleOf: function (r) { return r.subject || "Untitled result"; },
+
+            toItem: function (row) {
+                var marks = row.marks !== null && row.marks !== undefined ? Number(row.marks) : 0;
+                var maxm = row.max_marks !== null && row.max_marks !== undefined ? Number(row.max_marks) : 100;
+                var pct = maxm > 0 ? Math.round((marks / maxm) * 100) : 0;
+                var grade = (row.grade || "").trim();
+
+                function fromPct(p) {
+                    if (p >= 90) return "A+";
+                    if (p >= 80) return "A";
+                    if (p >= 70) return "B+";
+                    if (p >= 60) return "B";
+                    if (p >= 50) return "C";
+                    if (p >= 40) return "D";
+                    return "F";
+                }
+
+                var finalGrade = grade || fromPct(pct);
+                var gp = GRADE_POINTS[finalGrade.toUpperCase()];
+                if (gp === undefined) { gp = 0; }
+
+                return {
+                    id: row.id,
+                    user_id: row.user_id,
+                    student_name: row.student_name,
+                    semester: semesterLabel(row.semester),
+                    subject: row.subject || "",
+                    code: row.course_code || "",
+                    marks: marks,
+                    max: maxm,
+                    grade: finalGrade,
+                    gradePoint: gp,
+                    credits: 4,             /* the table has no credits column */
+                    _status: row.result_status || "Published"
+                };
+            },
+
+            fields: [
+                { name: "user_id", label: "Student", type: "users", required: true, createOnly: true },
+                { name: "semester", label: "Semester", type: "select", options: SEMESTER_LABELS, required: true },
+                { name: "course_code", label: "Course Code", type: "text" },
+                { name: "subject", label: "Subject", type: "text", required: true },
+                { name: "marks", label: "Marks Obtained", type: "number", placeholder: "e.g. 88" },
+                { name: "max_marks", label: "Maximum Marks", type: "number", placeholder: "e.g. 100" },
+                { name: "grade", label: "Grade (optional)", type: "text", placeholder: "auto from marks if blank" },
+                { name: "result_status", label: "Status", type: "select", options: RESULT_STATUSES }
+            ],
+
+            defaults: { semester: "1st Semester", max_marks: "100", result_status: "Published" },
+
+            fromItem: function (i) {
+                return {
+                    user_id: "",
+                    semester: i.semester,
+                    course_code: i.code,
+                    subject: i.subject,
+                    marks: i.marks,
+                    max_marks: i.max,
+                    grade: i.grade,
+                    result_status: i._status || "Published"
+                };
+            },
+
+            toPayload: function (v, item) {
+                var payload = {
+                    semester: semesterNumber(v.semester),
+                    course_code: v.course_code || null,
+                    subject: v.subject,
+                    marks: v.marks === "" ? null : Number(v.marks),
+                    max_marks: v.max_marks === "" ? 100 : Number(v.max_marks),
+                    grade: v.grade || null,
+                    result_status: v.result_status || "Published"
+                };
+                if (item === null && v.user_id) { payload.user_id = Number(v.user_id); }
+                return payload;
+            },
+
+            ownerLabel: function (item) {
+                return item.student_name ? item.student_name : "";
+            },
+
+            afterLoad: function () {
+                if (typeof window.renderOverview === "function") { renderOverview(); }
+                if (typeof window.renderPerformance === "function") { renderPerformance(); }
+            }
+        },
+
+        /* -------------------------------------------------- */
+        "complaints.html": {
+            api: "/api/complaints",
+            apiAdmin: "/api/complaints?all=1",
+            thing: "Complaint",
+            addLabel: "+ Raise Complaint",
+            array: "COMPLAINTS",
+            render: "renderComplaints",
+            show: "showComplaintDetails",
+            card: ".complaint-card",
+            noAdd: true, /* students raise via the page's own form; admin edits/deletes */
+            titleOf: function (c) { return c.title || "Untitled complaint"; },
+
+            toItem: function (row) {
+                return {
+                    id: row.id,
+                    user_id: row.user_id,
+                    student_name: row.student_name,
+                    title: row.subject || "",
+                    description: row.description || "",
+                    category: row.category || "Other",
+                    location: row.location || "",
+                    priority: row.priority || "Medium",
+                    status: row.status || "Pending",
+                    date: prettyDate(row.created_at),
+                    response: row.response || ""
+                };
+            },
+
+            ownerLabel: function (item) {
+                return item.student_name ? "By: " + item.student_name : "";
+            },
+
+            fields: [
+                { name: "category", label: "Category", type: "select", options: COMPLAINT_CATEGORIES },
+                { name: "location", label: "Location", type: "text" },
+                { name: "priority", label: "Priority", type: "select", options: COMPLAINT_PRIORITIES },
+                { name: "status", label: "Status", type: "select", options: COMPLAINT_STATUSES },
+                { name: "response", label: "Admin Response", type: "textarea" }
+            ],
+
+            fromItem: function (c) {
+                return {
+                    category: c.category,
+                    location: c.location,
+                    priority: c.priority,
+                    status: c.status,
+                    response: c.response
+                };
+            },
+
+            toPayload: function (v, item) {
+                var p = {};
+                if (v.category !== undefined) { p.category = v.category; }
+                if (v.location !== undefined) { p.location = v.location; }
+                if (v.priority !== undefined) { p.priority = v.priority; }
+                if (v.status !== undefined) { p.status = v.status; }
+                if (v.response !== undefined) { p.response = v.response; }
+                return p;
+            },
+
+            afterLoad: function () {
+                if (typeof window.renderOverview === "function") { renderOverview(); }
+                if (typeof window.populateCategoryFilter === "function") {
+                    var sel = document.getElementById("categoryFilter");
+                    if (sel) {
+                        var all = sel.options[0];
+                        sel.innerHTML = "";
+                        if (all) { sel.appendChild(all); }
+                        populateCategoryFilter();
+                    }
+                }
+                if (typeof window.renderCategories === "function") { renderCategories(); }
+            }
+        },
+
+        /* -------------------------------------------------- */
+        "campus.html": {
+            api: "/api/campus",
+            thing: "Campus facility",
+            addLabel: "+ Add Facility",
+            array: "CAMPUS",
+            render: "renderCampus",
+            show: "showCampusPlace",
+            card: ".campus-card",
+            titleOf: function (c) { return c.name; },
+
+            toItem: function (row) {
+                var cat = row.category || "Other";
+                var status = String(row.status || "open").toLowerCase();
+                if (status !== "open" && status !== "closed") { status = "open"; }
+
+                return {
+                    id: row.id,
+                    name: row.name || "",
+                    category: cat,
+                    icon: CAMPUS_ICONS[cat] || "📍",
+                    location: row.location || "",
+                    description: row.description || "",
+                    hours: "",              /* the table has no hours column */
+                    status: status,
+                    _contact: row.contact || ""
+                };
+            },
+
+            fields: [
+                { name: "name", label: "Name", type: "text", required: true },
+                { name: "category", label: "Category", type: "select", options: CAMPUS_CATEGORIES },
+                { name: "location", label: "Location", type: "text" },
+                { name: "description", label: "Description", type: "textarea" },
+                { name: "contact", label: "Contact", type: "text" }
+            ],
+
+            fromItem: function (c) {
+                return {
+                    name: c.name,
+                    category: c.category,
+                    location: c.location,
+                    description: c.description,
+                    contact: c._contact
+                };
+            },
+
+            toPayload: function (v, item) { return v; },
+
+            afterLoad: function () {
+                if (typeof window.renderOverview === "function") { renderOverview(); }
+                var sel = document.getElementById("categoryFilter");
+                if (sel && typeof window.populateCategoryFilter === "function") {
+                    var all = sel.options[0];
+                    sel.innerHTML = "";
+                    if (all) { sel.appendChild(all); }
+                    populateCategoryFilter();
+                }
+            }
+        },
+
+        /* -------------------------------------------------- */
+        "notifications.html": {
+            api: "/api/notifications",
+            thing: "Notification",
+            addLabel: "+ Add Notification",
+            array: "NOTIFICATIONS",
+            render: "renderNotifications",
+            show: "showNotification",
+            card: ".notification-card",
+            titleOf: function (n) { return n.title; },
+
+            toItem: function (row) {
+                var cat = row.type || "General";
+                return {
+                    id: row.id,
+                    user_id: row.user_id,
+                    student_name: row.student_name,
+                    title: row.title || "",
+                    text: row.message || "",
+                    category: cat,
+                    icon: NOTIF_ICONS[cat] || "🪪",
+                    color: NOTIF_COLORS[cat] || "purple",
+                    time: agoLabel(row.created_at),
+                    date: prettyDate(row.created_at),
+                    unread: !row.is_read
+                };
+            },
+
+            ownerLabel: function (item) {
+                if (item.user_id) {
+                    return item.student_name ? "To: " + item.student_name : "To: student";
+                }
+                return "";
+            },
+
+            fields: [
+                { name: "user_id", label: "Student", type: "users", required: true, createOnly: true },
+                { name: "title", label: "Title", type: "text", required: true },
+                { name: "message", label: "Message", type: "textarea", required: true },
+                { name: "type", label: "Type", type: "select", options: NOTIF_CATEGORIES }
+            ],
+
+            fromItem: function (n) {
+                return {
+                    user_id: "",
+                    title: n.title,
+                    message: n.text,
+                    type: n.category
+                };
+            },
+
+            toPayload: function (v, item) {
+                var payload = {
+                    title: v.title,
+                    message: v.message,
+                    type: v.type || "General"
+                };
+                if (item === null && v.user_id) { payload.user_id = Number(v.user_id); }
+                return payload;
+            },
+
+            afterLoad: function () {
+                if (typeof window.renderOverview === "function") { renderOverview(); }
+                if (typeof window.renderCategories === "function") { renderCategories(); }
+            }
         }
     };
 
@@ -363,6 +704,37 @@
         var parts = String(isoDate || "").slice(0, 10).split("-");
         if (parts.length !== 3) { return isoDate || ""; }
         return Number(parts[2]) + " " + MONTH_SHORT[Number(parts[1]) - 1] + " " + parts[0];
+    }
+
+    /* Semesters are stored as ints; the pages show "1st Semester"-style
+       labels. Accept both shapes. */
+    function semesterLabel(value) {
+        var n = Number(value);
+        if (!n && n !== 0) { return String(value || ""); }
+        return SEMESTER_LABELS[n - 1] || (n + "th Semester");
+    }
+
+    function semesterNumber(value) {
+        var text = String(value || "");
+        if (/^\d+$/.test(text)) { return Number(text); }
+        var n = parseInt(text, 10);
+        return n ? n : 1;
+    }
+
+    /* Same scale as backend/routes/results.py::_grade_points. */
+    var GRADE_POINTS = { "A+": 10, "A": 9, "B+": 8, "B": 7, "C": 6, "D": 5, "F": 0 };
+
+    /* "2 hours ago" / "3 days ago" for the notification cards. */
+    function agoLabel(value) {
+        if (!value) { return ""; }
+        var then = new Date(String(value).replace(" ", "T"));
+        var seconds = Math.floor((Date.now() - then.getTime()) / 1000);
+        if (isNaN(seconds) || seconds < 0) { return prettyDate(value); }
+        if (seconds < 60) { return "just now"; }
+        if (seconds < 3600) { return Math.floor(seconds / 60) + " minutes ago"; }
+        if (seconds < 86400) { return Math.floor(seconds / 3600) + " hours ago"; }
+        if (seconds < 604800) { return Math.floor(seconds / 86400) + " days ago"; }
+        return prettyDate(value);
     }
 
     function toast(message) {
@@ -434,9 +806,14 @@
             '.ae-add:hover{background:#2f5bd8;}',
 
             '.ae-bar{',
-            '    display:flex;gap:6px;justify-content:flex-end;',
+            '    display:flex;gap:6px;align-items:center;justify-content:flex-end;',
             '    width:100%;margin-top:9px;position:relative;z-index:2;',
             '}',
+            '.ae-owner{',
+            '    margin-right:auto;font-size:11.5px;font-weight:700;letter-spacing:.2px;',
+            '    color:#7b839d;background:#f1f4fd;border-radius:20px;padding:3px 10px;',
+            '}',
+            'html[data-theme="dark"] .ae-owner{background:#1b2340;color:#9aa3c2;}',
             /* Cards are flex rows, blocks or grids depending on the page —
                make room for the action row in every one of those layouts. */
             '.ae-card-host{position:relative;flex-wrap:wrap;}',
@@ -571,7 +948,11 @@
     }
 
     function reload(cfg) {
-        return loadList(cfg.api).then(function (rows) {
+        /* Admins may read a wider list than students (e.g. every complaint),
+           so the list URL is role-dependent. Writes always use cfg.api. */
+        var url = (cfg._admin && cfg.apiAdmin) ? cfg.apiAdmin : cfg.api;
+
+        return loadList(url).then(function (rows) {
             if (!rows || (rows.length === 0 && !cfg._admin)) {
                 /* Nothing to show yet: admins get the honest empty list so
                    their Add button starts from the real state, while students
@@ -621,6 +1002,18 @@
     function addBar(cfg, card, arg) {
         var bar = document.createElement("div");
         bar.className = "ae-bar";
+
+        /* Pages whose records belong to a student show who that is. */
+        if (cfg.ownerLabel) {
+            var item = resolveItem(cfg, arg);
+            var who = item ? cfg.ownerLabel(item) : "";
+            if (who) {
+                var owner = document.createElement("span");
+                owner.className = "ae-owner";
+                owner.textContent = who;
+                bar.appendChild(owner);
+            }
+        }
 
         var edit = document.createElement("button");
         edit.type = "button";
@@ -675,6 +1068,8 @@
     /* ---- header button ---- */
 
     function addHeaderButton(cfg) {
+        if (cfg.noAdd) { return; }
+
         var head = document.querySelector(cfg.heading || ".page-heading");
         if (!head || head.querySelector(".ae-add")) { return; }
 
@@ -699,6 +1094,7 @@
         var attr = 'id="' + id + '" data-ae-field="' + field.name + '"';
         var required = field.required ? ' data-ae-required="1"' : "";
         var star = field.required ? " <b>*</b>" : "";
+        var ph = field.placeholder ? ' placeholder="' + esc(field.placeholder) + '"' : "";
         var input;
 
         switch (field.type) {
@@ -724,11 +1120,11 @@
             case "time":
             case "email":
             case "number":
-                input = "<input type=\"" + field.type + "\" " + attr + required + ">";
+                input = "<input type=\"" + field.type + "\" " + attr + required + ph + ">";
                 break;
 
             default:
-                input = "<input type=\"text\" " + attr + required + ">";
+                input = "<input type=\"text\" " + attr + required + ph + ">";
         }
 
         return '<label for="' + id + '">' + esc(field.label) + star + "</label>" + input;
@@ -904,7 +1300,9 @@
                 return;
             }
             closeForm(cfg);
-            toast(creating ? cfg.thing + " added" : cfg.thing + " updated");
+            /* The server often knows more than we do (e.g. the auto grade). */
+            toast((res.data && res.data.message) ||
+                  (creating ? cfg.thing + " added" : cfg.thing + " updated"));
             reload(cfg);
         }).catch(function () {
             toast("Cannot reach the CampusConnect backend");

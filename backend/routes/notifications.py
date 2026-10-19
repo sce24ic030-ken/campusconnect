@@ -18,8 +18,9 @@ notifications_bp = Blueprint(
 )
 
 NOTIFICATION_SELECT = (
-    "SELECT id, user_id, title, message, type, is_read, created_at "
-    "FROM notifications"
+    "SELECT n.id, n.user_id, u.name AS student_name, n.title, n.message, "
+    "n.type, n.is_read, n.created_at "
+    "FROM notifications n LEFT JOIN users u ON n.user_id = u.id"
 )
 
 
@@ -32,14 +33,28 @@ NOTIFICATION_SELECT = (
 def list_notifications():
 
     unread_only = request.args.get("unread") in ("1", "true", "True")
+    user_id = to_int(request.args.get("user_id"))
 
-    query = NOTIFICATION_SELECT + " WHERE user_id = %s"
-    params = [request.user_id]
+    query = NOTIFICATION_SELECT
+    params = []
+
+    if request.user_role == "admin":
+
+        # Admins see the whole list, or one student's with ?user_id=
+        query += " WHERE 1=1"
+
+        if user_id:
+            query += " AND n.user_id = %s"
+            params.append(user_id)
+
+    else:
+        query += " WHERE n.user_id = %s"
+        params.append(request.user_id)
 
     if unread_only:
-        query += " AND is_read = 0"
+        query += " AND n.is_read = 0"
 
-    query += " ORDER BY created_at DESC, id DESC"
+    query += " ORDER BY n.created_at DESC, n.id DESC"
 
     try:
         rows = query_all(query, tuple(params))
@@ -115,7 +130,7 @@ def mark_read(notification_id):
             (notification_id,)
         )
 
-        row = query_one(NOTIFICATION_SELECT + " WHERE id = %s", (notification_id,))
+        row = query_one(NOTIFICATION_SELECT + " WHERE n.id = %s", (notification_id,))
 
         return success(row, message="Notification marked as read")
 
@@ -151,7 +166,7 @@ def create_single_notification():
             user_id, title, message, data.get("type", "general")
         )
 
-        row = query_one(NOTIFICATION_SELECT + " WHERE id = %s", (new_id,))
+        row = query_one(NOTIFICATION_SELECT + " WHERE n.id = %s", (new_id,))
 
         return success(row, message="Notification created", status=201)
 
@@ -186,6 +201,48 @@ def broadcast_notification():
 
     except mysql.connector.Error as exc:
         return error("Could not broadcast notification", 500, details=str(exc))
+
+
+# =========================================================
+# UPDATE NOTIFICATION (admin)
+# =========================================================
+
+@notifications_bp.route("/<int:notification_id>", methods=["PUT"])
+@admin_required
+def update_notification(notification_id):
+
+    if not query_one("SELECT id FROM notifications WHERE id = %s", (notification_id,)):
+        return error("Notification not found", 404)
+
+    data = get_json()
+
+    fields = {}
+
+    for key in ("title", "message", "type"):
+        if key in data:
+            fields[key] = data[key]
+
+    if not fields:
+        return error("No valid fields to update", 400)
+
+    for key in ("title", "message"):
+        if key in fields and not (fields[key] or "").strip():
+            return error(key + " cannot be empty", 400)
+
+    set_clause = ", ".join(f"{key} = %s" for key in fields)
+
+    try:
+        execute(
+            f"UPDATE notifications SET {set_clause} WHERE id = %s",
+            (*fields.values(), notification_id)
+        )
+
+        row = query_one(NOTIFICATION_SELECT + " WHERE n.id = %s", (notification_id,))
+
+        return success(row, message="Notification updated")
+
+    except mysql.connector.Error as exc:
+        return error("Could not update notification", 500, details=str(exc))
 
 
 # =========================================================
