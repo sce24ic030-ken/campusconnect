@@ -3697,22 +3697,37 @@ document.addEventListener(
             if (typeof updateSummary === "function") { updateSummary(); }
         }
 
-        function loadAssignments() {
+        function loadAssignments(attempt) {
+            attempt = attempt || 0;
+
             var url = isAdmin ? "/api/assignments/all" : "/api/assignments";
 
+            function retry() {
+                /* Render's free instance sleeps between visits, so the very
+                   first call can come back 502. Retry before giving up,
+                   otherwise students would be left staring at demo rows. */
+                if (attempt >= 2) { return; }
+
+                setTimeout(function () {
+                    loadAssignments(attempt + 1);
+                }, 1500 * (attempt + 1));
+            }
+
             return CC.api(url).then(function (res) {
-                if (!res.ok || (res.data && res.data.success === false)) {
-                    /* Backend unreachable or empty: leave the built-in demo
-                       list on screen rather than showing a broken page. */
-                    if (res.status === 404) { replaceRows([]); renderAssignments(); }
+                if (res.ok && !(res.data && res.data.success === false)) {
+                    replaceRows(listOf(res).map(toItem));
+                    renderAssignments();
                     return;
                 }
 
-                replaceRows(listOf(res).map(toItem));
-                renderAssignments();
-            }).catch(function () {
-                /* Keep demo content when the API cannot be reached. */
-            });
+                if (res.status === 404 || res.status >= 500 || res.status === 0) {
+                    retry();
+                    return;
+                }
+
+                /* 401/403 and friends will not improve on a retry: fall back
+                   to the built-in demo list rather than a broken page. */
+            }).catch(retry);
         }
 
         /* ------------------------------------------------------
