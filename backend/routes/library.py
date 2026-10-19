@@ -10,7 +10,7 @@ import mysql.connector
 
 from database.db import query_all, query_one, execute
 from utils.helpers import success, error, get_json
-from utils.security import token_required
+from utils.security import token_required, admin_required
 
 library_bp = Blueprint(
     "library",

@@ -9,7 +9,7 @@ import mysql.connector
 
 from database.db import query_all, query_one, execute
 from utils.helpers import success, error, get_json
-from utils.security import token_required
+from utils.security import token_required, admin_required
 from utils.validators import parse_date, to_int, one_of
 
 assignments_bp = Blueprint(
@@ -22,6 +22,7 @@ STATUSES = ("Pending", "Submitted", "Graded")
 
 ASSIGNMENT_SELECT = (
     "SELECT a.id, a.user_id, a.course_id, c.course_name, c.course_code, "
+    "c.faculty_name, "
     "a.title, a.description, a.due_date, a.status, a.submission_file, "
     "a.submitted_at, a.created_at "
     "FROM assignments a LEFT JOIN courses c ON a.course_id = c.id"
@@ -40,6 +41,48 @@ def list_assignments():
 
     query = ASSIGNMENT_SELECT + " WHERE a.user_id = %s"
     params = [request.user_id]
+
+    if status:
+        query += " AND a.status = %s"
+        params.append(status)
+
+    query += " ORDER BY a.due_date IS NULL, a.due_date ASC, a.id DESC"
+
+    try:
+        rows = query_all(query, tuple(params))
+        return success(rows)
+
+    except mysql.connector.Error as exc:
+        return error("Could not load assignments", 500, details=str(exc))
+
+
+# =========================================================
+# LIST EVERY ASSIGNMENT (admin)
+# =========================================================
+
+@assignments_bp.route("/all", methods=["GET"])
+@admin_required
+def list_all_assignments():
+
+    user_id = to_int(request.args.get("user_id"))
+    status = request.args.get("status")
+
+    query = (
+        "SELECT a.id, a.user_id, a.course_id, c.course_name, c.course_code, "
+        "c.faculty_name, "
+        "a.title, a.description, a.due_date, a.status, a.submission_file, "
+        "a.submitted_at, a.created_at, "
+        "u.name AS student_name, u.email AS student_email "
+        "FROM assignments a "
+        "LEFT JOIN courses c ON a.course_id = c.id "
+        "LEFT JOIN users u ON a.user_id = u.id "
+        "WHERE 1=1"
+    )
+    params = []
+
+    if user_id:
+        query += " AND a.user_id = %s"
+        params.append(user_id)
 
     if status:
         query += " AND a.status = %s"

@@ -3616,5 +3616,375 @@ document.addEventListener(
 <script src="../js/cc-session.js"></script>
 <script src="../js/program-scope.js"></script>
 <script src="../js/chatbot.js"></script>
+
+<script>
+/* =========================================================
+   ASSIGNMENTS — API wiring + admin management
+
+   Students: read-only list, may submit their own work.
+   Admin:    sees every student's assignments and gets
+             Add / Edit / Delete against the real database.
+
+   The page's original script owns rendering; this block only
+   feeds it real rows and injects the admin controls, so the
+   student experience stays exactly as it was.
+   ========================================================= */
+(function () {
+    "use strict";
+
+    var MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+    function whenReady(fn) {
+        if (document.readyState !== "loading") { fn(); }
+        else { window.addEventListener("load", fn); }
+    }
+
+    function say(message) {
+        if (typeof showToast === "function") { showToast(message); }
+    }
+
+    /* Page shows "25 Sept 2026"; the API returns "2026-09-25". */
+    function prettyDate(value) {
+        var raw = String(value || "").slice(0, 10).split("-");
+        if (raw.length !== 3) { return value || "--"; }
+        var month = MONTHS[Number(raw[1]) - 1] || raw[1];
+        return Number(raw[2]) + " " + month + " " + raw[0];
+    }
+
+    /* Most routes answer {"success":true,"data":[...]}; /api/courses
+       answers a bare array. Accept both. */
+    function listOf(res) {
+        var body = res && res.data;
+        if (Array.isArray(body)) { return body; }
+        if (body && Array.isArray(body.data)) { return body.data; }
+        return [];
+    }
+
+    function escapeHtml(value) {
+        if (window.CC && CC.escapeHtml) { return CC.escapeHtml(value); }
+        return String(value === null || value === undefined ? "" : value)
+            .replace(/&/g, "&amp;").replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+    }
+
+    whenReady(function () {
+        var isAdmin = !!(window.CC && CC.isAdmin && CC.isAdmin());
+
+        /* ------------------------------------------------------
+           Row mapping: API -> the shape the page renders with
+        ------------------------------------------------------ */
+        function toItem(row) {
+            return {
+                id: row.id,
+                subject: row.course_name || row.course_code || "General",
+                title: row.title || "Untitled assignment",
+                faculty: row.student_name || row.faculty_name || "CampusConnect",
+                student: row.student_name || "",
+                due: prettyDate(row.due_date),
+                status: row.status || "Pending",
+                icon: "📝",
+                _user_id: row.user_id,
+                _course_id: row.course_id,
+                _description: row.description || "",
+                _due_date: String(row.due_date || "").slice(0, 10)
+            };
+        }
+
+        function replaceRows(items) {
+            assignments.length = 0;          /* the const array is mutated, never reassigned */
+            items.forEach(function (item) { assignments.push(item); });
+            if (typeof updateSummary === "function") { updateSummary(); }
+        }
+
+        function loadAssignments() {
+            var url = isAdmin ? "/api/assignments/all" : "/api/assignments";
+
+            return CC.api(url).then(function (res) {
+                if (!res.ok || (res.data && res.data.success === false)) {
+                    /* Backend unreachable or empty: leave the built-in demo
+                       list on screen rather than showing a broken page. */
+                    if (res.status === 404) { replaceRows([]); renderAssignments(); }
+                    return;
+                }
+
+                replaceRows(listOf(res).map(toItem));
+                renderAssignments();
+            }).catch(function () {
+                /* Keep demo content when the API cannot be reached. */
+            });
+        }
+
+        /* ------------------------------------------------------
+           Submit (both roles)
+        ------------------------------------------------------ */
+        var originalSubmit = window.submitAssignment;
+
+        window.submitAssignment = function (id) {
+            var item = assignments.find(function (a) { return a.id === id; });
+
+            if (item && item.status === "Submitted") {
+                say("Already submitted.");
+                return;
+            }
+
+            CC.api("/api/assignments/" + encodeURIComponent(id) + "/submit", {
+                method: "POST",
+                body: {}
+            }).then(function (res) {
+                if (res.ok && res.data && res.data.success) {
+                    if (item) { item.status = "Submitted"; }
+                    updateSummary();
+                    renderAssignments();
+                    say("Assignment submitted successfully!");
+                } else {
+                    say((res.data && (res.data.message || res.data.error)) ||
+                        "Could not submit assignment");
+                }
+            }).catch(function () {
+                say("Cannot reach the CampusConnect backend");
+            });
+        };
+
+        if (!isAdmin) { loadAssignments(); return; }
+
+        /* ==================================================
+           ADMIN CONTROLS
+        ================================================== */
+        var state = { courses: [], users: [], editingId: null, pendingCourse: "", pendingUser: "" };
+        var originalRender = window.renderAssignments;
+
+        /* Re-render first, then stamp the admin buttons onto
+           each row. Wrapping (not replacing) keeps the page's
+           own filtering/summary logic intact. */
+        window.renderAssignments = function () {
+            originalRender.apply(this, arguments);
+            injectRowControls();
+        };
+
+        function injectRowControls() {
+            var rows = document.querySelectorAll("#assignmentList .assignment-item");
+
+            Array.prototype.forEach.call(rows, function (row) {
+                var bar = row.querySelector(".item-actions");
+                if (!bar || bar.querySelector(".assign-admin-btn")) { return; }
+
+                var view = bar.querySelector("button[onclick^='openDetails']");
+                var id = view ? String(view.getAttribute("onclick")).replace(/\D/g, "") : "";
+                if (!id) { return; }
+
+                bar.appendChild(makeBtn("Edit", "assign-admin-btn", "#3b6ef6", id, "edit"));
+                bar.appendChild(makeBtn("Delete", "assign-admin-btn", "#d1435b", id, "del"));
+            });
+        }
+
+        function makeBtn(label, className, colour, id, kind) {
+            var button = document.createElement("button");
+            button.className = "small-btn " + className;
+            button.type = "button";
+            button.textContent = label;
+            button.style.background = colour;
+            button.style.color = "#fff";
+            button.style.border = "none";
+            button.setAttribute("data-assign-id", id);
+            button.setAttribute("data-assign-kind", kind);
+            return button;
+        }
+
+        document.addEventListener("click", function (event) {
+            var target = event.target;
+            if (!target || !target.getAttribute) { return; }
+
+            var kind = target.getAttribute("data-assign-kind");
+            if (!kind) { return; }
+
+            var id = Number(target.getAttribute("data-assign-id"));
+            if (kind === "edit") { openForm(id); }
+            if (kind === "del") { removeOne(id); }
+        });
+
+        /* ------------------------------------------------------
+           Header button
+        ------------------------------------------------------ */
+        var head = document.getElementById("assignmentsHeaderActions");
+        if (head) {
+            var addBtn = document.createElement("button");
+            addBtn.className = "action-btn add-btn";
+            addBtn.type = "button";
+            addBtn.textContent = "+ Add Assignment";
+            addBtn.addEventListener("click", function () { openForm(null); });
+            head.appendChild(addBtn);
+        }
+
+        /* ------------------------------------------------------
+           Editor modal
+        ------------------------------------------------------ */
+        var modal = document.createElement("div");
+        modal.id = "assignAdminModal";
+        modal.style.cssText =
+            "display:none;position:fixed;inset:0;background:rgba(10,14,32,.55);" +
+            "z-index:1200;align-items:center;justify-content:center;";
+        modal.innerHTML =
+            '<div style="background:#fff;border-radius:16px;width:min(560px,92vw);' +
+            'max-height:88vh;overflow:auto;padding:22px;font-family:inherit;color:#17203a">' +
+            '  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">' +
+            '    <h3 id="aaTitle" style="margin:0;font-size:18px">Add Assignment</h3>' +
+            '    <button id="aaClose" style="border:none;background:none;font-size:22px;cursor:pointer">&times;</button>' +
+            '  </div>' +
+            '  <label style="display:block;font-size:12px;font-weight:600;margin:10px 0 4px">STUDENT</label>' +
+            '  <select id="aaUser" style="width:100%;padding:10px;border:1px solid #dfe3f2;border-radius:8px"></select>' +
+            '  <label style="display:block;font-size:12px;font-weight:600;margin:10px 0 4px">COURSE / SUBJECT</label>' +
+            '  <select id="aaCourse" style="width:100%;padding:10px;border:1px solid #dfe3f2;border-radius:8px"></select>' +
+            '  <label style="display:block;font-size:12px;font-weight:600;margin:10px 0 4px">TITLE</label>' +
+            '  <input id="aaTitleField" type="text" style="width:100%;padding:10px;border:1px solid #dfe3f2;border-radius:8px">' +
+            '  <label style="display:block;font-size:12px;font-weight:600;margin:10px 0 4px">DESCRIPTION</label>' +
+            '  <textarea id="aaDesc" rows="3" style="width:100%;padding:10px;border:1px solid #dfe3f2;border-radius:8px"></textarea>' +
+            '  <div style="display:flex;gap:12px">' +
+            '    <div style="flex:1">' +
+            '      <label style="display:block;font-size:12px;font-weight:600;margin:10px 0 4px">DUE DATE</label>' +
+            '      <input id="aaDue" type="date" style="width:100%;padding:10px;border:1px solid #dfe3f2;border-radius:8px">' +
+            '    </div>' +
+            '    <div style="flex:1">' +
+            '      <label style="display:block;font-size:12px;font-weight:600;margin:10px 0 4px">STATUS</label>' +
+            '      <select id="aaStatus" style="width:100%;padding:10px;border:1px solid #dfe3f2;border-radius:8px">' +
+            '        <option>Pending</option><option>Submitted</option><option>Graded</option>' +
+            '      </select>' +
+            '    </div>' +
+            '  </div>' +
+            '  <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:18px">' +
+            '    <button id="aaCancel" style="padding:10px 16px;border:1px solid #dfe3f2;background:#fff;border-radius:8px;cursor:pointer">Cancel</button>' +
+            '    <button id="aaSave" style="padding:10px 18px;border:none;background:#3b6ef6;color:#fff;border-radius:8px;cursor:pointer;font-weight:600">Save</button>' +
+            '  </div>' +
+            '</div>';
+        document.body.appendChild(modal);
+
+        function closeForm() { modal.style.display = "none"; }
+
+        modal.addEventListener("click", function (e) { if (e.target === modal) { closeForm(); } });
+        document.getElementById("aaClose").addEventListener("click", closeForm);
+        document.getElementById("aaCancel").addEventListener("click", closeForm);
+        document.getElementById("aaSave").addEventListener("click", saveForm);
+
+        function fillSelects() {
+            var userSel = document.getElementById("aaUser");
+            var courseSel = document.getElementById("aaCourse");
+
+            userSel.innerHTML = state.users.map(function (u) {
+                return '<option value="' + u.id + '">' + escapeHtml(u.name) +
+                       " (" + escapeHtml(u.email) + ")</option>";
+            }).join("") || '<option value="">(no students yet)</option>';
+
+            courseSel.innerHTML = '<option value="">General (no course)</option>' +
+                state.courses.map(function (c) {
+                    return '<option value="' + c.id + '">' +
+                        escapeHtml(c.course_code || "") + " — " +
+                        escapeHtml(c.course_name || "") + "</option>";
+                }).join("");
+
+            /* Re-select what was chosen before the lists finished loading. */
+            if (state.pendingUser && userSel.querySelector('option[value="' + state.pendingUser + '"]')) {
+                userSel.value = state.pendingUser;
+            }
+            if (state.pendingCourse !== "" &&
+                courseSel.querySelector('option[value="' + state.pendingCourse + '"]')) {
+                courseSel.value = state.pendingCourse;
+            }
+        }
+
+        function openForm(id) {
+            state.editingId = id || null;
+
+            var item = id ? assignments.find(function (a) { return a.id === id; }) : null;
+            state.pendingCourse = item ? item._course_id : "";
+
+            if (!state.users.length) {
+                CC.api("/api/admin/users").then(function (res) {
+                    state.users = listOf(res).filter(function (u) { return u.role === "student"; });
+                    fillSelects();
+                    loadCourses();
+                });
+            } else {
+                fillSelects();
+                loadCourses();
+            }
+
+            document.getElementById("aaTitle").textContent = item ? "Edit Assignment" : "Add Assignment";
+            document.getElementById("aaTitleField").value = item ? item.title : "";
+            document.getElementById("aaDesc").value = item ? item._description : "";
+            document.getElementById("aaDue").value = item ? item._due_date : "";
+            document.getElementById("aaStatus").value = item ? item.status : "Pending";
+
+            modal.style.display = "flex";
+        }
+
+        function loadCourses() {
+            if (state.courses.length) { return; }
+            CC.api("/api/courses").then(function (res) {
+                state.courses = listOf(res);
+                fillSelects();
+            });
+        }
+
+        function saveForm() {
+            var title = document.getElementById("aaTitleField").value.trim();
+            if (!title) { say("A title is required"); return; }
+
+            var payload = {
+                title: title,
+                description: document.getElementById("aaDesc").value.trim(),
+                course_id: Number(document.getElementById("aaCourse").value) || null,
+                due_date: document.getElementById("aaDue").value || null,
+                status: document.getElementById("aaStatus").value
+            };
+
+            var url, method;
+
+            if (state.editingId) {
+                url = "/api/assignments/" + encodeURIComponent(state.editingId);
+                method = "PUT";
+            } else {
+                url = "/api/assignments";
+                method = "POST";
+                payload.user_id = Number(document.getElementById("aaUser").value) || null;
+                if (!payload.user_id) { say("Choose a student"); return; }
+            }
+
+            CC.api(url, { method: method, body: payload }).then(function (res) {
+                if (!res.ok || !res.data || !res.data.success) {
+                    say((res.data && (res.data.message || res.data.error)) || "Could not save");
+                    return;
+                }
+                closeForm();
+                say(state.editingId ? "Assignment updated" : "Assignment created");
+                state.editingId = null;
+                loadAssignments();
+            }).catch(function () {
+                say("Cannot reach the CampusConnect backend");
+            });
+        }
+
+        function removeOne(id) {
+            var item = assignments.find(function (a) { return a.id === id; });
+            var label = item ? item.title : "this assignment";
+
+            if (!window.confirm('Delete "' + label + '"?\nThis cannot be undone.')) { return; }
+
+            CC.api("/api/assignments/" + encodeURIComponent(id), { method: "DELETE" })
+                .then(function (res) {
+                    if (!res.ok || !res.data || !res.data.success) {
+                        say((res.data && (res.data.message || res.data.error)) || "Could not delete");
+                        return;
+                    }
+                    say("Deleted " + label);
+                    loadAssignments();
+                }).catch(function () {
+                    say("Cannot reach the CampusConnect backend");
+                });
+        }
+
+        loadAssignments();
+    });
+})();
+</script>
 </body>
 </html>
