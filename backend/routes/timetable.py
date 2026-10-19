@@ -34,9 +34,21 @@ TIMETABLE_SELECT = (
 def list_timetable():
 
     day = request.args.get("day")
+    user_id = to_int(request.args.get("user_id"))
 
-    query = TIMETABLE_SELECT + " WHERE t.user_id = %s"
-    params = [request.user_id]
+    if request.user_role == "admin":
+
+        # Admins may see the whole timetable, or one student's with ?user_id=
+        query = TIMETABLE_SELECT + " WHERE 1=1"
+        params = []
+
+        if user_id:
+            query += " AND t.user_id = %s"
+            params.append(user_id)
+
+    else:
+        query = TIMETABLE_SELECT + " WHERE t.user_id = %s"
+        params = [request.user_id]
 
     if day:
         query += " AND t.day = %s"
