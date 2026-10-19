@@ -83,7 +83,7 @@ def get_entry(entry_id):
 # =========================================================
 
 @timetable_bp.route("", methods=["POST"])
-@token_required
+@admin_required
 def create_entry():
 
     data = get_json()
@@ -133,7 +133,7 @@ def create_entry():
 # =========================================================
 
 @timetable_bp.route("/<int:entry_id>", methods=["PUT"])
-@token_required
+@admin_required
 def update_entry(entry_id):
 
     existing = query_one(
@@ -200,7 +200,7 @@ def update_entry(entry_id):
 # =========================================================
 
 @timetable_bp.route("/<int:entry_id>", methods=["DELETE"])
-@token_required
+@admin_required
 def delete_entry(entry_id):
 
     existing = query_one(

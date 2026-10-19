@@ -78,7 +78,7 @@ def get_exam(exam_id):
 # =========================================================
 
 @exams_bp.route("", methods=["POST"])
-@token_required
+@admin_required
 def create_exam():
 
     data = get_json()
@@ -132,7 +132,7 @@ def create_exam():
 # =========================================================
 
 @exams_bp.route("/<int:exam_id>", methods=["PUT"])
-@token_required
+@admin_required
 def update_exam(exam_id):
 
     existing = query_one("SELECT user_id FROM exams WHERE id = %s", (exam_id,))
@@ -191,7 +191,7 @@ def update_exam(exam_id):
 # =========================================================
 
 @exams_bp.route("/<int:exam_id>", methods=["DELETE"])
-@token_required
+@admin_required
 def delete_exam(exam_id):
 
     existing = query_one("SELECT user_id FROM exams WHERE id = %s", (exam_id,))

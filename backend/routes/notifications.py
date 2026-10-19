@@ -193,7 +193,7 @@ def broadcast_notification():
 # =========================================================
 
 @notifications_bp.route("/<int:notification_id>", methods=["DELETE"])
-@token_required
+@admin_required
 def delete_notification(notification_id):
 
     existing = query_one(

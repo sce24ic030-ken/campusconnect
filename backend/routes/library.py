@@ -149,7 +149,7 @@ def add_document():
 # =========================================================
 
 @library_bp.route("/documents/<int:document_id>", methods=["DELETE"])
-@token_required
+@admin_required
 def delete_document(document_id):
 
     existing = query_one(

@@ -83,7 +83,7 @@ def get_assignment(assignment_id):
 # =========================================================
 
 @assignments_bp.route("", methods=["POST"])
-@token_required
+@admin_required
 def create_assignment():
 
     data = get_json()
@@ -132,7 +132,7 @@ def create_assignment():
 # =========================================================
 
 @assignments_bp.route("/<int:assignment_id>", methods=["PUT"])
-@token_required
+@admin_required
 def update_assignment(assignment_id):
 
     existing = query_one(
@@ -230,7 +230,7 @@ def submit_assignment(assignment_id):
 # =========================================================
 
 @assignments_bp.route("/<int:assignment_id>", methods=["DELETE"])
-@token_required
+@admin_required
 def delete_assignment(assignment_id):
 
     existing = query_one(

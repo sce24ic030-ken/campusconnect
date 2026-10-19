@@ -144,7 +144,7 @@ def create_item():
 # =========================================================
 
 @lost_found_bp.route("/<int:item_id>", methods=["PUT"])
-@token_required
+@admin_required
 def update_item(item_id):
 
     existing = query_one(
@@ -205,7 +205,7 @@ def update_item(item_id):
 # =========================================================
 
 @lost_found_bp.route("/<int:item_id>", methods=["DELETE"])
-@token_required
+@admin_required
 def delete_item(item_id):
 
     existing = query_one(

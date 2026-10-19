@@ -135,7 +135,7 @@ def get_attendance(record_id):
 # =========================================================
 
 @attendance_bp.route("", methods=["POST"])
-@token_required
+@admin_required
 def create_attendance():
 
     data = get_json()
@@ -178,7 +178,7 @@ def create_attendance():
 # =========================================================
 
 @attendance_bp.route("/<int:record_id>", methods=["PUT"])
-@token_required
+@admin_required
 def update_attendance(record_id):
 
     existing = query_one(
@@ -233,7 +233,7 @@ def update_attendance(record_id):
 # =========================================================
 
 @attendance_bp.route("/<int:record_id>", methods=["DELETE"])
-@token_required
+@admin_required
 def delete_attendance(record_id):
 
     existing = query_one(
