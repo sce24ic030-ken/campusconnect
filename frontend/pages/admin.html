@@ -2132,11 +2132,21 @@ input {
                     <p>Live figures from the CampusConnect database</p>
                 </div>
 
-                <button class="admin-btn ghost"
-                        type="button"
-                        id="statsRefresh">
-                    &#8635; Refresh
-                </button>
+                <div class="admin-toolbar">
+
+                    <button class="admin-btn"
+                            type="button"
+                            id="addFacultyBtn">
+                        &#43; Add Faculty
+                    </button>
+
+                    <button class="admin-btn ghost"
+                            type="button"
+                            id="statsRefresh">
+                        &#8635; Refresh
+                    </button>
+
+                </div>
 
             </div>
 
@@ -2329,6 +2339,93 @@ input {
                             type="button"
                             id="userModalSave">
                         Save changes
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     ADD FACULTY MODAL
+====================================================== -->
+
+<div class="admin-modal" id="facultyModal" hidden>
+
+    <div class="admin-modal-box"
+         role="dialog"
+         aria-modal="true"
+         aria-labelledby="facultyModalTitle">
+
+        <div class="admin-modal-top">
+
+            <div>
+                <h3 id="facultyModalTitle">Add faculty member</h3>
+                <small id="facultyModalSub">Appears on the Faculty page straight away</small>
+            </div>
+
+            <button class="admin-modal-close"
+                    type="button"
+                    id="facultyModalClose"
+                    aria-label="Close">
+                &#10005;
+            </button>
+
+        </div>
+
+
+        <div class="admin-form">
+
+            <div class="full">
+                <label for="faName">Full name</label>
+                <input id="faName" type="text" autocomplete="off">
+            </div>
+
+            <div>
+                <label for="faDepartment">Department</label>
+                <input id="faDepartment" type="text" autocomplete="off">
+            </div>
+
+            <div>
+                <label for="faDesignation">Designation</label>
+                <input id="faDesignation" type="text" autocomplete="off">
+            </div>
+
+            <div>
+                <label for="faEmail">Email</label>
+                <input id="faEmail" type="email" autocomplete="off">
+            </div>
+
+            <div>
+                <label for="faPhone">Phone</label>
+                <input id="faPhone" type="text" autocomplete="off">
+            </div>
+
+            <div class="full">
+                <label for="faSubject">Subject</label>
+                <input id="faSubject" type="text" autocomplete="off">
+            </div>
+
+            <div class="admin-form-foot">
+
+                <span class="admin-hint" id="facultyModalHint"></span>
+
+                <div class="admin-actions">
+                    <button class="admin-btn ghost"
+                            type="button"
+                            id="facultyModalCancel">
+                        Cancel
+                    </button>
+
+                    <button class="admin-btn"
+                            type="button"
+                            id="facultyModalSave">
+                        Add faculty
                     </button>
                 </div>
 
@@ -2655,6 +2752,72 @@ input {
 
     /* ---------- delete ---------- */
 
+    /* ---------- add faculty ---------- */
+
+    function openFaculty() {
+        ["faName", "faDepartment", "faDesignation",
+         "faEmail", "faPhone", "faSubject"].forEach(function (id) {
+            $(id).value = "";
+        });
+
+        $("facultyModalHint").textContent = "";
+        $("facultyModal").hidden = false;
+        $("faName").focus();
+    }
+
+    function closeFaculty() {
+        $("facultyModal").hidden = true;
+    }
+
+    function saveFaculty() {
+        var name = $("faName").value.trim();
+
+        if (!name) {
+            toast("Name cannot be empty", "err");
+            $("faName").focus();
+            return;
+        }
+
+        var payload = {
+            name: name,
+            department: $("faDepartment").value.trim(),
+            designation: $("faDesignation").value.trim(),
+            email: $("faEmail").value.trim(),
+            phone: $("faPhone").value.trim(),
+            subject: $("faSubject").value.trim()
+        };
+
+        var btn = $("facultyModalSave");
+        btn.disabled = true;
+        btn.textContent = "Adding...";
+
+        CC.api("/api/faculty", {
+            method: "POST",
+            body: payload
+        }).then(function (res) {
+            btn.disabled = false;
+            btn.textContent = "Add faculty";
+
+            if (!res.ok || !res.data || !res.data.success) {
+                toast(
+                    (res.data && (res.data.message || res.data.error)) ||
+                    "Could not add faculty member",
+                    "err"
+                );
+                return;
+            }
+
+            closeFaculty();
+            toast("Added " + name + " to Faculty", "ok");
+
+        }).catch(function () {
+            btn.disabled = false;
+            btn.textContent = "Add faculty";
+            toast("Cannot reach the CampusConnect backend", "err");
+        });
+    }
+
+
     function deleteUser(id) {
         var u = findUser(id) || {};
         var me = CC.user() || {};
@@ -2768,8 +2931,21 @@ input {
             if (event.target === $("userModal")) { closeEdit(); }
         });
 
+        var addFaculty = $("addFacultyBtn");
+        if (addFaculty) { addFaculty.addEventListener("click", openFaculty); }
+
+        $("facultyModalClose").addEventListener("click", closeFaculty);
+        $("facultyModalCancel").addEventListener("click", closeFaculty);
+        $("facultyModalSave").addEventListener("click", saveFaculty);
+
+        $("facultyModal").addEventListener("click", function (event) {
+            if (event.target === $("facultyModal")) { closeFaculty(); }
+        });
+
         document.addEventListener("keydown", function (event) {
-            if (event.key === "Escape" && !$("userModal").hidden) { closeEdit(); }
+            if (event.key !== "Escape") { return; }
+            if (!$("userModal").hidden) { closeEdit(); }
+            if (!$("facultyModal").hidden) { closeFaculty(); }
         });
 
         loadStats();
