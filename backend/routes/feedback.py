@@ -75,6 +75,44 @@ def list_my_feedback():
 
 
 # =========================================================
+# LIST ALL FEEDBACK (admin)
+# =========================================================
+
+@feedback_bp.route("/all", methods=["GET"])
+@admin_required
+def list_all_feedback():
+
+    try:
+        rows = query_all(
+            FEEDBACK_SELECT + " ORDER BY f.created_at DESC, f.id DESC"
+        )
+
+        return success(rows)
+
+    except mysql.connector.Error as exc:
+        return error("Could not load feedback", 500, details=str(exc))
+
+
+# =========================================================
+# DELETE FEEDBACK (admin)
+# =========================================================
+
+@feedback_bp.route("/<int:feedback_id>", methods=["DELETE"])
+@admin_required
+def delete_feedback(feedback_id):
+
+    if not query_one("SELECT id FROM feedback WHERE id = %s", (feedback_id,)):
+        return error("Feedback not found", 404)
+
+    try:
+        execute("DELETE FROM feedback WHERE id = %s", (feedback_id,))
+        return success(message="Feedback deleted")
+
+    except mysql.connector.Error as exc:
+        return error("Could not delete feedback", 500, details=str(exc))
+
+
+# =========================================================
 # FEEDBACK SUMMARY (admin)
 # =========================================================
 

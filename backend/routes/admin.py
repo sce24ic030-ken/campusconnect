@@ -4,11 +4,12 @@
 
 from flask import Blueprint, request
 import mysql.connector
+from werkzeug.security import generate_password_hash
 
 from database.db import query_all, query_one, execute
 from utils.helpers import success, error, get_json
 from utils.security import admin_required
-from utils.validators import one_of
+from utils.validators import one_of, to_int
 
 admin_bp = Blueprint(
     "admin",
@@ -76,6 +77,66 @@ def list_users():
 
     except mysql.connector.Error as exc:
         return error("Could not list users", 500, details=str(exc))
+
+
+# =========================================================
+# CREATE A USER (admin)
+# =========================================================
+
+@admin_bp.route("/users", methods=["POST"])
+@admin_required
+def create_user():
+
+    data = get_json()
+
+    name = (data.get("name") or "").strip()
+    email = (data.get("email") or "").strip()
+    password = data.get("password") or ""
+    role = data.get("role") or "student"
+    student_id = (data.get("student_id") or "").strip()
+    course = (data.get("course") or "").strip()
+    phone = (data.get("phone") or "").strip()
+    semester = to_int(data.get("semester"))
+
+    if not name or not email or not password:
+        return error("Name, email and password are required", 400)
+
+    if not one_of(role, ROLES):
+        return error("role must be student, faculty or admin", 400)
+
+    if data.get("semester") not in (None, "") and semester is None:
+        return error("semester must be a number", 400)
+
+    if query_one("SELECT id FROM users WHERE email = %s", (email,)):
+        return error("Email already registered", 409)
+
+    if student_id and query_one("SELECT id FROM users WHERE student_id = %s", (student_id,)):
+        return error("Student ID already registered", 409)
+
+    try:
+        new_id = execute(
+            "INSERT INTO users "
+            "(name, email, password, student_id, course, semester, phone, role) "
+            "VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
+            (
+                name,
+                email,
+                generate_password_hash(password),
+                student_id or None,
+                course or None,
+                semester,
+                phone or None,
+                role
+            ),
+            return_id=True
+        )
+
+        row = query_one(USER_SELECT + " WHERE id = %s", (new_id,))
+
+        return success(row, message="User created", status=201)
+
+    except mysql.connector.Error as exc:
+        return error("Could not create user", 500, details=str(exc))
 
 
 # =========================================================
