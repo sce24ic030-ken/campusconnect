@@ -69,6 +69,13 @@
         "Placement": "green", "Events": "orange", "General": "purple"
     };
 
+    /* exams.html renders an exam type badge; these are the values it knows. */
+    var EXAM_TYPES = ["Theory", "Practical", "Viva", "Internal", "External"];
+
+    /* The lost_found table has no category column, so every API row lands in
+       one bucket. The page builds its category filter from the data. */
+    var LOST_FOUND_STATUSES = ["Open", "Claimed", "Closed"];
+
     /* =========================================================
        PAGE REGISTRY
        ========================================================= */
@@ -652,6 +659,268 @@
                 if (typeof window.renderOverview === "function") { renderOverview(); }
                 if (typeof window.renderCategories === "function") { renderCategories(); }
             }
+        },
+
+        /* -------------------------------------------------- */
+        /* Admin view of student feedback submissions. The page's own cards are
+           "feedback categories"; for an admin we repurpose them into submission
+           cards (student + rating + message) so Edit/Delete have a record to
+           act on. Writes go to /api/feedback, reads to the admin-only /all. */
+        "feedback.html": {
+            api: "/api/feedback",
+            apiAdmin: "/api/feedback/all",
+            thing: "Feedback",
+            addLabel: "+ Add Feedback",
+            array: "feedbackData",
+            render: "renderFeedback",
+            show: "showFeedbackDetails",
+            card: ".feedback-card",
+            titleOf: function (f) { return f._title || f.title; },
+
+            toItem: function (row) {
+                var who = (row.student_name || "").trim();
+
+                return {
+                    id: row.id,
+                    user_id: row.user_id,
+                    title: who || "Anonymous student",
+                    category: "Feedback",
+                    icon: "💬",
+                    rating: Number(row.rating) || 0,
+                    description: row.message || "(no comment left)",
+                    _title: who || "Anonymous student",
+                    _rating: Number(row.rating) || 0,
+                    _message: row.message || ""
+                };
+            },
+
+            ownerLabel: function (item) {
+                return item.user_id ? "By: " + item.title : "";
+            },
+
+            fields: [
+                { name: "rating", label: "Rating (1-5)", type: "number", required: true },
+                { name: "message", label: "Comment", type: "textarea" }
+            ],
+
+            fromItem: function (f) {
+                return { rating: f._rating, message: f._message };
+            },
+
+            toPayload: function (v) {
+                return {
+                    rating: Number(v.rating),
+                    message: v.message
+                };
+            },
+
+            afterLoad: function () {
+                if (typeof window.renderOverview === "function") { renderOverview(); }
+                if (typeof window.populateCategoryFilter === "function") {
+                    var sel = document.getElementById("categoryFilter");
+                    if (sel) {
+                        var all = sel.options[0];
+                        sel.innerHTML = "";
+                        if (all) { sel.appendChild(all); }
+                        populateCategoryFilter();
+                    }
+                }
+            }
+        },
+
+        /* -------------------------------------------------- */
+        "exams.html": {
+            api: "/api/exams",
+            thing: "Exam",
+            addLabel: "+ Add Exam",
+            array: "EXAMS",
+            render: "renderExams",
+            show: "showExamDetails",
+            card: ".exam-card",
+            titleOf: function (e) { return e.subject + " — " + e.fullDate; },
+
+            toItem: function (row) {
+                var date = String(row.exam_date || "").slice(0, 10);
+                var parts = date.split("-");
+                var day = parts.length === 3 ? Number(parts[2]) : "";
+                var monthIndex = parts.length === 3 ? Number(parts[1]) - 1 : -1;
+                var today = new Date();
+                today.setHours(0, 0, 0, 0);
+
+                var when = parts.length === 3
+                    ? new Date(Number(parts[0]), Number(parts[1]) - 1, Number(parts[2]))
+                    : null;
+
+                var status = "upcoming";
+                if (when) {
+                    if (when.getTime() === today.getTime()) { status = "today"; }
+                    else if (when.getTime() < today.getTime()) { status = "completed"; }
+                }
+
+                return {
+                    id: row.id,
+                    user_id: row.user_id,
+                    student_name: row.student_name,
+                    subject: row.course_name || row.exam_name || "Examination",
+                    code: row.course_code || "",
+                    type: row.exam_type || "Theory",
+                    date: parts.length === 3 ? String(day) : "--",
+                    month: monthIndex >= 0 ? MONTH_SHORT[monthIndex].toUpperCase() : "TBD",
+                    fullDate: parts.length === 3
+                        ? day + " " + MONTH_FULL[monthIndex] + " " + parts[0]
+                        : "Date to be announced",
+                    time: clockRange(row.start_time, row.end_time),
+                    room: row.room || "TBA",
+                    status: status,
+                    duration: durationLabel(row.start_time, row.end_time),
+                    _date: date,
+                    _start: hm(row.start_time),
+                    _end: hm(row.end_time),
+                    _name: row.exam_name || "",
+                    _courseId: row.course_id || ""
+                };
+            },
+
+            ownerLabel: function (item) {
+                return item.student_name ? "For: " + item.student_name : "";
+            },
+
+            fields: [
+                { name: "user_id", label: "Student", type: "users", required: true, createOnly: true },
+                { name: "exam_name", label: "Exam name", type: "text", required: true },
+                { name: "course_id", label: "Course", type: "courses" },
+                { name: "exam_date", label: "Date", type: "date" },
+                { name: "start_time", label: "Start time", type: "time" },
+                { name: "end_time", label: "End time", type: "time" },
+                { name: "room", label: "Venue", type: "text" },
+                { name: "exam_type", label: "Type", type: "select", options: EXAM_TYPES }
+            ],
+
+            defaults: { exam_type: "Theory" },
+
+            fromItem: function (e) {
+                return {
+                    user_id: "",
+                    exam_name: e._name || e.subject,
+                    course_id: e._courseId || "",
+                    exam_date: e._date || "",
+                    start_time: e._start || "",
+                    end_time: e._end || "",
+                    room: e.room === "TBA" ? "" : e.room,
+                    exam_type: e.type
+                };
+            },
+
+            toPayload: function (v, item) {
+                var payload = {
+                    exam_name: v.exam_name,
+                    course_id: v.course_id ? Number(v.course_id) : null,
+                    exam_date: v.exam_date,
+                    start_time: v.start_time,
+                    end_time: v.end_time,
+                    room: v.room,
+                    exam_type: v.exam_type
+                };
+                /* Exams belong to one student, so only creates pick an owner. */
+                if (item === null && v.user_id) { payload.user_id = Number(v.user_id); }
+                return payload;
+            },
+
+            afterLoad: function () {
+                if (typeof window.populateTypeFilter === "function") {
+                    var sel = document.getElementById("typeFilter");
+                    if (sel) {
+                        var all = sel.options[0];
+                        sel.innerHTML = "";
+                        if (all) { sel.appendChild(all); }
+                        populateTypeFilter();
+                    }
+                }
+                if (typeof window.renderOverview === "function") { renderOverview(); }
+                if (typeof window.renderSubjects === "function") { renderSubjects(); }
+            }
+        },
+
+        /* -------------------------------------------------- */
+        "lost_found.html": {
+            api: "/api/lost-found",
+            thing: "Item",
+            addLabel: "+ Report Item",
+            array: "ITEMS",
+            render: "renderItems",
+            show: "showItemProfile",
+            card: ".faculty-card",
+            titleOf: function (i) { return i.name; },
+
+            toItem: function (row) {
+                var kind = String(row.item_type || "Lost");
+                var raw = String(row.status || "Open");
+                var shown = raw === "Claimed" || raw === "Closed"
+                    ? "claimed"
+                    : (kind.toLowerCase() === "found" ? "found" : "lost");
+
+                return {
+                    id: row.id,
+                    user_id: row.user_id,
+                    reporter_name: row.reporter_name,
+                    name: row.item_name || "Untitled item",
+                    category: row.category || "General",
+                    type: kind,
+                    location: row.location || "Not specified",
+                    date: row.item_date ? prettyDate(row.item_date) : "—",
+                    time: "",
+                    description: row.description || "",
+                    contact: row.contact || "",
+                    status: shown,
+                    _kind: kind,
+                    _status: raw,
+                    _date: String(row.item_date || "").slice(0, 10)
+                };
+            },
+
+            ownerLabel: function (item) {
+                return item.reporter_name ? "By: " + item.reporter_name : "";
+            },
+
+            fields: [
+                { name: "item_name", label: "Item name", type: "text", required: true },
+                { name: "item_type", label: "Type", type: "select", options: ["Lost", "Found"], required: true },
+                { name: "status", label: "Status", type: "select", options: LOST_FOUND_STATUSES },
+                { name: "location", label: "Location", type: "text" },
+                { name: "item_date", label: "Date", type: "date" },
+                { name: "contact", label: "Contact", type: "text" },
+                { name: "description", label: "Description", type: "textarea" }
+            ],
+
+            defaults: { item_type: "Lost", status: "Open" },
+
+            fromItem: function (i) {
+                return {
+                    item_name: i.name,
+                    item_type: i._kind,
+                    status: i._status,
+                    location: i.location === "Not specified" ? "" : i.location,
+                    item_date: i._date || "",
+                    contact: i.contact,
+                    description: i.description
+                };
+            },
+
+            toPayload: function (v) { return v; },
+
+            afterLoad: function () {
+                if (typeof window.renderOverview === "function") { renderOverview(); }
+                if (typeof window.renderCategories === "function") { renderCategories(); }
+                if (typeof window.populateCategoryFilter === "function") {
+                    var sel = document.getElementById("categoryFilter");
+                    if (sel) {
+                        var all = sel.options[0];
+                        sel.innerHTML = "";
+                        if (all) { sel.appendChild(all); }
+                        populateCategoryFilter();
+                    }
+                }
+            }
         }
     };
 
@@ -698,6 +967,31 @@
         var from = start ? clock12(start) : "?";
         var to = end ? clock12(end) : "?";
         return from + " – " + to;
+    }
+
+    /* "3 Hours" / "1 Hour 30 Minutes" from a start/end pair, or "" when the
+       times are missing. Exams are the only page that shows a duration. */
+    function durationLabel(start, end) {
+        var from = hm(start);
+        var to = hm(end);
+        if (!from || !to) { return ""; }
+
+        function minutes(value) {
+            var bits = String(value).split(":");
+            return Number(bits[0]) * 60 + Number(bits[1]);
+        }
+
+        var total = minutes(to) - minutes(from);
+        if (total <= 0) { return ""; }
+
+        var hours = Math.floor(total / 60);
+        var mins = total % 60;
+        var parts = [];
+
+        if (hours) { parts.push(hours + (hours === 1 ? " Hour" : " Hours")); }
+        if (mins) { parts.push(mins + (mins === 1 ? " Minute" : " Minutes")); }
+
+        return parts.join(" ");
     }
 
     function prettyDate(isoDate) {

@@ -94,6 +94,51 @@ def list_all_feedback():
 
 
 # =========================================================
+# UPDATE FEEDBACK (admin)
+# =========================================================
+
+@feedback_bp.route("/<int:feedback_id>", methods=["PUT"])
+@admin_required
+def update_feedback(feedback_id):
+
+    existing = query_one("SELECT id FROM feedback WHERE id = %s", (feedback_id,))
+
+    if not existing:
+        return error("Feedback not found", 404)
+
+    data = get_json()
+
+    fields = {}
+
+    if "rating" in data:
+        rating = to_int(data["rating"])
+        if rating is None or rating < 1 or rating > 5:
+            return error("rating must be an integer between 1 and 5", 400)
+        fields["rating"] = rating
+
+    if "message" in data:
+        fields["message"] = data["message"]
+
+    if not fields:
+        return error("No valid fields to update", 400)
+
+    set_clause = ", ".join(f"{key} = %s" for key in fields)
+
+    try:
+        execute(
+            f"UPDATE feedback SET {set_clause} WHERE id = %s",
+            (*fields.values(), feedback_id)
+        )
+
+        row = query_one(FEEDBACK_SELECT + " WHERE f.id = %s", (feedback_id,))
+
+        return success(row, message="Feedback updated")
+
+    except mysql.connector.Error as exc:
+        return error("Could not update feedback", 500, details=str(exc))
+
+
+# =========================================================
 # DELETE FEEDBACK (admin)
 # =========================================================
 

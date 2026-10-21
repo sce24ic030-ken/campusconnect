@@ -268,16 +268,16 @@
     /* ---------- role-aware navigation ---------- */
 
     /* Pages that only make sense for a student. Admins work from the
-       admin console instead, so these are removed from their sidebar. */
+       admin console instead, so these are removed from their sidebar.
+       Exams and Lost & Found are deliberately absent: admins manage both
+       from the console, so the link must stay and stay highlighted. */
     var STUDENT_ONLY = [
         "dashboard.html",
         "timetable.html",
         "assignments.html",
         "attendance.html",
         "academics.html",
-        "documents.html",
-        "lost_found.html",
-        "exams.html"
+        "documents.html"
     ];
 
     /* Sections of the admin console. Keep in sync with
@@ -337,6 +337,40 @@
 
         group.innerHTML = inner;
         menu.insertBefore(group, menu.firstChild);
+    }
+
+    /* The sidebar is taller than a phone screen, and every fresh page load
+       resets its scroll position to the top. Without this the tab you just
+       tapped sits off-screen, so the nav looks like it jumped back to the
+       top. Nudge the active tab into view instead. Runs after the admin
+       nav has been decorated, so it works on the console too, and again on
+       window load for pages whose scripts add nav items later. */
+    function revealActiveNav() {
+        var active = document.querySelector(".nav-item.active");
+        if (!active) { return; }
+
+        var scroller = active.closest ? active.closest(".sidebar") : null;
+        if (!scroller) { return; }
+
+        /* Nothing to scroll when the whole sidebar already fits. */
+        if (scroller.scrollHeight <= scroller.clientHeight + 2) { return; }
+
+        var box = scroller.getBoundingClientRect();
+        var link = active.getBoundingClientRect();
+
+        /* Already comfortably in view — leave the scroll position alone so a
+           manually scrolled sidebar is not yanked around. */
+        if (link.top >= box.top + 6 && link.bottom <= box.bottom - 6) { return; }
+
+        /* scrollIntoView is far less prone to overshoot/clamp bugs than manual
+           arithmetic on sidebars that grow after this function first runs. */
+        try {
+            active.scrollIntoView({ block: "nearest", inline: "nearest" });
+        } catch (e) {
+            var maxScroll = scroller.scrollHeight - scroller.clientHeight;
+            var target = scroller.scrollTop + (link.top - box.top) - Math.round(box.height / 3);
+            scroller.scrollTop = Math.max(0, Math.min(target, maxScroll));
+        }
     }
 
     /* ---------- topbar ---------- */
@@ -1104,6 +1138,20 @@
         try { wireLogout(); } catch (e) { /* never break a page over logout */ }
         try {
             if (isAdmin()) { decorateNavForAdmin(); }
+        } catch (e) { /* never break a page over the navigation */ }
+        try { revealActiveNav(); } catch (e) { /* never break a page over the navigation */ }
+
+        /* Scripts further down the page (program-scope.js and the page's own
+           code) can add to the sidebar after boot, which changes its height.
+           Re-run once everything has settled so the active tab still lands
+           in view. */
+        try {
+            window.addEventListener("load", function () {
+                try { revealActiveNav(); } catch (e) { /* never break the nav */ }
+            });
+            setTimeout(function () {
+                try { revealActiveNav(); } catch (e) { /* never break the nav */ }
+            }, 1200);
         } catch (e) { /* never break a page over the navigation */ }
     }
 

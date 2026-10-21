@@ -17,10 +17,12 @@ exams_bp = Blueprint(
 )
 
 EXAM_SELECT = (
-    "SELECT e.id, e.user_id, e.course_id, c.course_name, c.course_code, "
+    "SELECT e.id, e.user_id, u.name AS student_name, e.course_id, "
+    "c.course_name, c.course_code, "
     "e.exam_name, e.exam_date, e.start_time, e.end_time, e.room, "
     "e.exam_type, e.created_at "
-    "FROM exams e LEFT JOIN courses c ON e.course_id = c.id"
+    "FROM exams e LEFT JOIN courses c ON e.course_id = c.id "
+    "LEFT JOIN users u ON e.user_id = u.id"
 )
 
 
@@ -33,9 +35,21 @@ EXAM_SELECT = (
 def list_exams():
 
     upcoming = request.args.get("upcoming") in ("1", "true", "True")
+    user_id = to_int(request.args.get("user_id"))
 
-    query = EXAM_SELECT + " WHERE e.user_id = %s"
-    params = [request.user_id]
+    if request.user_role == "admin":
+
+        # Admins may see every exam, or one student's with ?user_id=
+        query = EXAM_SELECT + " WHERE 1=1"
+        params = []
+
+        if user_id:
+            query += " AND e.user_id = %s"
+            params.append(user_id)
+
+    else:
+        query = EXAM_SELECT + " WHERE e.user_id = %s"
+        params = [request.user_id]
 
     if upcoming:
         query += " AND e.exam_date >= CURDATE()"
