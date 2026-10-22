@@ -30,7 +30,10 @@ services:
         value: production
       - key: FLASK_DEBUG
         value: "False"
-      # Bump to force Render to redeploy the service on the next push.
+      # Build marker. Bumping it makes Render redeploy the service, but only
+      # for a service that is actually managed by this blueprint. The live
+      # service was created from the dashboard, so deploys are triggered with
+      # scripts/deploy_render.py instead.
       - key: APP_BUILD
         value: "2026-10-21"
 
